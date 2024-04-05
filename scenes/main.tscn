@@ -47,54 +47,40 @@ theme = ExtResource("2_4lqlq")
 [node name="LeftBackground" type="TextureRect" parent="GUI/Main"]
 clip_contents = true
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -270.0
+anchors_preset = 9
+anchor_bottom = 1.0
 offset_right = 370.0
-offset_bottom = 270.0
 grow_vertical = 2
 texture = ExtResource("2_5kihd")
-stretch_mode = 3
 
 [node name="LeftSide" type="Panel" parent="GUI/Main"]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -270.0
+anchors_preset = 9
+anchor_bottom = 1.0
 offset_right = 295.0
-offset_bottom = 270.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_4qy8r")
 
 [node name="RightBackground" type="TextureRect" parent="GUI/Main"]
 clip_contents = true
 layout_mode = 1
-anchors_preset = 6
+anchors_preset = 11
 anchor_left = 1.0
-anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 0.5
+anchor_bottom = 1.0
 offset_left = -370.0
-offset_top = -270.0
-offset_bottom = 270.0
 grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("2_5kihd")
-stretch_mode = 3
 flip_h = true
 
 [node name="RightSide" type="Panel" parent="GUI/Main"]
 layout_mode = 1
-anchors_preset = 6
+anchors_preset = 11
 anchor_left = 1.0
-anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 0.5
+anchor_bottom = 1.0
 offset_left = -265.0
-offset_top = -270.0
-offset_bottom = 270.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_vjwvv")
@@ -253,10 +239,15 @@ layout_mode = 2
 [node name="MiddleBackground" type="TextureRect" parent="GUI/Main"]
 self_modulate = Color(0.439216, 0.439216, 0.439216, 1)
 clip_contents = true
-layout_mode = 0
-offset_left = 295.0
-offset_right = 695.0
-offset_bottom = 540.0
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -185.0
+offset_right = 213.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_5kihd")
 
 [node name="MonstersContainer" type="HBoxContainer" parent="GUI/Main/MiddleBackground"]
