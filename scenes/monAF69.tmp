@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=3 uid="uid://db4w0kyarhorf"]
+
+[ext_resource type="Theme" uid="uid://bui7x6reyady0" path="res://resources/themes/monster_theme.tres" id="1_6j3hb"]
+[ext_resource type="Script" path="res://scripts/MonsterUI.gd" id="1_p4hg1"]
+[ext_resource type="Texture2D" uid="uid://lddv4do0u4gt" path="res://assets/ui/green_arrow.png" id="3_oxikk"]
+[ext_resource type="Texture2D" uid="uid://dqo1816v8l68f" path="res://assets/ui/monster_background.png" id="3_p2krt"]
+[ext_resource type="Texture2D" uid="uid://c110q4xb8b08g" path="res://assets/monsters/bouftou royal.png" id="4_rhdxm"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a8mfi"]
+texture = ExtResource("3_p2krt")
+
+[node name="MonsterUI" type="VBoxContainer" node_paths=PackedStringArray("texture_rect", "health_bar", "health_label", "selected_arrow")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -59.5
+offset_right = 50.0
+offset_bottom = 59.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_6j3hb")
+script = ExtResource("1_p4hg1")
+texture_rect = NodePath("MonsterContainer/MarginContainer/Monster")
+health_bar = NodePath("HealthBar")
+health_label = NodePath("HealthBar/HealthLabel")
+selected_arrow = NodePath("Selected")
+
+[node name="MonsterContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_a8mfi")
+
+[node name="MarginContainer" type="MarginContainer" parent="MonsterContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Monster" type="TextureRect" parent="MonsterContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("4_rhdxm")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+step = 1.0
+value = 70.0
+show_percentage = false
+
+[node name="HealthLabel" type="Label" parent="HealthBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "70/100"
+horizontal_alignment = 1
+
+[node name="Selected" type="TextureRect" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("3_oxikk")
+stretch_mode = 2

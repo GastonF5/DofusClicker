@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfh3u8jwrg2ar"]
+
+[ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_iu0is"]
+[ext_resource type="Texture2D" uid="uid://fiyd1e6qe4mb" path="res://assets/monsters/prespic.png" id="2_aaqhg"]
+
+[node name="Main" type="Node"]
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("1_iu0is")
+monster_texture = ExtResource("2_aaqhg")
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="GUI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -94.0
+offset_right = 4.0
+offset_bottom = -86.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_mode = 0
+text = "Taper"
+
+[connection signal="button_up" from="GUI/Button" to="GameManager" method="_on_button_button_up"]

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=3 format=3 uid="uid://n60yenxburg0"]
+
+[ext_resource type="Script" path="res://scripts/SpellResource.gd" id="1_38hg8"]
+[ext_resource type="Texture2D" uid="uid://d1oo2xrycpenx" path="res://assets/spells/punch.png" id="2_qtmua"]
+
+[resource]
+script = ExtResource("1_38hg8")
+name = "Coup de poing"
+texture = ExtResource("2_qtmua")
+cooldown = 0.2

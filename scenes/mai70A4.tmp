@@ -1,0 +1,419 @@
+[gd_scene load_steps=19 format=3 uid="uid://bfh3u8jwrg2ar"]
+
+[ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_iu0is"]
+[ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="2_4lqlq"]
+[ext_resource type="Texture2D" uid="uid://dtp2ktsnvjk8w" path="res://assets/ui/window/bg_product.jpg" id="2_5kihd"]
+[ext_resource type="Texture2D" uid="uid://cl71pm2t281ug" path="res://assets/ui/icons/XPBonus5.png" id="3_btuyi"]
+[ext_resource type="Texture2D" uid="uid://ds4noug2xgj75" path="res://assets/ui/window/tx_parchment_forgemagie.png" id="3_e0uq4"]
+[ext_resource type="Script" path="res://scripts/ExperienceBar.gd" id="3_ir03k"]
+[ext_resource type="Theme" uid="uid://ctf5aaqx8jyeo" path="res://resources/themes/experience_bar.tres" id="3_prl7k"]
+[ext_resource type="Script" path="res://scripts/Item.gd" id="4_6d7sl"]
+[ext_resource type="Texture2D" uid="uid://dqo1816v8l68f" path="res://assets/ui/monster_background.png" id="4_687fi"]
+[ext_resource type="Texture2D" uid="uid://brcl6cos3cake" path="res://assets/ui/icons/icon_kama.png" id="4_jjqja"]
+[ext_resource type="PackedScene" uid="uid://coiey3idqo52l" path="res://scenes/inventory/inventory_slot.tscn" id="4_m4btg"]
+[ext_resource type="Texture2D" uid="uid://k8o6051gdcvj" path="res://assets/ui/inventory/grey_img_bg.png" id="5_ehgph"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4qy8r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vjwvv"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b8bl0"]
+texture = ExtResource("5_ehgph")
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3udr7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_du4k8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vraqn"]
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Main" type="Node"]
+
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("xp_bar", "kamas_label")]
+script = ExtResource("1_iu0is")
+xp_bar = NodePath("../GUI/Main/MiddleBackground/PlayerBarContainer/PlayerBarContainer/VBoxContainer/ExperienceBar")
+kamas_label = NodePath("../GUI/Main/MiddleBackground/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/KamasContainer/KamasLabel")
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="Main" type="Control" parent="GUI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_4lqlq")
+
+[node name="LeftBackground" type="TextureRect" parent="GUI/Main"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -270.0
+offset_right = 370.0
+offset_bottom = 270.0
+grow_vertical = 2
+texture = ExtResource("2_5kihd")
+stretch_mode = 3
+
+[node name="LeftSide" type="Panel" parent="GUI/Main"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -270.0
+offset_right = 295.0
+offset_bottom = 270.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_4qy8r")
+
+[node name="Button" type="Button" parent="GUI/Main/LeftSide"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.5
+offset_top = -19.0
+offset_right = 18.5
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_6d7sl")
+
+[node name="RightBackground" type="TextureRect" parent="GUI/Main"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -370.0
+offset_top = -270.0
+offset_bottom = 270.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("2_5kihd")
+stretch_mode = 3
+flip_h = true
+
+[node name="RightSide" type="Panel" parent="GUI/Main"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -265.0
+offset_top = -270.0
+offset_bottom = 270.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vjwvv")
+
+[node name="VSplitContainer" type="VSplitContainer" parent="GUI/Main/RightSide"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Main/RightSide/VSplitContainer"]
+layout_mode = 2
+texture = ExtResource("4_687fi")
+
+[node name="InventoryPanel" type="Panel" parent="GUI/Main/RightSide/VSplitContainer"]
+clip_contents = true
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_b8bl0")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InventoryGrid" type="GridContainer" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 4
+
+[node name="InventorySlot" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot2" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot3" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot4" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot5" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot6" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot7" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot8" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot9" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot10" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot11" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot12" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot13" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot14" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot15" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot16" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot17" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot18" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot19" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot20" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot21" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot22" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot23" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot24" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot25" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot26" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot27" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot28" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot29" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot30" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot31" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot32" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot33" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot34" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot35" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot36" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot37" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot38" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot39" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot40" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="MiddleBackground" type="TextureRect" parent="GUI/Main"]
+self_modulate = Color(0.439216, 0.439216, 0.439216, 1)
+clip_contents = true
+layout_mode = 0
+offset_left = 295.0
+offset_right = 695.0
+offset_bottom = 540.0
+texture = ExtResource("2_5kihd")
+
+[node name="MonstersContainer" type="HBoxContainer" parent="GUI/Main/MiddleBackground"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -87.0
+offset_bottom = -87.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="SpellsContainer" type="Panel" parent="GUI/Main/MiddleBackground"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -165.0
+offset_top = 99.0
+offset_right = 167.0
+offset_bottom = 149.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_3udr7")
+
+[node name="VBoxContainer" type="HBoxContainer" parent="GUI/Main/MiddleBackground/SpellsContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="PlayerBarContainer" type="PanelContainer" parent="GUI/Main/MiddleBackground"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -109.428
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PlayerBarBackground" type="TextureRect" parent="GUI/Main/MiddleBackground/PlayerBarContainer"]
+layout_mode = 2
+texture = ExtResource("3_e0uq4")
+expand_mode = 5
+
+[node name="PlayerBarContainer" type="MarginContainer" parent="GUI/Main/MiddleBackground/PlayerBarContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/Main/MiddleBackground/PlayerBarContainer/PlayerBarContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="AspectRatioContainer" type="PanelContainer" parent="GUI/Main/MiddleBackground/PlayerBarContainer/PlayerBarContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_du4k8")
+
+[node name="XPContainer" type="HBoxContainer" parent="GUI/Main/MiddleBackground/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Space" type="Control" parent="GUI/Main/MiddleBackground/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/XPContainer"]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+
+[node name="XPTexture" type="TextureRect" parent="GUI/Main/MiddleBackground/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/XPContainer"]
+layout_mode = 2
+texture = ExtResource("3_btuyi")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Space2" type="Control" parent="GUI/Main/MiddleBackground/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/XPContainer"]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+
+[node name="LvlLabel" type="Label" parent="GUI/Main/MiddleBackground/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/XPContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Nv. 1"
+
+[node name="KamasContainer" type="HBoxContainer" parent="GUI/Main/MiddleBackground/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+alignment = 2
+
+[node name="KamasTexture" type="TextureRect" parent="GUI/Main/MiddleBackground/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/KamasContainer"]
+layout_mode = 2
+texture = ExtResource("4_jjqja")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="KamasLabel" type="Label" parent="GUI/Main/MiddleBackground/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/KamasContainer"]
+layout_mode = 2
+text = "5"
+label_settings = SubResource("LabelSettings_vraqn")
+
+[node name="Space" type="Control" parent="GUI/Main/MiddleBackground/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/KamasContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="ExperienceBar" type="ProgressBar" parent="GUI/Main/MiddleBackground/PlayerBarContainer/PlayerBarContainer/VBoxContainer" node_paths=PackedStringArray("lvl_label", "label")]
+custom_minimum_size = Vector2(350, 30)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("3_prl7k")
+step = 1.0
+value = 50.0
+allow_greater = true
+show_percentage = false
+script = ExtResource("3_ir03k")
+lvl_label = NodePath("../AspectRatioContainer/XPContainer/LvlLabel")
+label = NodePath("MarginContainer/Label")
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Main/MiddleBackground/PlayerBarContainer/PlayerBarContainer/VBoxContainer/ExperienceBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_bottom = 3
+
+[node name="Label" type="Label" parent="GUI/Main/MiddleBackground/PlayerBarContainer/PlayerBarContainer/VBoxContainer/ExperienceBar/MarginContainer"]
+layout_mode = 2
+text = "5/10"
+horizontal_alignment = 1

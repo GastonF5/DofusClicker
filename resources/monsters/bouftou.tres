@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=5 format=3 uid="uid://njdo3lkxrv4p"]
+
+[ext_resource type="Script" path="res://scripts/monsters/MonsterResource.gd" id="1_4crxr"]
+[ext_resource type="Resource" uid="uid://bqi4hntvgf4jc" path="res://resources/items/laine_bouftou.tres" id="1_wpn17"]
+[ext_resource type="Texture2D" uid="uid://dp18o0pxmvcoh" path="res://assets/monsters/bouftou.png" id="2_fvsqk"]
+[ext_resource type="Resource" uid="uid://5b044xunvcvf" path="res://resources/items/corne_bouftou.tres" id="2_p1oga"]
+
+[resource]
+script = ExtResource("1_4crxr")
+name = "Bouftou"
+texture = ExtResource("2_fvsqk")
+max_health = 5
+xp_gain = 5
+boss = false
+archimonstre = false
+drop = Array[Resource("res://scripts/item/ItemResource.gd")]([ExtResource("1_wpn17"), ExtResource("2_p1oga")])

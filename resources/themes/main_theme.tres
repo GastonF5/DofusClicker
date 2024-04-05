@@ -1,0 +1,18 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://c7aqcuf0u3rkj"]
+
+[ext_resource type="FontFile" uid="uid://duac7keqvubh2" path="res://assets/font/Tahoma Regular font.ttf" id="1_ymsaj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j228g"]
+
+[resource]
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 2
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/constants/shadow_outline_size = 1
+Label/font_sizes/font_size = 20
+Label/fonts/font = ExtResource("1_ymsaj")
+Label/styles/normal = SubResource("StyleBoxEmpty_j228g")
