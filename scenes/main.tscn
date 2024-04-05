@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bfh3u8jwrg2ar"]
+[gd_scene load_steps=30 format=3 uid="uid://bfh3u8jwrg2ar"]
 
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_iu0is"]
 [ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="2_4lqlq"]
@@ -9,9 +9,29 @@
 [ext_resource type="Theme" uid="uid://ctf5aaqx8jyeo" path="res://resources/themes/experience_bar.tres" id="3_prl7k"]
 [ext_resource type="Texture2D" uid="uid://brcl6cos3cake" path="res://assets/ui/icons/icon_kama.png" id="4_jjqja"]
 [ext_resource type="PackedScene" uid="uid://coiey3idqo52l" path="res://scenes/inventory/inventory_slot.tscn" id="4_m4btg"]
+[ext_resource type="Texture2D" uid="uid://dubxhf73uvwcn" path="res://assets/equipment/tx_slot_belt.png" id="4_tf78o"]
 [ext_resource type="Script" path="res://scripts/inventory/Inventory.gd" id="5_6v3yu"]
+[ext_resource type="Texture2D" uid="uid://blq7h4lvuwd65" path="res://assets/ui/inventory/acceptDrop.png" id="5_ufvyq"]
+[ext_resource type="Texture2D" uid="uid://i4rmuxyvr6jx" path="res://assets/ui/inventory/selected.png" id="6_bjtov"]
+[ext_resource type="Texture2D" uid="uid://btankjkc67hjv" path="res://assets/ui/inventory/inventoryEmptySlot.png" id="7_gobx1"]
+[ext_resource type="Texture2D" uid="uid://bh6ulrqp0mskd" path="res://assets/equipment/tx_slot_cape.png" id="8_wqctn"]
+[ext_resource type="Texture2D" uid="uid://bn7tw45whgwgg" path="res://assets/equipment/tx_slot_collar.png" id="9_xhasg"]
+[ext_resource type="Texture2D" uid="uid://bsksxibr4yyo3" path="res://assets/equipment/tx_slot_helmet.png" id="10_8coe0"]
+[ext_resource type="Texture2D" uid="uid://jldvprwk734o" path="res://assets/equipment/tx_slot_ring.png" id="11_qw2gl"]
+[ext_resource type="Texture2D" uid="uid://63x2ud42mc3j" path="res://assets/equipment/tx_slot_weapon.png" id="12_g87co"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4qy8r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nfls5"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fss8n"]
+texture = ExtResource("5_ufvyq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dlddm"]
+texture = ExtResource("6_bjtov")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bclgm"]
+texture = ExtResource("7_gobx1")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vjwvv"]
 
@@ -61,6 +81,216 @@ offset_right = 295.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_4qy8r")
 
+[node name="VSplitContainer" type="VSplitContainer" parent="GUI/Main/LeftSide"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+collapsed = true
+dragger_visibility = 1
+
+[node name="EquipmentContainer" type="PanelContainer" parent="GUI/Main/LeftSide/VSplitContainer"]
+layout_mode = 2
+
+[node name="ArmeSlot" type="Button" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nfls5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/ArmeSlot"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_g87co")
+
+[node name="LeftContainer" type="VBoxContainer" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+alignment = 1
+
+[node name="AmuletteSlot" type="Button" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/LeftContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nfls5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/LeftContainer/AmuletteSlot"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_xhasg")
+
+[node name="AnneauSlot" type="Button" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/LeftContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nfls5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/LeftContainer/AnneauSlot"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_qw2gl")
+
+[node name="AnneauSlot2" type="Button" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/LeftContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nfls5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/LeftContainer/AnneauSlot2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_qw2gl")
+
+[node name="RightContainer" type="VBoxContainer" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+alignment = 1
+
+[node name="CoiffeSlot" type="Button" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/RightContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nfls5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/RightContainer/CoiffeSlot"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_8coe0")
+
+[node name="CapeSlot" type="Button" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/RightContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nfls5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/RightContainer/CapeSlot"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_wqctn")
+
+[node name="CeintureSlot" type="Button" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/RightContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nfls5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/RightContainer/CeintureSlot"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_tf78o")
+
+[node name="StatsContainer" type="Panel" parent="GUI/Main/LeftSide/VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.5
+
 [node name="RightBackground" type="TextureRect" parent="GUI/Main"]
 clip_contents = true
 layout_mode = 1
@@ -93,12 +323,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="GUI/Main/RightSide/VSplitContainer"]
+[node name="TextureRect" type="Panel" parent="GUI/Main/RightSide/VSplitContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="InventoryPanel" type="Panel" parent="GUI/Main/RightSide/VSplitContainer"]
 clip_contents = true
 layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_j1ob6")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel"]
