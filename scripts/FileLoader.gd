@@ -14,3 +14,11 @@ static func get_all_file_paths(path: String) -> Array[String]:
 			file_paths.append(file_path)
 		file_name = dir.get_next()
 	return file_paths
+
+
+static func get_monster_resources() -> Array[MonsterResource]:
+	var monster_resource_paths = FileLoader.get_all_file_paths("res://resources/monsters")
+	var monsters_res: Array[MonsterResource] = []
+	for path in monster_resource_paths:
+		monsters_res.append(load(path))
+	return monsters_res

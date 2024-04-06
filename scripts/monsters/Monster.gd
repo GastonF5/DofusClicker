@@ -1,6 +1,8 @@
 class_name Monster
 extends ClickableControl
 
+const monster_scene = preload("res://scenes/monster.tscn")
+static var monsters_res: Array[MonsterResource]
 
 @export var name_label: Label
 @export var texture_rect: TextureRect
@@ -12,6 +14,15 @@ extends ClickableControl
 var resource: MonsterResource
 
 signal dies
+
+
+static func instantiate(parent: Control) -> Monster:
+	monsters_res = FileLoader.get_monster_resources()
+	var random_monster_res: MonsterResource = monsters_res[randi_range(0, monsters_res.size() - 1)]
+	var monster = monster_scene.instantiate()
+	parent.add_child(monster)
+	monster.init(random_monster_res)
+	return monster
 
 
 func init(res: MonsterResource):

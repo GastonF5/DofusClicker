@@ -1,6 +1,8 @@
 class_name Spell
 extends ClickableControl
 
+const spell_scene = preload("res://scenes/spell.tscn")
+
 @export var spell_texture: TextureRect
 @export var cooldown_bar: TextureProgressBar
 
@@ -42,3 +44,10 @@ func on_timeout():
 	timer = null
 	is_clickable = true
 	cooldown_bar.value = 0
+
+
+static func instantiate(spell_res: SpellResource, parent: Control) -> Spell:
+	var spell = spell_scene.instantiate()
+	spell.init(spell_res)
+	parent.add_child(spell)
+	return spell

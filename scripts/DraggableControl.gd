@@ -1,7 +1,10 @@
 class_name DraggableControl
 extends ClickableControl
 
-var parent
+@onready var OverUI = $"/root/Main/OverUI"
+
+var old_parent: Button
+var drop_parent: Button
 var draggable = false
 var dragged = false:
 	set(value):
@@ -13,14 +16,14 @@ var dragged = false:
 			z_index = 0
 			GameManager.dragged_item = null
 
-signal dropped
+#signal dropped
 
 
 func init_draggable():
 	if !get_parent().is_class("Window"):
 		get_parent().button_down.connect(_on_button_down)
 	draggable = true
-	parent = get_parent()
+	drop_parent = get_parent()
 
 
 func _process(_delta):
@@ -36,17 +39,22 @@ func _input(event):
 func _on_button_down():
 	if draggable:
 		dragged = true
+		old_parent = get_parent()
+		if get_parent() != null:
+			get_parent().remove_child(self)
+			OverUI.add_child(self)
 
 
 func drop():
 	dragged = false
-	position = Vector2.ZERO
-	dropped.emit()
+	#dropped.emit()
 	change_parent()
+	position = Vector2.ZERO
 
 
 func change_parent():
-	get_parent().button_down.disconnect(_on_button_down)
+	old_parent.button_down.disconnect(_on_button_down)
+	old_parent = null
 	get_parent().remove_child(self)
-	parent.add_child(self)
-	parent.button_down.connect(_on_button_down)
+	drop_parent.add_child(self)
+	drop_parent.button_down.connect(_on_button_down)

@@ -47,11 +47,13 @@ outline_color = Color(0, 0, 0, 1)
 
 [node name="Main" type="Node"]
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("xp_bar", "kamas_label", "inventory")]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("xp_bar", "kamas_label", "inventory", "monster_container", "spell_container")]
 script = ExtResource("1_iu0is")
 xp_bar = NodePath("../GUI/Main/MiddleBackground/PlayerBarContainer/PlayerBarContainer/VBoxContainer/ExperienceBar")
 kamas_label = NodePath("../GUI/Main/MiddleBackground/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/KamasContainer/KamasLabel")
 inventory = NodePath("../GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid")
+monster_container = NodePath("../GUI/Main/MiddleBackground/MonstersContainer")
+spell_container = NodePath("../GUI/Main/MiddleBackground/SpellsContainer/HBoxContainer")
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
@@ -510,7 +512,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_3udr7")
 
-[node name="VBoxContainer" type="HBoxContainer" parent="GUI/Main/MiddleBackground/SpellsContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/Main/MiddleBackground/SpellsContainer"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -618,3 +620,5 @@ theme_override_constants/margin_bottom = 3
 layout_mode = 2
 text = "5/10"
 horizontal_alignment = 1
+
+[node name="OverUI" type="CanvasLayer" parent="."]

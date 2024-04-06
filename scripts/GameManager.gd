@@ -9,6 +9,9 @@ const spell_scene = preload("res://scenes/spell.tscn")
 @export var kamas_label: Label
 @export var inventory: Inventory
 
+@export var monster_container: HBoxContainer
+@export var spell_container: HBoxContainer
+
 static var monsters = []
 static var spells = []
 static var instance = self
@@ -31,19 +34,18 @@ var spells_res: Array[SpellResource] = []
 
 
 func _ready():
-	var monster_resource_paths = FileLoader.get_all_file_paths("res://resources/monsters")
-	for path in monster_resource_paths:
-		monsters_res.append(load(path))
 	for i in 4:
 		instantiate_monster()
-	monsters = $"../GUI/Main/MiddleBackground/MonstersContainer".get_children()
+	monsters = monster_container.get_children()
 	selected_monster = monsters[0]
 	
 	var spell_resource_paths = FileLoader.get_all_file_paths("res://resources/spells")
 	for path in spell_resource_paths:
-		var spell: SpellResource = load(path)
-		spells_res.append(spell)
-		instantiate_spell_ui(spell)
+		var spell_res: SpellResource = load(path)
+		spells_res.append(spell_res)
+		var spell = Spell.instantiate(spell_res, spell_container)
+		spell.cast.connect(_on_cast_spell)
+		spells.append(spell)
 	
 	xp_bar.init()
 	kamas_label.text = "0"
@@ -74,19 +76,8 @@ func _input(event):
 		spells[8].do_action(null)
 
 
-func instantiate_spell_ui(res: SpellResource):
-	var spell = spell_scene.instantiate()
-	spell.init(res)
-	spell.cast.connect(_on_cast_spell)
-	$"../GUI/Main/MiddleBackground/SpellsContainer/VBoxContainer".add_child(spell)
-	spells.append(spell)
-
-
 func instantiate_monster() -> Monster:
-	var monster_resource: MonsterResource = monsters_res[randi_range(0, monsters_res.size() - 1)]
-	var monster = monster_scene.instantiate()
-	$"../GUI/Main/MiddleBackground/MonstersContainer".add_child(monster)
-	monster.init(monster_resource)
+	var monster = Monster.instantiate(monster_container)
 	monster.dies.connect(_on_monster_dies)
 	monster.clicked.connect(_on_monster_selected)
 	monsters.append(monster)
