@@ -1,0 +1,129 @@
+Le nombre de PA détermine le nombre de sorts jouables
+Les PM diminuent le temps de cooldown
+
+## Ecaflip
+Passif : X% critique de base
+Chance d’ecaflip : réduit les dommages de 50% pendant X secondes puis 150% dommages reçus pendant X secondes
+Roue de la fortune : X puissance
+Trèfle : X% de critique
+- Voie terre : gros dégâts
+Pile ou face : dégâts réduits à la prochaine utilisation
+Mésaventure : dégâts + sic rit : vol de vie
+- Voie air : chances de critique
+Pelotage : dégâts + % critique
+Griffe de Ceangal : dégâts sur cible et voisins
+- Voie eau : vol de vie
+Tout ou rien : 50% soigne les alliés / 50% tape en zone
+Félintion : vol de vie
+
+
+## Eniripsa
+Passif : soin augmenté de X%
+Mot d’amitié : invoque un lapino qui soigne
+Mot vivifiant : augmente les PM pendant X secondes
+Mot déprimant : retire de la puissance à la cible
+- Voie feu : soin
+Mot distrayant : soigne le lanceur + assome la cible
+
+
+## Iop
+Passif : dommages plus importants en fonction des PV max
+Puissance : augmente la puissance
+Vitalité : augmente les PV
+Duel : pendant X secondes, seul la cible et le joueur peuvent subir et influer des dégâts
+- Voie terre : dégâts en fonction des PDV max
+Pression : dégâts + augment les PV
+Épée de iop : dégâts cible + voisins
+- Voie feu : dégâts et retrait PM
+Tempête de puissance : dégâts cible + cible précédente
+Couperet : dégâts cible + voisins + retrait PM
+- Voie air : gain dommages
+Épée divine : dégâts + gain dommages
+Épée céleste : dégâts tous les ennemis
+
+
+## Cra
+
+
+## Féca
+Passif : dommages reçus réduits
+Rempart : réduit les dommages reçus pendants X secondes
+Trêve : 0 dégâts pendant X secondes
+Mise en garde : augmente la puissance des glyphes + déclenche les glyphes
+- Voie terre : dégâts plus importants + assome
+Retour du bâton : dégâts + vol force
+Terre battue : glyphe dégâts + ennemis assomés
+- Voie feu : retrait PM
+Langueur : dégâts + vol intelligence + retrait PM
+Terre brûlée : glyphe dégâts + retrait PM
+- Voie eau : protection
+Nimbus : dégâts + vol chance + réduit les dommages reçus
+Vallée : glyphe dégâts + réduit dommages ennemis
+
+
+## Sacrieur
+Passif : dommages plus importants en fonction des PV restants
+Mutilation : sacrifie une partie des PV pour gain puissance
+Épée vorace : invoque une épée qui vole de la vie dans l’élément neutre et soigne son invocateur
+Folie sanguinaire : vol de vie dans meilleur élément
+- Voie feu : réduction puissance ennemis
+Absorption : vol de vie + réduit puissance cible
+Douleur cuisante : dégâts en zone
+- Voie air
+Hémorragie : vol de vie + état insoignable
+Carnage : sacrifie vie lanceur pour dégâts importants en zone
+- Voie terre
+Entaille : sacrifie vie lanceur pour dégâts cible
+Bain de sang : vol de vie en zone
+
+
+## Sadida
+Passif :
+Folle : invoque une poupée qui assome la cible
+Gonflable : invoque une poupée qui soigne les alliés et augmente les PM des alliés
+Bloqueuse : invoque une poupée qui réceptionne X% des dégâts
+- Voie terre
+Ronce : dégâts à toutes les cibles infectées
+Ronces aggressives : dégâts en zone + retrait PM
+- Voie eau
+Fléau : vol de vie à toutes les cibles infectées
+Mangrove : dégâts en zone
+- Voie air : poison
+Ronce paralysante : dommages air + retrait PM à toutes les cibles infectées
+Contamination : poison cumulable à toutes les cibles infectées
+
+
+## Osamodas
+
+
+## Enutrof
+
+
+## Sram
+
+
+## Xélor
+
+
+## Pandawa
+
+
+## Roublard
+
+
+## Zonal
+
+
+## Steamer
+
+
+## Eliotrope ?
+
+
+## Huppermage
+
+
+## Ouginak ?
+
+
+## Forgelance ?
