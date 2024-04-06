@@ -79,7 +79,7 @@ Bain de sang : vol de vie en zone
 
 ## Sadida
 Passif :
-Folle : invoque une poupée qui assome la cible
+Folle : invoque une poupée qui assome la cible et applique l'état infecté
 Gonflable : invoque une poupée qui soigne les alliés et augmente les PM des alliés
 Bloqueuse : invoque une poupée qui réceptionne X% des dégâts
 - Voie terre
@@ -106,6 +106,7 @@ Contamination : poison cumulable à toutes les cibles infectées
 
 
 ## Pandawa
+Passif : état saoul = dégâts subits réduits MAIS 1 PM en moins / état sobre = rien
 
 
 ## Roublard
