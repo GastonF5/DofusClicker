@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://rkbsnidsocqo"]
 
-[ext_resource type="Script" path="res://scripts/Spell.gd" id="1_pth5w"]
+[ext_resource type="Script" path="res://scripts/spell/Spell.gd" id="1_pth5w"]
 [ext_resource type="Texture2D" uid="uid://b8opp26pghsup" path="res://assets/spells/bg_spell_icon.png" id="2_faoi1"]
 [ext_resource type="Texture2D" uid="uid://d1oo2xrycpenx" path="res://assets/spells/punch.png" id="2_rapsn"]
 

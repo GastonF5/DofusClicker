@@ -28,7 +28,10 @@ func init(res: SpellResource):
 
 
 func do_action(_self):
-	if GameManager.selected_monster != null and is_clickable:
+	if resource.pa_cost <= GameManager.current_pa and GameManager.selected_monster != null and is_clickable:
+		if resource.pa_cost != 0:
+			GameManager.current_pa = GameManager.current_pa - resource.pa_cost
+			$"/root/Main/GameManager".pa_bar.update(GameManager.current_pa)
 		cast.emit(resource)
 		is_clickable = false
 		timer = Timer.new()

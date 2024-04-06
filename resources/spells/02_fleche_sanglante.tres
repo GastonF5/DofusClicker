@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="SpellResource" load_steps=3 format=3 uid="uid://bwex1jgd27ejs"]
 
-[ext_resource type="Script" path="res://scripts/SpellResource.gd" id="1_hrtum"]
+[ext_resource type="Script" path="res://scripts/spell/SpellResource.gd" id="1_hrtum"]
 [ext_resource type="Texture2D" uid="uid://coy4uxfg8b34e" path="res://assets/spells/sort_10203.png" id="2_ujgj5"]
 
 [resource]
@@ -8,3 +8,4 @@ script = ExtResource("1_hrtum")
 name = "Fleche sanglante"
 texture = ExtResource("2_ujgj5")
 cooldown = 1.0
+pa_cost = 2

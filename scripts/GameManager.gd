@@ -8,10 +8,12 @@ const spell_scene = preload("res://scenes/spell.tscn")
 @export var xp_bar: ExperienceBar
 @export var kamas_label: Label
 @export var inventory: Inventory
+@export var pa_bar: PABar
 
 @export var monster_container: HBoxContainer
 @export var spell_container: HBoxContainer
 
+static var current_pa: int
 static var monsters = []
 static var spells = []
 static var instance = self
@@ -49,6 +51,7 @@ func _ready():
 	
 	xp_bar.init()
 	kamas_label.text = "0"
+	current_pa = pa_bar.pa_bar_array.size()
 
 
 func _input(event):
