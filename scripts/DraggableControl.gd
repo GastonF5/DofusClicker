@@ -1,5 +1,5 @@
 class_name DraggableControl
-extends ClickableControl
+extends Control
 
 @onready var OverUI = $"/root/Main/OverUI"
 
@@ -15,6 +15,8 @@ var dragged = false:
 		else:
 			z_index = 0
 			GameManager.dragged_item = null
+
+var inventory: Inventory
 
 
 func init_draggable():
@@ -56,6 +58,6 @@ func change_parent():
 	if old_parent.button_down.is_connected(_on_button_down):
 		old_parent.button_down.disconnect(_on_button_down)
 	get_parent().remove_child(self)
-	Inventory.add_item(self, drop_parent)
+	inventory.add_item(self, drop_parent)
 	old_parent = null
 	drop_parent.button_down.connect(_on_button_down)

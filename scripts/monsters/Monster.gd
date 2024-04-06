@@ -11,6 +11,7 @@ static var monsters_res: Array[MonsterResource]
 @export var selected_arrow: TextureRect
 @export var header_image: TextureRect
 
+var inventory: Inventory
 var resource: MonsterResource
 
 signal dies
@@ -26,6 +27,7 @@ static func instantiate(parent: Control) -> Monster:
 
 
 func init(res: MonsterResource):
+	inventory = $"/root/Main/GameManager".inventory
 	name = res.name
 	name_label.text = res.name
 	init_clickable($"VBC/VBC/MonsterContainer")
@@ -56,7 +58,7 @@ func update_health_label():
 
 func die():
 	for item_res in resource.drop:
-		Inventory.add_item(Item.create(item_res), null)
+		inventory.add_item(Item.create(item_res, inventory), null)
 	health_bar.value = health_bar.min_value
 	get_parent().remove_child(self)
 	dies.emit(resource.xp_gain)

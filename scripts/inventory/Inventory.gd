@@ -2,7 +2,7 @@ class_name Inventory
 extends Control
 
 
-static var slots = []
+var slots = []
 
 
 func _ready():
@@ -12,15 +12,16 @@ func _ready():
 		slot.mouse_exited.connect(_on_mouse_exited_slot)
 
 
-static func get_item(slot) -> Item:
+func get_item(slot) -> Item:
 	if slot.get_children().is_empty():
 		return null
 	return slot.get_child(0) as Item
 
 
-static func add_item(item: Item, _slot: Button):
+func add_item(item: Item, _slot: Button):
+	var item_in_slot: Item
 	if _slot != null:
-		var item_in_slot: Item = get_item(_slot)
+		item_in_slot = get_item(_slot)
 		if item_in_slot == null:
 			_slot.add_child(item)
 			return
@@ -33,7 +34,7 @@ static func add_item(item: Item, _slot: Button):
 			_slot.add_child(item)
 	else:
 		for slot in slots:
-			var item_in_slot: Item = get_item(slot)
+			item_in_slot = get_item(slot)
 			if item_in_slot == null:
 				slot.add_child(item)
 				break

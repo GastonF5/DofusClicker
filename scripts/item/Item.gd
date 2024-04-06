@@ -15,16 +15,17 @@ func _ready():
 	update_count_label()
 
 
-func init(item_res: ItemResource):
+func init(item_res: ItemResource, _inventory: Inventory):
 	name = item_res.name
 	self.texture = item_res.texture
+	inventory = _inventory
 
 
 func update_count_label():
 	$"Count".text = str(count) if count > 1 else ""
 
 
-static func create(item_res: ItemResource) -> Item:
+static func create(item_res: ItemResource, _inventory: Inventory) -> Item:
 	var item: Item = item_scene.instantiate()
-	item.init(item_res)
+	item.init(item_res, _inventory)
 	return item
