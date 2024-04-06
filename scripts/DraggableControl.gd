@@ -16,12 +16,9 @@ var dragged = false:
 			z_index = 0
 			GameManager.dragged_item = null
 
-#signal dropped
-
 
 func init_draggable():
-	if !get_parent().is_class("Window"):
-		get_parent().button_down.connect(_on_button_down)
+	get_parent().button_down.connect(_on_button_down)
 	draggable = true
 	drop_parent = get_parent()
 
@@ -38,23 +35,27 @@ func _input(event):
 
 func _on_button_down():
 	if draggable:
-		dragged = true
-		old_parent = get_parent()
-		if get_parent() != null:
-			get_parent().remove_child(self)
-			OverUI.add_child(self)
+		drag()
+
+
+func drag():
+	dragged = true
+	old_parent = get_parent()
+	if get_parent() != null:
+		get_parent().remove_child(self)
+		OverUI.add_child(self)
 
 
 func drop():
 	dragged = false
-	#dropped.emit()
 	change_parent()
 	position = Vector2.ZERO
 
 
 func change_parent():
-	old_parent.button_down.disconnect(_on_button_down)
-	old_parent = null
+	if old_parent.button_down.is_connected(_on_button_down):
+		old_parent.button_down.disconnect(_on_button_down)
 	get_parent().remove_child(self)
-	drop_parent.add_child(self)
+	Inventory.add_item(self, drop_parent)
+	old_parent = null
 	drop_parent.button_down.connect(_on_button_down)

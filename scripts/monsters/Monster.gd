@@ -56,7 +56,7 @@ func update_health_label():
 
 func die():
 	for item_res in resource.drop:
-		get_tree().root.get_node("Main/GameManager").inventory.add_item(Item.create(item_res))
+		Inventory.add_item(Item.create(item_res), null)
 	health_bar.value = health_bar.min_value
 	get_parent().remove_child(self)
 	dies.emit(resource.xp_gain)
