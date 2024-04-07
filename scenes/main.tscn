@@ -1,8 +1,9 @@
-[gd_scene load_steps=32 format=3 uid="uid://bfh3u8jwrg2ar"]
+[gd_scene load_steps=33 format=3 uid="uid://bfh3u8jwrg2ar"]
 
-[ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_iu0is"]
+[ext_resource type="Script" path="res://scripts/MonsterManager.gd" id="1_iu0is"]
 [ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="2_4lqlq"]
 [ext_resource type="Texture2D" uid="uid://dtp2ktsnvjk8w" path="res://assets/ui/window/bg_product.jpg" id="2_5kihd"]
+[ext_resource type="Script" path="res://scripts/PlayerManager.gd" id="2_06gc8"]
 [ext_resource type="Texture2D" uid="uid://cl71pm2t281ug" path="res://assets/ui/icons/XPBonus5.png" id="3_btuyi"]
 [ext_resource type="Texture2D" uid="uid://ds4noug2xgj75" path="res://assets/ui/window/tx_parchment_forgemagie.png" id="3_e0uq4"]
 [ext_resource type="Script" path="res://scripts/ExperienceBar.gd" id="3_ir03k"]
@@ -49,13 +50,16 @@ outline_color = Color(0, 0, 0, 1)
 
 [node name="Main" type="Node"]
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("xp_bar", "kamas_label", "inventory", "pa_bar", "monster_container", "spell_container")]
+[node name="MonsterManager" type="Node" parent="." node_paths=PackedStringArray("monster_container")]
 script = ExtResource("1_iu0is")
+monster_container = NodePath("../GUI/Main/MiddleBackground/MonstersContainer")
+
+[node name="PlayerManager" type="Node" parent="." node_paths=PackedStringArray("xp_bar", "kamas_label", "inventory", "pa_bar", "spell_container")]
+script = ExtResource("2_06gc8")
 xp_bar = NodePath("../GUI/Main/MiddleBackground/PlayerBarContainer/PlayerBarContainer/VBoxContainer/ExperienceBar")
 kamas_label = NodePath("../GUI/Main/MiddleBackground/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/KamasContainer/KamasLabel")
 inventory = NodePath("../GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid")
 pa_bar = NodePath("../GUI/Main/MiddleBackground/PlayerBarContainer/PlayerBarContainer/VBoxContainer/PABarContainer")
-monster_container = NodePath("../GUI/Main/MiddleBackground/MonstersContainer")
 spell_container = NodePath("../GUI/Main/MiddleBackground/SpellsContainer/HBoxContainer")
 
 [node name="GUI" type="CanvasLayer" parent="."]

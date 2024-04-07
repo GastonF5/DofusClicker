@@ -11,10 +11,10 @@ var dragged = false:
 		dragged = value
 		if value:
 			z_index = 10
-			GameManager.dragged_item = self
+			PlayerManager.dragged_item = self
 		else:
 			z_index = 0
-			GameManager.dragged_item = null
+			PlayerManager.dragged_item = null
 
 var inventory: Inventory
 

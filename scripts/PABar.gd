@@ -25,7 +25,7 @@ func _process(delta):
 		completing_pa_bar.value += delta * speed
 		# si la barre est complète, on gagne 1 PA et on passe à la barre suivante
 		if completing_pa_bar.value >= completing_pa_bar.max_value:
-			GameManager.current_pa += 1
+			PlayerManager.current_pa += 1
 			completing_pa_bar.value = completing_pa_bar.max_value
 			var next_index = pa_bar_array.find(completing_pa_bar) + 1
 			if next_index != pa_bar_array.size():

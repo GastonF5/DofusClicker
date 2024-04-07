@@ -27,7 +27,7 @@ static func instantiate(parent: Control) -> Monster:
 
 
 func init(res: MonsterResource):
-	inventory = $"/root/Main/GameManager".inventory
+	inventory = $"/root/Main/PlayerManager".inventory
 	name = res.name
 	name_label.text = res.name
 	init_clickable($"VBC/VBC/MonsterContainer")

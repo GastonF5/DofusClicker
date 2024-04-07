@@ -10,9 +10,9 @@ static func fleche_sanglante(target: Monster):
 
 
 static func deal_damage_to_surrounding_monsters(target: Monster, amount: int):
-	var monsters = GameManager.monsters
+	var monsters = MonsterManager.monsters
 	var index = monsters.find(target)
 	if index - 1 >= 0:
 		monsters[index - 1].take_damage(amount)
-	if index + 1 < GameManager.monsters.size():
+	if index + 1 < MonsterManager.monsters.size():
 		monsters[index + 1].take_damage(amount)
