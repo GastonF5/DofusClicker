@@ -19,11 +19,8 @@ var selected_spell: Spell
 
 
 func _ready():
-	var spell_resource_paths = FileLoader.get_all_file_paths("res://resources/spells")
-	for path in spell_resource_paths:
-		var spell_res: SpellResource = load(path)
+	for spell_res in FileLoader.get_spell_resources("Ecaflip"):
 		var spell = Spell.instantiate(spell_res, spell_container)
-		spell.cast.connect(_on_cast_spell)
 		spells.append(spell)
 	
 	xp_bar.init()
@@ -50,7 +47,3 @@ func _input(event):
 		spells[7].do_action(null)
 	if event.is_action_pressed("9"):
 		spells[8].do_action(null)
-
-
-func _on_cast_spell(spell: SpellResource):
-	Callable(SpellsService, spell.name.to_snake_case()).bind(MonsterManager.selected_monster).call()

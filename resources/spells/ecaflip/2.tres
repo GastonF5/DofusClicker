@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=3 format=3 uid="uid://cfm12w1jjuosd"]
+
+[ext_resource type="Script" path="res://scripts/spell/SpellResource.gd" id="1_rq11w"]
+[ext_resource type="Texture2D" uid="uid://c0wmchv6nx6fl" path="res://assets/spells/ecaflip/roue_de_la_fortune.png" id="2_huktk"]
+
+[resource]
+script = ExtResource("1_rq11w")
+name = "Roue de la fortune"
+texture = ExtResource("2_huktk")
+spell_name = "roue_fortune"
+cooldown = 0.0
+pa_cost = 0

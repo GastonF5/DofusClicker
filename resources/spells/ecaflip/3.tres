@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=3 format=3 uid="uid://cygftc5xkn67m"]
+
+[ext_resource type="Script" path="res://scripts/spell/SpellResource.gd" id="1_yf5d6"]
+[ext_resource type="Texture2D" uid="uid://rd8ucad4anfu" path="res://assets/spells/ecaflip/trefle.png" id="2_k1hpy"]
+
+[resource]
+script = ExtResource("1_yf5d6")
+name = "Trèfle"
+texture = ExtResource("2_k1hpy")
+spell_name = "trefle"
+cooldown = 0.0
+pa_cost = 0

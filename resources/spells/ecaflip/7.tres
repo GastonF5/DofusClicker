@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=3 format=3 uid="uid://dy4gwn15h44y"]
+
+[ext_resource type="Script" path="res://scripts/spell/SpellResource.gd" id="1_xibsw"]
+[ext_resource type="Texture2D" uid="uid://beevdgqs6aljp" path="res://assets/spells/ecaflip/griffe_de_ceangal.png" id="2_okr7j"]
+
+[resource]
+script = ExtResource("1_xibsw")
+name = "Griffe de Ceangal"
+texture = ExtResource("2_okr7j")
+spell_name = "griffe_ceangal"
+cooldown = 0.0
+pa_cost = 0

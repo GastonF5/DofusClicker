@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=3 format=3 uid="uid://4ps3nqo55h65"]
+
+[ext_resource type="Script" path="res://scripts/spell/SpellResource.gd" id="1_hyqjk"]
+[ext_resource type="Texture2D" uid="uid://svy0u8oj3h4t" path="res://assets/spells/ecaflip/felintion.png" id="2_ur1di"]
+
+[resource]
+script = ExtResource("1_hyqjk")
+name = "Félintion"
+texture = ExtResource("2_ur1di")
+spell_name = "felintion"
+cooldown = 0.0
+pa_cost = 0

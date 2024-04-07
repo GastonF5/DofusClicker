@@ -559,11 +559,14 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_3udr7")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/Main/MiddleBackground/SpellsContainer"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 0
 alignment = 1
 
 [node name="PlayerBarContainer" type="PanelContainer" parent="GUI/Main/MiddleBackground"]

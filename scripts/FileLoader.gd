@@ -22,3 +22,11 @@ static func get_monster_resources() -> Array[MonsterResource]:
 	for path in monster_resource_paths:
 		monsters_res.append(load(path))
 	return monsters_res
+
+
+static func get_spell_resources(_class: String) -> Array[SpellResource]:
+	var spell_asset_paths = FileLoader.get_all_file_paths("res://resources/spells/" + _class.to_lower())
+	var spells_res: Array[SpellResource] = []
+	for path in spell_asset_paths:
+		spells_res.append(load(path))
+	return spells_res

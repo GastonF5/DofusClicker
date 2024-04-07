@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=3 format=3 uid="uid://bng07ccfc2wv0"]
+
+[ext_resource type="Script" path="res://scripts/spell/SpellResource.gd" id="1_dc72p"]
+[ext_resource type="Texture2D" uid="uid://b3weums43y1jw" path="res://assets/spells/ecaflip/pile_ou_face.png" id="2_xhct6"]
+
+[resource]
+script = ExtResource("1_dc72p")
+name = "Pile ou Face"
+texture = ExtResource("2_xhct6")
+spell_name = "pile_face"
+cooldown = 0.0
+pa_cost = 2

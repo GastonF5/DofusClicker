@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=3 format=3 uid="uid://cfu8l7p1ncq4x"]
+
+[ext_resource type="Script" path="res://scripts/spell/SpellResource.gd" id="1_dhf07"]
+[ext_resource type="Texture2D" uid="uid://d1324g2lrm7r0" path="res://assets/spells/ecaflip/pelotage.png" id="2_y2spe"]
+
+[resource]
+script = ExtResource("1_dhf07")
+name = "Pelotage"
+texture = ExtResource("2_y2spe")
+spell_name = "pelotage"
+cooldown = 0.0
+pa_cost = 0
