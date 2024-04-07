@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bfh3u8jwrg2ar"]
+[gd_scene load_steps=35 format=3 uid="uid://bfh3u8jwrg2ar"]
 
 [ext_resource type="Script" path="res://scripts/MonsterManager.gd" id="1_iu0is"]
 [ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="2_4lqlq"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://bsksxibr4yyo3" path="res://assets/equipment/tx_slot_helmet.png" id="10_8coe0"]
 [ext_resource type="Texture2D" uid="uid://jldvprwk734o" path="res://assets/equipment/tx_slot_ring.png" id="11_qw2gl"]
 [ext_resource type="Texture2D" uid="uid://63x2ud42mc3j" path="res://assets/equipment/tx_slot_weapon.png" id="12_g87co"]
+[ext_resource type="Script" path="res://scripts/CustomTabContainer.gd" id="14_akpwt"]
 [ext_resource type="Script" path="res://scripts/PABar.gd" id="16_5fvw0"]
 [ext_resource type="Theme" uid="uid://iy2iucve2csu" path="res://resources/themes/pa_bar.tres" id="17_7m5l3"]
 
@@ -37,6 +38,8 @@ texture = ExtResource("6_bjtov")
 texture = ExtResource("7_gobx1")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vjwvv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6pl64"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j1ob6"]
 
@@ -331,10 +334,45 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 0
+theme_override_constants/autohide = 0
 
-[node name="TextureRect" type="Panel" parent="GUI/Main/RightSide/VSplitContainer"]
+[node name="JobsContainer" type="VBoxContainer" parent="GUI/Main/RightSide/VSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme_override_constants/separation = 0
+
+[node name="TabBar" type="TabBar" parent="GUI/Main/RightSide/VSplitContainer/JobsContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+focus_mode = 0
+tab_count = 3
+tab_0/title = "Tailleur"
+tab_1/title = "Cordonnier"
+tab_2/title = "Bijoutier"
+
+[node name="TabContainer" type="TabContainer" parent="GUI/Main/RightSide/VSplitContainer/JobsContainer" node_paths=PackedStringArray("tab_bar")]
 layout_mode = 2
 size_flags_vertical = 3
+tabs_visible = false
+script = ExtResource("14_akpwt")
+tab_bar = NodePath("../TabBar")
+
+[node name="TailleurPanel" type="Panel" parent="GUI/Main/RightSide/VSplitContainer/JobsContainer/TabContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_6pl64")
+
+[node name="CordonnierPanel" type="Panel" parent="GUI/Main/RightSide/VSplitContainer/JobsContainer/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_6pl64")
+
+[node name="BijoutierPanel" type="Panel" parent="GUI/Main/RightSide/VSplitContainer/JobsContainer/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_6pl64")
 
 [node name="InventoryPanel" type="Panel" parent="GUI/Main/RightSide/VSplitContainer"]
 clip_contents = true
