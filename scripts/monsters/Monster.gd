@@ -14,6 +14,7 @@ static var monsters_res: Array[MonsterResource]
 var inventory: Inventory
 var resource: MonsterResource
 
+var dying = false
 signal dies
 
 
@@ -49,7 +50,7 @@ func take_damage(amount: int):
 	health_bar.value -= amount
 	update_health_label()
 	if health_bar.value <= health_bar.min_value:
-		die()
+		dying = true
 
 
 func update_health_label():
