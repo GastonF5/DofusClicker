@@ -12,6 +12,7 @@ const spell_scene = preload("res://scenes/spell.tscn")
 
 static var dragged_item: DraggableControl
 static var current_pa: int
+static var current_hp: int
 
 var spells = []
 var selected_spell: Spell

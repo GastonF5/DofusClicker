@@ -8,7 +8,7 @@
 script = ExtResource("1_f1auu")
 name = "Prespic"
 texture = ExtResource("2_mfc10")
-max_health = 30
+max_health = 10
 xp_gain = 7
 boss = false
 archimonstre = false

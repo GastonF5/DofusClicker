@@ -5,7 +5,7 @@ extends HBoxContainer
 static var pa_bar_array: Array[ProgressBar] = []
 var completing_pa_bar: ProgressBar
 
-var speed = 50
+var speed = 100
 
 
 func _ready():

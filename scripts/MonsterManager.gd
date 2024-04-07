@@ -57,13 +57,19 @@ func _on_monster_dies(xp: int):
 
 
 func select_next_monster():
-	var index = monsters.find(selected_monster)
-	selected_monster = monsters[(index + 1) % monsters.size()]
+	if selected_monster != null:
+		var index = monsters.find(selected_monster)
+		selected_monster = monsters[(index + 1) % monsters.size()]
+	else:
+		selected_monster = monsters[0]
 
 
 func select_previous_monster():
-	var index = monsters.find(selected_monster)
-	selected_monster = monsters[(index - 1) % monsters.size()]
+	if selected_monster != null:
+		var index = monsters.find(selected_monster)
+		selected_monster = monsters[(index - 1) % monsters.size()]
+	else:
+		selected_monster = monsters[monsters.size() - 1]
 
 
 func _on_monster_selected(monster: Monster):
