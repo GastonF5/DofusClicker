@@ -8,20 +8,23 @@ const spell_scene = preload("res://scenes/spell.tscn")
 @export var kamas_label: Label
 @export var inventory: Inventory
 @export var pa_bar: PABar
-@export var spell_container: HBoxContainer
+@export var spell_container: VBoxContainer
+@export var spell_bar: SpellBar
 
 static var dragged_item: DraggableControl
 static var current_pa: int
 static var current_hp: int
 
-var spells = []
 var selected_spell: Spell
 
 
 func _ready():
 	for spell_res in FileLoader.get_spell_resources("Ecaflip"):
-		var spell = Spell.instantiate(spell_res, spell_container)
-		spells.append(spell)
+		var spell_description = load("res://scenes/spell/spell_description.tscn").instantiate()
+		spell_container.add_child(spell_description)
+		var spell = Spell.instantiate(spell_res, spell_description.get_node("VBC/HBC/SpellContainer"), false)
+		spell.is_clickable = false
+		spell_description.init(spell_bar)
 	
 	xp_bar.init()
 	kamas_label.text = "0"
@@ -30,20 +33,20 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("1"):
-		spells[0].do_action(null)
+		spell_bar.get_children()[0].do_action()
 	if event.is_action_pressed("2"):
-		spells[1].do_action(null)
+		spell_bar.get_children()[1].do_action()
 	if event.is_action_pressed("3"):
-		spells[2].do_action(null)
+		spell_bar.get_children()[2].do_action()
 	if event.is_action_pressed("4"):
-		spells[3].do_action(null)
+		spell_bar.get_children()[3].do_action()
 	if event.is_action_pressed("5"):
-		spells[4].do_action(null)
+		spell_bar.get_children()[4].do_action()
 	if event.is_action_pressed("6"):
-		spells[5].do_action(null)
+		spell_bar.get_children()[5].do_action()
 	if event.is_action_pressed("7"):
-		spells[6].do_action(null)
+		spell_bar.get_children()[6].do_action()
 	if event.is_action_pressed("8"):
-		spells[7].do_action(null)
+		spell_bar.get_children()[7].do_action()
 	if event.is_action_pressed("9"):
-		spells[8].do_action(null)
+		spell_bar.get_children()[8].do_action()

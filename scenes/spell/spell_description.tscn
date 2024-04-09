@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://bf47ud2gglayx"]
+
+[ext_resource type="Script" path="res://scripts/SpellDescription.gd" id="1_uxhn7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yxncl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xwjd5"]
+
+[node name="SpellDescription" type="PanelContainer" node_paths=PackedStringArray("spell_container", "spell_name", "check_box", "description")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.0
+offset_top = -11.5
+offset_right = 17.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uxhn7")
+spell_container = NodePath("VBC/HBC/SpellContainer")
+spell_name = NodePath("VBC/HBC/SpellName")
+check_box = NodePath("VBC/HBC/CheckBox")
+description = NodePath("VBC/DescriptionContainer/Description")
+
+[node name="VBC" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBC" type="HBoxContainer" parent="VBC"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 0
+
+[node name="SpellContainer" type="PanelContainer" parent="VBC/HBC"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_yxncl")
+
+[node name="SpellName" type="Label" parent="VBC/HBC"]
+layout_mode = 2
+text = "spell name"
+
+[node name="CheckBox" type="CheckBox" parent="VBC/HBC"]
+layout_mode = 2
+size_flags_horizontal = 10
+focus_mode = 0
+
+[node name="DescriptionContainer" type="PanelContainer" parent="VBC"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_xwjd5")
+
+[node name="Description" type="RichTextLabel" parent="VBC/DescriptionContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Description du sort"
+fit_content = true
+
+[connection signal="toggled" from="VBC/HBC/CheckBox" to="." method="_on_check_box_toggled"]

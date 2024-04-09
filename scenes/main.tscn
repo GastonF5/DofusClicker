@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bfh3u8jwrg2ar"]
+[gd_scene load_steps=37 format=3 uid="uid://bfh3u8jwrg2ar"]
 
 [ext_resource type="Script" path="res://scripts/MonsterManager.gd" id="1_iu0is"]
 [ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="2_4lqlq"]
@@ -23,6 +23,7 @@
 [ext_resource type="Script" path="res://scripts/CustomTabContainer.gd" id="14_akpwt"]
 [ext_resource type="Script" path="res://scripts/PABar.gd" id="16_5fvw0"]
 [ext_resource type="Theme" uid="uid://iy2iucve2csu" path="res://resources/themes/pa_bar.tres" id="17_7m5l3"]
+[ext_resource type="Script" path="res://scripts/SpellBar.gd" id="17_u3lho"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4qy8r"]
 
@@ -36,6 +37,8 @@ texture = ExtResource("6_bjtov")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bclgm"]
 texture = ExtResource("7_gobx1")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v86sh"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vjwvv"]
 
@@ -57,13 +60,14 @@ outline_color = Color(0, 0, 0, 1)
 script = ExtResource("1_iu0is")
 monster_container = NodePath("../GUI/Main/MiddleBackground/MonstersContainer")
 
-[node name="PlayerManager" type="Node" parent="." node_paths=PackedStringArray("xp_bar", "kamas_label", "inventory", "pa_bar", "spell_container")]
+[node name="PlayerManager" type="Node" parent="." node_paths=PackedStringArray("xp_bar", "kamas_label", "inventory", "pa_bar", "spell_container", "spell_bar")]
 script = ExtResource("2_06gc8")
 xp_bar = NodePath("../GUI/Main/MiddleBackground/PlayerBarContainer/PlayerBarContainer/VBoxContainer/ExperienceBar")
 kamas_label = NodePath("../GUI/Main/MiddleBackground/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/KamasContainer/KamasLabel")
 inventory = NodePath("../GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid")
 pa_bar = NodePath("../GUI/Main/MiddleBackground/PlayerBarContainer/PlayerBarContainer/VBoxContainer/PABarContainer")
-spell_container = NodePath("../GUI/Main/MiddleBackground/SpellsContainer/HBoxContainer")
+spell_container = NodePath("../GUI/Main/LeftSide/VSplitContainer/TabContainer/Sorts/ScrollContainer/VBoxContainer")
+spell_bar = NodePath("../GUI/Main/MiddleBackground/SpellBarContainer/SpellBar")
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
@@ -100,7 +104,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-collapsed = true
 dragger_visibility = 1
 
 [node name="EquipmentContainer" type="PanelContainer" parent="GUI/Main/LeftSide/VSplitContainer"]
@@ -298,10 +301,36 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_tf78o")
 
-[node name="StatsContainer" type="Panel" parent="GUI/Main/LeftSide/VSplitContainer"]
+[node name="TabContainer" type="TabContainer" parent="GUI/Main/LeftSide/VSplitContainer"]
+layout_mode = 2
+current_tab = 1
+tab_focus_mode = 0
+
+[node name="Stats" type="Panel" parent="GUI/Main/LeftSide/VSplitContainer/TabContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.5
+theme_override_styles/panel = SubResource("StyleBoxEmpty_v86sh")
+
+[node name="Sorts" type="Panel" parent="GUI/Main/LeftSide/VSplitContainer/TabContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.5
+theme_override_styles/panel = SubResource("StyleBoxEmpty_v86sh")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GUI/Main/LeftSide/VSplitContainer/TabContainer/Sorts"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/Main/LeftSide/VSplitContainer/TabContainer/Sorts/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="RightBackground" type="TextureRect" parent="GUI/Main"]
 clip_contents = true
@@ -542,7 +571,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="SpellsContainer" type="Panel" parent="GUI/Main/MiddleBackground"]
+[node name="SpellBarContainer" type="Panel" parent="GUI/Main/MiddleBackground"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -557,7 +586,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_3udr7")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/Main/MiddleBackground/SpellsContainer"]
+[node name="SpellBar" type="HBoxContainer" parent="GUI/Main/MiddleBackground/SpellBarContainer"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -568,6 +597,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
 alignment = 1
+script = ExtResource("17_u3lho")
 
 [node name="PlayerBarContainer" type="PanelContainer" parent="GUI/Main/MiddleBackground"]
 layout_mode = 1
