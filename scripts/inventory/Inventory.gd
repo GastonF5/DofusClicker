@@ -47,13 +47,13 @@ func add_item(item: Item, _slot: Button = null):
 			add_item(item)
 
 
-func _on_mouse_entered_slot(slot):
+static func _on_mouse_entered_slot(slot):
 	var dragged_item = PlayerManager.dragged_item
 	if dragged_item != null:
 		dragged_item.drop_parent = slot
 
 
-func _on_mouse_exited_slot():
+static func _on_mouse_exited_slot():
 	var dragged_item = PlayerManager.dragged_item
 	if dragged_item != null:
 		dragged_item.drop_parent = dragged_item.old_parent

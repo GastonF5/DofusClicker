@@ -8,5 +8,6 @@ script = ExtResource("1_dc72p")
 name = "Pile ou Face"
 texture = ExtResource("2_xhct6")
 spell_name = "pile_face"
+description = ""
 cooldown = 0.0
-pa_cost = 2
+pa_cost = 0

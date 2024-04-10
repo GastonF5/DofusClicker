@@ -8,7 +8,7 @@ var count = 1:
 	set(value):
 		count = value
 		update_count_label()
-
+var equip_type
 
 func _ready():
 	init_draggable()
@@ -19,6 +19,7 @@ func init(item_res: ItemResource, _inventory: Inventory):
 	name = item_res.name
 	self.texture = item_res.texture
 	inventory = _inventory
+	equip_type = item_res.get("equip_type")
 
 
 func update_count_label():

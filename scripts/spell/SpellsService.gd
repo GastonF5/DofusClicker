@@ -25,10 +25,10 @@ static var pile = true
 
 static func pile_face(target: Monster):
 	if pile:
-		target.take_damage(5)
+		target.take_damage(50)
 		pile = false
 	else:
-		target.take_damage(2)
+		target.take_damage(50)
 		pile = true
 	check_dying_targets([target])
 

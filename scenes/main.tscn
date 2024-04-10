@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bfh3u8jwrg2ar"]
+[gd_scene load_steps=39 format=3 uid="uid://bfh3u8jwrg2ar"]
 
 [ext_resource type="Script" path="res://scripts/MonsterManager.gd" id="1_iu0is"]
 [ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="2_4lqlq"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cl71pm2t281ug" path="res://assets/ui/icons/XPBonus5.png" id="3_btuyi"]
 [ext_resource type="Texture2D" uid="uid://ds4noug2xgj75" path="res://assets/ui/window/tx_parchment_forgemagie.png" id="3_e0uq4"]
 [ext_resource type="Script" path="res://scripts/ExperienceBar.gd" id="3_ir03k"]
+[ext_resource type="Script" path="res://scripts/equipment/EquipmentManager.gd" id="3_nkpwv"]
 [ext_resource type="Theme" uid="uid://ctf5aaqx8jyeo" path="res://resources/themes/experience_bar.tres" id="3_prl7k"]
 [ext_resource type="Texture2D" uid="uid://brcl6cos3cake" path="res://assets/ui/icons/icon_kama.png" id="4_jjqja"]
 [ext_resource type="PackedScene" uid="uid://coiey3idqo52l" path="res://scenes/inventory/inventory_slot.tscn" id="4_m4btg"]
@@ -18,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://bh6ulrqp0mskd" path="res://assets/equipment/tx_slot_cape.png" id="8_wqctn"]
 [ext_resource type="Texture2D" uid="uid://bn7tw45whgwgg" path="res://assets/equipment/tx_slot_collar.png" id="9_xhasg"]
 [ext_resource type="Texture2D" uid="uid://bsksxibr4yyo3" path="res://assets/equipment/tx_slot_helmet.png" id="10_8coe0"]
+[ext_resource type="Texture2D" uid="uid://be4hokjlx1vux" path="res://assets/equipment/tx_slot_shoe.png" id="10_qkgqy"]
 [ext_resource type="Texture2D" uid="uid://jldvprwk734o" path="res://assets/equipment/tx_slot_ring.png" id="11_qw2gl"]
 [ext_resource type="Texture2D" uid="uid://63x2ud42mc3j" path="res://assets/equipment/tx_slot_weapon.png" id="12_g87co"]
 [ext_resource type="Script" path="res://scripts/CustomTabContainer.gd" id="14_akpwt"]
@@ -56,10 +58,6 @@ outline_color = Color(0, 0, 0, 1)
 
 [node name="Main" type="Node"]
 
-[node name="MonsterManager" type="Node" parent="." node_paths=PackedStringArray("monster_container")]
-script = ExtResource("1_iu0is")
-monster_container = NodePath("../GUI/Main/MiddleBackground/MonstersContainer")
-
 [node name="PlayerManager" type="Node" parent="." node_paths=PackedStringArray("xp_bar", "kamas_label", "inventory", "pa_bar", "spell_container", "spell_bar")]
 script = ExtResource("2_06gc8")
 xp_bar = NodePath("../GUI/Main/MiddleBackground/PlayerBarContainer/PlayerBarContainer/VBoxContainer/ExperienceBar")
@@ -68,6 +66,14 @@ inventory = NodePath("../GUI/Main/RightSide/VSplitContainer/InventoryPanel/Scrol
 pa_bar = NodePath("../GUI/Main/MiddleBackground/PlayerBarContainer/PlayerBarContainer/VBoxContainer/PABarContainer")
 spell_container = NodePath("../GUI/Main/LeftSide/VSplitContainer/TabContainer/Sorts/ScrollContainer/VBoxContainer")
 spell_bar = NodePath("../GUI/Main/MiddleBackground/SpellBarContainer/SpellBar")
+
+[node name="MonsterManager" type="Node" parent="." node_paths=PackedStringArray("monster_container")]
+script = ExtResource("1_iu0is")
+monster_container = NodePath("../GUI/Main/MiddleBackground/MonstersContainer")
+
+[node name="EquipmentManager" type="Node" parent="." node_paths=PackedStringArray("equipment_container")]
+script = ExtResource("3_nkpwv")
+equipment_container = NodePath("../GUI/Main/LeftSide/VSplitContainer/EquipmentContainer")
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
@@ -109,7 +115,12 @@ dragger_visibility = 1
 [node name="EquipmentContainer" type="PanelContainer" parent="GUI/Main/LeftSide/VSplitContainer"]
 layout_mode = 2
 
-[node name="ArmeSlot" type="Button" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer"]
+[node name="HBC" type="HBoxContainer" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="ArmeSlot" type="Button" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/HBC"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -120,7 +131,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
 
-[node name="TextureRect" type="TextureRect" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/ArmeSlot"]
+[node name="TextureRect" type="TextureRect" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/HBC/ArmeSlot"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -134,6 +145,32 @@ offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("12_g87co")
+
+[node name="BottesSlot" type="Button" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/HBC"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nfls5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/HBC/BottesSlot"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_qkgqy")
 
 [node name="LeftContainer" type="VBoxContainer" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer"]
 layout_mode = 2
@@ -483,66 +520,6 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="InventorySlot20" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot21" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot22" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot23" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot24" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot25" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot26" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot27" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot28" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot29" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot30" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot31" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot32" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot33" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot34" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot35" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot36" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot37" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot38" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot39" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot40" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
 layout_mode = 2
 
 [node name="MiddleBackground" type="TextureRect" parent="GUI/Main"]

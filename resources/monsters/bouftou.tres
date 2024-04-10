@@ -1,9 +1,17 @@
-[gd_resource type="Resource" script_class="MonsterResource" load_steps=5 format=3 uid="uid://njdo3lkxrv4p"]
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=8 format=3 uid="uid://njdo3lkxrv4p"]
 
 [ext_resource type="Script" path="res://scripts/monsters/MonsterResource.gd" id="1_4crxr"]
 [ext_resource type="Resource" uid="uid://bqi4hntvgf4jc" path="res://resources/items/laine_bouftou.tres" id="1_wpn17"]
 [ext_resource type="Texture2D" uid="uid://dp18o0pxmvcoh" path="res://assets/monsters/bouftou.png" id="2_fvsqk"]
 [ext_resource type="Resource" uid="uid://5b044xunvcvf" path="res://resources/items/corne_bouftou.tres" id="2_p1oga"]
+[ext_resource type="Script" path="res://scripts/equipment/EquipmentResource.gd" id="3_wgbjv"]
+[ext_resource type="Texture2D" uid="uid://db5yw7auh2rye" path="res://assets/ui/icons/red_sword_icon.png" id="4_qn0fe"]
+
+[sub_resource type="Resource" id="Resource_l3l8u"]
+script = ExtResource("3_wgbjv")
+type = 0
+name = "test"
+texture = ExtResource("4_qn0fe")
 
 [resource]
 script = ExtResource("1_4crxr")
@@ -13,4 +21,4 @@ max_health = 5
 xp_gain = 5
 boss = false
 archimonstre = false
-drop = Array[Resource("res://scripts/item/ItemResource.gd")]([ExtResource("1_wpn17"), ExtResource("2_p1oga")])
+drop = Array[Resource("res://scripts/item/ItemResource.gd")]([ExtResource("1_wpn17"), ExtResource("2_p1oga"), SubResource("Resource_l3l8u")])

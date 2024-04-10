@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="EquipmentResource" load_steps=2 format=3 uid="uid://rmjs26xmlwk7"]
+
+[ext_resource type="Script" path="res://scripts/equipment/EquipmentResource.gd" id="1_ut80y"]
+
+[resource]
+script = ExtResource("1_ut80y")
+type = 3
+name = "Boufbottes"
