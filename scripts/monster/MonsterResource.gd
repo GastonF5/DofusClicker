@@ -6,6 +6,10 @@ extends Resource
 @export var texture: Texture2D
 @export var max_health: int
 @export var xp_gain: int
+
+@export var hit_time: float
+@export var damage: int
+
 @export var boss: bool
 @export var archimonstre: bool
 

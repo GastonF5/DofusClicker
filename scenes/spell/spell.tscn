@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://rkbsnidsocqo"]
 
-[ext_resource type="Script" path="res://scripts/spell/Spell.gd" id="1_pth5w"]
-[ext_resource type="Texture2D" uid="uid://b8opp26pghsup" path="res://assets/spells/bg_spell_icon.png" id="2_faoi1"]
-[ext_resource type="Texture2D" uid="uid://d1oo2xrycpenx" path="res://assets/spells/punch.png" id="2_rapsn"]
+[ext_resource type="Script" path="res://scripts/spell/Spell.gd" id="1_vxv8w"]
+[ext_resource type="Texture2D" uid="uid://b8opp26pghsup" path="res://assets/spells/bg_spell_icon.png" id="2_iy2cs"]
+[ext_resource type="Texture2D" uid="uid://d1oo2xrycpenx" path="res://assets/spells/punch.png" id="3_kb0pb"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pcjaj"]
 
@@ -12,20 +12,22 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -18.0
-offset_top = -18.0
-offset_right = 18.0
-offset_bottom = 18.0
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxEmpty_pcjaj")
-script = ExtResource("1_pth5w")
+script = ExtResource("1_vxv8w")
 spell_texture = NodePath("MarginContainer/SpellTexture")
 cooldown_bar = NodePath("MarginContainer/CooldownBar")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 2
-texture = ExtResource("2_faoi1")
+texture = ExtResource("2_iy2cs")
 expand_mode = 3
 stretch_mode = 5
 
@@ -39,7 +41,7 @@ theme_override_constants/margin_bottom = 2
 
 [node name="SpellTexture" type="TextureRect" parent="MarginContainer"]
 layout_mode = 2
-texture = ExtResource("2_rapsn")
+texture = ExtResource("3_kb0pb")
 expand_mode = 3
 stretch_mode = 5
 
@@ -51,4 +53,4 @@ size_flags_vertical = 4
 mouse_filter = 2
 value = 50.0
 fill_mode = 3
-texture_progress = ExtResource("2_faoi1")
+texture_progress = ExtResource("2_iy2cs")

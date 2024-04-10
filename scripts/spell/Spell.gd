@@ -1,7 +1,6 @@
 class_name Spell
 extends ClickableControl
 
-const spell_scene = preload("res://scenes/spell.tscn")
 
 @export var spell_texture: TextureRect
 @export var cooldown_bar: TextureProgressBar
@@ -65,7 +64,7 @@ func cast():
 
 
 static func instantiate(spell_res: SpellResource, parent: Control, clickable = true) -> Spell:
-	var spell = spell_scene.instantiate()
+	var spell = FileLoader.get_packed_scene("spell/spell").instantiate()
 	spell.init(spell_res, clickable)
 	parent.add_child(spell)
 	return spell

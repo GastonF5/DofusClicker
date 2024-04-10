@@ -30,3 +30,7 @@ static func get_spell_resources(_class: String) -> Array[SpellResource]:
 	for path in spell_asset_paths:
 		spells_res.append(load(path))
 	return spells_res
+
+
+static func get_packed_scene(scene_path: String) -> PackedScene:
+	return load("res://scenes/%s.tscn" % scene_path)

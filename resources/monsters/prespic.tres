@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="MonsterResource" load_steps=4 format=3 uid="uid://canar4kj00gm0"]
 
-[ext_resource type="Script" path="res://scripts/monsters/MonsterResource.gd" id="1_f1auu"]
+[ext_resource type="Script" path="res://scripts/monster/MonsterResource.gd" id="1_f1auu"]
 [ext_resource type="Resource" uid="uid://c3xv8y67d3oms" path="res://resources/items/queue_prespic.tres" id="1_uew5t"]
 [ext_resource type="Texture2D" uid="uid://fiyd1e6qe4mb" path="res://assets/monsters/prespic.png" id="2_mfc10"]
 
@@ -10,6 +10,8 @@ name = "Prespic"
 texture = ExtResource("2_mfc10")
 max_health = 10
 xp_gain = 7
+hit_time = 3.0
+damage = 1
 boss = false
 archimonstre = false
 drop = Array[Resource("res://scripts/item/ItemResource.gd")]([ExtResource("1_uew5t")])

@@ -31,4 +31,3 @@ func _on_check_box_toggled(toggled_on):
 func _on_clicked(_self):
 	collapsed = !collapsed
 	$"VBC/DescriptionContainer".visible = !collapsed
-	print(collapsed)

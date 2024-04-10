@@ -1,9 +1,6 @@
 class_name MonsterManager
 extends Node
 
-
-const monster_scene = preload("res://scenes/monster.tscn")
-
 @export var monster_container: HBoxContainer
 
 static var monsters = []
@@ -14,10 +11,10 @@ signal monster_dies
 static var selected_monster: Monster:
 	set(value):
 		if selected_monster != null:
-			selected_monster.selected_arrow.visible = false
+			selected_monster.selected_texture.visible = false
 		selected_monster = value
 		if value != null:
-			selected_monster.selected_arrow.visible = true
+			selected_monster.selected_texture.visible = true
 
 var monsters_res: Array[MonsterResource] = []
 

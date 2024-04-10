@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="MonsterResource" load_steps=3 format=3 uid="uid://cr6ta24x018v0"]
 
-[ext_resource type="Script" path="res://scripts/monsters/MonsterResource.gd" id="1_ovt3e"]
+[ext_resource type="Script" path="res://scripts/monster/MonsterResource.gd" id="1_ovt3e"]
 [ext_resource type="Texture2D" uid="uid://cjk0dyj3xjkrb" path="res://assets/monsters/sanglier.png" id="2_8na8g"]
 
 [resource]
@@ -9,6 +9,8 @@ name = "Sanglier"
 texture = ExtResource("2_8na8g")
 max_health = 20
 xp_gain = 10
+hit_time = 10.0
+damage = 6
 boss = false
 archimonstre = false
 drop = Array[Resource("res://scripts/item/ItemResource.gd")]([])
