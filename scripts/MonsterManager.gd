@@ -49,8 +49,7 @@ func _on_monster_dies(xp: int):
 	if monsters.size() == 0:
 		for i in 4:
 			instantiate_monster()
-	else:
-		selected_monster = monsters[0]
+	selected_monster = monsters[0]
 
 
 func select_next_monster():

@@ -9,13 +9,21 @@ static var monsters_res: Array[MonsterResource]
 @export var selected_texture: TextureRect
 @export var header: TextureRect
 
+@export var attack_bar: ProgressBar
+@export var attack_amount: Label
+
 var inventory: Inventory
 var resource: MonsterResource
 
-var hit_timer: Timer
+var attack_timer: Timer
 
 var dying = false
 signal dies
+
+
+func _process(_delta):
+	if attack_timer != null:
+		attack_bar.value = attack_bar.max_value - attack_timer.time_left
 
 
 static func instantiate(parent: Control) -> Monster:
@@ -31,7 +39,7 @@ func init(res: MonsterResource):
 	inventory = $"/root/Main/PlayerManager".inventory
 	name = res.name
 	name_label.text = res.name
-	init_clickable($"Panel")
+	init_clickable($"VBC/Panel")
 	selected_texture.visible = false
 	texture_rect.texture = res.texture
 	hp_bar.init(res.max_health)
@@ -42,7 +50,9 @@ func init(res: MonsterResource):
 		header.texture = load("res://assets/ui/icons/archimonstre.png")
 	else:
 		header.texture = null
-	new_hit_timer()
+	attack_amount.text = str(res.damage)
+	attack_bar.max_value = res.attack_time
+	new_attack_timer()
 
 
 func take_damage(amount: int):
@@ -51,21 +61,21 @@ func take_damage(amount: int):
 		dying = true
 
 
-func new_hit_timer():
-	if hit_timer != null:
-		hit_timer.timeout.disconnect(hit)
-		hit_timer.queue_free()
-	hit_timer = Timer.new()
-	hit_timer.wait_time = resource.hit_time
-	hit_timer.timeout.connect(hit)
-	add_child(hit_timer)
-	hit_timer.start()
+func new_attack_timer():
+	if attack_timer != null:
+		attack_timer.timeout.disconnect(attack)
+		attack_timer.queue_free()
+	attack_timer = Timer.new()
+	attack_timer.wait_time = resource.attack_time
+	attack_timer.timeout.connect(attack)
+	add_child(attack_timer)
+	attack_timer.start()
 	
 
 
-func hit():
+func attack():
 	$"/root/Main/PlayerManager".take_damage(resource.damage)
-	new_hit_timer()
+	new_attack_timer()
 
 
 func die():

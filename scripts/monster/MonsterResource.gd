@@ -7,7 +7,7 @@ extends Resource
 @export var max_health: int
 @export var xp_gain: int
 
-@export var hit_time: float
+@export var attack_time: float
 @export var damage: int
 
 @export var boss: bool

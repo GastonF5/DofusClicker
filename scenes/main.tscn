@@ -126,7 +126,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 
-[node name="ArmeSlot" type="Button" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/HBC"]
+[node name="ArmeSlot" type="Button" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/HBC" groups=["equipment_slot"]]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -152,7 +152,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("12_g87co")
 
-[node name="BottesSlot" type="Button" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/HBC"]
+[node name="BottesSlot" type="Button" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/HBC" groups=["equipment_slot"]]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -183,7 +183,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 alignment = 1
 
-[node name="AmuletteSlot" type="Button" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/LeftContainer"]
+[node name="AmuletteSlot" type="Button" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/LeftContainer" groups=["equipment_slot"]]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -209,7 +209,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("9_xhasg")
 
-[node name="AnneauSlot" type="Button" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/LeftContainer"]
+[node name="AnneauSlot" type="Button" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/LeftContainer" groups=["equipment_slot"]]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -235,7 +235,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("11_qw2gl")
 
-[node name="AnneauSlot2" type="Button" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/LeftContainer"]
+[node name="AnneauSlot2" type="Button" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/LeftContainer" groups=["equipment_slot"]]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -266,7 +266,7 @@ layout_mode = 2
 size_flags_horizontal = 8
 alignment = 1
 
-[node name="CoiffeSlot" type="Button" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/RightContainer"]
+[node name="CoiffeSlot" type="Button" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/RightContainer" groups=["equipment_slot"]]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -292,7 +292,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("10_8coe0")
 
-[node name="CapeSlot" type="Button" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/RightContainer"]
+[node name="CapeSlot" type="Button" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/RightContainer" groups=["equipment_slot"]]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -318,7 +318,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("8_wqctn")
 
-[node name="CeintureSlot" type="Button" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/RightContainer"]
+[node name="CeintureSlot" type="Button" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/RightContainer" groups=["equipment_slot"]]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -354,8 +354,10 @@ theme_override_constants/separation = 0
 [node name="TabBar" type="TabBar" parent="GUI/Main/LeftSide/VSplitContainer/JobsContainer"]
 layout_mode = 2
 focus_mode = 0
+theme_override_constants/icon_max_width = 32
 tab_count = 2
 current_tab = 1
+tab_alignment = 2
 tab_0/title = ""
 tab_0/icon = ExtResource("15_wilnu")
 tab_1/title = ""
@@ -582,7 +584,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -200.0
+offset_top = -35.0
 offset_right = 200.0
+offset_bottom = -35.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1

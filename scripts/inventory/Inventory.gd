@@ -19,6 +19,9 @@ func get_item(slot) -> Item:
 
 
 func add_item(item: Item, _slot: Button = null):
+	if check_equipment_slot(item, _slot):
+		add_item(item)
+		return
 	var item_in_slot: Item
 	if _slot != null:
 		item_in_slot = get_item(_slot)
@@ -45,6 +48,12 @@ func add_item(item: Item, _slot: Button = null):
 		if item.get_parent() == null:
 			expand()
 			add_item(item)
+
+
+func check_equipment_slot(item: DraggableControl, slot) -> bool:
+	var old_parent_is_equip_slot = item.old_parent != null and item.old_parent.is_in_group("equipment_slot")
+	var drop_parent_is_equip_slot = item.drop_parent != null and item.drop_parent.is_in_group("equipment_slot")
+	return slot != null and old_parent_is_equip_slot and !drop_parent_is_equip_slot
 
 
 static func _on_mouse_entered_slot(slot):

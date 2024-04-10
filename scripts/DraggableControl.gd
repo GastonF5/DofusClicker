@@ -60,4 +60,4 @@ func change_parent():
 	get_parent().remove_child(self)
 	inventory.add_item(self, drop_parent)
 	old_parent = null
-	drop_parent.button_down.connect(_on_button_down)
+	get_parent().button_down.connect(_on_button_down)

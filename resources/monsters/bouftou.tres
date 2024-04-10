@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Resource_l3l8u"]
 script = ExtResource("3_wgbjv")
-type = 0
+equip_type = 0
 name = "test"
 texture = ExtResource("4_qn0fe")
 
@@ -19,7 +19,7 @@ name = "Bouftou"
 texture = ExtResource("2_fvsqk")
 max_health = 5
 xp_gain = 5
-hit_time = 5.0
+attack_time = 3.0
 damage = 3
 boss = false
 archimonstre = false
