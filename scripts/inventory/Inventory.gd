@@ -28,7 +28,7 @@ func add_item(item: Item, _slot: Button = null):
 		if item_in_slot == null:
 			_slot.add_child(item)
 			return
-		if item_in_slot.name == item.name:
+		if Item.equals(item, item_in_slot):
 			item_in_slot.count += 1
 		else:
 			item_in_slot.drop_parent = item.old_parent
@@ -40,8 +40,9 @@ func add_item(item: Item, _slot: Button = null):
 			item_in_slot = get_item(slot)
 			if item_in_slot == null:
 				slot.add_child(item)
+				item.drop_parent = slot
 				break
-			if item_in_slot.name == item.name:
+			if Item.equals(item, item_in_slot):
 				item_in_slot.count += 1
 				return
 		# si l'item n'a pas été ajouté, on étend l'inventaire et on rappelle la fonction pour ajouter l'item

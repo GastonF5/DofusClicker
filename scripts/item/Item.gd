@@ -30,3 +30,7 @@ static func create(item_res: ItemResource, _inventory: Inventory) -> Item:
 	var item: Item = item_scene.instantiate()
 	item.init(item_res, _inventory)
 	return item
+
+
+static func equals(item1: Item, item2: Item) -> bool:
+	return (item1.equip_type == null or item2.equip_type == null) and item1.name == item2.name
