@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://dwek0twuhg4a3"]
 
-[ext_resource type="Texture2D" uid="uid://fg67fytininp" path="res://assets/ui/common/button/btn_green_small_normal.jpg" id="1_jf85q"]
-[ext_resource type="Texture2D" uid="uid://cck4ndl64sg2x" path="res://assets/ui/common/button/btn_green_small_over.jpg" id="2_cfs5l"]
-[ext_resource type="Texture2D" uid="uid://ioa8txwipu5x" path="res://assets/ui/common/button/btn_green_small_pressed.jpg" id="3_sl0oh"]
-[ext_resource type="Texture2D" uid="uid://d32cdxi321a4x" path="res://assets/ui/stats/btnIcon_minus.png" id="4_ftu4y"]
+[ext_resource type="Texture2D" uid="uid://fg67fytininp" path="res://assets/common/button/btn_green_small_normal.jpg" id="1_jf85q"]
+[ext_resource type="Texture2D" uid="uid://cck4ndl64sg2x" path="res://assets/common/button/btn_green_small_over.jpg" id="2_cfs5l"]
+[ext_resource type="Texture2D" uid="uid://ioa8txwipu5x" path="res://assets/common/button/btn_green_small_pressed.jpg" id="3_sl0oh"]
+[ext_resource type="Texture2D" uid="uid://d32cdxi321a4x" path="res://assets/stats/btn_icon/btnIcon_minus.png" id="4_ftu4y"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qanle"]
 texture = ExtResource("1_jf85q")

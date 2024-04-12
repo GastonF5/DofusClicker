@@ -15,6 +15,9 @@ enum Type {
 @export var label: Label
 @export var amount_label: Label
 
+@export var plus_btn: Button
+@export var minus_btn: Button
+
 var type: Type
 var base_amount = 0:
 	set(value):

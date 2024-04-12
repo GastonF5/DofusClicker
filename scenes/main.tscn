@@ -1,21 +1,21 @@
-[gd_scene load_steps=55 format=3 uid="uid://bfh3u8jwrg2ar"]
+[gd_scene load_steps=66 format=3 uid="uid://bfh3u8jwrg2ar"]
 
-[ext_resource type="Script" path="res://scripts/MonsterManager.gd" id="1_iu0is"]
+[ext_resource type="Script" path="res://scripts/manager/MonsterManager.gd" id="1_iu0is"]
 [ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="2_4lqlq"]
-[ext_resource type="Texture2D" uid="uid://dtp2ktsnvjk8w" path="res://assets/ui/common/window/bg_product.jpg" id="2_5kihd"]
-[ext_resource type="Script" path="res://scripts/PlayerManager.gd" id="2_06gc8"]
-[ext_resource type="Texture2D" uid="uid://cl71pm2t281ug" path="res://assets/ui/icons/XPBonus5.png" id="3_btuyi"]
+[ext_resource type="Texture2D" uid="uid://dtp2ktsnvjk8w" path="res://assets/common/window/bg_product.jpg" id="2_5kihd"]
+[ext_resource type="Script" path="res://scripts/manager/PlayerManager.gd" id="2_06gc8"]
+[ext_resource type="Texture2D" uid="uid://cl71pm2t281ug" path="res://assets/icons/XPBonus5.png" id="3_btuyi"]
 [ext_resource type="Script" path="res://scripts/ExperienceBar.gd" id="3_ir03k"]
 [ext_resource type="Script" path="res://scripts/equipment/EquipmentManager.gd" id="3_nkpwv"]
 [ext_resource type="Theme" uid="uid://ctf5aaqx8jyeo" path="res://resources/themes/experience_bar.tres" id="3_prl7k"]
-[ext_resource type="Script" path="res://scripts/StatsManager.gd" id="4_13j6f"]
-[ext_resource type="Texture2D" uid="uid://brcl6cos3cake" path="res://assets/ui/icons/icon_kama.png" id="4_jjqja"]
+[ext_resource type="Script" path="res://scripts/manager/StatsManager.gd" id="4_13j6f"]
+[ext_resource type="Texture2D" uid="uid://brcl6cos3cake" path="res://assets/icons/icon_kama.png" id="4_jjqja"]
 [ext_resource type="PackedScene" uid="uid://coiey3idqo52l" path="res://scenes/inventory/inventory_slot.tscn" id="4_m4btg"]
 [ext_resource type="Texture2D" uid="uid://dubxhf73uvwcn" path="res://assets/equipment/slots/tx_slot_belt.png" id="4_tf78o"]
 [ext_resource type="Script" path="res://scripts/inventory/Inventory.gd" id="5_6v3yu"]
-[ext_resource type="Texture2D" uid="uid://blq7h4lvuwd65" path="res://assets/ui/inventory/acceptDrop.png" id="5_ufvyq"]
-[ext_resource type="Texture2D" uid="uid://i4rmuxyvr6jx" path="res://assets/ui/inventory/selected.png" id="6_bjtov"]
-[ext_resource type="Texture2D" uid="uid://btankjkc67hjv" path="res://assets/ui/inventory/inventoryEmptySlot.png" id="7_gobx1"]
+[ext_resource type="Texture2D" uid="uid://blq7h4lvuwd65" path="res://assets/inventory/acceptDrop.png" id="5_ufvyq"]
+[ext_resource type="Texture2D" uid="uid://i4rmuxyvr6jx" path="res://assets/inventory/selected.png" id="6_bjtov"]
+[ext_resource type="Texture2D" uid="uid://btankjkc67hjv" path="res://assets/inventory/inventoryEmptySlot.png" id="7_gobx1"]
 [ext_resource type="Texture2D" uid="uid://bh6ulrqp0mskd" path="res://assets/equipment/slots/tx_slot_cape.png" id="8_wqctn"]
 [ext_resource type="Texture2D" uid="uid://bn7tw45whgwgg" path="res://assets/equipment/slots/tx_slot_collar.png" id="9_xhasg"]
 [ext_resource type="Texture2D" uid="uid://bsksxibr4yyo3" path="res://assets/equipment/slots/tx_slot_helmet.png" id="10_8coe0"]
@@ -24,20 +24,30 @@
 [ext_resource type="Texture2D" uid="uid://63x2ud42mc3j" path="res://assets/equipment/slots/tx_slot_weapon.png" id="12_g87co"]
 [ext_resource type="Script" path="res://scripts/CustomTabContainer.gd" id="14_akpwt"]
 [ext_resource type="Texture2D" uid="uid://cwoycdemjcbuy" path="res://assets/window_icon/caracteristiques.png" id="15_wilnu"]
-[ext_resource type="Script" path="res://scripts/PABar.gd" id="16_5fvw0"]
+[ext_resource type="Script" path="res://scripts/bars/PABar.gd" id="16_5fvw0"]
 [ext_resource type="Texture2D" uid="uid://bx13bnw5chi1h" path="res://assets/window_icon/sorts.png" id="16_og6sm"]
-[ext_resource type="Script" path="res://scripts/SpellBar.gd" id="17_u3lho"]
+[ext_resource type="Script" path="res://scripts/spell/SpellBar.gd" id="17_u3lho"]
 [ext_resource type="PackedScene" uid="uid://bxrrue1p1pso4" path="res://scenes/stats/stat.tscn" id="19_nbmq2"]
-[ext_resource type="Texture2D" uid="uid://0ujq6wd2dvfm" path="res://assets/ui/common/window/window_green_background.jpg" id="20_5artd"]
-[ext_resource type="Texture2D" uid="uid://dc4kur4fk7phx" path="res://assets/ui/common/block/block_border_scratch.png" id="21_qxst7"]
+[ext_resource type="Texture2D" uid="uid://0ujq6wd2dvfm" path="res://assets/common/window/window_green_background.jpg" id="20_5artd"]
+[ext_resource type="Texture2D" uid="uid://dc4kur4fk7phx" path="res://assets/common/block/block_border_scratch.png" id="21_qxst7"]
+[ext_resource type="Texture2D" uid="uid://cig7rslj0pse5" path="res://assets/common/separator/window_separator_green_horizontal.png" id="22_4r7qx"]
 [ext_resource type="Texture2D" uid="uid://dky7mxoyl8fbb" path="res://assets/hud/background_hud.png" id="22_8pyuk"]
 [ext_resource type="Texture2D" uid="uid://j4jxr7o1i7qw" path="res://assets/hud/icon_ap_empty.png" id="23_40x4y"]
-[ext_resource type="Texture2D" uid="uid://ctdds4f63al2c" path="res://assets/ui/stats/window_separator_black_horizontal.png" id="23_mx5v7"]
+[ext_resource type="Texture2D" uid="uid://da6e0x4837igi" path="res://assets/stats/stat_icon/pdv.png" id="23_frhny"]
+[ext_resource type="Texture2D" uid="uid://ctdds4f63al2c" path="res://assets/common/separator/window_separator_black_horizontal.png" id="23_mx5v7"]
 [ext_resource type="PackedScene" uid="uid://dqj1wm0ekjsa5" path="res://scenes/buttons/reset_button.tscn" id="24_81sw2"]
 [ext_resource type="Texture2D" uid="uid://deep4ut0ypw6e" path="res://assets/hud/icon_ap_full.png" id="24_e76da"]
-[ext_resource type="PackedScene" uid="uid://bkkjso0mm2nu4" path="res://scenes/hp_bar.tscn" id="24_rk44n"]
+[ext_resource type="Texture2D" uid="uid://co25oqvrnql2m" path="res://assets/stats/stat_icon/pa.png" id="25_d5cam"]
+[ext_resource type="Texture2D" uid="uid://dbuiotfaoy1xw" path="res://assets/stats/stat_icon/pm.png" id="26_s7870"]
 [ext_resource type="PackedScene" uid="uid://coto2k3rtpqkd" path="res://scenes/window/window.tscn" id="30_7h6cu"]
-[ext_resource type="Texture2D" uid="uid://jps1sp7kid7q" path="res://assets/ui/inventory/light_bg_inventory.png" id="33_x0at0"]
+[ext_resource type="Texture2D" uid="uid://jps1sp7kid7q" path="res://assets/inventory/light_bg_inventory.png" id="33_x0at0"]
+[ext_resource type="Texture2D" uid="uid://dqi5nyabi4exy" path="res://assets/hud/icon_hp_empty.png" id="35_xnt14"]
+[ext_resource type="Texture2D" uid="uid://k8i3m3d33k8x" path="res://assets/hud/icon_hp_full.png" id="36_qu3i6"]
+[ext_resource type="Texture2D" uid="uid://b58ukv8lwqg0b" path="res://assets/hud/hud_decoration.png" id="36_s7632"]
+[ext_resource type="Texture2D" uid="uid://cyj00xy3xeikq" path="res://assets/hud/icon_mp_empty.png" id="37_ka2rt"]
+[ext_resource type="Texture2D" uid="uid://cb1pye1b2nyyt" path="res://assets/hud/icon_mp_full.png" id="38_bm8jn"]
+[ext_resource type="Script" path="res://scripts/bars/HPBar.gd" id="39_euo4l"]
+[ext_resource type="Script" path="res://scripts/bars/PMBar.gd" id="43_6xs84"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4qy8r"]
 
@@ -83,6 +93,8 @@ expand_margin_top = 9.0
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fempj"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vjwvv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6pl64"]
@@ -95,14 +107,19 @@ outline_color = Color(0, 0, 0, 1)
 script = ExtResource("1_iu0is")
 monster_container = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/MainPanel/MonstersContainer")
 
-[node name="PlayerManager" type="Node" parent="." node_paths=PackedStringArray("xp_bar", "kamas_label", "inventory", "spell_container", "spell_bar", "hp_bar")]
+[node name="PlayerManager" type="Node" parent="." node_paths=PackedStringArray("xp_bar", "kamas_label", "inventory", "spell_container", "spell_bar", "hp_bar", "pa_bar", "pm_bar", "pdv_label", "pa_label", "pm_label")]
 script = ExtResource("2_06gc8")
 xp_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/ExperienceBar")
 kamas_label = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/KamasContainer/KamasLabel")
 inventory = NodePath("../GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid")
 spell_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Sorts/MarginContainer/ScrollContainer/VBoxContainer")
 spell_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/MainPanel/SpellBarContainer/SpellBar")
-hp_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/Control/HPBar")
+hp_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/HPBar")
+pa_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/PABar")
+pm_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/PMBar")
+pdv_label = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Panel/MarginContainer/StatsContainer/PdV/Right/Amount")
+pa_label = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Panel/MarginContainer/StatsContainer/PA/Right/Amount")
+pm_label = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Panel/MarginContainer/StatsContainer/PM/Right/Amount")
 
 [node name="EquipmentManager" type="Node" parent="." node_paths=PackedStringArray("equipment_container")]
 script = ExtResource("3_nkpwv")
@@ -110,9 +127,9 @@ equipment_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/Equipme
 
 [node name="StatsManager" type="Node" parent="." node_paths=PackedStringArray("stats_container", "points_label", "reset_button")]
 script = ExtResource("4_13j6f")
-stats_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer")
-points_label = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer/HBoxContainer/PointsContainer/MarginContainer/HBC/PointsLabel")
-reset_button = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer/HBoxContainer/ResetButton")
+stats_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Caracteristiques/MarginContainer/StatsContainer")
+points_label = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Caracteristiques/MarginContainer/StatsContainer/HBoxContainer/PointsContainer/MarginContainer/HBC/PointsLabel")
+reset_button = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Caracteristiques/MarginContainer/StatsContainer/HBoxContainer/ResetButton")
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
@@ -134,7 +151,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="LeftSide" type="PanelContainer" parent="GUI/Main/HBC"]
-custom_minimum_size = Vector2(420, 0)
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_4qy8r")
@@ -403,111 +420,261 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Panel" type="PanelContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer"]
+[node name="VBC" type="VBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer"]
 layout_mode = 2
-size_flags_vertical = 8
+size_flags_vertical = 4
+theme_override_constants/separation = 0
 
-[node name="Scratch" type="Panel" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel"]
+[node name="Panel" type="PanelContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Scratch" type="Panel" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Panel"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_2jn6r")
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Panel"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 10
 
-[node name="StatsContainer" type="VBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer"]
+[node name="StatsContainer" type="VBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Panel/MarginContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="Vitalite" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer" instance=ExtResource("19_nbmq2")]
+[node name="PdV" type="HBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Panel/MarginContainer/StatsContainer"]
 layout_mode = 2
 
-[node name="Separator" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer"]
-layout_mode = 2
-texture = ExtResource("23_mx5v7")
-
-[node name="Agilite" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer" instance=ExtResource("19_nbmq2")]
-layout_mode = 2
-
-[node name="Separator2" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer"]
-layout_mode = 2
-texture = ExtResource("23_mx5v7")
-
-[node name="Chance" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer" instance=ExtResource("19_nbmq2")]
-layout_mode = 2
-
-[node name="Separator3" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer"]
-layout_mode = 2
-texture = ExtResource("23_mx5v7")
-
-[node name="Force" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer" instance=ExtResource("19_nbmq2")]
-layout_mode = 2
-
-[node name="Separator4" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer"]
-layout_mode = 2
-texture = ExtResource("23_mx5v7")
-
-[node name="Intelligence" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer" instance=ExtResource("19_nbmq2")]
-layout_mode = 2
-
-[node name="Separator5" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer"]
-layout_mode = 2
-texture = ExtResource("23_mx5v7")
-
-[node name="Sagesse" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer" instance=ExtResource("19_nbmq2")]
-layout_mode = 2
-
-[node name="Separator6" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer"]
-layout_mode = 2
-texture = ExtResource("23_mx5v7")
-
-[node name="PointsContainer" type="HBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="PointsContainer" type="PanelContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer/HBoxContainer"]
+[node name="Left" type="HBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Panel/MarginContainer/StatsContainer/PdV"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer/HBoxContainer/PointsContainer"]
+[node name="Icon" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Panel/MarginContainer/StatsContainer/PdV/Left"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("23_frhny")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Space" type="Control" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Panel/MarginContainer/StatsContainer/PdV/Left"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Panel/MarginContainer/StatsContainer/PdV/Left"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Points de vie (PV)"
+
+[node name="Right" type="HBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Panel/MarginContainer/StatsContainer/PdV"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 2
+
+[node name="Amount" type="Label" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Panel/MarginContainer/StatsContainer/PdV/Right"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 2
+
+[node name="Space" type="Control" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Panel/MarginContainer/StatsContainer/PdV/Right"]
+custom_minimum_size = Vector2(10, 32)
+layout_mode = 2
+
+[node name="Separator" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Panel/MarginContainer/StatsContainer"]
+layout_mode = 2
+texture = ExtResource("23_mx5v7")
+
+[node name="PA" type="HBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Panel/MarginContainer/StatsContainer"]
+layout_mode = 2
+
+[node name="Left" type="HBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Panel/MarginContainer/StatsContainer/PA"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Icon" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Panel/MarginContainer/StatsContainer/PA/Left"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("25_d5cam")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Space" type="Control" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Panel/MarginContainer/StatsContainer/PA/Left"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Panel/MarginContainer/StatsContainer/PA/Left"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Points d'action (PA)"
+
+[node name="Right" type="HBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Panel/MarginContainer/StatsContainer/PA"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="Amount" type="Label" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Panel/MarginContainer/StatsContainer/PA/Right"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 2
+
+[node name="Space" type="Control" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Panel/MarginContainer/StatsContainer/PA/Right"]
+custom_minimum_size = Vector2(10, 32)
+layout_mode = 2
+
+[node name="Separator2" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Panel/MarginContainer/StatsContainer"]
+layout_mode = 2
+texture = ExtResource("23_mx5v7")
+
+[node name="PM" type="HBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Panel/MarginContainer/StatsContainer"]
+layout_mode = 2
+
+[node name="Left" type="HBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Panel/MarginContainer/StatsContainer/PM"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Icon" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Panel/MarginContainer/StatsContainer/PM/Left"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("26_s7870")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Space" type="Control" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Panel/MarginContainer/StatsContainer/PM/Left"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Panel/MarginContainer/StatsContainer/PM/Left"]
+layout_mode = 2
+text = "Points de mouvement (PM)"
+
+[node name="Right" type="HBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Panel/MarginContainer/StatsContainer/PM"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+alignment = 2
+
+[node name="Amount" type="Label" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Panel/MarginContainer/StatsContainer/PM/Right"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 2
+
+[node name="Space" type="Control" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Panel/MarginContainer/StatsContainer/PM/Right"]
+custom_minimum_size = Vector2(10, 32)
+layout_mode = 2
+
+[node name="Separator" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC"]
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("22_4r7qx")
+
+[node name="Caracteristiques" type="PanelContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Scratch" type="Panel" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Caracteristiques"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_2jn6r")
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Caracteristiques"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 10
+
+[node name="StatsContainer" type="VBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Caracteristiques/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Vitalite" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Caracteristiques/MarginContainer/StatsContainer" instance=ExtResource("19_nbmq2")]
+layout_mode = 2
+
+[node name="Separator" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Caracteristiques/MarginContainer/StatsContainer"]
+layout_mode = 2
+texture = ExtResource("23_mx5v7")
+
+[node name="Agilite" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Caracteristiques/MarginContainer/StatsContainer" instance=ExtResource("19_nbmq2")]
+layout_mode = 2
+
+[node name="Separator2" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Caracteristiques/MarginContainer/StatsContainer"]
+layout_mode = 2
+texture = ExtResource("23_mx5v7")
+
+[node name="Chance" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Caracteristiques/MarginContainer/StatsContainer" instance=ExtResource("19_nbmq2")]
+layout_mode = 2
+
+[node name="Separator3" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Caracteristiques/MarginContainer/StatsContainer"]
+layout_mode = 2
+texture = ExtResource("23_mx5v7")
+
+[node name="Force" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Caracteristiques/MarginContainer/StatsContainer" instance=ExtResource("19_nbmq2")]
+layout_mode = 2
+
+[node name="Separator4" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Caracteristiques/MarginContainer/StatsContainer"]
+layout_mode = 2
+texture = ExtResource("23_mx5v7")
+
+[node name="Intelligence" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Caracteristiques/MarginContainer/StatsContainer" instance=ExtResource("19_nbmq2")]
+layout_mode = 2
+
+[node name="Separator5" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Caracteristiques/MarginContainer/StatsContainer"]
+layout_mode = 2
+texture = ExtResource("23_mx5v7")
+
+[node name="Sagesse" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Caracteristiques/MarginContainer/StatsContainer" instance=ExtResource("19_nbmq2")]
+layout_mode = 2
+
+[node name="Separator6" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Caracteristiques/MarginContainer/StatsContainer"]
+layout_mode = 2
+texture = ExtResource("23_mx5v7")
+
+[node name="PointsContainer" type="HBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Caracteristiques/MarginContainer/StatsContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Caracteristiques/MarginContainer/StatsContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="PointsContainer" type="PanelContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Caracteristiques/MarginContainer/StatsContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Caracteristiques/MarginContainer/StatsContainer/HBoxContainer/PointsContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="HBC" type="HBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer/HBoxContainer/PointsContainer/MarginContainer"]
+[node name="HBC" type="HBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Caracteristiques/MarginContainer/StatsContainer/HBoxContainer/PointsContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer/HBoxContainer/PointsContainer/MarginContainer/HBC"]
+[node name="Label" type="Label" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Caracteristiques/MarginContainer/StatsContainer/HBoxContainer/PointsContainer/MarginContainer/HBC"]
 layout_mode = 2
 size_flags_horizontal = 2
 text = "Points à répartir :"
 
-[node name="Space" type="Control" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer/HBoxContainer/PointsContainer/MarginContainer/HBC"]
+[node name="Space" type="Control" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Caracteristiques/MarginContainer/StatsContainer/HBoxContainer/PointsContainer/MarginContainer/HBC"]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="PointsLabel" type="Label" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer/HBoxContainer/PointsContainer/MarginContainer/HBC"]
+[node name="PointsLabel" type="Label" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Caracteristiques/MarginContainer/StatsContainer/HBoxContainer/PointsContainer/MarginContainer/HBC"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "5"
 horizontal_alignment = 2
 
-[node name="Space" type="Control" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer/HBoxContainer"]
+[node name="Space" type="Control" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Caracteristiques/MarginContainer/StatsContainer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="ResetButton" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer/HBoxContainer" instance=ExtResource("24_81sw2")]
+[node name="ResetButton" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Caracteristiques/MarginContainer/StatsContainer/HBoxContainer" instance=ExtResource("24_81sw2")]
 layout_mode = 2
 size_flags_vertical = 4
 
@@ -566,7 +733,7 @@ alignment = 1
 
 [node name="SpellBarContainer" type="PanelContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel"]
 clip_contents = true
-custom_minimum_size = Vector2(0, 200)
+custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxEmpty_caw0r")
@@ -597,26 +764,6 @@ theme_override_constants/margin_bottom = 5
 layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 2
-
-[node name="PABar" type="TextureProgressBar" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer" node_paths=PackedStringArray("current_pa_label")]
-layout_mode = 2
-size_flags_horizontal = 8
-fill_mode = 3
-texture_under = ExtResource("23_40x4y")
-texture_progress = ExtResource("24_e76da")
-script = ExtResource("16_5fvw0")
-current_pa_label = NodePath("CurrentPALabel")
-
-[node name="CurrentPALabel" type="Label" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/PABar"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "6"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="AspectRatioContainer" type="PanelContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer"]
 layout_mode = 2
@@ -666,24 +813,131 @@ label_settings = SubResource("LabelSettings_vraqn")
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 
-[node name="Control" type="Control" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer"]
+[node name="HUD" type="Panel" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_fempj")
 
-[node name="HPBar" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/Control" instance=ExtResource("24_rk44n")]
+[node name="HPBar" type="TextureProgressBar" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD" node_paths=PackedStringArray("curr_hp_label", "max_hp_label")]
 layout_mode = 1
-anchors_preset = 15
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 0.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -102.0
+offset_top = -115.0
+offset_right = -1.0
+offset_bottom = -30.0
+grow_horizontal = 2
+scale = Vector2(2, 2)
 size_flags_horizontal = 4
 size_flags_vertical = 4
+value = 50.0
+fill_mode = 3
+texture_under = ExtResource("35_xnt14")
+texture_progress = ExtResource("36_qu3i6")
+script = ExtResource("39_euo4l")
+curr_hp_label = NodePath("VBoxContainer/CurrHP")
+max_hp_label = NodePath("VBoxContainer/MaxHP")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/HPBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CurrHP" type="Label" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/HPBar/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+text = "50"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MaxHP" type="Label" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/HPBar/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Decoration" type="TextureRect" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -102.0
+offset_top = -78.5
+offset_right = 102.0
+offset_bottom = 5.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("36_s7632")
+
+[node name="PABar" type="TextureProgressBar" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD" node_paths=PackedStringArray("current_pa_label")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -18.5
+offset_right = -37.0
+offset_bottom = 30.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+size_flags_horizontal = 4
+fill_mode = 3
+texture_under = ExtResource("23_40x4y")
+texture_progress = ExtResource("24_e76da")
+script = ExtResource("16_5fvw0")
+current_pa_label = NodePath("CurrentPALabel")
+
+[node name="CurrentPALabel" type="Label" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/PABar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "6"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PMBar" type="TextureProgressBar" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD" node_paths=PackedStringArray("current_pm_label")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 13.0
+offset_top = -18.5
+offset_right = 64.0
+offset_bottom = 30.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+size_flags_horizontal = 4
+fill_mode = 3
+texture_under = ExtResource("37_ka2rt")
+texture_progress = ExtResource("38_bm8jn")
+script = ExtResource("43_6xs84")
+current_pm_label = NodePath("CurrentPMLabel")
+
+[node name="CurrentPMLabel" type="Label" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/PMBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "6"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ExperienceBar" type="ProgressBar" parent="GUI/Main/HBC/MiddleContainer/VBC" node_paths=PackedStringArray("lvl_label")]
 custom_minimum_size = Vector2(0, 10)

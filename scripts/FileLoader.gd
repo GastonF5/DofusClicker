@@ -37,4 +37,4 @@ static func get_packed_scene(scene_path: String) -> PackedScene:
 
 
 static func get_stat_asset(stat: Caracteristique):
-	return load("res://assets/ui/stats/stat_icon/%s.png" % stat.get_type().to_lower())
+	return load("res://assets/stats/stat_icon/%s.png" % stat.get_type().to_lower())

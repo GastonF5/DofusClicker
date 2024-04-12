@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bf47ud2gglayx"]
 
 [ext_resource type="Theme" uid="uid://cdaj6il61bnyj" path="res://resources/themes/spell_button/unselected.tres" id="1_3cuaa"]
-[ext_resource type="Script" path="res://scripts/SpellDescription.gd" id="1_uxhn7"]
+[ext_resource type="Script" path="res://scripts/spell/SpellDescription.gd" id="1_uxhn7"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yxncl"]
 

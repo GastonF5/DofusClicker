@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://coto2k3rtpqkd"]
 
-[ext_resource type="Texture2D" uid="uid://0ujq6wd2dvfm" path="res://assets/ui/common/window/window_green_background.jpg" id="1_pg5qw"]
-[ext_resource type="Texture2D" uid="uid://3rnac70g0gu3" path="res://assets/ui/common/window/window_border_bottom.png" id="2_wos6r"]
-[ext_resource type="Texture2D" uid="uid://bcco45wramwwf" path="res://assets/ui/common/window/window_border_icon_background.png" id="3_y6kem"]
+[ext_resource type="Texture2D" uid="uid://0ujq6wd2dvfm" path="res://assets/common/window/window_green_background.jpg" id="1_pg5qw"]
+[ext_resource type="Texture2D" uid="uid://3rnac70g0gu3" path="res://assets/common/window/window_border_bottom.png" id="2_wos6r"]
+[ext_resource type="Texture2D" uid="uid://bcco45wramwwf" path="res://assets/common/window/window_border_icon_background.png" id="3_y6kem"]
 [ext_resource type="Texture2D" uid="uid://cwoycdemjcbuy" path="res://assets/window_icon/caracteristiques.png" id="4_0jeie"]
-[ext_resource type="Texture2D" uid="uid://bsy35t5cxw432" path="res://assets/ui/common/window/window_border_small_top.png" id="5_07vgs"]
+[ext_resource type="Texture2D" uid="uid://bsy35t5cxw432" path="res://assets/common/window/window_border_small_top.png" id="5_07vgs"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0wkbv"]
 

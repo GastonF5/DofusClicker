@@ -1,15 +1,17 @@
 [gd_scene load_steps=5 format=3 uid="uid://bxrrue1p1pso4"]
 
 [ext_resource type="Script" path="res://scripts/stats/Caracteristique.gd" id="1_uqnf4"]
-[ext_resource type="Texture2D" uid="uid://btdney26jvubl" path="res://assets/ui/stats/stat_icon/vitalite.png" id="2_x8g0m"]
+[ext_resource type="Texture2D" uid="uid://btdney26jvubl" path="res://assets/stats/stat_icon/vitalite.png" id="2_x8g0m"]
 [ext_resource type="PackedScene" uid="uid://oleyftpfpaky" path="res://scenes/buttons/plus_button.tscn" id="3_5e62l"]
 [ext_resource type="PackedScene" uid="uid://dwek0twuhg4a3" path="res://scenes/buttons/minus_button.tscn" id="4_oc30t"]
 
-[node name="Stat" type="HBoxContainer" node_paths=PackedStringArray("icon_texture", "label", "amount_label")]
+[node name="Stat" type="HBoxContainer" node_paths=PackedStringArray("icon_texture", "label", "amount_label", "plus_btn", "minus_btn")]
 script = ExtResource("1_uqnf4")
 icon_texture = NodePath("Left/Icon")
 label = NodePath("Left/Label")
 amount_label = NodePath("Right/Amount")
+plus_btn = NodePath("Right/PlusButton")
+minus_btn = NodePath("Right/MinusButton")
 
 [node name="Left" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -48,7 +50,7 @@ text = "0"
 horizontal_alignment = 2
 
 [node name="Space" type="Control" parent="Right"]
-custom_minimum_size = Vector2(10, 0)
+custom_minimum_size = Vector2(10, 32)
 layout_mode = 2
 
 [node name="MinusButton" parent="Right" instance=ExtResource("4_oc30t")]

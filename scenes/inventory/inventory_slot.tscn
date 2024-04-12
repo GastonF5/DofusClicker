@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://coiey3idqo52l"]
 
-[ext_resource type="Texture2D" uid="uid://btankjkc67hjv" path="res://assets/ui/inventory/inventoryEmptySlot.png" id="1_6j7br"]
-[ext_resource type="Texture2D" uid="uid://blq7h4lvuwd65" path="res://assets/ui/inventory/acceptDrop.png" id="2_k1wew"]
-[ext_resource type="Texture2D" uid="uid://i4rmuxyvr6jx" path="res://assets/ui/inventory/selected.png" id="3_dge54"]
+[ext_resource type="Texture2D" uid="uid://btankjkc67hjv" path="res://assets/inventory/inventoryEmptySlot.png" id="1_6j7br"]
+[ext_resource type="Texture2D" uid="uid://blq7h4lvuwd65" path="res://assets/inventory/acceptDrop.png" id="2_k1wew"]
+[ext_resource type="Texture2D" uid="uid://i4rmuxyvr6jx" path="res://assets/inventory/selected.png" id="3_dge54"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bclgm"]
 texture = ExtResource("1_6j7br")

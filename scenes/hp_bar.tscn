@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dqi5nyabi4exy" path="res://assets/hud/icon_hp_empty.png" id="1_5mfta"]
 [ext_resource type="Texture2D" uid="uid://k8i3m3d33k8x" path="res://assets/hud/icon_hp_full.png" id="2_boysx"]
-[ext_resource type="Script" path="res://scripts/HPBar.gd" id="3_ixkq0"]
+[ext_resource type="Script" path="res://scripts/bars/HPBar.gd" id="3_ixkq0"]
 
 [node name="HPBar" type="TextureProgressBar" node_paths=PackedStringArray("curr_hp_label", "max_hp_label")]
 anchors_preset = 8
