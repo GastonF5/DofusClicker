@@ -1,36 +1,47 @@
-[gd_scene load_steps=43 format=3 uid="uid://bfh3u8jwrg2ar"]
+[gd_scene load_steps=55 format=3 uid="uid://bfh3u8jwrg2ar"]
 
 [ext_resource type="Script" path="res://scripts/MonsterManager.gd" id="1_iu0is"]
 [ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="2_4lqlq"]
-[ext_resource type="Texture2D" uid="uid://dtp2ktsnvjk8w" path="res://assets/ui/window/bg_product.jpg" id="2_5kihd"]
+[ext_resource type="Texture2D" uid="uid://dtp2ktsnvjk8w" path="res://assets/ui/common/window/bg_product.jpg" id="2_5kihd"]
 [ext_resource type="Script" path="res://scripts/PlayerManager.gd" id="2_06gc8"]
 [ext_resource type="Texture2D" uid="uid://cl71pm2t281ug" path="res://assets/ui/icons/XPBonus5.png" id="3_btuyi"]
-[ext_resource type="Texture2D" uid="uid://ds4noug2xgj75" path="res://assets/ui/window/tx_parchment_forgemagie.png" id="3_e0uq4"]
 [ext_resource type="Script" path="res://scripts/ExperienceBar.gd" id="3_ir03k"]
 [ext_resource type="Script" path="res://scripts/equipment/EquipmentManager.gd" id="3_nkpwv"]
 [ext_resource type="Theme" uid="uid://ctf5aaqx8jyeo" path="res://resources/themes/experience_bar.tres" id="3_prl7k"]
+[ext_resource type="Script" path="res://scripts/StatsManager.gd" id="4_13j6f"]
 [ext_resource type="Texture2D" uid="uid://brcl6cos3cake" path="res://assets/ui/icons/icon_kama.png" id="4_jjqja"]
 [ext_resource type="PackedScene" uid="uid://coiey3idqo52l" path="res://scenes/inventory/inventory_slot.tscn" id="4_m4btg"]
-[ext_resource type="Texture2D" uid="uid://dubxhf73uvwcn" path="res://assets/equipment/tx_slot_belt.png" id="4_tf78o"]
+[ext_resource type="Texture2D" uid="uid://dubxhf73uvwcn" path="res://assets/equipment/slots/tx_slot_belt.png" id="4_tf78o"]
 [ext_resource type="Script" path="res://scripts/inventory/Inventory.gd" id="5_6v3yu"]
 [ext_resource type="Texture2D" uid="uid://blq7h4lvuwd65" path="res://assets/ui/inventory/acceptDrop.png" id="5_ufvyq"]
 [ext_resource type="Texture2D" uid="uid://i4rmuxyvr6jx" path="res://assets/ui/inventory/selected.png" id="6_bjtov"]
 [ext_resource type="Texture2D" uid="uid://btankjkc67hjv" path="res://assets/ui/inventory/inventoryEmptySlot.png" id="7_gobx1"]
-[ext_resource type="Texture2D" uid="uid://bh6ulrqp0mskd" path="res://assets/equipment/tx_slot_cape.png" id="8_wqctn"]
-[ext_resource type="Texture2D" uid="uid://bn7tw45whgwgg" path="res://assets/equipment/tx_slot_collar.png" id="9_xhasg"]
-[ext_resource type="Texture2D" uid="uid://bsksxibr4yyo3" path="res://assets/equipment/tx_slot_helmet.png" id="10_8coe0"]
-[ext_resource type="Texture2D" uid="uid://be4hokjlx1vux" path="res://assets/equipment/tx_slot_shoe.png" id="10_qkgqy"]
-[ext_resource type="Texture2D" uid="uid://jldvprwk734o" path="res://assets/equipment/tx_slot_ring.png" id="11_qw2gl"]
-[ext_resource type="Texture2D" uid="uid://63x2ud42mc3j" path="res://assets/equipment/tx_slot_weapon.png" id="12_g87co"]
+[ext_resource type="Texture2D" uid="uid://bh6ulrqp0mskd" path="res://assets/equipment/slots/tx_slot_cape.png" id="8_wqctn"]
+[ext_resource type="Texture2D" uid="uid://bn7tw45whgwgg" path="res://assets/equipment/slots/tx_slot_collar.png" id="9_xhasg"]
+[ext_resource type="Texture2D" uid="uid://bsksxibr4yyo3" path="res://assets/equipment/slots/tx_slot_helmet.png" id="10_8coe0"]
+[ext_resource type="Texture2D" uid="uid://be4hokjlx1vux" path="res://assets/equipment/slots/tx_slot_shoe.png" id="10_qkgqy"]
+[ext_resource type="Texture2D" uid="uid://jldvprwk734o" path="res://assets/equipment/slots/tx_slot_ring.png" id="11_qw2gl"]
+[ext_resource type="Texture2D" uid="uid://63x2ud42mc3j" path="res://assets/equipment/slots/tx_slot_weapon.png" id="12_g87co"]
 [ext_resource type="Script" path="res://scripts/CustomTabContainer.gd" id="14_akpwt"]
 [ext_resource type="Texture2D" uid="uid://cwoycdemjcbuy" path="res://assets/window_icon/caracteristiques.png" id="15_wilnu"]
 [ext_resource type="Script" path="res://scripts/PABar.gd" id="16_5fvw0"]
 [ext_resource type="Texture2D" uid="uid://bx13bnw5chi1h" path="res://assets/window_icon/sorts.png" id="16_og6sm"]
-[ext_resource type="Theme" uid="uid://iy2iucve2csu" path="res://resources/themes/pa_bar.tres" id="17_7m5l3"]
 [ext_resource type="Script" path="res://scripts/SpellBar.gd" id="17_u3lho"]
+[ext_resource type="PackedScene" uid="uid://bxrrue1p1pso4" path="res://scenes/stats/stat.tscn" id="19_nbmq2"]
+[ext_resource type="Texture2D" uid="uid://0ujq6wd2dvfm" path="res://assets/ui/common/window/window_green_background.jpg" id="20_5artd"]
+[ext_resource type="Texture2D" uid="uid://dc4kur4fk7phx" path="res://assets/ui/common/block/block_border_scratch.png" id="21_qxst7"]
+[ext_resource type="Texture2D" uid="uid://dky7mxoyl8fbb" path="res://assets/hud/background_hud.png" id="22_8pyuk"]
+[ext_resource type="Texture2D" uid="uid://j4jxr7o1i7qw" path="res://assets/hud/icon_ap_empty.png" id="23_40x4y"]
+[ext_resource type="Texture2D" uid="uid://ctdds4f63al2c" path="res://assets/ui/stats/window_separator_black_horizontal.png" id="23_mx5v7"]
+[ext_resource type="PackedScene" uid="uid://dqj1wm0ekjsa5" path="res://scenes/buttons/reset_button.tscn" id="24_81sw2"]
+[ext_resource type="Texture2D" uid="uid://deep4ut0ypw6e" path="res://assets/hud/icon_ap_full.png" id="24_e76da"]
 [ext_resource type="PackedScene" uid="uid://bkkjso0mm2nu4" path="res://scenes/hp_bar.tscn" id="24_rk44n"]
+[ext_resource type="PackedScene" uid="uid://coto2k3rtpqkd" path="res://scenes/window/window.tscn" id="30_7h6cu"]
+[ext_resource type="Texture2D" uid="uid://jps1sp7kid7q" path="res://assets/ui/inventory/light_bg_inventory.png" id="33_x0at0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4qy8r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gtnqv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nfls5"]
 
@@ -43,13 +54,24 @@ texture = ExtResource("6_bjtov")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bclgm"]
 texture = ExtResource("7_gobx1")
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v86sh"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fac4o"]
+texture = ExtResource("20_5artd")
+expand_margin_top = 9.0
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vjwvv"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2jn6r"]
+texture = ExtResource("21_qxst7")
+texture_margin_left = 15.0
+texture_margin_top = 10.0
+texture_margin_right = 15.0
+texture_margin_bottom = 10.0
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6pl64"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j1ob6"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_grw1v"]
+texture = ExtResource("20_5artd")
+expand_margin_top = 9.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_efp50"]
 
@@ -61,25 +83,36 @@ texture = ExtResource("7_gobx1")
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vjwvv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6pl64"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j1ob6"]
+
 [node name="Main" type="Node"]
 
 [node name="MonsterManager" type="Node" parent="." node_paths=PackedStringArray("monster_container")]
 script = ExtResource("1_iu0is")
-monster_container = NodePath("../GUI/Main/MiddleBackground/VBC/Panel/MonstersContainer")
+monster_container = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/MainPanel/MonstersContainer")
 
-[node name="PlayerManager" type="Node" parent="." node_paths=PackedStringArray("xp_bar", "kamas_label", "inventory", "pa_bar", "spell_container", "spell_bar", "hp_bar")]
+[node name="PlayerManager" type="Node" parent="." node_paths=PackedStringArray("xp_bar", "kamas_label", "inventory", "spell_container", "spell_bar", "hp_bar")]
 script = ExtResource("2_06gc8")
-xp_bar = NodePath("../GUI/Main/MiddleBackground/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/ExperienceBar")
-kamas_label = NodePath("../GUI/Main/MiddleBackground/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/KamasContainer/KamasLabel")
-inventory = NodePath("../GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid")
-pa_bar = NodePath("../GUI/Main/MiddleBackground/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/PABarContainer")
-spell_container = NodePath("../GUI/Main/LeftSide/VSplitContainer/JobsContainer/CustomTabContainer/Sorts/ScrollContainer/VBoxContainer")
-spell_bar = NodePath("../GUI/Main/MiddleBackground/VBC/Panel/HBC/SpellBarContainer/VBC/SpellBar")
-hp_bar = NodePath("../GUI/Main/MiddleBackground/VBC/Panel/HBC/HPBar")
+xp_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/ExperienceBar")
+kamas_label = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/KamasContainer/KamasLabel")
+inventory = NodePath("../GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid")
+spell_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Sorts/MarginContainer/ScrollContainer/VBoxContainer")
+spell_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/MainPanel/SpellBarContainer/SpellBar")
+hp_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/Control/HPBar")
 
 [node name="EquipmentManager" type="Node" parent="." node_paths=PackedStringArray("equipment_container")]
 script = ExtResource("3_nkpwv")
-equipment_container = NodePath("../GUI/Main/LeftSide/VSplitContainer/EquipmentContainer")
+equipment_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Equipment")
+
+[node name="StatsManager" type="Node" parent="." node_paths=PackedStringArray("stats_container", "points_label", "reset_button")]
+script = ExtResource("4_13j6f")
+stats_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer")
+points_label = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer/HBoxContainer/PointsContainer/MarginContainer/HBC/PointsLabel")
+reset_button = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer/HBoxContainer/ResetButton")
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
@@ -92,125 +125,66 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_4lqlq")
 
-[node name="LeftBackground" type="TextureRect" parent="GUI/Main"]
-clip_contents = true
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 370.0
-grow_vertical = 2
-texture = ExtResource("2_5kihd")
-
-[node name="LeftSide" type="Panel" parent="GUI/Main"]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 295.0
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_4qy8r")
-
-[node name="VSplitContainer" type="VSplitContainer" parent="GUI/Main/LeftSide"]
+[node name="HBC" type="HBoxContainer" parent="GUI/Main"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-dragger_visibility = 1
 
-[node name="EquipmentContainer" type="PanelContainer" parent="GUI/Main/LeftSide/VSplitContainer"]
-layout_mode = 2
-
-[node name="HBC" type="HBoxContainer" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-
-[node name="ArmeSlot" type="Button" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/HBC" groups=["equipment_slot"]]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxEmpty_nfls5")
-theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
-
-[node name="TextureRect" type="TextureRect" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/HBC/ArmeSlot"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("12_g87co")
-
-[node name="BottesSlot" type="Button" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/HBC" groups=["equipment_slot"]]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxEmpty_nfls5")
-theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
-
-[node name="TextureRect" type="TextureRect" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/HBC/BottesSlot"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("10_qkgqy")
-
-[node name="LeftContainer" type="VBoxContainer" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer"]
+[node name="LeftSide" type="PanelContainer" parent="GUI/Main/HBC"]
+custom_minimum_size = Vector2(420, 0)
 layout_mode = 2
 size_flags_horizontal = 0
-alignment = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_4qy8r")
 
-[node name="AmuletteSlot" type="Button" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/LeftContainer" groups=["equipment_slot"]]
-custom_minimum_size = Vector2(64, 64)
+[node name="LeftBackground" type="TextureRect" parent="GUI/Main/HBC/LeftSide"]
+clip_contents = true
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxEmpty_nfls5")
-theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
+texture = ExtResource("2_5kihd")
 
-[node name="TextureRect" type="TextureRect" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/LeftContainer/AmuletteSlot"]
+[node name="VSplitContainer" type="VSplitContainer" parent="GUI/Main/HBC/LeftSide"]
+layout_mode = 2
+dragger_visibility = 1
+
+[node name="EquipmentContainer" type="Panel" parent="GUI/Main/HBC/LeftSide/VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_gtnqv")
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("9_xhasg")
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 10
 
-[node name="AnneauSlot" type="Button" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/LeftContainer" groups=["equipment_slot"]]
-custom_minimum_size = Vector2(64, 64)
+[node name="Equipment" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer" instance=ExtResource("30_7h6cu")]
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Equipment"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Equipment/MarginContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Equipment/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 3
+columns = 3
+
+[node name="CoiffeSlot" type="Button" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Equipment/MarginContainer/ScrollContainer/GridContainer" groups=["equipment_slot"]]
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -220,80 +194,19 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
 
-[node name="TextureRect" type="TextureRect" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/LeftContainer/AnneauSlot"]
+[node name="TextureRect" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Equipment/MarginContainer/ScrollContainer/GridContainer/CoiffeSlot"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("11_qw2gl")
-
-[node name="AnneauSlot2" type="Button" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/LeftContainer" groups=["equipment_slot"]]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxEmpty_nfls5")
-theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
-
-[node name="TextureRect" type="TextureRect" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/LeftContainer/AnneauSlot2"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("11_qw2gl")
-
-[node name="RightContainer" type="VBoxContainer" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-alignment = 1
-
-[node name="CoiffeSlot" type="Button" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/RightContainer" groups=["equipment_slot"]]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxEmpty_nfls5")
-theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
-
-[node name="TextureRect" type="TextureRect" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/RightContainer/CoiffeSlot"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("10_8coe0")
+expand_mode = 3
+stretch_mode = 5
 
-[node name="CapeSlot" type="Button" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/RightContainer" groups=["equipment_slot"]]
-custom_minimum_size = Vector2(64, 64)
+[node name="CapeSlot" type="Button" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Equipment/MarginContainer/ScrollContainer/GridContainer" groups=["equipment_slot"]]
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -303,23 +216,19 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
 
-[node name="TextureRect" type="TextureRect" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/RightContainer/CapeSlot"]
+[node name="TextureRect" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Equipment/MarginContainer/ScrollContainer/GridContainer/CapeSlot"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("8_wqctn")
+expand_mode = 3
+stretch_mode = 5
 
-[node name="CeintureSlot" type="Button" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/RightContainer" groups=["equipment_slot"]]
-custom_minimum_size = Vector2(64, 64)
+[node name="CeintureSlot" type="Button" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Equipment/MarginContainer/ScrollContainer/GridContainer" groups=["equipment_slot"]]
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -329,508 +238,622 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
 
-[node name="TextureRect" type="TextureRect" parent="GUI/Main/LeftSide/VSplitContainer/EquipmentContainer/RightContainer/CeintureSlot"]
+[node name="TextureRect" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Equipment/MarginContainer/ScrollContainer/GridContainer/CeintureSlot"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_tf78o")
+expand_mode = 3
+stretch_mode = 5
 
-[node name="JobsContainer" type="VBoxContainer" parent="GUI/Main/LeftSide/VSplitContainer"]
+[node name="AmuletteSlot" type="Button" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Equipment/MarginContainer/ScrollContainer/GridContainer" groups=["equipment_slot"]]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nfls5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Equipment/MarginContainer/ScrollContainer/GridContainer/AmuletteSlot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_xhasg")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="AnneauSlot" type="Button" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Equipment/MarginContainer/ScrollContainer/GridContainer" groups=["equipment_slot"]]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nfls5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Equipment/MarginContainer/ScrollContainer/GridContainer/AnneauSlot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_qw2gl")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="AnneauSlot2" type="Button" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Equipment/MarginContainer/ScrollContainer/GridContainer" groups=["equipment_slot"]]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nfls5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Equipment/MarginContainer/ScrollContainer/GridContainer/AnneauSlot2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_qw2gl")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="ArmeSlot" type="Button" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Equipment/MarginContainer/ScrollContainer/GridContainer" groups=["equipment_slot"]]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nfls5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Equipment/MarginContainer/ScrollContainer/GridContainer/ArmeSlot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_g87co")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="BottesSlot" type="Button" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Equipment/MarginContainer/ScrollContainer/GridContainer" groups=["equipment_slot"]]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nfls5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Equipment/MarginContainer/ScrollContainer/GridContainer/BottesSlot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_qkgqy")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="StatsContainer" type="VBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-size_flags_stretch_ratio = 2.0
+size_flags_stretch_ratio = 1.5
 theme_override_constants/separation = 0
 
-[node name="TabBar" type="TabBar" parent="GUI/Main/LeftSide/VSplitContainer/JobsContainer"]
+[node name="TabBar" type="TabBar" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer"]
+z_index = 1
 layout_mode = 2
 focus_mode = 0
-theme_override_constants/icon_max_width = 32
+mouse_default_cursor_shape = 2
 tab_count = 2
-current_tab = 1
-tab_alignment = 2
-tab_0/title = ""
+tab_alignment = 1
+tab_0/title = "Caractéristiques"
 tab_0/icon = ExtResource("15_wilnu")
-tab_1/title = ""
+tab_1/title = "Sorts"
 tab_1/icon = ExtResource("16_og6sm")
 
-[node name="CustomTabContainer" type="TabContainer" parent="GUI/Main/LeftSide/VSplitContainer/JobsContainer" node_paths=PackedStringArray("tab_bar")]
+[node name="CustomTabContainer" type="TabContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer" node_paths=PackedStringArray("tab_bar")]
 layout_mode = 2
 size_flags_vertical = 3
 tabs_visible = false
 script = ExtResource("14_akpwt")
 tab_bar = NodePath("../TabBar")
 
-[node name="Stats" type="Panel" parent="GUI/Main/LeftSide/VSplitContainer/JobsContainer/CustomTabContainer"]
+[node name="Stats" type="Panel" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.5
-theme_override_styles/panel = SubResource("StyleBoxEmpty_v86sh")
+theme_override_styles/panel = SubResource("StyleBoxTexture_fac4o")
 
-[node name="Sorts" type="Panel" parent="GUI/Main/LeftSide/VSplitContainer/JobsContainer/CustomTabContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Panel" type="PanelContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Scratch" type="Panel" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_2jn6r")
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 10
+
+[node name="StatsContainer" type="VBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Vitalite" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer" instance=ExtResource("19_nbmq2")]
+layout_mode = 2
+
+[node name="Separator" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer"]
+layout_mode = 2
+texture = ExtResource("23_mx5v7")
+
+[node name="Agilite" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer" instance=ExtResource("19_nbmq2")]
+layout_mode = 2
+
+[node name="Separator2" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer"]
+layout_mode = 2
+texture = ExtResource("23_mx5v7")
+
+[node name="Chance" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer" instance=ExtResource("19_nbmq2")]
+layout_mode = 2
+
+[node name="Separator3" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer"]
+layout_mode = 2
+texture = ExtResource("23_mx5v7")
+
+[node name="Force" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer" instance=ExtResource("19_nbmq2")]
+layout_mode = 2
+
+[node name="Separator4" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer"]
+layout_mode = 2
+texture = ExtResource("23_mx5v7")
+
+[node name="Intelligence" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer" instance=ExtResource("19_nbmq2")]
+layout_mode = 2
+
+[node name="Separator5" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer"]
+layout_mode = 2
+texture = ExtResource("23_mx5v7")
+
+[node name="Sagesse" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer" instance=ExtResource("19_nbmq2")]
+layout_mode = 2
+
+[node name="Separator6" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer"]
+layout_mode = 2
+texture = ExtResource("23_mx5v7")
+
+[node name="PointsContainer" type="HBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="PointsContainer" type="PanelContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer/HBoxContainer/PointsContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBC" type="HBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer/HBoxContainer/PointsContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer/HBoxContainer/PointsContainer/MarginContainer/HBC"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Points à répartir :"
+
+[node name="Space" type="Control" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer/HBoxContainer/PointsContainer/MarginContainer/HBC"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="PointsLabel" type="Label" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer/HBoxContainer/PointsContainer/MarginContainer/HBC"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "5"
+horizontal_alignment = 2
+
+[node name="Space" type="Control" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="ResetButton" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/Panel/MarginContainer/StatsContainer/HBoxContainer" instance=ExtResource("24_81sw2")]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Sorts" type="Panel" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.5
-theme_override_styles/panel = SubResource("StyleBoxEmpty_v86sh")
+theme_override_styles/panel = SubResource("StyleBoxTexture_grw1v")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="GUI/Main/LeftSide/VSplitContainer/JobsContainer/CustomTabContainer/Sorts"]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Sorts"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/Main/LeftSide/VSplitContainer/JobsContainer/CustomTabContainer/Sorts/ScrollContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Sorts/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Sorts/MarginContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="RightBackground" type="TextureRect" parent="GUI/Main"]
-clip_contents = true
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -370.0
-grow_horizontal = 0
-grow_vertical = 2
-texture = ExtResource("2_5kihd")
-flip_h = true
-
-[node name="RightSide" type="Panel" parent="GUI/Main"]
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -265.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_vjwvv")
-
-[node name="VSplitContainer" type="VSplitContainer" parent="GUI/Main/RightSide"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 0
-theme_override_constants/autohide = 0
-
-[node name="JobsContainer" type="VBoxContainer" parent="GUI/Main/RightSide/VSplitContainer"]
+[node name="MiddleContainer" type="PanelContainer" parent="GUI/Main/HBC"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
-theme_override_constants/separation = 0
 
-[node name="TabBar" type="TabBar" parent="GUI/Main/RightSide/VSplitContainer/JobsContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-focus_mode = 0
-tab_count = 3
-tab_0/title = "Tailleur"
-tab_1/title = "Cordonnier"
-tab_2/title = "Bijoutier"
-
-[node name="TabContainer" type="TabContainer" parent="GUI/Main/RightSide/VSplitContainer/JobsContainer" node_paths=PackedStringArray("tab_bar")]
-layout_mode = 2
-size_flags_vertical = 3
-tabs_visible = false
-script = ExtResource("14_akpwt")
-tab_bar = NodePath("../TabBar")
-
-[node name="TailleurPanel" type="Panel" parent="GUI/Main/RightSide/VSplitContainer/JobsContainer/TabContainer"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_6pl64")
-
-[node name="CordonnierPanel" type="Panel" parent="GUI/Main/RightSide/VSplitContainer/JobsContainer/TabContainer"]
-visible = false
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_6pl64")
-
-[node name="BijoutierPanel" type="Panel" parent="GUI/Main/RightSide/VSplitContainer/JobsContainer/TabContainer"]
-visible = false
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_6pl64")
-
-[node name="InventoryPanel" type="Panel" parent="GUI/Main/RightSide/VSplitContainer"]
-clip_contents = true
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 3.0
-theme_override_styles/panel = SubResource("StyleBoxTexture_j1ob6")
-
-[node name="ScrollContainer" type="ScrollContainer" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="InventoryGrid" type="GridContainer" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer"]
-layout_mode = 2
-theme_override_constants/h_separation = 0
-theme_override_constants/v_separation = 0
-columns = 4
-script = ExtResource("5_6v3yu")
-
-[node name="InventorySlot" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot2" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot3" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot4" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot5" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot6" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot7" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot8" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot9" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot10" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot11" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot12" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot13" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot14" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot15" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot16" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot17" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot18" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot19" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot20" parent="GUI/Main/RightSide/VSplitContainer/InventoryPanel/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="MiddleBackground" type="TextureRect" parent="GUI/Main"]
+[node name="MiddleBackground" type="TextureRect" parent="GUI/Main/HBC/MiddleContainer"]
 self_modulate = Color(0.439216, 0.439216, 0.439216, 1)
 clip_contents = true
-layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -185.0
-offset_right = 215.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 texture = ExtResource("2_5kihd")
 
-[node name="VBC" type="VBoxContainer" parent="GUI/Main/MiddleBackground"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="VBC" type="VBoxContainer" parent="GUI/Main/HBC/MiddleContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
 
-[node name="Panel" type="Panel" parent="GUI/Main/MiddleBackground/VBC"]
+[node name="MainPanel" type="PanelContainer" parent="GUI/Main/HBC/MiddleContainer/VBC"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_efp50")
 
-[node name="MonstersContainer" type="HBoxContainer" parent="GUI/Main/MiddleBackground/VBC/Panel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -35.0
-offset_right = 200.0
-offset_bottom = -35.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="MonstersContainer" type="HBoxContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel"]
+layout_mode = 2
+theme_override_constants/separation = 16
 alignment = 1
 
-[node name="HBC" type="HBoxContainer" parent="GUI/Main/MiddleBackground/VBC/Panel"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -101.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="SpellBarContainer" type="Panel" parent="GUI/Main/MiddleBackground/VBC/Panel/HBC"]
+[node name="SpellBarContainer" type="PanelContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel"]
 clip_contents = true
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxEmpty_caw0r")
 
-[node name="VBC" type="VBoxContainer" parent="GUI/Main/MiddleBackground/VBC/Panel/HBC/SpellBarContainer"]
+[node name="SpellBar" type="HBoxContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/SpellBarContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+script = ExtResource("17_u3lho")
+
+[node name="PlayerBarContainer" type="PanelContainer" parent="GUI/Main/HBC/MiddleContainer/VBC"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="PlayerBarBackground" type="TextureRect" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer"]
+layout_mode = 2
+texture = ExtResource("22_8pyuk")
+expand_mode = 5
+
+[node name="PlayerBarContainer" type="MarginContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 2
+
+[node name="PABar" type="TextureProgressBar" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer" node_paths=PackedStringArray("current_pa_label")]
+layout_mode = 2
+size_flags_horizontal = 8
+fill_mode = 3
+texture_under = ExtResource("23_40x4y")
+texture_progress = ExtResource("24_e76da")
+script = ExtResource("16_5fvw0")
+current_pa_label = NodePath("CurrentPALabel")
+
+[node name="CurrentPALabel" type="Label" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/PABar"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+text = "6"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="SpellBar" type="HBoxContainer" parent="GUI/Main/MiddleBackground/VBC/Panel/HBC/SpellBarContainer/VBC"]
+[node name="AspectRatioContainer" type="PanelContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 3
-theme_override_constants/separation = 0
-alignment = 1
-script = ExtResource("17_u3lho")
-
-[node name="SpellBar2" type="HBoxContainer" parent="GUI/Main/MiddleBackground/VBC/Panel/HBC/SpellBarContainer/VBC"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 3
-theme_override_constants/separation = 0
-alignment = 1
-
-[node name="HPBar" parent="GUI/Main/MiddleBackground/VBC/Panel/HBC" instance=ExtResource("24_rk44n")]
-layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 4
-
-[node name="PlayerBarContainer" type="PanelContainer" parent="GUI/Main/MiddleBackground/VBC"]
-layout_mode = 2
-size_flags_vertical = 8
-
-[node name="PlayerBarBackground" type="TextureRect" parent="GUI/Main/MiddleBackground/VBC/PlayerBarContainer"]
-layout_mode = 2
-texture = ExtResource("3_e0uq4")
-expand_mode = 5
-
-[node name="PlayerBarContainer" type="MarginContainer" parent="GUI/Main/MiddleBackground/VBC/PlayerBarContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 20
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/Main/MiddleBackground/VBC/PlayerBarContainer/PlayerBarContainer"]
-layout_mode = 2
-alignment = 2
-
-[node name="PABarContainer" type="HBoxContainer" parent="GUI/Main/MiddleBackground/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/separation = 2
-alignment = 1
-script = ExtResource("16_5fvw0")
-
-[node name="ProgressBar" type="ProgressBar" parent="GUI/Main/MiddleBackground/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/PABarContainer"]
-custom_minimum_size = Vector2(50, 20)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 1
-theme = ExtResource("17_7m5l3")
-value = 30.0
-show_percentage = false
-
-[node name="Label" type="Label" parent="GUI/Main/MiddleBackground/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/PABarContainer/ProgressBar"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -5.5
-offset_top = -13.0
-offset_right = 5.5
-offset_bottom = 13.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "1"
-
-[node name="ProgressBar2" type="ProgressBar" parent="GUI/Main/MiddleBackground/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/PABarContainer"]
-custom_minimum_size = Vector2(50, 20)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 1
-theme = ExtResource("17_7m5l3")
-value = 30.0
-show_percentage = false
-
-[node name="Label" type="Label" parent="GUI/Main/MiddleBackground/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/PABarContainer/ProgressBar2"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -5.5
-offset_top = -13.0
-offset_right = 5.5
-offset_bottom = 13.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "1"
-
-[node name="ProgressBar3" type="ProgressBar" parent="GUI/Main/MiddleBackground/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/PABarContainer"]
-custom_minimum_size = Vector2(50, 20)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 1
-theme = ExtResource("17_7m5l3")
-value = 30.0
-show_percentage = false
-
-[node name="Label" type="Label" parent="GUI/Main/MiddleBackground/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/PABarContainer/ProgressBar3"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -5.5
-offset_top = -13.0
-offset_right = 5.5
-offset_bottom = 13.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "1"
-
-[node name="ProgressBar4" type="ProgressBar" parent="GUI/Main/MiddleBackground/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/PABarContainer"]
-custom_minimum_size = Vector2(50, 20)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 1
-theme = ExtResource("17_7m5l3")
-value = 30.0
-show_percentage = false
-
-[node name="Label" type="Label" parent="GUI/Main/MiddleBackground/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/PABarContainer/ProgressBar4"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -5.5
-offset_top = -13.0
-offset_right = 5.5
-offset_bottom = 13.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "1"
-
-[node name="AspectRatioContainer" type="PanelContainer" parent="GUI/Main/MiddleBackground/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer"]
-layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_du4k8")
 
-[node name="XPContainer" type="HBoxContainer" parent="GUI/Main/MiddleBackground/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer"]
+[node name="XPContainer" type="HBoxContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="Space" type="Control" parent="GUI/Main/MiddleBackground/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/XPContainer"]
+[node name="Space" type="Control" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/XPContainer"]
 custom_minimum_size = Vector2(2, 0)
 layout_mode = 2
 
-[node name="XPTexture" type="TextureRect" parent="GUI/Main/MiddleBackground/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/XPContainer"]
+[node name="XPTexture" type="TextureRect" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/XPContainer"]
 layout_mode = 2
 texture = ExtResource("3_btuyi")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Space2" type="Control" parent="GUI/Main/MiddleBackground/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/XPContainer"]
+[node name="Space2" type="Control" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/XPContainer"]
 custom_minimum_size = Vector2(2, 0)
 layout_mode = 2
 
-[node name="LvlLabel" type="Label" parent="GUI/Main/MiddleBackground/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/XPContainer"]
+[node name="LvlLabel" type="Label" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/XPContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Nv. 1"
 
-[node name="KamasContainer" type="HBoxContainer" parent="GUI/Main/MiddleBackground/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer"]
+[node name="KamasContainer" type="HBoxContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 alignment = 2
 
-[node name="KamasTexture" type="TextureRect" parent="GUI/Main/MiddleBackground/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/KamasContainer"]
+[node name="KamasTexture" type="TextureRect" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/KamasContainer"]
 layout_mode = 2
 texture = ExtResource("4_jjqja")
 expand_mode = 2
 stretch_mode = 3
 
-[node name="KamasLabel" type="Label" parent="GUI/Main/MiddleBackground/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/KamasContainer"]
+[node name="KamasLabel" type="Label" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/KamasContainer"]
 layout_mode = 2
 text = "5"
 label_settings = SubResource("LabelSettings_vraqn")
 
-[node name="Space" type="Control" parent="GUI/Main/MiddleBackground/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/KamasContainer"]
+[node name="Space" type="Control" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/KamasContainer"]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 
-[node name="ExperienceBar" type="ProgressBar" parent="GUI/Main/MiddleBackground/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer" node_paths=PackedStringArray("lvl_label", "label")]
-custom_minimum_size = Vector2(350, 30)
+[node name="Control" type="Control" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="HPBar" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/Control" instance=ExtResource("24_rk44n")]
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="ExperienceBar" type="ProgressBar" parent="GUI/Main/HBC/MiddleContainer/VBC" node_paths=PackedStringArray("lvl_label")]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_vertical = 8
 theme = ExtResource("3_prl7k")
 step = 1.0
 value = 50.0
 allow_greater = true
 show_percentage = false
 script = ExtResource("3_ir03k")
-lvl_label = NodePath("../AspectRatioContainer/XPContainer/LvlLabel")
-label = NodePath("MarginContainer/Label")
+lvl_label = NodePath("../PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/XPContainer/LvlLabel")
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/Main/MiddleBackground/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/ExperienceBar"]
+[node name="RightSide" type="PanelContainer" parent="GUI/Main/HBC"]
+custom_minimum_size = Vector2(522, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vjwvv")
+
+[node name="RightBackground" type="TextureRect" parent="GUI/Main/HBC/RightSide"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_5kihd")
+flip_h = true
+
+[node name="VSplitContainer" type="VSplitContainer" parent="GUI/Main/HBC/RightSide"]
+layout_mode = 2
+theme_override_constants/separation = 0
+theme_override_constants/autohide = 0
+collapsed = true
+
+[node name="JobsContainer" type="VBoxContainer" parent="GUI/Main/HBC/RightSide/VSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme_override_constants/separation = 0
+
+[node name="TabBar" type="TabBar" parent="GUI/Main/HBC/RightSide/VSplitContainer/JobsContainer"]
+z_index = 1
+layout_mode = 2
+size_flags_vertical = 0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+tab_count = 3
+tab_alignment = 1
+tab_0/title = "Tailleur"
+tab_1/title = "Cordonnier"
+tab_2/title = "Bijoutier"
+
+[node name="TabContainer" type="TabContainer" parent="GUI/Main/HBC/RightSide/VSplitContainer/JobsContainer" node_paths=PackedStringArray("tab_bar")]
+layout_mode = 2
+size_flags_vertical = 3
+tabs_visible = false
+script = ExtResource("14_akpwt")
+tab_bar = NodePath("../TabBar")
+
+[node name="CordonnierPanel" type="Panel" parent="GUI/Main/HBC/RightSide/VSplitContainer/JobsContainer/TabContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_6pl64")
+
+[node name="BijoutierPanel" type="Panel" parent="GUI/Main/HBC/RightSide/VSplitContainer/JobsContainer/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_6pl64")
+
+[node name="TailleurPanel" type="Panel" parent="GUI/Main/HBC/RightSide/VSplitContainer/JobsContainer/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_6pl64")
+
+[node name="InventoryPanel" type="Panel" parent="GUI/Main/HBC/RightSide/VSplitContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.55
+theme_override_styles/panel = SubResource("StyleBoxTexture_j1ob6")
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_bottom = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 10
 
-[node name="Label" type="Label" parent="GUI/Main/MiddleBackground/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/ExperienceBar/MarginContainer"]
+[node name="Window" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer" instance=ExtResource("30_7h6cu")]
 layout_mode = 2
-text = "5/10"
-horizontal_alignment = 1
+size_flags_horizontal = 1
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window"]
+layout_mode = 2
+texture = ExtResource("33_x0at0")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="InventoryGrid" type="GridContainer" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 4
+script = ExtResource("5_6v3yu")
+
+[node name="InventorySlot" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot2" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot3" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot4" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot5" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot6" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot7" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot8" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot9" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot10" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot11" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot12" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot13" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot14" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot15" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot16" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot17" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot18" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot19" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
+
+[node name="InventorySlot20" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+layout_mode = 2
 
 [node name="OverUI" type="CanvasLayer" parent="."]

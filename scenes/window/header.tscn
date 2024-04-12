@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnin3yweehiwe"]
+
+[ext_resource type="Texture2D" uid="uid://bvk1scfamsxr0" path="res://assets/ui/common/window/window_border_top.png" id="1_urk71"]
+[ext_resource type="Texture2D" uid="uid://bcco45wramwwf" path="res://assets/ui/common/window/window_border_icon_background.png" id="2_b8kig"]
+[ext_resource type="Texture2D" uid="uid://cwoycdemjcbuy" path="res://assets/window_icon/caracteristiques.png" id="3_yc4ly"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u2blg"]
+
+[node name="Header" type="PanelContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 64.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_u2blg")
+
+[node name="WindowBorderTop" type="TextureRect" parent="."]
+clip_contents = true
+layout_mode = 2
+texture = ExtResource("1_urk71")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="TabIcon" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("2_b8kig")
+stretch_mode = 3
+
+[node name="Icon" type="TextureRect" parent="TabIcon"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.5
+offset_top = -37.0
+offset_right = -0.5
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_yc4ly")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_vertical = 1
+text = "CARACTERISTIQUES"
+horizontal_alignment = 1
+vertical_alignment = 1

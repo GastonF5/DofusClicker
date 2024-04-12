@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EquipmentResource" load_steps=3 format=3 uid="uid://rmjs26xmlwk7"]
+
+[ext_resource type="Script" path="res://scripts/equipment/EquipmentResource.gd" id="1_ut80y"]
+[ext_resource type="Texture2D" uid="uid://bcme8v34ai1k1" path="res://assets/equipment/bottes/11026.png" id="2_5qtyp"]
+
+[resource]
+script = ExtResource("1_ut80y")
+equip_type = 3
+name = "Boufbottes"
+texture = ExtResource("2_5qtyp")

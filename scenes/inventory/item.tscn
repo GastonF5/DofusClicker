@@ -5,7 +5,7 @@
 [ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="1_pgtwy"]
 
 [node name="Item" type="TextureRect"]
-custom_minimum_size = Vector2(64, 64)
+custom_minimum_size = Vector2(128, 128)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -17,16 +17,18 @@ offset_right = 32.0
 offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
 mouse_filter = 2
 theme = ExtResource("1_pgtwy")
 texture = ExtResource("1_f57ig")
+expand_mode = 3
+stretch_mode = 5
 script = ExtResource("1_mdt2f")
 
 [node name="Count" type="Label" parent="."]
 layout_mode = 1
-offset_left = 3.0
-offset_right = 43.0
-offset_bottom = 23.0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 32
 text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1

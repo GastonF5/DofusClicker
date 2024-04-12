@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://dwek0twuhg4a3"]
+
+[ext_resource type="Texture2D" uid="uid://fg67fytininp" path="res://assets/ui/common/button/btn_green_small_normal.jpg" id="1_jf85q"]
+[ext_resource type="Texture2D" uid="uid://cck4ndl64sg2x" path="res://assets/ui/common/button/btn_green_small_over.jpg" id="2_cfs5l"]
+[ext_resource type="Texture2D" uid="uid://ioa8txwipu5x" path="res://assets/ui/common/button/btn_green_small_pressed.jpg" id="3_sl0oh"]
+[ext_resource type="Texture2D" uid="uid://d32cdxi321a4x" path="res://assets/ui/stats/btnIcon_minus.png" id="4_ftu4y"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qanle"]
+texture = ExtResource("1_jf85q")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_un2rn"]
+texture = ExtResource("2_cfs5l")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vhj0q"]
+texture = ExtResource("3_sl0oh")
+
+[node name="Button" type="Button"]
+custom_minimum_size = Vector2(32, 32)
+size_flags_horizontal = 8
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_qanle")
+theme_override_styles/hover = SubResource("StyleBoxTexture_un2rn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_vhj0q")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("4_ftu4y")
+expand_mode = 3
+stretch_mode = 5

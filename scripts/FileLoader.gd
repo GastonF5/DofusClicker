@@ -34,3 +34,7 @@ static func get_spell_resources(_class: String) -> Array[SpellResource]:
 
 static func get_packed_scene(scene_path: String) -> PackedScene:
 	return load("res://scenes/%s.tscn" % scene_path)
+
+
+static func get_stat_asset(stat: Caracteristique):
+	return load("res://assets/ui/stats/stat_icon/%s.png" % stat.get_type().to_lower())

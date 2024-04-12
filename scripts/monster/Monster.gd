@@ -39,7 +39,7 @@ func init(res: MonsterResource):
 	inventory = $"/root/Main/PlayerManager".inventory
 	name = res.name
 	name_label.text = res.name
-	init_clickable($"VBC/Panel")
+	init_clickable($"VBC/Content")
 	selected_texture.visible = false
 	texture_rect.texture = res.texture
 	hp_bar.init(res.max_health)

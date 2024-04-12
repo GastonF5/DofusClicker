@@ -1,61 +1,62 @@
 [gd_scene load_steps=4 format=3 uid="uid://bf47ud2gglayx"]
 
+[ext_resource type="Theme" uid="uid://cdaj6il61bnyj" path="res://resources/themes/spell_button/unselected.tres" id="1_3cuaa"]
 [ext_resource type="Script" path="res://scripts/SpellDescription.gd" id="1_uxhn7"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yxncl"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xwjd5"]
-
-[node name="SpellDescription" type="PanelContainer" node_paths=PackedStringArray("spell_container", "spell_name", "check_box", "description")]
+[node name="SpellDescription" type="Button" node_paths=PackedStringArray("spell_container", "spell_name")]
+custom_minimum_size = Vector2(380, 100)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -17.0
-offset_top = -11.5
-offset_right = 17.0
-offset_bottom = 11.5
+offset_left = -200.0
+offset_top = -50.0
+offset_right = 200.0
+offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource("1_3cuaa")
+action_mode = 0
 script = ExtResource("1_uxhn7")
-spell_container = NodePath("VBC/HBC/SpellContainer")
-spell_name = NodePath("VBC/HBC/SpellName")
-check_box = NodePath("VBC/HBC/CheckBox")
-description = NodePath("VBC/DescriptionContainer/Description")
+spell_container = NodePath("HBC/SpellContainer")
+spell_name = NodePath("HBC/SpellName")
 
-[node name="VBC" type="VBoxContainer" parent="."]
-layout_mode = 2
-
-[node name="HBC" type="HBoxContainer" parent="VBC"]
-layout_mode = 2
+[node name="HBC" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -12.0
+offset_right = 113.0
+offset_bottom = 12.0
+grow_vertical = 2
 size_flags_vertical = 3
-mouse_filter = 0
+mouse_filter = 2
+alignment = 1
 
-[node name="SpellContainer" type="PanelContainer" parent="VBC/HBC"]
+[node name="Space" type="Control" parent="HBC"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="SpellContainer" type="PanelContainer" parent="HBC"]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_yxncl")
 
-[node name="SpellName" type="Label" parent="VBC/HBC"]
+[node name="Space2" type="Control" parent="HBC"]
+custom_minimum_size = Vector2(15, 0)
 layout_mode = 2
+
+[node name="SpellName" type="Label" parent="HBC"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "spell name"
 
-[node name="CheckBox" type="CheckBox" parent="VBC/HBC"]
-layout_mode = 2
-size_flags_horizontal = 10
-focus_mode = 0
-
-[node name="DescriptionContainer" type="PanelContainer" parent="VBC"]
-visible = false
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_xwjd5")
-
-[node name="Description" type="RichTextLabel" parent="VBC/DescriptionContainer"]
-layout_mode = 2
-size_flags_vertical = 4
-text = "Description du sort"
-fit_content = true
-
-[connection signal="toggled" from="VBC/HBC/CheckBox" to="." method="_on_check_box_toggled"]
+[connection signal="button_up" from="." to="." method="_on_button_up"]

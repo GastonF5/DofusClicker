@@ -21,14 +21,14 @@ func _ready():
 	for spell_res in FileLoader.get_spell_resources("Ecaflip"):
 		var spell_description = FileLoader.get_packed_scene("spell/spell_description").instantiate()
 		spell_container.add_child(spell_description)
-		var spell = Spell.instantiate(spell_res, spell_description.get_node("VBC/HBC/SpellContainer"), false)
+		var spell = Spell.instantiate(spell_res, spell_description.get_node("HBC/SpellContainer"), false)
 		spell.is_clickable = false
 		spell_description.init(spell_bar)
 	
 	hp_bar.init(max_hp)
 	xp_bar.init()
 	kamas_label.text = "0"
-	current_pa = pa_bar.pa_bar_array.size()
+	current_pa = 0
 
 
 func _input(event):

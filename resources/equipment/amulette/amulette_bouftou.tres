@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EquipmentResource" load_steps=3 format=3 uid="uid://csdcn4f3mgc60"]
+
+[ext_resource type="Script" path="res://scripts/equipment/EquipmentResource.gd" id="1_dkt14"]
+[ext_resource type="Texture2D" uid="uid://br4fubn21oxhy" path="res://assets/equipment/amulette/1048.png" id="2_0hkqe"]
+
+[resource]
+script = ExtResource("1_dkt14")
+equip_type = 4
+name = "Amulette du bouftou"
+texture = ExtResource("2_0hkqe")

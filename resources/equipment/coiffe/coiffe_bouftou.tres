@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EquipmentResource" load_steps=3 format=3 uid="uid://drv16xxeni6io"]
+
+[ext_resource type="Script" path="res://scripts/equipment/EquipmentResource.gd" id="1_tv7ky"]
+[ext_resource type="Texture2D" uid="uid://en3uxgmcjtw2" path="res://assets/equipment/coiffe/16041.png" id="2_fa2ku"]
+
+[resource]
+script = ExtResource("1_tv7ky")
+equip_type = 0
+name = "Coiffe du Bouftou"
+texture = ExtResource("2_fa2ku")

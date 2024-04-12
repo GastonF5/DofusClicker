@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://x61epub0472f"]
+[gd_scene load_steps=9 format=3 uid="uid://c5gkntgyndcmq"]
 
 [ext_resource type="Script" path="res://scripts/monster/Monster.gd" id="2_ao8xg"]
 [ext_resource type="Texture2D" uid="uid://df7upr6jvfvsx" path="res://assets/ui/icons/boss.png" id="3_cevmk"]
@@ -7,68 +7,73 @@
 [ext_resource type="Texture2D" uid="uid://dy8eu125jfkat" path="res://assets/ui/icons/state2.png" id="6_e30d6"]
 [ext_resource type="PackedScene" uid="uid://bkkjso0mm2nu4" path="res://scenes/hp_bar.tscn" id="7_pl1ol"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_slw2d"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_63c4l"]
 
-[node name="Monster" type="Control" node_paths=PackedStringArray("name_label", "texture_rect", "hp_bar", "selected_texture", "header", "attack_bar", "attack_amount")]
-custom_minimum_size = Vector2(80, 64)
-layout_mode = 3
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0gk11"]
+
+[node name="Monster3" type="PanelContainer" node_paths=PackedStringArray("name_label", "texture_rect", "hp_bar", "selected_texture", "header", "attack_bar", "attack_amount")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -40.0
-offset_top = -32.0
-offset_right = 40.0
-offset_bottom = 32.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-script = ExtResource("2_ao8xg")
-name_label = NodePath("VBC/PanelContainer/Name")
-texture_rect = NodePath("VBC/Panel/Monster")
-hp_bar = NodePath("VBC/Panel/HPBar")
-selected_texture = NodePath("VBC/SelectedContainer/Selected")
-header = NodePath("VBC/PanelContainer/HeaderContainer/Header")
-attack_bar = NodePath("VBC/PanelContainer/AttackBar")
-attack_amount = NodePath("VBC/PanelContainer/AttackBar/AttackAmount")
-
-[node name="VBC" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+offset_left = -128.0
+offset_top = -235.0
+offset_right = 128.0
+offset_bottom = 235.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_63c4l")
+script = ExtResource("2_ao8xg")
+name_label = NodePath("VBC/Header/Name")
+texture_rect = NodePath("VBC/Content/Monster")
+hp_bar = NodePath("VBC/Content/Control/HPBar")
+selected_texture = NodePath("VBC/Footer/Selected")
+header = NodePath("VBC/Header/HeaderControl/HeaderTexture")
+attack_bar = NodePath("VBC/Header/AttackBar")
+attack_amount = NodePath("VBC/Header/AttackBar/AttackAmount")
 
-[node name="PanelContainer" type="VBoxContainer" parent="VBC"]
+[node name="VBC" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="Header" type="VBoxContainer" parent="VBC"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="HeaderContainer" type="Control" parent="VBC/PanelContainer"]
+[node name="HeaderControl" type="Control" parent="VBC/Header"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 
-[node name="Header" type="TextureRect" parent="VBC/PanelContainer/HeaderContainer"]
-layout_mode = 2
-offset_left = 24.0
-offset_top = 4.0
-offset_right = 56.0
-offset_bottom = 36.0
+[node name="HeaderTexture" type="TextureRect" parent="VBC/Header/HeaderControl"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
 grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 texture = ExtResource("3_cevmk")
 stretch_mode = 3
 
-[node name="AttackBar" type="ProgressBar" parent="VBC/PanelContainer"]
-custom_minimum_size = Vector2(0, 15)
+[node name="AttackBar" type="ProgressBar" parent="VBC/Header"]
+custom_minimum_size = Vector2(100, 15)
 layout_mode = 2
+size_flags_horizontal = 4
 mouse_filter = 2
 show_percentage = false
 
-[node name="AttackAmount" type="Label" parent="VBC/PanelContainer/AttackBar"]
+[node name="AttackAmount" type="Label" parent="VBC/Header/AttackBar"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -79,69 +84,51 @@ text = "5"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Name" type="Label" parent="VBC/PanelContainer"]
+[node name="Name" type="Label" parent="VBC/Header"]
 layout_mode = 2
 text = "Nom"
 horizontal_alignment = 1
 
-[node name="Panel" type="Panel" parent="VBC"]
+[node name="Content" type="PanelContainer" parent="VBC"]
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxEmpty_slw2d")
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_0gk11")
 
-[node name="Plate" type="TextureRect" parent="VBC/Panel"]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -13.0
-offset_top = -7.29101
-offset_right = 13.0
-offset_bottom = 7.29101
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 4
+[node name="Plate" type="TextureRect" parent="VBC/Content"]
+layout_mode = 2
+size_flags_vertical = 8
 texture = ExtResource("4_civw2")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="Monster" type="TextureRect" parent="VBC/Panel"]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -15.0
-offset_bottom = -15.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Monster" type="TextureRect" parent="VBC/Content"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_vertical = 0
 texture = ExtResource("5_1404l")
 expand_mode = 3
-stretch_mode = 3
+stretch_mode = 5
 
-[node name="HPBar" parent="VBC/Panel" instance=ExtResource("7_pl1ol")]
+[node name="Control" type="Control" parent="VBC/Content"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="HPBar" parent="VBC/Content/Control" instance=ExtResource("7_pl1ol")]
 layout_mode = 1
-offset_left = -20.0
-offset_top = 9.0
-offset_right = 81.0
-offset_bottom = 94.0
-scale = Vector2(0.40867, 0.40867)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="SelectedContainer" type="Control" parent="VBC"]
-custom_minimum_size = Vector2(0, 32)
+[node name="Footer" type="Control" parent="VBC"]
+custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
+mouse_filter = 2
 
-[node name="Selected" type="TextureRect" parent="VBC/SelectedContainer"]
+[node name="Selected" type="TextureRect" parent="VBC/Footer"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

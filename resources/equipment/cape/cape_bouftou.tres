@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EquipmentResource" load_steps=3 format=3 uid="uid://c4n7cfnta7hnx"]
+
+[ext_resource type="Script" path="res://scripts/equipment/EquipmentResource.gd" id="1_3xtqs"]
+[ext_resource type="Texture2D" uid="uid://u3sxlwl1w2gq" path="res://assets/equipment/cape/17044.png" id="2_3ukp8"]
+
+[resource]
+script = ExtResource("1_3xtqs")
+equip_type = 1
+name = "Cape Bouffante"
+texture = ExtResource("2_3ukp8")

@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxrrue1p1pso4"]
+
+[ext_resource type="Script" path="res://scripts/stats/Caracteristique.gd" id="1_uqnf4"]
+[ext_resource type="Texture2D" uid="uid://btdney26jvubl" path="res://assets/ui/stats/stat_icon/vitalite.png" id="2_x8g0m"]
+[ext_resource type="PackedScene" uid="uid://oleyftpfpaky" path="res://scenes/buttons/plus_button.tscn" id="3_5e62l"]
+[ext_resource type="PackedScene" uid="uid://dwek0twuhg4a3" path="res://scenes/buttons/minus_button.tscn" id="4_oc30t"]
+
+[node name="Stat" type="HBoxContainer" node_paths=PackedStringArray("icon_texture", "label", "amount_label")]
+script = ExtResource("1_uqnf4")
+icon_texture = NodePath("Left/Icon")
+label = NodePath("Left/Label")
+amount_label = NodePath("Right/Amount")
+
+[node name="Left" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Icon" type="TextureRect" parent="Left"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("2_x8g0m")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Space" type="Control" parent="Left"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Left"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Vitalité"
+
+[node name="Space" type="Control" parent="."]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Right" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="Amount" type="Label" parent="Right"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+horizontal_alignment = 2
+
+[node name="Space" type="Control" parent="Right"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="MinusButton" parent="Right" instance=ExtResource("4_oc30t")]
+layout_mode = 2
+
+[node name="PlusButton" parent="Right" instance=ExtResource("3_5e62l")]
+layout_mode = 2
+
+[connection signal="button_up" from="Right/MinusButton" to="." method="_on_minus_button_button_up"]
+[connection signal="button_up" from="Right/PlusButton" to="." method="_on_plus_button_button_up"]

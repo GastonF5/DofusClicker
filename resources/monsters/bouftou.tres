@@ -1,17 +1,15 @@
-[gd_resource type="Resource" script_class="MonsterResource" load_steps=8 format=3 uid="uid://njdo3lkxrv4p"]
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=11 format=3 uid="uid://njdo3lkxrv4p"]
 
 [ext_resource type="Script" path="res://scripts/monster/MonsterResource.gd" id="1_4crxr"]
 [ext_resource type="Resource" uid="uid://bqi4hntvgf4jc" path="res://resources/items/laine_bouftou.tres" id="1_wpn17"]
 [ext_resource type="Texture2D" uid="uid://dp18o0pxmvcoh" path="res://assets/monsters/bouftou.png" id="2_fvsqk"]
 [ext_resource type="Resource" uid="uid://5b044xunvcvf" path="res://resources/items/corne_bouftou.tres" id="2_p1oga"]
-[ext_resource type="Script" path="res://scripts/equipment/EquipmentResource.gd" id="3_wgbjv"]
-[ext_resource type="Texture2D" uid="uid://db5yw7auh2rye" path="res://assets/ui/icons/red_sword_icon.png" id="4_qn0fe"]
-
-[sub_resource type="Resource" id="Resource_l3l8u"]
-script = ExtResource("3_wgbjv")
-equip_type = 0
-name = "test"
-texture = ExtResource("4_qn0fe")
+[ext_resource type="Resource" uid="uid://csdcn4f3mgc60" path="res://resources/equipment/amulette/amulette_bouftou.tres" id="3_sd3v7"]
+[ext_resource type="Resource" uid="uid://b152tk3vgpq6v" path="res://resources/equipment/anneau/anneau_bouftou.tres" id="4_iobp7"]
+[ext_resource type="Resource" uid="uid://rmjs26xmlwk7" path="res://resources/equipment/bottes/bottes_bouftou.tres" id="5_b0a76"]
+[ext_resource type="Resource" uid="uid://c4n7cfnta7hnx" path="res://resources/equipment/cape/cape_bouftou.tres" id="6_12yff"]
+[ext_resource type="Resource" uid="uid://cglcycy4c3qsd" path="res://resources/equipment/ceinture/ceinture_bouftou.tres" id="7_so7ks"]
+[ext_resource type="Resource" uid="uid://drv16xxeni6io" path="res://resources/equipment/coiffe/coiffe_bouftou.tres" id="8_dia0i"]
 
 [resource]
 script = ExtResource("1_4crxr")
@@ -23,4 +21,4 @@ attack_time = 3.0
 damage = 3
 boss = false
 archimonstre = false
-drop = Array[Resource("res://scripts/item/ItemResource.gd")]([ExtResource("1_wpn17"), ExtResource("2_p1oga"), SubResource("Resource_l3l8u")])
+drop = Array[Resource("res://scripts/item/ItemResource.gd")]([ExtResource("1_wpn17"), ExtResource("2_p1oga"), ExtResource("3_sd3v7"), ExtResource("4_iobp7"), ExtResource("5_b0a76"), ExtResource("6_12yff"), ExtResource("7_so7ks"), ExtResource("8_dia0i")])

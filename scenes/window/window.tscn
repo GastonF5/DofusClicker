@@ -1,0 +1,89 @@
+[gd_scene load_steps=10 format=3 uid="uid://coto2k3rtpqkd"]
+
+[ext_resource type="Texture2D" uid="uid://0ujq6wd2dvfm" path="res://assets/ui/common/window/window_green_background.jpg" id="1_pg5qw"]
+[ext_resource type="Texture2D" uid="uid://3rnac70g0gu3" path="res://assets/ui/common/window/window_border_bottom.png" id="2_wos6r"]
+[ext_resource type="Texture2D" uid="uid://bcco45wramwwf" path="res://assets/ui/common/window/window_border_icon_background.png" id="3_y6kem"]
+[ext_resource type="Texture2D" uid="uid://cwoycdemjcbuy" path="res://assets/window_icon/caracteristiques.png" id="4_0jeie"]
+[ext_resource type="Texture2D" uid="uid://bsy35t5cxw432" path="res://assets/ui/common/window/window_border_small_top.png" id="5_07vgs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0wkbv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_btmyb"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6g5ck"]
+texture = ExtResource("2_wos6r")
+texture_margin_left = 50.0
+texture_margin_top = 20.0
+texture_margin_right = 50.0
+texture_margin_bottom = 50.0
+expand_margin_left = 18.0
+expand_margin_right = 20.0
+expand_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0iw83"]
+texture = ExtResource("5_07vgs")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+expand_margin_left = 20.0
+expand_margin_top = 16.0
+expand_margin_right = 20.0
+
+[node name="Window" type="PanelContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_0wkbv")
+
+[node name="Content" type="Panel" parent="."]
+clip_contents = true
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_btmyb")
+
+[node name="Background" type="TextureRect" parent="Content"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_pg5qw")
+expand_mode = 2
+
+[node name="Borders" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_6g5ck")
+
+[node name="TabIcon" type="TextureRect" parent="."]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("3_y6kem")
+stretch_mode = 3
+
+[node name="Icon" type="TextureRect" parent="TabIcon"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.5
+offset_top = -37.0
+offset_right = -0.5
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_0jeie")
+stretch_mode = 3
+
+[node name="Header" type="Panel" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_0iw83")
