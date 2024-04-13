@@ -2,7 +2,7 @@ class_name Inventory
 extends Control
 
 
-var slots = []
+static var slots = []
 
 
 func _ready():
