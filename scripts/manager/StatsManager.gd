@@ -20,6 +20,10 @@ func _ready():
 	$"../PlayerManager".xp_bar.lvl_up.connect(on_lvl_up)
 
 
+func _process(_delta):
+	reset_button.disabled = points == max_points
+
+
 func reset_points():
 	points = max_points
 	for carac in caracteristiques:

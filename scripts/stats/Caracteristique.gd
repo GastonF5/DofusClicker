@@ -38,6 +38,11 @@ func _ready():
 	label.text = get_type().to_pascal_case()
 
 
+func _process(_delta):
+	plus_btn.disabled = StatsManager.points == 0
+	minus_btn.disabled = base_amount == 0
+
+
 func get_type() -> String:
 	return Type.find_key(type)
 
