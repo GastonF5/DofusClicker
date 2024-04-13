@@ -48,10 +48,7 @@ func check_recipe() -> bool:
 	var index = 0
 	for item in resource.items:
 		var item_in_slot = slots[index].get_child(0)
-		print(item_in_slot)
-		var test_name = item.name != item_in_slot.name
-		var test_count = item.count != item_in_slot.count
-		if item_in_slot == null or test_name or test_count:
+		if item_in_slot == null or item.name != item_in_slot.name or item.count != item_in_slot.count:
 			return false
 		index += 1
 	return true
