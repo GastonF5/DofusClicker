@@ -7,3 +7,4 @@
 script = ExtResource("1_vhbuh")
 name = "Corne de bouftou"
 texture = ExtResource("2_8h555")
+drop_rate = 75.0

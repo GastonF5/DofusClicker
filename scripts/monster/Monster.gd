@@ -79,9 +79,14 @@ func attack():
 
 
 func die():
-	for item_res in resource.drop:
-		inventory.add_item(Item.create(item_res, inventory))
+	drop()
 	hp_bar.value = hp_bar.min_value
 	get_parent().remove_child(self)
 	dies.emit(resource.xp_gain)
 	queue_free()
+
+
+func drop():
+	for item_res in resource.drop:
+		if randf_range(0, 100) < item_res.drop_rate:
+			inventory.add_item(Item.create(item_res, inventory))

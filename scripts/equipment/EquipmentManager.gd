@@ -18,7 +18,7 @@ func _ready():
 
 func _on_mouse_entered_slot(slot):
 	var dragged_item = PlayerManager.dragged_item
-	if dragged_item != null and dragged_item.equip_type != null:
+	if dragged_item != null and dragged_item.resource.equip_res != null:
 		Inventory._on_mouse_entered_slot(slot)
 
 

@@ -1,5 +1,5 @@
 class_name EquipmentResource
-extends ItemResource
+extends Resource
 
 enum Type {
 	COIFFE,
@@ -13,3 +13,5 @@ enum Type {
 
 
 @export var equip_type: Type
+
+@export var stats: Array[StatResource]

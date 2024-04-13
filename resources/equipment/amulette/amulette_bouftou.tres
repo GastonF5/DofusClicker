@@ -1,10 +1,30 @@
-[gd_resource type="Resource" script_class="EquipmentResource" load_steps=3 format=3 uid="uid://csdcn4f3mgc60"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=8 format=3 uid="uid://dgfovt1k0nys"]
 
 [ext_resource type="Script" path="res://scripts/equipment/EquipmentResource.gd" id="1_dkt14"]
+[ext_resource type="Script" path="res://scripts/item/ItemResource.gd" id="1_oke7v"]
 [ext_resource type="Texture2D" uid="uid://br4fubn21oxhy" path="res://assets/equipment/amulette/1048.png" id="2_0hkqe"]
+[ext_resource type="Script" path="res://scripts/stats/StatResource.gd" id="2_rl2qt"]
 
-[resource]
+[sub_resource type="Resource" id="Resource_y5r4r"]
+script = ExtResource("2_rl2qt")
+type = 3
+min_amount = 1
+max_amount = 10
+
+[sub_resource type="Resource" id="Resource_dj5m5"]
+script = ExtResource("2_rl2qt")
+type = 4
+min_amount = 1
+max_amount = 10
+
+[sub_resource type="Resource" id="Resource_se260"]
 script = ExtResource("1_dkt14")
 equip_type = 4
+stats = Array[ExtResource("2_rl2qt")]([SubResource("Resource_y5r4r"), SubResource("Resource_dj5m5")])
+
+[resource]
+script = ExtResource("1_oke7v")
 name = "Amulette du bouftou"
 texture = ExtResource("2_0hkqe")
+equip_res = SubResource("Resource_se260")
+drop_rate = 0.0

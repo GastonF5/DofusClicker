@@ -8,7 +8,8 @@ var count = 1:
 	set(value):
 		count = value
 		update_count_label()
-var equip_type
+
+var resource: ItemResource
 
 func _ready():
 	init_draggable()
@@ -19,7 +20,7 @@ func init(item_res: ItemResource, _inventory: Inventory):
 	name = item_res.name
 	self.texture = item_res.texture
 	inventory = _inventory
-	equip_type = item_res.get("equip_type")
+	resource = item_res
 
 
 func update_count_label():
@@ -33,4 +34,4 @@ static func create(item_res: ItemResource, _inventory: Inventory) -> Item:
 
 
 static func equals(item1: Item, item2: Item) -> bool:
-	return (item1.equip_type == null or item2.equip_type == null) and item1.name == item2.name
+	return (item1.resource.equip_res == null or item2.resource.equip_res == null) and item1.name == item2.name
