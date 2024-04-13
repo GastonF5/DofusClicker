@@ -12,6 +12,10 @@ enum Type {
 }
 
 
-@export var equip_type: Type
+@export var type: Type
 
 @export var stats: Array[StatResource]
+
+
+func get_type() -> String:
+	return Type.find_key(type)
