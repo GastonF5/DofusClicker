@@ -122,6 +122,36 @@ Passif : état saoul = dégâts subits réduits MAIS 1 PM en moins / état sobre
 
 
 ## Huppermage
+Passif : combinaisons élémentaires
+50 puissance par combinaison élémentaire
+
+Bouclier élémentaire : Augmente les résistances de l'allié ciblé et lui applique l'état Bouclier Élémentaire :
+• Si la cible subit des dommages, réduit ses résistances à l'élément de l'attaque subie et applique l'état de cet élément sur son attaquant ennemi.
+Contribution : Applique des effets sur l'allié ciblé selon les états élémentaires de tous les ennemis :
+• Terre : augmente les PM.
+• Feu : applique un bouclier.
+• Eau : augmente la Puissance.
+• Air : augmente les PA.
+Consomme les états élémentaires.
+Traitement runique : soigne le lanceur pour chaque rune du lanceur. Consomme toutes les runes du lanceur.
+Création : crée une rune dans l'élément de l'état de la cible, consomme l'état élémentaire
+-> Evolution : Empreinte : pareil mais sur tous les ennemis
+
+- Voie air :
+Ether : dégâts + état élémentaire
+-> Evolution : Ouragan : gros dégâts en zone + rune
+- Voie terre :
+Onde tellurique : dégâts + état élémentaire
+-> Evolution : Brèche tectonique : dégâts en zone + retrait PM + rune
+- Voie feu :
+Lance-flamme : dégâts + état élémentaire
+-> Evolution : Trait ardent : vol de vie en zone + rune
+- Voie eau :
+Eclats glacés : dégâts + état élémentaire
+-> Evolution : Déluge : dégâts en zone + retrait PA + rune
+
+Drain élémentaire : dégâts meilleur élément + vol état élémentaire cible + consomme état élémentaire
+Surcharge runique : dégâts pour chaque rune dans l'élément des runes + consomme les runes
 
 
 ## Ouginak ?
