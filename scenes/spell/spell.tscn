@@ -7,7 +7,6 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pcjaj"]
 
 [node name="Spell" type="PanelContainer" node_paths=PackedStringArray("spell_texture", "cooldown_bar")]
-custom_minimum_size = Vector2(64, 64)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -21,10 +20,11 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_pcjaj")
 script = ExtResource("1_vxv8w")
 spell_texture = NodePath("MarginContainer/SpellTexture")
-cooldown_bar = NodePath("MarginContainer/CooldownBar")
+cooldown_bar = NodePath("MarginContainer/SpellTexture/CooldownBar")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 2
@@ -46,9 +46,11 @@ texture = ExtResource("3_kb0pb")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="CooldownBar" type="TextureProgressBar" parent="MarginContainer"]
+[node name="CooldownBar" type="TextureProgressBar" parent="MarginContainer/SpellTexture"]
 self_modulate = Color(1, 1, 1, 0.533333)
 layout_mode = 2
+offset_right = 44.0
+offset_bottom = 44.0
 mouse_filter = 2
 value = 50.0
 fill_mode = 3

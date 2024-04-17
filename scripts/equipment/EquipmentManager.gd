@@ -27,4 +27,6 @@ func dict_contains_key(dict: Dictionary, key: String) -> bool:
 
 
 static func is_equip_slot(slot):
-	return slot.get_groups().has("equip_slot")
+	if slot != null:
+		return slot.get_groups().has("equipment_slot")
+	return false

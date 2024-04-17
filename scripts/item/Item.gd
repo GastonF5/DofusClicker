@@ -12,26 +12,27 @@ var count = 1:
 var resource: ItemResource
 
 func _ready():
-	init_draggable()
 	update_count_label()
 
 
-func init(item_res: ItemResource, _inventory: Inventory):
+func init(item_res: ItemResource, _inventory: Inventory, _draggable = true):
 	name = item_res.name
 	self.texture = item_res.texture
 	inventory = _inventory
 	resource = item_res
+	count = item_res.count
+	draggable = _draggable
 
 
 func update_count_label():
 	$"Count".text = str(count) if count > 1 else ""
 
 
-static func create(item_res: ItemResource, _inventory: Inventory) -> Item:
+static func create(item_res: ItemResource, _inventory: Inventory, _draggable = true) -> Item:
 	var item: Item = item_scene.instantiate()
-	item.init(item_res, _inventory)
+	item.init(item_res, _inventory, _draggable)
 	return item
 
 
-static func equals(item1: Item, item2: Item) -> bool:
-	return (item1.resource.equip_res == null or item2.resource.equip_res == null) and item1.name == item2.name
+static func equals(item1, item2) -> bool:
+	return item1.name == item2.name

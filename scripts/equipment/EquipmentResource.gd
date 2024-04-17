@@ -7,8 +7,7 @@ enum Type {
 	CEINTURE,
 	BOTTES,
 	AMULETTE,
-	ANNEAU,
-	ARME
+	ANNEAU
 }
 
 

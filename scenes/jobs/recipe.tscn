@@ -1,10 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://trxp6j0cq52w"]
+[gd_scene load_steps=3 format=3 uid="uid://trxp6j0cq52w"]
 
 [ext_resource type="Script" path="res://scripts/recipe/Recipe.gd" id="1_ys3ho"]
-[ext_resource type="PackedScene" uid="uid://coiey3idqo52l" path="res://scenes/inventory/inventory_slot.tscn" id="2_friwt"]
 [ext_resource type="PackedScene" uid="uid://oleyftpfpaky" path="res://scenes/buttons/plus_button.tscn" id="4_vrhie"]
 
-[node name="Recipe" type="PanelContainer" node_paths=PackedStringArray("button")]
+[node name="Recipe" type="PanelContainer" node_paths=PackedStringArray("button", "items_container")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -14,6 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ys3ho")
 button = NodePath("MarginContainer/HBC/Button")
+items_container = NodePath("MarginContainer/HBC/Items")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -32,5 +32,4 @@ size_flags_vertical = 4
 [node name="Items" type="HBoxContainer" parent="MarginContainer/HBC"]
 layout_mode = 2
 
-[node name="InventorySlot" parent="MarginContainer/HBC/Items" instance=ExtResource("2_friwt")]
-layout_mode = 2
+[connection signal="button_up" from="MarginContainer/HBC/Button" to="." method="_on_button_button_up"]

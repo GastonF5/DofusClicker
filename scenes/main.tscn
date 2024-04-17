@@ -107,6 +107,7 @@ script = ExtResource("1_iu0is")
 monster_container = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/MainPanel/MonstersContainer")
 
 [node name="PlayerManager" type="Node" parent="." node_paths=PackedStringArray("xp_bar", "kamas_label", "inventory", "spell_container", "spell_bar", "hp_bar", "pa_bar", "pm_bar", "pdv_label", "pa_label", "pm_label")]
+process_priority = 1
 script = ExtResource("2_06gc8")
 xp_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/ExperienceBar")
 kamas_label = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/KamasContainer/KamasLabel")
@@ -130,9 +131,9 @@ stats_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContai
 points_label = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Caracteristiques/MarginContainer/StatsContainer/HBoxContainer/PointsContainer/MarginContainer/HBC/PointsLabel")
 reset_button = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/VBC/Caracteristiques/MarginContainer/StatsContainer/HBoxContainer/ResetButton")
 
-[node name="RecipeManager" type="Node" parent="." node_paths=PackedStringArray("job_tab")]
+[node name="RecipeManager" type="Node" parent="." node_paths=PackedStringArray("tab_container")]
 script = ExtResource("5_51m8x")
-job_tab = NodePath("../GUI/Main/HBC/RightSide/VSplitContainer/JobsContainer/TabBar")
+tab_container = NodePath("../GUI/Main/HBC/RightSide/VSplitContainer/JobsContainer/TabContainer")
 
 [node name="GUI" type="CanvasLayer" parent="."]
 

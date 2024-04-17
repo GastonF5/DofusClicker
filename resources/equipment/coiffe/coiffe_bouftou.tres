@@ -1,10 +1,33 @@
-[gd_resource type="Resource" script_class="EquipmentResource" load_steps=3 format=3 uid="uid://drv16xxeni6io"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=10 format=3 uid="uid://nhi8jjibfwxl"]
 
-[ext_resource type="Script" path="res://scripts/equipment/EquipmentResource.gd" id="1_tv7ky"]
-[ext_resource type="Texture2D" uid="uid://en3uxgmcjtw2" path="res://assets/equipment/coiffe/16041.png" id="2_fa2ku"]
+[ext_resource type="Script" path="res://scripts/equipment/EquipmentResource.gd" id="1_8s5cf"]
+[ext_resource type="Script" path="res://scripts/item/ItemResource.gd" id="1_h6ort"]
+[ext_resource type="Resource" uid="uid://bqi4hntvgf4jc" path="res://resources/items/laine_bouftou.tres" id="2_2a17l"]
+[ext_resource type="Texture2D" uid="uid://16meljktup43" path="res://assets/items/corne_bouftou.png" id="4_jek2s"]
+[ext_resource type="Script" path="res://scripts/recipe/RecipeResource.gd" id="5_u7m1l"]
+[ext_resource type="Texture2D" uid="uid://en3uxgmcjtw2" path="res://assets/equipment/coiffe/16041.png" id="6_1ggsm"]
+
+[sub_resource type="Resource" id="Resource_coxkw"]
+script = ExtResource("1_8s5cf")
+type = 0
+stats = Array[Resource("res://scripts/stats/StatResource.gd")]([])
+
+[sub_resource type="Resource" id="Resource_wn15v"]
+script = ExtResource("1_h6ort")
+name = "Corne de bouftou"
+texture = ExtResource("4_jek2s")
+count = 2
+drop_rate = 75.0
+
+[sub_resource type="Resource" id="Resource_rnb81"]
+script = ExtResource("5_u7m1l")
+items = Array[ExtResource("1_h6ort")]([ExtResource("2_2a17l"), SubResource("Resource_wn15v")])
 
 [resource]
-script = ExtResource("1_tv7ky")
-equip_type = 0
-name = "Coiffe du Bouftou"
-texture = ExtResource("2_fa2ku")
+script = ExtResource("1_h6ort")
+name = "Coiffe du bouftou"
+texture = ExtResource("6_1ggsm")
+count = 1
+equip_res = SubResource("Resource_coxkw")
+drop_rate = 0.0
+recipe = SubResource("Resource_rnb81")

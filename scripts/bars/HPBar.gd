@@ -15,7 +15,7 @@ func init(max_hp: int):
 	min_value = 0
 	max_value = max_hp
 	update_max_hp_label()
-	current_hp = max_value
+	current_hp = max_hp
 	value = max_value
 	update_current_hp_label()
 

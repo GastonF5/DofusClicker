@@ -17,11 +17,18 @@ var dragged = false:
 			PlayerManager.dragged_item = null
 
 var inventory: Inventory
+var initialized = false
+
+
+func _enter_tree():
+	if !initialized and draggable:
+		init_draggable()
+		initialized = true
 
 
 func init_draggable():
-	get_parent().button_down.connect(_on_button_down)
-	draggable = true
+	if get_parent() != null:
+		get_parent().button_down.connect(_on_button_down)
 	drop_parent = get_parent()
 
 

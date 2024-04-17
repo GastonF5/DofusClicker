@@ -9,5 +9,5 @@ name = "Pile ou Face"
 texture = ExtResource("2_xhct6")
 spell_name = "pile_face"
 description = ""
-cooldown = 0.0
+cooldown = 2.08165e-12
 pa_cost = 0

@@ -20,6 +20,7 @@ func _process(_delta):
 
 
 func init(res: SpellResource, clickable: bool):
+	global_position -= size/2
 	name = res.name
 	resource = res
 	spell_texture.texture = res.texture

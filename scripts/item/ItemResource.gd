@@ -9,3 +9,5 @@ extends Resource
 @export var equip_res: EquipmentResource
 
 @export var drop_rate: float
+
+@export var recipe: RecipeResource

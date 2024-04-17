@@ -4,51 +4,71 @@ extends PanelContainer
 const plus_texture = preload("res://assets/stats/btn_icon/btnIcon_plus.png")
 
 @export var button: Button
-@export var test_resource: RecipeResource
+@export var items_container: HBoxContainer
+@export var test_resource: ItemResource
 
-var items: HBoxContainer
-var slots = []
 var resource: RecipeResource
+var result: ItemResource
+
+signal craft
 
 
 func _ready():
-	items = $"MarginContainer/HBC/Items"
 	if test_resource != null:
-		init(test_resource)
+		init(test_resource, null)
 
 
-func init(recipe_res: RecipeResource):
-	var nb_items = recipe_res.items.size()
-	for i in range(nb_items - 1):
-		instantiate_slot()
-	slots = items.get_children()
-	init_slots()
-	resource = recipe_res
+func init(item_res: ItemResource, inventory: Inventory):
+	instantiate_items(item_res.recipe.items)
+	resource = item_res.recipe
+	
+	result = item_res
+	var result_item = Item.create(result, null, false)
+	result_item.custom_minimum_size = Vector2(64, 64)
+	items_container.add_sibling(result_item)
+	items_container.get_parent().move_child(result_item, 0)
+	
+	inventory.item_entered_tree.connect(check)
+	inventory.item_exiting_tree.connect(check)
+	check(inventory.get_items())
 
 
-func instantiate_slot():
-	var slot = load("res://scenes/inventory/inventory_slot.tscn").instantiate()
-	items.add_child(slot)
+func instantiate_items(items_res: Array[ItemResource]):
+	for item_res in items_res:
+		var recipe_item = Item.create(item_res, null, false)
+		recipe_item.custom_minimum_size = Vector2(64, 64)
+		recipe_item.get_node("Count").add_theme_font_size_override("FontSize", 16)
+		items_container.add_child(recipe_item)
 
 
-func init_slots():
-	for slot in slots:
-		slot.mouse_entered.connect(Inventory._on_mouse_entered_slot.bind(slot))
-		slot.mouse_exited.connect(Inventory._on_mouse_exited_slot)
-		slot.child_entered_tree.connect(check)
-		slot.child_exiting_tree.connect(check)
+func check(items: Array):
+	button.disabled = !check_recipe(items)
 
 
-func check(_item):
-	print(check_recipe())
-	button.disabled = !check_recipe()
-
-
-func check_recipe() -> bool:
-	var index = 0
-	for item in resource.items:
-		var item_in_slot = slots[index].get_child(0)
-		if item_in_slot == null or item.name != item_in_slot.name or item.count != item_in_slot.count:
+func check_recipe(inventory_items: Array) -> bool:
+	var recipe_items = resource.items.duplicate()
+	if inventory_items.size() < recipe_items.size():
+		return false
+	for item_recipe in recipe_items:
+		if !item_match(item_recipe, inventory_items):
 			return false
-		index += 1
 	return true
+
+
+func item_match(recipe_item: ItemResource, inventory_items: Array):
+	for item in inventory_items:
+		if item.name == recipe_item.name and item.count >= recipe_item.count:
+			return true
+	return false
+
+
+
+static func create(item_res: ItemResource, parent, inventory: Inventory) -> Recipe:
+	var recipe = load("res://scenes/jobs/recipe.tscn").instantiate()
+	recipe.init(item_res, inventory)
+	parent.add_child(recipe)
+	return recipe
+
+
+func _on_button_button_up():
+	craft.emit(result)
