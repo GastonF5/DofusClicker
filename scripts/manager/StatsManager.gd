@@ -18,6 +18,16 @@ func _ready():
 	reset_button.button_up.connect(reset_points)
 	reset_points()
 	$"../PlayerManager".xp_bar.lvl_up.connect(on_lvl_up)
+	$"../EquipmentManager".equiped.connect(on_equiped)
+	$"../EquipmentManager".desequiped.connect(on_desequiped)
+
+
+func on_equiped(item):
+	pass
+
+
+func on_desequiped(item):
+	pass
 
 
 func _process(_delta):

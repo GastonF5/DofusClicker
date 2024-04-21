@@ -7,12 +7,25 @@ extends Node
 
 var slots = []
 
+signal equiped
+signal desequiped
+
 
 func _ready():
 	for slot in equipment_container.get_children():
 		slots.append(slot)
 		slot.mouse_entered.connect(_on_mouse_entered_slot.bind(slot))
 		slot.mouse_exited.connect(Inventory._on_mouse_exited_slot)
+		slot.child_entered_tree.connect(on_equiped)
+		slot.child_exiting_tree.connect(on_desequiped)
+
+
+func on_equiped(item):
+	equiped.emit(item)
+
+
+func on_desequiped(item):
+	desequiped.emit(item)
 
 
 func _on_mouse_entered_slot(slot):
@@ -30,3 +43,7 @@ static func is_equip_slot(slot):
 	if slot != null:
 		return slot.get_groups().has("equipment_slot")
 	return false
+
+
+func get_equipment():
+	return slots.map(func(s): return null if s.get_children().size() != 0 else s.get_child(0)).filter(func(e): return e != null)
