@@ -12,7 +12,7 @@ static var monsters_res: Array[MonsterResource]
 @export var attack_bar: ProgressBar
 @export var attack_amount: Label
 
-var inventory: Inventory
+@onready var inventory: Inventory = $"/root/Main/PlayerManager".inventory
 var resource: MonsterResource
 
 var attack_timer: Timer
@@ -36,7 +36,6 @@ static func instantiate(parent: Control) -> Monster:
 
 
 func init(res: MonsterResource):
-	inventory = $"/root/Main/PlayerManager".inventory
 	name = res.name
 	name_label.text = res.name
 	init_clickable($"VBC/Content")

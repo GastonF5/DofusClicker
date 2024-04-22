@@ -15,3 +15,7 @@ func get_random_amount():
 
 func init_amount():
 	amount = get_random_amount()
+
+
+func get_type() -> String:
+	return Caracteristique.Type.find_key(type)

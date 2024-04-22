@@ -5,9 +5,8 @@ extends Node
 @export var tab_container: TabContainer
 
 var recipe_container: VBoxContainer
-var search_prompt: TextEdit
+var search_prompt: LineEdit
 var recipes: Array[Recipe] = []
-var inventory: Inventory
 
 const recipe_container_path = "MarginContainer/VBC/ScrollContainer/RecipeContainer"
 const search_prompt_path = "MarginContainer/VBC/Search"
@@ -15,9 +14,11 @@ const equip_type = EquipmentResource.Type
 
 var mouse_on_search = false
 
+@onready var console: Console = $"/root/Main/PlayerManager".console
+@onready var inventory: Inventory = $"/root/Main/PlayerManager".inventory
+
 
 func _ready():
-	inventory = $"/root/Main/PlayerManager".inventory
 	on_job_tab_changed(tab_container.current_tab)
 	init_recipes()
 	for recipe in recipe_container.get_children():
@@ -26,9 +27,7 @@ func _ready():
 
 
 func _input(event):
-	if !mouse_on_search and event.is_action_pressed("LMB"):
-		search_prompt.release_focus()
-	if search_prompt.has_focus() and event.is_action_pressed("esc"):
+	if search_prompt.has_focus() and (event.is_action_pressed("esc") or event.is_action_pressed("LMB")):
 		search_prompt.release_focus()
 
 
@@ -51,7 +50,9 @@ func init_recipes():
 
 func on_recipe_craft(result: ItemResource):
 	inventory.remove_items(result.recipe.items)
-	inventory.add_item(Item.create(result, inventory))
+	var item = Item.create(result, inventory)
+	inventory.add_item(item)
+	console.log_equip(item)
 
 
 func on_mouse_enter_search():

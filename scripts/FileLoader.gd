@@ -4,6 +4,8 @@ class_name FileLoader
 static func get_all_file_paths(path: String) -> Array[String]:
 	var file_paths: Array[String] = []
 	var dir = DirAccess.open(path)
+	if dir == null:
+		return []
 	dir.list_dir_begin()
 	var file_name = dir.get_next()
 	while file_name != "":
@@ -30,6 +32,10 @@ static func get_equipment_resources(type: String) -> Array[ItemResource]:
 	for path in equipment_resource_paths:
 		equips_res.append(load(path))
 	return equips_res
+
+
+static func get_equipment_resource(path: String) -> ItemResource:
+	return load(path)
 
 
 static func get_spell_resources(_class: String) -> Array[SpellResource]:

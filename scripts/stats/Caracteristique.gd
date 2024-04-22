@@ -43,6 +43,10 @@ func _process(_delta):
 	minus_btn.disabled = base_amount == 0
 
 
+func add(_amount: int):
+	base_amount += _amount
+
+
 func get_type() -> String:
 	return Type.find_key(type)
 
@@ -53,10 +57,12 @@ func _on_plus_button_button_up():
 	if points > 0:
 		if Input.is_action_pressed("CTRL"):
 			x = 10
+			if Input.is_action_pressed("SHIFT"):
+				x = points
 		else:
 			x = 1
 		if points >= x:
-			base_amount += x
+			add(x)
 			StatsManager.points -= x
 			consume_point.emit()
 
@@ -66,11 +72,13 @@ func _on_minus_button_button_up():
 	var x
 	if Input.is_action_pressed("CTRL"):
 		x = -10
+		if Input.is_action_pressed("SHIFT"):
+			x = -amount
 	else:
 		x = -1
 	base_amount += x
 	if base_amount < 0:
-		base_amount -= x
+		add(x)
 	else:
 		StatsManager.points -= x
 		consume_point.emit()

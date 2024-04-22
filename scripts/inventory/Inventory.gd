@@ -7,6 +7,8 @@ static var slots = []
 signal item_entered_tree
 signal item_exiting_tree
 
+@onready var console: Console = $"/root/Main/PlayerManager".console
+
 
 func _ready():
 	for slot in get_children():
@@ -23,7 +25,7 @@ func get_item(slot) -> Item:
 func get_slot(item):
 	var items_in_inventory = slots.map(func(s): return null if s.get_children().size() != 1 else s.get_child(0)).filter(func(i): return i != null and Item.equals(item, i))
 	if items_in_inventory.size() > 1:
-		push_error("Plus d'un slot a été trouvé")
+		console.log_error("Plus d'un slot a été trouvé")
 		return null
 	return null if items_in_inventory.size() == 0 else items_in_inventory[0].get_parent()
 
@@ -67,12 +69,14 @@ func add_item(item: Item, _slot: Button = null):
 
 func remove_items(items: Array):
 	for item in items:
-		var item_in_inventory = get_slot(item).get_child(0)
-		if item_in_inventory.count <= item.count:
-			item_in_inventory.get_parent().remove_child(item_in_inventory)
-			item_in_inventory.queue_free()
-		else:
-			item_in_inventory.count -= item.count
+		var slot = get_slot(item)
+		if slot:
+			var item_in_inventory = slot.get_child(0)
+			if item_in_inventory.count <= item.count:
+				item_in_inventory.get_parent().remove_child(item_in_inventory)
+				item_in_inventory.queue_free()
+			else:
+				item_in_inventory.count -= item.count
 
 
 func check_equipment_slot(item: DraggableControl, slot) -> bool:

@@ -7,6 +7,8 @@ extends Node
 @export var reset_button: Button
 var caracteristiques: Array[Caracteristique] = []
 
+@onready var console: Console = $"/root/Main/PlayerManager".console
+
 static var points = 0
 static var max_points = 0
 
@@ -22,12 +24,18 @@ func _ready():
 	$"../EquipmentManager".desequiped.connect(on_desequiped)
 
 
-func on_equiped(item):
-	pass
+func on_equiped(item: Item):
+	for stat: StatResource in item.stats:
+		var carac: Caracteristique = get_caracteristique_for_type(stat.type)
+		if carac:
+			carac.add(stat.amount)
 
 
-func on_desequiped(item):
-	pass
+func on_desequiped(item: Item):
+	for stat: StatResource in item.stats:
+		var carac: Caracteristique = get_caracteristique_for_type(stat.type)
+		if carac:
+			carac.add(stat.amount * -1)
 
 
 func _process(_delta):
@@ -49,3 +57,11 @@ func on_lvl_up():
 	max_points += 5
 	points += 5
 	update_points_label()
+
+
+func get_caracteristique_for_type(type: Caracteristique.Type):
+	var carac = caracteristiques.filter(func(c): return c.type == type)
+	if carac.size() != 1:
+		console.log_error("Plus d'une caractéristique a été trouvée pour le type : " + Caracteristique.Type.find_key(type))
+		return null
+	return carac[0]

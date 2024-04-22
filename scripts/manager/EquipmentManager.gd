@@ -4,6 +4,7 @@ extends Node
 
 @export var equipment_container: GridContainer
 
+@onready var console: Console = $"/root/Main/PlayerManager".console
 
 var slots = []
 
@@ -20,11 +21,17 @@ func _ready():
 		slot.child_exiting_tree.connect(on_desequiped)
 
 
-func on_equiped(item):
+func on_equiped(item: Item):
+	if !item.resource.equip_res:
+		console.log_error("L'item équipé n'est pas un équipement : " + item.name)
+		return
 	equiped.emit(item)
 
 
-func on_desequiped(item):
+func on_desequiped(item: Item):
+	if !item.resource.equip_res:
+		console.log_error("L'item déséquipé n'est pas un équipement : " + item.name)
+		return
 	desequiped.emit(item)
 
 

@@ -14,6 +14,8 @@ extends Node
 @export var pa_label: Label
 @export var pm_label: Label
 
+@export var console: Console
+
 static var dragged_item: DraggableControl
 static var max_pa = 6
 static var current_pa: int

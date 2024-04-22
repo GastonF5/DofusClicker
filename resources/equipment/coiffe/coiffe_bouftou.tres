@@ -1,16 +1,29 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=10 format=3 uid="uid://nhi8jjibfwxl"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=13 format=3 uid="uid://nhi8jjibfwxl"]
 
 [ext_resource type="Script" path="res://scripts/equipment/EquipmentResource.gd" id="1_8s5cf"]
 [ext_resource type="Script" path="res://scripts/item/ItemResource.gd" id="1_h6ort"]
 [ext_resource type="Resource" uid="uid://bqi4hntvgf4jc" path="res://resources/items/laine_bouftou.tres" id="2_2a17l"]
+[ext_resource type="Script" path="res://scripts/stats/StatResource.gd" id="2_aq6ko"]
 [ext_resource type="Texture2D" uid="uid://16meljktup43" path="res://assets/items/corne_bouftou.png" id="4_jek2s"]
 [ext_resource type="Script" path="res://scripts/recipe/RecipeResource.gd" id="5_u7m1l"]
 [ext_resource type="Texture2D" uid="uid://en3uxgmcjtw2" path="res://assets/equipment/coiffe/16041.png" id="6_1ggsm"]
 
+[sub_resource type="Resource" id="Resource_s5nao"]
+script = ExtResource("2_aq6ko")
+type = 3
+min_amount = 1
+max_amount = 20
+
+[sub_resource type="Resource" id="Resource_uoncl"]
+script = ExtResource("2_aq6ko")
+type = 4
+min_amount = 1
+max_amount = 20
+
 [sub_resource type="Resource" id="Resource_coxkw"]
 script = ExtResource("1_8s5cf")
 type = 0
-stats = Array[Resource("res://scripts/stats/StatResource.gd")]([])
+stats = Array[ExtResource("2_aq6ko")]([SubResource("Resource_s5nao"), SubResource("Resource_uoncl")])
 
 [sub_resource type="Resource" id="Resource_wn15v"]
 script = ExtResource("1_h6ort")
