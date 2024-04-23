@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2niuhgkbemq4"]
+
+[ext_resource type="FontFile" uid="uid://c3qkgii5120a4" path="res://assets/font/Bundaria-p7Lgy.otf" id="1_x84v6"]
+[ext_resource type="Script" path="res://scripts/TakenDamage.gd" id="2_cnnh8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kphb2"]
+font = ExtResource("1_x84v6")
+font_size = 64
+font_color = Color(1, 0, 0, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0.294118, 0, 0, 1)
+shadow_offset = Vector2(2, 2)
+
+[node name="TakenDamage" type="Label"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.0
+offset_right = 32.0
+offset_bottom = 88.0
+grow_horizontal = 2
+size_flags_vertical = 10
+text = "-20"
+label_settings = SubResource("LabelSettings_kphb2")
+script = ExtResource("2_cnnh8")

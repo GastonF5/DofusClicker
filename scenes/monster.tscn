@@ -29,7 +29,7 @@ script = ExtResource("2_ao8xg")
 name_label = NodePath("VBC/Header/Name")
 texture_rect = NodePath("VBC/Content/Monster")
 hp_bar = NodePath("VBC/Content/Control/HPBar")
-selected_texture = NodePath("VBC/Footer/Selected")
+selected_texture = NodePath("VBC/Header/Selected")
 header = NodePath("VBC/Header/HeaderControl/HeaderTexture")
 attack_bar = NodePath("VBC/Header/AttackBar")
 attack_amount = NodePath("VBC/Header/AttackBar/AttackAmount")
@@ -43,6 +43,14 @@ mouse_filter = 2
 [node name="Header" type="VBoxContainer" parent="VBC"]
 layout_mode = 2
 mouse_filter = 2
+
+[node name="Selected" type="TextureRect" parent="VBC/Header"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+mouse_filter = 2
+texture = ExtResource("6_e30d6")
+stretch_mode = 2
 
 [node name="HeaderControl" type="Control" parent="VBC/Header"]
 custom_minimum_size = Vector2(0, 32)
@@ -127,22 +135,3 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 mouse_filter = 2
-
-[node name="Selected" type="TextureRect" parent="VBC/Footer"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 16.0
-offset_bottom = 16.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-mouse_filter = 2
-texture = ExtResource("6_e30d6")
-stretch_mode = 2

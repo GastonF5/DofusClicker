@@ -3,11 +3,14 @@ extends ClickableControl
 
 static var monsters_res: Array[MonsterResource]
 
+const taken_damage_scene_path = "res://scenes/taken_damage.tscn"
+
 @export var name_label: Label
 @export var texture_rect: TextureRect
 @export var hp_bar: HPBar
 @export var selected_texture: TextureRect
 @export var header: TextureRect
+@export var taken_damale_label: Label
 
 @export var attack_bar: ProgressBar
 @export var attack_amount: Label
@@ -24,6 +27,11 @@ signal dies
 func _process(_delta):
 	if attack_timer != null:
 		attack_bar.value = attack_bar.max_value - attack_timer.time_left
+
+
+func _input(event):
+	if is_selected() and event.is_action_pressed("enter"):
+		create_taken_damage(50)
 
 
 static func instantiate(parent: Control) -> Monster:
@@ -89,3 +97,13 @@ func drop():
 	for item_res in resource.drop:
 		if randf_range(0, 100) < item_res.drop_rate:
 			inventory.add_item(Item.create(item_res, inventory))
+
+
+func is_selected():
+	return MonsterManager.selected_monster == self
+
+
+func create_taken_damage(amount: int):
+	var taken_damage = load(taken_damage_scene_path).instantiate()
+	$"VBC/Footer".add_child(taken_damage)
+	taken_damage.init(amount)
