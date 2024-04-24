@@ -46,16 +46,22 @@ func _on_monster_dies(xp: int):
 	player_manager.xp_bar.gain_xp(xp)
 	player_manager.kamas_label.text = str(int(player_manager.kamas_label.text) + randi_range(5, 10))
 	monsters = monster_container.get_children()
-	if monsters.size() == 0:
+	if monsters.filter(func(m): return !m.dead).is_empty():
+		for monster in monsters:
+			monster.queue_free()
+		monsters = []
 		for i in 4:
 			instantiate_monster()
-	selected_monster = monsters[0]
+	select_next_monster()
 
 
 func select_next_monster():
 	if selected_monster != null:
 		var index = monsters.find(selected_monster)
 		selected_monster = monsters[(index + 1) % monsters.size()]
+		while selected_monster.dead:
+			index += 1
+			selected_monster = monsters[(index + 1) % monsters.size()]
 	else:
 		selected_monster = monsters[0]
 
@@ -64,6 +70,9 @@ func select_previous_monster():
 	if selected_monster != null:
 		var index = monsters.find(selected_monster)
 		selected_monster = monsters[(index - 1) % monsters.size()]
+		while selected_monster.dead:
+			index -= 1
+			selected_monster = monsters[(index - 1) % monsters.size()]
 	else:
 		selected_monster = monsters[monsters.size() - 1]
 

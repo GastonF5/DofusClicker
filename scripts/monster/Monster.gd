@@ -20,6 +20,7 @@ var resource: MonsterResource
 
 var attack_timer: Timer
 
+var dead = false
 var dying = false
 signal dies
 
@@ -29,9 +30,9 @@ func _process(_delta):
 		attack_bar.value = attack_bar.max_value - attack_timer.time_left
 
 
-func _input(event):
-	if is_selected() and event.is_action_pressed("enter"):
-		create_taken_damage(50)
+#func _input(event):
+	#if is_selected() and event.is_action_pressed("enter"):
+		#create_taken_damage(50)
 
 
 static func instantiate(parent: Control) -> Monster:
@@ -63,9 +64,12 @@ func init(res: MonsterResource):
 
 
 func take_damage(amount: int):
-	hp_bar.current_hp -= amount
-	if hp_bar.current_hp <= hp_bar.min_value:
-		dying = true
+	if !dead:
+		create_taken_damage(amount)
+		hp_bar.current_hp -= amount
+		if hp_bar.current_hp <= hp_bar.min_value:
+			dead = true
+			dying = true
 
 
 func new_attack_timer():
@@ -88,9 +92,10 @@ func attack():
 func die():
 	drop()
 	hp_bar.value = hp_bar.min_value
-	get_parent().remove_child(self)
+	#get_parent().remove_child(self)
 	dies.emit(resource.xp_gain)
-	queue_free()
+	#queue_free()
+	texture_rect.visible = false
 
 
 func drop():

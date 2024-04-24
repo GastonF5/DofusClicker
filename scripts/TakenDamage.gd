@@ -11,7 +11,8 @@ func init(amount: int):
 
 func do_tween():
 	var tween = create_tween()
-	tween.tween_property(self, "position", Vector2(0, 50), 1).as_relative()
+	tween.tween_property(self, "position", Vector2(0, 50), 1).as_relative().set_trans(Tween.TRANS_BACK)
+	tween.parallel().tween_property(self, "modulate", Color.TRANSPARENT, 1).set_trans(Tween.TRANS_BACK)
 
 
 func create_timer(time: float):

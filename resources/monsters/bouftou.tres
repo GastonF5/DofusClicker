@@ -1,37 +1,9 @@
-[gd_resource type="Resource" script_class="MonsterResource" load_steps=13 format=3 uid="uid://njdo3lkxrv4p"]
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=5 format=3 uid="uid://njdo3lkxrv4p"]
 
 [ext_resource type="Script" path="res://scripts/monster/MonsterResource.gd" id="1_4crxr"]
 [ext_resource type="Resource" uid="uid://bqi4hntvgf4jc" path="res://resources/items/laine_bouftou.tres" id="1_wpn17"]
 [ext_resource type="Texture2D" uid="uid://dp18o0pxmvcoh" path="res://assets/monsters/bouftou.png" id="2_fvsqk"]
 [ext_resource type="Resource" uid="uid://5b044xunvcvf" path="res://resources/items/corne_bouftou.tres" id="2_p1oga"]
-[ext_resource type="Script" path="res://scripts/equipment/EquipmentResource.gd" id="3_5s7qt"]
-[ext_resource type="Script" path="res://scripts/stats/StatResource.gd" id="4_501v8"]
-[ext_resource type="Script" path="res://scripts/item/ItemResource.gd" id="5_63rpt"]
-[ext_resource type="Texture2D" uid="uid://br4fubn21oxhy" path="res://assets/equipment/amulette/1048.png" id="6_vxbqu"]
-
-[sub_resource type="Resource" id="Resource_y5r4r"]
-script = ExtResource("4_501v8")
-type = 3
-min_amount = 1
-max_amount = 10
-
-[sub_resource type="Resource" id="Resource_dj5m5"]
-script = ExtResource("4_501v8")
-type = 4
-min_amount = 1
-max_amount = 10
-
-[sub_resource type="Resource" id="Resource_se260"]
-script = ExtResource("3_5s7qt")
-type = 4
-stats = Array[ExtResource("4_501v8")]([SubResource("Resource_y5r4r"), SubResource("Resource_dj5m5")])
-
-[sub_resource type="Resource" id="Resource_nhxqk"]
-script = ExtResource("5_63rpt")
-name = "Amulette du bouftou"
-texture = ExtResource("6_vxbqu")
-equip_res = SubResource("Resource_se260")
-drop_rate = 25.0
 
 [resource]
 script = ExtResource("1_4crxr")
@@ -43,4 +15,4 @@ attack_time = 3.0
 damage = 3
 boss = false
 archimonstre = false
-drop = Array[ExtResource("5_63rpt")]([ExtResource("1_wpn17"), ExtResource("2_p1oga"), SubResource("Resource_nhxqk")])
+drop = Array[Resource("res://scripts/item/ItemResource.gd")]([ExtResource("1_wpn17"), ExtResource("2_p1oga")])

@@ -67,3 +67,4 @@ static func check_dying_targets(targets: Array[Monster]):
 	for monster in targets:
 		if monster.dying:
 			monster.die()
+			monster.dying = false

@@ -23,6 +23,7 @@ offset_right = 128.0
 offset_bottom = 235.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_63c4l")
 script = ExtResource("2_ao8xg")

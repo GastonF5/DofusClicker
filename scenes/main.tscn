@@ -400,7 +400,7 @@ layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
 tab_count = 3
-current_tab = 2
+current_tab = 1
 tab_alignment = 1
 tab_0/title = "Caractéristiques"
 tab_0/icon = ExtResource("15_wilnu")
@@ -412,7 +412,7 @@ tab_2/icon = ExtResource("22_tbr8n")
 [node name="CustomTabContainer" type="TabContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer" node_paths=PackedStringArray("tab_bar")]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 2
+current_tab = 1
 tabs_visible = false
 script = ExtResource("14_akpwt")
 tab_bar = NodePath("../TabBar")
@@ -695,7 +695,6 @@ layout_mode = 2
 size_flags_vertical = 4
 
 [node name="Sorts" type="Panel" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.5
@@ -722,6 +721,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Infos" type="Panel" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.5
@@ -764,6 +764,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_efp50")
 
 [node name="MonstersContainer" type="HBoxContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel"]
 layout_mode = 2
+size_flags_vertical = 4
 theme_override_constants/separation = 16
 alignment = 1
 
