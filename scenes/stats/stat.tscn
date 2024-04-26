@@ -16,10 +16,12 @@ minus_btn = NodePath("Right/MinusButton")
 [node name="Left" type="HBoxContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="Icon" type="TextureRect" parent="Left"]
 layout_mode = 2
 size_flags_horizontal = 0
+mouse_filter = 2
 texture = ExtResource("2_x8g0m")
 expand_mode = 3
 stretch_mode = 5
@@ -27,6 +29,7 @@ stretch_mode = 5
 [node name="Space" type="Control" parent="Left"]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="Left"]
 layout_mode = 2
@@ -36,11 +39,13 @@ text = "Vitalité"
 [node name="Space" type="Control" parent="."]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Right" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 alignment = 2
 
 [node name="Amount" type="Label" parent="Right"]
@@ -52,6 +57,7 @@ horizontal_alignment = 2
 [node name="Space" type="Control" parent="Right"]
 custom_minimum_size = Vector2(10, 32)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="MinusButton" parent="Right" instance=ExtResource("4_oc30t")]
 layout_mode = 2

@@ -24,6 +24,8 @@ var base_amount = 0:
 		base_amount = value
 		amount = base_amount
 
+@export var tooltip: Tooltip
+
 var amount = 0:
 	set(value):
 		amount = value
@@ -36,6 +38,7 @@ func _ready():
 	type = Type.get(name.to_upper())
 	icon_texture.texture = FileLoader.get_stat_asset(self)
 	label.text = get_type().to_pascal_case()
+	tooltip = Tooltip.create(name, $"/root/Main/OverUI/Main", self, get_parent().global_position)
 
 
 func _process(_delta):
