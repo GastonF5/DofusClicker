@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://bfh3u8jwrg2ar"]
+[gd_scene load_steps=69 format=3 uid="uid://bfh3u8jwrg2ar"]
 
 [ext_resource type="Script" path="res://scripts/manager/MonsterManager.gd" id="1_iu0is"]
 [ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="2_4lqlq"]
@@ -43,6 +43,7 @@
 [ext_resource type="Texture2D" uid="uid://dbuiotfaoy1xw" path="res://assets/stats/stat_icon/pm.png" id="26_s7870"]
 [ext_resource type="PackedScene" uid="uid://coto2k3rtpqkd" path="res://scenes/window/window.tscn" id="30_7h6cu"]
 [ext_resource type="Texture2D" uid="uid://jps1sp7kid7q" path="res://assets/inventory/light_bg_inventory.png" id="33_x0at0"]
+[ext_resource type="PackedScene" uid="uid://dl2edw32vnxff" path="res://scenes/container.tscn" id="34_gg5wd"]
 [ext_resource type="PackedScene" uid="uid://v3e3pddsya44" path="res://scenes/console.tscn" id="34_t67ba"]
 [ext_resource type="Texture2D" uid="uid://dqi5nyabi4exy" path="res://assets/hud/icon_hp_empty.png" id="35_xnt14"]
 [ext_resource type="Texture2D" uid="uid://k8i3m3d33k8x" path="res://assets/hud/icon_hp_full.png" id="36_qu3i6"]
@@ -104,9 +105,8 @@ outline_color = Color(0, 0, 0, 1)
 
 [node name="Main" type="Node"]
 
-[node name="MonsterManager" type="Node" parent="." node_paths=PackedStringArray("monster_container")]
+[node name="MonsterManager" type="Node" parent="."]
 script = ExtResource("1_iu0is")
-monster_container = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/MainPanel/MonstersContainer")
 
 [node name="PlayerManager" type="Node" parent="." node_paths=PackedStringArray("xp_bar", "kamas_label", "inventory", "spell_container", "spell_bar", "hp_bar", "pa_bar", "pm_bar", "pdv_label", "pa_label", "pm_label", "console")]
 process_priority = 1
@@ -765,8 +765,26 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_efp50")
 [node name="MonstersContainer" type="HBoxContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel"]
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_constants/separation = 16
+theme_override_constants/separation = 24
 alignment = 1
+
+[node name="Space" type="Control" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/MonstersContainer"]
+layout_mode = 2
+
+[node name="Container1" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/MonstersContainer" instance=ExtResource("34_gg5wd")]
+layout_mode = 2
+
+[node name="Container2" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/MonstersContainer" instance=ExtResource("34_gg5wd")]
+layout_mode = 2
+
+[node name="Container3" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/MonstersContainer" instance=ExtResource("34_gg5wd")]
+layout_mode = 2
+
+[node name="Container4" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/MonstersContainer" instance=ExtResource("34_gg5wd")]
+layout_mode = 2
+
+[node name="Space2" type="Control" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/MonstersContainer"]
+layout_mode = 2
 
 [node name="SpellBarContainer" type="PanelContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel"]
 clip_contents = true
@@ -981,9 +999,7 @@ vertical_alignment = 1
 [node name="ExperienceBar" type="ProgressBar" parent="GUI/Main/HBC/MiddleContainer/VBC" node_paths=PackedStringArray("lvl_label")]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
-size_flags_vertical = 8
 theme = ExtResource("3_prl7k")
-step = 1.0
 value = 50.0
 allow_greater = true
 show_percentage = false

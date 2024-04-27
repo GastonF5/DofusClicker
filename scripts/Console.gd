@@ -58,7 +58,7 @@ func apply_color(type: LogType):
 	var color = Color.WHITE
 	match type:
 		LogType.INFO:
-			color = Color.GREEN
+			color = Color.LIME_GREEN
 		LogType.ERROR:
 			color = Color.RED
 		LogType.LOG:
@@ -94,8 +94,8 @@ func clear():
 	output.clear()
 
 
-func log_info(text: String):
-	_log(text, LogType.INFO)
+func log_info(text: String, bold: bool = false):
+	_log(text, LogType.INFO, bold)
 
 
 func log_error(text: String):

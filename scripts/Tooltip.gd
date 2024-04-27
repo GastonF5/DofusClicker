@@ -29,7 +29,7 @@ func _on_mouse_exited_control():
 	visible = false
 
 
-static func create(text: String, parent: Node, control_to_connect: Control, pos: Vector2) -> Tooltip:
+static func create(text: String, parent: Node, control_to_connect: Control, _pos: Vector2) -> Tooltip:
 	var tooltip = load(tooltip_scene_path).instantiate()
 	tooltip.global_position -= control_to_connect.global_position
 	print(control_to_connect.global_position)

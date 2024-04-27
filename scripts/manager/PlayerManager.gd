@@ -24,6 +24,8 @@ static var current_pm: int
 static var max_hp: int = 100
 static var current_hp: int = 100
 
+static var taken_damage_rate: int = 100
+
 var selected_spell: Spell
 
 
@@ -69,9 +71,11 @@ func _input(event):
 		spell_bar.get_children()[8].do_action()
 
 
-func take_damage(amount: int):
-	current_hp -= amount
+func take_damage(amount: int) -> int:
+	var taken_damage = roundi((amount * taken_damage_rate) / 100.0)
+	current_hp -= taken_damage
 	hp_bar.current_hp = current_hp
+	return taken_damage
 
 
 func update_pdv():

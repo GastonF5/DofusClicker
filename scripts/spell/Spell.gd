@@ -1,6 +1,8 @@
 class_name Spell
 extends ClickableControl
 
+@onready var player_manager: PlayerManager = $"/root/Main/PlayerManager"
+@onready var console: Console = player_manager.console
 
 @export var spell_texture: TextureRect
 @export var cooldown_bar: TextureProgressBar
@@ -41,7 +43,7 @@ func do_action(_self = null):
 	if resource.pa_cost <= PlayerManager.current_pa and MonsterManager.selected_monster != null and is_clickable:
 		if resource.pa_cost != 0:
 			PlayerManager.current_pa = PlayerManager.current_pa - resource.pa_cost
-			$"/root/Main/PlayerManager".pa_bar.update(PlayerManager.current_pa)
+			player_manager.pa_bar.update(PlayerManager.current_pa)
 		cast()
 		if resource.cooldown != 0:
 			is_clickable = false
@@ -61,7 +63,11 @@ func on_timeout():
 
 
 func cast():
-	Callable(SpellsService, resource.spell_name).bind(MonsterManager.selected_monster).call()
+	var taken_damage = Callable(SpellsService, resource.spell_name).bind(MonsterManager.selected_monster).call()
+	if taken_damage != null:
+		console.log_info("%s lancé : %d dégât%s" % [resource.name, taken_damage, "" if taken_damage <= 1 else "s"])
+	else:
+		console.log_info("%s lancé" % resource.name)
 
 
 static func instantiate(spell_res: SpellResource, parent: Control, clickable = true) -> Spell:

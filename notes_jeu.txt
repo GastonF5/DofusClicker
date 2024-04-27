@@ -3,7 +3,7 @@ Les PM diminuent le temps de cooldown
 
 ## Ecaflip
 Passif : X% critique de base
-Chance d’ecaflip : réduit les dommages de 50% pendant X secondes puis 150% dommages reçus pendant X secondes
+Chance d’ecaflip : réduit les dommages de 50% pendant X secondes puis 200% dommages reçus pendant X secondes
 Roue de la fortune : X puissance
 Trèfle : X% de critique
 - Voie terre : gros dégâts

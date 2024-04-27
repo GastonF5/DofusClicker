@@ -1,26 +1,27 @@
-[gd_scene load_steps=9 format=3 uid="uid://c5gkntgyndcmq"]
+[gd_scene load_steps=10 format=3 uid="uid://c5gkntgyndcmq"]
 
 [ext_resource type="Script" path="res://scripts/monster/Monster.gd" id="2_ao8xg"]
+[ext_resource type="Texture2D" uid="uid://dijv701ob1v4n" path="res://assets/hud/demi_gauge_background.png" id="3_alk0v"]
 [ext_resource type="Texture2D" uid="uid://df7upr6jvfvsx" path="res://assets/icons/boss.png" id="3_cevmk"]
-[ext_resource type="Texture2D" uid="uid://dyv3fwclxfhp7" path="res://assets/ui/base_character_sprite.png" id="4_civw2"]
+[ext_resource type="Texture2D" uid="uid://bthruv7s8lr3w" path="res://assets/hud/demi_gauge_yellow_timer_line.png" id="4_ovr7d"]
 [ext_resource type="Texture2D" uid="uid://dp18o0pxmvcoh" path="res://assets/monsters/bouftou.png" id="5_1404l"]
-[ext_resource type="Texture2D" uid="uid://dy8eu125jfkat" path="res://assets/icons/state2.png" id="6_e30d6"]
+[ext_resource type="Texture2D" uid="uid://mriw6svt1gaf" path="res://assets/hud/demi_gauge_yellow_timer.png" id="5_l0jk4"]
 [ext_resource type="PackedScene" uid="uid://bkkjso0mm2nu4" path="res://scenes/hp_bar.tscn" id="7_pl1ol"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_63c4l"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0gk11"]
 
-[node name="Monster3" type="PanelContainer" node_paths=PackedStringArray("name_label", "texture_rect", "hp_bar", "selected_texture", "header", "attack_bar", "attack_amount")]
+[node name="Monster" type="PanelContainer" node_paths=PackedStringArray("name_label", "texture_rect", "hp_bar", "header_texture", "attack_bar", "attack_amount")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -128.0
-offset_top = -235.0
-offset_right = 128.0
-offset_bottom = 235.0
+offset_left = -96.0
+offset_top = -203.0
+offset_right = 96.0
+offset_bottom = 203.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -30,10 +31,9 @@ script = ExtResource("2_ao8xg")
 name_label = NodePath("VBC/Header/Name")
 texture_rect = NodePath("VBC/Content/Monster")
 hp_bar = NodePath("VBC/Content/Control/HPBar")
-selected_texture = NodePath("VBC/Header/Selected")
-header = NodePath("VBC/Header/HeaderControl/HeaderTexture")
+header_texture = NodePath("VBC/Header/HeaderControl/HeaderTexture")
 attack_bar = NodePath("VBC/Header/AttackBar")
-attack_amount = NodePath("VBC/Header/AttackBar/AttackAmount")
+attack_amount = NodePath("VBC/Header/AttackAmount")
 
 [node name="VBC" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -44,14 +44,6 @@ mouse_filter = 2
 [node name="Header" type="VBoxContainer" parent="VBC"]
 layout_mode = 2
 mouse_filter = 2
-
-[node name="Selected" type="TextureRect" parent="VBC/Header"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 10
-mouse_filter = 2
-texture = ExtResource("6_e30d6")
-stretch_mode = 2
 
 [node name="HeaderControl" type="Control" parent="VBC/Header"]
 custom_minimum_size = Vector2(0, 32)
@@ -75,20 +67,17 @@ size_flags_vertical = 0
 texture = ExtResource("3_cevmk")
 stretch_mode = 3
 
-[node name="AttackBar" type="ProgressBar" parent="VBC/Header"]
-custom_minimum_size = Vector2(100, 15)
+[node name="AttackBar" type="TextureProgressBar" parent="VBC/Header"]
 layout_mode = 2
 size_flags_horizontal = 4
-mouse_filter = 2
-show_percentage = false
+step = 0.01
+value = 100.0
+texture_under = ExtResource("3_alk0v")
+texture_over = ExtResource("4_ovr7d")
+texture_progress = ExtResource("5_l0jk4")
 
-[node name="AttackAmount" type="Label" parent="VBC/Header/AttackBar"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="AttackAmount" type="Label" parent="VBC/Header"]
+layout_mode = 2
 text = "5"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -102,15 +91,7 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 size_flags_vertical = 3
-mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_0gk11")
-
-[node name="Plate" type="TextureRect" parent="VBC/Content"]
-layout_mode = 2
-size_flags_vertical = 8
-texture = ExtResource("4_civw2")
-expand_mode = 5
-stretch_mode = 5
 
 [node name="Monster" type="TextureRect" parent="VBC/Content"]
 custom_minimum_size = Vector2(192, 192)
