@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://dl2edw32vnxff"]
 
 [ext_resource type="Texture2D" uid="uid://dyv3fwclxfhp7" path="res://assets/monsters/base_character_sprite.png" id="1_4b3c2"]
-[ext_resource type="Script" path="res://scripts/Container.gd" id="2_a6mo6"]
+[ext_resource type="Script" path="res://scripts/EntityContainer.gd" id="2_a6mo6"]
 
-[node name="Container" type="TextureRect" groups=["monster_container"]]
+[node name="EntityContainer" type="TextureRect" groups=["monster_container"]]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

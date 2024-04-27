@@ -39,15 +39,16 @@ static func trefle(_target: Monster):
 static var pile = true
 static var pile_face_damage: int = 50
 static func pile_face(target: Monster):
-	var taken_damage
-	if pile:
-		#pile_face_damage = randi_range(3, 6)
-		taken_damage = target.take_damage(pile_face_damage)
-		pile = false
-	else:
-		taken_damage = target.take_damage(pile_face_damage * 2)
-		pile = true
-	check_dying_targets([target])
+	var taken_damage = 0
+	if target:
+		if pile:
+			#pile_face_damage = randi_range(3, 6)
+			taken_damage = target.take_damage(pile_face_damage)
+			pile = false
+		else:
+			taken_damage = target.take_damage(pile_face_damage * 2)
+			pile = true
+		check_dying_targets([target])
 	return taken_damage
 
 static func destin_ecaflip(_target: Monster):

@@ -32,8 +32,20 @@ func _input(event):
 
 
 func on_job_tab_changed(tab):
+	disconnect_search_prompt()
 	recipe_container = tab_container.get_child(tab).get_node(recipe_container_path)
 	search_prompt = tab_container.get_child(tab).get_node(search_prompt_path)
+	connect_search_prompt()
+
+
+func disconnect_search_prompt():
+	if search_prompt and search_prompt.mouse_entered.is_connected(on_mouse_enter_search):
+		search_prompt.mouse_entered.disconnect(on_mouse_enter_search)
+	if search_prompt and search_prompt.mouse_exited.is_connected(on_mouse_exit_search):
+		search_prompt.mouse_exited.disconnect(on_mouse_exit_search)
+
+
+func connect_search_prompt():
 	search_prompt.mouse_entered.connect(on_mouse_enter_search)
 	search_prompt.mouse_exited.connect(on_mouse_exit_search)
 

@@ -40,7 +40,7 @@ func init(res: SpellResource, clickable: bool):
 
 
 func do_action(_self = null):
-	if resource.pa_cost <= PlayerManager.current_pa and MonsterManager.selected_monster != null and is_clickable:
+	if resource.pa_cost <= PlayerManager.current_pa and PlayerManager.selected_plate and is_clickable:
 		if resource.pa_cost != 0:
 			PlayerManager.current_pa = PlayerManager.current_pa - resource.pa_cost
 			player_manager.pa_bar.update(PlayerManager.current_pa)
@@ -63,7 +63,7 @@ func on_timeout():
 
 
 func cast():
-	var taken_damage = Callable(SpellsService, resource.spell_name).bind(MonsterManager.selected_monster).call()
+	var taken_damage = Callable(SpellsService, resource.spell_name).bind(PlayerManager.selected_plate.get_entity()).call()
 	if taken_damage != null:
 		console.log_info("%s lancé : %d dégât%s" % [resource.name, taken_damage, "" if taken_damage <= 1 else "s"])
 	else:

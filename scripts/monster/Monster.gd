@@ -46,6 +46,7 @@ static func instantiate(parent: Control) -> Monster:
 	var random_monster_res: MonsterResource = monsters_res[randi_range(0, monsters_res.size() - 1)]
 	var monster = FileLoader.get_packed_scene("monster").instantiate()
 	parent.add_child(monster)
+	parent.move_child(monster, 0)
 	monster.init(random_monster_res)
 	return monster
 
@@ -108,7 +109,7 @@ func drop():
 
 
 func is_selected():
-	return MonsterManager.selected_monster == self
+	return PlayerManager.selected_plate == get_parent()
 
 
 func create_taken_damage(amount: int):

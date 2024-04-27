@@ -28,6 +28,16 @@ static var taken_damage_rate: int = 100
 
 var selected_spell: Spell
 
+static var selected_plate: EntityContainer:
+	set(value):
+		if selected_plate != null:
+			selected_plate.selected = false
+		selected_plate = value
+		if selected_plate != null:
+			selected_plate.selected = true
+
+static var plates: Array[EntityContainer]
+
 
 func _ready():
 	for spell_res in FileLoader.get_spell_resources("Ecaflip"):
@@ -36,6 +46,12 @@ func _ready():
 		var spell = Spell.instantiate(spell_res, spell_description.get_node("HBC/SpellContainer"), false)
 		spell.is_clickable = false
 		spell_description.init(spell_bar)
+	
+	var entity_containers = get_tree().get_nodes_in_group("monster_container")
+	entity_containers.sort_custom(func(a, b): return a.id < b.id)
+	for entity_container in entity_containers:
+		plates.append(entity_container)
+	selected_plate = plates[0]
 	
 	hp_bar.init(max_hp)
 	xp_bar.init()
@@ -69,6 +85,10 @@ func _input(event):
 		spell_bar.get_children()[7].do_action()
 	if size >= 9 and event.is_action_pressed("9"):
 		spell_bar.get_children()[8].do_action()
+	if event.is_action_pressed("right"):
+		PlayerManager.select_next_plate()
+	if event.is_action_pressed("left"):
+		PlayerManager.select_previous_plate()
 
 
 func take_damage(amount: int) -> int:
@@ -76,6 +96,16 @@ func take_damage(amount: int) -> int:
 	current_hp -= taken_damage
 	hp_bar.current_hp = current_hp
 	return taken_damage
+
+
+static func select_next_plate():
+	var pi = plates.find(selected_plate)
+	selected_plate = plates[(pi + 1) % plates.size()]
+
+
+static func select_previous_plate():
+	var pi = plates.find(selected_plate)
+	selected_plate = plates[(pi - 1) % plates.size()]
 
 
 func update_pdv():
