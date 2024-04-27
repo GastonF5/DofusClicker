@@ -1,6 +1,10 @@
 class_name SpellsService
 
 
+static var console: Console
+static var tnode: Node
+
+
 static func coup_de_poing(target: Monster):
 	target.take_damage(5)
 	check_dying_targets([target])
@@ -11,22 +15,23 @@ static func fleche_sanglante(target: Monster):
 	check_dying_targets(targets)
 
 
-static func create_timer(time: float):
+static func create_timer(time: float, name: String = "Timer"):
 	var timer = Timer.new()
+	timer.name = name
 	timer.wait_time = time
 	timer.autostart = true
+	tnode.add_child(timer)
 	return timer
 
 
 #region Ecaflip
-static func chance_ecaflip(target: Monster):
+static func chance_ecaflip(_target: Monster):
+	console.log_info("TEST", true)
 	PlayerManager.taken_damage_rate = 50
 	var timer = create_timer(5)
-	target.add_child(timer)
 	await timer.timeout
 	PlayerManager.taken_damage_rate = 200
 	timer = create_timer(3)
-	target.add_child(timer)
 	await timer.timeout
 	PlayerManager.taken_damage_rate = 100
 
@@ -49,7 +54,7 @@ static func pile_face(target: Monster):
 			taken_damage = target.take_damage(pile_face_damage * 2)
 			pile = true
 		check_dying_targets([target])
-	return taken_damage
+		console.log_info("Pile ou Face lancé sur %s :\n - %d dégâts" % [target.resource.name, taken_damage])
 
 static func destin_ecaflip(_target: Monster):
 	pass

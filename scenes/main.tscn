@@ -138,6 +138,8 @@ reset_button = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer
 script = ExtResource("5_51m8x")
 tab_container = NodePath("../GUI/Main/HBC/RightSide/VSplitContainer/JobsContainer/TabContainer")
 
+[node name="Timers" type="Node" parent="."]
+
 [node name="GUI" type="CanvasLayer" parent="."]
 
 [node name="Main" type="Control" parent="GUI"]

@@ -74,6 +74,7 @@ func take_damage(amount: int):
 	hp_bar.current_hp -= amount
 	if hp_bar.current_hp <= hp_bar.min_value:
 		dying = true
+	return amount
 
 
 func new_attack_timer():

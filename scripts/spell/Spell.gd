@@ -63,11 +63,7 @@ func on_timeout():
 
 
 func cast():
-	var taken_damage = Callable(SpellsService, resource.spell_name).bind(PlayerManager.selected_plate.get_entity()).call()
-	if taken_damage != null:
-		console.log_info("%s lancé : %d dégât%s" % [resource.name, taken_damage, "" if taken_damage <= 1 else "s"])
-	else:
-		console.log_info("%s lancé" % resource.name)
+	Callable(SpellsService, resource.spell_name).bind(PlayerManager.selected_plate.get_entity()).call()
 
 
 static func instantiate(spell_res: SpellResource, parent: Control, clickable = true) -> Spell:
