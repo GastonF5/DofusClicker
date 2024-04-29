@@ -8,7 +8,7 @@ Roue de la fortune : X puissance
 Trèfle : X% de critique
 - Voie terre : gros dégâts
 Pile ou face : dégâts réduits à la prochaine utilisation
-Mésaventure : dégâts + sic rit : vol de vie
+Destin d'ecaflip : dégâts + retrait PM
 - Voie air : chances de critique
 Pelotage : dégâts + % critique
 Griffe de Ceangal : dégâts sur cible et voisins
