@@ -112,7 +112,7 @@ xp_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/ExperienceBar")
 kamas_label = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/KamasContainer/KamasLabel")
 inventory = NodePath("../GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid")
 spell_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Sorts/MarginContainer/ScrollContainer/VBoxContainer")
-spell_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/MainPanel/SpellBarContainer/SpellBar")
+spell_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/HBoxContainer/SpellBarContainer/SpellBar")
 hp_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/HPBar")
 pa_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/PABar")
 pm_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/PMBar")
@@ -788,21 +788,6 @@ layout_mode = 2
 [node name="Space2" type="Control" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/MonstersContainer"]
 layout_mode = 2
 
-[node name="SpellBarContainer" type="PanelContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel"]
-clip_contents = true
-custom_minimum_size = Vector2(2.08165e-12, 250)
-layout_mode = 2
-size_flags_vertical = 8
-theme_override_styles/panel = SubResource("StyleBoxEmpty_caw0r")
-
-[node name="SpellBar" type="HBoxContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/SpellBarContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme_override_constants/separation = 0
-alignment = 1
-script = ExtResource("17_u3lho")
-
 [node name="PlayerBarContainer" type="PanelContainer" parent="GUI/Main/HBC/MiddleContainer/VBC"]
 layout_mode = 2
 size_flags_vertical = 8
@@ -823,6 +808,30 @@ theme_override_constants/margin_bottom = 5
 layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Space" type="Control" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(550, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpellBarContainer" type="PanelContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_caw0r")
+
+[node name="SpellBar" type="GridContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/HBoxContainer/SpellBarContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 5
+script = ExtResource("17_u3lho")
 
 [node name="AspectRatioContainer" type="PanelContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer"]
 layout_mode = 2

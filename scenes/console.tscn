@@ -14,6 +14,7 @@ custom_minimum_size = Vector2(0, 500)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+scroll_following = true
 
 [node name="Input" type="LineEdit" parent="."]
 custom_minimum_size = Vector2(200, 40)

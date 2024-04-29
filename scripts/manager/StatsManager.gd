@@ -5,9 +5,9 @@ extends Node
 @export var stats_container: VBoxContainer
 @export var points_label: Label
 @export var reset_button: Button
-var caracteristiques: Array[Caracteristique] = []
 
-@onready var console: Console = $"/root/Main/PlayerManager".console
+static var caracteristiques: Array[Caracteristique] = []
+static var console: Console
 
 static var points = 0
 static var max_points = 0
@@ -26,16 +26,16 @@ func _ready():
 
 func on_equiped(item: Item):
 	for stat: StatResource in item.stats:
-		var carac: Caracteristique = get_caracteristique_for_type(stat.type)
+		var carac: Caracteristique = StatsManager.get_caracteristique_for_type(stat.type)
 		if carac:
-			carac.add(stat.amount)
+			carac.equip_amount += stat.amount
 
 
 func on_desequiped(item: Item):
 	for stat: StatResource in item.stats:
-		var carac: Caracteristique = get_caracteristique_for_type(stat.type)
+		var carac: Caracteristique = StatsManager.get_caracteristique_for_type(stat.type)
 		if carac:
-			carac.add(stat.amount * -1)
+			carac.equip_amount -= stat.amount
 
 
 func _process(_delta):
@@ -59,9 +59,9 @@ func on_lvl_up():
 	update_points_label()
 
 
-func get_caracteristique_for_type(type: Caracteristique.Type):
+static func get_caracteristique_for_type(type: Caracteristique.Type) -> Caracteristique:
 	var carac = caracteristiques.filter(func(c): return c.type == type)
 	if carac.size() != 1:
-		console.log_error("Plus d'une caractéristique a été trouvée pour le type : " + Caracteristique.Type.find_key(type))
+		console.log_error("Aucune ou plus d'une caractéristique a été trouvée pour le type : " + Caracteristique.Type.find_key(type))
 		return null
 	return carac[0]

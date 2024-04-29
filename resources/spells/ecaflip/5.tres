@@ -8,5 +8,6 @@ script = ExtResource("1_p6h2q")
 name = "Destin d'Ecaflip"
 texture = ExtResource("2_8s1ar")
 spell_name = "destin_ecaflip"
+description = ""
 cooldown = 0.0
-pa_cost = 0
+pa_cost = 4

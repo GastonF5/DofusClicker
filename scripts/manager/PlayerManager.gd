@@ -42,6 +42,7 @@ static var plates: Array[EntityContainer]
 func _ready():
 	SpellsService.console = console
 	SpellsService.tnode = $"/root/Main/Timers"
+	StatsManager.console = console
 	
 	for spell_res in FileLoader.get_spell_resources("Ecaflip"):
 		var spell_description = FileLoader.get_packed_scene("spell/spell_description").instantiate()

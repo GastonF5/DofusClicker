@@ -1,5 +1,9 @@
 class_name SpellBar
-extends HBoxContainer
+extends GridContainer
+
+
+func _ready():
+	size = size * 1.5
 
 
 func add_spell(spell_res: SpellResource):

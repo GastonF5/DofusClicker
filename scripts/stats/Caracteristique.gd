@@ -8,7 +8,8 @@ enum Type {
 	CHANCE,
 	FORCE,
 	INTELLIGENCE,
-	SAGESSE
+	SAGESSE,
+	PUISSANCE
 }
 
 @export var icon_texture: TextureRect
@@ -18,18 +19,24 @@ enum Type {
 @export var plus_btn: Button
 @export var minus_btn: Button
 
+@export var tooltip: Tooltip
+
 var type: Type
 var base_amount = 0:
 	set(value):
 		base_amount = value
-		amount = base_amount
+		amount = base_amount + equip_amount
 
-@export var tooltip: Tooltip
+var equip_amount = 0:
+	set(value):
+		equip_amount = value
+		amount = base_amount + equip_amount
 
 var amount = 0:
 	set(value):
 		amount = value
 		amount_label.text = str(amount)
+		update_tooltip()
 
 signal consume_point
 
@@ -39,6 +46,7 @@ func _ready():
 	icon_texture.texture = FileLoader.get_stat_asset(self)
 	label.text = get_type().to_pascal_case()
 	tooltip = Tooltip.create(name, $"/root/Main/OverUI/Main", self, get_parent().global_position)
+	update_tooltip()
 
 
 func _process(_delta):
@@ -85,3 +93,8 @@ func _on_minus_button_button_up():
 	else:
 		StatsManager.points -= x
 		consume_point.emit()
+
+
+func update_tooltip():
+	if tooltip:
+		tooltip.update_text("Base : %d\nEquipement : %d" % [base_amount, equip_amount])
