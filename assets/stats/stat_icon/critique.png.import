@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dphatphjxm25u"
-path="res://.godot/imported/tx_criticalDamage.png-2893b3343874fb3b0a1c20c231434a66.ctex"
+uid="uid://bfs0w5yhd7am"
+path="res://.godot/imported/critique.png-fb220874463fcb8f0885a4f92238530d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/stats/tx_criticalDamage.png"
-dest_files=["res://.godot/imported/tx_criticalDamage.png-2893b3343874fb3b0a1c20c231434a66.ctex"]
+source_file="res://assets/stats/stat_icon/critique.png"
+dest_files=["res://.godot/imported/critique.png-fb220874463fcb8f0885a4f92238530d.ctex"]
 
 [params]
 

@@ -20,9 +20,11 @@ func init(max_hp: int):
 	update_current_hp_label()
 
 
-func update():
-	value = current_hp
+func update(hp = current_hp, max_hp = max_value):
+	value = hp
 	update_current_hp_label()
+	max_value = max_hp
+	update_max_hp_label()
 
 
 func update_max_hp_label():

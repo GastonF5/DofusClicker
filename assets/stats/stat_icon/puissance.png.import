@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://k67prba5b44t"
-path="res://.godot/imported/tx_damage.png-e8bfba26bfd57c78c00bd7fb038e7c04.ctex"
+uid="uid://d52hhl2dmbxg"
+path="res://.godot/imported/puissance.png-49dea09ff45627685181966569f0973c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/stats/tx_damage.png"
-dest_files=["res://.godot/imported/tx_damage.png-e8bfba26bfd57c78c00bd7fb038e7c04.ctex"]
+source_file="res://assets/stats/stat_icon/puissance.png"
+dest_files=["res://.godot/imported/puissance.png-49dea09ff45627685181966569f0973c.ctex"]
 
 [params]
 

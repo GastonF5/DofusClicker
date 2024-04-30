@@ -9,6 +9,7 @@ static var tooltip_scene_path = "res://scenes/tooltip.tscn"
 func init(parent_control: Control):
 	name = parent_control.name + "Tooltip"
 	visible = false
+	z_index = 1
 	init_connections(parent_control)
 
 
@@ -29,10 +30,8 @@ func _on_mouse_exited_control():
 	visible = false
 
 
-static func create(text: String, parent: Node, control_to_connect: Control, _pos: Vector2) -> Tooltip:
+static func create(text: String, parent: Node, control_to_connect: Control) -> Tooltip:
 	var tooltip = load(tooltip_scene_path).instantiate()
-	tooltip.global_position -= control_to_connect.global_position
-	print(control_to_connect.global_position)
 	tooltip.init(control_to_connect)
 	tooltip.update_text(text)
 	parent.add_child(tooltip)

@@ -9,17 +9,32 @@ enum Type {
 	FORCE,
 	INTELLIGENCE,
 	SAGESSE,
-	PUISSANCE
+	PUISSANCE,
+	DOMMAGES,
+	CRITIQUE,
+	DOMMAGES_CRITIQUES,
+	SOIN,
+	RES_AIR,
+	RES_EAU,
+	RES_TERRE,
+	RES_FEU,
+	RES_NEUTRE,
+	RES_PA,
+	RES_PM,
+	INVOCATIONS,
+	PROSPECTION,
 }
 
-@export var icon_texture: TextureRect
-@export var label: Label
-@export var amount_label: Label
+@export var modifiable = true
 
-@export var plus_btn: Button
-@export var minus_btn: Button
+@onready var icon_texture: TextureRect = $"Left/Icon"
+@onready var label: Label = $"Left/Label"
+@onready var amount_label: Label = $"Right/Amount"
 
-@export var tooltip: Tooltip
+@onready var plus_btn: Button = $"Right/PlusButton"
+@onready var minus_btn: Button = $"Right/MinusButton"
+
+var tooltip: Tooltip
 
 var type: Type
 var base_amount = 0:
@@ -41,17 +56,31 @@ var amount = 0:
 signal consume_point
 
 
-func _ready():
-	type = Type.get(name.to_upper())
-	icon_texture.texture = FileLoader.get_stat_asset(self)
-	label.text = get_type().to_pascal_case()
-	tooltip = Tooltip.create(name, $"/root/Main/OverUI/Main", self, get_parent().global_position)
-	update_tooltip()
-
-
 func _process(_delta):
-	plus_btn.disabled = StatsManager.points == 0
-	minus_btn.disabled = base_amount == 0
+	update_buttons_visibility()
+
+
+func _ready():
+	type = Type.get(get_type_label())
+	icon_texture.texture = FileLoader.get_stat_asset(self)
+	label.text = name
+	if modifiable: tooltip = Tooltip.create(name, $"TooltipContainer", self)
+	update_tooltip()
+	add(0)
+	check_modifiable()
+
+
+func get_type_label():
+	var type_label = name.to_snake_case().to_upper()
+	if name.begins_with("Résistance"):
+		var name_split = name.split(" ")
+		type_label = "RES_" + name_split[name_split.size() - 1].to_upper()
+	return type_label
+
+
+func check_modifiable():
+	plus_btn.visible = modifiable
+	minus_btn.visible = modifiable
 
 
 func add(_amount: int):
@@ -72,10 +101,10 @@ func _on_plus_button_button_up():
 				x = points
 		else:
 			x = 1
-		if points >= x:
-			add(x)
-			StatsManager.points -= x
-			consume_point.emit()
+		if points < x:
+			x -= points
+		add(x)
+		consume_point.emit(x, type)
 
 
 func _on_minus_button_button_up():
@@ -89,10 +118,14 @@ func _on_minus_button_button_up():
 		x = -1
 	base_amount += x
 	if base_amount < 0:
-		add(x)
-	else:
-		StatsManager.points -= x
-		consume_point.emit()
+		x -= base_amount
+		base_amount = 0
+	consume_point.emit(x, type)
+
+
+func update_buttons_visibility():
+	plus_btn.disabled = StatsManager.points == 0
+	minus_btn.disabled = base_amount == 0
 
 
 func update_tooltip():

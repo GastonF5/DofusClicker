@@ -43,11 +43,14 @@ func disconnect_search_prompt():
 		search_prompt.mouse_entered.disconnect(on_mouse_enter_search)
 	if search_prompt and search_prompt.mouse_exited.is_connected(on_mouse_exit_search):
 		search_prompt.mouse_exited.disconnect(on_mouse_exit_search)
+	if search_prompt and search_prompt.text_changed.is_connected(filter_recipes):
+		search_prompt.text_changed.disconnect(filter_recipes)
 
 
 func connect_search_prompt():
 	search_prompt.mouse_entered.connect(on_mouse_enter_search)
 	search_prompt.mouse_exited.connect(on_mouse_exit_search)
+	search_prompt.text_changed.connect(filter_recipes)
 
 
 func init_recipes():
@@ -85,4 +88,11 @@ func get_parent_by_type(type: equip_type):
 		equip_type.AMULETTE, equip_type.ANNEAU:
 			index = 2
 	return tab_container.get_child(index).get_node(recipe_container_path)
-	
+
+
+func filter_recipes(text_filter: String):
+		for recipe in recipes:
+			if text_filter and text_filter != "":
+				recipe.visible = recipe.result.name.to_lower().contains(text_filter.to_lower())
+			else:
+				recipe.visible = true

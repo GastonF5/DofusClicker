@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bc47d4g3ky8yv"
-path="res://.godot/imported/tx_dodgeAP.png-3cc3f2fffbb0a2db26d755337c68e94b.ctex"
+uid="uid://dphatphjxm25u"
+path="res://.godot/imported/dommages_critiques.png-90b637cc297f7da8ba2431efcb2bd4c2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/stats/tx_dodgeAP.png"
-dest_files=["res://.godot/imported/tx_dodgeAP.png-3cc3f2fffbb0a2db26d755337c68e94b.ctex"]
+source_file="res://assets/stats/stat_icon/dommages_critiques.png"
+dest_files=["res://.godot/imported/dommages_critiques.png-90b637cc297f7da8ba2431efcb2bd4c2.ctex"]
 
 [params]
 

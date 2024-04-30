@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2w5weka8wvw5"
-path="res://.godot/imported/tx_summonableCreaturesBoost.png-808d4c147bf619179ff6c54d955192b3.ctex"
+uid="uid://2klhdftfc75v"
+path="res://.godot/imported/res_feu.png-250779980b0644b40bd25725f97139fb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/stats/tx_summonableCreaturesBoost.png"
-dest_files=["res://.godot/imported/tx_summonableCreaturesBoost.png-808d4c147bf619179ff6c54d955192b3.ctex"]
+source_file="res://assets/stats/stat_icon/res_feu.png"
+dest_files=["res://.godot/imported/res_feu.png-250779980b0644b40bd25725f97139fb.ctex"]
 
 [params]
 

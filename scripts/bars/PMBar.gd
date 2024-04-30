@@ -1,6 +1,7 @@
 class_name PMBar
 extends TextureProgressBar
 
+@onready var player_manager: PlayerManager = $"%PlayerManager"
 
 @export var current_pm_label: Label
 
@@ -13,14 +14,14 @@ func _ready():
 
 
 func _process(delta):
-	var current_pm = PlayerManager.current_pm
+	var current_pm = player_manager.current_pm
 	if current_pm != max_pm or (current_pm == max_pm and value < max_value):
 		value += delta * speed
 		# si la barre est complète, on gagne 1 PA et on reset la barre
 		if value >= max_value:
-			PlayerManager.current_pm += 1
-			current_pm_label.text = str(PlayerManager.current_pm)
-			value = min_value if PlayerManager.current_pm < max_pm else max_value
+			player_manager.current_pm += 1
+			current_pm_label.text = str(player_manager.current_pm)
+			value = min_value if player_manager.current_pm < max_pm else max_value
 
 
 func update(current_pm: int):

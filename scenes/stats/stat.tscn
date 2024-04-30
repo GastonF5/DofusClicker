@@ -5,13 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://oleyftpfpaky" path="res://scenes/buttons/plus_button.tscn" id="3_5e62l"]
 [ext_resource type="PackedScene" uid="uid://dwek0twuhg4a3" path="res://scenes/buttons/minus_button.tscn" id="4_oc30t"]
 
-[node name="Stat" type="HBoxContainer" node_paths=PackedStringArray("icon_texture", "label", "amount_label", "plus_btn", "minus_btn")]
+[node name="Stat" type="HBoxContainer" groups=["caracteristique"]]
 script = ExtResource("1_uqnf4")
-icon_texture = NodePath("Left/Icon")
-label = NodePath("Left/Label")
-amount_label = NodePath("Right/Amount")
-plus_btn = NodePath("Right/PlusButton")
-minus_btn = NodePath("Right/MinusButton")
 
 [node name="Left" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -36,7 +31,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Vitalité"
 
-[node name="Space" type="Control" parent="."]
+[node name="TooltipContainer" type="Control" parent="."]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 mouse_filter = 2

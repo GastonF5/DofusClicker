@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ucogwacal7rr"
-path="res://.godot/imported/tx_heal.png-e22d25ed2abb049e610a10160c0a6a25.ctex"
+uid="uid://cuchj4w4kv1fk"
+path="res://.godot/imported/prospection.png-c5c519c9eb90df7aae82b593e2bb655b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/stats/tx_heal.png"
-dest_files=["res://.godot/imported/tx_heal.png-e22d25ed2abb049e610a10160c0a6a25.ctex"]
+source_file="res://assets/stats/stat_icon/prospection.png"
+dest_files=["res://.godot/imported/prospection.png-c5c519c9eb90df7aae82b593e2bb655b.ctex"]
 
 [params]
 
