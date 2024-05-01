@@ -2,7 +2,6 @@ class_name Spell
 extends ClickableControl
 
 @onready var player_manager: PlayerManager = $"/root/Main/PlayerManager"
-@onready var console: Console = $"/root/Main/PlayerManager".console
 
 @export var spell_texture: TextureRect
 @export var cooldown_bar: TextureProgressBar
@@ -68,6 +67,6 @@ func cast():
 
 static func instantiate(spell_res: SpellResource, parent: Control, clickable = true) -> Spell:
 	var spell = FileLoader.get_packed_scene("spell/spell").instantiate()
-	spell.init(spell_res, clickable)
 	parent.add_child(spell)
+	spell.init(spell_res, clickable)
 	return spell

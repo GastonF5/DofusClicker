@@ -1,16 +1,17 @@
 class_name MonsterManager
 extends Node
 
-@onready var console: Console = $"../PlayerManager".console
+@onready var console: Console = $"%Console"
 
 static var monsters = []
 
 signal monster_dies
 
-var monsters_res: Array[MonsterResource] = []
+static var monsters_res: Array[MonsterResource] = []
 
 
 func _ready():
+	monsters_res = FileLoader.get_monster_resources()
 	for i in 2:
 		instantiate_monster()
 	monsters = get_monsters_on_plates()

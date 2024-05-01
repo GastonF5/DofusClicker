@@ -7,7 +7,7 @@ static var slots = []
 signal item_entered_tree
 signal item_exiting_tree
 
-@onready var console: Console = $"/root/Main/PlayerManager".console
+@onready var console: Console = $"%Console"
 
 
 func _ready():

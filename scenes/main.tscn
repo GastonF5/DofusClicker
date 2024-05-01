@@ -107,11 +107,10 @@ outline_color = Color(0, 0, 0, 1)
 
 [node name="PlayerManager" type="Node" parent="." node_paths=PackedStringArray("xp_bar", "kamas_label", "inventory", "spell_container", "spell_bar", "hp_bar", "pa_bar", "pm_bar", "pdv_label", "pa_label", "pm_label", "console")]
 unique_name_in_owner = true
-process_priority = 1
 script = ExtResource("2_06gc8")
 xp_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/ExperienceBar")
 kamas_label = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/KamasContainer/KamasLabel")
-inventory = NodePath("../GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid")
+inventory = NodePath("../GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory")
 spell_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Sorts/MarginContainer/ScrollContainer/VBoxContainer")
 spell_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/HBoxContainer/SpellBarContainer/SpellBar")
 hp_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/HPBar")
@@ -911,6 +910,7 @@ theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
 [node name="Console" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Infos/MarginContainer" instance=ExtResource("34_t67ba")]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="MiddleContainer" type="PanelContainer" parent="GUI/Main/HBC"]
@@ -1334,7 +1334,8 @@ texture = ExtResource("33_x0at0")
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="InventoryGrid" type="GridContainer" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer"]
+[node name="Inventory" type="GridContainer" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -1343,64 +1344,64 @@ theme_override_constants/v_separation = 0
 columns = 4
 script = ExtResource("5_6v3yu")
 
-[node name="InventorySlot" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+[node name="InventorySlot" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
 layout_mode = 2
 
-[node name="InventorySlot2" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+[node name="InventorySlot2" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
 layout_mode = 2
 
-[node name="InventorySlot3" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+[node name="InventorySlot3" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
 layout_mode = 2
 
-[node name="InventorySlot4" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+[node name="InventorySlot4" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
 layout_mode = 2
 
-[node name="InventorySlot5" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+[node name="InventorySlot5" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
 layout_mode = 2
 
-[node name="InventorySlot6" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+[node name="InventorySlot6" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
 layout_mode = 2
 
-[node name="InventorySlot7" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+[node name="InventorySlot7" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
 layout_mode = 2
 
-[node name="InventorySlot8" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+[node name="InventorySlot8" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
 layout_mode = 2
 
-[node name="InventorySlot9" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+[node name="InventorySlot9" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
 layout_mode = 2
 
-[node name="InventorySlot10" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+[node name="InventorySlot10" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
 layout_mode = 2
 
-[node name="InventorySlot11" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+[node name="InventorySlot11" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
 layout_mode = 2
 
-[node name="InventorySlot12" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+[node name="InventorySlot12" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
 layout_mode = 2
 
-[node name="InventorySlot13" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+[node name="InventorySlot13" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
 layout_mode = 2
 
-[node name="InventorySlot14" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+[node name="InventorySlot14" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
 layout_mode = 2
 
-[node name="InventorySlot15" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+[node name="InventorySlot15" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
 layout_mode = 2
 
-[node name="InventorySlot16" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+[node name="InventorySlot16" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
 layout_mode = 2
 
-[node name="InventorySlot17" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+[node name="InventorySlot17" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
 layout_mode = 2
 
-[node name="InventorySlot18" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+[node name="InventorySlot18" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
 layout_mode = 2
 
-[node name="InventorySlot19" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+[node name="InventorySlot19" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
 layout_mode = 2
 
-[node name="InventorySlot20" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/InventoryGrid" instance=ExtResource("4_m4btg")]
+[node name="InventorySlot20" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
 layout_mode = 2
 
 [node name="OverUI" type="CanvasLayer" parent="."]

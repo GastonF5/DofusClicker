@@ -14,8 +14,8 @@ const equip_type = EquipmentResource.Type
 
 var mouse_on_search = false
 
-@onready var console: Console = $"/root/Main/PlayerManager".console
-@onready var inventory: Inventory = $"/root/Main/PlayerManager".inventory
+@onready var console: Console = $"%Console"
+@onready var inventory: Inventory = $"%Inventory"
 
 
 func _ready():
@@ -59,7 +59,7 @@ func init_recipes():
 		var equips_res = FileLoader.get_equipment_resources(type)
 		for res in equips_res:
 			if res.recipe != null:
-				var recipe = Recipe.create(res, get_parent_by_type(equip_type.get(type)), inventory)
+				var recipe = Recipe.create(res, get_parent_by_type(equip_type.get(type)))
 				recipe.craft.connect(on_recipe_craft)
 
 

@@ -4,7 +4,7 @@ extends Node
 
 @export var equipment_container: GridContainer
 
-@onready var console: Console = $"/root/Main/PlayerManager".console
+@onready var console: Console = $"%Console"
 
 var slots = []
 

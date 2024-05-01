@@ -20,7 +20,6 @@ func _ready():
 		if Caracteristique.Type.keys().has(node.name.to_upper()):
 			caracteristiques.append(node)
 			node.consume_point.connect(on_point_consumed)
-	print(caracteristiques)
 	reset_button.button_up.connect(reset_points)
 	update_points_label()
 	$"../PlayerManager".xp_bar.lvl_up.connect(on_lvl_up)

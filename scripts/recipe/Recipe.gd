@@ -15,10 +15,10 @@ signal craft
 
 func _ready():
 	if test_resource != null:
-		init(test_resource, null)
+		init(test_resource)
 
 
-func init(item_res: ItemResource, inventory: Inventory):
+func init(item_res: ItemResource):
 	instantiate_items(item_res.recipe.items)
 	resource = item_res.recipe
 	
@@ -28,6 +28,7 @@ func init(item_res: ItemResource, inventory: Inventory):
 	items_container.add_sibling(result_item)
 	items_container.get_parent().move_child(result_item, 0)
 	
+	var inventory = get_tree().current_scene.get_node("%Inventory")
 	inventory.item_entered_tree.connect(check)
 	inventory.item_exiting_tree.connect(check)
 	check(inventory.get_items())
@@ -63,10 +64,10 @@ func item_match(recipe_item: ItemResource, inventory_items: Array):
 
 
 
-static func create(item_res: ItemResource, parent, inventory: Inventory) -> Recipe:
+static func create(item_res: ItemResource, parent) -> Recipe:
 	var recipe = load("res://scenes/jobs/recipe.tscn").instantiate()
-	recipe.init(item_res, inventory)
 	parent.add_child(recipe)
+	recipe.init(item_res)
 	return recipe
 
 
