@@ -10,13 +10,13 @@
 
 [sub_resource type="Resource" id="Resource_s6a4e"]
 script = ExtResource("2_aldih")
-type = 6
+type = 8
 min_amount = 11
 max_amount = 15
 
 [sub_resource type="Resource" id="Resource_ledla"]
 script = ExtResource("2_aldih")
-type = 0
+type = 2
 min_amount = 16
 max_amount = 20
 

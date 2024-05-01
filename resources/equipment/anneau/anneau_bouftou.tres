@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Resource_lj731"]
 script = ExtResource("2_eet2a")
-type = 0
+type = 2
 min_amount = 21
 max_amount = 30
 

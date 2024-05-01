@@ -10,13 +10,13 @@
 
 [sub_resource type="Resource" id="Resource_s5nao"]
 script = ExtResource("2_aq6ko")
-type = 3
+type = 5
 min_amount = 1
 max_amount = 20
 
 [sub_resource type="Resource" id="Resource_uoncl"]
 script = ExtResource("2_aq6ko")
-type = 4
+type = 6
 min_amount = 1
 max_amount = 20
 

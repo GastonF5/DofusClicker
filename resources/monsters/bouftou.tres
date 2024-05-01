@@ -1,9 +1,16 @@
-[gd_resource type="Resource" script_class="MonsterResource" load_steps=5 format=3 uid="uid://njdo3lkxrv4p"]
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=7 format=3 uid="uid://njdo3lkxrv4p"]
 
 [ext_resource type="Script" path="res://scripts/monster/MonsterResource.gd" id="1_4crxr"]
 [ext_resource type="Resource" uid="uid://bqi4hntvgf4jc" path="res://resources/items/laine_bouftou.tres" id="1_wpn17"]
+[ext_resource type="Script" path="res://scripts/stats/StatResource.gd" id="1_wtqfe"]
 [ext_resource type="Texture2D" uid="uid://dp18o0pxmvcoh" path="res://assets/monsters/bouftou.png" id="2_fvsqk"]
 [ext_resource type="Resource" uid="uid://5b044xunvcvf" path="res://resources/items/corne_bouftou.tres" id="2_p1oga"]
+
+[sub_resource type="Resource" id="Resource_tde0l"]
+script = ExtResource("1_wtqfe")
+type = 0
+min_amount = 0
+max_amount = 0
 
 [resource]
 script = ExtResource("1_4crxr")
@@ -16,3 +23,4 @@ damage = 3
 boss = false
 archimonstre = false
 drop = Array[Resource("res://scripts/item/ItemResource.gd")]([ExtResource("1_wpn17"), ExtResource("2_p1oga")])
+caracteristiques = Array[ExtResource("1_wtqfe")]([SubResource("Resource_tde0l")])

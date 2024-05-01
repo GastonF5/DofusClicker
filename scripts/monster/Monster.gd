@@ -1,7 +1,5 @@
+extends Entity
 class_name Monster
-extends ClickableControl
-
-static var monsters_res: Array[MonsterResource]
 
 const taken_damage_scene_path = "res://scenes/taken_damage.tscn"
 
@@ -13,9 +11,8 @@ const taken_damage_scene_path = "res://scenes/taken_damage.tscn"
 @export var attack_bar: TextureProgressBar
 @export var attack_amount: Label
 
-@onready var player_manager: PlayerManager = $"/root/Main/PlayerManager"
-@onready var inventory: Inventory = player_manager.inventory
-@onready var console: Console = player_manager.console
+var player_manager: PlayerManager
+var inventory: Inventory
 
 var resource: MonsterResource
 
@@ -36,14 +33,8 @@ func _process(_delta):
 	attack_bar.value = float(attack_bar.max_value - attack_timer.time_left)
 
 
-#func _input(event):
-	#if is_selected() and event.is_action_pressed("enter"):
-		#create_taken_damage(50)
-
-
 static func instantiate(parent: Control) -> Monster:
-	monsters_res = FileLoader.get_monster_resources()
-	var random_monster_res: MonsterResource = monsters_res[randi_range(0, monsters_res.size() - 1)]
+	var random_monster_res: MonsterResource = MonsterManager.monsters_res[randi_range(0, MonsterManager.monsters_res.size() - 1)]
 	var monster = FileLoader.get_packed_scene("monster").instantiate()
 	parent.add_child(monster)
 	parent.move_child(monster, 0)
@@ -52,6 +43,9 @@ static func instantiate(parent: Control) -> Monster:
 
 
 func init(res: MonsterResource):
+	player_manager = get_tree().current_scene.get_node("%PlayerManager")
+	inventory = get_tree().current_scene.get_node("%Inventory")
+	
 	name = res.name
 	name_label.text = res.name
 	init_clickable($"VBC/Content")
@@ -67,6 +61,7 @@ func init(res: MonsterResource):
 	attack_amount.text = str(res.damage)
 	attack_bar.max_value = res.attack_time
 	new_attack_timer()
+	init_caracteristiques(res.caracteristiques)
 
 
 func take_damage(amount: int):

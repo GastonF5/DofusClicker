@@ -17,10 +17,18 @@ extends Node
 @export var console: Console
 
 static var dragged_item: DraggableControl
-var max_pa = 6
+var max_pa = 6:
+	set(value):
+		max_pa = value
+		update_pa()
 var current_pa: int
-var max_pm = 3
+
+var max_pm = 3:
+	set(value):
+		max_pm = value
+		update_pm()
 var current_pm: int
+
 var max_hp: int = 100:
 	set(value):
 		max_hp = value
@@ -117,7 +125,6 @@ static func select_previous_plate():
 
 func update_pdv():
 	pdv_label.text = str(max_hp)
-	hp_bar.current_hp += 5
 	hp_bar.update(hp_bar.current_hp, max_hp)
 
 func update_pa():

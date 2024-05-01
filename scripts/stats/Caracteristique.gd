@@ -3,6 +3,8 @@ extends Control
 
 
 enum Type {
+	PA,
+	PM,
 	VITALITE,
 	AGILITE,
 	CHANCE,
@@ -108,7 +110,6 @@ func _on_plus_button_button_up():
 
 
 func _on_minus_button_button_up():
-	var points = StatsManager.points
 	var x
 	if Input.is_action_pressed("CTRL"):
 		x = -10

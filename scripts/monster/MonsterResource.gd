@@ -14,3 +14,5 @@ extends Resource
 @export var archimonstre: bool
 
 @export var drop: Array[ItemResource]
+
+@export var caracteristiques: Array[StatResource]
