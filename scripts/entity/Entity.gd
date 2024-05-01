@@ -18,3 +18,7 @@ func get_caracacteristique_for_type(type: Caracteristique.Type):
 		console.log_error("Aucune ou plus d'une caractéristique a été trouvée pour le type : " + Caracteristique.Type.find_key(type))
 		return null
 	return carac[0]
+
+
+func get_vitalite() -> int:
+	return get_caracacteristique_for_type(Caracteristique.Type.VITALITE).amount

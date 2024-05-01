@@ -45,12 +45,13 @@ static func instantiate(parent: Control) -> Monster:
 func init(res: MonsterResource):
 	player_manager = get_tree().current_scene.get_node("%PlayerManager")
 	inventory = get_tree().current_scene.get_node("%Inventory")
+	init_caracteristiques(res.caracteristiques)
 	
 	name = res.name
 	name_label.text = res.name
 	init_clickable($"VBC/Content")
 	texture_rect.texture = res.texture
-	hp_bar.init(res.max_health)
+	hp_bar.init(get_vitalite())
 	resource = res
 	if res.boss:
 		header_texture.texture = load("res://assets/ui/icons/boss.png")
@@ -61,7 +62,6 @@ func init(res: MonsterResource):
 	attack_amount.text = str(res.damage)
 	attack_bar.max_value = res.attack_time
 	new_attack_timer()
-	init_caracteristiques(res.caracteristiques)
 
 
 func take_damage(amount: int):
