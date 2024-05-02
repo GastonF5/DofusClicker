@@ -6,8 +6,12 @@ extends Resource
 @export var min_amount: int
 @export var max_amount: int
 
-var amount: int
+var amount: int:
+	set(value):
+		amount = value
+		amount_change.emit()
 
+signal amount_change
 
 func get_random_amount():
 	return randi_range(min_amount, max_amount)

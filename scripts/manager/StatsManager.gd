@@ -30,8 +30,7 @@ func _ready():
 func on_point_consumed(amount: int, type: stat_type):
 	points -= amount
 	update_points_label()
-	if type == stat_type.CHANCE:
-		StatsManager.get_caracteristique_for_type(stat_type.PROSPECTION).add(amount)
+	apply_carac_bonus(type, amount)
 
 
 func on_equiped(item: Item):
@@ -39,6 +38,7 @@ func on_equiped(item: Item):
 		var carac: Caracteristique = StatsManager.get_caracteristique_for_type(stat.type)
 		if carac:
 			carac.equip_amount += stat.amount
+			apply_carac_bonus(stat.type, stat.amount)
 
 
 func on_desequiped(item: Item):
@@ -46,6 +46,15 @@ func on_desequiped(item: Item):
 		var carac: Caracteristique = StatsManager.get_caracteristique_for_type(stat.type)
 		if carac:
 			carac.equip_amount -= stat.amount
+			apply_carac_bonus(stat.type, -stat.amount)
+
+
+func apply_carac_bonus(type: Caracteristique.Type, amount: int):
+	match type:
+		stat_type.VITALITE:
+			$"%PlayerManager".max_hp += amount
+		stat_type.CHANCE:
+			StatsManager.get_caracteristique_for_type(stat_type.PROSPECTION).add(amount)
 
 
 func _process(_delta):

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="MonsterResource" load_steps=6 format=3 uid="uid://canar4kj00gm0"]
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=8 format=3 uid="uid://canar4kj00gm0"]
 
 [ext_resource type="Script" path="res://scripts/monster/MonsterResource.gd" id="1_f1auu"]
 [ext_resource type="Script" path="res://scripts/stats/StatResource.gd" id="1_q8yrr"]
@@ -11,6 +11,18 @@ type = 2
 min_amount = 3
 max_amount = 6
 
+[sub_resource type="Resource" id="Resource_cps5p"]
+script = ExtResource("1_q8yrr")
+type = 1
+min_amount = 3
+max_amount = 3
+
+[sub_resource type="Resource" id="Resource_nnpiw"]
+script = ExtResource("1_q8yrr")
+type = 0
+min_amount = 3
+max_amount = 3
+
 [resource]
 script = ExtResource("1_f1auu")
 name = "Prespic"
@@ -21,4 +33,4 @@ damage = 1
 boss = false
 archimonstre = false
 drop = Array[Resource("res://scripts/item/ItemResource.gd")]([ExtResource("1_uew5t")])
-caracteristiques = Array[ExtResource("1_q8yrr")]([SubResource("Resource_0ewoi")])
+caracteristiques = Array[ExtResource("1_q8yrr")]([SubResource("Resource_0ewoi"), SubResource("Resource_cps5p"), SubResource("Resource_nnpiw")])

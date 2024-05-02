@@ -104,7 +104,7 @@ func _on_plus_button_button_up():
 		else:
 			x = 1
 		if points < x:
-			x -= points
+			x = points
 		add(x)
 		consume_point.emit(x, type)
 
@@ -132,3 +132,10 @@ func update_buttons_visibility():
 func update_tooltip():
 	if tooltip:
 		tooltip.update_text("Base : %d\nEquipement : %d" % [base_amount, equip_amount])
+
+
+static func create(_type: Type, _label: Label):
+	var carac = Caracteristique.new()
+	carac.type = _type
+	carac.amount_label = _label
+	return carac

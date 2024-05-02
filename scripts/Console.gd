@@ -37,6 +37,11 @@ func _input(event):
 	
 	if input.has_focus() and (event.is_action_pressed("esc") or event.is_action_pressed("LMB")):
 		input.release_focus()
+	
+	if input.has_focus():
+		if event.is_action_pressed("up"):
+			if history.size() != 0:
+				input.text = "/" + history[history.size() - 1]
 
 
 func input_empty() -> bool:
@@ -84,10 +89,20 @@ func do_command(command: String, params: Array[String] = []):
 				else:
 					_log("L'historique est vide", LogType.COMMAND)
 			return
-	var command_str = command
+		"monster":
+			if params.size() > 1:
+				if params[1] == "set":
+					var index = params[0] as int
+					if index < MonsterManager.monsters.size():
+						var monster = MonsterManager.monsters[index]
+						if monster:
+							var stat_res: StatResource = monster.get_caracacteristique_for_type(Caracteristique.Type.get(params[2].to_upper()))
+							if stat_res: stat_res.amount = params[3] as int
+							pass
+	var command_histo = command
 	for param in params:
-		command_str += " " + param
-	history.append(command_str)
+		command_histo += " " + param
+	history.append(command_histo)
 
 
 func clear():

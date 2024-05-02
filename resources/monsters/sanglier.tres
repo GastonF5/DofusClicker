@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="MonsterResource" load_steps=5 format=3 uid="uid://cr6ta24x018v0"]
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=7 format=3 uid="uid://cr6ta24x018v0"]
 
 [ext_resource type="Script" path="res://scripts/monster/MonsterResource.gd" id="1_ovt3e"]
 [ext_resource type="Script" path="res://scripts/stats/StatResource.gd" id="1_yfjvb"]
@@ -10,6 +10,18 @@ type = 2
 min_amount = 15
 max_amount = 20
 
+[sub_resource type="Resource" id="Resource_cpow6"]
+script = ExtResource("1_yfjvb")
+type = 1
+min_amount = 3
+max_amount = 3
+
+[sub_resource type="Resource" id="Resource_gy70u"]
+script = ExtResource("1_yfjvb")
+type = 0
+min_amount = 5
+max_amount = 5
+
 [resource]
 script = ExtResource("1_ovt3e")
 name = "Sanglier"
@@ -20,4 +32,4 @@ damage = 6
 boss = false
 archimonstre = false
 drop = Array[Resource("res://scripts/item/ItemResource.gd")]([])
-caracteristiques = Array[ExtResource("1_yfjvb")]([SubResource("Resource_mp3cn")])
+caracteristiques = Array[ExtResource("1_yfjvb")]([SubResource("Resource_mp3cn"), SubResource("Resource_cpow6"), SubResource("Resource_gy70u")])

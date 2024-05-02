@@ -6,7 +6,6 @@ extends Resource
 @export var texture: Texture2D
 @export var xp_gain: int
 
-@export var attack_time: float
 @export var damage: int
 
 @export var boss: bool

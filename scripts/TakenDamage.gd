@@ -4,6 +4,7 @@ class_name TakenDamage
 
 func init(amount: int):
 	text = "-" + str(amount)
+	position = Vector2(62.5, 150)
 	do_tween()
 	await create_timer(1).timeout
 	queue_free()

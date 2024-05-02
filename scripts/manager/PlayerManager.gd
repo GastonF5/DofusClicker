@@ -17,23 +17,21 @@ extends Node
 @export var console: Console
 
 static var dragged_item: DraggableControl
-var max_pa = 6:
+var max_pa: int:
 	set(value):
 		max_pa = value
 		update_pa()
-var current_pa: int
 
-var max_pm = 3:
+var max_pm: int:
 	set(value):
 		max_pm = value
 		update_pm()
-var current_pm: int
 
-var max_hp: int = 100:
+var max_hp: int:
 	set(value):
+		hp_bar.current_hp += value - max_hp
 		max_hp = value
 		update_pdv()
-var current_hp: int = 100
 
 static var taken_damage_rate: int = 100
 
@@ -68,16 +66,22 @@ func _ready():
 		plates.append(entity_container)
 	selected_plate = plates[0]
 	
-	hp_bar.init(max_hp)
+	init_caracteristiques()
+	
 	xp_bar.init()
 	kamas_label.text = "0"
-	current_pa = 0
-	
-	pa_bar.max_pa = max_pa
-	pm_bar.max_pm = max_pm
-	update_pdv()
-	update_pa()
-	update_pm()
+
+
+func init_caracteristiques():
+	# HP
+	max_hp = 50
+	hp_bar.init(max_hp)
+	# PA
+	max_pa = 6
+	pa_bar.init(max_pa)
+	# PM
+	max_pm = 3
+	pm_bar.init(max_pm)
 
 
 func _input(event):
@@ -108,8 +112,7 @@ func _input(event):
 
 func take_damage(amount: int) -> int:
 	var taken_damage = roundi((amount * taken_damage_rate) / 100.0)
-	current_hp -= taken_damage
-	hp_bar.current_hp = current_hp
+	hp_bar.current_hp -= taken_damage
 	return taken_damage
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://bfh3u8jwrg2ar"]
+[gd_scene load_steps=67 format=3 uid="uid://bfh3u8jwrg2ar"]
 
 [ext_resource type="Script" path="res://scripts/manager/MonsterManager.gd" id="1_iu0is"]
 [ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="2_4lqlq"]
@@ -45,12 +45,10 @@
 [ext_resource type="Texture2D" uid="uid://jps1sp7kid7q" path="res://assets/inventory/light_bg_inventory.png" id="33_x0at0"]
 [ext_resource type="PackedScene" uid="uid://dl2edw32vnxff" path="res://scenes/entity_container.tscn" id="34_gg5wd"]
 [ext_resource type="PackedScene" uid="uid://v3e3pddsya44" path="res://scenes/console.tscn" id="34_t67ba"]
-[ext_resource type="Texture2D" uid="uid://dqi5nyabi4exy" path="res://assets/hud/icon_hp_empty.png" id="35_xnt14"]
-[ext_resource type="Texture2D" uid="uid://k8i3m3d33k8x" path="res://assets/hud/icon_hp_full.png" id="36_qu3i6"]
 [ext_resource type="Texture2D" uid="uid://b58ukv8lwqg0b" path="res://assets/hud/hud_decoration.png" id="36_s7632"]
 [ext_resource type="Texture2D" uid="uid://cyj00xy3xeikq" path="res://assets/hud/icon_mp_empty.png" id="37_ka2rt"]
 [ext_resource type="Texture2D" uid="uid://cb1pye1b2nyyt" path="res://assets/hud/icon_mp_full.png" id="38_bm8jn"]
-[ext_resource type="Script" path="res://scripts/bars/HPBar.gd" id="39_euo4l"]
+[ext_resource type="PackedScene" uid="uid://bkkjso0mm2nu4" path="res://scenes/hp_bar.tscn" id="40_5kut3"]
 [ext_resource type="Script" path="res://scripts/bars/PMBar.gd" id="43_6xs84"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4qy8r"]
@@ -105,6 +103,12 @@ outline_color = Color(0, 0, 0, 1)
 
 [node name="Main" type="Node"]
 
+[node name="StatsManager" type="Node" parent="." node_paths=PackedStringArray("stats_container", "points_label", "reset_button")]
+script = ExtResource("4_13j6f")
+stats_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/Caracteristiques/MarginContainer/StatsContainer")
+points_label = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/Caracteristiques/MarginContainer/StatsContainer/HBoxContainer/PointsContainer/MarginContainer/HBC/PointsLabel")
+reset_button = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/Caracteristiques/MarginContainer/StatsContainer/HBoxContainer/ResetButton")
+
 [node name="PlayerManager" type="Node" parent="." node_paths=PackedStringArray("xp_bar", "kamas_label", "inventory", "spell_container", "spell_bar", "hp_bar", "pa_bar", "pm_bar", "pdv_label", "pa_label", "pm_label", "console")]
 unique_name_in_owner = true
 script = ExtResource("2_06gc8")
@@ -116,9 +120,9 @@ spell_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/Pla
 hp_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/HPBar")
 pa_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/PABar")
 pm_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/PMBar")
-pdv_label = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer/PdV/Right/Amount")
-pa_label = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer/PdV/Right/Amount")
-pm_label = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer/PdV/Right/Amount")
+pdv_label = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer/PdV/Right/HPAmount")
+pa_label = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer/PA/Right/PAAmount")
+pm_label = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer/PM/Right/PMAmount")
 console = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Infos/MarginContainer/Console")
 
 [node name="MonsterManager" type="Node" parent="."]
@@ -127,12 +131,6 @@ script = ExtResource("1_iu0is")
 [node name="EquipmentManager" type="Node" parent="." node_paths=PackedStringArray("equipment_container")]
 script = ExtResource("3_nkpwv")
 equipment_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Window/MarginContainer/ScrollContainer/GridContainer")
-
-[node name="StatsManager" type="Node" parent="." node_paths=PackedStringArray("stats_container", "points_label", "reset_button")]
-script = ExtResource("4_13j6f")
-stats_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/Caracteristiques/MarginContainer/StatsContainer")
-points_label = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/Caracteristiques/MarginContainer/StatsContainer/HBoxContainer/PointsContainer/MarginContainer/HBC/PointsLabel")
-reset_button = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/Caracteristiques/MarginContainer/StatsContainer/HBoxContainer/ResetButton")
 
 [node name="RecipeManager" type="Node" parent="." node_paths=PackedStringArray("tab_container")]
 script = ExtResource("5_51m8x")
@@ -491,7 +489,8 @@ layout_mode = 2
 size_flags_horizontal = 4
 alignment = 2
 
-[node name="Amount" type="Label" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer/PdV/Right"]
+[node name="HPAmount" type="Label" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer/PdV/Right"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "0"
 horizontal_alignment = 2
@@ -533,7 +532,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 alignment = 2
 
-[node name="Amount" type="Label" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer/PA/Right"]
+[node name="PAAmount" type="Label" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer/PA/Right"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "0"
 horizontal_alignment = 2
@@ -574,7 +574,8 @@ layout_mode = 2
 size_flags_horizontal = 10
 alignment = 2
 
-[node name="Amount" type="Label" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer/PM/Right"]
+[node name="PMAmount" type="Label" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer/PM/Right"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "0"
 horizontal_alignment = 2
@@ -1054,49 +1055,26 @@ layout_mode = 2
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_fempj")
 
-[node name="HPBar" type="TextureProgressBar" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD" node_paths=PackedStringArray("curr_hp_label", "max_hp_label")]
-layout_mode = 1
-offset_top = -114.0
-offset_right = 101.0
-offset_bottom = -29.0
-scale = Vector2(2, 2)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-value = 50.0
-fill_mode = 3
-texture_under = ExtResource("35_xnt14")
-texture_progress = ExtResource("36_qu3i6")
-script = ExtResource("39_euo4l")
-curr_hp_label = NodePath("VBoxContainer/CurrHP")
-max_hp_label = NodePath("VBoxContainer/MaxHP")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/HPBar"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="CurrHP" type="Label" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/HPBar/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 10
-text = "50"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="MaxHP" type="Label" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/HPBar/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 2
-text = "100"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Decoration" type="TextureRect" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD"]
 layout_mode = 1
 offset_right = 204.0
 offset_bottom = 84.0
 texture = ExtResource("36_s7632")
+
+[node name="HPBar" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD" instance=ExtResource("40_5kut3")]
+layout_mode = 1
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = -114.0
+offset_right = 101.0
+offset_bottom = -29.0
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(2, 2)
 
 [node name="PABar" type="TextureProgressBar" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD" node_paths=PackedStringArray("current_pa_label")]
 layout_mode = 1

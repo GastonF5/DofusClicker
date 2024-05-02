@@ -7,8 +7,9 @@ extends TextureProgressBar
 
 var current_hp: int:
 	set(value):
-		current_hp = value
-		update()
+		if current_hp != value:
+			current_hp = value
+			update()
 
 
 func init(max_hp: int):
@@ -18,13 +19,17 @@ func init(max_hp: int):
 	current_hp = max_hp
 	value = max_value
 	update_current_hp_label()
+	step = 0.01
 
 
 func update(hp = current_hp, max_hp = max_value):
-	value = hp
-	update_current_hp_label()
+	if hp is Callable: hp = hp.call()
+	if max_hp is Callable: max_hp = max_hp.call()
 	max_value = max_hp
 	update_max_hp_label()
+	value = hp
+	current_hp = hp
+	update_current_hp_label()
 
 
 func update_max_hp_label():

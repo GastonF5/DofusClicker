@@ -88,8 +88,8 @@ static func felintion(_target: Monster):
 static func get_multiplicateur(type: stat_type) -> float:
 	var carac = StatsManager.get_caracteristique_for_type(type)
 	var caracteristique = 0 if !carac else carac.amount
-	#var pui_carac = StatsManager.get_caracteristique_for_type(stat_type.PUISSANCE)
-	var puissance = 0 #if !pui_carac else pui_carac.amount
+	var pui_carac = StatsManager.get_caracteristique_for_type(stat_type.PUISSANCE)
+	var puissance = 0 if !pui_carac else pui_carac.amount
 	return (puissance + caracteristique + 100) / 100.0
 
 

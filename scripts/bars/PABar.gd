@@ -2,32 +2,46 @@ class_name PABar
 extends TextureProgressBar
 
 
-@onready var player_manager: PlayerManager = $"%PlayerManager"
-
+@export var player = true
 @export var current_pa_label: Label
 
-var speed = 100
+var speed = 100.0
 var max_pa: int
 
+var current_pa: int:
+	set(value):
+		if current_pa != value:
+			current_pa = value
+			update()
 
-func _ready():
-	max_pa = player_manager.max_pa
-	current_pa_label.text = "0"
+
+func init(mpa: int):
+	min_value = 0
+	max_value = 100
+	max_pa = mpa
+	current_pa = 0
+	update(mpa, true)
+	step = 0.01
 
 
 func _process(delta):
-	var current_pa = player_manager.current_pa
-	if current_pa != max_pa or (current_pa == max_pa and value < max_value):
-		value += delta * speed
-		# si la barre est complète, on gagne 1 PA et on reset la barre
-		if value >= max_value:
-			player_manager.current_pa += 1
-			current_pa_label.text = str(player_manager.current_pa)
-			value = min_value if player_manager.current_pa < max_pa else max_value
+	if true:
+		# partie joueur
+		if current_pa != max_pa or (current_pa == max_pa and value < max_value):
+			value += float(delta * speed)
+			# si la barre est complète, on gagne 1 PA et on reset la barre
+			if value >= max_value:
+				current_pa += 1
+				current_pa_label.text = str(current_pa)
+				value = min_value if current_pa < max_pa else max_value
 
 
-func update(current_pa: int):
-	current_pa_label.text = str(current_pa)
+func update(new_pa = current_pa, _max = false):
+	if new_pa is Callable: new_pa = new_pa.call()
+	current_pa_label.text = str(new_pa)
+	if _max:
+		value = max_value
+		return
 	var current_value = 0
 	if value < max_value:
 		current_value = value
