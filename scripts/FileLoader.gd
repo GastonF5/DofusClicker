@@ -52,4 +52,7 @@ static func get_packed_scene(scene_path: String) -> PackedScene:
 
 
 static func get_stat_asset(stat: Caracteristique):
-	return load("res://assets/stats/stat_icon/%s.png" % stat.get_type().to_lower())
+	var stat_path = stat.get_type().to_lower()
+	if stat_path.begins_with("do_") and stat_path != "do_critiques":
+		stat_path = "res_" + stat_path.split("_")[1]
+	return load("res://assets/stats/stat_icon/%s.png" % stat_path)

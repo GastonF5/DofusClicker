@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://be4hokjlx1vux"
-path="res://.godot/imported/tx_slot_shoe.png-ad7749ccc25f87c9ae74c600a8bb335d.ctex"
+uid="uid://c0jlnsyr543pn"
+path="res://.godot/imported/boisaille.png-46a143d2f4a601430c1b6e1e94f52b23.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/equipment/slots/tx_slot_shoe.png"
-dest_files=["res://.godot/imported/tx_slot_shoe.png-ad7749ccc25f87c9ae74c600a8bb335d.ctex"]
+source_file="res://assets/equipment/arme/baton/boisaille.png"
+dest_files=["res://.godot/imported/boisaille.png-46a143d2f4a601430c1b6e1e94f52b23.ctex"]
 
 [params]
 

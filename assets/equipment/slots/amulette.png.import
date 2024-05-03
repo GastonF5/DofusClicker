@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dphatphjxm25u"
-path="res://.godot/imported/dommages_critiques.png-90b637cc297f7da8ba2431efcb2bd4c2.ctex"
+uid="uid://bn7tw45whgwgg"
+path="res://.godot/imported/amulette.png-01e9c564e7ce60bdfb9befa4bbe4b5a5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/stats/stat_icon/dommages_critiques.png"
-dest_files=["res://.godot/imported/dommages_critiques.png-90b637cc297f7da8ba2431efcb2bd4c2.ctex"]
+source_file="res://assets/equipment/slots/amulette.png"
+dest_files=["res://.godot/imported/amulette.png-01e9c564e7ce60bdfb9befa4bbe4b5a5.ctex"]
 
 [params]
 

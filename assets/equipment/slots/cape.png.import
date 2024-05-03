@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7vw6cwnimqi"
-path="res://.godot/imported/tx_slot_shield.png-657ef7d4e6350ac53c8407960cbcbe4e.ctex"
+uid="uid://bh6ulrqp0mskd"
+path="res://.godot/imported/cape.png-c5a8b82af23664b6906e2eaf6058d416.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/equipment/slots/tx_slot_shield.png"
-dest_files=["res://.godot/imported/tx_slot_shield.png-657ef7d4e6350ac53c8407960cbcbe4e.ctex"]
+source_file="res://assets/equipment/slots/cape.png"
+dest_files=["res://.godot/imported/cape.png-c5a8b82af23664b6906e2eaf6058d416.ctex"]
 
 [params]
 

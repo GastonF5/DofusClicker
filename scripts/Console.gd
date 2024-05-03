@@ -2,6 +2,8 @@ class_name Console
 extends Control
 
 
+const EQUIPMENT_RESOURCE_PATH = "res://resources/equipment/%s.tres"
+
 enum LogType {
 	INFO,
 	LOG,
@@ -99,6 +101,14 @@ func do_command(command: String, params: Array[String] = []):
 							var stat_res: StatResource = monster.get_caracacteristique_for_type(Caracteristique.Type.get(params[2].to_upper()))
 							if stat_res: stat_res.amount = params[3] as int
 							pass
+		"add":
+			if params[0] == "equip":
+				var equip_res = FileLoader.get_equipment_resource(EQUIPMENT_RESOURCE_PATH % params[1])
+				if equip_res:
+					$"%Inventory".add_item(Item.create(equip_res, $"%Inventory"))
+				else:
+					log_error("La ressource n'a pas été trouvée.")
+				pass
 	var command_histo = command
 	for param in params:
 		command_histo += " " + param

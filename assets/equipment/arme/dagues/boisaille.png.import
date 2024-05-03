@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jldvprwk734o"
-path="res://.godot/imported/tx_slot_ring.png-369d3ca1c8a788f38004e17ab43733a0.ctex"
+uid="uid://gog3ttwdq8db"
+path="res://.godot/imported/boisaille.png-7c4dc7cd216ec426558b634a0115e527.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/equipment/slots/tx_slot_ring.png"
-dest_files=["res://.godot/imported/tx_slot_ring.png-369d3ca1c8a788f38004e17ab43733a0.ctex"]
+source_file="res://assets/equipment/arme/dagues/boisaille.png"
+dest_files=["res://.godot/imported/boisaille.png-7c4dc7cd216ec426558b634a0115e527.ctex"]
 
 [params]
 

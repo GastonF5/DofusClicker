@@ -1,18 +1,18 @@
 class_name PlayerManager
 extends Node
 
+@export var spells_container: Panel
+var spell_container: VBoxContainer
+@export var stats_container: Panel
+var pdv_label: Label
+
 @export var xp_bar: ExperienceBar
 @export var kamas_label: Label
 @export var inventory: Inventory
-@export var spell_container: VBoxContainer
 @export var spell_bar: SpellBar
 @export var hp_bar: HPBar
 @export var pa_bar: PABar
 @export var pm_bar: PMBar
-
-@export var pdv_label: Label
-@export var pa_label: Label
-@export var pm_label: Label
 
 @export var console: Console
 
@@ -49,6 +49,9 @@ static var plates: Array[EntityContainer]
 
 
 func _ready():
+	spell_container = spells_container.get_node("%SpellContainer")
+	pdv_label = stats_container.get_node("%HPAmount")
+	
 	SpellsService.console = console
 	SpellsService.tnode = $"/root/Main/Timers"
 	StatsManager.console = console
@@ -85,29 +88,30 @@ func init_caracteristiques():
 
 
 func _input(event):
-	var size = spell_bar.get_children().size()
-	if size >= 1 and event.is_action_pressed("1"):
-		spell_bar.get_children()[0].do_action()
-	if size >= 2 and event.is_action_pressed("2"):
-		spell_bar.get_children()[1].do_action()
-	if size >= 3 and event.is_action_pressed("3"):
-		spell_bar.get_children()[2].do_action()
-	if size >= 4 and event.is_action_pressed("4"):
-		spell_bar.get_children()[3].do_action()
-	if size >= 5 and event.is_action_pressed("5"):
-		spell_bar.get_children()[4].do_action()
-	if size >= 6 and event.is_action_pressed("6"):
-		spell_bar.get_children()[5].do_action()
-	if size >= 7 and event.is_action_pressed("7"):
-		spell_bar.get_children()[6].do_action()
-	if size >= 8 and event.is_action_pressed("8"):
-		spell_bar.get_children()[7].do_action()
-	if size >= 9 and event.is_action_pressed("9"):
-		spell_bar.get_children()[8].do_action()
-	if event.is_action_pressed("right"):
-		PlayerManager.select_next_plate()
-	if event.is_action_pressed("left"):
-		PlayerManager.select_previous_plate()
+	if !console.input.has_focus() and !$"../RecipeManager".search_prompt.has_focus():
+		var size = spell_bar.get_children().size()
+		if size >= 1 and event.is_action_pressed("1"):
+			spell_bar.get_children()[0].do_action()
+		if size >= 2 and event.is_action_pressed("2"):
+			spell_bar.get_children()[1].do_action()
+		if size >= 3 and event.is_action_pressed("3"):
+			spell_bar.get_children()[2].do_action()
+		if size >= 4 and event.is_action_pressed("4"):
+			spell_bar.get_children()[3].do_action()
+		if size >= 5 and event.is_action_pressed("5"):
+			spell_bar.get_children()[4].do_action()
+		if size >= 6 and event.is_action_pressed("6"):
+			spell_bar.get_children()[5].do_action()
+		if size >= 7 and event.is_action_pressed("7"):
+			spell_bar.get_children()[6].do_action()
+		if size >= 8 and event.is_action_pressed("8"):
+			spell_bar.get_children()[7].do_action()
+		if size >= 9 and event.is_action_pressed("9"):
+			spell_bar.get_children()[8].do_action()
+		if event.is_action_pressed("right"):
+			PlayerManager.select_next_plate()
+		if event.is_action_pressed("left"):
+			PlayerManager.select_previous_plate()
 
 
 func take_damage(amount: int) -> int:
@@ -131,7 +135,7 @@ func update_pdv():
 	hp_bar.update(hp_bar.current_hp, max_hp)
 
 func update_pa():
-	pa_label.text = str(max_pa)
+	StatsManager.get_caracteristique_for_type(Caracteristique.Type.PA).add(max_pa)
 
 func update_pm():
-	pm_label.text = str(max_pm)
+	StatsManager.get_caracteristique_for_type(Caracteristique.Type.PM).add(max_pm)

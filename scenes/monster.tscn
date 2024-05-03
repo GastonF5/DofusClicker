@@ -16,7 +16,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_63c4l"]
 
-[node name="Monster" type="PanelContainer" node_paths=PackedStringArray("name_label", "texture_rect", "hp_bar", "header_texture", "attack_bar", "attack_amount", "pa_bar", "pm_bar")]
+[node name="Monster" type="PanelContainer" node_paths=PackedStringArray("name_label", "texture_rect", "header_texture", "attack_amount", "hp_bar", "pa_bar", "pm_bar", "attack_bar")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -34,12 +34,12 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_63c4l")
 script = ExtResource("2_ao8xg")
 name_label = NodePath("VBC/Header/Name")
 texture_rect = NodePath("VBC/TextureContainer/Monster")
-hp_bar = NodePath("VBC/Footer/HPBar")
 header_texture = NodePath("VBC/Header/HeaderControl/HeaderTexture")
-attack_bar = NodePath("VBC/Header/AttackBar")
 attack_amount = NodePath("VBC/Header/AttackAmount")
+hp_bar = NodePath("VBC/Footer/HPBar")
 pa_bar = NodePath("VBC/Footer/PABar")
 pm_bar = NodePath("VBC/Footer/PMBar")
+attack_bar = NodePath("VBC/Header/AttackBar")
 
 [node name="VBC" type="VBoxContainer" parent="."]
 layout_mode = 2

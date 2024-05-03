@@ -1,0 +1,242 @@
+[gd_scene load_steps=18 format=3 uid="uid://humcuoo3q2tn"]
+
+[ext_resource type="PackedScene" uid="uid://coto2k3rtpqkd" path="res://scenes/window/window.tscn" id="1_vj4w5"]
+[ext_resource type="Texture2D" uid="uid://jps1sp7kid7q" path="res://assets/inventory/light_bg_inventory.png" id="2_va6wy"]
+[ext_resource type="Texture2D" uid="uid://blq7h4lvuwd65" path="res://assets/inventory/acceptDrop.png" id="3_1c2cq"]
+[ext_resource type="Texture2D" uid="uid://i4rmuxyvr6jx" path="res://assets/inventory/selected.png" id="4_uxnna"]
+[ext_resource type="Texture2D" uid="uid://btankjkc67hjv" path="res://assets/inventory/inventoryEmptySlot.png" id="5_qt0t8"]
+[ext_resource type="Texture2D" uid="uid://bsksxibr4yyo3" path="res://assets/equipment/slots/coiffe.png" id="6_oucyv"]
+[ext_resource type="Texture2D" uid="uid://bh6ulrqp0mskd" path="res://assets/equipment/slots/cape.png" id="7_mlehr"]
+[ext_resource type="Texture2D" uid="uid://dubxhf73uvwcn" path="res://assets/equipment/slots/ceinture.png" id="8_mjw8f"]
+[ext_resource type="Texture2D" uid="uid://bn7tw45whgwgg" path="res://assets/equipment/slots/amulette.png" id="9_o05gm"]
+[ext_resource type="Texture2D" uid="uid://jldvprwk734o" path="res://assets/equipment/slots/anneau.png" id="10_1dqtj"]
+[ext_resource type="Texture2D" uid="uid://63x2ud42mc3j" path="res://assets/equipment/slots/arme.png" id="11_qvbbn"]
+[ext_resource type="Texture2D" uid="uid://be4hokjlx1vux" path="res://assets/equipment/slots/bottes.png" id="12_n62lx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gtnqv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nfls5"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fss8n"]
+texture = ExtResource("3_1c2cq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dlddm"]
+texture = ExtResource("4_uxnna")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bclgm"]
+texture = ExtResource("5_qt0t8")
+
+[node name="EquipmentContainer" type="Panel"]
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_gtnqv")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 10
+
+[node name="Window" parent="MarginContainer" instance=ExtResource("1_vj4w5")]
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Window"]
+layout_mode = 2
+texture = ExtResource("2_va6wy")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Window"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/Window/MarginContainer"]
+layout_mode = 2
+
+[node name="EquipmentSlots" type="GridContainer" parent="MarginContainer/Window/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 3
+columns = 3
+
+[node name="CoiffeSlot" type="Button" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots" groups=["equipment_slot"]]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nfls5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots/CoiffeSlot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_oucyv")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="CapeSlot" type="Button" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots" groups=["equipment_slot"]]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nfls5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots/CapeSlot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_mlehr")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="CeintureSlot" type="Button" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots" groups=["equipment_slot"]]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nfls5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots/CeintureSlot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_mjw8f")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="AmuletteSlot" type="Button" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots" groups=["equipment_slot"]]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nfls5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots/AmuletteSlot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_o05gm")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="AnneauSlot" type="Button" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots" groups=["equipment_slot"]]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nfls5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots/AnneauSlot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_1dqtj")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="AnneauSlot2" type="Button" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots" groups=["equipment_slot"]]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nfls5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots/AnneauSlot2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_1dqtj")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="ArmeSlot" type="Button" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots" groups=["equipment_slot"]]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nfls5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots/ArmeSlot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_qvbbn")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="BottesSlot" type="Button" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots" groups=["equipment_slot"]]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nfls5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots/BottesSlot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_n62lx")
+expand_mode = 3
+stretch_mode = 5

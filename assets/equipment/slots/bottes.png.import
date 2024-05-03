@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bsksxibr4yyo3"
-path="res://.godot/imported/tx_slot_helmet.png-909aa5aeecd9f82e14a1fab8cee3eb7a.ctex"
+uid="uid://be4hokjlx1vux"
+path="res://.godot/imported/bottes.png-46242090df264b980838c2242279b864.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/equipment/slots/tx_slot_helmet.png"
-dest_files=["res://.godot/imported/tx_slot_helmet.png-909aa5aeecd9f82e14a1fab8cee3eb7a.ctex"]
+source_file="res://assets/equipment/slots/bottes.png"
+dest_files=["res://.godot/imported/bottes.png-46242090df264b980838c2242279b864.ctex"]
 
 [params]
 

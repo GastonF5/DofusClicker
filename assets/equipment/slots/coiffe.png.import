@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://63x2ud42mc3j"
-path="res://.godot/imported/tx_slot_weapon.png-8178c2b36cb892925c7a78ab7f17e400.ctex"
+uid="uid://bsksxibr4yyo3"
+path="res://.godot/imported/coiffe.png-da76896f587a64ec9af0fd0ce30a9a97.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/equipment/slots/tx_slot_weapon.png"
-dest_files=["res://.godot/imported/tx_slot_weapon.png-8178c2b36cb892925c7a78ab7f17e400.ctex"]
+source_file="res://assets/equipment/slots/coiffe.png"
+dest_files=["res://.godot/imported/coiffe.png-da76896f587a64ec9af0fd0ce30a9a97.ctex"]
 
 [params]
 

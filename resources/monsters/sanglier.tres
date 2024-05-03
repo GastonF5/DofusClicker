@@ -13,8 +13,8 @@ max_amount = 20
 [sub_resource type="Resource" id="Resource_cpow6"]
 script = ExtResource("1_yfjvb")
 type = 1
-min_amount = 3
-max_amount = 3
+min_amount = 2
+max_amount = 2
 
 [sub_resource type="Resource" id="Resource_gy70u"]
 script = ExtResource("1_yfjvb")
@@ -27,7 +27,6 @@ script = ExtResource("1_ovt3e")
 name = "Sanglier"
 texture = ExtResource("2_8na8g")
 xp_gain = 10
-attack_time = 8.0
 damage = 6
 boss = false
 archimonstre = false

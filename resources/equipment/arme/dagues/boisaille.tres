@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=8 format=3 uid="uid://rs2h42x0hxt6"]
+
+[ext_resource type="Script" path="res://scripts/item/ItemResource.gd" id="1_mfb22"]
+[ext_resource type="Script" path="res://scripts/equipment/EquipmentResource.gd" id="1_qmwfh"]
+[ext_resource type="Texture2D" uid="uid://gog3ttwdq8db" path="res://assets/equipment/arme/dagues/boisaille.png" id="2_w8t14"]
+[ext_resource type="Script" path="res://scripts/stats/StatResource.gd" id="2_xk750"]
+
+[sub_resource type="Resource" id="Resource_5nifo"]
+script = ExtResource("2_xk750")
+type = 3
+min_amount = 7
+max_amount = 10
+
+[sub_resource type="Resource" id="Resource_1417b"]
+script = ExtResource("2_xk750")
+type = 22
+min_amount = 1
+max_amount = 1
+
+[sub_resource type="Resource" id="Resource_6abi7"]
+script = ExtResource("1_qmwfh")
+type = 6
+weapon_type = 5
+stats = Array[ExtResource("2_xk750")]([SubResource("Resource_5nifo"), SubResource("Resource_1417b")])
+attack_type = 0
+min_attack = 3
+max_attack = 4
+
+[resource]
+script = ExtResource("1_mfb22")
+name = "Dagues de Boisaille"
+texture = ExtResource("2_w8t14")
+count = 1
+equip_res = SubResource("Resource_6abi7")
+drop_rate = 0.0

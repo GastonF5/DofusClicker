@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://lce7lc5iumm6"]
+
+[ext_resource type="Texture2D" uid="uid://0ujq6wd2dvfm" path="res://assets/common/window/window_green_background.jpg" id="1_cvlej"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_grw1v"]
+texture = ExtResource("1_cvlej")
+expand_margin_top = 9.0
+
+[node name="Sorts" type="Panel"]
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.5
+theme_override_styles/panel = SubResource("StyleBoxTexture_grw1v")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SpellContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

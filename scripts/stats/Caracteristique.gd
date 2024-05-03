@@ -14,7 +14,7 @@ enum Type {
 	PUISSANCE,
 	DOMMAGES,
 	CRITIQUE,
-	DOMMAGES_CRITIQUES,
+	DO_CRITIQUES,
 	SOIN,
 	RES_AIR,
 	RES_EAU,
@@ -25,18 +25,34 @@ enum Type {
 	RES_PM,
 	INVOCATIONS,
 	PROSPECTION,
+	DO_AIR,
+	DO_EAU,
+	DO_TERRE,
+	DO_FEU,
+	DO_NEUTRE,
+}
+
+enum Element {
+	NEUTRE,
+	AIR,
+	EAU,
+	TERRE,
+	FEU,
 }
 
 @export var modifiable = true
 
-@onready var icon_texture: TextureRect = $"Left/Icon"
-@onready var label: Label = $"Left/Label"
-@onready var amount_label: Label = $"Right/Amount"
+var icon_texture: TextureRect
+var label: Label
+var amount_label: Label
 
-@onready var plus_btn: Button = $"Right/PlusButton"
-@onready var minus_btn: Button = $"Right/MinusButton"
+var plus_btn: Button
+var minus_btn: Button
+
+@export var init_label: String
 
 var tooltip: Tooltip
+@export var static_tooltip_text: String
 
 var type: Type
 var base_amount = 0:
@@ -62,21 +78,40 @@ func _process(_delta):
 	update_buttons_visibility()
 
 
-func _ready():
+func init():
+	init_child_nodes()
 	type = Type.get(get_type_label())
 	icon_texture.texture = FileLoader.get_stat_asset(self)
-	label.text = name
-	if modifiable: tooltip = Tooltip.create(name, $"TooltipContainer", self)
+	label.text = name if !init_label else init_label
+	init_tooltip()
 	update_tooltip()
 	add(0)
 	check_modifiable()
 
 
+func init_child_nodes():
+	icon_texture = $"Left/Icon"
+	label = $"Left/Label"
+	amount_label = $"Right/Amount"
+	plus_btn = $"Right/PlusButton"
+	minus_btn = $"Right/MinusButton"
+
+
+func init_tooltip():
+	if modifiable:
+		tooltip = Tooltip.create(name, $"TooltipContainer", self)
+	elif static_tooltip_text:
+		tooltip = Tooltip.create(static_tooltip_text, $"TooltipContainer", self)
+
+
 func get_type_label():
 	var type_label = name.to_snake_case().to_upper()
-	if name.begins_with("Résistance"):
+	if name.begins_with("Résistance "):
 		var name_split = name.split(" ")
 		type_label = "RES_" + name_split[name_split.size() - 1].to_upper()
+	if name.begins_with("Dommages "):
+		var name_split = name.split(" ")
+		type_label = "DO_" + name_split[name_split.size() - 1].to_upper()
 	return type_label
 
 
@@ -130,12 +165,5 @@ func update_buttons_visibility():
 
 
 func update_tooltip():
-	if tooltip:
+	if tooltip and modifiable:
 		tooltip.update_text("Base : %d\nEquipement : %d" % [base_amount, equip_amount])
-
-
-static func create(_type: Type, _label: Label):
-	var carac = Caracteristique.new()
-	carac.type = _type
-	carac.amount_label = _label
-	return carac

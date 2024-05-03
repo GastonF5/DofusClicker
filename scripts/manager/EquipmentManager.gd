@@ -2,7 +2,10 @@ class_name EquipmentManager
 extends Node
 
 
-@export var equipment_container: GridContainer
+const EMPTY_SLOT_TEXTURE_PATH = "res://assets/equipment/slots/emptySlot.png"
+const SLOT_TEXTURE_PATH = "res://assets/equipment/slots/%s.png"
+
+@export var equipment_container: Panel
 
 @onready var console: Console = $"%Console"
 
@@ -13,26 +16,32 @@ signal desequiped
 
 
 func _ready():
-	for slot in equipment_container.get_children():
+	for slot in equipment_container.get_node("%EquipmentSlots").get_children():
 		slots.append(slot)
 		slot.mouse_entered.connect(_on_mouse_entered_slot.bind(slot))
 		slot.mouse_exited.connect(Inventory._on_mouse_exited_slot)
-		slot.child_entered_tree.connect(on_equiped)
-		slot.child_exiting_tree.connect(on_desequiped)
+		slot.child_entered_tree.connect(on_equiped.bind(slot))
+		slot.child_exiting_tree.connect(on_desequiped.bind(slot))
 
 
-func on_equiped(item: Item):
+func on_equiped(item: Item, slot):
 	if !item.resource.equip_res:
 		console.log_error("L'item équipé n'est pas un équipement : " + item.name)
 		return
+	slot.get_node("TextureRect").texture = load(EMPTY_SLOT_TEXTURE_PATH)
 	equiped.emit(item)
 
 
-func on_desequiped(item: Item):
+func on_desequiped(item: Item, slot):
 	if !item.resource.equip_res:
 		console.log_error("L'item déséquipé n'est pas un équipement : " + item.name)
 		return
+	slot.get_node("TextureRect").texture = load(SLOT_TEXTURE_PATH % item.resource.equip_res.get_type().to_lower())
 	desequiped.emit(item)
+
+
+#func get_equip_slot(type: EquipmentResource.Type):
+	#return slots.filter(func(s): return s.name.begins_with(EquipmentResource.Type.get(type).to_pascal_case()))[0]
 
 
 func _on_mouse_entered_slot(slot):

@@ -16,7 +16,11 @@ max_amount = 30
 [sub_resource type="Resource" id="Resource_2o1sr"]
 script = ExtResource("1_s2vmx")
 type = 5
+weapon_type = 0
 stats = Array[ExtResource("2_eet2a")]([SubResource("Resource_lj731")])
+attack_type = 0
+min_attack = 0
+max_attack = 0
 
 [sub_resource type="Resource" id="Resource_naooo"]
 script = ExtResource("3_pyfuj")

@@ -4,9 +4,9 @@ extends Node
 
 const stat_type = Caracteristique.Type
 
-@export var stats_container: VBoxContainer
-@export var points_label: Label
-@export var reset_button: Button
+@export var stats_container: Panel
+var reset_button: Button
+var points_label: Label
 
 static var caracteristiques: Array[Caracteristique] = []
 static var console: Console
@@ -16,15 +16,29 @@ static var max_points = 0
 
 
 func _ready():
-	for node in get_tree().get_nodes_in_group("caracteristique"):
-		if Caracteristique.Type.keys().has(node.name.to_upper()):
-			caracteristiques.append(node)
-			node.consume_point.connect(on_point_consumed)
+	reset_button = stats_container.get_node("%ResetButton")
+	points_label = stats_container.get_node("%PointsLabel")
+	create_caracteristiques()
 	reset_button.button_up.connect(reset_points)
 	update_points_label()
 	$"../PlayerManager".xp_bar.lvl_up.connect(on_lvl_up)
 	$"../EquipmentManager".equiped.connect(on_equiped)
 	$"../EquipmentManager".desequiped.connect(on_desequiped)
+
+
+func create_caracteristiques():
+	for carac in get_tree().get_nodes_in_group("caracteristique"):
+		var node_name = carac.name
+		if node_name.begins_with("Résistance "):
+			var node_name_split = node_name.split(" ")
+			node_name = "RES_" + node_name_split[node_name_split.size() - 1]
+		if node_name.begins_with("Dommages "):
+			node_name = "DO_" + node_name.split(" ")[1]
+		if Caracteristique.Type.keys().has(node_name.to_upper()):
+			carac.init()
+			carac.type = Caracteristique.Type.get(node_name.to_upper())
+			caracteristiques.append(carac)
+			if carac.modifiable: carac.consume_point.connect(on_point_consumed)
 
 
 func on_point_consumed(amount: int, type: stat_type):

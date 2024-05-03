@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=13 format=3 uid="uid://dgfovt1k0nys"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=14 format=3 uid="uid://dgfovt1k0nys"]
 
 [ext_resource type="Script" path="res://scripts/equipment/EquipmentResource.gd" id="1_dkt14"]
 [ext_resource type="Script" path="res://scripts/item/ItemResource.gd" id="1_oke7v"]
@@ -20,10 +20,20 @@ type = 6
 min_amount = 1
 max_amount = 10
 
+[sub_resource type="Resource" id="Resource_0bxh1"]
+script = ExtResource("2_rl2qt")
+type = 0
+min_amount = 1
+max_amount = 1
+
 [sub_resource type="Resource" id="Resource_se260"]
 script = ExtResource("1_dkt14")
 type = 4
-stats = Array[ExtResource("2_rl2qt")]([SubResource("Resource_y5r4r"), SubResource("Resource_dj5m5")])
+weapon_type = 0
+stats = Array[ExtResource("2_rl2qt")]([SubResource("Resource_y5r4r"), SubResource("Resource_dj5m5"), SubResource("Resource_0bxh1")])
+attack_type = 0
+min_attack = 0
+max_attack = 0
 
 [sub_resource type="Resource" id="Resource_45es5"]
 script = ExtResource("1_oke7v")

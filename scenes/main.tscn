@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://bfh3u8jwrg2ar"]
+[gd_scene load_steps=45 format=3 uid="uid://bfh3u8jwrg2ar"]
 
 [ext_resource type="Script" path="res://scripts/manager/MonsterManager.gd" id="1_iu0is"]
 [ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="2_4lqlq"]
@@ -11,36 +11,21 @@
 [ext_resource type="Script" path="res://scripts/manager/StatsManager.gd" id="4_13j6f"]
 [ext_resource type="Texture2D" uid="uid://brcl6cos3cake" path="res://assets/icons/icon_kama.png" id="4_jjqja"]
 [ext_resource type="PackedScene" uid="uid://coiey3idqo52l" path="res://scenes/inventory/inventory_slot.tscn" id="4_m4btg"]
-[ext_resource type="Texture2D" uid="uid://dubxhf73uvwcn" path="res://assets/equipment/slots/tx_slot_belt.png" id="4_tf78o"]
 [ext_resource type="Script" path="res://scripts/inventory/Inventory.gd" id="5_6v3yu"]
 [ext_resource type="Script" path="res://scripts/manager/RecipeManager.gd" id="5_51m8x"]
-[ext_resource type="Texture2D" uid="uid://blq7h4lvuwd65" path="res://assets/inventory/acceptDrop.png" id="5_ufvyq"]
-[ext_resource type="Texture2D" uid="uid://i4rmuxyvr6jx" path="res://assets/inventory/selected.png" id="6_bjtov"]
-[ext_resource type="Texture2D" uid="uid://btankjkc67hjv" path="res://assets/inventory/inventoryEmptySlot.png" id="7_gobx1"]
-[ext_resource type="Texture2D" uid="uid://bh6ulrqp0mskd" path="res://assets/equipment/slots/tx_slot_cape.png" id="8_wqctn"]
-[ext_resource type="Texture2D" uid="uid://bn7tw45whgwgg" path="res://assets/equipment/slots/tx_slot_collar.png" id="9_xhasg"]
-[ext_resource type="Texture2D" uid="uid://bsksxibr4yyo3" path="res://assets/equipment/slots/tx_slot_helmet.png" id="10_8coe0"]
-[ext_resource type="Texture2D" uid="uid://be4hokjlx1vux" path="res://assets/equipment/slots/tx_slot_shoe.png" id="10_qkgqy"]
-[ext_resource type="Texture2D" uid="uid://jldvprwk734o" path="res://assets/equipment/slots/tx_slot_ring.png" id="11_qw2gl"]
-[ext_resource type="Texture2D" uid="uid://63x2ud42mc3j" path="res://assets/equipment/slots/tx_slot_weapon.png" id="12_g87co"]
+[ext_resource type="PackedScene" uid="uid://humcuoo3q2tn" path="res://scenes/equipment/equipment_container.tscn" id="8_larhl"]
 [ext_resource type="Script" path="res://scripts/CustomTabContainer.gd" id="14_akpwt"]
 [ext_resource type="Texture2D" uid="uid://cwoycdemjcbuy" path="res://assets/window_icon/caracteristiques.png" id="15_wilnu"]
 [ext_resource type="Script" path="res://scripts/bars/PABar.gd" id="16_5fvw0"]
 [ext_resource type="Texture2D" uid="uid://bx13bnw5chi1h" path="res://assets/window_icon/sorts.png" id="16_og6sm"]
 [ext_resource type="Script" path="res://scripts/spell/SpellBar.gd" id="17_u3lho"]
-[ext_resource type="PackedScene" uid="uid://bxrrue1p1pso4" path="res://scenes/stats/stat.tscn" id="19_nbmq2"]
 [ext_resource type="Texture2D" uid="uid://0ujq6wd2dvfm" path="res://assets/common/window/window_green_background.jpg" id="20_5artd"]
-[ext_resource type="Texture2D" uid="uid://dc4kur4fk7phx" path="res://assets/common/block/block_border_scratch.png" id="21_qxst7"]
-[ext_resource type="Texture2D" uid="uid://cig7rslj0pse5" path="res://assets/common/separator/window_separator_green_horizontal.png" id="22_4r7qx"]
 [ext_resource type="Texture2D" uid="uid://dky7mxoyl8fbb" path="res://assets/hud/background_hud.png" id="22_8pyuk"]
 [ext_resource type="Texture2D" uid="uid://cakxs23d4ilwk" path="res://assets/window_icon/fight_info.png" id="22_tbr8n"]
 [ext_resource type="Texture2D" uid="uid://j4jxr7o1i7qw" path="res://assets/hud/icon_ap_empty.png" id="23_40x4y"]
-[ext_resource type="Texture2D" uid="uid://da6e0x4837igi" path="res://assets/stats/stat_icon/pdv.png" id="23_frhny"]
-[ext_resource type="Texture2D" uid="uid://ctdds4f63al2c" path="res://assets/common/separator/window_separator_black_horizontal.png" id="23_mx5v7"]
-[ext_resource type="PackedScene" uid="uid://dqj1wm0ekjsa5" path="res://scenes/buttons/reset_button.tscn" id="24_81sw2"]
 [ext_resource type="Texture2D" uid="uid://deep4ut0ypw6e" path="res://assets/hud/icon_ap_full.png" id="24_e76da"]
-[ext_resource type="Texture2D" uid="uid://co25oqvrnql2m" path="res://assets/stats/stat_icon/pa.png" id="25_d5cam"]
-[ext_resource type="Texture2D" uid="uid://dbuiotfaoy1xw" path="res://assets/stats/stat_icon/pm.png" id="26_s7870"]
+[ext_resource type="PackedScene" uid="uid://bxcvwsqptloar" path="res://scenes/stats/stats_container.tscn" id="24_ocgbs"]
+[ext_resource type="PackedScene" uid="uid://lce7lc5iumm6" path="res://scenes/spell/spells_container.tscn" id="25_8knwx"]
 [ext_resource type="PackedScene" uid="uid://coto2k3rtpqkd" path="res://scenes/window/window.tscn" id="30_7h6cu"]
 [ext_resource type="Texture2D" uid="uid://jps1sp7kid7q" path="res://assets/inventory/light_bg_inventory.png" id="33_x0at0"]
 [ext_resource type="PackedScene" uid="uid://dl2edw32vnxff" path="res://scenes/entity_container.tscn" id="34_gg5wd"]
@@ -52,34 +37,6 @@
 [ext_resource type="Script" path="res://scripts/bars/PMBar.gd" id="43_6xs84"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4qy8r"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gtnqv"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nfls5"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fss8n"]
-texture = ExtResource("5_ufvyq")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dlddm"]
-texture = ExtResource("6_bjtov")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bclgm"]
-texture = ExtResource("7_gobx1")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fac4o"]
-texture = ExtResource("20_5artd")
-expand_margin_top = 9.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2jn6r"]
-texture = ExtResource("21_qxst7")
-texture_margin_left = 15.0
-texture_margin_top = 10.0
-texture_margin_right = 15.0
-texture_margin_bottom = 10.0
-expand_margin_left = 5.0
-expand_margin_top = 5.0
-expand_margin_right = 5.0
-expand_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_grw1v"]
 texture = ExtResource("20_5artd")
@@ -103,34 +60,30 @@ outline_color = Color(0, 0, 0, 1)
 
 [node name="Main" type="Node"]
 
-[node name="StatsManager" type="Node" parent="." node_paths=PackedStringArray("stats_container", "points_label", "reset_button")]
+[node name="StatsManager" type="Node" parent="." node_paths=PackedStringArray("stats_container")]
 script = ExtResource("4_13j6f")
-stats_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/Caracteristiques/MarginContainer/StatsContainer")
-points_label = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/Caracteristiques/MarginContainer/StatsContainer/HBoxContainer/PointsContainer/MarginContainer/HBC/PointsLabel")
-reset_button = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/Caracteristiques/MarginContainer/StatsContainer/HBoxContainer/ResetButton")
+stats_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Stats")
 
-[node name="PlayerManager" type="Node" parent="." node_paths=PackedStringArray("xp_bar", "kamas_label", "inventory", "spell_container", "spell_bar", "hp_bar", "pa_bar", "pm_bar", "pdv_label", "pa_label", "pm_label", "console")]
+[node name="PlayerManager" type="Node" parent="." node_paths=PackedStringArray("spells_container", "stats_container", "xp_bar", "kamas_label", "inventory", "spell_bar", "hp_bar", "pa_bar", "pm_bar", "console")]
 unique_name_in_owner = true
 script = ExtResource("2_06gc8")
+spells_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Sorts")
+stats_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Stats")
 xp_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/ExperienceBar")
 kamas_label = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/KamasContainer/KamasLabel")
 inventory = NodePath("../GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory")
-spell_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Sorts/MarginContainer/ScrollContainer/VBoxContainer")
 spell_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/HBoxContainer/SpellBarContainer/SpellBar")
 hp_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/HPBar")
 pa_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/PABar")
 pm_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/PMBar")
-pdv_label = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer/PdV/Right/HPAmount")
-pa_label = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer/PA/Right/PAAmount")
-pm_label = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer/PM/Right/PMAmount")
-console = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Infos/MarginContainer/Console")
+console = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Infos/MarginContainer/Console")
 
 [node name="MonsterManager" type="Node" parent="."]
 script = ExtResource("1_iu0is")
 
 [node name="EquipmentManager" type="Node" parent="." node_paths=PackedStringArray("equipment_container")]
 script = ExtResource("3_nkpwv")
-equipment_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Window/MarginContainer/ScrollContainer/GridContainer")
+equipment_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer")
 
 [node name="RecipeManager" type="Node" parent="." node_paths=PackedStringArray("tab_container")]
 script = ExtResource("5_51m8x")
@@ -172,229 +125,17 @@ texture = ExtResource("2_5kihd")
 layout_mode = 2
 dragger_visibility = 1
 
-[node name="EquipmentContainer" type="Panel" parent="GUI/Main/HBC/LeftSide/VSplitContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxEmpty_gtnqv")
-
-[node name="MarginContainer" type="MarginContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 10
-
-[node name="Window" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer" instance=ExtResource("30_7h6cu")]
-layout_mode = 2
-size_flags_horizontal = 1
-size_flags_vertical = 3
-
-[node name="TextureRect" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Window"]
-layout_mode = 2
-texture = ExtResource("33_x0at0")
-
-[node name="MarginContainer" type="MarginContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Window"]
-layout_mode = 2
-theme_override_constants/margin_top = 5
-
-[node name="ScrollContainer" type="ScrollContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Window/MarginContainer"]
+[node name="EquipmentContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer" instance=ExtResource("8_larhl")]
 layout_mode = 2
 
-[node name="GridContainer" type="GridContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Window/MarginContainer/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 3
-columns = 3
-
-[node name="CoiffeSlot" type="Button" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Window/MarginContainer/ScrollContainer/GridContainer" groups=["equipment_slot"]]
-custom_minimum_size = Vector2(128, 128)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxEmpty_nfls5")
-theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
-
-[node name="TextureRect" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Window/MarginContainer/ScrollContainer/GridContainer/CoiffeSlot"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("10_8coe0")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="CapeSlot" type="Button" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Window/MarginContainer/ScrollContainer/GridContainer" groups=["equipment_slot"]]
-custom_minimum_size = Vector2(128, 128)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxEmpty_nfls5")
-theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
-
-[node name="TextureRect" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Window/MarginContainer/ScrollContainer/GridContainer/CapeSlot"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("8_wqctn")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="CeintureSlot" type="Button" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Window/MarginContainer/ScrollContainer/GridContainer" groups=["equipment_slot"]]
-custom_minimum_size = Vector2(128, 128)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxEmpty_nfls5")
-theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
-
-[node name="TextureRect" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Window/MarginContainer/ScrollContainer/GridContainer/CeintureSlot"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_tf78o")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="AmuletteSlot" type="Button" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Window/MarginContainer/ScrollContainer/GridContainer" groups=["equipment_slot"]]
-custom_minimum_size = Vector2(128, 128)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxEmpty_nfls5")
-theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
-
-[node name="TextureRect" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Window/MarginContainer/ScrollContainer/GridContainer/AmuletteSlot"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("9_xhasg")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="AnneauSlot" type="Button" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Window/MarginContainer/ScrollContainer/GridContainer" groups=["equipment_slot"]]
-custom_minimum_size = Vector2(128, 128)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxEmpty_nfls5")
-theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
-
-[node name="TextureRect" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Window/MarginContainer/ScrollContainer/GridContainer/AnneauSlot"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("11_qw2gl")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="AnneauSlot2" type="Button" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Window/MarginContainer/ScrollContainer/GridContainer" groups=["equipment_slot"]]
-custom_minimum_size = Vector2(128, 128)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxEmpty_nfls5")
-theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
-
-[node name="TextureRect" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Window/MarginContainer/ScrollContainer/GridContainer/AnneauSlot2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("11_qw2gl")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="ArmeSlot" type="Button" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Window/MarginContainer/ScrollContainer/GridContainer" groups=["equipment_slot"]]
-custom_minimum_size = Vector2(128, 128)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxEmpty_nfls5")
-theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
-
-[node name="TextureRect" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Window/MarginContainer/ScrollContainer/GridContainer/ArmeSlot"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("12_g87co")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="BottesSlot" type="Button" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Window/MarginContainer/ScrollContainer/GridContainer" groups=["equipment_slot"]]
-custom_minimum_size = Vector2(128, 128)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxEmpty_nfls5")
-theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
-
-[node name="TextureRect" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer/MarginContainer/Window/MarginContainer/ScrollContainer/GridContainer/BottesSlot"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("10_qkgqy")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="StatsContainer" type="VBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer"]
+[node name="VBC" type="VBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.5
 theme_override_constants/separation = 0
 
-[node name="TabBar" type="TabBar" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer"]
+[node name="TabBar" type="TabBar" parent="GUI/Main/HBC/LeftSide/VSplitContainer/VBC"]
 z_index = 1
 layout_mode = 2
 focus_mode = 0
@@ -408,471 +149,28 @@ tab_1/icon = ExtResource("16_og6sm")
 tab_2/title = "Infos"
 tab_2/icon = ExtResource("22_tbr8n")
 
-[node name="CustomTabContainer" type="TabContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer" node_paths=PackedStringArray("tab_bar")]
+[node name="CustomTabContainer" type="TabContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/VBC" node_paths=PackedStringArray("tab_bar")]
 layout_mode = 2
 size_flags_vertical = 3
 tabs_visible = false
 script = ExtResource("14_akpwt")
 tab_bar = NodePath("../TabBar")
 
-[node name="Stats" type="Panel" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer"]
+[node name="Stats" parent="GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer" instance=ExtResource("24_ocgbs")]
 layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 1.5
-theme_override_styles/panel = SubResource("StyleBoxTexture_fac4o")
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="ScrollContainer" type="ScrollContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer"]
-layout_mode = 2
-
-[node name="VBC" type="VBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer"]
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_constants/separation = 0
-
-[node name="StatsHeader" type="PanelContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC"]
-layout_mode = 2
-size_flags_vertical = 4
-
-[node name="Scratch" type="Panel" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_2jn6r")
-
-[node name="MarginContainer" type="MarginContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 10
-
-[node name="StatsContainer" type="VBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="PdV" type="HBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer"]
-layout_mode = 2
-
-[node name="Left" type="HBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer/PdV"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Icon" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer/PdV/Left"]
-layout_mode = 2
-size_flags_horizontal = 0
-texture = ExtResource("23_frhny")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="Space" type="Control" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer/PdV/Left"]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer/PdV/Left"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Points de vie (PV)"
-
-[node name="Right" type="HBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer/PdV"]
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-alignment = 2
-
-[node name="HPAmount" type="Label" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer/PdV/Right"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "0"
-horizontal_alignment = 2
-
-[node name="Space" type="Control" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer/PdV/Right"]
-custom_minimum_size = Vector2(10, 32)
-layout_mode = 2
-
-[node name="Separator" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer"]
-layout_mode = 2
-texture = ExtResource("23_mx5v7")
-
-[node name="PA" type="HBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer"]
-layout_mode = 2
-
-[node name="Left" type="HBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer/PA"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Icon" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer/PA/Left"]
-layout_mode = 2
-size_flags_horizontal = 0
-texture = ExtResource("25_d5cam")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="Space" type="Control" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer/PA/Left"]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer/PA/Left"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Points d'action (PA)"
-
-[node name="Right" type="HBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer/PA"]
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-alignment = 2
-
-[node name="PAAmount" type="Label" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer/PA/Right"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "0"
-horizontal_alignment = 2
-
-[node name="Space" type="Control" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer/PA/Right"]
-custom_minimum_size = Vector2(10, 32)
-layout_mode = 2
-
-[node name="Separator2" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer"]
-layout_mode = 2
-texture = ExtResource("23_mx5v7")
-
-[node name="PM" type="HBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer"]
-layout_mode = 2
-
-[node name="Left" type="HBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer/PM"]
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="Icon" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer/PM/Left"]
-layout_mode = 2
-size_flags_horizontal = 0
-texture = ExtResource("26_s7870")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="Space" type="Control" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer/PM/Left"]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer/PM/Left"]
-layout_mode = 2
-text = "Points de mouvement (PM)"
-
-[node name="Right" type="HBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer/PM"]
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-size_flags_horizontal = 10
-alignment = 2
-
-[node name="PMAmount" type="Label" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer/PM/Right"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "0"
-horizontal_alignment = 2
-
-[node name="Space" type="Control" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer/PM/Right"]
-custom_minimum_size = Vector2(10, 32)
-layout_mode = 2
-
-[node name="Separator" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC"]
-layout_mode = 2
-size_flags_vertical = 4
-texture = ExtResource("22_4r7qx")
-
-[node name="Caracteristiques" type="PanelContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC"]
-layout_mode = 2
-size_flags_vertical = 4
-
-[node name="Scratch" type="Panel" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/Caracteristiques"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_2jn6r")
-
-[node name="MarginContainer" type="MarginContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/Caracteristiques"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 10
-
-[node name="StatsContainer" type="VBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/Caracteristiques/MarginContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="Vitalite" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/Caracteristiques/MarginContainer/StatsContainer" instance=ExtResource("19_nbmq2")]
-layout_mode = 2
-
-[node name="Separator" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/Caracteristiques/MarginContainer/StatsContainer"]
-layout_mode = 2
-texture = ExtResource("23_mx5v7")
-
-[node name="Agilite" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/Caracteristiques/MarginContainer/StatsContainer" instance=ExtResource("19_nbmq2")]
-layout_mode = 2
-
-[node name="Separator2" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/Caracteristiques/MarginContainer/StatsContainer"]
-layout_mode = 2
-texture = ExtResource("23_mx5v7")
-
-[node name="Chance" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/Caracteristiques/MarginContainer/StatsContainer" instance=ExtResource("19_nbmq2")]
-layout_mode = 2
-
-[node name="Separator3" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/Caracteristiques/MarginContainer/StatsContainer"]
-layout_mode = 2
-texture = ExtResource("23_mx5v7")
-
-[node name="Force" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/Caracteristiques/MarginContainer/StatsContainer" instance=ExtResource("19_nbmq2")]
-layout_mode = 2
-
-[node name="Separator4" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/Caracteristiques/MarginContainer/StatsContainer"]
-layout_mode = 2
-texture = ExtResource("23_mx5v7")
-
-[node name="Intelligence" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/Caracteristiques/MarginContainer/StatsContainer" instance=ExtResource("19_nbmq2")]
-layout_mode = 2
-
-[node name="Separator5" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/Caracteristiques/MarginContainer/StatsContainer"]
-layout_mode = 2
-texture = ExtResource("23_mx5v7")
-
-[node name="Sagesse" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/Caracteristiques/MarginContainer/StatsContainer" instance=ExtResource("19_nbmq2")]
-layout_mode = 2
-
-[node name="PointsContainer" type="HBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/Caracteristiques/MarginContainer/StatsContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/Caracteristiques/MarginContainer/StatsContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="PointsContainer" type="PanelContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/Caracteristiques/MarginContainer/StatsContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="MarginContainer" type="MarginContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/Caracteristiques/MarginContainer/StatsContainer/HBoxContainer/PointsContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="HBC" type="HBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/Caracteristiques/MarginContainer/StatsContainer/HBoxContainer/PointsContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/Caracteristiques/MarginContainer/StatsContainer/HBoxContainer/PointsContainer/MarginContainer/HBC"]
-layout_mode = 2
-size_flags_horizontal = 2
-text = "Points à répartir :"
-
-[node name="Space" type="Control" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/Caracteristiques/MarginContainer/StatsContainer/HBoxContainer/PointsContainer/MarginContainer/HBC"]
-custom_minimum_size = Vector2(20, 0)
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="PointsLabel" type="Label" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/Caracteristiques/MarginContainer/StatsContainer/HBoxContainer/PointsContainer/MarginContainer/HBC"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "5"
-horizontal_alignment = 2
-
-[node name="Space" type="Control" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/Caracteristiques/MarginContainer/StatsContainer/HBoxContainer"]
-custom_minimum_size = Vector2(20, 0)
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="ResetButton" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/Caracteristiques/MarginContainer/StatsContainer/HBoxContainer" instance=ExtResource("24_81sw2")]
-layout_mode = 2
-size_flags_vertical = 4
-
-[node name="Separator2" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC"]
-layout_mode = 2
-size_flags_vertical = 4
-texture = ExtResource("22_4r7qx")
-
-[node name="StatsContainer" type="PanelContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC"]
-layout_mode = 2
-size_flags_vertical = 4
-
-[node name="Scratch" type="Panel" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsContainer"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_2jn6r")
-
-[node name="StatsDommages" type="MarginContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 10
-
-[node name="StatsContainer" type="VBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsContainer/StatsDommages"]
-layout_mode = 2
-alignment = 1
-
-[node name="Puissance" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsContainer/StatsDommages/StatsContainer" instance=ExtResource("19_nbmq2")]
-layout_mode = 2
-modifiable = false
-
-[node name="Separator" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsContainer/StatsDommages/StatsContainer"]
-layout_mode = 2
-texture = ExtResource("23_mx5v7")
-
-[node name="Dommages" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsContainer/StatsDommages/StatsContainer" instance=ExtResource("19_nbmq2")]
-layout_mode = 2
-modifiable = false
-
-[node name="Separator2" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsContainer/StatsDommages/StatsContainer"]
-layout_mode = 2
-texture = ExtResource("23_mx5v7")
-
-[node name="Critique" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsContainer/StatsDommages/StatsContainer" instance=ExtResource("19_nbmq2")]
-layout_mode = 2
-modifiable = false
-
-[node name="Separator3" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsContainer/StatsDommages/StatsContainer"]
-layout_mode = 2
-texture = ExtResource("23_mx5v7")
-
-[node name="Dommages Critiques" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsContainer/StatsDommages/StatsContainer" instance=ExtResource("19_nbmq2")]
-layout_mode = 2
-modifiable = false
-
-[node name="Separator4" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsContainer/StatsDommages/StatsContainer"]
-layout_mode = 2
-texture = ExtResource("23_mx5v7")
-
-[node name="Soin" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsContainer/StatsDommages/StatsContainer" instance=ExtResource("19_nbmq2")]
-layout_mode = 2
-modifiable = false
-
-[node name="Separator3" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC"]
-layout_mode = 2
-size_flags_vertical = 4
-texture = ExtResource("22_4r7qx")
-
-[node name="StatsContainer2" type="PanelContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC"]
-layout_mode = 2
-size_flags_vertical = 4
-
-[node name="Scratch" type="Panel" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsContainer2"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_2jn6r")
-
-[node name="StatsResistances" type="MarginContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsContainer2"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 10
-
-[node name="StatsContainer" type="VBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsContainer2/StatsResistances"]
-layout_mode = 2
-alignment = 1
-
-[node name="Résistance Air" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsContainer2/StatsResistances/StatsContainer" instance=ExtResource("19_nbmq2")]
-layout_mode = 2
-modifiable = false
-
-[node name="Separator6" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsContainer2/StatsResistances/StatsContainer"]
-layout_mode = 2
-texture = ExtResource("23_mx5v7")
-
-[node name="Résistance Eau" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsContainer2/StatsResistances/StatsContainer" instance=ExtResource("19_nbmq2")]
-layout_mode = 2
-modifiable = false
-
-[node name="Separator7" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsContainer2/StatsResistances/StatsContainer"]
-layout_mode = 2
-texture = ExtResource("23_mx5v7")
-
-[node name="Résistance Terre" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsContainer2/StatsResistances/StatsContainer" instance=ExtResource("19_nbmq2")]
-layout_mode = 2
-modifiable = false
-
-[node name="Separator8" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsContainer2/StatsResistances/StatsContainer"]
-layout_mode = 2
-texture = ExtResource("23_mx5v7")
-
-[node name="Résistance Feu" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsContainer2/StatsResistances/StatsContainer" instance=ExtResource("19_nbmq2")]
-layout_mode = 2
-modifiable = false
-
-[node name="Separator9" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsContainer2/StatsResistances/StatsContainer"]
-layout_mode = 2
-texture = ExtResource("23_mx5v7")
-
-[node name="Résistance Neutre" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsContainer2/StatsResistances/StatsContainer" instance=ExtResource("19_nbmq2")]
-layout_mode = 2
-modifiable = false
-
-[node name="Separator10" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsContainer2/StatsResistances/StatsContainer"]
-layout_mode = 2
-texture = ExtResource("23_mx5v7")
-
-[node name="Résistance retrait PA" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsContainer2/StatsResistances/StatsContainer" instance=ExtResource("19_nbmq2")]
-layout_mode = 2
-modifiable = false
-
-[node name="Separator11" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsContainer2/StatsResistances/StatsContainer"]
-layout_mode = 2
-texture = ExtResource("23_mx5v7")
-
-[node name="Résistance retrait PM" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsContainer2/StatsResistances/StatsContainer" instance=ExtResource("19_nbmq2")]
-layout_mode = 2
-modifiable = false
-
-[node name="Separator4" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC"]
-layout_mode = 2
-size_flags_vertical = 4
-texture = ExtResource("22_4r7qx")
-
-[node name="StatsContainer3" type="PanelContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC"]
-layout_mode = 2
-size_flags_vertical = 4
-
-[node name="Scratch" type="Panel" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsContainer3"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_2jn6r")
-
-[node name="StatsAutres" type="MarginContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsContainer3"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 10
-
-[node name="StatsContainer" type="VBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsContainer3/StatsAutres"]
-layout_mode = 2
-alignment = 1
-
-[node name="Invocations" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsContainer3/StatsAutres/StatsContainer" instance=ExtResource("19_nbmq2")]
-layout_mode = 2
-modifiable = false
-
-[node name="Separator13" type="TextureRect" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsContainer3/StatsAutres/StatsContainer"]
-layout_mode = 2
-texture = ExtResource("23_mx5v7")
-
-[node name="Prospection" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Stats/MarginContainer/ScrollContainer/VBC/StatsContainer3/StatsAutres/StatsContainer" instance=ExtResource("19_nbmq2")]
+[node name="Sorts" parent="GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer" instance=ExtResource("25_8knwx")]
+visible = false
 layout_mode = 2
-modifiable = false
 
-[node name="Sorts" type="Panel" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer"]
+[node name="Infos" type="Panel" parent="GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.5
 theme_override_styles/panel = SubResource("StyleBoxTexture_grw1v")
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Sorts"]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Infos"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -883,34 +181,7 @@ theme_override_constants/margin_left = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="ScrollContainer" type="ScrollContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Sorts/MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Sorts/MarginContainer/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Infos" type="Panel" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer"]
-visible = false
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 1.5
-theme_override_styles/panel = SubResource("StyleBoxTexture_grw1v")
-
-[node name="MarginContainer" type="MarginContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Infos"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="Console" parent="GUI/Main/HBC/LeftSide/VSplitContainer/StatsContainer/CustomTabContainer/Infos/MarginContainer" instance=ExtResource("34_t67ba")]
+[node name="Console" parent="GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Infos/MarginContainer" instance=ExtResource("34_t67ba")]
 unique_name_in_owner = true
 layout_mode = 2
 

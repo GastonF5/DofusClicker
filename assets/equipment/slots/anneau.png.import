@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bh6ulrqp0mskd"
-path="res://.godot/imported/tx_slot_cape.png-9240b0e36ffc218d7e8ff8f814251b72.ctex"
+uid="uid://jldvprwk734o"
+path="res://.godot/imported/anneau.png-55708c6749137d2063937b9d7394b075.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/equipment/slots/tx_slot_cape.png"
-dest_files=["res://.godot/imported/tx_slot_cape.png-9240b0e36ffc218d7e8ff8f814251b72.ctex"]
+source_file="res://assets/equipment/slots/anneau.png"
+dest_files=["res://.godot/imported/anneau.png-55708c6749137d2063937b9d7394b075.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bn7tw45whgwgg"
-path="res://.godot/imported/tx_slot_collar.png-4b0a63efeff85e58bf3dba68e254bed8.ctex"
+uid="uid://dubxhf73uvwcn"
+path="res://.godot/imported/ceinture.png-9c7122d65e4a6f7bfbb69a1e5576695b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/equipment/slots/tx_slot_collar.png"
-dest_files=["res://.godot/imported/tx_slot_collar.png-4b0a63efeff85e58bf3dba68e254bed8.ctex"]
+source_file="res://assets/equipment/slots/ceinture.png"
+dest_files=["res://.godot/imported/ceinture.png-9c7122d65e4a6f7bfbb69a1e5576695b.ctex"]
 
 [params]
 

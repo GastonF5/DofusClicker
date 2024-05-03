@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=8 format=3 uid="uid://b416wjxvfqawv"]
+
+[ext_resource type="Script" path="res://scripts/item/ItemResource.gd" id="1_5l8ra"]
+[ext_resource type="Script" path="res://scripts/equipment/EquipmentResource.gd" id="1_ybwbg"]
+[ext_resource type="Script" path="res://scripts/stats/StatResource.gd" id="2_6mg8f"]
+[ext_resource type="Texture2D" uid="uid://c0jlnsyr543pn" path="res://assets/equipment/arme/baton/boisaille.png" id="4_fcpne"]
+
+[sub_resource type="Resource" id="Resource_we3m4"]
+script = ExtResource("2_6mg8f")
+type = 5
+min_amount = 7
+max_amount = 10
+
+[sub_resource type="Resource" id="Resource_8k84p"]
+script = ExtResource("2_6mg8f")
+type = 24
+min_amount = 1
+max_amount = 1
+
+[sub_resource type="Resource" id="Resource_dlkov"]
+script = ExtResource("1_ybwbg")
+type = 6
+weapon_type = 2
+stats = Array[ExtResource("2_6mg8f")]([SubResource("Resource_we3m4"), SubResource("Resource_8k84p")])
+attack_type = 0
+min_attack = 7
+max_attack = 11
+
+[resource]
+script = ExtResource("1_5l8ra")
+name = "Bâton de Boisaille"
+texture = ExtResource("4_fcpne")
+count = 1
+equip_res = SubResource("Resource_dlkov")
+drop_rate = 0.0
