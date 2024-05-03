@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bfh3u8jwrg2ar"]
+[gd_scene load_steps=52 format=3 uid="uid://bfh3u8jwrg2ar"]
 
 [ext_resource type="Script" path="res://scripts/manager/MonsterManager.gd" id="1_iu0is"]
 [ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="2_4lqlq"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://cwoycdemjcbuy" path="res://assets/window_icon/caracteristiques.png" id="15_wilnu"]
 [ext_resource type="Script" path="res://scripts/bars/PABar.gd" id="16_5fvw0"]
 [ext_resource type="Texture2D" uid="uid://bx13bnw5chi1h" path="res://assets/window_icon/sorts.png" id="16_og6sm"]
+[ext_resource type="PackedScene" uid="uid://ijqxn7khforp" path="res://scenes/zone_peeker.tscn" id="17_tk01a"]
 [ext_resource type="Script" path="res://scripts/spell/SpellBar.gd" id="17_u3lho"]
 [ext_resource type="Texture2D" uid="uid://0ujq6wd2dvfm" path="res://assets/common/window/window_green_background.jpg" id="20_5artd"]
 [ext_resource type="Texture2D" uid="uid://dky7mxoyl8fbb" path="res://assets/hud/background_hud.png" id="22_8pyuk"]
@@ -24,10 +25,15 @@
 [ext_resource type="Texture2D" uid="uid://deep4ut0ypw6e" path="res://assets/hud/icon_ap_full.png" id="24_e76da"]
 [ext_resource type="PackedScene" uid="uid://bxcvwsqptloar" path="res://scenes/stats/stats_container.tscn" id="24_ocgbs"]
 [ext_resource type="PackedScene" uid="uid://lce7lc5iumm6" path="res://scenes/spell/spells_container.tscn" id="25_8knwx"]
+[ext_resource type="FontFile" uid="uid://duac7keqvubh2" path="res://assets/font/Tahoma Regular font.ttf" id="31_yvxwp"]
+[ext_resource type="Texture2D" uid="uid://clxiokh7y7tl6" path="res://assets/common/button/btn_greenLargeBorder_normal.png" id="32_jq77i"]
 [ext_resource type="PackedScene" uid="uid://dacg0tcpohas3" path="res://scenes/jobs/jobs_container.tscn" id="32_r5qps"]
 [ext_resource type="PackedScene" uid="uid://cuvrxfxt4hxgo" path="res://scenes/inventory/inventory_container.tscn" id="33_0jtqp"]
+[ext_resource type="Texture2D" uid="uid://bdtpetmi38ekm" path="res://assets/common/button/btn_greenLargeBorder_over.png" id="33_ssfk2"]
 [ext_resource type="PackedScene" uid="uid://dl2edw32vnxff" path="res://scenes/entity_container.tscn" id="34_gg5wd"]
 [ext_resource type="PackedScene" uid="uid://v3e3pddsya44" path="res://scenes/console.tscn" id="34_t67ba"]
+[ext_resource type="Texture2D" uid="uid://l5x41vqt4blf" path="res://assets/common/button/btn_greenLargeBorder_pressed.png" id="34_uav3t"]
+[ext_resource type="Texture2D" uid="uid://dne08ij0lq2cn" path="res://assets/common/button/btn_greenLargeBorder_disabled.png" id="35_61trk"]
 [ext_resource type="Texture2D" uid="uid://b58ukv8lwqg0b" path="res://assets/hud/hud_decoration.png" id="36_s7632"]
 [ext_resource type="Texture2D" uid="uid://cyj00xy3xeikq" path="res://assets/hud/icon_mp_empty.png" id="37_ka2rt"]
 [ext_resource type="Texture2D" uid="uid://cb1pye1b2nyyt" path="res://assets/hud/icon_mp_full.png" id="38_bm8jn"]
@@ -52,6 +58,18 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fempj"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nfdc8"]
+texture = ExtResource("32_jq77i")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fjntk"]
+texture = ExtResource("33_ssfk2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ohgqn"]
+texture = ExtResource("34_uav3t")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8bo48"]
+texture = ExtResource("35_61trk")
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vjwvv"]
 
 [node name="Main" type="Node"]
@@ -69,9 +87,9 @@ inventory_container = NodePath("../GUI/Main/HBC/RightSide/VSplitContainer/Invent
 xp_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/ExperienceBar")
 kamas_label = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/KamasContainer/KamasLabel")
 spell_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/HBoxContainer/SpellBarContainer/SpellBar")
-hp_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/HPBar")
-pa_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/PABar")
-pm_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/PMBar")
+hp_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/PVPAPMContainer/HPBar")
+pa_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/PVPAPMContainer/PABar")
+pm_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/PVPAPMContainer/PMBar")
 console = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Infos/MarginContainer/Console")
 
 [node name="MonsterManager" type="Node" parent="."]
@@ -202,6 +220,9 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_efp50")
 
+[node name="ZonePeeker" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel" instance=ExtResource("17_tk01a")]
+layout_mode = 2
+
 [node name="MonstersContainer" type="HBoxContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel"]
 layout_mode = 2
 size_flags_vertical = 4
@@ -227,6 +248,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="PlayerBarContainer" type="PanelContainer" parent="GUI/Main/HBC/MiddleContainer/VBC"]
+custom_minimum_size = Vector2(0, 160)
 layout_mode = 2
 size_flags_vertical = 8
 
@@ -322,13 +344,24 @@ layout_mode = 2
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_fempj")
 
-[node name="Decoration" type="TextureRect" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD"]
+[node name="PVPAPMContainer" type="Control" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD"]
 layout_mode = 1
-offset_right = 204.0
-offset_bottom = 84.0
-texture = ExtResource("36_s7632")
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 209.0
+grow_vertical = 2
 
-[node name="HPBar" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD" instance=ExtResource("40_5kut3")]
+[node name="Decoration" type="TextureRect" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/PVPAPMContainer"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 84.0
+grow_horizontal = 2
+texture = ExtResource("36_s7632")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="HPBar" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/PVPAPMContainer" instance=ExtResource("40_5kut3")]
 layout_mode = 1
 anchors_preset = 0
 anchor_left = 0.0
@@ -336,23 +369,23 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 0.0
-offset_top = -114.0
+offset_top = -110.0
 offset_right = 101.0
-offset_bottom = -29.0
+offset_bottom = -25.0
 grow_horizontal = 1
 grow_vertical = 1
 scale = Vector2(2, 2)
 
-[node name="PABar" type="TextureProgressBar" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD" node_paths=PackedStringArray("current_pa_label")]
+[node name="PABar" type="TextureProgressBar" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/PVPAPMContainer" node_paths=PackedStringArray("current_pa_label")]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 20.0
-offset_top = -9.5
-offset_right = 71.0
-offset_bottom = 39.5
-grow_vertical = 2
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -83.5
+offset_top = 53.0
+offset_right = -32.5
+offset_bottom = 102.0
+grow_horizontal = 2
 scale = Vector2(1.5, 1.5)
 size_flags_horizontal = 4
 fill_mode = 3
@@ -361,7 +394,7 @@ texture_progress = ExtResource("24_e76da")
 script = ExtResource("16_5fvw0")
 current_pa_label = NodePath("CurrentPALabel")
 
-[node name="CurrentPALabel" type="Label" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/PABar"]
+[node name="CurrentPALabel" type="Label" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/PVPAPMContainer/PABar"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -372,16 +405,16 @@ text = "6"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PMBar" type="TextureProgressBar" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD" node_paths=PackedStringArray("current_pm_label")]
+[node name="PMBar" type="TextureProgressBar" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/PVPAPMContainer" node_paths=PackedStringArray("current_pm_label")]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 114.0
-offset_top = -9.5
-offset_right = 165.0
-offset_bottom = 39.5
-grow_vertical = 2
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 1.5
+offset_top = 53.0
+offset_right = 52.5
+offset_bottom = 102.0
+grow_horizontal = 2
 scale = Vector2(1.5, 1.5)
 size_flags_horizontal = 4
 fill_mode = 3
@@ -390,7 +423,7 @@ texture_progress = ExtResource("38_bm8jn")
 script = ExtResource("43_6xs84")
 current_pm_label = NodePath("CurrentPMLabel")
 
-[node name="CurrentPMLabel" type="Label" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/PMBar"]
+[node name="CurrentPMLabel" type="Label" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/PVPAPMContainer/PMBar"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -400,6 +433,47 @@ grow_vertical = 2
 text = "6"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="StartFightButton" type="Button" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD"]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 214.0
+offset_top = 11.0
+offset_right = 504.0
+offset_bottom = 97.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("31_yvxwp")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxTexture_nfdc8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fjntk")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ohgqn")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_8bo48")
+text = "Lancer le combat"
+
+[node name="AutoStartFight" type="Control" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = 331.0
+offset_top = 100.0
+offset_right = 371.0
+offset_bottom = 140.0
+
+[node name="HBC" type="HBoxContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/AutoStartFight"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CheckBox" type="CheckBox" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/AutoStartFight/HBC"]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+
+[node name="Label" type="Label" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/AutoStartFight/HBC"]
+layout_mode = 2
+text = "Auto start fight"
 
 [node name="ExperienceBar" type="ProgressBar" parent="GUI/Main/HBC/MiddleContainer/VBC" node_paths=PackedStringArray("lvl_label")]
 custom_minimum_size = Vector2(0, 10)

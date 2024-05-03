@@ -2,6 +2,8 @@ class_name MonsterManager
 extends Node
 
 @onready var console: Console = $"%Console"
+var start_fight_button: Button
+var auto_start_fight_checkbox: CheckBox
 
 static var monsters = []
 
@@ -12,9 +14,24 @@ static var monsters_res: Array[MonsterResource] = []
 
 func _ready():
 	monsters_res = FileLoader.get_monster_resources()
+	start_fight_button = $"%StartFightButton"
+	auto_start_fight_checkbox = $"%AutoStartFight".get_node("HBC/CheckBox")
+	start_fight_button.button_up.connect(start_fight)
+
+
+func start_fight():
 	for i in 2:
 		instantiate_monster()
 	monsters = get_monsters_on_plates()
+	start_fight_button.disabled = true
+
+
+func end_fight():
+	for monster in monsters:
+		monster.queue_free()
+	monsters = []
+	start_fight_button.disabled = false
+	if auto_start_fight_checkbox.button_pressed: start_fight()
 
 
 func get_monsters_on_plates():
@@ -39,12 +56,7 @@ func _on_monster_dies(xp: int):
 	player_manager.kamas_label.text = str(int(player_manager.kamas_label.text) + randi_range(5, 10))
 	monsters = get_monsters_on_plates()
 	if monsters.filter(func(m): return !m.dying).is_empty():
-		for monster in monsters:
-			monster.queue_free()
-		monsters = []
-		for i in 2:
-			instantiate_monster()
-		monsters = get_monsters_on_plates()
+		end_fight()
 
 
 func _on_monster_selected(monster: Monster):
