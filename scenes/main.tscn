@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://bfh3u8jwrg2ar"]
+[gd_scene load_steps=42 format=3 uid="uid://bfh3u8jwrg2ar"]
 
 [ext_resource type="Script" path="res://scripts/manager/MonsterManager.gd" id="1_iu0is"]
 [ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="2_4lqlq"]
@@ -10,8 +10,6 @@
 [ext_resource type="Theme" uid="uid://ctf5aaqx8jyeo" path="res://resources/themes/experience_bar.tres" id="3_prl7k"]
 [ext_resource type="Script" path="res://scripts/manager/StatsManager.gd" id="4_13j6f"]
 [ext_resource type="Texture2D" uid="uid://brcl6cos3cake" path="res://assets/icons/icon_kama.png" id="4_jjqja"]
-[ext_resource type="PackedScene" uid="uid://coiey3idqo52l" path="res://scenes/inventory/inventory_slot.tscn" id="4_m4btg"]
-[ext_resource type="Script" path="res://scripts/inventory/Inventory.gd" id="5_6v3yu"]
 [ext_resource type="Script" path="res://scripts/manager/RecipeManager.gd" id="5_51m8x"]
 [ext_resource type="PackedScene" uid="uid://humcuoo3q2tn" path="res://scenes/equipment/equipment_container.tscn" id="8_larhl"]
 [ext_resource type="Script" path="res://scripts/CustomTabContainer.gd" id="14_akpwt"]
@@ -26,8 +24,8 @@
 [ext_resource type="Texture2D" uid="uid://deep4ut0ypw6e" path="res://assets/hud/icon_ap_full.png" id="24_e76da"]
 [ext_resource type="PackedScene" uid="uid://bxcvwsqptloar" path="res://scenes/stats/stats_container.tscn" id="24_ocgbs"]
 [ext_resource type="PackedScene" uid="uid://lce7lc5iumm6" path="res://scenes/spell/spells_container.tscn" id="25_8knwx"]
-[ext_resource type="PackedScene" uid="uid://coto2k3rtpqkd" path="res://scenes/window/window.tscn" id="30_7h6cu"]
-[ext_resource type="Texture2D" uid="uid://jps1sp7kid7q" path="res://assets/inventory/light_bg_inventory.png" id="33_x0at0"]
+[ext_resource type="PackedScene" uid="uid://dacg0tcpohas3" path="res://scenes/jobs/jobs_container.tscn" id="32_r5qps"]
+[ext_resource type="PackedScene" uid="uid://cuvrxfxt4hxgo" path="res://scenes/inventory/inventory_container.tscn" id="33_0jtqp"]
 [ext_resource type="PackedScene" uid="uid://dl2edw32vnxff" path="res://scenes/entity_container.tscn" id="34_gg5wd"]
 [ext_resource type="PackedScene" uid="uid://v3e3pddsya44" path="res://scenes/console.tscn" id="34_t67ba"]
 [ext_resource type="Texture2D" uid="uid://b58ukv8lwqg0b" path="res://assets/hud/hud_decoration.png" id="36_s7632"]
@@ -56,22 +54,20 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vjwvv"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j1ob6"]
-
 [node name="Main" type="Node"]
 
 [node name="StatsManager" type="Node" parent="." node_paths=PackedStringArray("stats_container")]
 script = ExtResource("4_13j6f")
 stats_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Stats")
 
-[node name="PlayerManager" type="Node" parent="." node_paths=PackedStringArray("spells_container", "stats_container", "xp_bar", "kamas_label", "inventory", "spell_bar", "hp_bar", "pa_bar", "pm_bar", "console")]
+[node name="PlayerManager" type="Node" parent="." node_paths=PackedStringArray("spells_container", "stats_container", "inventory_container", "xp_bar", "kamas_label", "spell_bar", "hp_bar", "pa_bar", "pm_bar", "console")]
 unique_name_in_owner = true
 script = ExtResource("2_06gc8")
 spells_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Sorts")
 stats_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Stats")
+inventory_container = NodePath("../GUI/Main/HBC/RightSide/VSplitContainer/InventoryContainer")
 xp_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/ExperienceBar")
 kamas_label = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/KamasContainer/KamasLabel")
-inventory = NodePath("../GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory")
 spell_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/HBoxContainer/SpellBarContainer/SpellBar")
 hp_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/HPBar")
 pa_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/PABar")
@@ -85,9 +81,9 @@ script = ExtResource("1_iu0is")
 script = ExtResource("3_nkpwv")
 equipment_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer")
 
-[node name="RecipeManager" type="Node" parent="." node_paths=PackedStringArray("tab_container")]
+[node name="RecipeManager" type="Node" parent="." node_paths=PackedStringArray("jobs_container")]
 script = ExtResource("5_51m8x")
-tab_container = NodePath("../GUI/Main/HBC/RightSide/VSplitContainer/JobsContainer/TabContainer")
+jobs_container = NodePath("../GUI/Main/HBC/RightSide/VSplitContainer/JobsContainer")
 
 [node name="Timers" type="Node" parent="."]
 
@@ -434,223 +430,10 @@ theme_override_constants/separation = 0
 theme_override_constants/autohide = 0
 collapsed = true
 
-[node name="JobsContainer" type="VBoxContainer" parent="GUI/Main/HBC/RightSide/VSplitContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-size_flags_stretch_ratio = 2.0
-theme_override_constants/separation = 0
-
-[node name="TabBar" type="TabBar" parent="GUI/Main/HBC/RightSide/VSplitContainer/JobsContainer"]
-z_index = 1
-layout_mode = 2
-size_flags_vertical = 0
-focus_mode = 0
-mouse_default_cursor_shape = 2
-tab_count = 3
-tab_alignment = 1
-tab_0/title = "Tailleur"
-tab_1/title = "Cordonnier"
-tab_2/title = "Bijoutier"
-
-[node name="TabContainer" type="TabContainer" parent="GUI/Main/HBC/RightSide/VSplitContainer/JobsContainer" node_paths=PackedStringArray("tab_bar")]
-layout_mode = 2
-size_flags_vertical = 3
-tabs_visible = false
-script = ExtResource("14_akpwt")
-tab_bar = NodePath("../TabBar")
-
-[node name="CordonnierPanel" type="Panel" parent="GUI/Main/HBC/RightSide/VSplitContainer/JobsContainer/TabContainer"]
+[node name="JobsContainer" parent="GUI/Main/HBC/RightSide/VSplitContainer" instance=ExtResource("32_r5qps")]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/Main/HBC/RightSide/VSplitContainer/JobsContainer/TabContainer/CordonnierPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="VBC" type="VBoxContainer" parent="GUI/Main/HBC/RightSide/VSplitContainer/JobsContainer/TabContainer/CordonnierPanel/MarginContainer"]
-layout_mode = 2
-
-[node name="Search" type="LineEdit" parent="GUI/Main/HBC/RightSide/VSplitContainer/JobsContainer/TabContainer/CordonnierPanel/MarginContainer/VBC" groups=["search_prompt"]]
-custom_minimum_size = Vector2(2.08165e-12, 40)
-layout_mode = 2
-placeholder_text = "Rechercher une recette"
-
-[node name="ScrollContainer" type="ScrollContainer" parent="GUI/Main/HBC/RightSide/VSplitContainer/JobsContainer/TabContainer/CordonnierPanel/MarginContainer/VBC"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="RecipeContainer" type="VBoxContainer" parent="GUI/Main/HBC/RightSide/VSplitContainer/JobsContainer/TabContainer/CordonnierPanel/MarginContainer/VBC/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="BijoutierPanel" type="Panel" parent="GUI/Main/HBC/RightSide/VSplitContainer/JobsContainer/TabContainer"]
-visible = false
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="GUI/Main/HBC/RightSide/VSplitContainer/JobsContainer/TabContainer/BijoutierPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="VBC" type="VBoxContainer" parent="GUI/Main/HBC/RightSide/VSplitContainer/JobsContainer/TabContainer/BijoutierPanel/MarginContainer"]
-layout_mode = 2
-
-[node name="Search" type="LineEdit" parent="GUI/Main/HBC/RightSide/VSplitContainer/JobsContainer/TabContainer/BijoutierPanel/MarginContainer/VBC" groups=["search_prompt"]]
-custom_minimum_size = Vector2(2.08165e-12, 40)
-layout_mode = 2
-placeholder_text = "Rechercher une recette"
-
-[node name="ScrollContainer" type="ScrollContainer" parent="GUI/Main/HBC/RightSide/VSplitContainer/JobsContainer/TabContainer/BijoutierPanel/MarginContainer/VBC"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="RecipeContainer" type="VBoxContainer" parent="GUI/Main/HBC/RightSide/VSplitContainer/JobsContainer/TabContainer/BijoutierPanel/MarginContainer/VBC/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="TailleurPanel" type="Panel" parent="GUI/Main/HBC/RightSide/VSplitContainer/JobsContainer/TabContainer"]
-visible = false
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="GUI/Main/HBC/RightSide/VSplitContainer/JobsContainer/TabContainer/TailleurPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="VBC" type="VBoxContainer" parent="GUI/Main/HBC/RightSide/VSplitContainer/JobsContainer/TabContainer/TailleurPanel/MarginContainer"]
-layout_mode = 2
-
-[node name="Search" type="LineEdit" parent="GUI/Main/HBC/RightSide/VSplitContainer/JobsContainer/TabContainer/TailleurPanel/MarginContainer/VBC" groups=["search_prompt"]]
-custom_minimum_size = Vector2(2.08165e-12, 40)
-layout_mode = 2
-placeholder_text = "Rechercher une recette"
-
-[node name="ScrollContainer" type="ScrollContainer" parent="GUI/Main/HBC/RightSide/VSplitContainer/JobsContainer/TabContainer/TailleurPanel/MarginContainer/VBC"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="RecipeContainer" type="VBoxContainer" parent="GUI/Main/HBC/RightSide/VSplitContainer/JobsContainer/TabContainer/TailleurPanel/MarginContainer/VBC/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="InventoryPanel" type="Panel" parent="GUI/Main/HBC/RightSide/VSplitContainer"]
-clip_contents = true
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 2.55
-theme_override_styles/panel = SubResource("StyleBoxTexture_j1ob6")
-
-[node name="MarginContainer" type="MarginContainer" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 10
-
-[node name="Window" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer" instance=ExtResource("30_7h6cu")]
-layout_mode = 2
-size_flags_horizontal = 1
-
-[node name="TextureRect" type="TextureRect" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window"]
-layout_mode = 2
-texture = ExtResource("33_x0at0")
-
-[node name="ScrollContainer" type="ScrollContainer" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Inventory" type="GridContainer" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/h_separation = 0
-theme_override_constants/v_separation = 0
-columns = 4
-script = ExtResource("5_6v3yu")
-
-[node name="InventorySlot" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot2" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot3" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot4" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot5" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot6" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot7" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot8" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot9" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot10" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot11" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot12" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot13" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot14" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot15" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot16" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot17" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot18" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot19" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
-layout_mode = 2
-
-[node name="InventorySlot20" parent="GUI/Main/HBC/RightSide/VSplitContainer/InventoryPanel/MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_m4btg")]
+[node name="InventoryContainer" parent="GUI/Main/HBC/RightSide/VSplitContainer" instance=ExtResource("33_0jtqp")]
 layout_mode = 2
 
 [node name="OverUI" type="CanvasLayer" parent="."]

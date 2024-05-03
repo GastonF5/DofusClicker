@@ -1,0 +1,108 @@
+[gd_scene load_steps=6 format=3 uid="uid://cuvrxfxt4hxgo"]
+
+[ext_resource type="PackedScene" uid="uid://coto2k3rtpqkd" path="res://scenes/window/window.tscn" id="1_kfm03"]
+[ext_resource type="Texture2D" uid="uid://jps1sp7kid7q" path="res://assets/inventory/light_bg_inventory.png" id="2_ye874"]
+[ext_resource type="Script" path="res://scripts/inventory/Inventory.gd" id="3_vq8sq"]
+[ext_resource type="PackedScene" uid="uid://coiey3idqo52l" path="res://scenes/inventory/inventory_slot.tscn" id="4_4f7ni"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j1ob6"]
+
+[node name="InventoryContainer" type="Panel"]
+clip_contents = true
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.55
+theme_override_styles/panel = SubResource("StyleBoxTexture_j1ob6")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 10
+
+[node name="Window" parent="MarginContainer" instance=ExtResource("1_kfm03")]
+layout_mode = 2
+size_flags_horizontal = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Window"]
+layout_mode = 2
+texture = ExtResource("2_ye874")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/Window"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Inventory" type="GridContainer" parent="MarginContainer/Window/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 4
+script = ExtResource("3_vq8sq")
+
+[node name="InventorySlot" parent="MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_4f7ni")]
+layout_mode = 2
+
+[node name="InventorySlot2" parent="MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_4f7ni")]
+layout_mode = 2
+
+[node name="InventorySlot3" parent="MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_4f7ni")]
+layout_mode = 2
+
+[node name="InventorySlot4" parent="MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_4f7ni")]
+layout_mode = 2
+
+[node name="InventorySlot5" parent="MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_4f7ni")]
+layout_mode = 2
+
+[node name="InventorySlot6" parent="MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_4f7ni")]
+layout_mode = 2
+
+[node name="InventorySlot7" parent="MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_4f7ni")]
+layout_mode = 2
+
+[node name="InventorySlot8" parent="MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_4f7ni")]
+layout_mode = 2
+
+[node name="InventorySlot9" parent="MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_4f7ni")]
+layout_mode = 2
+
+[node name="InventorySlot10" parent="MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_4f7ni")]
+layout_mode = 2
+
+[node name="InventorySlot11" parent="MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_4f7ni")]
+layout_mode = 2
+
+[node name="InventorySlot12" parent="MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_4f7ni")]
+layout_mode = 2
+
+[node name="InventorySlot13" parent="MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_4f7ni")]
+layout_mode = 2
+
+[node name="InventorySlot14" parent="MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_4f7ni")]
+layout_mode = 2
+
+[node name="InventorySlot15" parent="MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_4f7ni")]
+layout_mode = 2
+
+[node name="InventorySlot16" parent="MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_4f7ni")]
+layout_mode = 2
+
+[node name="InventorySlot17" parent="MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_4f7ni")]
+layout_mode = 2
+
+[node name="InventorySlot18" parent="MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_4f7ni")]
+layout_mode = 2
+
+[node name="InventorySlot19" parent="MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_4f7ni")]
+layout_mode = 2
+
+[node name="InventorySlot20" parent="MarginContainer/Window/ScrollContainer/Inventory" instance=ExtResource("4_4f7ni")]
+layout_mode = 2

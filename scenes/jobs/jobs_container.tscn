@@ -1,0 +1,120 @@
+[gd_scene load_steps=2 format=3 uid="uid://dacg0tcpohas3"]
+
+[ext_resource type="Script" path="res://scripts/CustomTabContainer.gd" id="1_hrp01"]
+
+[node name="JobsContainer" type="VBoxContainer"]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme_override_constants/separation = 0
+
+[node name="TabBar" type="TabBar" parent="."]
+z_index = 1
+layout_mode = 2
+size_flags_vertical = 0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+tab_count = 3
+tab_alignment = 1
+tab_0/title = "Tailleur"
+tab_1/title = "Cordonnier"
+tab_2/title = "Bijoutier"
+
+[node name="TabContainer" type="TabContainer" parent="." node_paths=PackedStringArray("tab_bar")]
+layout_mode = 2
+size_flags_vertical = 3
+tabs_visible = false
+script = ExtResource("1_hrp01")
+tab_bar = NodePath("../TabBar")
+
+[node name="CordonnierPanel" type="Panel" parent="TabContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/CordonnierPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBC" type="VBoxContainer" parent="TabContainer/CordonnierPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="Search" type="LineEdit" parent="TabContainer/CordonnierPanel/MarginContainer/VBC" groups=["search_prompt"]]
+custom_minimum_size = Vector2(2.08165e-12, 40)
+layout_mode = 2
+placeholder_text = "Rechercher une recette"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/CordonnierPanel/MarginContainer/VBC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RecipeContainer" type="VBoxContainer" parent="TabContainer/CordonnierPanel/MarginContainer/VBC/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BijoutierPanel" type="Panel" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/BijoutierPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBC" type="VBoxContainer" parent="TabContainer/BijoutierPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="Search" type="LineEdit" parent="TabContainer/BijoutierPanel/MarginContainer/VBC" groups=["search_prompt"]]
+custom_minimum_size = Vector2(2.08165e-12, 40)
+layout_mode = 2
+placeholder_text = "Rechercher une recette"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/BijoutierPanel/MarginContainer/VBC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RecipeContainer" type="VBoxContainer" parent="TabContainer/BijoutierPanel/MarginContainer/VBC/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TailleurPanel" type="Panel" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/TailleurPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBC" type="VBoxContainer" parent="TabContainer/TailleurPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="Search" type="LineEdit" parent="TabContainer/TailleurPanel/MarginContainer/VBC" groups=["search_prompt"]]
+custom_minimum_size = Vector2(2.08165e-12, 40)
+layout_mode = 2
+placeholder_text = "Rechercher une recette"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/TailleurPanel/MarginContainer/VBC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RecipeContainer" type="VBoxContainer" parent="TabContainer/TailleurPanel/MarginContainer/VBC/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3

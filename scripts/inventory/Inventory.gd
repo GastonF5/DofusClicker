@@ -7,10 +7,11 @@ static var slots = []
 signal item_entered_tree
 signal item_exiting_tree
 
-@onready var console: Console = $"%Console"
+var console: Console
 
 
 func _ready():
+	console = get_tree().current_scene.get_node("%Console")
 	for slot in get_children():
 		slots.append(slot)
 		connect_slot_signals(slot)

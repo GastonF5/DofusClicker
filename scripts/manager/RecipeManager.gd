@@ -2,7 +2,8 @@ class_name RecipeManager
 extends Node
 
 
-@export var tab_container: TabContainer
+@export var jobs_container: VBoxContainer
+var tab_container: TabContainer
 
 var recipe_container: VBoxContainer
 var search_prompt: LineEdit
@@ -15,10 +16,13 @@ const equip_type = EquipmentResource.Type
 var mouse_on_search = false
 
 @onready var console: Console = $"%Console"
-@onready var inventory: Inventory = $"%Inventory"
+var inventory: Inventory
 
 
 func _ready():
+	tab_container = jobs_container.get_node("TabContainer")
+	inventory = $"%PlayerManager".inventory
+	
 	on_job_tab_changed(tab_container.current_tab)
 	init_recipes()
 	for recipe in recipe_container.get_children():

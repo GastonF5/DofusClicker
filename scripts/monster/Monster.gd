@@ -33,7 +33,7 @@ static func instantiate(parent: Control) -> Monster:
 
 func init(res: MonsterResource):
 	player_manager = get_tree().current_scene.get_node("%PlayerManager")
-	inventory = get_tree().current_scene.get_node("%Inventory")
+	inventory = player_manager.inventory
 	init_caracteristiques(res.caracteristiques)
 	
 	name = res.name

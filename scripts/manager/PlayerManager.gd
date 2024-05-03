@@ -5,10 +5,11 @@ extends Node
 var spell_container: VBoxContainer
 @export var stats_container: Panel
 var pdv_label: Label
+@export var inventory_container: Panel
+var inventory: Inventory
 
 @export var xp_bar: ExperienceBar
 @export var kamas_label: Label
-@export var inventory: Inventory
 @export var spell_bar: SpellBar
 @export var hp_bar: HPBar
 @export var pa_bar: PABar
@@ -51,6 +52,7 @@ static var plates: Array[EntityContainer]
 func _ready():
 	spell_container = spells_container.get_node("%SpellContainer")
 	pdv_label = stats_container.get_node("%HPAmount")
+	inventory = inventory_container.get_node("%Inventory")
 	
 	SpellsService.console = console
 	SpellsService.tnode = $"/root/Main/Timers"
