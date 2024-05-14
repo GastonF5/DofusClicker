@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="SpellResource" load_steps=3 format=3 uid="uid://q4myh60a45lb"]
 
-[ext_resource type="Script" path="res://scripts/spell/SpellResource.gd" id="1_jlsqk"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_jlsqk"]
 [ext_resource type="Texture2D" uid="uid://ce76ie2exxoyn" path="res://assets/spells/ecaflip/chance_d_ecaflip.png" id="2_0tfbt"]
 
 [resource]

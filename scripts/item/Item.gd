@@ -1,8 +1,6 @@
 class_name Item
 extends DraggableControl
 
-const item_scene: PackedScene = preload("res://scenes/inventory/item.tscn")
-
 
 var count = 1:
 	set(value):
@@ -16,17 +14,29 @@ func _ready():
 	update_count_label()
 
 
+func _on_mouse_entered():
+	if !PlayerManager.dragged_item:
+		var item_description = PlayerManager.item_description
+		item_description.visible = true
+		item_description.init(resource, stats)
+
+
+func _on_mouse_exited():
+	if !PlayerManager.dragged_item:
+		PlayerManager.item_description.visible = false
+
+
 func init(item_res: ItemResource, _inventory: Inventory, _draggable = true):
-	var res = FileLoader.get_equipment_resource(item_res.resource_path)
-	name = res.name
-	self.texture = res.texture
+	#var res = FileLoader.get_equipment_resource(item_res.resource_path)
+	name = item_res.name
 	inventory = _inventory
-	resource = res
-	count = res.count
+	resource = item_res
+	self.texture = item_res.texture
+	count = item_res.count
 	draggable = _draggable
 	
-	if res.equip_res:
-		for stat in res.equip_res.stats:
+	if item_res.equip_res:
+		for stat in item_res.equip_res.stats:
 			var new_stat = stat.duplicate()
 			new_stat.init_amount()
 			stats.append(new_stat)
@@ -37,7 +47,7 @@ func update_count_label():
 
 
 static func create(item_res: ItemResource, _inventory: Inventory, _draggable = true) -> Item:
-	var item: Item = item_scene.instantiate()
+	var item: Item = FileLoader.get_packed_scene("inventory/item").instantiate()
 	item.init(item_res, _inventory, _draggable)
 	return item
 

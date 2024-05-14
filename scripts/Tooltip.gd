@@ -1,7 +1,6 @@
 extends PanelContainer
 class_name Tooltip
 
-static var tooltip_scene_path = "res://scenes/tooltip.tscn"
 
 @export var label: Label
 
@@ -31,7 +30,7 @@ func _on_mouse_exited_control():
 
 
 static func create(text: String, parent: Node, control_to_connect: Control) -> Tooltip:
-	var tooltip = load(tooltip_scene_path).instantiate()
+	var tooltip = FileLoader.get_packed_scene("tooltip").instantiate()
 	tooltip.init(control_to_connect)
 	tooltip.update_text(text)
 	parent.add_child(tooltip)

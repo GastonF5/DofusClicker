@@ -5,8 +5,8 @@ extends Control
 
 var old_parent: Button
 var drop_parent: Button
-var draggable = false
-var dragged = false:
+var draggable := false
+var dragged := false:
 	set(value):
 		dragged = value
 		if value:
@@ -17,13 +17,24 @@ var dragged = false:
 			PlayerManager.dragged_item = null
 
 var inventory: Inventory
-var initialized = false
+var initialized := false
+
+var mouse_on := false
 
 
 func _enter_tree():
 	if !initialized and draggable:
 		init_draggable()
 		initialized = true
+	if get_parent().get_groups().has("slot"):
+		get_parent().mouse_entered.connect(_on_mouse_entered)
+		get_parent().mouse_exited.connect(_on_mouse_exited)
+
+
+func _exit_tree():
+	if get_parent().get_groups().has("slot"):
+		get_parent().mouse_entered.disconnect(_on_mouse_entered)
+		get_parent().mouse_exited.disconnect(_on_mouse_exited)
 
 
 func init_draggable():
@@ -68,3 +79,11 @@ func change_parent():
 	inventory.add_item(self, drop_parent)
 	old_parent = null
 	drop_parent.button_down.connect(_on_button_down)
+
+
+func _on_mouse_entered():
+	mouse_on = true
+
+
+func _on_mouse_exited():
+	mouse_on = false

@@ -30,6 +30,15 @@ enum Type {
 	DO_TERRE,
 	DO_FEU,
 	DO_NEUTRE,
+	MAITRISE_ARME,
+	PUI_PIEGES,
+	DO_PIEGES,
+	EROSION,
+	RET_PA,
+	RET_PM,
+	DO_POU,
+	RES_POU,
+	RES_CRITIQUES
 }
 
 enum Element {
@@ -82,7 +91,10 @@ func init():
 	init_child_nodes()
 	type = Type.get(get_type_label())
 	icon_texture.texture = FileLoader.get_stat_asset(self)
-	label.text = name if !init_label else init_label
+	if init_label:
+		label.text = init_label
+	else:
+		label.text = name
 	init_tooltip()
 	update_tooltip()
 	add(0)
@@ -122,6 +134,10 @@ func check_modifiable():
 
 func add(_amount: int):
 	base_amount += _amount
+
+
+func set_base_amount(_amount: int):
+	base_amount = _amount
 
 
 func get_type() -> String:

@@ -12,7 +12,7 @@ var current_hp: int:
 			update()
 
 
-func init(max_hp: int):
+func init(max_hp: int, _first_init := true):
 	min_value = 0
 	max_value = max_hp
 	update_max_hp_label()

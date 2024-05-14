@@ -1,6 +1,7 @@
 class_name PlayerManager
 extends Node
 
+
 @export var spells_container: Panel
 var spell_container: VBoxContainer
 @export var stats_container: Panel
@@ -17,6 +18,7 @@ var inventory: Inventory
 
 @export var console: Console
 
+static var item_description: ItemDescription
 static var dragged_item: DraggableControl
 var max_pa: int:
 	set(value):
@@ -58,7 +60,7 @@ func _ready():
 	SpellsService.tnode = $"/root/Main/Timers"
 	StatsManager.console = console
 	
-	for spell_res in FileLoader.get_spell_resources("Ecaflip"):
+	for spell_res in $"../FileLoader".get_spell_resources("Ecaflip"):
 		var spell_description = FileLoader.get_packed_scene("spell/spell_description").instantiate()
 		spell_container.add_child(spell_description)
 		var spell = Spell.instantiate(spell_res, spell_description.get_node("HBC/SpellContainer"), false)
@@ -71,21 +73,23 @@ func _ready():
 		plates.append(entity_container)
 	selected_plate = plates[0]
 	
-	init_caracteristiques()
+	init_caracteristiques(50, 6, 3)
 	
 	xp_bar.init()
 	kamas_label.text = "0"
+	
+	create_item_description()
 
 
-func init_caracteristiques():
+func init_caracteristiques(hp: int, pa: int, pm: int):
 	# HP
-	max_hp = 50
+	max_hp = hp
 	hp_bar.init(max_hp)
 	# PA
-	max_pa = 6
+	max_pa = pa
 	pa_bar.init(max_pa)
 	# PM
-	max_pm = 3
+	max_pm = pm
 	pm_bar.init(max_pm)
 
 
@@ -137,7 +141,14 @@ func update_pdv():
 	hp_bar.update(hp_bar.current_hp, max_hp)
 
 func update_pa():
-	StatsManager.get_caracteristique_for_type(Caracteristique.Type.PA).add(max_pa)
+	StatsManager.get_caracteristique_for_type(Caracteristique.Type.PA).set_base_amount(max_pa)
 
 func update_pm():
-	StatsManager.get_caracteristique_for_type(Caracteristique.Type.PM).add(max_pm)
+	StatsManager.get_caracteristique_for_type(Caracteristique.Type.PM).set_base_amount(max_pm)
+
+
+func create_item_description():
+	item_description = FileLoader.get_packed_scene("item/item_description").instantiate()
+	item_description.visible = false
+	item_description.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	$"%DescriptionContainer".add_child(item_description)

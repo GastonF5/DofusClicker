@@ -8,9 +8,13 @@ class_name Monster
 @export var attack_amount: Label
 
 var resource: MonsterResource
+var grade: GradeResource
+var drops: Array[DropResource]
 
 var selected = false
 
+var is_drops_initialized = false
+signal drops_initialized
 
 func _ready():
 	for child in get_children(true):
@@ -34,7 +38,9 @@ static func instantiate(parent: Control) -> Monster:
 func init(res: MonsterResource):
 	player_manager = get_tree().current_scene.get_node("%PlayerManager")
 	inventory = player_manager.inventory
-	init_caracteristiques(res.caracteristiques)
+	grade = res.grades[randi_range(0, res.grades.size() - 1)]
+	drops = res.drops.duplicate()
+	init_caracteristiques(grade.characteristics)
 	
 	name = res.name
 	name_label.text = res.name
@@ -54,6 +60,8 @@ func init(res: MonsterResource):
 	attack_callable = attack
 	new_attack_timer()
 	update_timer()
+	
+	init_drops()
 
 
 func init_monster_caracteristiques():
@@ -79,14 +87,29 @@ func die():
 	drop()
 	hp_bar.value = hp_bar.min_value
 	get_parent().remove_child(self)
-	dies.emit(resource.xp_gain)
+	dies.emit(grade.xp)
 	queue_free()
 
 
 func drop():
-	for item_res in resource.drop:
-		if randf_range(0, 100) < item_res.drop_rate:
-			inventory.add_item(Item.create(item_res, inventory))
+	if !is_drops_initialized:
+		await drops_initialized
+	for _drop: DropResource in drops:
+		if _drop.object and randf_range(0, 100) < _drop.object.drop_rate:
+			inventory.add_item(Item.create(_drop.object, inventory))
+
+
+func init_drops():
+	var http_manager: API = get_tree().current_scene.get_node("API")
+	var drop_ids = resource.drops.map(func(d): return d.object_id)
+	var objects = await http_manager.get_resources_by_ids(drop_ids, API.ResourceType.ITEMS)
+	for _drop: DropResource in drops:
+		var matching_object = objects.filter(func(o): return o.id == _drop.object_id)
+		_drop.object = null if matching_object.size() == 0 else matching_object[0]
+		if _drop.object:
+			_drop.object.drop_rate = _drop.percent_drop
+	is_drops_initialized = true
+	drops_initialized.emit()
 
 
 func is_selected():

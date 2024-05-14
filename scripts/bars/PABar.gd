@@ -19,7 +19,7 @@ func init(mpa: int):
 	min_value = 0
 	max_value = 100
 	max_pa = mpa
-	current_pa = 0
+	current_pa = mpa
 	update(mpa, true)
 	step = 0.01
 

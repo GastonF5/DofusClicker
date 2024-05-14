@@ -12,3 +12,7 @@ func _ready():
 
 func _on_tab_bar_tab_changed(tab):
 	current_tab = tab
+
+
+func _on_tab_bar_active_tab_rearranged(idx_to):
+	move_child(get_child(current_tab), idx_to)

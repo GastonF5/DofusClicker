@@ -65,7 +65,7 @@ func item_match(recipe_item: ItemResource, inventory_items: Array):
 
 
 static func create(item_res: ItemResource, parent) -> Recipe:
-	var recipe = load("res://scenes/jobs/recipe.tscn").instantiate()
+	var recipe = FileLoader.get_packed_scene("jobs/recipe").instantiate()
 	parent.add_child(recipe)
 	recipe.init(item_res)
 	return recipe

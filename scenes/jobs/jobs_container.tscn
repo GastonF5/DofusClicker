@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://dacg0tcpohas3"]
+[gd_scene load_steps=9 format=3 uid="uid://dacg0tcpohas3"]
 
+[ext_resource type="Texture2D" uid="uid://c5pnk06ayib0j" path="res://assets/window_icon/tailleur.png" id="1_e44ds"]
 [ext_resource type="Script" path="res://scripts/CustomTabContainer.gd" id="1_hrp01"]
+[ext_resource type="Texture2D" uid="uid://10kiiskaock5" path="res://assets/window_icon/cordonnier.png" id="2_tbw3p"]
+[ext_resource type="Texture2D" uid="uid://vih7op5hhjk0" path="res://assets/window_icon/bijoutier.png" id="3_koocj"]
+[ext_resource type="Texture2D" uid="uid://c6cudfe180atn" path="res://assets/window_icon/faconneur.png" id="4_4l0uf"]
+[ext_resource type="Texture2D" uid="uid://c5vryhi7myfkr" path="res://assets/window_icon/forgeron.png" id="5_rwl5k"]
+[ext_resource type="Texture2D" uid="uid://c6y1nwfwwwhwa" path="res://assets/window_icon/sculpteur.png" id="6_b0vas"]
+[ext_resource type="Texture2D" uid="uid://b3aqa0jqlriwp" path="res://assets/window_icon/bricoleur.png" id="7_p3wxu"]
 
 [node name="JobsContainer" type="VBoxContainer"]
 size_flags_horizontal = 3
@@ -14,18 +21,62 @@ layout_mode = 2
 size_flags_vertical = 0
 focus_mode = 0
 mouse_default_cursor_shape = 2
-tab_count = 3
+tab_count = 7
 tab_alignment = 1
+drag_to_rearrange_enabled = true
 tab_0/title = "Tailleur"
+tab_0/icon = ExtResource("1_e44ds")
 tab_1/title = "Cordonnier"
+tab_1/icon = ExtResource("2_tbw3p")
 tab_2/title = "Bijoutier"
+tab_2/icon = ExtResource("3_koocj")
+tab_3/title = "Forgeron"
+tab_3/icon = ExtResource("5_rwl5k")
+tab_4/title = "Sculpteur"
+tab_4/icon = ExtResource("6_b0vas")
+tab_5/title = "Façonneur"
+tab_5/icon = ExtResource("4_4l0uf")
+tab_6/title = "Bricoleur"
+tab_6/icon = ExtResource("7_p3wxu")
 
 [node name="TabContainer" type="TabContainer" parent="." node_paths=PackedStringArray("tab_bar")]
 layout_mode = 2
 size_flags_vertical = 3
+current_tab = 1
 tabs_visible = false
 script = ExtResource("1_hrp01")
 tab_bar = NodePath("../TabBar")
+
+[node name="TailleurPanel" type="Panel" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/TailleurPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBC" type="VBoxContainer" parent="TabContainer/TailleurPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="Search" type="LineEdit" parent="TabContainer/TailleurPanel/MarginContainer/VBC" groups=["search_prompt"]]
+custom_minimum_size = Vector2(2.08165e-12, 40)
+layout_mode = 2
+placeholder_text = "Rechercher une recette"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/TailleurPanel/MarginContainer/VBC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RecipeContainer" type="VBoxContainer" parent="TabContainer/TailleurPanel/MarginContainer/VBC/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="CordonnierPanel" type="Panel" parent="TabContainer"]
 layout_mode = 2
@@ -88,11 +139,11 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TailleurPanel" type="Panel" parent="TabContainer"]
+[node name="ForgeronPanel" type="Panel" parent="TabContainer"]
 visible = false
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="TabContainer/TailleurPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/ForgeronPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -103,18 +154,113 @@ theme_override_constants/margin_left = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBC" type="VBoxContainer" parent="TabContainer/TailleurPanel/MarginContainer"]
+[node name="VBC" type="VBoxContainer" parent="TabContainer/ForgeronPanel/MarginContainer"]
 layout_mode = 2
 
-[node name="Search" type="LineEdit" parent="TabContainer/TailleurPanel/MarginContainer/VBC" groups=["search_prompt"]]
+[node name="Search" type="LineEdit" parent="TabContainer/ForgeronPanel/MarginContainer/VBC" groups=["search_prompt"]]
 custom_minimum_size = Vector2(2.08165e-12, 40)
 layout_mode = 2
 placeholder_text = "Rechercher une recette"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/TailleurPanel/MarginContainer/VBC"]
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/ForgeronPanel/MarginContainer/VBC"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="RecipeContainer" type="VBoxContainer" parent="TabContainer/TailleurPanel/MarginContainer/VBC/ScrollContainer"]
+[node name="RecipeContainer" type="VBoxContainer" parent="TabContainer/ForgeronPanel/MarginContainer/VBC/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="SculpteurPanel" type="Panel" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/SculpteurPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBC" type="VBoxContainer" parent="TabContainer/SculpteurPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="Search" type="LineEdit" parent="TabContainer/SculpteurPanel/MarginContainer/VBC" groups=["search_prompt"]]
+custom_minimum_size = Vector2(2.08165e-12, 40)
+layout_mode = 2
+placeholder_text = "Rechercher une recette"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/SculpteurPanel/MarginContainer/VBC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RecipeContainer" type="VBoxContainer" parent="TabContainer/SculpteurPanel/MarginContainer/VBC/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FaconneurPanel" type="Panel" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/FaconneurPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBC" type="VBoxContainer" parent="TabContainer/FaconneurPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="Search" type="LineEdit" parent="TabContainer/FaconneurPanel/MarginContainer/VBC" groups=["search_prompt"]]
+custom_minimum_size = Vector2(2.08165e-12, 40)
+layout_mode = 2
+placeholder_text = "Rechercher une recette"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/FaconneurPanel/MarginContainer/VBC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RecipeContainer" type="VBoxContainer" parent="TabContainer/FaconneurPanel/MarginContainer/VBC/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BricoleurPanel" type="Panel" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/BricoleurPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBC" type="VBoxContainer" parent="TabContainer/BricoleurPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="Search" type="LineEdit" parent="TabContainer/BricoleurPanel/MarginContainer/VBC" groups=["search_prompt"]]
+custom_minimum_size = Vector2(2.08165e-12, 40)
+layout_mode = 2
+placeholder_text = "Rechercher une recette"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/BricoleurPanel/MarginContainer/VBC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RecipeContainer" type="VBoxContainer" parent="TabContainer/BricoleurPanel/MarginContainer/VBC/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="active_tab_rearranged" from="TabBar" to="TabContainer" method="_on_tab_bar_active_tab_rearranged"]

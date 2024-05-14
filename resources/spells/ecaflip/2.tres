@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="SpellResource" load_steps=3 format=3 uid="uid://cfm12w1jjuosd"]
 
-[ext_resource type="Script" path="res://scripts/spell/SpellResource.gd" id="1_rq11w"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_rq11w"]
 [ext_resource type="Texture2D" uid="uid://c0wmchv6nx6fl" path="res://assets/spells/ecaflip/roue_de_la_fortune.png" id="2_huktk"]
 
 [resource]

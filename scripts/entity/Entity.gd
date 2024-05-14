@@ -1,7 +1,6 @@
 extends ClickableControl
 class_name Entity
 
-const taken_damage_scene_path = "res://scenes/taken_damage.tscn"
 const NO_CARAC_FOUND = "La caractéristique %s n'a pas été trouvée pour l'entité %s"
 
 var caracteristiques: Array[StatResource]
@@ -74,7 +73,7 @@ func take_damage(amount: int):
 
 
 func create_taken_damage(amount: int):
-	var taken_damage: TakenDamage = load(taken_damage_scene_path).instantiate()
+	var taken_damage: TakenDamage = FileLoader.get_packed_scene("taken_damage").instantiate()
 	get_parent().add_child(taken_damage)
 	taken_damage.init(amount)
 

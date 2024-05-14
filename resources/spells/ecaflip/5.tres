@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="SpellResource" load_steps=3 format=3 uid="uid://dak1npbphipav"]
 
-[ext_resource type="Script" path="res://scripts/spell/SpellResource.gd" id="1_p6h2q"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_p6h2q"]
 [ext_resource type="Texture2D" uid="uid://dppn5vmuk7yri" path="res://assets/spells/ecaflip/destin_d_ecaflip.png" id="2_8s1ar"]
 
 [resource]

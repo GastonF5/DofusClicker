@@ -1,0 +1,526 @@
+[gd_scene load_steps=54 format=3 uid="uid://bfh3u8jwrg2ar"]
+
+[ext_resource type="Script" path="res://scripts/HTTP.gd" id="1_7lg4o"]
+[ext_resource type="Script" path="res://scripts/manager/MonsterManager.gd" id="1_iu0is"]
+[ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="2_4lqlq"]
+[ext_resource type="Texture2D" uid="uid://dtp2ktsnvjk8w" path="res://assets/common/window/bg_product.jpg" id="2_5kihd"]
+[ext_resource type="Script" path="res://scripts/manager/PlayerManager.gd" id="2_06gc8"]
+[ext_resource type="Texture2D" uid="uid://cl71pm2t281ug" path="res://assets/icons/XPBonus5.png" id="3_btuyi"]
+[ext_resource type="Script" path="res://scripts/ExperienceBar.gd" id="3_ir03k"]
+[ext_resource type="Script" path="res://scripts/manager/EquipmentManager.gd" id="3_nkpwv"]
+[ext_resource type="Theme" uid="uid://ctf5aaqx8jyeo" path="res://resources/themes/experience_bar.tres" id="3_prl7k"]
+[ext_resource type="Script" path="res://scripts/manager/StatsManager.gd" id="4_13j6f"]
+[ext_resource type="Texture2D" uid="uid://brcl6cos3cake" path="res://assets/icons/icon_kama.png" id="4_jjqja"]
+[ext_resource type="Script" path="res://scripts/manager/RecipeManager.gd" id="5_51m8x"]
+[ext_resource type="PackedScene" uid="uid://humcuoo3q2tn" path="res://scenes/equipment/equipment_container.tscn" id="8_larhl"]
+[ext_resource type="Script" path="res://scripts/CustomTabContainer.gd" id="14_akpwt"]
+[ext_resource type="Texture2D" uid="uid://cwoycdemjcbuy" path="res://assets/window_icon/caracteristiques.png" id="15_wilnu"]
+[ext_resource type="Script" path="res://scripts/bars/PABar.gd" id="16_5fvw0"]
+[ext_resource type="Texture2D" uid="uid://bx13bnw5chi1h" path="res://assets/window_icon/sorts.png" id="16_og6sm"]
+[ext_resource type="PackedScene" uid="uid://ijqxn7khforp" path="res://scenes/zone_peeker.tscn" id="17_tk01a"]
+[ext_resource type="Script" path="res://scripts/spell/SpellBar.gd" id="17_u3lho"]
+[ext_resource type="Texture2D" uid="uid://0ujq6wd2dvfm" path="res://assets/common/window/window_green_background.jpg" id="20_5artd"]
+[ext_resource type="Texture2D" uid="uid://dky7mxoyl8fbb" path="res://assets/hud/background_hud.png" id="22_8pyuk"]
+[ext_resource type="Texture2D" uid="uid://cakxs23d4ilwk" path="res://assets/window_icon/fight_info.png" id="22_tbr8n"]
+[ext_resource type="Texture2D" uid="uid://j4jxr7o1i7qw" path="res://assets/hud/icon_ap_empty.png" id="23_40x4y"]
+[ext_resource type="Texture2D" uid="uid://deep4ut0ypw6e" path="res://assets/hud/icon_ap_full.png" id="24_e76da"]
+[ext_resource type="PackedScene" uid="uid://bxcvwsqptloar" path="res://scenes/stats/stats_container.tscn" id="24_ocgbs"]
+[ext_resource type="PackedScene" uid="uid://lce7lc5iumm6" path="res://scenes/spell/spells_container.tscn" id="25_8knwx"]
+[ext_resource type="FontFile" uid="uid://duac7keqvubh2" path="res://assets/font/Tahoma Regular font.ttf" id="31_yvxwp"]
+[ext_resource type="Texture2D" uid="uid://clxiokh7y7tl6" path="res://assets/common/button/btn_greenLargeBorder_normal.png" id="32_jq77i"]
+[ext_resource type="PackedScene" uid="uid://dacg0tcpohas3" path="res://scenes/jobs/jobs_container.tscn" id="32_r5qps"]
+[ext_resource type="PackedScene" uid="uid://cuvrxfxt4hxgo" path="res://scenes/inventory/inventory_container.tscn" id="33_0jtqp"]
+[ext_resource type="Texture2D" uid="uid://bdtpetmi38ekm" path="res://assets/common/button/btn_greenLargeBorder_over.png" id="33_ssfk2"]
+[ext_resource type="PackedScene" uid="uid://dl2edw32vnxff" path="res://scenes/entity_container.tscn" id="34_gg5wd"]
+[ext_resource type="PackedScene" uid="uid://v3e3pddsya44" path="res://scenes/console.tscn" id="34_t67ba"]
+[ext_resource type="Texture2D" uid="uid://l5x41vqt4blf" path="res://assets/common/button/btn_greenLargeBorder_pressed.png" id="34_uav3t"]
+[ext_resource type="Texture2D" uid="uid://dne08ij0lq2cn" path="res://assets/common/button/btn_greenLargeBorder_disabled.png" id="35_61trk"]
+[ext_resource type="Texture2D" uid="uid://b58ukv8lwqg0b" path="res://assets/hud/hud_decoration.png" id="36_s7632"]
+[ext_resource type="Texture2D" uid="uid://cyj00xy3xeikq" path="res://assets/hud/icon_mp_empty.png" id="37_ka2rt"]
+[ext_resource type="Texture2D" uid="uid://cb1pye1b2nyyt" path="res://assets/hud/icon_mp_full.png" id="38_bm8jn"]
+[ext_resource type="PackedScene" uid="uid://bkkjso0mm2nu4" path="res://scenes/hp_bar.tscn" id="40_5kut3"]
+[ext_resource type="Script" path="res://scripts/bars/PMBar.gd" id="43_6xs84"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4qy8r"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_grw1v"]
+texture = ExtResource("20_5artd")
+expand_margin_top = 9.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_efp50"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3iahd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_caw0r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_du4k8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vraqn"]
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fempj"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nfdc8"]
+texture = ExtResource("32_jq77i")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fjntk"]
+texture = ExtResource("33_ssfk2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ohgqn"]
+texture = ExtResource("34_uav3t")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8bo48"]
+texture = ExtResource("35_61trk")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vjwvv"]
+
+[node name="Main" type="Node"]
+
+[node name="HTTP" type="Node" parent="."]
+script = ExtResource("1_7lg4o")
+
+[node name="StatsManager" type="Node" parent="." node_paths=PackedStringArray("stats_container")]
+script = ExtResource("4_13j6f")
+stats_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Stats")
+
+[node name="PlayerManager" type="Node" parent="." node_paths=PackedStringArray("spells_container", "stats_container", "inventory_container", "xp_bar", "kamas_label", "spell_bar", "hp_bar", "pa_bar", "pm_bar", "console")]
+unique_name_in_owner = true
+script = ExtResource("2_06gc8")
+spells_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Sorts")
+stats_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Stats")
+inventory_container = NodePath("../GUI/Main/HBC/RightSide/VSplitContainer/InventoryContainer")
+xp_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/ExperienceBar")
+kamas_label = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/KamasContainer/KamasLabel")
+spell_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/HBoxContainer/SpellBarContainer/SpellBar")
+hp_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/PVPAPMContainer/HPBar")
+pa_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/PVPAPMContainer/PABar")
+pm_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/PVPAPMContainer/PMBar")
+console = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Infos/MarginContainer/Console")
+
+[node name="MonsterManager" type="Node" parent="."]
+script = ExtResource("1_iu0is")
+
+[node name="EquipmentManager" type="Node" parent="." node_paths=PackedStringArray("equipment_container")]
+script = ExtResource("3_nkpwv")
+equipment_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer")
+
+[node name="RecipeManager" type="Node" parent="." node_paths=PackedStringArray("jobs_container")]
+script = ExtResource("5_51m8x")
+jobs_container = NodePath("../GUI/Main/HBC/RightSide/VSplitContainer/JobsContainer")
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="Main" type="Control" parent="GUI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_4lqlq")
+
+[node name="HBC" type="HBoxContainer" parent="GUI/Main"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftSide" type="PanelContainer" parent="GUI/Main/HBC"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_4qy8r")
+
+[node name="LeftBackground" type="TextureRect" parent="GUI/Main/HBC/LeftSide"]
+clip_contents = true
+layout_mode = 2
+texture = ExtResource("2_5kihd")
+
+[node name="VSplitContainer" type="VSplitContainer" parent="GUI/Main/HBC/LeftSide"]
+layout_mode = 2
+dragger_visibility = 1
+
+[node name="EquipmentContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer" instance=ExtResource("8_larhl")]
+layout_mode = 2
+
+[node name="VBC" type="VBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.5
+theme_override_constants/separation = 0
+
+[node name="TabBar" type="TabBar" parent="GUI/Main/HBC/LeftSide/VSplitContainer/VBC"]
+z_index = 1
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+tab_count = 3
+tab_alignment = 1
+tab_0/title = "Caractéristiques"
+tab_0/icon = ExtResource("15_wilnu")
+tab_1/title = "Sorts"
+tab_1/icon = ExtResource("16_og6sm")
+tab_2/title = "Infos"
+tab_2/icon = ExtResource("22_tbr8n")
+
+[node name="CustomTabContainer" type="TabContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/VBC" node_paths=PackedStringArray("tab_bar")]
+layout_mode = 2
+size_flags_vertical = 3
+tabs_visible = false
+script = ExtResource("14_akpwt")
+tab_bar = NodePath("../TabBar")
+
+[node name="Stats" parent="GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer" instance=ExtResource("24_ocgbs")]
+layout_mode = 2
+
+[node name="Sorts" parent="GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer" instance=ExtResource("25_8knwx")]
+visible = false
+layout_mode = 2
+
+[node name="Infos" type="Panel" parent="GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.5
+theme_override_styles/panel = SubResource("StyleBoxTexture_grw1v")
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Infos"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Console" parent="GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Infos/MarginContainer" instance=ExtResource("34_t67ba")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="MiddleContainer" type="PanelContainer" parent="GUI/Main/HBC"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="MiddleBackground" type="TextureRect" parent="GUI/Main/HBC/MiddleContainer"]
+self_modulate = Color(0.439216, 0.439216, 0.439216, 1)
+clip_contents = true
+layout_mode = 2
+texture = ExtResource("2_5kihd")
+
+[node name="VBC" type="VBoxContainer" parent="GUI/Main/HBC/MiddleContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="MainPanel" type="PanelContainer" parent="GUI/Main/HBC/MiddleContainer/VBC"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_efp50")
+
+[node name="ZonePeeker" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel" instance=ExtResource("17_tk01a")]
+layout_mode = 2
+
+[node name="MonstersContainer" type="HBoxContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="Space" type="Control" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/MonstersContainer"]
+layout_mode = 2
+
+[node name="Container1" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/MonstersContainer" instance=ExtResource("34_gg5wd")]
+layout_mode = 2
+
+[node name="Container2" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/MonstersContainer" instance=ExtResource("34_gg5wd")]
+layout_mode = 2
+
+[node name="Container3" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/MonstersContainer" instance=ExtResource("34_gg5wd")]
+layout_mode = 2
+
+[node name="Container4" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/MonstersContainer" instance=ExtResource("34_gg5wd")]
+layout_mode = 2
+
+[node name="Space2" type="Control" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/MonstersContainer"]
+layout_mode = 2
+
+[node name="DescriptionContainer" type="PanelContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxEmpty_3iahd")
+
+[node name="PlayerBarContainer" type="PanelContainer" parent="GUI/Main/HBC/MiddleContainer/VBC"]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="PlayerBarBackground" type="TextureRect" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer"]
+layout_mode = 2
+texture = ExtResource("22_8pyuk")
+expand_mode = 5
+
+[node name="PlayerBarContainer" type="MarginContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Space" type="Control" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpellBarContainer" type="PanelContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_caw0r")
+
+[node name="SpellBar" type="GridContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/HBoxContainer/SpellBarContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 5
+script = ExtResource("17_u3lho")
+
+[node name="AspectRatioContainer" type="PanelContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_du4k8")
+
+[node name="XPContainer" type="HBoxContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Space" type="Control" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/XPContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="XPTexture" type="TextureRect" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/XPContainer"]
+layout_mode = 2
+texture = ExtResource("3_btuyi")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Space2" type="Control" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/XPContainer"]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+
+[node name="LvlLabel" type="Label" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/XPContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Nv. 1"
+
+[node name="KamasContainer" type="HBoxContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+alignment = 2
+
+[node name="KamasTexture" type="TextureRect" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/KamasContainer"]
+layout_mode = 2
+texture = ExtResource("4_jjqja")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="KamasLabel" type="Label" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/KamasContainer"]
+layout_mode = 2
+text = "5"
+label_settings = SubResource("LabelSettings_vraqn")
+
+[node name="Space" type="Control" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/KamasContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="HUD" type="Panel" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_fempj")
+
+[node name="PVPAPMContainer" type="Control" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 209.0
+grow_vertical = 2
+
+[node name="Decoration" type="TextureRect" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/PVPAPMContainer"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 84.0
+grow_horizontal = 2
+texture = ExtResource("36_s7632")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="HPBar" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/PVPAPMContainer" instance=ExtResource("40_5kut3")]
+layout_mode = 1
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = -110.0
+offset_right = 101.0
+offset_bottom = -25.0
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(2, 2)
+
+[node name="PABar" type="TextureProgressBar" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/PVPAPMContainer" node_paths=PackedStringArray("current_pa_label")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -83.5
+offset_top = 53.0
+offset_right = -32.5
+offset_bottom = 102.0
+grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
+size_flags_horizontal = 4
+fill_mode = 3
+texture_under = ExtResource("23_40x4y")
+texture_progress = ExtResource("24_e76da")
+script = ExtResource("16_5fvw0")
+current_pa_label = NodePath("CurrentPALabel")
+
+[node name="CurrentPALabel" type="Label" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/PVPAPMContainer/PABar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "6"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PMBar" type="TextureProgressBar" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/PVPAPMContainer" node_paths=PackedStringArray("current_pm_label")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 1.5
+offset_top = 53.0
+offset_right = 52.5
+offset_bottom = 102.0
+grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
+size_flags_horizontal = 4
+fill_mode = 3
+texture_under = ExtResource("37_ka2rt")
+texture_progress = ExtResource("38_bm8jn")
+script = ExtResource("43_6xs84")
+current_pm_label = NodePath("CurrentPMLabel")
+
+[node name="CurrentPMLabel" type="Label" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/PVPAPMContainer/PMBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "6"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartFightButton" type="Button" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD"]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 214.0
+offset_top = 11.0
+offset_right = 504.0
+offset_bottom = 97.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("31_yvxwp")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxTexture_nfdc8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fjntk")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ohgqn")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_8bo48")
+text = "Lancer le combat"
+
+[node name="AutoStartFight" type="Control" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = 331.0
+offset_top = 100.0
+offset_right = 371.0
+offset_bottom = 140.0
+
+[node name="HBC" type="HBoxContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/AutoStartFight"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CheckBox" type="CheckBox" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/AutoStartFight/HBC"]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+
+[node name="Label" type="Label" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/AutoStartFight/HBC"]
+layout_mode = 2
+text = "Auto start fight"
+
+[node name="ExperienceBar" type="ProgressBar" parent="GUI/Main/HBC/MiddleContainer/VBC" node_paths=PackedStringArray("lvl_label")]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+theme = ExtResource("3_prl7k")
+value = 50.0
+allow_greater = true
+show_percentage = false
+script = ExtResource("3_ir03k")
+lvl_label = NodePath("../PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/XPContainer/LvlLabel")
+
+[node name="RightSide" type="PanelContainer" parent="GUI/Main/HBC"]
+custom_minimum_size = Vector2(522, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vjwvv")
+
+[node name="RightBackground" type="TextureRect" parent="GUI/Main/HBC/RightSide"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_5kihd")
+flip_h = true
+
+[node name="VSplitContainer" type="VSplitContainer" parent="GUI/Main/HBC/RightSide"]
+layout_mode = 2
+theme_override_constants/separation = 0
+theme_override_constants/autohide = 0
+collapsed = true
+
+[node name="JobsContainer" parent="GUI/Main/HBC/RightSide/VSplitContainer" instance=ExtResource("32_r5qps")]
+layout_mode = 2
+
+[node name="InventoryContainer" parent="GUI/Main/HBC/RightSide/VSplitContainer" instance=ExtResource("33_0jtqp")]
+layout_mode = 2
+
+[node name="OverUI" type="CanvasLayer" parent="."]

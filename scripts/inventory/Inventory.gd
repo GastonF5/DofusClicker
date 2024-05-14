@@ -102,7 +102,7 @@ static func _on_mouse_exited_slot():
 
 
 func expand():
-	var slot_scene = load("res://scenes/inventory/inventory_slot.tscn")
+	var slot_scene = FileLoader.get_packed_scene("inventory/inventory_slot")
 	for i in range(4):
 		var slot = slot_scene.instantiate()
 		slots.append(slot)

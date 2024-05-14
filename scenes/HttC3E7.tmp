@@ -1,0 +1,266 @@
+[gd_scene load_steps=2 format=3 uid="uid://2yisonfumvpt"]
+
+[ext_resource type="Script" path="res://scripts/HTTPManager.gd" id="1_12kkh"]
+
+[node name="HTTPManager" type="Node"]
+script = ExtResource("1_12kkh")
+types = {
+1: "amulette",
+2: "arc",
+3: "baguette",
+4: "bâton",
+5: "dague",
+6: "épée",
+7: "marteau",
+8: "pelle",
+9: "anneau",
+10: "ceinture",
+11: "bottes",
+12: "potion",
+13: "parchemin_d'expérience",
+14: "objet_de_dons",
+15: "ressources_diverses",
+16: "chapeau",
+17: "cape",
+18: "familier",
+19: "hache",
+20: "outil",
+21: "pioche",
+22: "faux",
+23: "dofus",
+24: "divers",
+25: "document",
+26: "potion_de_forgemagie",
+27: "objet_de_mutation",
+28: "nourriture_boost",
+29: "bénédiction",
+30: "malédiction",
+31: "roleplay_buffs",
+32: "personnage_suiveur",
+33: "pain",
+34: "céréale",
+35: "fleur",
+36: "plante",
+37: "bière",
+38: "bois",
+39: "minerai",
+40: "alliage",
+41: "poisson",
+42: "friandise",
+43: "potion_de_téléportation",
+46: "fruit",
+47: "os",
+48: "poudre",
+49: "poisson_comestible",
+50: "pierre_précieuse",
+51: "pierre_brute",
+53: "plume",
+54: "poil",
+55: "étoffe",
+56: "cuir",
+57: "laine",
+58: "graine",
+59: "peau",
+60: "huile",
+61: "peluche",
+63: "viande",
+65: "queue",
+66: "métaria",
+68: "légume",
+69: "viande_comestible",
+70: "teinture",
+71: "matériel_d'alchimie",
+74: "fée_d'artifice",
+75: "parchemin_de_sortilège",
+76: "parchemin_de_caractéristique",
+78: "rune_de_forgemagie",
+79: "boisson",
+80: "objet_de_mission",
+82: "bouclier",
+83: "pierre_d'âme",
+84: "clef",
+85: "pierre_d'âme_pleine",
+87: "parchemin_de_recherche",
+88: "pierre_magique",
+89: "cadeau",
+93: "objet_d'élevage",
+94: "objet_utilisable",
+95: "planche",
+96: "écorce",
+97: "certificat_de_dragodinde",
+98: "racine",
+99: "filet_de_capture",
+100: "sac_de_ressources",
+103: "patte",
+104: "aile",
+105: "œuf",
+106: "oreille",
+107: "carapace",
+108: "bourgeon",
+109: "œil",
+110: "gelée",
+111: "coquille",
+112: "prisme",
+113: "objet_vivant",
+114: "arme_magique",
+119: "champignon",
+121: "montilier",
+125: "souvenir",
+126: "quêtes_principales",
+127: "quêtes_de_temple",
+128: "avis_de_recherche",
+129: "alignement",
+131: "événements",
+132: "archipel_de_vulkania",
+133: "astrub",
+136: "camps_des_bworks_et_des_gobelins",
+137: "cania",
+139: "île_de_frigost",
+140: "île_d'otomaï",
+141: "île_de_nowel",
+142: "incarnam",
+143: "montagne_des_koalaks",
+144: "pandala",
+146: "royaume_d'amakna",
+147: "krosmoz",
+148: "jetons",
+149: "île_de_moon",
+150: "îles_des_wabbits",
+151: "trophée",
+152: "galet",
+153: "nowel",
+154: "emballage",
+155: "sufokia",
+156: "almanax",
+157: "figurine",
+164: "vêtement",
+165: "potion_de_conquête",
+166: "mimibiote",
+167: "essence_de_gardien_de_donjon",
+168: "justiciers",
+169: "compagnon",
+171: "dimensions_divines",
+172: "coffre",
+173: "parchemin_d'attitude",
+174: "carte",
+175: "fragment_de_carte",
+176: "boîte_de_fragments",
+179: "préparation",
+183: "substrat",
+184: "conteneur",
+185: "sève",
+187: "viande_primitive",
+188: "parchemin_d'émoticônes",
+189: "orbe_de_forgemagie",
+190: "harnachements_de_dragodinde",
+195: "matériel_d'exploration",
+196: "certificat_de_muldo",
+197: "caution",
+198: "saharach",
+199: "costume",
+200: "parchemin_de_titre",
+201: "nimotopia",
+202: "sidimote",
+203: "objet_invisible",
+205: "tours_de_la_fratrie",
+206: "potion_de_monture",
+207: "certificat_de_volkorne",
+209: "nourriture_pour_familier",
+211: "rune_de_transcendance",
+213: "île_de_pwâk",
+214: "potion_d'attitude",
+215: "archipel_des_écailles",
+216: "bourse",
+217: "prysmaradite",
+218: "popoche_de_havre-sac",
+219: "ressources_des_songes",
+220: "eliocalypse",
+222: "parchemin_d'ornement",
+228: "liquide",
+229: "ressource_de_combat",
+230: "obsolète",
+231: "rabmablague",
+232: "haïku",
+233: "rune_astrale",
+236: "mots_de_haïku",
+241: "ressources_de_temporis",
+242: "atoll_des_possédés",
+245: "ressources_obsolètes",
+246: "chapeau_d'apparat",
+247: "cape_d'apparat",
+248: "bouclier_d'apparat",
+249: "familier_d'apparat",
+250: "montilier_d'apparat",
+251: "arme_d'apparat",
+252: "objet_d'apparat_divers",
+253: "cauchemar_des_ravageurs",
+254: "bonta_&_brakmar",
+255: "harnachements_de_muldo",
+256: "harnachements_de_volkorne",
+258: "gravure_de_forgemagie",
+259: "bouataklône",
+260: "forêt_maléfique",
+262: "matériel_de_mégaltération",
+266: "ressources_des_anomalies_temporelles",
+268: "expéditions",
+271: "lance",
+272: "archipel_de_valonia",
+273: "fers_de_percepteur",
+274: "cuirasses_de_percepteur",
+275: "bannière_de_percepteur",
+276: "poignards_de_percepteur",
+277: "tunique_de_percepteur",
+278: "ressources_de_percepteur",
+279: "coffres_de_percepteur",
+280: "sacoches_de_percepteur",
+284: "relique_d'incarnation",
+287: "porte-signe_de_compagnon",
+289: "idoles_de_quêtes",
+297: "globe_de_lumière",
+298: "générateur_de_montures"
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -51.0
+offset_top = -124.0
+offset_right = 51.0
+offset_bottom = -57.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Request"
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+custom_minimum_size = Vector2(500, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -151.0
+offset_top = -13.0
+offset_right = 149.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 75.0
+offset_top = -105.0
+offset_right = 142.063
+offset_bottom = -74.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="button_up" from="CanvasLayer/Button" to="." method="_on_button_button_up"]

@@ -13,7 +13,7 @@ static var monsters_res: Array[MonsterResource] = []
 
 
 func _ready():
-	monsters_res = FileLoader.get_monster_resources()
+	monsters_res = $"../FileLoader".get_monster_resources("monstres_des_champs_d'incarnam")
 	start_fight_button = $"%StartFightButton"
 	auto_start_fight_checkbox = $"%AutoStartFight".get_node("HBC/CheckBox")
 	start_fight_button.button_up.connect(start_fight)
@@ -32,6 +32,8 @@ func end_fight():
 	monsters = []
 	start_fight_button.disabled = false
 	if auto_start_fight_checkbox.button_pressed: start_fight()
+	var player_manager: PlayerManager = $"%PlayerManager"
+	player_manager.init_caracteristiques(player_manager.max_hp, player_manager.max_pa, player_manager.max_pm)
 
 
 func get_monsters_on_plates():

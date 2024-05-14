@@ -24,7 +24,7 @@ func _ready():
 	inventory = $"%PlayerManager".inventory
 	
 	on_job_tab_changed(tab_container.current_tab)
-	init_recipes()
+	#init_recipes()
 	for recipe in recipe_container.get_children():
 		recipes.append(recipe)
 	tab_container.tab_changed.connect(on_job_tab_changed)
@@ -60,7 +60,7 @@ func connect_search_prompt():
 func init_recipes():
 	var equip_types = equip_type.keys()
 	for type in equip_types:
-		var equips_res = FileLoader.get_equipment_resources(type)
+		var equips_res = $"../FileLoader".get_equipment_resources(type)
 		for res in equips_res:
 			if res.recipe != null:
 				var recipe = Recipe.create(res, get_parent_by_type(equip_type.get(type)))

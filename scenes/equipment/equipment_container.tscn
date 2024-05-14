@@ -65,7 +65,7 @@ size_flags_horizontal = 6
 size_flags_vertical = 3
 columns = 3
 
-[node name="CoiffeSlot" type="Button" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots" groups=["equipment_slot"]]
+[node name="CoiffeSlot" type="Button" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots" groups=["equipment_slot", "slot"]]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -87,7 +87,7 @@ texture = ExtResource("6_oucyv")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="CapeSlot" type="Button" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots" groups=["equipment_slot"]]
+[node name="CapeSlot" type="Button" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots" groups=["equipment_slot", "slot"]]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -109,7 +109,7 @@ texture = ExtResource("7_mlehr")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="CeintureSlot" type="Button" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots" groups=["equipment_slot"]]
+[node name="CeintureSlot" type="Button" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots" groups=["equipment_slot", "slot"]]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -131,7 +131,7 @@ texture = ExtResource("8_mjw8f")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="AmuletteSlot" type="Button" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots" groups=["equipment_slot"]]
+[node name="AmuletteSlot" type="Button" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots" groups=["equipment_slot", "slot"]]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -153,7 +153,7 @@ texture = ExtResource("9_o05gm")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="AnneauSlot" type="Button" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots" groups=["equipment_slot"]]
+[node name="AnneauSlot" type="Button" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots" groups=["equipment_slot", "slot"]]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -175,7 +175,7 @@ texture = ExtResource("10_1dqtj")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="AnneauSlot2" type="Button" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots" groups=["equipment_slot"]]
+[node name="AnneauSlot2" type="Button" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots" groups=["equipment_slot", "slot"]]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -197,7 +197,7 @@ texture = ExtResource("10_1dqtj")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="ArmeSlot" type="Button" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots" groups=["equipment_slot"]]
+[node name="ArmeSlot" type="Button" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots" groups=["equipment_slot", "slot"]]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -219,7 +219,7 @@ texture = ExtResource("11_qvbbn")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="BottesSlot" type="Button" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots" groups=["equipment_slot"]]
+[node name="BottesSlot" type="Button" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots" groups=["equipment_slot", "slot"]]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 size_flags_horizontal = 4

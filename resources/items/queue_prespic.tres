@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://c3xv8y67d3oms"]
-
-[ext_resource type="Script" path="res://scripts/item/ItemResource.gd" id="1_f58us"]
-[ext_resource type="Texture2D" uid="uid://cwqg8ethk7233" path="res://assets/items/queue_prespic.png" id="2_l1xe1"]
-
-[resource]
-script = ExtResource("1_f58us")
-name = "Queue de prespic"
-texture = ExtResource("2_l1xe1")

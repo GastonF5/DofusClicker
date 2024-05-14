@@ -1,7 +1,8 @@
 class_name FileLoader
+extends Node
 
 
-static func get_all_file_paths(path: String) -> Array[String]:
+func get_all_file_paths(path: String) -> Array[String]:
 	var file_paths: Array[String] = []
 	var dir = DirAccess.open(path)
 	if dir == null:
@@ -18,28 +19,28 @@ static func get_all_file_paths(path: String) -> Array[String]:
 	return file_paths
 
 
-static func get_monster_resources() -> Array[MonsterResource]:
-	var monster_resource_paths = FileLoader.get_all_file_paths("res://resources/monsters")
+func get_monster_resources(race: String) -> Array[MonsterResource]:
+	var monster_resource_paths = get_all_file_paths("res://resources/monsters/%s" % race)
 	var monsters_res: Array[MonsterResource] = []
 	for path in monster_resource_paths:
 		monsters_res.append(load(path))
 	return monsters_res
 
 
-static func get_equipment_resources(type: String) -> Array[ItemResource]:
-	var equipment_resource_paths = FileLoader.get_all_file_paths("res://resources/equipment/%s" % type.to_lower())
+func get_equipment_resources(type: String) -> Array[ItemResource]:
+	var equipment_resource_paths = get_all_file_paths("res://resources/equipment/%s" % type.to_lower())
 	var equips_res: Array[ItemResource] = []
 	for path in equipment_resource_paths:
 		equips_res.append(load(path))
 	return equips_res
 
 
-static func get_equipment_resource(path: String) -> ItemResource:
+func get_equipment_resource(path: String) -> ItemResource:
 	return load(path)
 
 
-static func get_spell_resources(_class: String) -> Array[SpellResource]:
-	var spell_asset_paths = FileLoader.get_all_file_paths("res://resources/spells/" + _class.to_lower())
+func get_spell_resources(_class: String) -> Array[SpellResource]:
+	var spell_asset_paths = get_all_file_paths("res://resources/spells/" + _class.to_lower())
 	var spells_res: Array[SpellResource] = []
 	spell_asset_paths.sort_custom(func(a, b): return int(a.get_file()[0]) < int(b.get_file()[0]))
 	for path in spell_asset_paths:
