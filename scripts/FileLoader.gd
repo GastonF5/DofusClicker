@@ -1,6 +1,15 @@
 class_name FileLoader
 
 
+const SPELL_RES_PATH := "res://resources/spells/"
+const SCENES_PATH := "res://scenes/"
+const STAT_ASSET_PATH := "res://assets/stats/stat_icon/"
+
+static var MONSTERS_PATH := "user://tmp/monsters/"
+static var EQUIPMENTS_PATH := "user://tmp/equipment/"
+static var ITEMS_PATH := "user://tmp/items/"
+
+
 static func get_all_file_paths(path: String) -> Array[String]:
 	var file_paths: Array[String] = []
 	var dir = DirAccess.open(path)
@@ -19,7 +28,7 @@ static func get_all_file_paths(path: String) -> Array[String]:
 
 
 static func get_monster_resources(race: String) -> Array[MonsterResource]:
-	var monster_resource_paths = get_all_file_paths("res://resources/monsters/%s" % race)
+	var monster_resource_paths = get_all_file_paths(MONSTERS_PATH + race)
 	var monsters_res: Array[MonsterResource] = []
 	for path in monster_resource_paths:
 		monsters_res.append(load(path))
@@ -27,7 +36,7 @@ static func get_monster_resources(race: String) -> Array[MonsterResource]:
 
 
 static func get_equipment_resources(type: String) -> Array[ItemResource]:
-	var equipment_resource_paths = get_all_file_paths("res://resources/equipment/%s" % type.to_lower())
+	var equipment_resource_paths = get_all_file_paths(EQUIPMENTS_PATH + type.to_lower())
 	var equips_res: Array[ItemResource] = []
 	for path in equipment_resource_paths:
 		equips_res.append(load(path))
@@ -39,7 +48,7 @@ static func get_equipment_resource(path: String) -> ItemResource:
 
 
 static func get_spell_resources(_class: String) -> Array[SpellResource]:
-	var spell_asset_paths = get_all_file_paths("res://resources/spells/" + _class.to_lower())
+	var spell_asset_paths = get_all_file_paths(SPELL_RES_PATH + _class.to_lower())
 	var spells_res: Array[SpellResource] = []
 	spell_asset_paths.sort_custom(func(a, b): return int(a.get_file()[0]) < int(b.get_file()[0]))
 	for path in spell_asset_paths:
@@ -48,11 +57,11 @@ static func get_spell_resources(_class: String) -> Array[SpellResource]:
 
 
 static func get_packed_scene(scene_path: String) -> PackedScene:
-	return load("res://scenes/%s.tscn" % scene_path)
+	return load(SCENES_PATH + "%s.tscn" % scene_path)
 
 
 static func get_stat_asset(stat: Caracteristique):
 	var stat_path = stat.get_type().to_lower()
 	if stat_path.begins_with("do_") and stat_path != "do_critiques":
 		stat_path = "res_" + stat_path.split("_")[1]
-	return load("res://assets/stats/stat_icon/%s.png" % stat_path)
+	return load(STAT_ASSET_PATH + "%s.png" % stat_path)
