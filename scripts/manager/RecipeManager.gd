@@ -15,13 +15,13 @@ const equip_type = EquipmentResource.Type
 
 var mouse_on_search = false
 
-@onready var console: Console = $"%Console"
+@onready var console: Console = $%Console
 var inventory: Inventory
 
 
 func _ready():
 	tab_container = jobs_container.get_node("TabContainer")
-	inventory = $"%PlayerManager".inventory
+	inventory = $%PlayerManager.inventory
 	
 	on_job_tab_changed(tab_container.current_tab)
 	#init_recipes()
@@ -60,7 +60,7 @@ func connect_search_prompt():
 func init_recipes():
 	var equip_types = equip_type.keys()
 	for type in equip_types:
-		var equips_res = $"../FileLoader".get_equipment_resources(type)
+		var equips_res = FileLoader.get_equipment_resources(type)
 		for res in equips_res:
 			if res.recipe != null:
 				var recipe = Recipe.create(res, get_parent_by_type(equip_type.get(type)))

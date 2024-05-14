@@ -7,7 +7,7 @@ const SLOT_TEXTURE_PATH = "res://assets/equipment/slots/%s.png"
 
 @export var equipment_container: Panel
 
-@onready var console: Console = $"%Console"
+@onready var console: Console = $%Console
 
 var slots = []
 

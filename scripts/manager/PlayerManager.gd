@@ -60,7 +60,7 @@ func _ready():
 	SpellsService.tnode = $"/root/Main/Timers"
 	StatsManager.console = console
 	
-	for spell_res in $"../FileLoader".get_spell_resources("Ecaflip"):
+	for spell_res in FileLoader.get_spell_resources("Ecaflip"):
 		var spell_description = FileLoader.get_packed_scene("spell/spell_description").instantiate()
 		spell_container.add_child(spell_description)
 		var spell = Spell.instantiate(spell_res, spell_description.get_node("HBC/SpellContainer"), false)
@@ -151,4 +151,4 @@ func create_item_description():
 	item_description = FileLoader.get_packed_scene("item/item_description").instantiate()
 	item_description.visible = false
 	item_description.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	$"%DescriptionContainer".add_child(item_description)
+	$%DescriptionContainer.add_child(item_description)

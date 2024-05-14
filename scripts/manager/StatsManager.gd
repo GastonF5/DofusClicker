@@ -66,7 +66,7 @@ func on_desequiped(item: Item):
 func apply_carac_bonus(type: Caracteristique.Type, amount: int):
 	match type:
 		stat_type.VITALITE:
-			$"%PlayerManager".max_hp += amount
+			$%PlayerManager.max_hp += amount
 		stat_type.CHANCE:
 			StatsManager.get_caracteristique_for_type(stat_type.PROSPECTION).add(amount)
 
@@ -89,7 +89,7 @@ func update_points_label():
 func on_lvl_up():
 	max_points += 5
 	points += 5
-	$"%PlayerManager".max_hp += 5
+	$%PlayerManager.max_hp += 5
 	update_points_label()
 
 

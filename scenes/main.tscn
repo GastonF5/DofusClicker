@@ -1,11 +1,10 @@
-[gd_scene load_steps=55 format=3 uid="uid://bfh3u8jwrg2ar"]
+[gd_scene load_steps=54 format=3 uid="uid://bfh3u8jwrg2ar"]
 
 [ext_resource type="PackedScene" uid="uid://2yisonfumvpt" path="res://scenes/API.tscn" id="1_0haij"]
 [ext_resource type="Script" path="res://scripts/manager/MonsterManager.gd" id="1_iu0is"]
 [ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="2_4lqlq"]
 [ext_resource type="Texture2D" uid="uid://dtp2ktsnvjk8w" path="res://assets/common/window/bg_product.jpg" id="2_5kihd"]
 [ext_resource type="Script" path="res://scripts/manager/PlayerManager.gd" id="2_06gc8"]
-[ext_resource type="Script" path="res://scripts/FileLoader.gd" id="2_gibe8"]
 [ext_resource type="Texture2D" uid="uid://cl71pm2t281ug" path="res://assets/icons/XPBonus5.png" id="3_btuyi"]
 [ext_resource type="Script" path="res://scripts/ExperienceBar.gd" id="3_ir03k"]
 [ext_resource type="Script" path="res://scripts/manager/EquipmentManager.gd" id="3_nkpwv"]
@@ -79,10 +78,6 @@ texture = ExtResource("35_61trk")
 [node name="Main" type="Node"]
 
 [node name="API" parent="." instance=ExtResource("1_0haij")]
-
-[node name="FileLoader" type="Node" parent="."]
-unique_name_in_owner = true
-script = ExtResource("2_gibe8")
 
 [node name="StatsManager" type="Node" parent="." node_paths=PackedStringArray("stats_container")]
 script = ExtResource("4_13j6f")

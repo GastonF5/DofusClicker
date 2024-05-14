@@ -24,7 +24,7 @@ var inventory: Inventory
 
 
 func _ready():
-	inventory = $"%PlayerManager".inventory
+	inventory = $%PlayerManager.inventory
 
 
 func _input(event):
@@ -109,7 +109,7 @@ func do_command(command: String, params: Array[String] = []):
 							pass
 		"add":
 			if params[0] == "equip":
-				var equip_res = %FileLoader.get_equipment_resource(EQUIPMENT_RESOURCE_PATH % params[1])
+				var equip_res = FileLoader.get_equipment_resource(EQUIPMENT_RESOURCE_PATH % params[1])
 				if equip_res:
 					inventory.add_item(Item.create(equip_res, inventory))
 				else:
