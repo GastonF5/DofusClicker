@@ -51,9 +51,9 @@ func init(res: MonsterResource):
 	
 	resource = res
 	if res.boss:
-		header_texture.texture = load("res://assets/ui/icons/boss.png")
+		header_texture.texture = load("res://assets/icons/boss.png")
 	elif res.archimonstre:
-		header_texture.texture = load("res://assets/ui/icons/archimonstre.png")
+		header_texture.texture = load("res://assets/icons/archimonstre.png")
 	else:
 		header_texture.texture = null
 	attack_amount.text = str(res.damage)

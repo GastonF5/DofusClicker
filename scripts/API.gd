@@ -21,7 +21,7 @@ enum ResourceType {
 }
 
 const API_SUFFIX = "https://api.beta.dofusdb.fr/"
-const IN_REQUEST = "id[$in][]=%d"
+const ID_IN_REQUEST = "id[$in][]=%d"
 
 const BAD_REQUEST := 4
 const INTERNAL_SERVER_ERROR := 500
@@ -37,7 +37,6 @@ var url_requested := ""
 var image_texture: ImageTexture
 
 @export var types: Dictionary
-var areas = [[0, "Amakna", 0], [1, "Île des Wabbits", 0], [2, "Île de Moon", 0], [3, "Prison de Madrestam", 0], [5, "Baie de Sufokia", 0], [6, "Forêt des Abraknydes", 0], [7, "Bonta", 0], [8, "Plaines de Cania", 0], [11, "Brâkmar", 0], [12, "Landes de Sidimote", 0], [15, "Foire du Trool", 0], [18, "Astrub", 0], [26, "Labyrinthe du Dragon Cochon", 0], [28, "Montagne des Koalaks", 0], [30, "Île du Minotoror", 0], [42, "Île de Nowel", 0], [45, "Incarnam", 3], [46, "Île d\'Otomaï", 0], [48, "Île de Frigost", 0], [49, "Île de Sakaï", 0], [50, "Archipel de Vulkania", 0], [51, "Îlots de la mer d\'Asse", 0], [52, "Convention", 4], [53, "Enutrosor", 5], [54, "Srambad", 5], [55, "Xélorium", 5], [56, "Zone privée", 0], [57, "Île de Rok", 0], [58, "Havres-Sacs", 0], [59, "Ecaflipus", 5], [60, "Domaine des fils d\'Ecaflip", 5], [61, "Saharach", 0], [62, "Nimotopia", 0], [63, "Profondeurs de Sufokia", 0], [64, "Externam", 8], [65, "Dimension Obscure", 9], [66, "Mode tactique", 0], [67, "Ingloriom", 5], [68, "Rêve du Monde des Douze", 6], [69, "Archipel des Écailles", 0], [70, "Destin du Monde", 0], [71, "Île de Pwâk", 0], [72, "Anomalies temporelles", 0], [73, "Horloge de Xélor", 5], [74, "Eliocalypse", 0], [75, "Profondeurs d\'Astrub", 0], [76, "Éther", 7], [77, "Centre du Monde", 0], [78, "Île de Pandala", 0], [79, "Île de Grobe", 0], [80, "Plan Astral", 6], [81, "Fleuve vers Externam", 6], [82, "Wukin et Wukang", 6], [83, "Gelaxième dimension", 9], [84, "Dimensions des Cavaliers", 9], [85, "Dimension Abyssale", 9], [86, "Atoll des Possédés", 0], [88, "Cauchemar des Ravageurs", 6], [91, "Tour des enclos", 0], [92, "Forêt Maléfique", 0], [93, "Archipel de Valonia", 0], [94, "Kolizéum", 0], [87, "Dimension Éphémère", 10]]
 var races = { -1: "Non classés", 0: "Invocations de classe", 2: "Bandits", 3: "Wabbits", 4: "Dragoeufs Immatures", 5: "Bworks d\'Amakna", 6: "Gobelins d\'Amakna", 7: "Gelées", 8: "Bêtes de la nuit", 9: "Bouftous", 10: "Plantes des champs", 11: "Larves", 12: "Kwaks", 13: "Craqueleurs", 16: "Porcos", 17: "Chafers", 18: "Dopeuls de Temple", 19: "Pnjs", 20: "Kannibouls de Moon", 21: "Dragodindes", 22: "Abraknydiens", 23: "Blops", 24: "Animaux des Champs", 25: "Sidimonstres", 26: "Gardes", 28: "Dopeuls", 30: "Brigandins", 31: "Gang de Sphincter Cell", 32: "Avis de recherche", 33: "Pious", 37: "Scarafeuilles", 38: "Araknes", 39: "Mulous", 40: "Tortues de Moon", 41: "Pirates de Moon", 43: "Monstres de la Jungle Interdite", 44: "Gadouilleux", 45: "Champas", 46: "Tofus", 47: "Vermines des champs", 48: "Monstres des marécages", 49: "Animaux de la forêt", 50: "Monstres de quête", 51: "Corbacs", 53: "Fantômes", 60: "Koalaks", 61: "Monstres des cavernes", 62: "Protecteurs des Céréales", 63: "Protecteurs des Minerais", 64: "Protecteurs des Arbres", 65: "Protecteurs des Poissons", 66: "Protecteurs des Plantes", 67: "Minos", 68: "Monstres de Nowel", 69: "Pichons", 71: "Herboricoles", 72: "Colonie du Magistral", 73: "Monstres des Tourbières", 74: "Florifaune obscure", 75: "Peuple de l\'Arbre", 76: "Pirates de l\'Arche d\'Otomaï", 77: "Zoths", 78: "Archimonstres", 79: "Boufmouths", 81: "Bestioles de la Bourgade", 82: "Faune des Pins Perdus", 83: "Mansots", 84: "Gloursons", 85: "Sulfurieux", 86: "Équipage du Grolandais", 87: "Bléros", 88: "Givrefoux", 89: "Sylvesprits", 90: "Avis de recherche de Frigost", 91: "Monstres de Quête de Frigost", 93: "Gobelins de Sakaï", 95: "Bombes", 96: "Monstres de Vulkania", 99: "Épouvantises", 100: "Invocations de Dopeuls", 102: "Fungus", 103: "Cuirassés", 104: "Monstres de Quête de Vulkania", 105: "Monstres de quête de Nowel", 106: "Armutins", 107: "Alchillusions", 108: "Brikoléreux", 109: "Sinistros", 110: "Invocations de monstre", 112: "Prismes d\'alliance", 113: "Monstres de l\'île de Kartonpath", 114: "Monstres de l\'archevêché", 116: "Monstres de quête d\'alignement", 117: "Mercemers", 118: "Monstres événementiels", 120: "Kanigs des Dents de Pierre", 121: "Obscuranti", 122: "Truches", 123: "Porkass", 124: "Phorreurs", 125: "Enutrofors", 126: "Koffrefors", 127: "Avis de recherche des Dimensions", 128: "Cour Sombre", 129: "Malveilleurs", 130: "Nécrotiques", 131: "Krobes", 132: "Égarés", 133: "Hordémons", 134: "Xélomorphes", 135: "Vilinsekts", 136: "Arak-haï", 137: "Chafers d\'Incarnam", 138: "Monstres du Temple Céleste", 139: "Monstres de quête d\'Incarnam", 140: "Feux spirituels", 141: "Bouftous d\'Incarnam", 142: "Monstres des champs d\'Incarnam", 143: "Chapardams", 144: "Gloots", 145: "Champignons d\'Incarnam", 147: "Avis de recherche alignés", 148: "Grand Jeu", 149: "Ecaflipuces", 150: "Matougarous", 152: "Monstres des ruines sous-marines", 153: "Trithons", 154: "Serviteurs de l\'indicible", 155: "Muldos Sauvages", 156: "Avis de recherche de Sufokia", 158: "Gliglis", 159: "Automates des Brigandins", 160: "Troolls de Litneg", 162: "Ruffians de Cania", 163: "Bworks de Cania", 166: "Animaux du désert", 167: "Cacterres", 168: "Vers des sables", 169: "Maudits", 171: "Chassouilleurs", 172: "Magik Riktus", 173: "Goules", 174: "Animalades", 175: "Brûlâmes", 176: "Calcinés", 177: "Submergés", 181: "Monstres des plages", 182: "Sidoas", 183: "Volkornes", 184: "Clan Martegel", 189: "Croquants", 190: "Waddicts", 191: "Gardiens des anomalies", 193: "Chocomanciens", 196: "Monstres de quête de l\'île de Pwâk", 199: "Invocations de classe : Osamodas", 201: "Dragoss", 202: "Dragoeufs Protecteurs", 203: "Crocodailles de Crocuzko", 204: "Invocations de classe : Enutrof", 206: "Invocations de classe : Pandawa", 207: "Invocations de classe : Ecaflip", 209: "Invocations de classe : Ouginak", 210: "Invocations de classe : Sadida", 211: "Invocations de classe : Féca", 212: "Invocations de classe : Eniripsa", 213: "Invocations de classe : Crâ", 215: "Asservis", 216: "Miséreux", 217: "Sanguinaires", 218: "Corrompus", 220: "Invocations de classe : Roublard", 221: "Invocations de classe : Steamer", 224: "Kwapa", 225: "Kozaru", 226: "Tanuki", 228: "Plantalas", 229: "Firefoux", 230: "Armée de brume", 231: "Yokai des Tombeaux", 232: "Yokianzhi de Papier", 233: "Yokianzhi d\'Encre", 236: "Possédés", 240: "Rats Brâkmariens", 241: "Rats Bontariens", 243: "Invocations Boufbowl", 245: "Malters", 192: "Gromorphes", 242: "Ravageurs", 250: "Poutch", 253: "World Boss", 194: "Brutomorphes", 195: "Brikomorphes", 256: "Rats Strubiens", 257: "Rats Maknéens", 258: "Bworks de Gisgoul", 259: "Grosses Larves", 260: "Monstres du repos", 261: "Koalaks mortels", 262: "Koalaks primitifs", 263: "Gawde du Wa", 264: "Wabbits mutants", 265: "Abraknydiens Sombres", 266: "Abraknydiens Irascibles", 267: "Gros Tofus", 268: "Mélomaniaques", 269: "Koalaks sauvages", 273: "Palmikos", 255: "Rebelles de la futaie", 270: "Protecteurs d\'Ephedrya", 274: "Marteaux-Aigris", 275: "Invocation de compagnon", 277: "Gardiens solitaires", 278: "Invocations de classe : Forgelance", 279: "Invocations de classe : Sacrieur", 280: "Invocations de classe : Iop", 281: "Invocations de classe : Huppermage", 282: "Invocations de classe : Xélor", 283: "Invocations de classe : Zobal", 284: "Invocations de classe : Eliotrope", 285: "Invocations communes", 222: "Invocations Temporis", 287: "Pirates naufragés", 306: "Monstres d\'évènement" }
 var super_types = [[1, "Amulette"], [2, "Arme"], [3, "Anneau"], [4, "Ceinture"], [5, "Bottes"], [6, "Consommable"], [7, "Bouclier"], [8, "Capture"], [9, "Ressource"], [10, "Chapeau"], [11, "Cape"]]
 var characteristics = [["PA", 1],
@@ -113,7 +112,7 @@ func create_http() -> HTTPRequest:
 func get_resources_by_ids(ids: Array, type: ResourceType) -> Array:
 	var url = API_SUFFIX + ResourceType.find_key(type).to_lower() + "?"
 	for id in ids:
-		url += IN_REQUEST % id
+		url += ID_IN_REQUEST % id
 		url += "&"
 	url = url.rstrip("&")
 	while !json_dict.has(url):
@@ -135,7 +134,33 @@ func get_resources_by_ids(ids: Array, type: ResourceType) -> Array:
 	for item in items:
 		item.texture = null if !json_dict.has(item.img_url) else json_dict[item.img_url]
 	json_dict.clear()
+	print("get items completed")
 	return items
+
+
+func get_monsters_by_area_id(area_id: int):
+	var url = API_SUFFIX + "monsters?&subareas=%d" % area_id
+	while !json_dict.has(url):
+		var http = request(url)
+		await http.request_completed
+		http.queue_free()
+	var monsters = [] as Array[MonsterResource]
+	var composite_signal = CompositeSignal.new()
+	var https = []
+	for data in json_dict[url]["data"]:
+		var monster = get_monster_resource(data)
+		monsters.append(monster)
+		var http_image = request(monster.image_url)
+		https.append(http_image)
+		composite_signal.add_signal(http_image.request_completed)
+	await composite_signal.finished
+	for h in https:
+		h.queue_free()
+	for monster in monsters:
+		monster.texture = null if !json_dict.has(monster.image_url) else json_dict[monster.image_url]
+	json_dict.clear()
+	print("get monsters completed")
+	return monsters
 
 
 func request(url: String):
@@ -230,7 +255,7 @@ func get_item_resource(data) -> ItemResource:
 			resource_saved.emit()
 			return
 		var res_name = data["name"]["fr"]
-		var image_url = data["imgset"][1]["url"]
+		var image_url = data["imgset"][0]["url"]
 		item_res.img_url = image_url
 		var type_id = data["typeId"] as int
 		var super_type_id = data["type"]["superTypeId"]
@@ -284,6 +309,8 @@ func get_monster_resource(data):
 	res.favorite_area = data["favoriteSubareaId"]
 	res.areas = data["subareas"]
 	
+	res.image_url = data["img"]
+	
 	res.grades = [] as Array[GradeResource]
 	for grade in data["grades"]:
 		var grade_res = GradeResource.create(grade["grade"], grade["monsterId"], grade["level"], grade["gradeXp"])
@@ -306,17 +333,12 @@ func get_monster_resource(data):
 	return res
 
 
-func save_resource(data, type: ResourceType):
-	if data:
-		var resource = resource_getter(type).call(data)
-		check_directory(resource, type)
-		resource.resource_path = "%s/%s.tres" % [get_dir_path(resource, type), resource.name.to_snake_case()]
-		ResourceSaver.save(resource)
-		resource_saved.emit()
-		print("saved resource")
-	else:
-		push_error("data is null")
-
+func save_resource(resource, type: ResourceType):
+	check_directory(resource, type)
+	resource.resource_path = "%s/%s.tres" % [get_dir_path(resource, type), resource.name.to_snake_case()]
+	ResourceSaver.save(resource)
+	resource_saved.emit()
+	print("saved resource")
 
 
 func get_dir_path(resource, type: ResourceType) -> String:
@@ -324,10 +346,10 @@ func get_dir_path(resource, type: ResourceType) -> String:
 	match type:
 		ResourceType.ITEMS:
 			if !(resource is ItemResource): push_error("wrong type of resource %s" % resource.name)
-			dir_path = "user://items/%s" % get_item_directory_path(resource.type, resource.super_type)
+			dir_path = FileLoader.ITEMS_PATH + get_item_directory_path(resource.type, resource.super_type)
 		ResourceType.MONSTERS:
 			if !(resource is MonsterResource): push_error("wrong type of resource %s" % resource.name)
-			dir_path = "user://monsters/%s" % resource.race.to_snake_case()
+			dir_path = FileLoader.MONSTERS_PATH
 	return dir_path
 
 

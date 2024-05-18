@@ -5,6 +5,8 @@ extends Node
 var start_fight_button: Button
 var auto_start_fight_checkbox: CheckBox
 
+var loading = false
+
 static var monsters = []
 
 signal monster_dies
@@ -13,10 +15,11 @@ static var monsters_res: Array[MonsterResource] = []
 
 
 func _ready():
-	monsters_res = FileLoader.get_monster_resources("monstres_des_champs_d'incarnam")
 	start_fight_button = $%StartFightButton
 	auto_start_fight_checkbox = $%AutoStartFight.get_node("HBC/CheckBox")
 	start_fight_button.button_up.connect(start_fight)
+	start_fight_button.disabled = true
+	#$%ZonePeeker.area_changed.connect(_on_area_changed)
 
 
 func start_fight():
@@ -63,3 +66,16 @@ func _on_monster_dies(xp: int):
 
 func _on_monster_selected(monster: Monster):
 	PlayerManager.selected_plate = monster.get_parent()
+
+
+#func _on_area_changed(area_id: int):
+	#loading = true
+	#DirAccess.remove_absolute(FileLoader.MONSTERS_PATH)
+	#start_fight_button.disabled = true
+	#var api: API = $%API
+	#var resources = await api.get_monsters_by_area_id(area_id)
+	#for res in resources:
+		#api.save_resource(res, API.ResourceType.MONSTERS)
+	#monsters_res = FileLoader.get_monster_resources()
+	#if !monsters_res.is_empty(): start_fight_button.disabled = false
+	#loading = false

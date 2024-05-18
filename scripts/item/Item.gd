@@ -47,7 +47,7 @@ func update_count_label():
 
 
 static func create(item_res: ItemResource, _inventory: Inventory, _draggable = true) -> Item:
-	var item: Item = FileLoader.get_packed_scene("inventory/item").instantiate()
+	var item: Item = FileLoader.get_packed_scene("item/item").instantiate()
 	item.init(item_res, _inventory, _draggable)
 	return item
 

@@ -5,13 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://blq7h4lvuwd65" path="res://assets/inventory/acceptDrop.png" id="3_1c2cq"]
 [ext_resource type="Texture2D" uid="uid://i4rmuxyvr6jx" path="res://assets/inventory/selected.png" id="4_uxnna"]
 [ext_resource type="Texture2D" uid="uid://btankjkc67hjv" path="res://assets/inventory/inventoryEmptySlot.png" id="5_qt0t8"]
-[ext_resource type="Texture2D" uid="uid://bsksxibr4yyo3" path="res://assets/equipment/slots/coiffe.png" id="6_oucyv"]
-[ext_resource type="Texture2D" uid="uid://bh6ulrqp0mskd" path="res://assets/equipment/slots/cape.png" id="7_mlehr"]
-[ext_resource type="Texture2D" uid="uid://dubxhf73uvwcn" path="res://assets/equipment/slots/ceinture.png" id="8_mjw8f"]
-[ext_resource type="Texture2D" uid="uid://bn7tw45whgwgg" path="res://assets/equipment/slots/amulette.png" id="9_o05gm"]
-[ext_resource type="Texture2D" uid="uid://jldvprwk734o" path="res://assets/equipment/slots/anneau.png" id="10_1dqtj"]
-[ext_resource type="Texture2D" uid="uid://63x2ud42mc3j" path="res://assets/equipment/slots/arme.png" id="11_qvbbn"]
-[ext_resource type="Texture2D" uid="uid://be4hokjlx1vux" path="res://assets/equipment/slots/bottes.png" id="12_n62lx"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gtnqv"]
 
@@ -25,6 +18,27 @@ texture = ExtResource("4_uxnna")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bclgm"]
 texture = ExtResource("5_qt0t8")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5rdi7"]
+load_path = "res://.godot/imported/coiffe.png-da76896f587a64ec9af0fd0ce30a9a97.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qx552"]
+load_path = "res://.godot/imported/cape.png-c5a8b82af23664b6906e2eaf6058d416.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kfb0r"]
+load_path = "res://.godot/imported/ceinture.png-9c7122d65e4a6f7bfbb69a1e5576695b.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_d5iiu"]
+load_path = "res://.godot/imported/amulette.png-01e9c564e7ce60bdfb9befa4bbe4b5a5.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_r48ef"]
+load_path = "res://.godot/imported/anneau.png-55708c6749137d2063937b9d7394b075.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oifpc"]
+load_path = "res://.godot/imported/arme.png-ebd396828b760343dd8b0f710d60b55f.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rykht"]
+load_path = "res://.godot/imported/bottes.png-46242090df264b980838c2242279b864.ctex"
 
 [node name="EquipmentContainer" type="Panel"]
 size_flags_vertical = 3
@@ -83,7 +97,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("6_oucyv")
+texture = SubResource("CompressedTexture2D_5rdi7")
 expand_mode = 3
 stretch_mode = 5
 
@@ -105,7 +119,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("7_mlehr")
+texture = SubResource("CompressedTexture2D_qx552")
 expand_mode = 3
 stretch_mode = 5
 
@@ -127,7 +141,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("8_mjw8f")
+texture = SubResource("CompressedTexture2D_kfb0r")
 expand_mode = 3
 stretch_mode = 5
 
@@ -149,7 +163,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("9_o05gm")
+texture = SubResource("CompressedTexture2D_d5iiu")
 expand_mode = 3
 stretch_mode = 5
 
@@ -171,7 +185,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("10_1dqtj")
+texture = SubResource("CompressedTexture2D_r48ef")
 expand_mode = 3
 stretch_mode = 5
 
@@ -193,7 +207,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("10_1dqtj")
+texture = SubResource("CompressedTexture2D_r48ef")
 expand_mode = 3
 stretch_mode = 5
 
@@ -215,7 +229,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("11_qvbbn")
+texture = SubResource("CompressedTexture2D_oifpc")
 expand_mode = 3
 stretch_mode = 5
 
@@ -237,6 +251,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("12_n62lx")
+texture = SubResource("CompressedTexture2D_rykht")
 expand_mode = 3
 stretch_mode = 5

@@ -27,8 +27,8 @@ static func get_all_file_paths(path: String) -> Array[String]:
 	return file_paths
 
 
-static func get_monster_resources(race: String) -> Array[MonsterResource]:
-	var monster_resource_paths = get_all_file_paths(MONSTERS_PATH + race)
+static func get_monster_resources() -> Array[MonsterResource]:
+	var monster_resource_paths = get_all_file_paths(MONSTERS_PATH)
 	var monsters_res: Array[MonsterResource] = []
 	for path in monster_resource_paths:
 		monsters_res.append(load(path))

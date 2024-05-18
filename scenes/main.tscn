@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://cwoycdemjcbuy" path="res://assets/window_icon/caracteristiques.png" id="15_wilnu"]
 [ext_resource type="Script" path="res://scripts/bars/PABar.gd" id="16_5fvw0"]
 [ext_resource type="Texture2D" uid="uid://bx13bnw5chi1h" path="res://assets/window_icon/sorts.png" id="16_og6sm"]
-[ext_resource type="PackedScene" uid="uid://ijqxn7khforp" path="res://scenes/zone_peeker.tscn" id="17_tk01a"]
+[ext_resource type="PackedScene" uid="uid://ijqxn7khforp" path="res://scenes/area_peeker.tscn" id="17_tk01a"]
 [ext_resource type="Script" path="res://scripts/spell/SpellBar.gd" id="17_u3lho"]
 [ext_resource type="Texture2D" uid="uid://0ujq6wd2dvfm" path="res://assets/common/window/window_green_background.jpg" id="20_5artd"]
 [ext_resource type="Texture2D" uid="uid://dky7mxoyl8fbb" path="res://assets/hud/background_hud.png" id="22_8pyuk"]
@@ -78,6 +78,7 @@ texture = ExtResource("35_61trk")
 [node name="Main" type="Node"]
 
 [node name="API" parent="." instance=ExtResource("1_0haij")]
+unique_name_in_owner = true
 
 [node name="StatsManager" type="Node" parent="." node_paths=PackedStringArray("stats_container")]
 script = ExtResource("4_13j6f")
@@ -226,7 +227,9 @@ size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_efp50")
 
 [node name="ZonePeeker" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel" instance=ExtResource("17_tk01a")]
+unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 0
 
 [node name="MonstersContainer" type="HBoxContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel"]
 layout_mode = 2

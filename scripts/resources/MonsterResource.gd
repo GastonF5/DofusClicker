@@ -8,6 +8,7 @@ extends Resource
 @export var race: String
 
 @export var texture: Texture2D
+@export var image_url: String
 
 @export var xp_gain: int
 @export var damage: int
