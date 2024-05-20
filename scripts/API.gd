@@ -21,7 +21,9 @@ enum ResourceType {
 }
 
 const API_SUFFIX = "https://api.beta.dofusdb.fr/"
-const ID_IN_REQUEST = "id[$in][]=%d"
+
+const IN_REQUEST = "%s[$in][]=%s"
+const SELECT_REQUEST = "select[]=%s"
 
 const BAD_REQUEST := 4
 const INTERNAL_SERVER_ERROR := 500
@@ -112,7 +114,7 @@ func create_http() -> HTTPRequest:
 func get_resources_by_ids(ids: Array, type: ResourceType) -> Array:
 	var url = API_SUFFIX + ResourceType.find_key(type).to_lower() + "?"
 	for id in ids:
-		url += ID_IN_REQUEST % id
+		url += get_in_request("id", str(id))
 		url += "&"
 	url = url.rstrip("&")
 	while !json_dict.has(url):
@@ -134,16 +136,16 @@ func get_resources_by_ids(ids: Array, type: ResourceType) -> Array:
 	for item in items:
 		item.texture = null if !json_dict.has(item.img_url) else json_dict[item.img_url]
 	json_dict.clear()
-	print("get items completed")
+	#print("get items completed")
 	return items
 
 
-func get_monsters_by_area_id(area_id: int):
-	var url = API_SUFFIX + "monsters?&subareas=%d" % area_id
-	while !json_dict.has(url):
-		var http = request(url)
-		await http.request_completed
-		http.queue_free()
+func get_monsters_by_ids(monster_ids: Array):
+	var url = API_SUFFIX + "monsters?"
+	for id in monster_ids:
+		url += get_in_request("id", str(id)) + "&"
+	url = url.rstrip("&")
+	await await_for_request_completed(request(url))
 	var monsters = [] as Array[MonsterResource]
 	var composite_signal = CompositeSignal.new()
 	var https = []
@@ -159,18 +161,39 @@ func get_monsters_by_area_id(area_id: int):
 	for monster in monsters:
 		monster.texture = null if !json_dict.has(monster.image_url) else json_dict[monster.image_url]
 	json_dict.clear()
-	print("get monsters completed")
+	#print("get monsters completed")
 	return monsters
 
 
 func request(url: String):
-	print("Perform HTTP request on : " + url)
+	#print("Perform HTTP request on : " + url)
 	url_requested = url
 	var http = create_http()
 	http.request_completed.connect(_on_request_completed.bind(url))
 	var error = http.request(url)
 	log_error(error, "An error occurred in the HTTP request.")
 	return http
+
+
+func await_for_request_completed(http: HTTPRequest):
+	await http.request_completed
+	http.queue_free()
+
+
+func get_data(url: String):
+	if json_dict.get(url) == null:
+		return null
+	var json = json_dict[url]
+	json_dict.erase(url)
+	return json["data"]
+
+
+func get_in_request(row: String, value: String) -> String:
+	return IN_REQUEST % [row, value]
+
+
+func get_select_request(row: String) -> String:
+	return SELECT_REQUEST % row
 
 
 func _on_request_completed(_result, response_code, headers: PackedStringArray, body, _id):
@@ -183,14 +206,14 @@ func _on_request_completed(_result, response_code, headers: PackedStringArray, b
 
 
 func _on_json_received(body, _id):
-	print("JSON received")
+	#print("JSON received")
 	var json = JSON.parse_string(body.get_string_from_utf8())
 	if !json: log_error(json, "Error while parsing JSON.")
 	else: json_dict[_id] = json
 
 
 func _on_image_received(body, _id):
-	print("Image received")
+	#print("Image received")
 	var image = Image.new()
 	var error = image.load_png_from_buffer(body)
 	log_error(error, "Couldn't load the image.")
@@ -250,7 +273,7 @@ func get_item_resource(data) -> ItemResource:
 	if data:
 		var item_res = ItemResource.new()
 		if !data["name"].get("fr"):
-			print("skipped")
+			#print("skipped")
 			errors.append("skipped : %s" % url_requested)
 			resource_saved.emit()
 			return
@@ -338,7 +361,7 @@ func save_resource(resource, type: ResourceType):
 	resource.resource_path = "%s/%s.tres" % [get_dir_path(resource, type), resource.name.to_snake_case()]
 	ResourceSaver.save(resource)
 	resource_saved.emit()
-	print("saved resource")
+	#print("saved resource")
 
 
 func get_dir_path(resource, type: ResourceType) -> String:
@@ -414,9 +437,9 @@ func get_all_items():
 			save_resource(data, ResourceType.ITEMS)
 			await resource_saved
 			progress.value += 1
-		print("50 done")
+		#print("50 done")
 		skip += 50
-	print("Process finished")
+	#print("Process finished")
 
 
 func extract():

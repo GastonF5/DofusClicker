@@ -99,6 +99,7 @@ pm_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/PV
 console = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Infos/MarginContainer/Console")
 
 [node name="MonsterManager" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("1_iu0is")
 
 [node name="EquipmentManager" type="Node" parent="." node_paths=PackedStringArray("equipment_container")]

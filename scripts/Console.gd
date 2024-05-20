@@ -107,6 +107,10 @@ func do_command(command: String, params: Array[String] = []):
 							var stat_res: StatResource = monster.get_caracacteristique_for_type(Caracteristique.Type.get(params[2].to_upper()))
 							if stat_res: stat_res.amount = params[3] as int
 							pass
+				if params[1] == "kill":
+					var index = params[0] as int
+					var monster: Monster = MonsterManager.monsters[index]
+					monster.die()
 		"add":
 			if params[0] == "equip":
 				var equip_res = FileLoader.get_equipment_resource(EQUIPMENT_RESOURCE_PATH % params[1])
