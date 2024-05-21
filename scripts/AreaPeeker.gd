@@ -75,7 +75,6 @@ func _on_area_clicked(button: Button):
 
 func _on_subarea_clicked(button: Button):
 	monster_manager.start_fight_button.disabled = true
-	var url = api.API_SUFFIX + "monsters?"
 	var subarea = subareas[button.name.to_int()]
 	var monster_resources = await api.get_monsters_by_ids(subarea._monsters)
 	MonsterManager.monsters_res = monster_resources

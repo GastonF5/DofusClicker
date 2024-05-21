@@ -13,6 +13,13 @@ class CompositeSignal:
 		_remaining -= 1
 		if _remaining == 0:
 			finished.emit()
+	
+	func add_method(method: Callable):
+		_remaining += 1
+		await method.call()
+		_remaining -= 1
+		if _remaining == 0:
+			finished.emit()
 
 
 enum ResourceType {
@@ -32,6 +39,7 @@ const BAD_GATEWAY := 502
 @onready var request_button: Button = $"CanvasLayer/Button"
 @onready var progress: ProgressBar = $"CanvasLayer/ProgressBar"
 @onready var prompt: LineEdit = $"CanvasLayer/LineEdit"
+@onready var text_rect: TextureRect = $"CanvasLayer/TextureRect"
 
 @export var show_prompts: bool = false
 
@@ -95,6 +103,7 @@ func _ready():
 		request_button.visible = false
 		progress.visible = false
 		prompt.visible = false
+		text_rect.visible = false
 
 
 func print_result(_a, _b, _c, _d, key, http):
@@ -148,19 +157,15 @@ func get_monsters_by_ids(monster_ids: Array):
 	await await_for_request_completed(request(url))
 	var monsters = [] as Array[MonsterResource]
 	var composite_signal = CompositeSignal.new()
-	var https = []
 	for data in json_dict[url]["data"]:
 		var monster = get_monster_resource(data)
-		monsters.append(monster)
-		var http_image = request(monster.image_url)
-		https.append(http_image)
-		composite_signal.add_signal(http_image.request_completed)
+		if !monster.archimonstre:
+			monsters.append(monster)
+			monster.image_url = $%Renderer.get_url(data, 200)
+			composite_signal.add_method($%Renderer.get_monster_texture.bindv([data, 200]))
 	await composite_signal.finished
-	for h in https:
-		h.queue_free()
 	for monster in monsters:
-		monster.texture = null if !json_dict.has(monster.image_url) else json_dict[monster.image_url]
-	json_dict.clear()
+		monster.texture = get_texture(monster.image_url)
 	#print("get monsters completed")
 	return monsters
 
@@ -186,6 +191,14 @@ func get_data(url: String):
 	var json = json_dict[url]
 	json_dict.erase(url)
 	return json["data"]
+
+
+func get_texture(url: String):
+	if json_dict.get(url) == null:
+		return null
+	var texture = json_dict[url]
+	json_dict.erase(url)
+	return texture
 
 
 func get_in_request(row: String, value: String) -> String:

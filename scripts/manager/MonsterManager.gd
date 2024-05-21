@@ -19,7 +19,7 @@ func _ready():
 	auto_start_fight_checkbox = $%AutoStartFight.get_node("HBC/CheckBox")
 	start_fight_button.button_up.connect(start_fight)
 	start_fight_button.disabled = true
-	$%ZonePeeker.subarea_selected.connect(_on_area_changed)
+	$%AreaPeeker.subarea_selected.connect(_on_area_changed)
 
 
 func start_fight():
