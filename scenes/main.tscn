@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://bfh3u8jwrg2ar"]
+[gd_scene load_steps=56 format=3 uid="uid://bfh3u8jwrg2ar"]
 
 [ext_resource type="PackedScene" uid="uid://2yisonfumvpt" path="res://scenes/API.tscn" id="1_0haij"]
 [ext_resource type="Script" path="res://scripts/manager/MonsterManager.gd" id="1_iu0is"]
@@ -12,6 +12,7 @@
 [ext_resource type="Theme" uid="uid://ctf5aaqx8jyeo" path="res://resources/themes/experience_bar.tres" id="3_prl7k"]
 [ext_resource type="Script" path="res://scripts/manager/StatsManager.gd" id="4_13j6f"]
 [ext_resource type="Texture2D" uid="uid://brcl6cos3cake" path="res://assets/icons/icon_kama.png" id="4_jjqja"]
+[ext_resource type="Script" path="res://scripts/equipment/EquipmentDicts.gd" id="4_uwqq1"]
 [ext_resource type="Script" path="res://scripts/manager/RecipeManager.gd" id="5_51m8x"]
 [ext_resource type="PackedScene" uid="uid://humcuoo3q2tn" path="res://scenes/equipment/equipment_container.tscn" id="8_larhl"]
 [ext_resource type="Script" path="res://scripts/CustomTabContainer.gd" id="14_akpwt"]
@@ -80,6 +81,7 @@ texture = ExtResource("35_61trk")
 
 [node name="API" parent="." instance=ExtResource("1_0haij")]
 unique_name_in_owner = true
+show_prompts = false
 
 [node name="Renderer" type="Node" parent="."]
 unique_name_in_owner = true
@@ -88,6 +90,9 @@ script = ExtResource("2_18k50")
 [node name="StatsManager" type="Node" parent="." node_paths=PackedStringArray("stats_container")]
 script = ExtResource("4_13j6f")
 stats_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Stats")
+
+[node name="EquipmentDicts" type="Node" parent="."]
+script = ExtResource("4_uwqq1")
 
 [node name="PlayerManager" type="Node" parent="." node_paths=PackedStringArray("spells_container", "stats_container", "inventory_container", "xp_bar", "kamas_label", "spell_bar", "hp_bar", "pa_bar", "pm_bar", "console")]
 unique_name_in_owner = true

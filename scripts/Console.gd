@@ -123,6 +123,17 @@ func do_command(command: String, params: Array[String] = []):
 				else:
 					log_error("La ressource n'a pas été trouvée.")
 				pass
+		"itemset":
+			var id = params[0].to_int()
+			if id and EquipmentDicts._sets.has(id):
+				var item_set = EquipmentDicts._sets[id]
+				var log = item_set._name
+				if params.size() >= 2 and params[1] == "items":
+					for item in item_set._items:
+						log += "\n - %d : %s" % [item._id, item._name]
+				log_info(log)
+			else:
+				log_error("Il n'existe pas de panoplie avec l'id %d" % id)
 	var command_histo = command
 	for param in params:
 		command_histo += " " + param

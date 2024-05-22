@@ -88,7 +88,7 @@ var characteristics = [["PA", 1],
 
 @export var errors = []
 
-var json_dict = {}
+@export var json_dict = {}
 
 signal resource_saved
 signal request_completed
@@ -213,6 +213,7 @@ func _on_request_completed(_result, response_code, headers: PackedStringArray, b
 	if check_response_code(response_code) == 0:
 		var type_index = headers.bsearch("Content-Type")
 		check_format(headers[type_index].split(" ")[1]).callv([body, _id])
+		print("request %s completed" % _id)
 	else:
 		print("Error %d" % response_code)
 	request_completed.emit()
