@@ -190,7 +190,9 @@ func get_data(url: String):
 		return null
 	var json = json_dict[url]
 	json_dict.erase(url)
-	return json["data"]
+	if json.get("data"):
+		return json["data"]
+	return json
 
 
 func get_texture(url: String):

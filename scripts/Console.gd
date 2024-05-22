@@ -12,6 +12,7 @@ enum LogType {
 	NONE
 }
 
+@onready var api: API = $%API
 
 @export var output: RichTextLabel
 @export var input: LineEdit
@@ -121,7 +122,18 @@ func do_command(command: String, params: Array[String] = []):
 				if equip_res:
 					inventory.add_item(Item.create(equip_res, inventory))
 				else:
-					log_error("La ressource n'a pas été trouvée.")
+					log_error("Equipment not found")
+				pass
+			if params[0] == "item":
+				var time = Time.get_ticks_msec()
+				log_info("Loading...")
+				var url = api.API_SUFFIX + "items/%s" % params[1]
+				await api.await_for_request_completed(api.request(url))
+				var item_res = api.get_item_resource(api.get_data(url))
+				await api.await_for_request_completed(api.request(item_res.img_url))
+				item_res.texture = api.get_texture(item_res.img_url)
+				inventory.add_item(Item.create(item_res, inventory))
+				log_info("Request completed in %d ms" % (Time.get_ticks_msec() - time))
 				pass
 		"itemset":
 			var id = params[0].to_int()
