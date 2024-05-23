@@ -34,6 +34,8 @@ func create_caracteristiques():
 			node_name = "RES_" + node_name_split[node_name_split.size() - 1]
 		if node_name.begins_with("Dommages "):
 			node_name = "DO_" + node_name.split(" ")[1]
+		if node_name.begins_with("Retrait "):
+			node_name = "RET_" + node_name.split(" ")[1]
 		if Caracteristique.Type.keys().has(node_name.to_upper()):
 			carac.init()
 			carac.type = Caracteristique.Type.get(node_name.to_upper())

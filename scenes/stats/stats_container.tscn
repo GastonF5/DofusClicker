@@ -357,6 +357,22 @@ texture = ExtResource("4_j7qus")
 layout_mode = 2
 modifiable = false
 
+[node name="Separator5" type="TextureRect" parent="MarginContainer/ScrollContainer/VBC/DommagesElementaires/StatsDommagesElementaires/StatsContainer"]
+layout_mode = 2
+texture = ExtResource("4_j7qus")
+
+[node name="Retrait PA" parent="MarginContainer/ScrollContainer/VBC/DommagesElementaires/StatsDommagesElementaires/StatsContainer" instance=ExtResource("5_477tq")]
+layout_mode = 2
+modifiable = false
+
+[node name="Separator6" type="TextureRect" parent="MarginContainer/ScrollContainer/VBC/DommagesElementaires/StatsDommagesElementaires/StatsContainer"]
+layout_mode = 2
+texture = ExtResource("4_j7qus")
+
+[node name="Retrait PM" parent="MarginContainer/ScrollContainer/VBC/DommagesElementaires/StatsDommagesElementaires/StatsContainer" instance=ExtResource("5_477tq")]
+layout_mode = 2
+modifiable = false
+
 [node name="Separator4" type="TextureRect" parent="MarginContainer/ScrollContainer/VBC"]
 layout_mode = 2
 size_flags_vertical = 4
