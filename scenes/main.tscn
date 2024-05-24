@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://bfh3u8jwrg2ar"]
+[gd_scene load_steps=57 format=3 uid="uid://bfh3u8jwrg2ar"]
 
 [ext_resource type="PackedScene" uid="uid://2yisonfumvpt" path="res://scenes/API.tscn" id="1_0haij"]
 [ext_resource type="Script" path="res://scripts/manager/MonsterManager.gd" id="1_iu0is"]
@@ -42,6 +42,7 @@
 [ext_resource type="Texture2D" uid="uid://cb1pye1b2nyyt" path="res://assets/hud/icon_mp_full.png" id="38_bm8jn"]
 [ext_resource type="PackedScene" uid="uid://bkkjso0mm2nu4" path="res://scenes/hp_bar.tscn" id="40_5kut3"]
 [ext_resource type="Script" path="res://scripts/bars/PMBar.gd" id="43_6xs84"]
+[ext_resource type="PackedScene" uid="uid://cl1b4rs0yua7e" path="res://scenes/LoadingScreen.tscn" id="43_bkaqa"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4qy8r"]
 
@@ -537,3 +538,6 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="OverUI" type="CanvasLayer" parent="."]
+
+[node name="LoadingScreen" parent="." instance=ExtResource("43_bkaqa")]
+unique_name_in_owner = true

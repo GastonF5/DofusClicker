@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cp73afq64h53s"
-path="res://.godot/imported/tx_initiative.png-92a7fd4773171df25aa098f206eb271a.ctex"
+uid="uid://buhpwbtbjx1da"
+path="res://.godot/imported/gauge_yellow_timer_line.png-07bc7d50f1491e05cd45986bc841fc11.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/stats/tx_initiative.png"
-dest_files=["res://.godot/imported/tx_initiative.png-92a7fd4773171df25aa098f206eb271a.ctex"]
+source_file="res://assets/hud/gauge/gauge_yellow_timer_line.png"
+dest_files=["res://.godot/imported/gauge_yellow_timer_line.png-07bc7d50f1491e05cd45986bc841fc11.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dijv701ob1v4n"
-path="res://.godot/imported/demi_gauge_background.png-198db110732a081a700de8b17c5dc39b.ctex"
+path="res://.godot/imported/demi_gauge_background.png-691ee28b92e54cbb938c3d3586c3f424.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/hud/demi_gauge_background.png"
-dest_files=["res://.godot/imported/demi_gauge_background.png-198db110732a081a700de8b17c5dc39b.ctex"]
+source_file="res://assets/hud/gauge/demi_gauge_background.png"
+dest_files=["res://.godot/imported/demi_gauge_background.png-691ee28b92e54cbb938c3d3586c3f424.ctex"]
 
 [params]
 

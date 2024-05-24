@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cd7pwy3eypy7w"
-path="res://.godot/imported/gauge_blue.png-7b1561c2d7fed6185e78f252b24a0df3.ctex"
+uid="uid://dowsh1rk5fu5n"
+path="res://.godot/imported/gauge_background.png-1b98cc0cf50ea2bf656ae6858e91d81a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/hud/gauge_blue.png"
-dest_files=["res://.godot/imported/gauge_blue.png-7b1561c2d7fed6185e78f252b24a0df3.ctex"]
+source_file="res://assets/hud/gauge/gauge_background.png"
+dest_files=["res://.godot/imported/gauge_background.png-1b98cc0cf50ea2bf656ae6858e91d81a.ctex"]
 
 [params]
 

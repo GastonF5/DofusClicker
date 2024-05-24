@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnnaa2qi2f53x"
-path="res://.godot/imported/tx_attackMP.png-32b61155ff1c193d43cd496589e48619.ctex"
+uid="uid://ddkb64bedq5xm"
+path="res://.godot/imported/gauge_yellow_timer.png-b553c0b1f9db202b969bd68df7f753f1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/stats/tx_attackMP.png"
-dest_files=["res://.godot/imported/tx_attackMP.png-32b61155ff1c193d43cd496589e48619.ctex"]
+source_file="res://assets/hud/gauge/gauge_yellow_timer.png"
+dest_files=["res://.godot/imported/gauge_yellow_timer.png-b553c0b1f9db202b969bd68df7f753f1.ctex"]
 
 [params]
 

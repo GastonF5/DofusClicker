@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bp8pfxyu5fixn"
-path="res://.godot/imported/tx_criticalReduction.png-e7d18bf97e99a7d2831b53ee112e0422.ctex"
+uid="uid://bdesib326j8ew"
+path="res://.godot/imported/ret_pa.png-afaecf8765ae4cfe1600748cb9e79484.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/stats/tx_criticalReduction.png"
-dest_files=["res://.godot/imported/tx_criticalReduction.png-e7d18bf97e99a7d2831b53ee112e0422.ctex"]
+source_file="res://assets/stats/stat_icon/ret_pa.png"
+dest_files=["res://.godot/imported/ret_pa.png-afaecf8765ae4cfe1600748cb9e79484.ctex"]
 
 [params]
 

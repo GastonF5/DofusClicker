@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctamqlxh63d5v"
-path="res://.godot/imported/gauge_timer_fx.png-b1dda8f482cf73b01d45b504a9458727.ctex"
+uid="uid://bthruv7s8lr3w"
+path="res://.godot/imported/demi_gauge_yellow_timer_line.png-71342c1a6ddec47e04e99b47be5b159b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/hud/gauge_timer_fx.png"
-dest_files=["res://.godot/imported/gauge_timer_fx.png-b1dda8f482cf73b01d45b504a9458727.ctex"]
+source_file="res://assets/hud/gauge/demi_gauge_yellow_timer_line.png"
+dest_files=["res://.godot/imported/demi_gauge_yellow_timer_line.png-71342c1a6ddec47e04e99b47be5b159b.ctex"]
 
 [params]
 

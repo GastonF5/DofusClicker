@@ -20,7 +20,7 @@ func _ready():
 
 func init(item_res: ItemResource, stats: Array[StatResource] = []):
 	name = item_res.name.to_pascal_case() + "Description"
-	item_texture.texture = item_res.texture
+	item_texture.texture = item_res.high_texture
 	compute_name_label(item_res)
 	clear_effect_labels()
 	if !stats.is_empty():

@@ -1,0 +1,92 @@
+[gd_scene load_steps=9 format=3 uid="uid://cl1b4rs0yua7e"]
+
+[ext_resource type="Texture2D" uid="uid://0ujq6wd2dvfm" path="res://assets/common/window/window_green_background.jpg" id="1_caetp"]
+[ext_resource type="Script" path="res://scenes/LoadingScreen.gd" id="1_x64gv"]
+[ext_resource type="Texture2D" uid="uid://dowsh1rk5fu5n" path="res://assets/hud/gauge/gauge_background.png" id="2_t56lq"]
+[ext_resource type="Texture2D" uid="uid://cd7pwy3eypy7w" path="res://assets/hud/gauge/gauge_blue.png" id="3_m6gu0"]
+[ext_resource type="Texture2D" uid="uid://ctamqlxh63d5v" path="res://assets/hud/gauge/gauge_timer_fx.png" id="5_ysrl2"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nsd2b"]
+texture = ExtResource("2_t56lq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xnn6t"]
+texture = ExtResource("3_m6gu0")
+
+[sub_resource type="LabelSettings" id="LabelSettings_n33jh"]
+font_size = 32
+
+[node name="LoadingScreen" type="Node" node_paths=PackedStringArray("loading_pb", "progress_text", "loading_label")]
+script = ExtResource("1_x64gv")
+loading_pb = NodePath("CanvasLayer/Main/LoadingPB")
+progress_text = NodePath("CanvasLayer/Main/ProgressTexture")
+loading_label = NodePath("CanvasLayer/Main/LoadingLabel")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="Main" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="CanvasLayer/Main"]
+modulate = Color(1, 1, 1, 0.541176)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_caetp")
+
+[node name="LoadingPB" type="ProgressBar" parent="CanvasLayer/Main"]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -13.5
+offset_right = 2.0
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxTexture_nsd2b")
+theme_override_styles/fill = SubResource("StyleBoxTexture_xnn6t")
+max_value = 300.0
+
+[node name="ProgressTexture" type="TextureRect" parent="CanvasLayer/Main"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -24.5
+offset_right = 20.0
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_ysrl2")
+
+[node name="LoadingLabel" type="Label" parent="CanvasLayer/Main"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.5
+offset_top = -78.0
+offset_right = 95.5
+offset_bottom = -33.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Chargement"
+label_settings = SubResource("LabelSettings_n33jh")

@@ -31,7 +31,7 @@ func init(item_res: ItemResource, _inventory: Inventory, _draggable = true):
 	name = item_res.name
 	inventory = _inventory
 	resource = item_res
-	self.texture = item_res.texture
+	self.texture = item_res.high_texture
 	count = item_res.count
 	draggable = _draggable
 	

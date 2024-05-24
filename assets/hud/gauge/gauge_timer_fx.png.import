@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccf8o4quljkj3"
-path="res://.godot/imported/tx_carac_wisdom.png-de7c84bc4c7ff20337954aaaf08413a8.ctex"
+uid="uid://ctamqlxh63d5v"
+path="res://.godot/imported/gauge_timer_fx.png-b2ce7428095c234e42db947f018b5802.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/stats/tx_carac_wisdom.png"
-dest_files=["res://.godot/imported/tx_carac_wisdom.png-de7c84bc4c7ff20337954aaaf08413a8.ctex"]
+source_file="res://assets/hud/gauge/gauge_timer_fx.png"
+dest_files=["res://.godot/imported/gauge_timer_fx.png-b2ce7428095c234e42db947f018b5802.ctex"]
 
 [params]
 

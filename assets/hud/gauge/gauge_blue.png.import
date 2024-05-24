@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnqqcbjfr2hik"
-path="res://.godot/imported/tx_criticalHit.png-68fa8d73a3c13129fba0598a2b06c07e.ctex"
+uid="uid://cd7pwy3eypy7w"
+path="res://.godot/imported/gauge_blue.png-df7f365831e1b199c9372f9a41eac56b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/stats/tx_criticalHit.png"
-dest_files=["res://.godot/imported/tx_criticalHit.png-68fa8d73a3c13129fba0598a2b06c07e.ctex"]
+source_file="res://assets/hud/gauge/gauge_blue.png"
+dest_files=["res://.godot/imported/gauge_blue.png-df7f365831e1b199c9372f9a41eac56b.ctex"]
 
 [params]
 

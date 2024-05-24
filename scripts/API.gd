@@ -4,12 +4,14 @@ extends Node
 
 class CompositeSignal:
 	signal finished
-
+	
+	var _increment_loading_screen: Callable
 	var _remaining : int
 
 	func add_signal(sig: Signal):
 		_remaining += 1
 		await sig
+		_increment_loading_screen.call()
 		_remaining -= 1
 		if _remaining == 0:
 			finished.emit()
@@ -17,6 +19,7 @@ class CompositeSignal:
 	func add_method(method: Callable):
 		_remaining += 1
 		await method.call()
+		_increment_loading_screen.call()
 		_remaining -= 1
 		if _remaining == 0:
 			finished.emit()
@@ -120,35 +123,6 @@ func create_http() -> HTTPRequest:
 	return http
 
 
-func get_resources_by_ids(ids: Array, type: ResourceType) -> Array:
-	var url = API_SUFFIX + ResourceType.find_key(type).to_lower() + "?"
-	for id in ids:
-		url += get_in_request("id", str(id))
-		url += "&"
-	url = url.rstrip("&")
-	while !json_dict.has(url):
-		var http = request(url)
-		await http.request_completed
-		http.queue_free()
-	var items = [] as Array[ItemResource]
-	var composite_signal = CompositeSignal.new()
-	var https = []
-	for data in json_dict[url]["data"]:
-		var item = get_item_resource(data)
-		items.append(item)
-		var http_image = request(item.img_url)
-		https.append(http_image)
-		composite_signal.add_signal(http_image.request_completed)
-	await composite_signal.finished
-	for h in https:
-		h.queue_free()
-	for item in items:
-		item.texture = null if !json_dict.has(item.img_url) else json_dict[item.img_url]
-	json_dict.clear()
-	#print("get items completed")
-	return items
-
-
 func get_monsters_by_ids(monster_ids: Array):
 	var url = API_SUFFIX + "monsters?"
 	for id in monster_ids:
@@ -185,11 +159,11 @@ func await_for_request_completed(http: HTTPRequest):
 	http.queue_free()
 
 
-func get_data(url: String):
-	if json_dict.get(url) == null:
+func get_data(key):
+	if json_dict.get(key) == null:
 		return null
-	var json = json_dict[url]
-	json_dict.erase(url)
+	var json = json_dict[key]
+	json_dict.erase(key)
 	if json.get("data"):
 		return json["data"]
 	return json
@@ -215,7 +189,7 @@ func _on_request_completed(_result, response_code, headers: PackedStringArray, b
 	if check_response_code(response_code) == 0:
 		var type_index = headers.bsearch("Content-Type")
 		check_format(headers[type_index].split(" ")[1]).callv([body, _id])
-		print("request %s completed" % _id)
+		#print("request %s completed" % _id)
 	else:
 		print("Error %d" % response_code)
 	request_completed.emit()
@@ -285,17 +259,23 @@ func resource_getter(type: ResourceType) -> Callable:
 	return func(): return
 
 
-func get_item_resource(data) -> ItemResource:
+func request_item_by_id(id: int):
+	var url = API_SUFFIX + "items/%d" % id
+	var request = request(url)
+	await await_for_request_completed(request)
+	var item_res = get_item_resource(get_data(url))
+	await await_for_request_completed(request(item_res.high_img_url))
+	item_res.high_texture = get_texture(item_res.high_img_url)
+	json_dict[id] = item_res
+
+
+func get_item_resource(data, item_res = null) -> ItemResource:
 	if data:
-		var item_res = ItemResource.new()
-		if !data["name"].get("fr"):
-			#print("skipped")
-			errors.append("skipped : %s" % url_requested)
-			resource_saved.emit()
-			return
+		if !item_res:
+			item_res = ItemResource.new()
 		var res_name = data["name"]["fr"]
-		var image_url = data["imgset"][0]["url"]
-		item_res.img_url = image_url
+		item_res.low_img_url = data["imgset"][0]["url"]
+		item_res.high_img_url = data["imgset"][1]["url"]
 		var type_id = data["typeId"] as int
 		var super_type_id = data["type"]["superTypeId"]
 		var effects = data["effects"]
