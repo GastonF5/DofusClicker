@@ -12,6 +12,7 @@ var recipes: Array[Recipe] = []
 const recipe_container_path = "MarginContainer/VBC/ScrollContainer/RecipeContainer"
 const search_prompt_path = "MarginContainer/VBC/Search"
 const equip_type = EquipmentResource.Type
+const weapon_type = EquipmentResource.WeaponType
 
 var mouse_on_search = false
 
@@ -20,11 +21,11 @@ var inventory: Inventory
 
 
 func _ready():
+	$%Dicts.init_done.connect(init_recipes)
 	tab_container = jobs_container.get_node("TabContainer")
 	inventory = $%PlayerManager.inventory
 	
 	on_job_tab_changed(tab_container.current_tab)
-	#init_recipes()
 	for recipe in recipe_container.get_children():
 		recipes.append(recipe)
 	tab_container.tab_changed.connect(on_job_tab_changed)
@@ -58,13 +59,11 @@ func connect_search_prompt():
 
 
 func init_recipes():
-	var equip_types = equip_type.keys()
-	for type in equip_types:
-		var equips_res = FileLoader.get_equipment_resources(type)
-		for res in equips_res:
-			if res.recipe != null:
-				var recipe = Recipe.create(res, get_parent_by_type(equip_type.get(type)))
-				recipe.craft.connect(on_recipe_craft)
+	for recipe in Dicts._recipes.values():
+		var parent = get_parent_by_type(recipe.get_item().type_id)
+		if parent:
+			var nrecipe = Recipe.create(recipe, parent)
+			nrecipe.craft.connect(on_recipe_craft)
 
 
 func on_recipe_craft(result: ItemResource):
@@ -82,16 +81,25 @@ func on_mouse_exit_search():
 	mouse_on_search = false
 
 
-func get_parent_by_type(type: equip_type):
-	var index: int
-	match type:
-		equip_type.COIFFE, equip_type.CAPE:
-			index = 0
-		equip_type.BOTTES, equip_type.CEINTURE:
-			index = 1
-		equip_type.AMULETTE, equip_type.ANNEAU:
-			index = 2
-	return tab_container.get_child(index).get_node(recipe_container_path)
+func get_parent_by_type(type_id: int):
+	var type: Dicts.ItemType = Dicts._types[type_id]
+	var node_name: String
+	match type._name.to_upper():
+		"CHAPEAU", "CAPE":
+			node_name = "Tailleur"
+		"BOTTES", "CEINTURE":
+			node_name = "Cordonnier"
+		"AMULETTE", "ANNEAU":
+			node_name = "Bijoutier"
+		"BOUCLIER":
+			node_name = "Faconneur"
+		"ARC", "BAGUETTE", "BÂTON":
+			node_name = "Sculpteur"
+		"DAGUE", "EPEE", "MARTEAU", "PELLE":
+			node_name = "Forgeron"
+		_:
+			return null
+	return tab_container.get_node(node_name + "Panel").get_node(recipe_container_path)
 
 
 func filter_recipes(text_filter: String):

@@ -22,12 +22,6 @@ func _ready():
 	reset()
 
 
-func _process(_delta):
-	if loading:
-		var x_pos = (loading_pb.value * loading_pb.size.x) / loading_pb.max_value
-		progress_text.position = loading_pb.position + Vector2(x_pos, 0) - vec
-
-
 func update_visibility():
 	$CanvasLayer.visible = loading
 
@@ -41,11 +35,17 @@ func set_loading_label(text: String):
 
 
 func increment_loading(times := 1):
-	loading_pb.value += times
+	set_value(loading_pb.value + times)
 
 
 func reset():
-	loading_pb.value = 0
+	set_value(0)
+
+
+func set_value(v: int):
+	loading_pb.value = v
+	var x_pos = (loading_pb.value * loading_pb.size.x) / loading_pb.max_value
+	progress_text.position = loading_pb.position + Vector2(x_pos, 0) - vec
 
 
 func print_loading_pb():

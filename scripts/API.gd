@@ -51,7 +51,6 @@ var image_texture: ImageTexture
 
 @export var types: Dictionary
 var races = { -1: "Non classés", 0: "Invocations de classe", 2: "Bandits", 3: "Wabbits", 4: "Dragoeufs Immatures", 5: "Bworks d\'Amakna", 6: "Gobelins d\'Amakna", 7: "Gelées", 8: "Bêtes de la nuit", 9: "Bouftous", 10: "Plantes des champs", 11: "Larves", 12: "Kwaks", 13: "Craqueleurs", 16: "Porcos", 17: "Chafers", 18: "Dopeuls de Temple", 19: "Pnjs", 20: "Kannibouls de Moon", 21: "Dragodindes", 22: "Abraknydiens", 23: "Blops", 24: "Animaux des Champs", 25: "Sidimonstres", 26: "Gardes", 28: "Dopeuls", 30: "Brigandins", 31: "Gang de Sphincter Cell", 32: "Avis de recherche", 33: "Pious", 37: "Scarafeuilles", 38: "Araknes", 39: "Mulous", 40: "Tortues de Moon", 41: "Pirates de Moon", 43: "Monstres de la Jungle Interdite", 44: "Gadouilleux", 45: "Champas", 46: "Tofus", 47: "Vermines des champs", 48: "Monstres des marécages", 49: "Animaux de la forêt", 50: "Monstres de quête", 51: "Corbacs", 53: "Fantômes", 60: "Koalaks", 61: "Monstres des cavernes", 62: "Protecteurs des Céréales", 63: "Protecteurs des Minerais", 64: "Protecteurs des Arbres", 65: "Protecteurs des Poissons", 66: "Protecteurs des Plantes", 67: "Minos", 68: "Monstres de Nowel", 69: "Pichons", 71: "Herboricoles", 72: "Colonie du Magistral", 73: "Monstres des Tourbières", 74: "Florifaune obscure", 75: "Peuple de l\'Arbre", 76: "Pirates de l\'Arche d\'Otomaï", 77: "Zoths", 78: "Archimonstres", 79: "Boufmouths", 81: "Bestioles de la Bourgade", 82: "Faune des Pins Perdus", 83: "Mansots", 84: "Gloursons", 85: "Sulfurieux", 86: "Équipage du Grolandais", 87: "Bléros", 88: "Givrefoux", 89: "Sylvesprits", 90: "Avis de recherche de Frigost", 91: "Monstres de Quête de Frigost", 93: "Gobelins de Sakaï", 95: "Bombes", 96: "Monstres de Vulkania", 99: "Épouvantises", 100: "Invocations de Dopeuls", 102: "Fungus", 103: "Cuirassés", 104: "Monstres de Quête de Vulkania", 105: "Monstres de quête de Nowel", 106: "Armutins", 107: "Alchillusions", 108: "Brikoléreux", 109: "Sinistros", 110: "Invocations de monstre", 112: "Prismes d\'alliance", 113: "Monstres de l\'île de Kartonpath", 114: "Monstres de l\'archevêché", 116: "Monstres de quête d\'alignement", 117: "Mercemers", 118: "Monstres événementiels", 120: "Kanigs des Dents de Pierre", 121: "Obscuranti", 122: "Truches", 123: "Porkass", 124: "Phorreurs", 125: "Enutrofors", 126: "Koffrefors", 127: "Avis de recherche des Dimensions", 128: "Cour Sombre", 129: "Malveilleurs", 130: "Nécrotiques", 131: "Krobes", 132: "Égarés", 133: "Hordémons", 134: "Xélomorphes", 135: "Vilinsekts", 136: "Arak-haï", 137: "Chafers d\'Incarnam", 138: "Monstres du Temple Céleste", 139: "Monstres de quête d\'Incarnam", 140: "Feux spirituels", 141: "Bouftous d\'Incarnam", 142: "Monstres des champs d\'Incarnam", 143: "Chapardams", 144: "Gloots", 145: "Champignons d\'Incarnam", 147: "Avis de recherche alignés", 148: "Grand Jeu", 149: "Ecaflipuces", 150: "Matougarous", 152: "Monstres des ruines sous-marines", 153: "Trithons", 154: "Serviteurs de l\'indicible", 155: "Muldos Sauvages", 156: "Avis de recherche de Sufokia", 158: "Gliglis", 159: "Automates des Brigandins", 160: "Troolls de Litneg", 162: "Ruffians de Cania", 163: "Bworks de Cania", 166: "Animaux du désert", 167: "Cacterres", 168: "Vers des sables", 169: "Maudits", 171: "Chassouilleurs", 172: "Magik Riktus", 173: "Goules", 174: "Animalades", 175: "Brûlâmes", 176: "Calcinés", 177: "Submergés", 181: "Monstres des plages", 182: "Sidoas", 183: "Volkornes", 184: "Clan Martegel", 189: "Croquants", 190: "Waddicts", 191: "Gardiens des anomalies", 193: "Chocomanciens", 196: "Monstres de quête de l\'île de Pwâk", 199: "Invocations de classe : Osamodas", 201: "Dragoss", 202: "Dragoeufs Protecteurs", 203: "Crocodailles de Crocuzko", 204: "Invocations de classe : Enutrof", 206: "Invocations de classe : Pandawa", 207: "Invocations de classe : Ecaflip", 209: "Invocations de classe : Ouginak", 210: "Invocations de classe : Sadida", 211: "Invocations de classe : Féca", 212: "Invocations de classe : Eniripsa", 213: "Invocations de classe : Crâ", 215: "Asservis", 216: "Miséreux", 217: "Sanguinaires", 218: "Corrompus", 220: "Invocations de classe : Roublard", 221: "Invocations de classe : Steamer", 224: "Kwapa", 225: "Kozaru", 226: "Tanuki", 228: "Plantalas", 229: "Firefoux", 230: "Armée de brume", 231: "Yokai des Tombeaux", 232: "Yokianzhi de Papier", 233: "Yokianzhi d\'Encre", 236: "Possédés", 240: "Rats Brâkmariens", 241: "Rats Bontariens", 243: "Invocations Boufbowl", 245: "Malters", 192: "Gromorphes", 242: "Ravageurs", 250: "Poutch", 253: "World Boss", 194: "Brutomorphes", 195: "Brikomorphes", 256: "Rats Strubiens", 257: "Rats Maknéens", 258: "Bworks de Gisgoul", 259: "Grosses Larves", 260: "Monstres du repos", 261: "Koalaks mortels", 262: "Koalaks primitifs", 263: "Gawde du Wa", 264: "Wabbits mutants", 265: "Abraknydiens Sombres", 266: "Abraknydiens Irascibles", 267: "Gros Tofus", 268: "Mélomaniaques", 269: "Koalaks sauvages", 273: "Palmikos", 255: "Rebelles de la futaie", 270: "Protecteurs d\'Ephedrya", 274: "Marteaux-Aigris", 275: "Invocation de compagnon", 277: "Gardiens solitaires", 278: "Invocations de classe : Forgelance", 279: "Invocations de classe : Sacrieur", 280: "Invocations de classe : Iop", 281: "Invocations de classe : Huppermage", 282: "Invocations de classe : Xélor", 283: "Invocations de classe : Zobal", 284: "Invocations de classe : Eliotrope", 285: "Invocations communes", 222: "Invocations Temporis", 287: "Pirates naufragés", 306: "Monstres d\'évènement" }
-var super_types = [[1, "Amulette"], [2, "Arme"], [3, "Anneau"], [4, "Ceinture"], [5, "Bottes"], [6, "Consommable"], [7, "Bouclier"], [8, "Capture"], [9, "Ressource"], [10, "Chapeau"], [11, "Cape"]]
 var characteristics = [["PA", 1],
 		["PM", 23],
 		["VITALITE", 11],
@@ -181,6 +180,10 @@ func get_in_request(row: String, value: String) -> String:
 	return IN_REQUEST % [row, value]
 
 
+func get_equals_request(row: String, value: String) -> String:
+	return "%s=%s" % [row, value]
+
+
 func get_select_request(row: String) -> String:
 	return SELECT_REQUEST % row
 
@@ -276,18 +279,13 @@ func get_item_resource(data, item_res = null) -> ItemResource:
 		item_res.low_img_url = data["imgset"][0]["url"]
 		item_res.high_img_url = data["imgset"][1]["url"]
 		var type_id = data["typeId"] as int
-		var super_type_id = data["type"]["superTypeId"]
 		var effects = data["effects"]
-		var super_type = get_super_type(super_type_id)
 		item_res.niveau = data["level"]
 		item_res.item_set_id = data["itemSetId"] as int
-		if !["Ressource", "Consommable", "Capture", "Non Reconnu"].has(super_type):
-			if super_type == "Chapeau": super_type = "Coiffe"
-			item_res.equip_res = build_equip_res(effects, EquipmentResource.Type.get(super_type.to_upper()))
+		if Dicts._types.has(type_id):
+			item_res.equip_res = build_equip_res(effects)
 		
-		var type = types.get(type_id)
-		item_res.type = "" if !type else type
-		item_res.super_type = super_type
+		item_res.type_id = type_id
 		item_res.name = res_name
 		item_res.id = data["id"]
 		item_res.description = data["description"]["fr"]
@@ -392,16 +390,8 @@ func build_types(datas):
 		types[data["id"] as int] = data["name"]["fr"].to_snake_case()
 
 
-func get_super_type(super_type_id: int) -> String:
-	var filtered = super_types.filter(func(st): return st[0] == super_type_id)
-	if filtered.size() == 0:
-		return "Non Reconnu"
-	return filtered[0][1]
-
-
-func build_equip_res(effects, type: EquipmentResource.Type) -> EquipmentResource:
+func build_equip_res(effects) -> EquipmentResource:
 	var equip_res = EquipmentResource.new()
-	equip_res.type = type
 	equip_res.stats = build_characteristics(effects)
 	return equip_res
 

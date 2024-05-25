@@ -3,6 +3,8 @@ extends Node
 
 @onready var api: API = $%API
 
+signal init_done
+
 class ItemSet:
 	var _id: int
 	var _name: String
@@ -27,6 +29,12 @@ class ItemRecipe:
 		recipe._quantities = quantities
 		return recipe
 	
+	func get_item() -> ItemResource:
+		return Dicts._items[_resultId]
+	
+	func get_ingredients() -> Array:
+		return _ingredientIds.map(func(id): return Dicts._ressources[id])
+	
 	func _to_string():
 		var text = "Recette de " + Dicts._items[_resultId].name
 		for i in range(_ingredientIds.size()):
@@ -36,12 +44,26 @@ class ItemRecipe:
 		return text
 
 
+class ItemType:
+	var _id: int
+	var _name: String
+	var _category_id: int
+	
+	static func create(id: int, name: String, category_id: int) -> ItemType:
+		var type = ItemType.new()
+		type._id = id
+		type._name = name
+		type._category_id = category_id
+		return type
+
+
 const NB_SETS := 687
 static var _sets = {}
 static var _items = {}
 static var _ressources = {}
 static var _recipes = {}
 static var _monsters = {}
+static var _types = {}
 
 var loading_screen: LoadingScreen
 
@@ -49,8 +71,8 @@ var loading_screen: LoadingScreen
 func _ready():
 	loading_screen = $%LoadingScreen
 	loading_screen.loading = true
-	loading_screen.set_loading_label("Chargement des panoplies")
-	loading_screen.set_max_value(NB_SETS)
+	loading_screen.set_loading_label("Chargement des équipements")
+	await init_types()
 	await init_items()
 	loading_screen.set_loading_label("Chargement des recettes")
 	loading_screen.set_max_value(_items.size())
@@ -62,19 +84,33 @@ func _ready():
 	loading_screen.set_loading_label("Chargement des monstres")
 	loading_screen.reset()
 	await init_monsters()
-	print(_monsters)
 	loading_screen.loading = false
+	init_done.emit()
+
+
+func init_types():
+	var url = api.API_SUFFIX + "item-types?$limit=36&categoryId=0"
+	url += "&$" + api.get_select_request("id")
+	url += "&$" + api.get_select_request("name.fr")
+	url += "&$" + api.get_select_request("categoryId")
+	await api.await_for_request_completed(api.request(url))
+	for data in api.get_data(url):
+		var id = data["id"] as int
+		_types[id] = ItemType.create(id, data["name"]["fr"], data["categoryId"] as int)
 
 
 func init_items():
 	var composite_signal = API.CompositeSignal.new()
 	composite_signal._increment_loading_screen = loading_screen.increment_loading.bind(50)
-	var base_url = api.API_SUFFIX + "item-sets?$limit=50&$skip=%d"
-	base_url += "&$" + api.get_select_request("items")
-	base_url += "&$" + api.get_select_request("id")
-	base_url += "&$" + api.get_select_request("name.fr")
+	var base_url = api.API_SUFFIX + "items?$limit=50&$skip=%d"
+	for type_id in _types.keys():
+		base_url += "&" + api.get_equals_request("typeId", str(type_id))
 	var urls = []
-	for skip in range(0, NB_SETS, 50):
+	await api.await_for_request_completed(api.request(base_url % 0))
+	var total = api.json_dict[base_url % 0]["total"] as int
+	loading_screen.set_max_value(total)
+	urls.append(base_url % 0)
+	for skip in range(50, total, 50):
 		var url = base_url % skip
 		urls.append(url)
 		composite_signal.add_method(api.await_for_request_completed.bind(api.request(url)))
@@ -82,11 +118,8 @@ func init_items():
 	for url in urls:
 		var data = api.get_data(url)
 		if data and data.size() != 0:
-			for item_set in data:
-				for item in item_set["items"]:
-					_items[item["id"] as int] = ItemResource.create(item["id"] as int, item["name"]["fr"])
-				var item_ids = item_set["items"].map(func(i): return i["id"] as int)
-				_sets[item_set["id"] as int] = ItemSet.create(item_set["id"] as int, item_set["name"]["fr"], item_ids)
+			for item in data:
+				_items[item["id"] as int] = api.get_item_resource(item)
 		else:
 			print("error on url %s" % url)
 
@@ -101,15 +134,14 @@ func init_recipes():
 	var url = base_url
 	var count = 0
 	var urls = []
-	for item_set in _sets.values():
-		for equip_id in item_set._items:
-			url += "&" + api.get_in_request("resultId", str(equip_id))
-			count += 1
-			if count == 50:
-				composite_signal.add_method(api.await_for_request_completed.bind(api.request(url)))
-				urls.append(url)
-				url = base_url
-				count = 0
+	for item in _items.values():
+		url += "&" + api.get_in_request("resultId", str(item.id))
+		count += 1
+		if count == 50:
+			composite_signal.add_method(api.await_for_request_completed.bind(api.request(url)))
+			urls.append(url)
+			url = base_url
+			count = 0
 	if count > 0:
 		composite_signal.add_method(api.await_for_request_completed.bind(api.request(url)))
 		urls.append(url)

@@ -88,6 +88,7 @@ script = ExtResource("4_13j6f")
 stats_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Stats")
 
 [node name="Dicts" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("4_hxh54")
 
 [node name="PlayerManager" type="Node" parent="." node_paths=PackedStringArray("spells_container", "stats_container", "inventory_container", "xp_bar", "kamas_label", "spell_bar", "hp_bar", "pa_bar", "pm_bar", "console")]

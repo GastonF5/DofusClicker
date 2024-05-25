@@ -4,6 +4,7 @@ extends Resource
 
 @export var id: int
 @export var name: String
+@export var type_id: int
 
 @export var low_texture: Texture2D
 @export var low_img_url: String
@@ -20,9 +21,6 @@ extends Resource
 
 @export var drop_monster_ids: Array
 @export var drop_rate: float
-
-@export var type: String
-@export var super_type: String
 
 
 static func create(_id: int, _name: String) -> ItemResource:

@@ -7,22 +7,22 @@ const plus_texture = preload("res://assets/stats/btn_icon/btnIcon_plus.png")
 @export var items_container: HBoxContainer
 @export var test_resource: ItemResource
 
-var resource: RecipeResource
+var recipe: Dicts.ItemRecipe
 var result: ItemResource
 
 signal craft
 
 
-func _ready():
-	if test_resource != null:
-		init(test_resource)
+#func _ready():
+	#if test_resource != null:
+		#init(test_resource)
 
 
-func init(item_res: ItemResource):
-	instantiate_items(item_res.recipe.items)
-	resource = item_res.recipe
+func init(item_recipe: Dicts.ItemRecipe):
+	instantiate_items(item_recipe.get_ingredients())
+	recipe = item_recipe
 	
-	result = item_res
+	result = item_recipe.get_item()
 	var result_item = Item.create(result, null, false)
 	result_item.custom_minimum_size = Vector2(64, 64)
 	items_container.add_sibling(result_item)
@@ -34,7 +34,7 @@ func init(item_res: ItemResource):
 	check(inventory.get_items())
 
 
-func instantiate_items(items_res: Array[ItemResource]):
+func instantiate_items(items_res: Array):
 	for item_res in items_res:
 		var recipe_item = Item.create(item_res, null, false)
 		recipe_item.custom_minimum_size = Vector2(64, 64)
@@ -47,7 +47,7 @@ func check(items: Array):
 
 
 func check_recipe(inventory_items: Array) -> bool:
-	var recipe_items = resource.items.duplicate()
+	var recipe_items = recipe.get_ingredients().duplicate()
 	if inventory_items.size() < recipe_items.size():
 		return false
 	for item_recipe in recipe_items:
@@ -64,11 +64,11 @@ func item_match(recipe_item: ItemResource, inventory_items: Array):
 
 
 
-static func create(item_res: ItemResource, parent) -> Recipe:
-	var recipe = FileLoader.get_packed_scene("jobs/recipe").instantiate()
-	parent.add_child(recipe)
-	recipe.init(item_res)
-	return recipe
+static func create(recipe: Dicts.ItemRecipe, parent) -> Recipe:
+	var nrecipe = FileLoader.get_packed_scene("jobs/recipe").instantiate()
+	parent.add_child(nrecipe)
+	nrecipe.init(recipe)
+	return nrecipe
 
 
 func _on_button_button_up():
