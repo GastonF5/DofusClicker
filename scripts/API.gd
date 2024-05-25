@@ -11,7 +11,7 @@ class CompositeSignal:
 	func add_signal(sig: Signal):
 		_remaining += 1
 		await sig
-		_increment_loading_screen.call()
+		if _increment_loading_screen: _increment_loading_screen.call()
 		_remaining -= 1
 		if _remaining == 0:
 			finished.emit()
@@ -19,7 +19,7 @@ class CompositeSignal:
 	func add_method(method: Callable):
 		_remaining += 1
 		await method.call()
-		_increment_loading_screen.call()
+		if _increment_loading_screen: _increment_loading_screen.call()
 		_remaining -= 1
 		if _remaining == 0:
 			finished.emit()
@@ -135,8 +135,8 @@ func get_monsters_by_ids(monster_ids: Array):
 		var monster = get_monster_resource(data)
 		if !monster.archimonstre:
 			monsters.append(monster)
-			monster.image_url = $%Renderer.get_url(data, 200)
-			composite_signal.add_method($%Renderer.get_monster_texture.bindv([data, 200]))
+			monster.image_url = Renderer.get_url(data)
+			composite_signal.add_method(await_for_request_completed.bind(monster.image_url))
 	await composite_signal.finished
 	for monster in monsters:
 		monster.texture = get_texture(monster.image_url)
@@ -261,8 +261,7 @@ func resource_getter(type: ResourceType) -> Callable:
 
 func request_item_by_id(id: int):
 	var url = API_SUFFIX + "items/%d" % id
-	var request = request(url)
-	await await_for_request_completed(request)
+	await await_for_request_completed(request(url))
 	var item_res = get_item_resource(get_data(url))
 	await await_for_request_completed(request(item_res.high_img_url))
 	item_res.high_texture = get_texture(item_res.high_img_url)
@@ -281,7 +280,7 @@ func get_item_resource(data, item_res = null) -> ItemResource:
 		var effects = data["effects"]
 		var super_type = get_super_type(super_type_id)
 		item_res.niveau = data["level"]
-		#item_res.panoplie = "" if !data["itemSet"] else data["itemSet"]
+		item_res.item_set_id = data["itemSetId"] as int
 		if !["Ressource", "Consommable", "Capture", "Non Reconnu"].has(super_type):
 			if super_type == "Chapeau": super_type = "Coiffe"
 			item_res.equip_res = build_equip_res(effects, EquipmentResource.Type.get(super_type.to_upper()))
@@ -292,6 +291,7 @@ func get_item_resource(data, item_res = null) -> ItemResource:
 		item_res.name = res_name
 		item_res.id = data["id"]
 		item_res.description = data["description"]["fr"]
+		item_res.drop_monster_ids = data["dropMonsterIds"]
 		
 		return item_res
 	else:
@@ -316,7 +316,7 @@ func get_monster_resource(data):
 		drop_res.id = drop["dropId"]
 		drop_res.monster_id = drop["monsterId"]
 		drop_res.object_id = drop["objectId"]
-		drop_res.percent_drop = drop["percentDropForGrade1"]
+		drop_res.percent_drop = [drop["percentDropForGrade1"], drop["percentDropForGrade2"], drop["percentDropForGrade3"], drop["percentDropForGrade4"], drop["percentDropForGrade5"]]
 		res.drops.append(drop_res)
 	
 	res.spells = data["spells"]
@@ -327,8 +327,7 @@ func get_monster_resource(data):
 	
 	res.favorite_area = data["favoriteSubareaId"]
 	res.areas = data["subareas"]
-	
-	res.image_url = data["img"]
+	res.image_url = Renderer.get_url(data)
 	
 	res.grades = [] as Array[GradeResource]
 	for grade in data["grades"]:

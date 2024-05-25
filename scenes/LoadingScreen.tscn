@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cl1b4rs0yua7e"]
 
 [ext_resource type="Texture2D" uid="uid://0ujq6wd2dvfm" path="res://assets/common/window/window_green_background.jpg" id="1_caetp"]
-[ext_resource type="Script" path="res://scenes/LoadingScreen.gd" id="1_x64gv"]
+[ext_resource type="Script" path="res://scripts/LoadingScreen.gd" id="1_x64gv"]
 [ext_resource type="Texture2D" uid="uid://dowsh1rk5fu5n" path="res://assets/hud/gauge/gauge_background.png" id="2_t56lq"]
 [ext_resource type="Texture2D" uid="uid://cd7pwy3eypy7w" path="res://assets/hud/gauge/gauge_blue.png" id="3_m6gu0"]
 [ext_resource type="Texture2D" uid="uid://ctamqlxh63d5v" path="res://assets/hud/gauge/gauge_timer_fx.png" id="5_ysrl2"]

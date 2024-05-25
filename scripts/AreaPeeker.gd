@@ -4,6 +4,7 @@ extends PanelContainer
 
 var api: API
 var monster_manager: MonsterManager
+var loading_screen: LoadingScreen
 
 class Area:
 	var _id: int
@@ -40,6 +41,7 @@ signal subarea_selected
 
 
 func _ready():
+	loading_screen = $%LoadingScreen
 	for area in areas.values():
 		var a = Area.create(areas.find_key(area), area["name"], area["super_area"])
 		create_area_button(a)
@@ -57,6 +59,8 @@ func get_area_lvl(area: Area):
 
 
 func _on_area_clicked(button: Button):
+	loading_screen.set_loading_label("Chargement de la zone")
+	loading_screen.loading = true
 	clear_buttons()
 	var area = areas[button.name.to_int()]
 	selected_area = Area.create(button.name.to_int(), area["name"], area["super_area"])
@@ -66,19 +70,26 @@ func _on_area_clicked(button: Button):
 	url += "&$%s" % api.get_select_request("monsters")
 	await api.await_for_request_completed(api.request(url))
 	var data = api.get_data(url)
+	loading_screen.set_max_value(data.size())
 	for subarea in data:
+		loading_screen.increment_loading()
 		var sa := SubArea.create(subarea["id"], subarea["name"]["fr"], subarea["id"])
 		sa._monsters = subarea["monsters"]
 		subareas[sa._id] = sa
 		create_subarea_button(sa)
+	loading_screen.loading = false
 
 
 func _on_subarea_clicked(button: Button):
+	loading_screen.set_loading_label("Chargement des monstres de la zone")
+	loading_screen.loading = true
 	monster_manager.start_fight_button.disabled = true
 	var subarea = subareas[button.name.to_int()]
 	var monster_resources = await api.get_monsters_by_ids(subarea._monsters)
+	loading_screen.loading_pb.value = loading_screen.loading_pb.max_value
 	MonsterManager.monsters_res = monster_resources
 	monster_manager.start_fight_button.disabled = false
+	loading_screen.loading = false
 
 
 func create_area_button(area: Area):

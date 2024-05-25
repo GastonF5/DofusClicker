@@ -13,11 +13,12 @@ extends Resource
 
 @export var count: int = 1
 @export var niveau: int
-@export var panoplie: String
+@export var item_set_id: int
 @export var description: String
 
 @export var equip_res: EquipmentResource
 
+@export var drop_monster_ids: Array
 @export var drop_rate: float
 
 @export var type: String

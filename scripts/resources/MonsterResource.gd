@@ -10,9 +10,6 @@ extends Resource
 @export var texture: Texture2D
 @export var image_url: String
 
-@export var xp_gain: int
-@export var damage: int
-
 @export var boss: bool
 @export var archimonstre: bool
 @export var corresponding_archimonstre_id: int

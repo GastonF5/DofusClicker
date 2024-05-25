@@ -15,6 +15,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 scroll_following = true
+selection_enabled = true
+drag_and_drop_selection_enabled = false
 
 [node name="Input" type="LineEdit" parent="."]
 custom_minimum_size = Vector2(200, 40)

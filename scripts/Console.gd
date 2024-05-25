@@ -29,6 +29,8 @@ func _ready():
 
 
 func _input(event):
+	if event.is_action_pressed("copy"):
+		copy()
 	if !processing and !input_empty() and event.is_action_pressed("enter"):
 		processing = true
 		var input_text = input.text
@@ -46,11 +48,17 @@ func _input(event):
 	
 	if input.has_focus() and (event.is_action_pressed("esc") or event.is_action_pressed("LMB")):
 		input.release_focus()
+	if output.has_focus() and (event.is_action_pressed("esc") or event.is_action_pressed("LMB")):
+		output.release_focus()
 	
 	if input.has_focus():
 		if event.is_action_pressed("up"):
 			if history.size() != 0:
 				input.text = "/" + history[history.size() - 1]
+
+
+func copy():
+	DisplayServer.clipboard_set(output.get_selected_text())
 
 
 func input_empty() -> bool:
@@ -137,31 +145,49 @@ func do_command(command: String, params: Array[String] = []):
 			var id = params[0].to_int()
 			if id and Dicts._sets.has(id):
 				var item_set = Dicts._sets[id]
-				var log = item_set._name
+				var _log = item_set._name
 				if params.size() >= 2 and params[1] == "items":
 					for item_id in item_set._items:
 						var item = Dicts._items.get(item_id)
-						log += "\n - %d : %s" % [item_id, "non trouvé" if !item else item._name]
-				log_info(log)
+						_log += "\n - %d : %s" % [item_id, "non trouvé" if !item else item.name]
+				log_info(_log)
 			else:
 				log_error("Il n'existe pas de panoplie avec l'id %d" % id)
-		"item":
-			if params.size() < 2: return
-			var id = params[0].to_int()
-			match params[1]:
-				"get":
-					if Dicts._items.has(id):
-						if params.size() < 3:
-							log_info(Dicts._items[id]._name)
-							return
-						match params[2]:
-							"recipe":
-								if Dicts._recipes.has(id):
-									log_info(Dicts._recipes[id].to_string())
-								else:
-									log_error("Il n'existe pas de recette pour l'item %s (%d)" % [Dicts._items[id]._name, id])
+		"get":
+			if params.size() <= 1: return
+			var id = params[1].to_int()
+			match params[0]:
+				"item":
+					if Dicts._items.has(id) and params.size() <= 2:
+						log_info(Dicts._items[id].name)
+						pass
+					elif params.size() >= 3:
+						if params[2] == "recipe":
+							if Dicts._recipes.has(id):
+								log_info(Dicts._recipes[id].to_string())
+							else:
+								log_error("Il n'existe pas de recette pour l'item %s (%d)" % [Dicts._items[id].name, id])
 					else:
 						log_error("L'item d'id %d n'existe pas" % id)
+				"monster":
+					if Dicts._monsters.has(id):
+						var monster_res: MonsterResource = Dicts._monsters[id]
+						log_info(monster_res.name)
+						if params.size() == 3:
+							var property = params[2]
+							if property in monster_res:
+								log_info(" - %s" % str(monster_res.get(property)))
+							else:
+								log_error("La ressource MonsterResource ne contient pas la propriété %s" % property)
+						pass
+					else:
+						log_error("Le monstre d'id %d n'existe pas" % id)
+				"ressource":
+					if Dicts._ressources.has(id) and params.size() <= 2:
+						log_info(Dicts._ressources[id].name)
+						pass
+					else:
+						log_error("La ressource d'id %d n'existe pas" % id)
 	var command_histo = command
 	for param in params:
 		command_histo += " " + param
