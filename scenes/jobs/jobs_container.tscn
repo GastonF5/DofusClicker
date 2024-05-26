@@ -10,19 +10,31 @@
 [ext_resource type="Texture2D" uid="uid://b3aqa0jqlriwp" path="res://assets/window_icon/bricoleur.png" id="7_p3wxu"]
 
 [node name="JobsContainer" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 theme_override_constants/separation = 0
 
-[node name="TabBar" type="TabBar" parent="."]
+[node name="HBC" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="HBC"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="TabBar" type="TabBar" parent="HBC"]
 z_index = 1
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 tab_count = 7
-tab_alignment = 1
 drag_to_rearrange_enabled = true
 tab_0/title = "Tailleur"
 tab_0/icon = ExtResource("1_e44ds")
@@ -45,11 +57,12 @@ size_flags_vertical = 3
 current_tab = 1
 tabs_visible = false
 script = ExtResource("1_hrp01")
-tab_bar = NodePath("../TabBar")
+tab_bar = NodePath("../HBC/TabBar")
 
 [node name="TailleurPanel" type="Panel" parent="TabContainer"]
 visible = false
 layout_mode = 2
+mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/TailleurPanel"]
 layout_mode = 1
@@ -80,6 +93,7 @@ size_flags_horizontal = 3
 
 [node name="CordonnierPanel" type="Panel" parent="TabContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/CordonnierPanel"]
 layout_mode = 1
@@ -111,6 +125,7 @@ size_flags_horizontal = 3
 [node name="BijoutierPanel" type="Panel" parent="TabContainer"]
 visible = false
 layout_mode = 2
+mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/BijoutierPanel"]
 layout_mode = 1
@@ -142,6 +157,7 @@ size_flags_horizontal = 3
 [node name="ForgeronPanel" type="Panel" parent="TabContainer"]
 visible = false
 layout_mode = 2
+mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/ForgeronPanel"]
 layout_mode = 1
@@ -173,6 +189,7 @@ size_flags_horizontal = 3
 [node name="SculpteurPanel" type="Panel" parent="TabContainer"]
 visible = false
 layout_mode = 2
+mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/SculpteurPanel"]
 layout_mode = 1
@@ -204,6 +221,7 @@ size_flags_horizontal = 3
 [node name="FaconneurPanel" type="Panel" parent="TabContainer"]
 visible = false
 layout_mode = 2
+mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/FaconneurPanel"]
 layout_mode = 1
@@ -235,6 +253,7 @@ size_flags_horizontal = 3
 [node name="BricoleurPanel" type="Panel" parent="TabContainer"]
 visible = false
 layout_mode = 2
+mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/BricoleurPanel"]
 layout_mode = 1
@@ -263,4 +282,4 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
-[connection signal="active_tab_rearranged" from="TabBar" to="TabContainer" method="_on_tab_bar_active_tab_rearranged"]
+[connection signal="active_tab_rearranged" from="HBC/TabBar" to="TabContainer" method="_on_tab_bar_active_tab_rearranged"]

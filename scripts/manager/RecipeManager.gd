@@ -11,8 +11,6 @@ var recipes: Array[Recipe] = []
 
 const recipe_container_path = "MarginContainer/VBC/ScrollContainer/RecipeContainer"
 const search_prompt_path = "MarginContainer/VBC/Search"
-const equip_type = EquipmentResource.Type
-const weapon_type = EquipmentResource.WeaponType
 
 var mouse_on_search = false
 
@@ -21,9 +19,11 @@ var inventory: Inventory
 
 
 func _ready():
-	$%Dicts.init_done.connect(init_recipes)
+	$%Dicts.init_done.connect(init_recipes.bind(1))
 	tab_container = jobs_container.get_node("TabContainer")
 	inventory = $%PlayerManager.inventory
+	inventory.item_entered_tree.connect(check_recipes)
+	inventory.item_exiting_tree.connect(check_recipes)
 	
 	on_job_tab_changed(tab_container.current_tab)
 	for recipe in recipe_container.get_children():
@@ -58,19 +58,24 @@ func connect_search_prompt():
 	search_prompt.text_changed.connect(filter_recipes)
 
 
-func init_recipes():
-	for recipe in Dicts._recipes.values():
-		var parent = get_parent_by_type(recipe.get_item().type_id)
+func init_recipes(lvl: int):
+	for recipe in Dicts._recipes.values().filter(func(r): return r.get_result().level == lvl):
+		var parent = get_parent_by_type(recipe.get_result().type_id)
 		if parent:
 			var nrecipe = Recipe.create(recipe, parent)
 			nrecipe.craft.connect(on_recipe_craft)
 
 
-func on_recipe_craft(result: ItemResource):
-	inventory.remove_items(result.recipe.items)
-	var item = Item.create(result, inventory)
+func on_recipe_craft(recipe: Dicts.ItemRecipe):
+	inventory.remove_items(recipe.get_ingredients())
+	var item = Item.create(recipe.get_result(), inventory)
 	inventory.add_item(item)
 	console.log_equip(item)
+
+
+func check_recipes(items):
+	for recipe in recipes:
+		recipe.check(items)
 
 
 func on_mouse_enter_search():

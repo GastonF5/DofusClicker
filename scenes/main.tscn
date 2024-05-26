@@ -509,7 +509,7 @@ script = ExtResource("3_ir03k")
 lvl_label = NodePath("../PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/XPContainer/LvlLabel")
 
 [node name="RightSide" type="PanelContainer" parent="GUI/Main/HBC"]
-custom_minimum_size = Vector2(522, 0)
+custom_minimum_size = Vector2(530, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_styles/panel = SubResource("StyleBoxEmpty_vjwvv")
@@ -537,3 +537,4 @@ layout_mode = 2
 
 [node name="LoadingScreen" parent="." instance=ExtResource("43_bkaqa")]
 unique_name_in_owner = true
+visible = false

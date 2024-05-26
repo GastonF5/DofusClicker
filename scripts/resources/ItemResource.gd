@@ -13,7 +13,7 @@ extends Resource
 @export var high_img_url: String
 
 @export var count: int = 1
-@export var niveau: int
+@export var level: int
 @export var item_set_id: int
 @export var description: String
 

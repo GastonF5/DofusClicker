@@ -29,11 +29,16 @@ class ItemRecipe:
 		recipe._quantities = quantities
 		return recipe
 	
-	func get_item() -> ItemResource:
+	func get_result() -> ItemResource:
 		return Dicts._items[_resultId]
 	
 	func get_ingredients() -> Array:
-		return _ingredientIds.map(func(id): return Dicts._ressources[id])
+		var result = []
+		for i in range(_ingredientIds.size()):
+			var ingredient = Dicts._ressources[_ingredientIds[i]]
+			ingredient.count = _quantities[i]
+			result.append(ingredient)
+		return result
 	
 	func _to_string():
 		var text = "Recette de " + Dicts._items[_resultId].name
@@ -81,11 +86,11 @@ func _ready():
 	loading_screen.set_loading_label("Chargement des ressources")
 	loading_screen.reset()
 	await init_resources()
+	init_done.emit()
 	loading_screen.set_loading_label("Chargement des monstres")
 	loading_screen.reset()
 	await init_monsters()
 	loading_screen.loading = false
-	init_done.emit()
 
 
 func init_types():

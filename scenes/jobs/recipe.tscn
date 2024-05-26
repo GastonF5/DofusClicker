@@ -11,6 +11,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_ys3ho")
 button = NodePath("MarginContainer/HBC/Button")
 items_container = NodePath("MarginContainer/HBC/Items")

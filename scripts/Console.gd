@@ -125,19 +125,16 @@ func do_command(command: String, params: Array[String] = []):
 						var monster: Monster = MonsterManager.monsters[index]
 						monster.die()
 		"add":
-			if params[0] == "equip":
-				var equip_res = FileLoader.get_equipment_resource(EQUIPMENT_RESOURCE_PATH % params[1])
-				if equip_res:
-					inventory.add_item(Item.create(equip_res, inventory))
-				else:
-					log_error("Equipment not found")
-				pass
 			if params[0] == "item":
+				var count = 1
+				if params.size() >= 3:
+					count = params[2]
 				var time = Time.get_ticks_msec()
 				log_info("Loading...")
 				var id = params[1].to_int()
 				await api.request_item_by_id(id)
 				var item_res = api.get_data(id)
+				item_res.count = count
 				inventory.add_item(Item.create(item_res, inventory))
 				log_info("Request completed in %d ms" % (Time.get_ticks_msec() - time))
 				pass

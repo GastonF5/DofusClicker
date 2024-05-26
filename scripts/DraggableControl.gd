@@ -23,18 +23,11 @@ var mouse_on := false
 
 
 func _enter_tree():
+	if old_parent is Button:
+		old_parent.button_pressed = false
 	if !initialized and draggable:
 		init_draggable()
 		initialized = true
-	if get_parent().get_groups().has("slot"):
-		get_parent().mouse_entered.connect(_on_mouse_entered)
-		get_parent().mouse_exited.connect(_on_mouse_exited)
-
-
-func _exit_tree():
-	if get_parent().get_groups().has("slot"):
-		get_parent().mouse_entered.disconnect(_on_mouse_entered)
-		get_parent().mouse_exited.disconnect(_on_mouse_exited)
 
 
 func init_draggable():
@@ -61,6 +54,7 @@ func _on_button_down():
 func drag():
 	dragged = true
 	old_parent = get_parent()
+	old_parent.set_pressed_no_signal(false)
 	if get_parent() != null:
 		get_parent().remove_child(self)
 		OverUI.add_child(self)

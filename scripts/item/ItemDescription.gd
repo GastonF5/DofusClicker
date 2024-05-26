@@ -20,7 +20,7 @@ func _ready():
 
 func init(item_res: ItemResource, stats: Array[StatResource] = []):
 	name = item_res.name.to_pascal_case() + "Description"
-	item_texture.texture = item_res.high_texture
+	item_texture.texture = item_res.low_texture
 	compute_name_label(item_res)
 	clear_effect_labels()
 	if !stats.is_empty():
@@ -29,9 +29,6 @@ func init(item_res: ItemResource, stats: Array[StatResource] = []):
 	elif item_res.equip_res:
 		for effect in item_res.equip_res.stats:
 			add_effect_label(effect)
-	else:
-		effects_label.visible = false
-		effects_container.visible = false
 	#description.text = item_res.description
 	set_mouse_ignore()
 
@@ -45,9 +42,9 @@ func set_mouse_ignore():
 func compute_name_label(item_res: ItemResource):
 	name_label.clear()
 	name_label.push_outline_size(-6)
-	name_label.append_text(item_res.name + "\n")
+	name_label.append_text(item_res.name + " (%d)" % item_res.id + "\n")
 	name_label.push_color(Color.GRAY)
-	name_label.append_text("Niveau %s" % item_res.niveau)
+	name_label.append_text("Niveau %s" % item_res.level)
 	name_label.pop()
 
 

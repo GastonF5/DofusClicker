@@ -1,5 +1,5 @@
 class_name LoadingScreen
-extends Node
+extends CanvasLayer
 
 
 @export var loading_pb: ProgressBar
@@ -23,7 +23,7 @@ func _ready():
 
 
 func update_visibility():
-	$CanvasLayer.visible = loading
+	self.visible = loading
 
 
 func set_max_value(mv: float):

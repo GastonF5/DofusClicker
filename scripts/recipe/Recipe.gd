@@ -5,25 +5,21 @@ const plus_texture = preload("res://assets/stats/btn_icon/btnIcon_plus.png")
 
 @export var button: Button
 @export var items_container: HBoxContainer
-@export var test_resource: ItemResource
 
 var recipe: Dicts.ItemRecipe
-var result: ItemResource
 
 signal craft
 
-
-#func _ready():
-	#if test_resource != null:
-		#init(test_resource)
+var count = 0
 
 
 func init(item_recipe: Dicts.ItemRecipe):
-	instantiate_items(item_recipe.get_ingredients())
+	self.visible = false
 	recipe = item_recipe
+	instantiate_items()
 	
-	result = item_recipe.get_item()
-	var result_item = Item.create(result, null, false)
+	var result_item = Item.create(item_recipe.get_result(), null, false, true)
+	result_item.texture_initialized.connect(_on_item_texture_initialized)
 	result_item.custom_minimum_size = Vector2(64, 64)
 	items_container.add_sibling(result_item)
 	items_container.get_parent().move_child(result_item, 0)
@@ -34,12 +30,19 @@ func init(item_recipe: Dicts.ItemRecipe):
 	check(inventory.get_items())
 
 
-func instantiate_items(items_res: Array):
-	for item_res in items_res:
-		var recipe_item = Item.create(item_res, null, false)
+func instantiate_items():
+	for ingredient in recipe.get_ingredients():
+		var recipe_item = Item.create(ingredient, null, false, true)
+		recipe_item.texture_initialized.connect(_on_item_texture_initialized)
 		recipe_item.custom_minimum_size = Vector2(64, 64)
 		recipe_item.get_node("Count").add_theme_font_size_override("FontSize", 16)
 		items_container.add_child(recipe_item)
+
+
+func _on_item_texture_initialized():
+	count += 1
+	if count == recipe._ingredientIds.size() + 1:
+		self.visible = true
 
 
 func check(items: Array):
@@ -72,4 +75,4 @@ static func create(recipe: Dicts.ItemRecipe, parent) -> Recipe:
 
 
 func _on_button_button_up():
-	craft.emit(result)
+	craft.emit(recipe)

@@ -280,11 +280,12 @@ func get_item_resource(data, item_res = null) -> ItemResource:
 		item_res.high_img_url = data["imgset"][1]["url"]
 		var type_id = data["typeId"] as int
 		var effects = data["effects"]
-		item_res.niveau = data["level"]
+		item_res.level = data["level"]
 		item_res.item_set_id = data["itemSetId"] as int
 		if Dicts._types.has(type_id):
 			item_res.equip_res = build_equip_res(effects)
 		
+		item_res.description = data["description"]["fr"]
 		item_res.type_id = type_id
 		item_res.name = res_name
 		item_res.id = data["id"]

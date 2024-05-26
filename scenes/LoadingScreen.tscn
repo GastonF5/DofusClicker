@@ -15,16 +15,13 @@ texture = ExtResource("3_m6gu0")
 [sub_resource type="LabelSettings" id="LabelSettings_n33jh"]
 font_size = 32
 
-[node name="LoadingScreen" type="Node" node_paths=PackedStringArray("loading_pb", "progress_text", "loading_label")]
+[node name="LoadingScreen" type="CanvasLayer" node_paths=PackedStringArray("loading_pb", "progress_text", "loading_label")]
 script = ExtResource("1_x64gv")
-loading_pb = NodePath("CanvasLayer/Main/LoadingPB")
-progress_text = NodePath("CanvasLayer/Main/ProgressTexture")
-loading_label = NodePath("CanvasLayer/Main/LoadingLabel")
+loading_pb = NodePath("Main/LoadingPB")
+progress_text = NodePath("Main/ProgressTexture")
+loading_label = NodePath("Main/LoadingLabel")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 10
-
-[node name="Main" type="Control" parent="CanvasLayer"]
+[node name="Main" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,7 +29,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Background" type="TextureRect" parent="CanvasLayer/Main"]
+[node name="Background" type="TextureRect" parent="Main"]
 modulate = Color(1, 1, 1, 0.541176)
 layout_mode = 1
 anchors_preset = 15
@@ -42,7 +39,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_caetp")
 
-[node name="LoadingPB" type="ProgressBar" parent="CanvasLayer/Main"]
+[node name="LoadingPB" type="ProgressBar" parent="Main"]
 custom_minimum_size = Vector2(1000, 0)
 layout_mode = 1
 anchors_preset = 8
@@ -60,7 +57,7 @@ theme_override_styles/background = SubResource("StyleBoxTexture_nsd2b")
 theme_override_styles/fill = SubResource("StyleBoxTexture_xnn6t")
 max_value = 300.0
 
-[node name="ProgressTexture" type="TextureRect" parent="CanvasLayer/Main"]
+[node name="ProgressTexture" type="TextureRect" parent="Main"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -75,7 +72,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("5_ysrl2")
 
-[node name="LoadingLabel" type="Label" parent="CanvasLayer/Main"]
+[node name="LoadingLabel" type="Label" parent="Main"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
