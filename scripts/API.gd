@@ -135,7 +135,7 @@ func get_monsters_by_ids(monster_ids: Array):
 		if !monster.archimonstre:
 			monsters.append(monster)
 			monster.image_url = Renderer.get_url(data)
-			composite_signal.add_method(await_for_request_completed.bind(monster.image_url))
+			composite_signal.add_method(await_for_request_completed.bind(request(monster.image_url)))
 	await composite_signal.finished
 	for monster in monsters:
 		monster.texture = get_texture(monster.image_url)

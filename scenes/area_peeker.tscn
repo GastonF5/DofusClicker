@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/AreaPeeker.gd" id="1_4wb44"]
 
-[node name="AreaPeeker" type="PanelContainer"]
+[node name="AreaPeeker" type="PanelContainer" node_paths=PackedStringArray("back_button")]
 custom_minimum_size = Vector2(800, 50)
 anchors_preset = 8
 anchor_left = 0.5
@@ -16,12 +16,26 @@ offset_bottom = 22.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4wb44")
+back_button = NodePath("HBC/BackButton")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="HBC" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="VBC" type="HBoxContainer" parent="ScrollContainer"]
+[node name="BackButton" type="Button" parent="HBC"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+disabled = true
+text = "Back"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBC"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 6
+
+[node name="HBC" type="HBoxContainer" parent="HBC/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 alignment = 1
+
+[connection signal="button_up" from="HBC/BackButton" to="." method="_on_back_button_button_up"]

@@ -56,7 +56,7 @@ func init(res: MonsterResource):
 		header_texture.texture = load("res://assets/icons/archimonstre.png")
 	else:
 		header_texture.texture = null
-	attack_amount.text = str(res.damage)
+	#attack_amount.text = str(res.damage)
 	attack_callable = attack
 	new_attack_timer()
 	update_timer()

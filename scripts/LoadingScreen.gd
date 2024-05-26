@@ -13,12 +13,12 @@ var loading = false:
 		if loading:
 			reset()
 
-var vec: Vector2
+var vec := Vector2.ZERO
 
 
 func _ready():
-	vec = Vector2(progress_text.size.x / 2, progress_text.size.y / 4)
-	progress_text.position = loading_pb.position
+	vec = Vector2(progress_text.size.x / 2 + 2, progress_text.size.y / 4 + 3)
+	progress_text.visible = false
 	reset()
 
 
@@ -45,7 +45,8 @@ func reset():
 func set_value(v: int):
 	loading_pb.value = v
 	var x_pos = (loading_pb.value * loading_pb.size.x) / loading_pb.max_value
-	progress_text.position = loading_pb.position + Vector2(x_pos, 0) - vec
+	progress_text.visible = v != 0
+	progress_text.global_position = loading_pb.global_position + Vector2(x_pos, 0) - vec
 
 
 func print_loading_pb():

@@ -5,11 +5,13 @@ extends PanelContainer
 var api: API
 var monster_manager: MonsterManager
 var loading_screen: LoadingScreen
+@export var back_button: Button
 
 class Area:
 	var _id: int
 	var _name: String
 	var _super_area_id: int
+	var _subareas: Array[SubArea] = []
 	
 	static func create(id: int, area_name: String, super_area_id: int) -> Area:
 		var area = Area.new()
@@ -18,17 +20,18 @@ class Area:
 		area._super_area_id = super_area_id
 		return area
 
+
 class SubArea:
 	var _id: int
 	var _name: String
-	var _area_id: int
+	var _super_area_id: int
 	var _monsters: Array
 	
-	static func create(id: int, subarea_name: String, area_id: int) -> SubArea:
+	static func create(id: int, subarea_name: String, super_area_id: int) -> SubArea:
 		var subarea = SubArea.new()
 		subarea._id = id
 		subarea._name = subarea_name
-		subarea._area_id = area_id
+		subarea._super_area_id = super_area_id
 		return subarea
 
 
@@ -41,10 +44,18 @@ signal subarea_selected
 
 
 func _ready():
+	for key in areas.keys():
+		areas[key] = Area.create(key, areas[key]["name"], areas[key]["super_area"])
 	loading_screen = $%LoadingScreen
+	var composite_signal = API.CompositeSignal.new()
 	for area in areas.values():
-		var a = Area.create(areas.find_key(area), area["name"], area["super_area"])
-		create_area_button(a)
+		create_area_button(area)
+		composite_signal.add_method(build_subareas.bind(area))
+	await composite_signal.finished
+	areas.values().all(func(a):
+		if a._subareas.is_empty():
+			areas.erase(a._id)
+			erase_button(a))
 
 
 func get_area_lvl(area: Area):
@@ -58,33 +69,36 @@ func get_area_lvl(area: Area):
 	prints(area._name, min_lvl)
 
 
-func _on_area_clicked(button: Button):
-	loading_screen.set_loading_label("Chargement de la zone")
-	loading_screen.loading = true
-	clear_buttons()
-	var area = areas[button.name.to_int()]
-	selected_area = Area.create(button.name.to_int(), area["name"], area["super_area"])
-	var url = api.API_SUFFIX + "subareas?areaId=%s" % str(selected_area._id)
+func build_subareas(area: Area):
+	var url = api.API_SUFFIX + "subareas?areaId=%s" % str(area._id)
 	url += "&$%s" % api.get_select_request("name.fr")
 	url += "&$%s" % api.get_select_request("id")
 	url += "&$%s" % api.get_select_request("monsters")
 	await api.await_for_request_completed(api.request(url))
 	var data = api.get_data(url)
-	loading_screen.set_max_value(data.size())
+	if is_instance_of(data, TYPE_DICTIONARY):
+		areas.erase(area._id)
+		erase_button(area)
+		return
 	for subarea in data:
-		loading_screen.increment_loading()
-		var sa := SubArea.create(subarea["id"], subarea["name"]["fr"], subarea["id"])
-		sa._monsters = subarea["monsters"]
-		subareas[sa._id] = sa
-		create_subarea_button(sa)
-	loading_screen.loading = false
+		if !subarea["monsters"].is_empty():
+			var sa := SubArea.create(subarea["id"], subarea["name"]["fr"], area._id)
+			sa._monsters = subarea["monsters"]
+			area._subareas.append(sa)
+
+
+func _on_area_clicked(button: Button):
+	clear_buttons()
+	back_button.disabled = false
+	var area: Area = areas[button.name.to_int()]
+	area._subareas.all(func(sa): create_subarea_button(sa))
 
 
 func _on_subarea_clicked(button: Button):
-	loading_screen.set_loading_label("Chargement des monstres de la zone")
+	var subarea = subareas[button.name.to_int()]
+	loading_screen.set_loading_label("Chargement des monstres de la zone %s" % subarea._name)
 	loading_screen.loading = true
 	monster_manager.start_fight_button.disabled = true
-	var subarea = subareas[button.name.to_int()]
 	var monster_resources = await api.get_monsters_by_ids(subarea._monsters)
 	loading_screen.loading_pb.value = loading_screen.loading_pb.max_value
 	MonsterManager.monsters_res = monster_resources
@@ -98,7 +112,7 @@ func create_area_button(area: Area):
 	button.name = str(area._id)
 	button.button_up.connect(_on_area_clicked.bind(button))
 	button.focus_mode = Control.FOCUS_NONE
-	$ScrollContainer/VBC.add_child(button)
+	$HBC/ScrollContainer/HBC.add_child(button)
 
 
 func create_subarea_button(subarea: SubArea):
@@ -107,15 +121,29 @@ func create_subarea_button(subarea: SubArea):
 	button.name = str(subarea._id)
 	button.button_up.connect(_on_subarea_clicked.bind(button))
 	button.focus_mode = Control.FOCUS_NONE
-	$ScrollContainer/VBC.add_child(button)
+	$HBC/ScrollContainer/HBC.add_child(button)
+
+
+func erase_button(area: Area):
+	var button = $HBC/ScrollContainer/HBC.get_node(str(area._id))
+	$HBC/ScrollContainer/HBC.remove_child(button)
+	button.queue_free()
 
 
 func clear_buttons():
-	for button in $ScrollContainer/VBC.get_children():
-		$ScrollContainer/VBC.remove_child(button)
+	for button in $HBC/ScrollContainer/HBC.get_children():
+		$HBC/ScrollContainer/HBC.remove_child(button)
 		button.queue_free()
 
 
 func _enter_tree():
 	api = get_tree().current_scene.get_node("%API")
 	monster_manager = get_tree().current_scene.get_node("%MonsterManager")
+
+
+func _on_back_button_button_up():
+	clear_buttons()
+	selected_area = null
+	back_button.disabled = true
+	for a in areas.values():
+		create_area_button(a)

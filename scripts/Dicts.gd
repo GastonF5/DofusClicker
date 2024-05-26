@@ -124,7 +124,9 @@ func init_items():
 		var data = api.get_data(url)
 		if data and data.size() != 0:
 			for item in data:
-				_items[item["id"] as int] = api.get_item_resource(item)
+				var item_res = api.get_item_resource(item)
+				if item_res.equip_res and !item_res.equip_res.stats.is_empty():
+					_items[item["id"] as int] = item_res
 		else:
 			print("error on url %s" % url)
 

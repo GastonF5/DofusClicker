@@ -1,0 +1,58 @@
+[gd_scene load_steps=2 format=3 uid="uid://brot8qkranooc"]
+
+[ext_resource type="Script" path="res://scripts/jobs/JobPanel.gd" id="1_ymud0"]
+
+[node name="JobPanel" type="Panel" node_paths=PackedStringArray("search_prompt", "lvl_input", "recipe_container")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_ymud0")
+search_prompt = NodePath("MarginContainer/VBC/HBC/Search")
+lvl_input = NodePath("MarginContainer/VBC/HBC/LvlInput")
+recipe_container = NodePath("MarginContainer/VBC/ScrollContainer/RecipeContainer")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBC" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBC" type="HBoxContainer" parent="MarginContainer/VBC"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Search" type="LineEdit" parent="MarginContainer/VBC/HBC" groups=["search_prompt"]]
+custom_minimum_size = Vector2(2.08165e-12, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Rechercher une recette"
+
+[node name="Control" type="Control" parent="MarginContainer/VBC/HBC"]
+custom_minimum_size = Vector2(10, 2.08165e-12)
+layout_mode = 2
+
+[node name="LvlLabel" type="Label" parent="MarginContainer/VBC/HBC"]
+layout_mode = 2
+text = "Niveau : "
+
+[node name="LvlInput" type="LineEdit" parent="MarginContainer/VBC/HBC"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RecipeContainer" type="VBoxContainer" parent="MarginContainer/VBC/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3

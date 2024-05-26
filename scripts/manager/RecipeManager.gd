@@ -7,12 +7,8 @@ var tab_container: TabContainer
 
 var recipe_container: VBoxContainer
 var search_prompt: LineEdit
+var lvl_input: LineEdit
 var recipes: Array[Recipe] = []
-
-const recipe_container_path = "MarginContainer/VBC/ScrollContainer/RecipeContainer"
-const search_prompt_path = "MarginContainer/VBC/Search"
-
-var mouse_on_search = false
 
 @onready var console: Console = $%Console
 var inventory: Inventory
@@ -34,28 +30,28 @@ func _ready():
 func _input(event):
 	if search_prompt.has_focus() and (event.is_action_pressed("esc") or event.is_action_pressed("LMB")):
 		search_prompt.release_focus()
+	if lvl_input.has_focus() and (event.is_action_pressed("esc") or event.is_action_pressed("LMB")):
+		lvl_input.release_focus()
 
 
 func on_job_tab_changed(tab):
-	disconnect_search_prompt()
-	recipe_container = tab_container.get_child(tab).get_node(recipe_container_path)
-	search_prompt = tab_container.get_child(tab).get_node(search_prompt_path)
-	connect_search_prompt()
+	disconnect_inputs()
+	recipe_container = tab_container.get_child(tab).recipe_container
+	search_prompt = tab_container.get_child(tab).search_prompt
+	lvl_input = tab_container.get_child(tab).lvl_input
+	connect_inputs()
 
 
-func disconnect_search_prompt():
-	if search_prompt and search_prompt.mouse_entered.is_connected(on_mouse_enter_search):
-		search_prompt.mouse_entered.disconnect(on_mouse_enter_search)
-	if search_prompt and search_prompt.mouse_exited.is_connected(on_mouse_exit_search):
-		search_prompt.mouse_exited.disconnect(on_mouse_exit_search)
+func disconnect_inputs():
 	if search_prompt and search_prompt.text_changed.is_connected(filter_recipes):
 		search_prompt.text_changed.disconnect(filter_recipes)
+	if lvl_input and lvl_input.text_changed.is_connected(filter_lvl):
+		lvl_input.text_changed.disconnect(filter_lvl)
 
 
-func connect_search_prompt():
-	search_prompt.mouse_entered.connect(on_mouse_enter_search)
-	search_prompt.mouse_exited.connect(on_mouse_exit_search)
+func connect_inputs():
 	search_prompt.text_changed.connect(filter_recipes)
+	lvl_input.text_changed.connect(filter_lvl)
 
 
 func init_recipes(lvl: int):
@@ -63,6 +59,7 @@ func init_recipes(lvl: int):
 		var parent = get_parent_by_type(recipe.get_result().type_id)
 		if parent:
 			var nrecipe = Recipe.create(recipe, parent)
+			recipes.append(nrecipe)
 			nrecipe.craft.connect(on_recipe_craft)
 
 
@@ -76,14 +73,6 @@ func on_recipe_craft(recipe: Dicts.ItemRecipe):
 func check_recipes(items):
 	for recipe in recipes:
 		recipe.check(items)
-
-
-func on_mouse_enter_search():
-	mouse_on_search = true
-
-
-func on_mouse_exit_search():
-	mouse_on_search = false
 
 
 func get_parent_by_type(type_id: int):
@@ -104,12 +93,17 @@ func get_parent_by_type(type_id: int):
 			node_name = "Forgeron"
 		_:
 			return null
-	return tab_container.get_node(node_name + "Panel").get_node(recipe_container_path)
+	var job_panel: JobPanel = tab_container.get_node(node_name + "Panel")
+	return job_panel.recipe_container
 
 
 func filter_recipes(text_filter: String):
-		for recipe in recipes:
+		for nrecipe in recipes:
 			if text_filter and text_filter != "":
-				recipe.visible = recipe.result.name.to_lower().contains(text_filter.to_lower())
+				nrecipe.visible = nrecipe.recipe.get_result().name.to_lower().contains(text_filter.to_lower())
 			else:
-				recipe.visible = true
+				nrecipe.visible = true
+
+
+func filter_lvl(lvl_filter: String):
+	pass
