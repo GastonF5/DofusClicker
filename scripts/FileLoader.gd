@@ -10,6 +10,10 @@ static var EQUIPMENTS_PATH := "user://tmp/equipment/"
 static var ITEMS_PATH := "user://tmp/items/"
 
 
+static func load_file(path: String):
+	return load(path)
+
+
 static func get_all_file_paths(path: String) -> Array[String]:
 	var file_paths: Array[String] = []
 	var dir = DirAccess.open(path)

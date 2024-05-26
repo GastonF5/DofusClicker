@@ -55,7 +55,8 @@ func connect_inputs():
 
 
 func init_recipes(lvl: int):
-	for recipe in Dicts._recipes.values().filter(func(r): return r.get_result().level == lvl):
+	var recipes_to_init = Dicts._recipes.values().filter(func(r): return r.get_result().level == lvl)
+	for recipe in recipes_to_init:
 		var parent = get_parent_by_type(recipe.get_result().type_id)
 		if parent:
 			var nrecipe = Recipe.create(recipe, parent)
@@ -63,7 +64,7 @@ func init_recipes(lvl: int):
 			nrecipe.craft.connect(on_recipe_craft)
 
 
-func on_recipe_craft(recipe: Dicts.ItemRecipe):
+func on_recipe_craft(recipe: RecipeResource):
 	inventory.remove_items(recipe.get_ingredients())
 	var item = Item.create(recipe.get_result(), inventory)
 	inventory.add_item(item)
@@ -76,7 +77,7 @@ func check_recipes(items):
 
 
 func get_parent_by_type(type_id: int):
-	var type: Dicts.ItemType = Dicts._types[type_id]
+	var type: ItemTypeResource = Dicts._types[type_id]
 	var node_name: String
 	match type._name.to_upper():
 		"CHAPEAU", "CAPE":

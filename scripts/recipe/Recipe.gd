@@ -6,14 +6,14 @@ const plus_texture = preload("res://assets/stats/btn_icon/btnIcon_plus.png")
 @export var button: Button
 @export var items_container: HBoxContainer
 
-var recipe: Dicts.ItemRecipe
+var recipe: RecipeResource
 
 signal craft
 
 var count = 0
 
 
-func init(item_recipe: Dicts.ItemRecipe):
+func init(item_recipe: RecipeResource):
 	self.visible = false
 	recipe = item_recipe
 	instantiate_items()
@@ -41,7 +41,7 @@ func instantiate_items():
 
 func _on_item_texture_initialized():
 	count += 1
-	if count == recipe._ingredientIds.size() + 1:
+	if count == recipe.ingredients.size() + 1:
 		self.visible = true
 
 
@@ -67,7 +67,7 @@ func item_match(recipe_item: ItemResource, inventory_items: Array):
 
 
 
-static func create(recipe: Dicts.ItemRecipe, parent) -> Recipe:
+static func create(recipe: RecipeResource, parent) -> Recipe:
 	var nrecipe = FileLoader.get_packed_scene("jobs/recipe").instantiate()
 	parent.add_child(nrecipe)
 	nrecipe.init(recipe)

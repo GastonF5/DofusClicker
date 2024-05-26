@@ -2,8 +2,10 @@ class_name Dicts
 extends Node
 
 @onready var api: API = $%API
+@onready var fileSaver: FileSaver = $%FileSaver
 
 signal init_done
+
 
 class ItemSet:
 	var _id: int
@@ -17,55 +19,11 @@ class ItemSet:
 		item_set._items = items
 		return item_set
 
-class ItemRecipe:
-	var _resultId: int
-	var _ingredientIds: Array
-	var _quantities: Array
-	
-	static func create(resultId: int, ingredientIds: Array, quantities: Array) -> ItemRecipe:
-		var recipe = ItemRecipe.new()
-		recipe._resultId = resultId
-		recipe._ingredientIds = ingredientIds.map(func(id): return id as int)
-		recipe._quantities = quantities
-		return recipe
-	
-	func get_result() -> ItemResource:
-		return Dicts._items[_resultId]
-	
-	func get_ingredients() -> Array:
-		var result = []
-		for i in range(_ingredientIds.size()):
-			var ingredient = Dicts._ressources[_ingredientIds[i]]
-			ingredient.count = _quantities[i]
-			result.append(ingredient)
-		return result
-	
-	func _to_string():
-		var text = "Recette de " + Dicts._items[_resultId].name
-		for i in range(_ingredientIds.size()):
-			var id = _ingredientIds[i]
-			var item = Dicts._ressources.get(id)
-			text += "\n - %d x %s (%d)" % [_quantities[i], "non identifié" if !item else item.name, id]
-		return text
-
-
-class ItemType:
-	var _id: int
-	var _name: String
-	var _category_id: int
-	
-	static func create(id: int, name: String, category_id: int) -> ItemType:
-		var type = ItemType.new()
-		type._id = id
-		type._name = name
-		type._category_id = category_id
-		return type
-
 
 const NB_SETS := 687
 static var _sets = {}
 static var _items = {}
-static var _ressources = {}
+static var _resources = {}
 static var _recipes = {}
 static var _monsters = {}
 static var _types = {}
@@ -77,20 +35,34 @@ func _ready():
 	loading_screen = $%LoadingScreen
 	loading_screen.loading = true
 	loading_screen.set_loading_label("Chargement des équipements")
-	await init_types()
-	await init_items()
+	# Types
+	await get_data("types")
+	# Items
+	await get_data("items")
+	# Recipes
 	loading_screen.set_loading_label("Chargement des recettes")
 	loading_screen.set_max_value(_items.size())
 	loading_screen.reset()
-	await init_recipes()
+	await get_data("recipes")
 	loading_screen.set_loading_label("Chargement des ressources")
 	loading_screen.reset()
-	await init_resources()
+	# Resources
+	await get_data("resources")
 	init_done.emit()
+	# Monsters
 	loading_screen.set_loading_label("Chargement des monstres")
 	loading_screen.reset()
-	await init_monsters()
+	await get_data("monsters")
 	loading_screen.loading = false
+
+
+func get_data(data_name: String):
+	var file = FileLoader.load_file(fileSaver.DATA_PATH + data_name + ".tres")
+	if file:
+		self.set("_" + data_name, file.data)
+	else:
+		await self.get("init_" + data_name).call()
+		fileSaver.save_data(self.get("_" + data_name), data_name)
 
 
 func init_types():
@@ -101,7 +73,7 @@ func init_types():
 	await api.await_for_request_completed(api.request(url))
 	for data in api.get_data(url):
 		var id = data["id"] as int
-		_types[id] = ItemType.create(id, data["name"]["fr"], data["categoryId"] as int)
+		_types[id] = ItemTypeResource.create(id, data["name"]["fr"], data["categoryId"] as int)
 
 
 func init_items():
@@ -158,15 +130,15 @@ func init_recipes():
 		if is_instance_of(datas, TYPE_DICTIONARY): datas = datas["data"]
 		for data in datas:
 			var result_id = data["resultId"] as int
-			_recipes[result_id] = ItemRecipe.create(result_id, data["ingredientIds"], data["quantities"])
+			_recipes[result_id] = RecipeResource.create(result_id, data["ingredientIds"], data["quantities"])
 
 
 func init_resources():
 	var composite_signal = API.CompositeSignal.new()
 	composite_signal._increment_loading_screen = loading_screen.increment_loading.bind(50)
 	var ressource_ids = []
-	for recipe: ItemRecipe in _recipes.values():
-		for ingredient_id in recipe._ingredientIds:
+	for recipe: RecipeResource in _recipes.values():
+		for ingredient_id in recipe.ingredients:
 			if !ressource_ids.has(ingredient_id):
 				ressource_ids.append(ingredient_id)
 	loading_screen.set_max_value(ressource_ids.size())
@@ -190,14 +162,14 @@ func init_resources():
 		var datas = api.get_data(u)
 		if is_instance_of(datas, TYPE_DICTIONARY): datas = datas["data"]
 		for data in datas:
-			_ressources[data["id"] as int] = api.get_item_resource(data)
+			_resources[data["id"] as int] = api.get_item_resource(data)
 
 
 func init_monsters():
 	var composite_signal = API.CompositeSignal.new()
 	composite_signal._increment_loading_screen = loading_screen.increment_loading.bind(50)
 	var monster_ids = []
-	for ressource: ItemResource in _ressources.values():
+	for ressource: ItemResource in _resources.values():
 		for monster_id in ressource.drop_monster_ids:
 			if !monster_ids.has(monster_id):
 				monster_ids.append(monster_id)

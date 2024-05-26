@@ -1,7 +1,8 @@
-[gd_scene load_steps=56 format=3 uid="uid://bfh3u8jwrg2ar"]
+[gd_scene load_steps=57 format=3 uid="uid://bfh3u8jwrg2ar"]
 
 [ext_resource type="PackedScene" uid="uid://2yisonfumvpt" path="res://scenes/API.tscn" id="1_0haij"]
 [ext_resource type="Script" path="res://scripts/manager/MonsterManager.gd" id="1_iu0is"]
+[ext_resource type="Script" path="res://scripts/FileSaver.gd" id="1_upxrd"]
 [ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="2_4lqlq"]
 [ext_resource type="Texture2D" uid="uid://dtp2ktsnvjk8w" path="res://assets/common/window/bg_product.jpg" id="2_5kihd"]
 [ext_resource type="Script" path="res://scripts/manager/PlayerManager.gd" id="2_06gc8"]
@@ -79,6 +80,10 @@ texture = ExtResource("35_61trk")
 
 [node name="Main" type="Node"]
 
+[node name="FileSaver" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_upxrd")
+
 [node name="API" parent="." instance=ExtResource("1_0haij")]
 unique_name_in_owner = true
 show_prompts = false
@@ -86,10 +91,6 @@ show_prompts = false
 [node name="StatsManager" type="Node" parent="." node_paths=PackedStringArray("stats_container")]
 script = ExtResource("4_13j6f")
 stats_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Stats")
-
-[node name="Dicts" type="Node" parent="."]
-unique_name_in_owner = true
-script = ExtResource("4_hxh54")
 
 [node name="PlayerManager" type="Node" parent="." node_paths=PackedStringArray("spells_container", "stats_container", "inventory_container", "xp_bar", "kamas_label", "spell_bar", "hp_bar", "pa_bar", "pm_bar", "console")]
 unique_name_in_owner = true
@@ -116,6 +117,10 @@ equipment_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/Equipme
 [node name="RecipeManager" type="Node" parent="." node_paths=PackedStringArray("jobs_container")]
 script = ExtResource("5_51m8x")
 jobs_container = NodePath("../GUI/Main/HBC/RightSide/VSplitContainer/JobsContainer")
+
+[node name="Dicts" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_hxh54")
 
 [node name="Timers" type="Node" parent="."]
 

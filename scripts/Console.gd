@@ -180,8 +180,8 @@ func do_command(command: String, params: Array[String] = []):
 					else:
 						log_error("Le monstre d'id %d n'existe pas" % id)
 				"ressource":
-					if Dicts._ressources.has(id) and params.size() <= 2:
-						log_info(Dicts._ressources[id].name)
+					if Dicts._resources.has(id) and params.size() <= 2:
+						log_info(Dicts._resources[id].name)
 						pass
 					else:
 						log_error("La ressource d'id %d n'existe pas" % id)
