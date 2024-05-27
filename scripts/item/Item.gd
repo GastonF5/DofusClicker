@@ -86,9 +86,9 @@ func update_count_label():
 	count_label.text = str(count) if count > 1 else ""
 
 
-static func create(item_res: ItemResource, _inventory: Inventory, _draggable = true, low_texture = false) -> Item:
+static func create(item_res: ItemResource, _inventory: Inventory, _draggable = true, recipe_item = false) -> Item:
 	var item: Item = FileLoader.get_packed_scene("item/item").instantiate()
-	item.init(item_res, _inventory, _draggable, low_texture)
+	item.init(item_res, _inventory, _draggable, recipe_item)
 	return item
 
 

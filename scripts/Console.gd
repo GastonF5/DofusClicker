@@ -138,37 +138,37 @@ func do_command(command: String, params: Array[String] = []):
 				inventory.add_item(Item.create(item_res, inventory))
 				log_info("Request completed in %d ms" % (Time.get_ticks_msec() - time))
 				pass
-		"itemset":
-			var id = params[0].to_int()
-			if id and Dicts._sets.has(id):
-				var item_set = Dicts._sets[id]
-				var _log = item_set._name
-				if params.size() >= 2 and params[1] == "items":
-					for item_id in item_set._items:
-						var item = Dicts._items.get(item_id)
-						_log += "\n - %d : %s" % [item_id, "non trouvé" if !item else item.name]
-				log_info(_log)
-			else:
-				log_error("Il n'existe pas de panoplie avec l'id %d" % id)
+		#"itemset":
+			#var id = params[0].to_int()
+			#if id and Datas._item_sets.has(id):
+				#var item_set = Datas._item_sets[id]
+				#var _log = item_set._name
+				#if params.size() >= 2 and params[1] == "items":
+					#for item_id in item_set._items:
+						#var item = Datas._items.get(item_id)
+						#_log += "\n - %d : %s" % [item_id, "non trouvé" if !item else item.name]
+				#log_info(_log)
+			#else:
+				#log_error("Il n'existe pas de panoplie avec l'id %d" % id)
 		"get":
 			if params.size() <= 1: return
 			var id = params[1].to_int()
 			match params[0]:
 				"item":
-					if Dicts._items.has(id) and params.size() <= 2:
-						log_info(Dicts._items[id].name)
+					if Datas._items.has(id) and params.size() <= 2:
+						log_info(Datas._items[id].name)
 						pass
 					elif params.size() >= 3:
 						if params[2] == "recipe":
-							if Dicts._recipes.has(id):
-								log_info(Dicts._recipes[id].to_string())
+							if Datas._recipes.has(id):
+								log_info(Datas._recipes[id].to_string())
 							else:
-								log_error("Il n'existe pas de recette pour l'item %s (%d)" % [Dicts._items[id].name, id])
+								log_error("Il n'existe pas de recette pour l'item %s (%d)" % [Datas._items[id].name, id])
 					else:
 						log_error("L'item d'id %d n'existe pas" % id)
 				"monster":
-					if Dicts._monsters.has(id):
-						var monster_res: MonsterResource = Dicts._monsters[id]
+					if Datas._monsters.has(id):
+						var monster_res: MonsterResource = Datas._monsters[id]
 						log_info(monster_res.name)
 						if params.size() == 3:
 							var property = params[2]
@@ -180,8 +180,8 @@ func do_command(command: String, params: Array[String] = []):
 					else:
 						log_error("Le monstre d'id %d n'existe pas" % id)
 				"ressource":
-					if Dicts._resources.has(id) and params.size() <= 2:
-						log_info(Dicts._resources[id].name)
+					if Datas._resources.has(id) and params.size() <= 2:
+						log_info(Datas._resources[id].name)
 						pass
 					else:
 						log_error("La ressource d'id %d n'existe pas" % id)

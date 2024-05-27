@@ -6,7 +6,7 @@ const plus_texture = preload("res://assets/stats/btn_icon/btnIcon_plus.png")
 @export var button: Button
 @export var items_container: HBoxContainer
 
-var recipe: RecipeResource
+var resource: RecipeResource
 
 signal craft
 
@@ -15,7 +15,7 @@ var count = 0
 
 func init(item_recipe: RecipeResource):
 	self.visible = false
-	recipe = item_recipe
+	resource = item_recipe
 	instantiate_items()
 	
 	var result_item = Item.create(item_recipe.get_result(), null, false, true)
@@ -31,7 +31,7 @@ func init(item_recipe: RecipeResource):
 
 
 func instantiate_items():
-	for ingredient in recipe.get_ingredients():
+	for ingredient in resource.get_ingredients():
 		var recipe_item = Item.create(ingredient, null, false, true)
 		recipe_item.texture_initialized.connect(_on_item_texture_initialized)
 		recipe_item.custom_minimum_size = Vector2(64, 64)
@@ -41,7 +41,7 @@ func instantiate_items():
 
 func _on_item_texture_initialized():
 	count += 1
-	if count == recipe.ingredients.size() + 1:
+	if count == resource._ingredients.size() + 1:
 		self.visible = true
 
 
@@ -50,7 +50,7 @@ func check(items: Array):
 
 
 func check_recipe(inventory_items: Array) -> bool:
-	var recipe_items = recipe.get_ingredients().duplicate()
+	var recipe_items = resource.get_ingredients().duplicate()
 	if inventory_items.size() < recipe_items.size():
 		return false
 	for item_recipe in recipe_items:
@@ -75,4 +75,4 @@ static func create(recipe: RecipeResource, parent) -> Recipe:
 
 
 func _on_button_button_up():
-	craft.emit(recipe)
+	craft.emit(resource)

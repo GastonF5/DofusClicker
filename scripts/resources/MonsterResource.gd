@@ -2,8 +2,8 @@ class_name MonsterResource
 extends Resource
 
 
+@export var id: int
 @export var name: String
-@export var monster_id: int
 @export var race_id: int
 @export var race: String
 

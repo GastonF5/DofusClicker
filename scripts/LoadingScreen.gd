@@ -34,7 +34,7 @@ func set_loading_label(text: String):
 	loading_label.text = text
 
 
-func increment_loading(times := 1):
+func increment_loading(times := 1.0):
 	set_value(loading_pb.value + times)
 
 
@@ -42,7 +42,7 @@ func reset():
 	set_value(0)
 
 
-func set_value(v: int):
+func set_value(v: float):
 	loading_pb.value = v
 	var x_pos = (loading_pb.value * loading_pb.size.x) / loading_pb.max_value
 	progress_text.visible = v != 0

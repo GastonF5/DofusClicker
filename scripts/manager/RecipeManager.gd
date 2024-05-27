@@ -15,7 +15,7 @@ var inventory: Inventory
 
 
 func _ready():
-	$%Dicts.init_done.connect(init_recipes.bind(1))
+	$%Datas.init_done.connect(init_recipes.bind(1))
 	tab_container = jobs_container.get_node("TabContainer")
 	inventory = $%PlayerManager.inventory
 	inventory.item_entered_tree.connect(check_recipes)
@@ -55,7 +55,7 @@ func connect_inputs():
 
 
 func init_recipes(lvl: int):
-	var recipes_to_init = Dicts._recipes.values().filter(func(r): return r.get_result().level == lvl)
+	var recipes_to_init = Datas._recipes.values().filter(func(r): return r.get_result().level == lvl)
 	for recipe in recipes_to_init:
 		var parent = get_parent_by_type(recipe.get_result().type_id)
 		if parent:
@@ -77,7 +77,7 @@ func check_recipes(items):
 
 
 func get_parent_by_type(type_id: int):
-	var type: ItemTypeResource = Dicts._types[type_id]
+	var type: ItemTypeResource = Datas._types[type_id]
 	var node_name: String
 	match type._name.to_upper():
 		"CHAPEAU", "CAPE":

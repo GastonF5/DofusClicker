@@ -5,21 +5,24 @@ extends Node
 class CompositeSignal:
 	signal finished
 	
-	var _increment_loading_screen: Callable
+	var _to_call_before: Callable
+	var _to_call_after: Callable
 	var _remaining : int
 
 	func add_signal(sig: Signal):
 		_remaining += 1
+		if _to_call_before: _to_call_before.call()
 		await sig
-		if _increment_loading_screen: _increment_loading_screen.call()
+		if _to_call_after: _to_call_after.call()
 		_remaining -= 1
 		if _remaining == 0:
 			finished.emit()
 	
 	func add_method(method: Callable):
 		_remaining += 1
+		if _to_call_before: _to_call_before.call()
 		await method.call()
-		if _increment_loading_screen: _increment_loading_screen.call()
+		if _to_call_after: _to_call_after.call()
 		_remaining -= 1
 		if _remaining == 0:
 			finished.emit()
@@ -262,15 +265,6 @@ func resource_getter(type: ResourceType) -> Callable:
 	return func(): return
 
 
-func request_item_by_id(id: int):
-	var url = API_SUFFIX + "items/%d" % id
-	await await_for_request_completed(request(url))
-	var item_res = get_item_resource(get_data(url))
-	await await_for_request_completed(request(item_res.high_img_url))
-	item_res.high_texture = get_texture(item_res.high_img_url)
-	json_dict[id] = item_res
-
-
 func get_item_resource(data, item_res = null) -> ItemResource:
 	if data:
 		if !item_res:
@@ -282,7 +276,7 @@ func get_item_resource(data, item_res = null) -> ItemResource:
 		var effects = data["effects"]
 		item_res.level = data["level"]
 		item_res.item_set_id = data["itemSetId"] as int
-		if Dicts._types.has(type_id):
+		if Datas._types.has(type_id):
 			item_res.equip_res = build_equip_res(effects)
 		
 		item_res.description = data["description"]["fr"]
@@ -301,7 +295,7 @@ func get_item_resource(data, item_res = null) -> ItemResource:
 func get_monster_resource(data):
 	var res = MonsterResource.new()
 	res.name = data["name"]["fr"]
-	res.monster_id = data["id"]
+	res.id = data["id"]
 	res.boss = data["isBoss"]
 	res.archimonstre = data["isMiniBoss"]
 	var archimonstre = data["correspondingMiniBoss"]

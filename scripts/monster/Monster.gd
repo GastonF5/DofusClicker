@@ -13,9 +13,6 @@ var drops: Array[DropResource]
 
 var selected = false
 
-var are_drops_initialized = false
-signal drops_initialized
-
 func _ready():
 	for child in get_children(true):
 		if child.name != "Content" and child.get("mouse_filter"):
@@ -60,8 +57,6 @@ func init(res: MonsterResource):
 	attack_callable = attack
 	new_attack_timer()
 	update_timer()
-	
-	init_drops()
 
 
 func init_monster_caracteristiques():
@@ -78,7 +73,7 @@ func init_monster_caracteristiques():
 
 
 func attack():
-	var _taken_damage = player_manager.take_damage(resource.damage)
+	#var _taken_damage = player_manager.take_damage(resource.damage)
 	#console.log_info("%s attaque : %d dégât%s" % [name, taken_damage, "" if taken_damage <= 1 else "s"])
 	new_attack_timer()
 
@@ -92,29 +87,12 @@ func die():
 
 
 func drop():
-	if !are_drops_initialized:
-		await drops_initialized
 	for _drop: DropResource in drops:
-		if _drop.object and randf_range(0, 100) < _drop.object.drop_rate:
-			inventory.add_item(Item.create(_drop.object, inventory))
-
-
-func init_drops():
-	are_drops_initialized = false
-	var api: API = get_tree().current_scene.get_node("API")
-	var composite_signal = API.CompositeSignal.new()
-	var drop_ids = resource.drops.map(func(d): return d.object_id)
-	for id in drop_ids:
-		composite_signal.add_method(api.request_item_by_id.bind(id))
-	await composite_signal.finished
-	var objects = drop_ids.map(func(id): return api.get_data(id))
-	for _drop: DropResource in drops:
-		var matching_object = objects.filter(func(o): return o.id == _drop.object_id)
-		_drop.object = null if matching_object.size() == 0 else matching_object[0]
-		if _drop.object:
-			_drop.object.drop_rate = _drop.percent_drop
-	are_drops_initialized = true
-	drops_initialized.emit()
+		if Datas._resources.keys().has(_drop.object_id):
+			if randf_range(0, 100) < _drop.percent_drop[0]:
+				var item_res = Datas._resources[_drop.object_id]
+				item_res.count = _drop.count
+				inventory.add_item(Item.create(item_res, inventory))
 
 
 func is_selected():

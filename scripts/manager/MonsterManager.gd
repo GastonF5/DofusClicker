@@ -11,7 +11,7 @@ static var monsters = []
 
 signal monster_dies
 
-static var monsters_res: Array[MonsterResource] = []
+static var monsters_res := []
 
 
 func _ready():
@@ -23,10 +23,13 @@ func _ready():
 
 
 func start_fight():
-	for i in 2:
-		instantiate_monster()
-	monsters = get_monsters_on_plates()
-	start_fight_button.disabled = true
+	if !monsters_res.is_empty():
+		for i in 2:
+			instantiate_monster()
+		monsters = get_monsters_on_plates()
+		start_fight_button.disabled = true
+	else:
+		console.log_error("No monsters in area")
 
 
 func end_fight():
