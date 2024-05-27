@@ -86,7 +86,6 @@ script = ExtResource("1_upxrd")
 
 [node name="API" parent="." instance=ExtResource("1_0haij")]
 unique_name_in_owner = true
-show_prompts = false
 
 [node name="StatsManager" type="Node" parent="." node_paths=PackedStringArray("stats_container")]
 script = ExtResource("4_13j6f")
@@ -117,10 +116,6 @@ equipment_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/Equipme
 [node name="RecipeManager" type="Node" parent="." node_paths=PackedStringArray("jobs_container")]
 script = ExtResource("5_51m8x")
 jobs_container = NodePath("../GUI/Main/HBC/RightSide/VSplitContainer/JobsContainer")
-
-[node name="Datas" type="Node" parent="."]
-unique_name_in_owner = true
-script = ExtResource("9_u2rtq")
 
 [node name="Timers" type="Node" parent="."]
 
@@ -543,3 +538,7 @@ layout_mode = 2
 [node name="LoadingScreen" parent="." instance=ExtResource("43_bkaqa")]
 unique_name_in_owner = true
 visible = false
+
+[node name="Datas" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("9_u2rtq")

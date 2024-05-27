@@ -11,23 +11,32 @@ signal subarea_selected
 
 
 func _ready():
-	for area in Datas._areas.values():
-		create_area_button(area)
+	$%Datas.init_done.connect(init_areas)
+
+
+func init_areas():
+	var cur_lvl = $%PlayerManager.xp_bar.cur_lvl
+	var areas = Datas._areas.values()
+	for area in areas:
+		if area.get_level() > 0 and area.get_level() <= cur_lvl and area.has_monsters(cur_lvl):
+			create_area_button(area)
 
 
 func _on_area_clicked(button: Button):
+	var cur_lvl = $%PlayerManager.xp_bar.cur_lvl
 	clear_buttons()
 	back_button.disabled = false
 	var area: AreaResource = Datas._areas[button.name.to_float()]
 	selected_area_id = area._id
-	for subarea in area.get_subareas():
-		create_subarea_button(subarea)
+	for subarea in area.get_subareas(cur_lvl):
+		if subarea.has_monsters(cur_lvl):
+			create_subarea_button(subarea)
 
 
 func _on_subarea_clicked(button: Button):
 	var subarea = Datas._subareas[button.name.to_float()]
 	monster_manager.start_fight_button.disabled = true
-	var monster_resources = Datas._monsters.values().filter(func(m): return subarea._monster_ids.has(m.id as float))
+	var monster_resources = subarea.get_monsters()
 	for monster_res in monster_resources:
 		if !monster_res.texture:
 			monster_res.load_texture($%API, $%Console)
@@ -38,7 +47,7 @@ func _on_subarea_clicked(button: Button):
 
 func create_area_button(area: AreaResource):
 	var button = Button.new()
-	button.text = area._name
+	button.text = "%s (lvl %d)" % [area._name, area.get_level()]
 	button.name = str(area._id)
 	button.button_up.connect(_on_area_clicked.bind(button))
 	button.focus_mode = Control.FOCUS_NONE
@@ -47,7 +56,7 @@ func create_area_button(area: AreaResource):
 
 func create_subarea_button(subarea: AreaResource):
 	var button = Button.new()
-	button.text = subarea._name
+	button.text = "%s (lvl %d)" % [subarea._name, subarea.get_level()]
 	button.name = str(subarea._id)
 	button.button_up.connect(_on_subarea_clicked.bind(button))
 	button.focus_mode = Control.FOCUS_NONE
@@ -74,5 +83,4 @@ func _on_back_button_button_up():
 	clear_buttons()
 	selected_area_id = -1
 	back_button.disabled = true
-	for a in Datas._areas.values():
-		create_area_button(a)
+	init_areas()
