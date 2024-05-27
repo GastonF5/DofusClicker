@@ -35,8 +35,19 @@ func _on_mouse_exited():
 
 func _enter_tree():
 	super()
+	if draggable and get_parent() is Button:
+		get_parent().mouse_entered.connect(_on_mouse_entered)
+		get_parent().mouse_exited.connect(_on_mouse_exited)
 	if !texture_loaded:
 		load_texture()
+
+
+func _exit_tree():
+	if draggable and get_parent() is Button:
+		if get_parent().mouse_entered.is_connected(_on_mouse_entered):
+			get_parent().mouse_entered.disconnect(_on_mouse_entered)
+		if get_parent().mouse_exited.is_connected(_on_mouse_exited):
+			get_parent().mouse_exited.disconnect(_on_mouse_exited)
 
 
 func init(item_res: ItemResource, _inventory: Inventory, _draggable, low):
@@ -47,6 +58,8 @@ func init(item_res: ItemResource, _inventory: Inventory, _draggable, low):
 	resource = item_res
 	count = item_res.count
 	draggable = _draggable
+	mouse_filter = Control.MOUSE_FILTER_IGNORE if draggable else MOUSE_FILTER_PASS
+	
 	if low:
 		count_label.position -= count_label.size / 3
 		count_label.add_theme_font_size_override("font_size", 20)
