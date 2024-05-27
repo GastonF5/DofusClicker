@@ -9,7 +9,6 @@ var count = 1:
 var resource: ItemResource
 var stats: Array[StatResource] = []
 var low_texture: bool
-var texture_loaded = false
 
 var count_label: Label
 
@@ -38,8 +37,11 @@ func _enter_tree():
 	if draggable and get_parent() is Button:
 		get_parent().mouse_entered.connect(_on_mouse_entered)
 		get_parent().mouse_exited.connect(_on_mouse_exited)
-	if !texture_loaded:
-		load_texture()
+	
+	if !self.texture:
+		await resource.load_texture(get_tree().current_scene.get_node("%API"), low_texture)
+		self.texture = resource.get_texture(low_texture)
+		texture_initialized.emit()
 
 
 func _exit_tree():
@@ -51,8 +53,8 @@ func _exit_tree():
 
 
 func init(item_res: ItemResource, _inventory: Inventory, _draggable, low):
+	self.texture = null
 	count_label = $Count
-	low_texture = low
 	name = item_res.name
 	inventory = _inventory
 	resource = item_res
@@ -70,16 +72,6 @@ func init(item_res: ItemResource, _inventory: Inventory, _draggable, low):
 			if !low:
 				new_stat.init_amount()
 			stats.append(new_stat)
-
-
-func load_texture():
-	var api: API = get_tree().current_scene.get_node("%API")
-	var url = resource.low_img_url if low_texture else resource.high_img_url
-	await api.await_for_request_completed(api.request(url))
-	resource.low_texture = api.get_texture(url)
-	self.texture = resource.low_texture
-	texture_loaded = true
-	texture_initialized.emit()
 
 
 func update_count_label():

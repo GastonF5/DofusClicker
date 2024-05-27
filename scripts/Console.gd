@@ -125,31 +125,25 @@ func do_command(command: String, params: Array[String] = []):
 						var monster: Monster = MonsterManager.monsters[index]
 						monster.die()
 		"add":
-			if params[0] == "item":
+			if ["item", "resource"].has(params[0]):
+				var id = params[1].to_int()
 				var count = 1
 				if params.size() >= 3:
 					count = params[2]
-				var time = Time.get_ticks_msec()
-				log_info("Loading...")
-				var id = params[1].to_int()
-				await api.request_item_by_id(id)
-				var item_res = api.get_data(id)
-				item_res.count = count
-				inventory.add_item(Item.create(item_res, inventory))
-				log_info("Request completed in %d ms" % (Time.get_ticks_msec() - time))
+				var item_res
+				var dict
+				match params[0]:
+					"item": dict = Datas._items
+					"resource": dict = Datas._resources
+				if dict.has(id):
+					item_res = dict[id]
+					item_res.count = count
+					inventory.add_item(Item.create(item_res, inventory))
+				else:
+					log_error("%s not found" % params[0].to_pascal_case())
 				pass
-		#"itemset":
-			#var id = params[0].to_int()
-			#if id and Datas._item_sets.has(id):
-				#var item_set = Datas._item_sets[id]
-				#var _log = item_set._name
-				#if params.size() >= 2 and params[1] == "items":
-					#for item_id in item_set._items:
-						#var item = Datas._items.get(item_id)
-						#_log += "\n - %d : %s" % [item_id, "non trouvé" if !item else item.name]
-				#log_info(_log)
-			#else:
-				#log_error("Il n'existe pas de panoplie avec l'id %d" % id)
+			else:
+				log_error("Command not found")
 		"get":
 			if params.size() <= 1: return
 			var id = params[1].to_int()

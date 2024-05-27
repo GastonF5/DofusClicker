@@ -101,7 +101,7 @@ func get_parent_by_type(type_id: int):
 func filter_recipes(text_filter: String):
 		for nrecipe in recipes:
 			if text_filter and text_filter != "":
-				nrecipe.visible = nrecipe.recipe.get_result().name.to_lower().contains(text_filter.to_lower())
+				nrecipe.visible = nrecipe.resource.get_result().name.to_lower().contains(text_filter.to_lower())
 			else:
 				nrecipe.visible = true
 

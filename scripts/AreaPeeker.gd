@@ -27,8 +27,10 @@ func _on_area_clicked(button: Button):
 func _on_subarea_clicked(button: Button):
 	var subarea = Datas._subareas[button.name.to_float()]
 	monster_manager.start_fight_button.disabled = true
-	print(subarea._monster_ids)
 	var monster_resources = Datas._monsters.values().filter(func(m): return subarea._monster_ids.has(m.id as float))
+	for monster_res in monster_resources:
+		if !monster_res.texture:
+			monster_res.load_texture($%API, $%Console)
 	monster_resources = monster_resources.filter(func(res): return !res.archimonstre)
 	MonsterManager.monsters_res = monster_resources
 	monster_manager.start_fight_button.disabled = false
