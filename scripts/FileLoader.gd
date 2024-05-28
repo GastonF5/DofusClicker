@@ -1,4 +1,5 @@
 class_name FileLoader
+extends DirAccess
 
 
 const SPELL_RES_PATH := "res://resources/spells/"

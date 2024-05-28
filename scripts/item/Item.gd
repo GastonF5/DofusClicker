@@ -23,7 +23,7 @@ func _on_mouse_entered():
 	if !PlayerManager.dragged_item:
 		var item_description = PlayerManager.item_description
 		item_description.visible = true
-		item_description.init(resource, stats)
+		item_description.init(resource, low_texture, stats)
 
 
 func _on_mouse_exited():

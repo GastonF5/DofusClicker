@@ -6,35 +6,42 @@ var monster_manager: MonsterManager
 @export var back_button: Button
 
 var selected_area_id := -1
+var cur_lvl := 1
 
 signal subarea_selected
 
 
 func _ready():
 	$%Datas.init_done.connect(init_areas)
+	$%PlayerManager.xp_bar.lvl_up.connect(_on_level_up)
+	cur_lvl = $%PlayerManager.xp_bar.cur_lvl
 
 
 func init_areas():
-	var cur_lvl = $%PlayerManager.xp_bar.cur_lvl
 	var areas = Datas._areas.values()
 	for area in areas:
-		if area.get_level() > 0 and area.get_level() <= cur_lvl and area.has_monsters(cur_lvl):
+		if !area.black_listed(cur_lvl) and area.get_level() > 0 and area.get_level() <= cur_lvl and area.has_monsters(cur_lvl):
 			create_area_button(area)
+			#prints(area._name, area._id)
+
+
+func init_subareas(area: AreaResource):
+	selected_area_id = area._id
+	for subarea in area.get_subareas(cur_lvl):
+		if !subarea.black_listed() and subarea.has_monsters(cur_lvl):
+			create_subarea_button(subarea)
+			#prints(subarea._name, subarea._id)
 
 
 func _on_area_clicked(button: Button):
-	var cur_lvl = $%PlayerManager.xp_bar.cur_lvl
 	clear_buttons()
 	back_button.disabled = false
-	var area: AreaResource = Datas._areas[button.name.to_float()]
-	selected_area_id = area._id
-	for subarea in area.get_subareas(cur_lvl):
-		if subarea.has_monsters(cur_lvl):
-			create_subarea_button(subarea)
+	var area_id = button.name.to_int()
+	init_subareas(Datas._areas[area_id])
 
 
 func _on_subarea_clicked(button: Button):
-	var subarea = Datas._subareas[button.name.to_float()]
+	var subarea = Datas._subareas[button.name.to_int()]
 	monster_manager.start_fight_button.disabled = true
 	var monster_resources = subarea.get_monsters()
 	for monster_res in monster_resources:
@@ -84,3 +91,12 @@ func _on_back_button_button_up():
 	selected_area_id = -1
 	back_button.disabled = true
 	init_areas()
+
+
+func _on_level_up():
+	cur_lvl = $%PlayerManager.xp_bar.cur_lvl
+	clear_buttons()
+	if selected_area_id == -1:
+		init_areas()
+	else:
+		init_subareas(Datas._areas[selected_area_id])

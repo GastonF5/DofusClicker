@@ -15,7 +15,6 @@ extends Resource
 @export var count: int = 1
 @export var level: int
 @export var item_set_id: int
-@export var description: String
 
 @export var equip_res: EquipmentResource
 

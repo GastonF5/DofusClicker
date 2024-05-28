@@ -8,19 +8,10 @@ extends PanelContainer
 @export var effects_label: Label
 @export var effects_container: VBoxContainer
 
-@export var description: Label
 
-@export var item_resource_test: ItemResource
-
-
-func _ready():
-	if item_resource_test:
-		init(item_resource_test)
-
-
-func init(item_res: ItemResource, stats: Array[StatResource] = []):
+func init(item_res: ItemResource, low: bool, stats: Array[StatResource] = []):
 	name = item_res.name.to_pascal_case() + "Description"
-	item_texture.texture = item_res.get_texture(false)
+	item_texture.texture = item_res.get_texture(low)
 	compute_name_label(item_res)
 	clear_effect_labels()
 	if !stats.is_empty():
@@ -29,7 +20,6 @@ func init(item_res: ItemResource, stats: Array[StatResource] = []):
 	elif item_res.equip_res:
 		for effect in item_res.equip_res.stats:
 			add_effect_label(effect)
-	#description.text = item_res.description
 	set_mouse_ignore()
 
 

@@ -8,6 +8,8 @@ extends Resource
 @export var _monster_ids: Array
 @export var _level: int
 
+const black_list = [29]
+
 
 static func create(id: int, name: String, super_area_id := -1, level := -1) -> AreaResource:
 	var area = AreaResource.new()
@@ -49,3 +51,9 @@ func get_level() -> int:
 
 static func sort_by_level(a: AreaResource, b: AreaResource):
 	return a.get_level() <= b.get_level()
+
+
+func black_listed(cur_lvl := 200) -> bool:
+	if is_subarea():
+		return black_list.has(_id)
+	return get_subareas(cur_lvl).all(func(sa): return sa.black_listed())

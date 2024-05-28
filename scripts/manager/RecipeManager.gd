@@ -16,6 +16,7 @@ var inventory: Inventory
 
 func _ready():
 	$%Datas.init_done.connect(init_recipes.bind(1))
+	$%PlayerManager.xp_bar.lvl_up.connect(init_recipes)
 	tab_container = jobs_container.get_node("TabContainer")
 	inventory = $%PlayerManager.inventory
 	inventory.item_entered_tree.connect(check_recipes)
@@ -54,7 +55,8 @@ func connect_inputs():
 	lvl_input.text_changed.connect(filter_lvl)
 
 
-func init_recipes(lvl: int):
+func init_recipes(lvl := -1):
+	if lvl == -1: lvl = $%PlayerManager.xp_bar.cur_lvl
 	var recipes_to_init = Datas._recipes.values().filter(func(r): return r.get_result().level == lvl)
 	for recipe in recipes_to_init:
 		var parent = get_parent_by_type(recipe.get_result().type_id)

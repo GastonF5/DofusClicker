@@ -26,9 +26,14 @@ static var _monsters = {}
 static var _areas = {}
 static var _subareas = {}
 
+var dir: DirAccess
+
 
 func _ready():
 	loading_screen.loading = true
+	if !DirAccess.dir_exists_absolute(fileSaver.DATA_PATH):
+		DirAccess.make_dir_absolute(fileSaver.DATA_PATH)
+	dir = DirAccess.open(fileSaver.DATA_PATH)
 	for data_type in DataType.values():
 		await get_data(data_type)
 	check_areas()
@@ -38,8 +43,9 @@ func _ready():
 
 func get_data(data_type: DataType):
 	var data_name = get_data_name(data_type)
-	var file = FileLoader.load_file(fileSaver.DATA_PATH + data_name + ".tres")
-	if file:
+	var file_path = fileSaver.DATA_PATH + data_name + ".tres"
+	if dir.file_exists(file_path):
+		var file = FileLoader.load_file(file_path)
 		self.set("_%ss" % data_name, file.data)
 	else:
 		await request_data(data_type)
@@ -96,7 +102,6 @@ func get_url_params(data_type: DataType) -> String:
 func get_in_values(data_type: DataType) -> Array:
 	match data_type:
 		DataType.RECIPE:
-			print((["resultId"] + _items.values().map(func(item): return item.id)).size())
 			return ["resultId"] + _items.values().map(func(item): return item.id)
 		DataType.RESOURCE:
 			var resource_ids = []
@@ -223,14 +228,14 @@ func set_monster(data: Dictionary):
 
 
 func set_area(data: Dictionary):
-	var id = data["id"]
+	var id = data["id"] as int
 	var area = AreaResource.create(id, data["name"]["fr"])
 	_areas[id] = area
 
 
 func set_subarea(data: Dictionary):
 	if !data["monsters"].is_empty():
-		var id = data["id"]
+		var id = data["id"] as int
 		var subarea = AreaResource.create(id, data["name"]["fr"], data["areaId"], data["level"])
 		subarea._monster_ids = data["monsters"].map(func(i): return i as int)
 		_subareas[id] = subarea
