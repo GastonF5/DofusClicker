@@ -15,7 +15,7 @@ var inventory: Inventory
 
 
 func _ready():
-	$%Datas.init_done.connect(init_recipes.bind(1))
+	$%Datas.init_done.connect(init_recipes.bind($%PlayerManager.xp_bar.cur_lvl))
 	$%PlayerManager.xp_bar.lvl_up.connect(init_recipes)
 	tab_container = jobs_container.get_node("TabContainer")
 	inventory = $%PlayerManager.inventory

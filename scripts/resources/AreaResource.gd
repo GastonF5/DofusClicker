@@ -8,7 +8,7 @@ extends Resource
 @export var _monster_ids: Array
 @export var _level: int
 
-const black_list = [29]
+const black_list = [10, 29, 32, 973, 974, 975, 976, 977, 978, 980, 982]
 
 
 static func create(id: int, name: String, super_area_id := -1, level := -1) -> AreaResource:

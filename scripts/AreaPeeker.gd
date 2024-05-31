@@ -19,10 +19,11 @@ func _ready():
 
 func init_areas():
 	var areas = Datas._areas.values()
+	areas = areas.filter(func(a): return !a.black_listed(cur_lvl) and a.get_level() > 0 and a.get_level() <= cur_lvl and a.has_monsters(cur_lvl))
+	areas.sort_custom(AreaResource.sort_by_level)
 	for area in areas:
-		if !area.black_listed(cur_lvl) and area.get_level() > 0 and area.get_level() <= cur_lvl and area.has_monsters(cur_lvl):
-			create_area_button(area)
-			#prints(area._name, area._id)
+		create_area_button(area)
+		#prints(area._name, area._id)
 
 
 func init_subareas(area: AreaResource):
@@ -30,7 +31,7 @@ func init_subareas(area: AreaResource):
 	for subarea in area.get_subareas(cur_lvl):
 		if !subarea.black_listed() and subarea.has_monsters(cur_lvl):
 			create_subarea_button(subarea)
-			#prints(subarea._name, subarea._id)
+			prints(subarea._name, subarea._id)
 
 
 func _on_area_clicked(button: Button):
