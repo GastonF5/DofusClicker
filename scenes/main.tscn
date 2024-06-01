@@ -498,6 +498,18 @@ mouse_default_cursor_shape = 2
 layout_mode = 2
 text = "Auto start fight"
 
+[node name="ReloadData" type="Button" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+text = "Reload data"
+
 [node name="ExperienceBar" type="ProgressBar" parent="GUI/Main/HBC/MiddleContainer/VBC" node_paths=PackedStringArray("lvl_label")]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
@@ -542,3 +554,5 @@ visible = false
 [node name="Datas" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("9_u2rtq")
+
+[connection signal="button_up" from="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/ReloadData" to="Datas" method="_on_reload_data_button_up"]

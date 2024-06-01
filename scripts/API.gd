@@ -213,11 +213,9 @@ func get_item_resource(data, item_res = null) -> ItemResource:
 		if Datas._types.has(type_id):
 			item_res.equip_res = build_equip_res(effects)
 		
-		item_res.description = data["description"]["fr"]
 		item_res.type_id = type_id
 		item_res.name = res_name
 		item_res.id = data["id"]
-		item_res.description = data["description"]["fr"]
 		item_res.drop_monster_ids = data["dropMonsterIds"].map(func(i): return i as int)
 		
 		return item_res

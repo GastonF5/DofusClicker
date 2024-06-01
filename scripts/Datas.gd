@@ -30,6 +30,10 @@ var dir: DirAccess
 
 
 func _ready():
+	load_data()
+
+
+func load_data():
 	loading_screen.loading = true
 	if !DirAccess.dir_exists_absolute(fileSaver.DATA_PATH):
 		DirAccess.make_dir_absolute(fileSaver.DATA_PATH)
@@ -245,3 +249,9 @@ func check_areas():
 	for area: AreaResource in _areas.values():
 		if area.is_subarea():
 			_areas.erase(area.id)
+
+
+func _on_reload_data_button_up():
+	for file in dir.get_files():
+		dir.remove(file.get_file())
+	load_data()
