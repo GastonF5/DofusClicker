@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dacg0tcpohas3"]
+[gd_scene load_steps=11 format=3 uid="uid://dacg0tcpohas3"]
 
 [ext_resource type="Texture2D" uid="uid://c5pnk06ayib0j" path="res://assets/window_icon/tailleur.png" id="1_e44ds"]
 [ext_resource type="Script" path="res://scripts/CustomTabContainer.gd" id="1_hrp01"]
+[ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="1_vs0u0"]
 [ext_resource type="Texture2D" uid="uid://10kiiskaock5" path="res://assets/window_icon/cordonnier.png" id="2_tbw3p"]
 [ext_resource type="Texture2D" uid="uid://vih7op5hhjk0" path="res://assets/window_icon/bijoutier.png" id="3_koocj"]
 [ext_resource type="Texture2D" uid="uid://c6cudfe180atn" path="res://assets/window_icon/faconneur.png" id="4_4l0uf"]
@@ -19,6 +20,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
+theme = ExtResource("1_vs0u0")
 theme_override_constants/separation = 0
 
 [node name="HBC" type="HBoxContainer" parent="."]

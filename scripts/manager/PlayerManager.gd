@@ -94,7 +94,7 @@ func init_caracteristiques(hp: int, pa: int, pm: int):
 
 
 func _input(event):
-	if !console.input.has_focus() and !$"../RecipeManager".search_prompt.has_focus():
+	if !console.input.has_focus() and !$"../RecipeManager".current_tab.search_prompt.has_focus():
 		var size = spell_bar.get_children().size()
 		if size >= 1 and event.is_action_pressed("1"):
 			spell_bar.get_children()[0].do_action()

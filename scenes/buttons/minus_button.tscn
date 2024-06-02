@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cck4ndl64sg2x" path="res://assets/common/button/btn_green_small_over.jpg" id="2_cfs5l"]
 [ext_resource type="Texture2D" uid="uid://ioa8txwipu5x" path="res://assets/common/button/btn_green_small_pressed.jpg" id="3_sl0oh"]
 [ext_resource type="Texture2D" uid="uid://bw6i2v35exff6" path="res://assets/common/button/btn_green_disabled.png" id="4_8koxe"]
-[ext_resource type="Texture2D" uid="uid://d32cdxi321a4x" path="res://assets/stats/btn_icon/btnIcon_minus.png" id="4_ftu4y"]
+[ext_resource type="Texture2D" uid="uid://d32cdxi321a4x" path="res://assets/btn_icon/btnIcon_minus.png" id="4_ftu4y"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qanle"]
 texture = ExtResource("1_jf85q")

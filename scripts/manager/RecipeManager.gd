@@ -4,14 +4,14 @@ extends Node
 
 @export var jobs_container: VBoxContainer
 var tab_container: TabContainer
+var current_tab: JobPanel
 
-var recipe_container: VBoxContainer
-var search_prompt: LineEdit
-var lvl_input: LineEdit
 var recipes: Array[Recipe] = []
 
 @onready var console: Console = $%Console
 var inventory: Inventory
+
+var recipe_filters: VBoxContainer
 
 
 func _ready():
@@ -22,37 +22,50 @@ func _ready():
 	inventory.item_entered_tree.connect(check_recipes)
 	inventory.item_exiting_tree.connect(check_recipes)
 	
+	recipe_filters = load("res://scenes/recipe_filters.tscn").instantiate()
 	on_job_tab_changed(tab_container.current_tab)
-	for recipe in recipe_container.get_children():
+	for recipe in current_tab.recipe_container.get_children():
 		recipes.append(recipe)
 	tab_container.tab_changed.connect(on_job_tab_changed)
 
 
 func _input(event):
+	var search_prompt = current_tab.search_prompt
 	if search_prompt.has_focus() and (event.is_action_pressed("esc") or event.is_action_pressed("LMB")):
 		search_prompt.release_focus()
-	if lvl_input.has_focus() and (event.is_action_pressed("esc") or event.is_action_pressed("LMB")):
-		lvl_input.release_focus()
 
 
 func on_job_tab_changed(tab):
 	disconnect_inputs()
-	recipe_container = tab_container.get_child(tab).recipe_container
-	search_prompt = tab_container.get_child(tab).search_prompt
-	lvl_input = tab_container.get_child(tab).lvl_input
+	var last_tab := current_tab
+	current_tab = tab_container.get_child(tab) as JobPanel
+	
+	# Search prompt
+	var text = "" if !last_tab else last_tab.search_prompt.text
+	current_tab.search_prompt.text = text
+	if last_tab: last_tab.search_prompt.clear()
+	
+	# Filters
+	if recipe_filters.get_parent() != null:
+		recipe_filters.get_parent().remove_child(recipe_filters)
+	current_tab.filter_container.add_child(recipe_filters)
+	var toggled = last_tab and last_tab.fitlers_toggled()
+	current_tab.toggle_filters(toggled)
+	if last_tab: last_tab.toggle_filters(false)
+	
 	connect_inputs()
 
 
 func disconnect_inputs():
-	if search_prompt and search_prompt.text_changed.is_connected(filter_recipes):
-		search_prompt.text_changed.disconnect(filter_recipes)
-	if lvl_input and lvl_input.text_changed.is_connected(filter_lvl):
-		lvl_input.text_changed.disconnect(filter_lvl)
+	if current_tab:
+		var search_prompt = current_tab.search_prompt
+		if search_prompt and search_prompt.text_changed.is_connected(filter_recipes):
+			search_prompt.text_changed.disconnect(filter_recipes)
 
 
 func connect_inputs():
+	var search_prompt = current_tab.search_prompt
 	search_prompt.text_changed.connect(filter_recipes)
-	lvl_input.text_changed.connect(filter_lvl)
 
 
 func init_recipes(lvl := -1):

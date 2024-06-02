@@ -1,8 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://brot8qkranooc"]
+[gd_scene load_steps=11 format=3 uid="uid://brot8qkranooc"]
 
 [ext_resource type="Script" path="res://scripts/jobs/JobPanel.gd" id="1_ymud0"]
+[ext_resource type="Texture2D" uid="uid://fg67fytininp" path="res://assets/common/button/btn_green_small_normal.jpg" id="2_gkfjy"]
+[ext_resource type="Texture2D" uid="uid://cck4ndl64sg2x" path="res://assets/common/button/btn_green_small_over.jpg" id="3_rlhtr"]
+[ext_resource type="Texture2D" uid="uid://ioa8txwipu5x" path="res://assets/common/button/btn_green_small_pressed.jpg" id="4_4lcx2"]
+[ext_resource type="Texture2D" uid="uid://dm2b6x2nro3gh" path="res://assets/common/button/btn_green_small_disabled.png" id="5_5n0wo"]
+[ext_resource type="Texture2D" uid="uid://c4k6d26v1afdo" path="res://assets/btn_icon/btnIcon_filter.png" id="6_6e6sx"]
 
-[node name="JobPanel" type="Panel" node_paths=PackedStringArray("search_prompt", "lvl_input", "recipe_container")]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5q28i"]
+texture = ExtResource("2_gkfjy")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mm6e4"]
+texture = ExtResource("3_rlhtr")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sa2b8"]
+texture = ExtResource("4_4lcx2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1jb4n"]
+texture = ExtResource("5_5n0wo")
+
+[node name="JobPanel" type="Panel" node_paths=PackedStringArray("recipe_container", "filter_container", "search_prompt", "filter_button")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -10,9 +27,10 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_ymud0")
+recipe_container = NodePath("MarginContainer/VBC/RecipeScrollContainer/RecipeContainer")
+filter_container = NodePath("MarginContainer/VBC/FilterContainer")
 search_prompt = NodePath("MarginContainer/VBC/HBC/Search")
-lvl_input = NodePath("MarginContainer/VBC/HBC/LvlInput")
-recipe_container = NodePath("MarginContainer/VBC/ScrollContainer/RecipeContainer")
+filter_button = NodePath("MarginContainer/VBC/HBC/FilterButton")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -22,6 +40,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
@@ -38,21 +57,31 @@ layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Rechercher une recette"
 
-[node name="Control" type="Control" parent="MarginContainer/VBC/HBC"]
-custom_minimum_size = Vector2(10, 2.08165e-12)
+[node name="FilterButton" type="Button" parent="MarginContainer/VBC/HBC"]
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
+tooltip_text = "Filtres"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_5q28i")
+theme_override_styles/hover = SubResource("StyleBoxTexture_mm6e4")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_sa2b8")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_1jb4n")
+toggle_mode = true
+icon = ExtResource("6_6e6sx")
+icon_alignment = 1
 
-[node name="LvlLabel" type="Label" parent="MarginContainer/VBC/HBC"]
-layout_mode = 2
-text = "Niveau : "
-
-[node name="LvlInput" type="LineEdit" parent="MarginContainer/VBC/HBC"]
-layout_mode = 2
-
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBC"]
+[node name="RecipeScrollContainer" type="ScrollContainer" parent="MarginContainer/VBC"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="RecipeContainer" type="VBoxContainer" parent="MarginContainer/VBC/ScrollContainer"]
+[node name="RecipeContainer" type="VBoxContainer" parent="MarginContainer/VBC/RecipeScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="FilterContainer" type="ScrollContainer" parent="MarginContainer/VBC"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="toggled" from="MarginContainer/VBC/HBC/FilterButton" to="." method="_on_filter_button_toggled"]

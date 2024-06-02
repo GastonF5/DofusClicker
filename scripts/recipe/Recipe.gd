@@ -1,7 +1,7 @@
 class_name Recipe
 extends PanelContainer
 
-const plus_texture = preload("res://assets/stats/btn_icon/btnIcon_plus.png")
+const plus_texture = preload("res://assets/btn_icon/btnIcon_plus.png")
 
 @export var button: Button
 @export var items_container: HBoxContainer
