@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ddvrbgcs2pdk1"
-path="res://.godot/imported/unchecked.png-fcf338a4a1d7bbf2e4a8f9a29c6d3466.ctex"
+path="res://.godot/imported/unchecked.png-b1842fcc3046f302b69272fc748053ae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/checkbox/unchecked.png"
-dest_files=["res://.godot/imported/unchecked.png-fcf338a4a1d7bbf2e4a8f9a29c6d3466.ctex"]
+source_file="res://assets/common/checkbox/unchecked.png"
+dest_files=["res://.godot/imported/unchecked.png-b1842fcc3046f302b69272fc748053ae.ctex"]
 
 [params]
 

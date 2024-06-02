@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxym4r3y1g2tm"
-path="res://.godot/imported/checked.png-5b3583e06c60b98d6bd3573dc429dddc.ctex"
+uid="uid://kcln4dnmpigp"
+path="res://.godot/imported/dungeon.png-7baca2c37770b4e313390d649c3378ec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/checkbox/checked.png"
-dest_files=["res://.godot/imported/checked.png-5b3583e06c60b98d6bd3573dc429dddc.ctex"]
+source_file="res://assets/icons/dungeon.png"
+dest_files=["res://.godot/imported/dungeon.png-7baca2c37770b4e313390d649c3378ec.ctex"]
 
 [params]
 
