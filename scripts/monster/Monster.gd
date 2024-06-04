@@ -5,8 +5,6 @@ class_name Monster
 @export var texture_rect: TextureRect
 @export var header_texture: TextureRect
 
-@export var attack_amount: Label
-
 var resource: MonsterResource
 var grade: GradeResource
 var drops: Array[DropResource]
@@ -20,7 +18,9 @@ func _ready():
 
 
 func _process(_delta):
-	attack_bar.value = float(attack_bar.max_value - attack_timer.time_left)
+	if !spells.is_empty() and pa_bar.cval >= spells[0].pa_cost:
+		pa_bar.cval -= spells[0].pa_cost
+		attack()
 
 
 static func instantiate(parent: Control) -> Monster:
@@ -32,7 +32,7 @@ static func instantiate(parent: Control) -> Monster:
 	return monster
 
 
-func init(res: MonsterResource):
+func init(res: MonsterResource = null):
 	player_manager = get_tree().current_scene.get_node("%PlayerManager")
 	inventory = player_manager.inventory
 	grade = res.grades[randi_range(0, res.grades.size() - 1)]
@@ -40,11 +40,13 @@ func init(res: MonsterResource):
 	init_caracteristiques(grade.characteristics)
 	
 	name = res.name
-	name_label.text = res.name
+	name_label.text = "%s (%d)" % [res.name, res.id]
 	init_clickable(self)
 	texture_rect.texture = res.texture
 	
+	super()
 	init_monster_caracteristiques()
+	init_spells(res.spells)
 	
 	resource = res
 	if res.boss:
@@ -53,29 +55,26 @@ func init(res: MonsterResource):
 		header_texture.texture = load("res://assets/icons/archimonstre.png")
 	else:
 		header_texture.texture = null
-	#attack_amount.text = str(res.damage)
+	
 	attack_callable = attack
-	new_attack_timer()
-	update_timer()
 
 
 func init_monster_caracteristiques():
 	# Vitalité
-	hp_bar.init(get_vitalite())
-	connect_to_stat(Caracteristique.Type.VITALITE, hp_bar.update, [get_vitalite, get_vitalite])
+	hp_bar.mval = get_vitalite()
+	hp_bar.reset()
 	# PM
-	pm_bar.init(get_pm())
-	connect_to_stat(Caracteristique.Type.PM, pm_bar.change_max_pm, [get_pm, true])
-	connect_to_stat(Caracteristique.Type.PM, update_timer, [])
+	pm_bar.mval = get_pm()
+	pm_bar.reset()
 	# PA
-	pa_bar.init(get_pa())
-	connect_to_stat(Caracteristique.Type.PA, pa_bar.update, [get_pa, true])
+	pa_bar.mval = get_pa()
+	pa_bar.reset()
 
 
 func attack():
 	#var _taken_damage = player_manager.take_damage(resource.damage)
 	#console.log_info("%s attaque : %d dégât%s" % [name, taken_damage, "" if taken_damage <= 1 else "s"])
-	new_attack_timer()
+	Callable(SpellsService, spells[0].spell_name).call()
 
 
 func die():
@@ -105,7 +104,3 @@ func select():
 
 func unselect():
 	texture_rect.custom_minimum_size = Vector2(192, 192)
-
-
-static func is_monster(value: Node):
-	return is_instance_of(value, Monster)

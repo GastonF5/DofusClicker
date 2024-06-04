@@ -50,6 +50,9 @@ func _on_subarea_clicked(button: Button):
 			monster_res.load_texture($%API, $%Console)
 	monster_resources = monster_resources.filter(func(res): return !res.archimonstre)
 	MonsterManager.monsters_res = monster_resources
+	for mres in monster_resources:
+		print("%s (%d) :" % [mres.name, mres.id])
+		print(mres.spells)
 	monster_manager.start_fight_button.disabled = false
 
 

@@ -2,28 +2,16 @@ class_name SpellsService
 
 
 const stat_type = Caracteristique.Type
+const Element = Caracteristique.Element
 
 static var console: Console
 static var tnode: Node
+static var player_entity: Entity
 
 
 static func coup_de_poing(target: Monster):
-	target.take_damage(5)
+	target.take_damage(5, Element.NEUTRE)
 	check_dying_targets([target])
-
-
-static func fleche_sanglante(target: Monster):
-	var targets = deal_damage_to_surrounding_monsters(target, 10)
-	check_dying_targets(targets)
-
-
-static func create_timer(time: float, name: String = "Timer"):
-	var timer = Timer.new()
-	timer.name = name
-	timer.wait_time = time
-	timer.autostart = true
-	tnode.add_child(timer)
-	return timer
 
 
 #region Ecaflip
@@ -52,10 +40,10 @@ static func pile_face(target: Monster):
 	var taken_damage = 0
 	if target:
 		if pile:
-			taken_damage = target.take_damage(get_degats(pile_min, pile_max, stat_type.FORCE))
+			taken_damage = target.take_damage(get_degats(pile_min, pile_max, stat_type.FORCE), Element.TERRE)
 			pile = false
 		else:
-			taken_damage = target.take_damage(get_degats(face_min, face_max, stat_type.FORCE))
+			taken_damage = target.take_damage(get_degats(face_min, face_max, stat_type.FORCE), Element.TERRE)
 			pile = true
 		check_dying_targets([target])
 		console.log_info("Pile ou Face lancé sur %s :\n - %d dégâts" % [target.resource.name, taken_damage])
@@ -66,7 +54,7 @@ static func destin_ecaflip(target: Monster):
 	# dommages + retrait PM
 	var taken_damage = 0
 	if target:
-		taken_damage = target.take_damage(get_degats(destin_min, destin_max, stat_type.FORCE))
+		taken_damage = target.take_damage(get_degats(destin_min, destin_max, stat_type.FORCE), Element.TERRE)
 		check_dying_targets([target])
 		console.log_info("Destin d'Ecaflip lancé sur %s : \n - %d dégâts" % [target.resource.name, taken_damage])
 
@@ -85,6 +73,15 @@ static func felintion(_target: Monster):
 #endregion
 
 
+#region Monsters
+static func brulure_legere():
+	var amount := randi_range(6, 10)
+	var element: Element = randi_range(1, 4)
+	player_entity.take_damage(amount, element)
+#endregion
+
+
+#region Utilitaires
 static func get_multiplicateur(type: stat_type) -> float:
 	var carac = StatsManager.get_caracteristique_for_type(type)
 	var caracteristique = 0 if !carac else carac.amount
@@ -121,3 +118,17 @@ static func check_dying_targets(targets: Array[Monster]):
 		if monster.dying:
 			monster.die()
 			monster.dying = false
+
+
+static func deal_damage(target: Entity, min_amout: int, max_amount: int, element: Element):
+	target.take_damage(randi_range(min_amout, max_amount), element)
+
+
+static func create_timer(time: float, name: String = "Timer"):
+	var timer = Timer.new()
+	timer.name = name
+	timer.wait_time = time
+	timer.autostart = true
+	tnode.add_child(timer)
+	return timer
+#endregion

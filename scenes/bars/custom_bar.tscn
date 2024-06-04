@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2n75dtlfnvhl"]
+
+[ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="1_th7dx"]
+[ext_resource type="Script" path="res://scripts/bars/CustomBar.gd" id="2_qe5sl"]
+[ext_resource type="Texture2D" uid="uid://k8i3m3d33k8x" path="res://assets/hud/icon_hp_full.png" id="3_1c3u2"]
+[ext_resource type="Texture2D" uid="uid://dqi5nyabi4exy" path="res://assets/hud/icon_hp_empty.png" id="4_fgeut"]
+
+[node name="CustomBar" type="TextureProgressBar" node_paths=PackedStringArray("value_label", "max_value_label")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -0.5
+offset_right = 0.5
+offset_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_th7dx")
+step = 0.01
+fill_mode = 3
+script = ExtResource("2_qe5sl")
+speed = 50.0
+full_texture = ExtResource("3_1c3u2")
+empty_texture = ExtResource("4_fgeut")
+value_label = NodePath("VBC/ValueLabel")
+max_value_label = NodePath("VBC/MaxValueLabel")
+cval = 100
+mval = 100
+
+[node name="VBC" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ValueLabel" type="Label" parent="VBC"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="MaxValueLabel" type="Label" parent="VBC"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_alignment = 1

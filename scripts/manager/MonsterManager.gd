@@ -39,11 +39,12 @@ func end_fight():
 	start_fight_button.disabled = false
 	if auto_start_fight_checkbox.button_pressed: start_fight()
 	var player_manager: PlayerManager = $%PlayerManager
-	player_manager.init_caracteristiques(player_manager.max_hp, player_manager.max_pa, player_manager.max_pm)
+	player_manager.pa_bar.reset()
+	player_manager.pm_bar.reset()
 
 
 func get_monsters_on_plates():
-	return PlayerManager.plates.map(func(p): return p.get_entity()).filter(Monster.is_monster)
+	return PlayerManager.plates.map(func(p): return p.get_entity()).filter(Entity.is_monster)
 
 
 func instantiate_monster() -> Monster:

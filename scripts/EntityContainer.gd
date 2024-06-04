@@ -33,7 +33,7 @@ func get_entity():
 	if get_children().size() == 0:
 		return null
 	for child in get_children():
-		if Monster.is_monster(child):
+		if Entity.is_monster(child):
 			return child
 	return null
 
@@ -55,7 +55,7 @@ func _on_tree_entered():
 
 
 func is_empty():
-	return get_child_count() == 0 or !get_children().any(Monster.is_monster)
+	return get_child_count() == 0 or !get_children().any(Entity.is_monster)
 
 
 func select(container):

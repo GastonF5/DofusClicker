@@ -2,25 +2,35 @@ extends ClickableControl
 class_name Entity
 
 const NO_CARAC_FOUND = "La caractéristique %s n'a pas été trouvée pour l'entité %s"
+const CaracType = Caracteristique.Type
+const Element = Caracteristique.Element
 
-var caracteristiques: Array[StatResource]
+var caracteristiques: Array[StatResource] = []
+var spells: Array[SpellResource] = []
+
 var player_manager: PlayerManager
 var inventory: Inventory
 
-@export var hp_bar: HPBar
-@export var pa_bar: PABar
-@export var pm_bar: PMBar
-
-@export var attack_bar: TextureProgressBar
+@export var entity_bar: EntityBars
+var hp_bar: CustomBar
+var pa_bar: CustomBar
+var pm_bar: CustomBar
 
 var dying = false
 var attack_callable: Callable
 signal dies
 
-var attack_timer: Timer
+var erosion := 0.05
 
 
 #region Caractéristiques
+func init():
+	hp_bar = entity_bar.hp_bar
+	pa_bar = entity_bar.pa_bar
+	pm_bar = entity_bar.pm_bar
+	pa_bar.speed = get_attack_speed()
+
+
 func init_caracteristiques(caracs: Array[StatResource]):
 	for carac in caracs:
 		var new_carac: StatResource = carac.duplicate()
@@ -28,46 +38,54 @@ func init_caracteristiques(caracs: Array[StatResource]):
 		caracteristiques.append(new_carac)
 
 
-func get_caracacteristique_for_type(type: Caracteristique.Type) -> StatResource:
+func init_spells(spell_ids: Array):
+	for id in spell_ids:
+		spells.append(FileLoader.load_file("res://resources/spells/monster/%d.tres" % id))
+
+
+func get_caracacteristique_for_type(type: CaracType) -> StatResource:
 	var carac = caracteristiques.filter(func(c): return c.type == type)
 	if carac.size() != 1:
-		console.log_error(NO_CARAC_FOUND % [Caracteristique.Type.find_key(type), name])
+		console.log_error(NO_CARAC_FOUND % [CaracType.find_key(type), name])
 		return null
 	return carac[0]
 
 
-func set_caracteristique_amount(type: Caracteristique.Type, new_amount: int):
+func set_caracteristique_amount(type: CaracType, new_amount: int):
 	var carac = get_caracacteristique_for_type(type)
 	if carac:
 		carac.amount = new_amount
 
 
-func connect_to_stat(type: Caracteristique.Type, callable: Callable, params: Array):
+func connect_to_stat(type: CaracType, callable: Callable, params: Array):
 	var carac = get_caracacteristique_for_type(type)
 	if carac:
 		carac.amount_change.connect(callable.bindv(params))
 
 
 func get_vitalite() -> int:
-	var hp = get_caracacteristique_for_type(Caracteristique.Type.VITALITE)
+	var hp = get_caracacteristique_for_type(CaracType.VITALITE)
 	return 0 if !hp else hp.amount
 
 
 func get_pm() -> int:
-	var pm = get_caracacteristique_for_type(Caracteristique.Type.PM)
+	var pm = get_caracacteristique_for_type(CaracType.PM)
 	return 0 if !pm else pm.amount
 
 
 func get_pa() -> int:
-	var pa = get_caracacteristique_for_type(Caracteristique.Type.PA)
+	var pa = get_caracacteristique_for_type(CaracType.PA)
 	return 0 if !pa else pa.amount
 #endregion
 
 
-func take_damage(amount: int):
-	create_taken_damage(amount)
-	hp_bar.current_hp -= amount
-	if hp_bar.current_hp <= hp_bar.min_value:
+func take_damage(amount: int, element: Element):
+	amount = apply_resistance(amount, element)
+	apply_erosion(amount)
+	if is_monster(self):
+		create_taken_damage(amount)
+	hp_bar.cval -= amount
+	if hp_bar.cval <= hp_bar.min_value:
 		dying = true
 	return amount
 
@@ -78,35 +96,27 @@ func create_taken_damage(amount: int):
 	taken_damage.init(amount)
 
 
-func new_attack_timer(time = 0.0):
-	var attack_time = get_attack_time() if time == 0.0 else time
-	if attack_timer != null:
-		attack_timer.timeout.disconnect(attack_callable)
-		attack_timer.queue_free()
-	attack_timer = Timer.new()
-	attack_timer.wait_time = abs(attack_time)
-	attack_timer.timeout.connect(attack_callable)
-	add_child(attack_timer)
-	attack_timer.start()
+func get_attack_speed() -> float:
+	var pm = pm_bar.cval
+	return 0.0 if pm == 0 or pm > 10 else 20.0 * pm
 
 
-func update_timer():
-	if pm_bar.get_amount() == 0:
-		attack_timer.paused = true
+func apply_resistance(amount: int, element: Element) -> int:
+	var type = CaracType.get("RES_" + Element.keys()[element])
+	var res = 0
+	if caracteristiques.is_empty():
+		res = StatsManager.get_caracteristique_for_type(type).amount
 	else:
-		attack_timer.paused = false
-		update_attack_bar()
+		res = get_caracacteristique_for_type(type).amount
+	return amount - (amount * res / 100.0)
 
 
-func get_attack_time():
-	var pm = pm_bar.get_amount()
-	return null if pm == 0 or pm > 10 else 10 / pm
+func apply_erosion(amount: int):
+	var ero = (amount * erosion) as int
+	hp_bar.cval -= ero
+	hp_bar.mval -= ero
+	hp_bar.update()
 
 
-func update_attack_bar():
-	var last_max_value = attack_bar.max_value
-	var last_value = attack_bar.value
-	attack_bar.max_value = get_attack_time()
-	attack_bar.value = (last_value * attack_bar.max_value) / last_max_value
-	if float(abs(attack_bar.max_value - attack_bar.value)) > 0:
-		new_attack_timer(float(abs(attack_bar.max_value - attack_bar.value)))
+static func is_monster(value: Node):
+	return is_instance_of(value, Monster)

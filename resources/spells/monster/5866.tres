@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=2 format=3 uid="uid://dck1s7qr0mbdt"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_bnpy0"]
+
+[resource]
+script = ExtResource("1_bnpy0")
+id = 5866
+name = "Brûlure légère"
+img_url = ""
+spell_name = "brulure_legere"
+description = ""
+cooldown = 0.0
+pa_cost = 2

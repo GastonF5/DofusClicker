@@ -1,22 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://c5gkntgyndcmq"]
+[gd_scene load_steps=6 format=3 uid="uid://c5gkntgyndcmq"]
 
 [ext_resource type="Script" path="res://scripts/monster/Monster.gd" id="2_ao8xg"]
-[ext_resource type="Texture2D" uid="uid://dijv701ob1v4n" path="res://assets/hud/gauge/demi_gauge_background.png" id="3_alk0v"]
 [ext_resource type="Texture2D" uid="uid://df7upr6jvfvsx" path="res://assets/icons/boss.png" id="3_cevmk"]
-[ext_resource type="Texture2D" uid="uid://bthruv7s8lr3w" path="res://assets/hud/gauge/demi_gauge_yellow_timer_line.png" id="4_ovr7d"]
+[ext_resource type="PackedScene" uid="uid://dr1xqccheukcc" path="res://scenes/bars/entity_bars.tscn" id="4_07i5c"]
 [ext_resource type="Texture2D" uid="uid://g6wqg0e5ubmn" path="res://assets/monsters/bouftou.png" id="5_1404l"]
-[ext_resource type="Texture2D" uid="uid://bthruv7s8lr3w" path="res://assets/hud/gauge/demi_gauge_yellow_timer_line.png" id="5_l0jk4"]
-[ext_resource type="PackedScene" uid="uid://bkkjso0mm2nu4" path="res://scenes/hp_bar.tscn" id="7_pl1ol"]
-[ext_resource type="Texture2D" uid="uid://j4jxr7o1i7qw" path="res://assets/hud/icon_ap_empty.png" id="8_x1vmy"]
-[ext_resource type="Texture2D" uid="uid://deep4ut0ypw6e" path="res://assets/hud/icon_ap_full.png" id="9_ry61q"]
-[ext_resource type="Script" path="res://scripts/bars/PABar.gd" id="10_q0t7d"]
-[ext_resource type="Texture2D" uid="uid://cyj00xy3xeikq" path="res://assets/hud/icon_mp_empty.png" id="11_ncrsl"]
-[ext_resource type="Texture2D" uid="uid://cb1pye1b2nyyt" path="res://assets/hud/icon_mp_full.png" id="12_xyyp8"]
-[ext_resource type="Script" path="res://scripts/bars/PMBar.gd" id="13_mhlah"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_63c4l"]
 
-[node name="Monster" type="PanelContainer" node_paths=PackedStringArray("name_label", "texture_rect", "header_texture", "attack_amount", "hp_bar", "pa_bar", "pm_bar", "attack_bar")]
+[node name="Monster" type="PanelContainer" node_paths=PackedStringArray("name_label", "texture_rect", "header_texture", "entity_bar")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -35,11 +26,7 @@ script = ExtResource("2_ao8xg")
 name_label = NodePath("VBC/Header/Name")
 texture_rect = NodePath("VBC/TextureContainer/Monster")
 header_texture = NodePath("VBC/Header/HeaderControl/HeaderTexture")
-attack_amount = NodePath("VBC/Header/AttackAmount")
-hp_bar = NodePath("VBC/Footer/HPBar")
-pa_bar = NodePath("VBC/Footer/PABar")
-pm_bar = NodePath("VBC/Footer/PMBar")
-attack_bar = NodePath("VBC/Header/AttackBar")
+entity_bar = NodePath("VBC/EntityBars")
 
 [node name="VBC" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -73,21 +60,6 @@ size_flags_vertical = 0
 texture = ExtResource("3_cevmk")
 stretch_mode = 3
 
-[node name="AttackBar" type="TextureProgressBar" parent="VBC/Header"]
-layout_mode = 2
-size_flags_horizontal = 4
-step = 0.01
-value = 100.0
-texture_under = ExtResource("3_alk0v")
-texture_over = ExtResource("4_ovr7d")
-texture_progress = ExtResource("5_l0jk4")
-
-[node name="AttackAmount" type="Label" parent="VBC/Header"]
-layout_mode = 2
-text = "5"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Name" type="Label" parent="VBC/Header"]
 layout_mode = 2
 text = "Nom"
@@ -112,82 +84,6 @@ texture = ExtResource("5_1404l")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Footer" type="Control" parent="VBC"]
-custom_minimum_size = Vector2(0, 128)
+[node name="EntityBars" parent="VBC" instance=ExtResource("4_07i5c")]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-size_flags_vertical = 8
-mouse_filter = 2
-
-[node name="PABar" type="TextureProgressBar" parent="VBC/Footer" node_paths=PackedStringArray("current_pa_label")]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 14.5
-offset_top = -98.0
-offset_right = 65.5
-offset_bottom = -49.0
-grow_vertical = 0
-scale = Vector2(1.5, 1.5)
-size_flags_horizontal = 4
-fill_mode = 3
-texture_under = ExtResource("8_x1vmy")
-texture_progress = ExtResource("9_ry61q")
-script = ExtResource("10_q0t7d")
-player = false
-current_pa_label = NodePath("CurrentPALabel")
-
-[node name="CurrentPALabel" type="Label" parent="VBC/Footer/PABar"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "6"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="PMBar" type="TextureProgressBar" parent="VBC/Footer" node_paths=PackedStringArray("current_pm_label")]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -90.5
-offset_top = -96.0
-offset_right = -41.5
-offset_bottom = -47.0
-grow_horizontal = 0
-grow_vertical = 0
-scale = Vector2(1.5, 1.5)
-size_flags_horizontal = 4
-fill_mode = 3
-texture_under = ExtResource("11_ncrsl")
-texture_progress = ExtResource("12_xyyp8")
-script = ExtResource("13_mhlah")
-player = false
-current_pm_label = NodePath("CurrentPMLabel")
-
-[node name="CurrentPMLabel" type="Label" parent="VBC/Footer/PMBar"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "6"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HPBar" parent="VBC/Footer" instance=ExtResource("7_pl1ol")]
-layout_mode = 1
-anchors_preset = 5
-anchor_top = 0.0
-anchor_bottom = 0.0
-offset_top = -35.0
-offset_bottom = 50.0
-grow_vertical = 1
-size_flags_horizontal = 4
-size_flags_vertical = 4

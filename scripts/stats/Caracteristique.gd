@@ -43,11 +43,15 @@ enum Type {
 
 enum Element {
 	NEUTRE,
-	AIR,
-	EAU,
 	TERRE,
 	FEU,
+	EAU,
+	AIR,
 }
+
+static func get_element(id: int):
+	return Element.get(id)
+
 
 @export var modifiable = true
 

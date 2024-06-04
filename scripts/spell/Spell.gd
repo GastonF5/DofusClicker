@@ -14,7 +14,7 @@ func _process(_delta):
 	if timer != null:
 		cooldown_bar.value = timer.time_left * 100
 	if is_clickable:
-		if player_manager.pa_bar.current_pa < resource.pa_cost:
+		if player_manager.pa_bar.cval < resource.pa_cost:
 			spell_texture.modulate = Color.ORANGE_RED
 		else:
 			spell_texture.modulate = Color.WHITE
@@ -39,9 +39,9 @@ func init(res: SpellResource, clickable: bool):
 
 
 func do_action(_self = null):
-	if resource.pa_cost <= player_manager.pa_bar.current_pa and PlayerManager.selected_plate and is_clickable:
+	if resource.pa_cost <= player_manager.pa_bar.cval and PlayerManager.selected_plate and is_clickable:
 		if resource.pa_cost != 0:
-			player_manager.pa_bar.current_pa = player_manager.pa_bar.current_pa - resource.pa_cost
+			player_manager.pa_bar.cval = player_manager.pa_bar.cval - resource.pa_cost
 			player_manager.pa_bar.update()
 		cast()
 		if resource.cooldown != 0:

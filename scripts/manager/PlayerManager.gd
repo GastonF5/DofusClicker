@@ -9,12 +9,16 @@ var pdv_label: Label
 @export var inventory_container: Panel
 var inventory: Inventory
 
+var player_entity: Entity
+var health_timer: Node
+
 @export var xp_bar: ExperienceBar
 @export var kamas_label: Label
 @export var spell_bar: SpellBar
-@export var hp_bar: HPBar
-@export var pa_bar: PABar
-@export var pm_bar: PMBar
+@export var player_bars: EntityBars
+var hp_bar: CustomBar
+var pa_bar: CustomBar
+var pm_bar: CustomBar
 
 @export var console: Console
 
@@ -32,7 +36,7 @@ var max_pm: int:
 
 var max_hp: int:
 	set(value):
-		hp_bar.current_hp += value - max_hp
+		hp_bar.cval += value - max_hp
 		max_hp = value
 		update_pdv()
 
@@ -52,12 +56,15 @@ static var plates: Array[EntityContainer]
 
 
 func _ready():
+	hp_bar = player_bars.hp_bar
+	pa_bar = player_bars.pa_bar
+	pm_bar = player_bars.pm_bar
 	spell_container = spells_container.get_node("%SpellContainer")
 	pdv_label = stats_container.get_node("%HPAmount")
 	inventory = inventory_container.get_node("%Inventory")
 	
 	SpellsService.console = console
-	SpellsService.tnode = $"/root/Main/Timers"
+	SpellsService.tnode = $%Timers
 	StatsManager.console = console
 	
 	for spell_res in FileLoader.get_spell_resources("Ecaflip"):
@@ -73,7 +80,12 @@ func _ready():
 		plates.append(entity_container)
 	selected_plate = plates[0]
 	
+	player_entity = Entity.new()
+	add_child(player_entity)
+	SpellsService.player_entity = player_entity
 	init_caracteristiques(50, 6, 3)
+	player_entity.entity_bar = player_bars
+	player_entity.init()
 	
 	xp_bar.init()
 	kamas_label.text = "0"
@@ -81,16 +93,26 @@ func _ready():
 	create_item_description()
 
 
-func init_caracteristiques(hp: int, pa: int, pm: int):
+func _process(_delta):
+	if MonsterManager.monsters.is_empty() and hp_bar.cval < max_hp:
+		if !health_timer:
+			health_timer = SpellsService.create_timer(1.0, "HealthTimer")
+			await health_timer.timeout
+			hp_bar.cval += 1
+			health_timer.queue_free()
+			health_timer = null
+
+
+func init_caracteristiques(hp: int = max_hp, pa: int = max_pa, pm: int = max_pm):
 	# HP
 	max_hp = hp
-	hp_bar.init(max_hp)
+	player_entity.hp_bar = hp_bar
 	# PA
 	max_pa = pa
-	pa_bar.init(max_pa)
+	player_entity.pa_bar = pa_bar
 	# PM
 	max_pm = pm
-	pm_bar.init(max_pm)
+	player_entity.pm_bar = pm_bar
 
 
 func _input(event):
@@ -138,7 +160,7 @@ static func select_previous_plate():
 
 func update_pdv():
 	pdv_label.text = str(max_hp)
-	hp_bar.update(hp_bar.current_hp, max_hp)
+	hp_bar.update(hp_bar.cval, max_hp)
 
 func update_pa():
 	StatsManager.get_caracteristique_for_type(Caracteristique.Type.PA).set_base_amount(max_pa)
