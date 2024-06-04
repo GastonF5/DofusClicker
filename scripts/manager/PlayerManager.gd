@@ -83,7 +83,7 @@ func _ready():
 	player_entity = Entity.new()
 	add_child(player_entity)
 	SpellsService.player_entity = player_entity
-	init_caracteristiques(50, 6, 3)
+	init_caracteristiques(50, 100, 3)
 	player_entity.entity_bar = player_bars
 	player_entity.init()
 	
@@ -140,12 +140,6 @@ func _input(event):
 			PlayerManager.select_next_plate()
 		if event.is_action_pressed("left"):
 			PlayerManager.select_previous_plate()
-
-
-func take_damage(amount: int) -> int:
-	var taken_damage = roundi((amount * taken_damage_rate) / 100.0)
-	hp_bar.current_hp -= taken_damage
-	return taken_damage
 
 
 static func select_next_plate():

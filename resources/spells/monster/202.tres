@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=2 format=3 uid="uid://cbbstta8ty7x4"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_4qqiv"]
+
+[resource]
+script = ExtResource("1_4qqiv")
+id = 202
+name = "Morsure du Bouftou"
+spell_name = "morsure_du_bouftou"
+description = "Inflige des dégâts dans l'élément neutre."
+img_url = "https://api.dofusdb.fr/img/spells/sort_10077.png"
+pa_cost = 3
+per_crit = 0.1
+cooldown = 0.0
+ordre = 0

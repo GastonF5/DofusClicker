@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=2 format=3 uid="uid://dee6soikbyc57"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_rg1p5"]
+
+[resource]
+script = ExtResource("1_rg1p5")
+id = 253
+name = "Fureur du Bouftou"
+spell_name = "fureur_du_bouftou"
+description = "Augmente les dommages d'un monstre aléatoire."
+img_url = "https://api.dofusdb.fr/img/spells/sort_10013.png"
+pa_cost = 3
+per_crit = 0.0
+has_grade = true
+cooldown = 10.0
+priority = 1

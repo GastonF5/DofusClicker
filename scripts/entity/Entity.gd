@@ -39,8 +39,12 @@ func init_caracteristiques(caracs: Array[StatResource]):
 
 
 func init_spells(spell_ids: Array):
+	print(spell_ids)
+	var dir = DirAccess.open("res://resources/spells/monster/")
 	for id in spell_ids:
-		spells.append(FileLoader.load_file("res://resources/spells/monster/%d.tres" % id))
+		if dir.file_exists("%d.tres" % id):
+			var spell = FileLoader.load_file("res://resources/spells/monster/%d.tres" % id)
+			spells.append(spell)
 
 
 func get_caracacteristique_for_type(type: CaracType) -> StatResource:

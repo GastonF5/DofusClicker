@@ -72,9 +72,14 @@ func init_monster_caracteristiques():
 
 
 func attack():
-	#var _taken_damage = player_manager.take_damage(resource.damage)
-	#console.log_info("%s attaque : %d dégât%s" % [name, taken_damage, "" if taken_damage <= 1 else "s"])
-	Callable(SpellsService, spells[0].spell_name).call()
+	var spell_to_cast = spells[0]
+	var spell_callable = Callable(SpellsService, spell_to_cast.spell_name)
+	var args = []
+	if spell_to_cast.per_crit > 0:
+		args.append(randi_range(0, 1) <= spell_to_cast.per_crit)
+	if spell_to_cast.has_grade:
+		args.append(grade)
+	spell_callable.callv(args)
 
 
 func die():

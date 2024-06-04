@@ -6,8 +6,11 @@
 script = ExtResource("1_bnpy0")
 id = 5866
 name = "Brûlure légère"
-img_url = ""
 spell_name = "brulure_legere"
-description = ""
-cooldown = 0.0
+description = "Inflige des dégâts dans un élément aléatoire."
+img_url = ""
 pa_cost = 2
+per_crit = 0.0
+cooldown = 0.0
+grade = 0
+ordre = 0
