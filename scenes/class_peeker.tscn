@@ -1,9 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://bospgqkt5v11w"]
+[gd_scene load_steps=22 format=3 uid="uid://bospgqkt5v11w"]
 
 [ext_resource type="Script" path="res://scripts/ClassPeeker.gd" id="1_kjw78"]
 [ext_resource type="Texture2D" uid="uid://f1b4iqrwl4yt" path="res://assets/class_peeker/bgIlluServeur.jpg" id="1_sgq1h"]
+[ext_resource type="Texture2D" uid="uid://bun3ycrmiu6rv" path="res://assets/classes/logo/symbol_1.png" id="3_m2pd1"]
+[ext_resource type="Texture2D" uid="uid://bqyrti6v44xi3" path="res://assets/classes/logo/symbol_2.png" id="4_od5uc"]
+[ext_resource type="Texture2D" uid="uid://dc0dilvcg72ym" path="res://assets/classes/logo/symbol_3.png" id="5_tskau"]
+[ext_resource type="Texture2D" uid="uid://nojs28415sro" path="res://assets/classes/logo/symbol_4.png" id="6_s3dbf"]
+[ext_resource type="Texture2D" uid="uid://d2g8ahy3yg0kd" path="res://assets/classes/logo/symbol_5.png" id="7_r5o52"]
+[ext_resource type="Texture2D" uid="uid://hhrmrwuodr6y" path="res://assets/classes/logo/symbol_6.png" id="8_8ej3e"]
+[ext_resource type="Texture2D" uid="uid://cjrj047mpc7dr" path="res://assets/classes/logo/symbol_7.png" id="9_q553h"]
+[ext_resource type="Texture2D" uid="uid://birdjfrgssk4q" path="res://assets/classes/logo/symbol_8.png" id="10_abd6x"]
+[ext_resource type="Texture2D" uid="uid://br3718xo4hhgu" path="res://assets/classes/logo/symbol_9.png" id="11_4py68"]
+[ext_resource type="Texture2D" uid="uid://po5sfqi0bd4o" path="res://assets/classes/logo/symbol_10.png" id="12_phxy0"]
+[ext_resource type="Texture2D" uid="uid://davpexaplv48o" path="res://assets/classes/logo/symbol_11.png" id="13_lguh3"]
+[ext_resource type="Texture2D" uid="uid://dnr0qbth17b5c" path="res://assets/classes/logo/symbol_12.png" id="14_dpocx"]
+[ext_resource type="Texture2D" uid="uid://cxqv4ft6flh3n" path="res://assets/classes/logo/symbol_13.png" id="15_wr7yg"]
+[ext_resource type="Texture2D" uid="uid://cihhreqscbmq2" path="res://assets/classes/logo/symbol_14.png" id="16_ywbox"]
+[ext_resource type="Texture2D" uid="uid://buvfvucibp7lr" path="res://assets/classes/logo/symbol_15.png" id="17_lo0ek"]
+[ext_resource type="Texture2D" uid="uid://dh7an8h6dkru5" path="res://assets/classes/logo/symbol_16.png" id="18_2ly1l"]
+[ext_resource type="Texture2D" uid="uid://d1w310itmucff" path="res://assets/classes/logo/symbol_17.png" id="19_c7vg3"]
+[ext_resource type="Texture2D" uid="uid://dgue8gx17evoo" path="res://assets/classes/logo/symbol_18.png" id="20_3stw5"]
+[ext_resource type="Texture2D" uid="uid://dsgor00d8u0a6" path="res://assets/classes/logo/symbol_19.png" id="21_3slnw"]
 
-[node name="ClassPeeker" type="Control"]
+[node name="ClassPeeker" type="Control" node_paths=PackedStringArray("bcontainer1", "bcontainer2")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,6 +30,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kjw78")
+bcontainer1 = NodePath("Buttons/ButtonsContainer1")
+bcontainer2 = NodePath("Buttons/ButtonsContainer2")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
@@ -23,13 +44,210 @@ texture = ExtResource("1_sgq1h")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="Buttons" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 305)
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 14
+anchor_top = 0.5
 anchor_right = 1.0
-offset_bottom = 8.0
+anchor_bottom = 0.5
+offset_top = 212.0
+offset_bottom = 517.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ButtonsContainer1" type="HBoxContainer" parent="Buttons"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -768.0
+offset_right = 768.0
+offset_bottom = 150.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="Button" type="Button" parent="HBoxContainer"]
+[node name="1" type="Button" parent="Buttons/ButtonsContainer1"]
+custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("3_m2pd1")
+expand_icon = true
+
+[node name="2" type="Button" parent="Buttons/ButtonsContainer1"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("4_od5uc")
+expand_icon = true
+
+[node name="3" type="Button" parent="Buttons/ButtonsContainer1"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("5_tskau")
+expand_icon = true
+
+[node name="4" type="Button" parent="Buttons/ButtonsContainer1"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("6_s3dbf")
+expand_icon = true
+
+[node name="5" type="Button" parent="Buttons/ButtonsContainer1"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("7_r5o52")
+expand_icon = true
+
+[node name="6" type="Button" parent="Buttons/ButtonsContainer1"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("8_8ej3e")
+expand_icon = true
+
+[node name="7" type="Button" parent="Buttons/ButtonsContainer1"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("9_q553h")
+expand_icon = true
+
+[node name="8" type="Button" parent="Buttons/ButtonsContainer1"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("10_abd6x")
+expand_icon = true
+
+[node name="9" type="Button" parent="Buttons/ButtonsContainer1"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("11_4py68")
+expand_icon = true
+
+[node name="10" type="Button" parent="Buttons/ButtonsContainer1"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("12_phxy0")
+expand_icon = true
+
+[node name="ButtonsContainer2" type="HBoxContainer" parent="Buttons"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -691.0
+offset_top = -150.0
+offset_right = 691.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="11" type="Button" parent="Buttons/ButtonsContainer2"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("13_lguh3")
+expand_icon = true
+
+[node name="12" type="Button" parent="Buttons/ButtonsContainer2"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("14_dpocx")
+expand_icon = true
+
+[node name="13" type="Button" parent="Buttons/ButtonsContainer2"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("15_wr7yg")
+expand_icon = true
+
+[node name="14" type="Button" parent="Buttons/ButtonsContainer2"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("16_ywbox")
+expand_icon = true
+
+[node name="15" type="Button" parent="Buttons/ButtonsContainer2"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("17_lo0ek")
+expand_icon = true
+
+[node name="16" type="Button" parent="Buttons/ButtonsContainer2"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("18_2ly1l")
+expand_icon = true
+
+[node name="17" type="Button" parent="Buttons/ButtonsContainer2"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("19_c7vg3")
+expand_icon = true
+
+[node name="18" type="Button" parent="Buttons/ButtonsContainer2"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("20_3stw5")
+expand_icon = true
+
+[node name="19" type="Button" parent="Buttons/ButtonsContainer2"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("21_3slnw")
+expand_icon = true
