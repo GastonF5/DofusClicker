@@ -119,7 +119,6 @@ func apply_erosion(amount: int):
 	var ero = (amount * erosion) as int
 	hp_bar.cval -= ero
 	hp_bar.mval -= ero
-	hp_bar.update()
 
 
 static func is_monster(value: Node):

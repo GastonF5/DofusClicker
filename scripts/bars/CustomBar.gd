@@ -18,6 +18,8 @@ extends TextureProgressBar
 	get:
 		return cval if auto_fill else value
 	set(val):
+		if auto_fill and val < cval:
+			value = 0
 		cval = val
 		if !auto_fill: value = val
 		if cval > mval: cval = mval
@@ -38,6 +40,9 @@ func _ready():
 	texture_progress = full_texture
 	setup_labels()
 	global_position -= size / 2.0
+	if auto_fill:
+		value = max_value
+		cval = mval
 
 
 func setup_labels():
@@ -58,13 +63,6 @@ func _process(delta):
 			if value >= max_value:
 				cval += 1
 				value = min_value if cval < mval else max_value
-
-
-func update(hp = cval, mvalue = max_value):
-	if hp is Callable: hp = hp.call()
-	if mvalue is Callable: mvalue = mvalue.call()
-	cval = hp
-	mval = mvalue
 
 
 func update_value_label():

@@ -154,13 +154,15 @@ static func select_previous_plate():
 
 func update_pdv():
 	pdv_label.text = str(max_hp)
-	hp_bar.update(hp_bar.cval, max_hp)
+	hp_bar.mval = max_hp
 
 func update_pa():
 	StatsManager.get_caracteristique_for_type(Caracteristique.Type.PA).set_base_amount(max_pa)
+	pa_bar.mval = max_pa
 
 func update_pm():
 	StatsManager.get_caracteristique_for_type(Caracteristique.Type.PM).set_base_amount(max_pm)
+	pm_bar.mval = max_pm
 
 
 func create_item_description():
