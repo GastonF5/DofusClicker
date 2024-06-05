@@ -28,8 +28,13 @@ var classes = {
 var available := [6]
 const button_size := 150
 
+@export var bselect: Button
+
 @export var bcontainer1: Control
 @export var bcontainer2: Control
+
+@export var clogo: TextureRect
+@export var clabel: Label
 
 var buttons:
 	get:
@@ -39,13 +44,32 @@ var selected_class: int
 
 
 func _ready():
+	clogo.texture = null
+	clabel.text = ""
 	for button in buttons:
 		button.toggled.connect(_on_button_toggled.bind(button.name.to_int()))
 
 
 func _on_button_toggled(toggle: bool, id: int):
+	bselect.disabled = !toggle
 	if toggle:
 		selected_class = id
+		select_class()
 		for button: Button in buttons:
 			if button.name.to_int() != id:
-				button.button_pressed = false
+				button.set_pressed_no_signal(false)
+	else:
+		select_class(0)
+
+
+func select_class(id: int = selected_class):
+	if classes.keys().has(id):
+		clogo.texture = load("res://assets/classes/logo_transparent/logo_transparent_%d.png" % id)
+		clabel.text = classes[id]
+	else:
+		clogo.texture = null
+		clabel.text = ""
+
+
+func _on_select_button_button_up():
+	print(classes[selected_class])
