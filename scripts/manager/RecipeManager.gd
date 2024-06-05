@@ -12,9 +12,10 @@ var recipes: Array[Recipe] = []
 var inventory: Inventory
 
 var recipe_filters: VBoxContainer
+var prompt_has_focus := false
 
 
-func _ready():
+func initialize():
 	$%Datas.init_done.connect(init_recipes.bind($%PlayerManager.xp_bar.cur_lvl))
 	$%PlayerManager.xp_bar.lvl_up.connect(init_recipes)
 	tab_container = jobs_container.get_node("TabContainer")
@@ -30,9 +31,10 @@ func _ready():
 
 
 func _input(event):
-	var search_prompt = current_tab.search_prompt
-	if search_prompt.has_focus() and (event.is_action_pressed("esc") or event.is_action_pressed("LMB")):
-		search_prompt.release_focus()
+	if current_tab:
+		var search_prompt = current_tab.search_prompt
+		if search_prompt.has_focus() and (event.is_action_pressed("esc") or event.is_action_pressed("LMB")):
+			search_prompt.release_focus()
 
 
 func on_job_tab_changed(tab):
@@ -66,6 +68,10 @@ func disconnect_inputs():
 func connect_inputs():
 	var search_prompt = current_tab.search_prompt
 	search_prompt.text_changed.connect(filter_recipes)
+	search_prompt.focus_entered.connect(func():
+		prompt_has_focus = true)
+	search_prompt.focus_exited.connect(func():
+		prompt_has_focus = false)
 
 
 func init_recipes(lvl := -1):

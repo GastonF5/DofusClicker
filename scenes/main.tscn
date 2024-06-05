@@ -1,6 +1,7 @@
-[gd_scene load_steps=50 format=3 uid="uid://bfh3u8jwrg2ar"]
+[gd_scene load_steps=52 format=3 uid="uid://bfh3u8jwrg2ar"]
 
 [ext_resource type="PackedScene" uid="uid://2yisonfumvpt" path="res://scenes/API.tscn" id="1_0haij"]
+[ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_7amhq"]
 [ext_resource type="Script" path="res://scripts/manager/MonsterManager.gd" id="1_iu0is"]
 [ext_resource type="Script" path="res://scripts/FileSaver.gd" id="1_upxrd"]
 [ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="2_4lqlq"]
@@ -34,6 +35,7 @@
 [ext_resource type="PackedScene" uid="uid://v3e3pddsya44" path="res://scenes/console.tscn" id="34_t67ba"]
 [ext_resource type="Texture2D" uid="uid://l5x41vqt4blf" path="res://assets/common/button/btn_greenLargeBorder_pressed.png" id="34_uav3t"]
 [ext_resource type="Texture2D" uid="uid://dne08ij0lq2cn" path="res://assets/common/button/btn_greenLargeBorder_disabled.png" id="35_61trk"]
+[ext_resource type="PackedScene" uid="uid://bospgqkt5v11w" path="res://scenes/class_peeker.tscn" id="36_f47er"]
 [ext_resource type="PackedScene" uid="uid://dr1xqccheukcc" path="res://scenes/bars/entity_bars.tscn" id="40_5kut3"]
 [ext_resource type="PackedScene" uid="uid://cl1b4rs0yua7e" path="res://scenes/LoadingScreen.tscn" id="43_bkaqa"]
 
@@ -83,33 +85,38 @@ script = ExtResource("1_upxrd")
 [node name="API" parent="." instance=ExtResource("1_0haij")]
 unique_name_in_owner = true
 
-[node name="StatsManager" type="Node" parent="." node_paths=PackedStringArray("stats_container")]
-script = ExtResource("4_13j6f")
-stats_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Stats")
+[node name="Managers" type="Node" parent="."]
 
-[node name="PlayerManager" type="Node" parent="." node_paths=PackedStringArray("spells_container", "stats_container", "inventory_container", "xp_bar", "kamas_label", "spell_bar", "player_bars", "console")]
+[node name="StatsManager" type="Node" parent="Managers" node_paths=PackedStringArray("stats_container")]
+unique_name_in_owner = true
+script = ExtResource("4_13j6f")
+stats_container = NodePath("../../GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Stats")
+
+[node name="PlayerManager" type="Node" parent="Managers" node_paths=PackedStringArray("spells_container", "stats_container", "inventory_container", "xp_bar", "kamas_label", "spell_bar", "player_bars", "console")]
 unique_name_in_owner = true
 script = ExtResource("2_06gc8")
-spells_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Sorts")
-stats_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Stats")
-inventory_container = NodePath("../GUI/Main/HBC/RightSide/VSplitContainer/InventoryContainer")
-xp_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/ExperienceBar")
-kamas_label = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/KamasContainer/KamasLabel")
-spell_bar = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/HBoxContainer/SpellBarContainer/SpellBar")
-player_bars = NodePath("../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/EntityBars")
-console = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Infos/MarginContainer/Console")
+spells_container = NodePath("../../GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Sorts")
+stats_container = NodePath("../../GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Stats")
+inventory_container = NodePath("../../GUI/Main/HBC/RightSide/VSplitContainer/InventoryContainer")
+xp_bar = NodePath("../../GUI/Main/HBC/MiddleContainer/VBC/ExperienceBar")
+kamas_label = NodePath("../../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/AspectRatioContainer/KamasContainer/KamasLabel")
+spell_bar = NodePath("../../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/PlayerBarContainer/VBoxContainer/HBoxContainer/SpellBarContainer/SpellBar")
+player_bars = NodePath("../../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/EntityBars")
+console = NodePath("../../GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Infos/MarginContainer/Console")
 
-[node name="MonsterManager" type="Node" parent="."]
+[node name="MonsterManager" type="Node" parent="Managers"]
 unique_name_in_owner = true
 script = ExtResource("1_iu0is")
 
-[node name="EquipmentManager" type="Node" parent="." node_paths=PackedStringArray("equipment_container")]
+[node name="EquipmentManager" type="Node" parent="Managers" node_paths=PackedStringArray("equipment_container")]
+unique_name_in_owner = true
 script = ExtResource("3_nkpwv")
-equipment_container = NodePath("../GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer")
+equipment_container = NodePath("../../GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer")
 
-[node name="RecipeManager" type="Node" parent="." node_paths=PackedStringArray("jobs_container")]
+[node name="RecipeManager" type="Node" parent="Managers" node_paths=PackedStringArray("jobs_container")]
+unique_name_in_owner = true
 script = ExtResource("5_51m8x")
-jobs_container = NodePath("../GUI/Main/HBC/RightSide/VSplitContainer/JobsContainer")
+jobs_container = NodePath("../../GUI/Main/HBC/RightSide/VSplitContainer/JobsContainer")
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
@@ -467,6 +474,13 @@ layout_mode = 2
 [node name="LoadingScreen" parent="." instance=ExtResource("43_bkaqa")]
 unique_name_in_owner = true
 visible = false
+
+[node name="ClassPeeker" parent="." instance=ExtResource("36_f47er")]
+unique_name_in_owner = true
+visible = false
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("1_7amhq")
 
 [node name="Datas" type="Node" parent="."]
 unique_name_in_owner = true

@@ -24,7 +24,7 @@ var processing = false
 var inventory: Inventory
 
 
-func _ready():
+func initialize():
 	inventory = $%PlayerManager.inventory
 
 

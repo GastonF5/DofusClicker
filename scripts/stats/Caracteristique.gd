@@ -183,8 +183,8 @@ func _on_minus_button_button_up():
 
 
 func update_buttons_visibility():
-	plus_btn.disabled = StatsManager.points == 0
-	minus_btn.disabled = base_amount == 0
+	if plus_btn: plus_btn.disabled = StatsManager.points == 0
+	if minus_btn: minus_btn.disabled = base_amount == 0
 
 
 func update_tooltip():

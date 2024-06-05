@@ -1,7 +1,7 @@
 class_name Spell
 extends ClickableControl
 
-@onready var player_manager: PlayerManager = $"/root/Main/PlayerManager"
+var player_manager: PlayerManager
 
 @export var spell_texture: TextureRect
 @export var cooldown_bar: TextureProgressBar
@@ -13,7 +13,7 @@ var timer: Timer
 func _process(_delta):
 	if timer != null:
 		cooldown_bar.value = timer.time_left * 100
-	if is_clickable:
+	if is_clickable and player_manager:
 		if player_manager.pa_bar.cval < resource.pa_cost:
 			spell_texture.modulate = Color.ORANGE_RED
 		else:
@@ -21,6 +21,7 @@ func _process(_delta):
 
 
 func init(res: SpellResource, clickable: bool):
+	player_manager = get_tree().current_scene.get_node("%PlayerManager")
 	global_position -= size/2
 	name = res.name
 	resource = res

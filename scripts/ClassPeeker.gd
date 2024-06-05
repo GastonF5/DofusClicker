@@ -1,5 +1,5 @@
 class_name ClassPeeker
-extends Control
+extends CanvasLayer
 
 const ASSETS_PATH = "res://assets/classes/logo/"
 
@@ -48,6 +48,7 @@ func _ready():
 	clabel.text = ""
 	for button in buttons:
 		button.toggled.connect(_on_button_toggled.bind(button.name.to_int()))
+		button.disabled = !available.has(button.name.to_int())
 
 
 func _on_button_toggled(toggle: bool, id: int):

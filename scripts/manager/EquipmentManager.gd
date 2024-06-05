@@ -15,7 +15,7 @@ signal equiped
 signal desequiped
 
 
-func _ready():
+func initialize():
 	for slot in equipment_container.get_node("%EquipmentSlots").get_children():
 		slots.append(slot)
 		slot.mouse_entered.connect(_on_mouse_entered_slot.bind(slot))

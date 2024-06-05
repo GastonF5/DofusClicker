@@ -16,27 +16,24 @@ var health_timer: Node
 @export var kamas_label: Label
 @export var spell_bar: SpellBar
 @export var player_bars: EntityBars
-var hp_bar: CustomBar
-var pa_bar: CustomBar
-var pm_bar: CustomBar
 
 @export var console: Console
 
 static var item_description: ItemDescription
 static var dragged_item: DraggableControl
-var max_pa: int:
+var max_pa: int = 6:
 	set(value):
 		max_pa = value
 		update_pa()
 
-var max_pm: int:
+var max_pm: int = 3:
 	set(value):
 		max_pm = value
 		update_pm()
 
-var max_hp: int:
+var max_hp: int = 50:
 	set(value):
-		hp_bar.cval += value - max_hp
+		player_entity.hp_bar.cval += value - max_hp
 		max_hp = value
 		update_pdv()
 
@@ -53,12 +50,9 @@ static var selected_plate: EntityContainer:
 			selected_plate.selected = true
 
 static var plates: Array[EntityContainer]
+var initialized = false
 
-
-func _ready():
-	hp_bar = player_bars.hp_bar
-	pa_bar = player_bars.pa_bar
-	pm_bar = player_bars.pm_bar
+func initialize():
 	spell_container = spells_container.get_node("%SpellContainer")
 	pdv_label = stats_container.get_node("%HPAmount")
 	inventory = inventory_container.get_node("%Inventory")
@@ -83,7 +77,7 @@ func _ready():
 	player_entity = Entity.new()
 	add_child(player_entity)
 	SpellsService.player_entity = player_entity
-	init_caracteristiques(50, 100, 3)
+	init_bars()
 	player_entity.entity_bar = player_bars
 	player_entity.init()
 	
@@ -91,32 +85,30 @@ func _ready():
 	kamas_label.text = "0"
 	
 	create_item_description()
+	initialized = true
 
 
 func _process(_delta):
-	if MonsterManager.monsters.is_empty() and hp_bar.cval < max_hp:
+	if initialized and MonsterManager.monsters.is_empty() and player_entity.hp_bar.cval < max_hp:
 		if !health_timer:
 			health_timer = SpellsService.create_timer(1.0, "HealthTimer")
 			await health_timer.timeout
-			hp_bar.cval += 1
+			player_entity.hp_bar.cval += 1
 			health_timer.queue_free()
 			health_timer = null
 
 
-func init_caracteristiques(hp: int = max_hp, pa: int = max_pa, pm: int = max_pm):
-	# HP
-	max_hp = hp
-	player_entity.hp_bar = hp_bar
-	# PA
-	max_pa = pa
-	player_entity.pa_bar = pa_bar
-	# PM
-	max_pm = pm
-	player_entity.pm_bar = pm_bar
+func init_bars():
+	player_entity.hp_bar = player_bars.hp_bar
+	player_entity.hp_bar.mval = max_hp
+	player_entity.pa_bar = player_bars.pa_bar
+	player_entity.pa_bar.mval = max_pa
+	player_entity.pm_bar = player_bars.pm_bar
+	player_entity.pm_bar.mval = max_pm
 
 
 func _input(event):
-	if !console.input.has_focus() and !$"../RecipeManager".current_tab.search_prompt.has_focus():
+	if console and !console.input.has_focus() and !$%RecipeManager.prompt_has_focus:
 		var size = spell_bar.get_children().size()
 		if size >= 1 and event.is_action_pressed("1"):
 			spell_bar.get_children()[0].do_action()
@@ -154,15 +146,15 @@ static func select_previous_plate():
 
 func update_pdv():
 	pdv_label.text = str(max_hp)
-	hp_bar.mval = max_hp
+	player_entity.hp_bar.mval = max_hp
 
 func update_pa():
 	StatsManager.get_caracteristique_for_type(Caracteristique.Type.PA).set_base_amount(max_pa)
-	pa_bar.mval = max_pa
+	player_entity.pa_bar.mval = max_pa
 
 func update_pm():
 	StatsManager.get_caracteristique_for_type(Caracteristique.Type.PM).set_base_amount(max_pm)
-	pm_bar.mval = max_pm
+	player_entity.pm_bar.mval = max_pm
 
 
 func create_item_description():

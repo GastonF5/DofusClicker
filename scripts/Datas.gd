@@ -29,10 +29,6 @@ static var _subareas = {}
 var dir: DirAccess
 
 
-func _ready():
-	load_data()
-
-
 func load_data():
 	loading_screen.loading = true
 	if !DirAccess.dir_exists_absolute(fileSaver.DATA_PATH):

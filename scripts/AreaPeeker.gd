@@ -11,10 +11,10 @@ var cur_lvl := 1
 signal subarea_selected
 
 
-func _ready():
-	$%Datas.init_done.connect(init_areas)
+func initialize():
 	$%PlayerManager.xp_bar.lvl_up.connect(_on_level_up)
 	cur_lvl = $%PlayerManager.xp_bar.cur_lvl
+	init_areas()
 
 
 func init_areas():

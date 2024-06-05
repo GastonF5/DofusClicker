@@ -15,7 +15,7 @@ static var points = 0
 static var max_points = 0
 
 
-func _ready():
+func initialize():
 	reset_button = stats_container.get_node("%ResetButton")
 	points_label = stats_container.get_node("%PointsLabel")
 	create_caracteristiques()
@@ -74,7 +74,7 @@ func apply_carac_bonus(type: Caracteristique.Type, amount: int):
 
 
 func _process(_delta):
-	reset_button.disabled = points == max_points
+	if reset_button: reset_button.disabled = points == max_points
 
 
 func reset_points():

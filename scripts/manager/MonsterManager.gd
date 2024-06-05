@@ -14,7 +14,7 @@ signal monster_dies
 static var monsters_res := []
 
 
-func _ready():
+func initialize():
 	start_fight_button = $%StartFightButton
 	auto_start_fight_checkbox = $%AutoStartFight.get_node("HBC/CheckBox")
 	start_fight_button.button_up.connect(start_fight)
@@ -60,7 +60,7 @@ func instantiate_monster() -> Monster:
 
 
 func _on_monster_dies(xp: int):
-	var player_manager = $"/root/Main/PlayerManager"
+	var player_manager = get_tree().current_scene.get_node("%PlayerManager")
 	player_manager.xp_bar.gain_xp(xp)
 	player_manager.kamas_label.text = str(int(player_manager.kamas_label.text) + randi_range(5, 10))
 	monsters = get_monsters_on_plates()
