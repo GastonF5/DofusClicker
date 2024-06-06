@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=3 format=3 uid="uid://cic1n0ancvu4q"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_13kta"]
+[ext_resource type="Texture2D" uid="uid://cr7q6ij1kd17" path="res://assets/spells/iop/sort_11847.png" id="2_iqjje"]
+
+[resource]
+script = ExtResource("1_13kta")
+id = 0
+name = "Épée de Iop"
+spell_name = "epee_de_iop"
+description = "Occasionne des dommages Terre en zone."
+texture = ExtResource("2_iqjje")
+img_url = ""
+pa_cost = 0
+per_crit = 0.0
+has_grade = false
+cooldown = 0.0
+priority = 0

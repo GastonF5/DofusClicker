@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=3 format=3 uid="uid://boh56pb5t7id4"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_r7djj"]
+[ext_resource type="Texture2D" uid="uid://brqoi6451pboj" path="res://assets/spells/iop/sort_11844.png" id="2_nqpfr"]
+
+[resource]
+script = ExtResource("1_r7djj")
+id = 0
+name = "Puissance"
+spell_name = "puissance"
+description = "Augmente la puissance pendant X secondes."
+texture = ExtResource("2_nqpfr")
+img_url = ""
+pa_cost = 0
+per_crit = 0.0
+has_grade = false
+cooldown = 0.0
+priority = 0

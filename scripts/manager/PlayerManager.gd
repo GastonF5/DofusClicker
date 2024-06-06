@@ -16,6 +16,12 @@ var health_timer: Node
 @export var kamas_label: Label
 @export var spell_bar: SpellBar
 @export var player_bars: EntityBars
+var hp_bar: CustomBar:
+	get: return player_bars.hp_bar
+var pa_bar: CustomBar:
+	get: return player_bars.pa_bar
+var pm_bar: CustomBar:
+	get: return player_bars.pm_bar
 
 @export var console: Console
 
@@ -52,7 +58,7 @@ static var selected_plate: EntityContainer:
 static var plates: Array[EntityContainer]
 var initialized = false
 
-func initialize():
+func initialize(selected_class: String):
 	spell_container = spells_container.get_node("%SpellContainer")
 	pdv_label = stats_container.get_node("%HPAmount")
 	inventory = inventory_container.get_node("%Inventory")
@@ -61,7 +67,7 @@ func initialize():
 	SpellsService.tnode = $%Timers
 	StatsManager.console = console
 	
-	for spell_res in FileLoader.get_spell_resources("Ecaflip"):
+	for spell_res in FileLoader.get_spell_resources(selected_class):
 		var spell_description = FileLoader.get_packed_scene("spell/spell_description").instantiate()
 		spell_container.add_child(spell_description)
 		var spell = Spell.instantiate(spell_res, spell_description.get_node("HBC/SpellContainer"), false)

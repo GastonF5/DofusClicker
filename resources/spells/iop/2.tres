@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=3 format=3 uid="uid://bvahvjpfpjxy"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_km7yi"]
+[ext_resource type="Texture2D" uid="uid://wklc1ok0idoj" path="res://assets/spells/iop/sort_11848.png" id="2_n7bms"]
+
+[resource]
+script = ExtResource("1_km7yi")
+id = 0
+name = "Vitalité"
+spell_name = "vitalite"
+description = "Augmente les PV pendant X secondes."
+texture = ExtResource("2_n7bms")
+img_url = ""
+pa_cost = 0
+per_crit = 0.0
+has_grade = false
+cooldown = 0.0
+priority = 0

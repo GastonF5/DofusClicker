@@ -25,7 +25,7 @@ var classes = {
 	19: "Forgelance"
 }
 
-var available := [6]
+var available := [6, 8]
 const button_size := 150
 
 @export var bselect: Button

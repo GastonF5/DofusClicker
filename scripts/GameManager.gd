@@ -21,7 +21,7 @@ func _ready():
 
 func _on_class_selected():
 	mstats.initialize()
-	mplayer.initialize()
+	mplayer.initialize(class_peeker.classes[class_peeker.selected_class])
 	mmonster.initialize()
 	mequipment.initialize()
 	mrecipe.initialize()

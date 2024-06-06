@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=3 format=3 uid="uid://c24lcgl2jjxkg"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_fv0uf"]
+[ext_resource type="Texture2D" uid="uid://blyhprkj6etne" path="res://assets/spells/iop/sort_11842.png" id="2_nlxbc"]
+
+[resource]
+script = ExtResource("1_fv0uf")
+id = 0
+name = "Tempête de Puissance"
+spell_name = "tempete_de_puissance"
+description = "Occasionne des dommages Feu aux ennemis.
+
+Occasionne des dommages Feu supplémentaires sur la cible initiale si le sort est lancé sur une autre cible.
+Les dommages supplémentaires lors du changement de cible sont plus importants si le sort a été utilisé deux fois sur la cible initiale."
+texture = ExtResource("2_nlxbc")
+img_url = ""
+pa_cost = 0
+per_crit = 0.0
+has_grade = false
+cooldown = 0.0
+priority = 0

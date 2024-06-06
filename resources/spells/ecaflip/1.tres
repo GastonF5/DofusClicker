@@ -5,9 +5,14 @@
 
 [resource]
 script = ExtResource("1_jlsqk")
+id = 0
 name = "Chance d'ecaflip"
-texture = ExtResource("2_0tfbt")
 spell_name = "chance_ecaflip"
 description = ""
-cooldown = 10.0
+texture = ExtResource("2_0tfbt")
+img_url = ""
 pa_cost = 2
+per_crit = 0.0
+has_grade = false
+cooldown = 10.0
+priority = 0

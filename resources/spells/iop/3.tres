@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=3 format=3 uid="uid://djnek2swcacq6"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_f6s0n"]
+[ext_resource type="Texture2D" uid="uid://bwpv6q5q0r85n" path="res://assets/spells/iop/sort_12208.png" id="2_p056i"]
+
+[resource]
+script = ExtResource("1_f6s0n")
+id = 0
+name = "Duel"
+spell_name = "duel"
+description = "Pendant X secondes, seule la cible et le joueur peuvent subir et infliger des dégâts."
+texture = ExtResource("2_p056i")
+img_url = ""
+pa_cost = 0
+per_crit = 0.0
+has_grade = false
+cooldown = 0.0
+priority = 0
