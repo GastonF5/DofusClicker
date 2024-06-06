@@ -83,6 +83,7 @@ func attack():
 
 
 func die():
+	super()
 	await drop()
 	hp_bar.value = hp_bar.min_value
 	get_parent().remove_child(self)

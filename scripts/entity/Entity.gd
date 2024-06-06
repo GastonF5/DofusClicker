@@ -123,3 +123,7 @@ func apply_erosion(amount: int):
 
 static func is_monster(value: Node):
 	return is_instance_of(value, Monster)
+
+
+func die():
+	print("%s died" % name)

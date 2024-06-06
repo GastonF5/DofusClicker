@@ -3,15 +3,55 @@ class_name SpellsService
 
 const StatType = Caracteristique.Type
 const Element = Caracteristique.Element
+const EffectType = EffectResource.Type
+const TargetType = EffectResource.TargetType
 
 static var console: Console
 static var tnode: Node
 static var player_entity: Entity
 
 
-static func coup_de_poing(target: Monster):
-	target.take_damage(5, Element.NEUTRE)
-	check_dying_targets([target])
+static func perform_spell(caster: Entity, target: Entity, resource: SpellResource, grade: int):
+	var crit = randf_range(0, 1) <= resource.per_crit
+	for effect: EffectResource in resource.effects:
+		perform_effect(get_targets(caster, target, effect.target_type), effect, crit, grade)
+	check_dying_entities([caster] + MonsterManager.monsters)
+
+
+static func perform_effect(targets: Array[Entity], effect: EffectResource, crit: bool, grade: int):
+	var method_name = "perform_%s" % EffectType.find_key(effect.type).to_lower()
+	var callable = Callable(SpellsService, method_name)
+	callable.callv([targets, effect, crit, grade])
+
+
+static func perform_damage(targets: Array[Entity], effect: EffectResource, crit: bool, grade: int):
+	var amount := 0
+	if crit:
+		amount = randi_range(effect.crit_min_amounts[grade], effect.crit_max_amounts[grade])
+	else:
+		amount = randi_range(effect.min_amounts[grade], effect.max_amounts[grade])
+	for target in targets:
+		target.take_damage(amount, effect.element)
+
+
+static func perform_bonus(targets: Array[Entity], effect: EffectResource, crit: bool, grade: int):
+	for target in targets:
+		match effect.caracteristic:
+			StatType.EROSION:
+				var amount = effect.crit_min_amounts[grade] if crit else effect.min_amounts[grade]
+				amount = amount / 100.0
+				target.erosion += amount
+				var timer = create_timer(effect.time)
+				await timer.timeout
+				if is_instance_valid(target): target.erosion -= amount
+
+
+static func perform_special(targets: Array[Entity], effect: EffectResource, crit: bool, grade: int):
+	var callable = Callable(SpellsService, effect.method_name)
+	if callable:
+		callable.callv([targets, crit, grade, effect.params])
+	else:
+		console.log_error("%s not found in SpellsService")
 
 
 #region Ecaflip
@@ -46,7 +86,7 @@ static func pile_face(target: Monster):
 		else:
 			taken_damage = target.take_damage(get_degats(face_min, face_max, StatType.FORCE), Element.TERRE)
 			pile = true
-		check_dying_targets([target])
+		check_dying_entities([target])
 		console.log_info("Pile ou Face lancé sur %s :\n - %d dégâts" % [target.resource.name, taken_damage])
 
 static var destin_min = 31
@@ -56,7 +96,7 @@ static func destin_ecaflip(target: Monster):
 	var taken_damage = 0
 	if target:
 		taken_damage = target.take_damage(get_degats(destin_min, destin_max, StatType.FORCE), Element.TERRE)
-		check_dying_targets([target])
+		check_dying_entities([target])
 		console.log_info("Destin d'Ecaflip lancé sur %s : \n - %d dégâts" % [target.resource.name, taken_damage])
 
 static func pelotage(_target: Monster):
@@ -139,11 +179,11 @@ static func deal_damage_to_surrounding_monsters(target: Monster, amount: int):
 	return targets
 
 
-static func check_dying_targets(targets: Array[Monster]):
-	for monster in targets:
-		if monster.dying:
-			monster.die()
-			monster.dying = false
+static func check_dying_entities(entities: Array):
+	for entity in entities:
+		if entity.dying:
+			entity.die()
+			entity.dying = false
 
 
 static func deal_damage(target: Entity, min_amout: int, max_amount: int, element: Element):
@@ -157,4 +197,12 @@ static func create_timer(time: float, name: String = "Timer"):
 	timer.autostart = true
 	tnode.add_child(timer)
 	return timer
+
+
+static func get_targets(caster: Entity, target: Entity, type: EffectResource.TargetType) -> Array[Entity]:
+	var targets: Array[Entity] = []
+	match type:
+		TargetType.CASTER: targets.append(caster)
+		TargetType.TARGET: targets.append(target)
+	return targets
 #endregion

@@ -1,7 +1,36 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=3 format=3 uid="uid://bksdq160byh38"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=6 format=3 uid="uid://bksdq160byh38"]
 
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_0ry3h"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_062ia"]
 [ext_resource type="Texture2D" uid="uid://cnfn6wawploo7" path="res://assets/spells/iop/sort_11830.png" id="2_kvxhx"]
+
+[sub_resource type="Resource" id="Resource_3x0as"]
+script = ExtResource("1_062ia")
+type = 0
+time = 0.0
+target_type = 1
+element = 1
+caracteristic = 0
+method_name = ""
+params = []
+min_amounts = Array[int]([16])
+max_amounts = Array[int]([18])
+crit_min_amounts = Array[int]([19])
+crit_max_amounts = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+
+[sub_resource type="Resource" id="Resource_6lmpg"]
+script = ExtResource("1_062ia")
+type = 1
+time = 1.0
+target_type = 1
+element = 0
+caracteristic = 30
+method_name = ""
+params = []
+min_amounts = Array[int]([10])
+max_amounts = Array[int]([])
+crit_min_amounts = Array[int]([10])
+crit_max_amounts = Array[int]([])
 
 [resource]
 script = ExtResource("1_0ry3h")
@@ -11,8 +40,9 @@ spell_name = "pression"
 description = "Érode la cible et occasionne des dommages Terre. Augmente les points de vie pendant X secondes."
 texture = ExtResource("2_kvxhx")
 img_url = ""
-pa_cost = 0
-per_crit = 0.0
+pa_cost = 3
+per_crit = 0.1
 has_grade = false
 cooldown = 0.0
 priority = 0
+effects = Array[ExtResource("1_062ia")]([SubResource("Resource_3x0as"), SubResource("Resource_6lmpg")])

@@ -16,3 +16,4 @@ per_crit = 0.0
 has_grade = false
 cooldown = 0.0
 priority = 0
+effects = Array[Resource("res://scripts/resources/EffectResource.gd")]([])

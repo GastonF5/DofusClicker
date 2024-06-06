@@ -18,6 +18,9 @@ extends Resource
 @export var cooldown: float
 @export var priority: int
 
+@export_category("Effects")
+@export var effects: Array[EffectResource]
+
 
 func load_texture(api: API):
 	if texture:
