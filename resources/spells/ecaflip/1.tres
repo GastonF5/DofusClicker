@@ -1,18 +1,34 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=3 format=3 uid="uid://q4myh60a45lb"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=5 format=3 uid="uid://q4myh60a45lb"]
 
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_bvlgs"]
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_jlsqk"]
 [ext_resource type="Texture2D" uid="uid://ce76ie2exxoyn" path="res://assets/spells/ecaflip/chance_d_ecaflip.png" id="2_0tfbt"]
+
+[sub_resource type="Resource" id="Resource_ktc2g"]
+script = ExtResource("1_bvlgs")
+type = 3
+time = 0.0
+target_type = 0
+element = 0
+lifesteal = false
+caracteristic = 0
+method_name = &"chance_ecaflip"
+params = []
+nb_random_effects = 0
+min_amounts = Array[int]([])
+max_amounts = Array[int]([])
+crit_min_amounts = Array[int]([])
+crit_max_amounts = Array[int]([])
 
 [resource]
 script = ExtResource("1_jlsqk")
 id = 0
 name = "Chance d'ecaflip"
-spell_name = "chance_ecaflip"
-description = ""
+description = "Les dommages reçus sont réduits à 50% pendant 5 secondes, puis sont élevés à 200% pendant 3 secondes."
 texture = ExtResource("2_0tfbt")
 img_url = ""
 pa_cost = 2
 per_crit = 0.0
-has_grade = false
 cooldown = 10.0
 priority = 0
+effects = Array[ExtResource("1_bvlgs")]([SubResource("Resource_ktc2g")])

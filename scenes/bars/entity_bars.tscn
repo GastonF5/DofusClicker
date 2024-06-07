@@ -77,6 +77,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 auto_fill = true
+speed = 15.0
 full_texture = ExtResource("4_k2v5o")
 empty_texture = ExtResource("5_lqeqj")
 cval = 3

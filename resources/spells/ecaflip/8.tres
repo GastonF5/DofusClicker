@@ -1,12 +1,82 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=3 format=3 uid="uid://b2pp4g3ky8uni"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=8 format=3 uid="uid://b2pp4g3ky8uni"]
 
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_j0ww4"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_r5by1"]
 [ext_resource type="Texture2D" uid="uid://bapqecxvespbu" path="res://assets/spells/ecaflip/tout_ou_rien.png" id="2_xf5cg"]
+
+[sub_resource type="Resource" id="Resource_jymxc"]
+script = ExtResource("1_r5by1")
+type = 4
+time = 0.0
+target_type = 0
+element = 0
+lifesteal = false
+caracteristic = 0
+method_name = &""
+params = []
+nb_random_effects = 2
+min_amounts = Array[int]([])
+max_amounts = Array[int]([])
+crit_min_amounts = Array[int]([])
+crit_max_amounts = Array[int]([])
+
+[sub_resource type="Resource" id="Resource_i7mdl"]
+script = ExtResource("1_r5by1")
+type = 0
+time = 0.0
+target_type = 0
+element = 2
+lifesteal = false
+caracteristic = 0
+method_name = &""
+params = []
+nb_random_effects = 0
+min_amounts = Array[int]([-29])
+max_amounts = Array[int]([-27])
+crit_min_amounts = Array[int]([-35])
+crit_max_amounts = Array[int]([-32])
+
+[sub_resource type="Resource" id="Resource_i5e4t"]
+script = ExtResource("1_r5by1")
+type = 0
+time = 0.0
+target_type = 4
+element = 3
+lifesteal = false
+caracteristic = 0
+method_name = &""
+params = []
+nb_random_effects = 0
+min_amounts = Array[int]([27])
+max_amounts = Array[int]([29])
+crit_min_amounts = Array[int]([32])
+crit_max_amounts = Array[int]([35])
+
+[sub_resource type="Resource" id="Resource_e7oih"]
+script = ExtResource("1_r5by1")
+type = 1
+time = 60.0
+target_type = 0
+element = 0
+lifesteal = false
+caracteristic = 10
+method_name = &""
+params = []
+nb_random_effects = 0
+min_amounts = Array[int]([4])
+max_amounts = Array[int]([4])
+crit_min_amounts = Array[int]([4])
+crit_max_amounts = Array[int]([4])
 
 [resource]
 script = ExtResource("1_j0ww4")
+id = 0
 name = "Tout ou Rien"
+description = ""
 texture = ExtResource("2_xf5cg")
-spell_name = "tout_rien"
+img_url = ""
+pa_cost = 2
+per_crit = 0.15
 cooldown = 0.0
-pa_cost = 0
+priority = 0
+effects = Array[ExtResource("1_r5by1")]([SubResource("Resource_jymxc"), SubResource("Resource_i7mdl"), SubResource("Resource_i5e4t"), SubResource("Resource_e7oih")])

@@ -3,7 +3,7 @@ extends TextureProgressBar
 
 
 @export var auto_fill: bool
-@export var speed := 100.0
+@export var speed: float
 
 @export_category("Texture")
 @export var full_texture: Texture2D
@@ -24,6 +24,7 @@ extends TextureProgressBar
 		if !auto_fill: value = val
 		if cval > mval: cval = mval
 		update_value_label()
+		cval_change.emit()
 
 @export var mval: int:
 	get:
@@ -34,6 +35,7 @@ extends TextureProgressBar
 		if cval > mval: cval = mval
 		update_max_value_label()
 
+signal cval_change
 
 func _ready():
 	texture_under = empty_texture

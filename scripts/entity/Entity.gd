@@ -9,12 +9,16 @@ var caracteristiques: Array[StatResource] = []
 var spells: Array[SpellResource] = []
 
 var player_manager: PlayerManager
+var player: bool
 var inventory: Inventory
 
 @export var entity_bar: EntityBars
-var hp_bar: CustomBar
-var pa_bar: CustomBar
-var pm_bar: CustomBar
+var hp_bar: CustomBar:
+	get: return entity_bar.hp_bar
+var pa_bar: CustomBar:
+	get: return entity_bar.pa_bar
+var pm_bar: CustomBar:
+	get: return entity_bar.pm_bar
 
 var dying = false
 var attack_callable: Callable
@@ -24,11 +28,12 @@ var erosion := 0.05
 
 
 #region Caractéristiques
-func init():
-	hp_bar = entity_bar.hp_bar
-	pa_bar = entity_bar.pa_bar
-	pm_bar = entity_bar.pm_bar
+func init(is_player := false):
+	pm_bar.cval_change.connect(func():
+		pa_bar.speed = get_attack_speed())
 	pa_bar.speed = get_attack_speed()
+	player = is_player
+	init_bars()
 
 
 func init_caracteristiques(caracs: Array[StatResource]):
@@ -47,8 +52,12 @@ func init_spells(spell_ids: Array):
 			spells.append(spell)
 
 
-func get_caracacteristique_for_type(type: CaracType) -> StatResource:
-	var carac = caracteristiques.filter(func(c): return c.type == type)
+func get_caracacteristique_for_type(type: CaracType):
+	var carac
+	if player:
+		return StatsManager.get_caracteristique_for_type(type)
+	else:
+		carac = caracteristiques.filter(func(c): return c.type == type)
 	if carac.size() != 1:
 		console.log_error(NO_CARAC_FOUND % [CaracType.find_key(type), name])
 		return null
@@ -59,12 +68,27 @@ func set_caracteristique_amount(type: CaracType, new_amount: int):
 	var carac = get_caracacteristique_for_type(type)
 	if carac:
 		carac.amount = new_amount
+	else:
+		console.log_error("La caractéristique %s n'existe pas pour l'entité %s" % [CaracType.find_key(type).to_pascal_case(), name])
 
 
-func connect_to_stat(type: CaracType, callable: Callable, params: Array):
+func connect_to_stat(type: CaracType, callable: Callable):
 	var carac = get_caracacteristique_for_type(type)
 	if carac:
-		carac.amount_change.connect(callable.bindv(params))
+		carac.amount_change.connect(callable)
+
+
+func init_bars():
+	connect_to_stat(Caracteristique.Type.VITALITE, func():
+		hp_bar.mval = get_vitalite())
+	connect_to_stat(Caracteristique.Type.PA, func():
+		var curmval = pa_bar.mval
+		pa_bar.mval = get_pa()
+		pa_bar.cval += get_pa() - curmval)
+	connect_to_stat(Caracteristique.Type.PM, func():
+		var curmval = pm_bar.mval
+		pm_bar.mval = get_pm()
+		pm_bar.cval += get_pa() - curmval)
 
 
 func get_vitalite() -> int:
@@ -84,13 +108,20 @@ func get_pa() -> int:
 
 
 func take_damage(amount: int, element: Element):
-	amount = apply_resistance(amount, element)
-	apply_erosion(amount)
-	if is_monster(self):
-		create_taken_damage(amount)
-	hp_bar.cval -= amount
-	if hp_bar.cval <= hp_bar.min_value:
+	if amount > 0:
+		amount = apply_resistance(amount, element)
+		apply_erosion(amount)
+		if is_monster(self):
+			create_taken_damage(amount)
+	if hp_bar.cval - amount <= hp_bar.min_value:
+		amount = hp_bar.cval
+		hp_bar.cval = hp_bar.min_value
 		dying = true
+	elif hp_bar.cval - amount > hp_bar.mval:
+		amount = -(hp_bar.mval - hp_bar.cval)
+		hp_bar.cval -= amount
+	else:
+		hp_bar.cval -= amount
 	return amount
 
 

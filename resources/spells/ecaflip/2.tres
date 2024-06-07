@@ -1,12 +1,101 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=3 format=3 uid="uid://cfm12w1jjuosd"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://cfm12w1jjuosd"]
 
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_giae6"]
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_rq11w"]
 [ext_resource type="Texture2D" uid="uid://c0wmchv6nx6fl" path="res://assets/spells/ecaflip/roue_de_la_fortune.png" id="2_huktk"]
 
+[sub_resource type="Resource" id="Resource_arg74"]
+script = ExtResource("1_giae6")
+type = 4
+time = 0.0
+target_type = 0
+element = 0
+lifesteal = false
+caracteristic = 8
+method_name = &""
+params = []
+nb_random_effects = 3
+min_amounts = Array[int]([])
+max_amounts = Array[int]([])
+crit_min_amounts = Array[int]([])
+crit_max_amounts = Array[int]([])
+
+[sub_resource type="Resource" id="Resource_83oq8"]
+script = ExtResource("1_giae6")
+type = 1
+time = 10.0
+target_type = 0
+element = 0
+lifesteal = false
+caracteristic = 8
+method_name = &""
+params = []
+nb_random_effects = 0
+min_amounts = Array[int]([50])
+max_amounts = Array[int]([50])
+crit_min_amounts = Array[int]([75])
+crit_max_amounts = Array[int]([75])
+
+[sub_resource type="Resource" id="Resource_p6q70"]
+script = ExtResource("1_giae6")
+type = 1
+time = 10.0
+target_type = 0
+element = 0
+lifesteal = false
+caracteristic = 0
+method_name = &""
+params = []
+nb_random_effects = 0
+min_amounts = Array[int]([3])
+max_amounts = Array[int]([3])
+crit_min_amounts = Array[int]([3])
+crit_max_amounts = Array[int]([3])
+
+[sub_resource type="Resource" id="Resource_73f1w"]
+script = ExtResource("1_giae6")
+type = 1
+time = 10.0
+target_type = 0
+element = 0
+lifesteal = false
+caracteristic = 1
+method_name = &""
+params = []
+nb_random_effects = 0
+min_amounts = Array[int]([2])
+max_amounts = Array[int]([2])
+crit_min_amounts = Array[int]([2])
+crit_max_amounts = Array[int]([2])
+
+[sub_resource type="Resource" id="Resource_lvnuj"]
+script = ExtResource("1_giae6")
+type = 1
+time = 60.0
+target_type = 0
+element = 0
+lifesteal = false
+caracteristic = 10
+method_name = &""
+params = []
+nb_random_effects = 0
+min_amounts = Array[int]([4])
+max_amounts = Array[int]([4])
+crit_min_amounts = Array[int]([4])
+crit_max_amounts = Array[int]([4])
+
 [resource]
 script = ExtResource("1_rq11w")
+id = 0
 name = "Roue de la fortune"
+description = "Procure un bonus aléatoire pendant 10 secondes.
+- 50 puissance
+- 3 PA
+- 2 PM"
 texture = ExtResource("2_huktk")
-spell_name = "roue_fortune"
-cooldown = 0.0
-pa_cost = 0
+img_url = ""
+pa_cost = 2
+per_crit = 0.15
+cooldown = 12.0
+priority = 0
+effects = Array[ExtResource("1_giae6")]([SubResource("Resource_arg74"), SubResource("Resource_83oq8"), SubResource("Resource_p6q70"), SubResource("Resource_73f1w"), SubResource("Resource_lvnuj")])

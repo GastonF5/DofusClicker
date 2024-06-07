@@ -7,7 +7,7 @@ var auto_start_fight_checkbox: CheckBox
 
 var loading = false
 
-static var monsters = []
+static var monsters: Array[Entity] = []
 
 signal monster_dies
 
@@ -26,7 +26,7 @@ func start_fight():
 	if !monsters_res.is_empty():
 		for i in 2:
 			instantiate_monster()
-		monsters = get_monsters_on_plates()
+		monsters.assign(get_monsters_on_plates())
 		start_fight_button.disabled = true
 	else:
 		console.log_error("No monsters in area")
@@ -35,7 +35,7 @@ func start_fight():
 func end_fight():
 	for monster in monsters:
 		monster.queue_free()
-	monsters = []
+	monsters.assign([])
 	start_fight_button.disabled = false
 	if auto_start_fight_checkbox.button_pressed: start_fight()
 	var player_manager: PlayerManager = $%PlayerManager
@@ -63,7 +63,7 @@ func _on_monster_dies(xp: int):
 	var player_manager = get_tree().current_scene.get_node("%PlayerManager")
 	player_manager.xp_bar.gain_xp(xp)
 	player_manager.kamas_label.text = str(int(player_manager.kamas_label.text) + randi_range(5, 10))
-	monsters = get_monsters_on_plates()
+	monsters.assign(get_monsters_on_plates())
 	if monsters.filter(func(m): return !m.dying).is_empty():
 		end_fight()
 

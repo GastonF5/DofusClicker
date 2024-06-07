@@ -4,7 +4,7 @@ class_name EntityContainer
 
 var id: int
 
-var monster: Monster
+var entity: Entity
 
 var selected: bool:
 	set(value):
@@ -25,8 +25,8 @@ func _ready():
 	clicked.connect(select)
 
 
-func init_monster_texture():
-	monster.global_position += Vector2(0, -32)
+func init_entity_texture():
+	entity.global_position += Vector2(0, -32)
 
 
 func get_entity():
@@ -39,15 +39,15 @@ func get_entity():
 
 
 func _on_child_entered_tree(node):
-	if is_instance_of(node, Monster):
-		monster = node
-		init_monster_texture()
+	if is_instance_of(node, Entity):
+		entity = node
+		init_entity_texture()
 		if selected:
-			monster.select()
+			entity.select()
 
 
 func _on_child_exiting_tree(_node):
-	monster = get_entity()
+	entity = get_entity()
 
 
 func _on_tree_entered():
@@ -60,3 +60,18 @@ func is_empty():
 
 func select(container):
 	PlayerManager.selected_plate = container
+
+
+func get_plate_index():
+	return get_parent().get_children().find(self)
+
+
+func get_neighbors():
+	var index = get_plate_index()
+	var plates = get_parent().get_children()
+	var neighbor_plates = []
+	if index - 1 >= 0:
+		neighbor_plates.append(plates[index - 1])
+	if index + 1 <= plates.size() - 1:
+		neighbor_plates.append(plates[index + 1])
+	return neighbor_plates

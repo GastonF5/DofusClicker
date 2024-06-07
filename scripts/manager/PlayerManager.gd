@@ -27,17 +27,17 @@ var pm_bar: CustomBar:
 
 static var item_description: ItemDescription
 static var dragged_item: DraggableControl
-var max_pa: int = 6:
+var max_pa: int:
 	set(value):
 		max_pa = value
 		update_pa()
 
-var max_pm: int = 3:
+var max_pm: int:
 	set(value):
 		max_pm = value
 		update_pm()
 
-var max_hp: int = 50:
+var max_hp: int:
 	set(value):
 		player_entity.hp_bar.cval += value - max_hp
 		max_hp = value
@@ -83,9 +83,12 @@ func initialize(selected_class: String):
 	player_entity = Entity.new()
 	add_child(player_entity)
 	SpellsService.player_entity = player_entity
-	init_bars()
 	player_entity.entity_bar = player_bars
-	player_entity.init()
+	max_hp = 50
+	max_pa = 6
+	max_pm = 3
+	init_bars()
+	player_entity.init(true)
 	
 	xp_bar.init()
 	kamas_label.text = "0"
@@ -105,12 +108,12 @@ func _process(_delta):
 
 
 func init_bars():
-	player_entity.hp_bar = player_bars.hp_bar
-	player_entity.hp_bar.mval = max_hp
-	player_entity.pa_bar = player_bars.pa_bar
-	player_entity.pa_bar.mval = max_pa
-	player_entity.pm_bar = player_bars.pm_bar
-	player_entity.pm_bar.mval = max_pm
+	hp_bar.mval = max_hp
+	hp_bar.reset()
+	pa_bar.mval = max_pa
+	pa_bar.reset()
+	pm_bar.mval = max_pm
+	pm_bar.reset()
 
 
 func _input(event):

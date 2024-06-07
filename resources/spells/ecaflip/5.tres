@@ -1,13 +1,63 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=3 format=3 uid="uid://dak1npbphipav"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://dak1npbphipav"]
 
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_frj0l"]
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_p6h2q"]
 [ext_resource type="Texture2D" uid="uid://dppn5vmuk7yri" path="res://assets/spells/ecaflip/destin_d_ecaflip.png" id="2_8s1ar"]
 
+[sub_resource type="Resource" id="Resource_j257v"]
+script = ExtResource("1_frj0l")
+type = 0
+time = 0.0
+target_type = 1
+element = 1
+caracteristic = 0
+method_name = &""
+params = []
+nb_random_effects = 0
+min_amounts = Array[int]([31])
+max_amounts = Array[int]([34])
+crit_min_amounts = Array[int]([37])
+crit_max_amounts = Array[int]([40])
+
+[sub_resource type="Resource" id="Resource_tctp1"]
+script = ExtResource("1_frj0l")
+type = 2
+time = 0.0
+target_type = 1
+element = 0
+caracteristic = 1
+method_name = &""
+params = []
+nb_random_effects = 0
+min_amounts = Array[int]([3])
+max_amounts = Array[int]([3])
+crit_min_amounts = Array[int]([3])
+crit_max_amounts = Array[int]([3])
+
+[sub_resource type="Resource" id="Resource_85fs3"]
+script = ExtResource("1_frj0l")
+type = 1
+time = 0.0
+target_type = 0
+element = 0
+caracteristic = 10
+method_name = &""
+params = []
+nb_random_effects = 0
+min_amounts = Array[int]([8])
+max_amounts = Array[int]([8])
+crit_min_amounts = Array[int]([8])
+crit_max_amounts = Array[int]([8])
+
 [resource]
 script = ExtResource("1_p6h2q")
+id = 0
 name = "Destin d'Ecaflip"
+description = "Occasionne des dommages Terre et retire des PM."
 texture = ExtResource("2_8s1ar")
-spell_name = "destin_ecaflip"
-description = ""
-cooldown = 0.0
+img_url = ""
 pa_cost = 4
+per_crit = 0.15
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("1_frj0l")]([SubResource("Resource_j257v"), SubResource("Resource_tctp1"), SubResource("Resource_85fs3")])

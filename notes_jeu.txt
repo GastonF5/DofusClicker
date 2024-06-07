@@ -2,17 +2,17 @@ Le nombre de PA détermine le nombre de sorts jouables
 Les PM diminuent le temps de cooldown
 
 ## Ecaflip
-Passif : X% critique de base
+Passif : +X% critique pendant 60 secondes chaque fois qu'un sort de dégâts est lancé
 Chance d’ecaflip : réduit les dommages de 50% pendant X secondes puis 200% dommages reçus pendant X secondes
-Roue de la fortune : X puissance
-Trèfle : X% de critique
+Roue de la fortune : X puissance OU +2 PA OU +1 PM ou bouclier
+Bond du félin : +1 PM
 - Voie terre : gros dégâts
 Pile ou face : dégâts réduits à la prochaine utilisation
 Destin d'ecaflip : dégâts + retrait PM
-- Voie air : chances de critique
-Pelotage : dégâts + % critique
-Griffe de Ceangal : dégâts sur cible et voisins
-- Voie eau : vol de vie
+- Voie air : dégâts de zone
+Réflexes : dégâts + érosion en zone
+Griffe de Ceangal : dégâts sur cible et voisins, repousse les voisins
+- Voie eau : vol de vie et soin
 Tout ou rien : 50% soigne les alliés / 50% tape en zone
 Félintion : vol de vie
 

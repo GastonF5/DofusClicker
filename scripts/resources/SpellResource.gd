@@ -4,7 +4,6 @@ extends Resource
 
 @export var id: int
 @export var name: String
-@export var spell_name: String
 @export_multiline var description: String
 
 @export_category("Texture")
@@ -14,7 +13,6 @@ extends Resource
 @export_category("")
 @export var pa_cost: int
 @export var per_crit: float
-@export var has_grade: bool
 @export var cooldown: float
 @export var priority: int
 

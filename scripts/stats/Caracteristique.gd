@@ -83,8 +83,10 @@ var amount = 0:
 		amount = value
 		amount_label.text = str(amount)
 		update_tooltip()
+		amount_change.emit()
 
 signal consume_point
+signal amount_change
 
 
 func _process(_delta):

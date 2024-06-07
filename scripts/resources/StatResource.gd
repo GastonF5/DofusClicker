@@ -9,7 +9,7 @@ extends Resource
 var amount: int:
 	set(value):
 		amount = value
-		amount_change.emit()
+		amount_change.emit(amount)
 
 signal amount_change
 

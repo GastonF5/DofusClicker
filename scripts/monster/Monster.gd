@@ -28,11 +28,12 @@ static func instantiate(parent: Control) -> Monster:
 	var monster = FileLoader.get_packed_scene("monster").instantiate()
 	parent.add_child(monster)
 	parent.move_child(monster, 0)
-	monster.init(random_monster_res)
+	monster.init(false, random_monster_res)
 	return monster
 
 
-func init(res: MonsterResource = null):
+func init(is_player := false, res: MonsterResource = null):
+	player = is_player
 	player_manager = get_tree().current_scene.get_node("%PlayerManager")
 	inventory = player_manager.inventory
 	grade = res.grades[randi_range(0, res.grades.size() - 1)]
@@ -45,7 +46,7 @@ func init(res: MonsterResource = null):
 	texture_rect.texture = res.texture
 	
 	super()
-	init_monster_caracteristiques()
+	init_bars()
 	init_spells(res.spells)
 	
 	resource = res
@@ -59,7 +60,7 @@ func init(res: MonsterResource = null):
 	attack_callable = attack
 
 
-func init_monster_caracteristiques():
+func init_bars():
 	# Vitalité
 	hp_bar.mval = get_vitalite()
 	hp_bar.reset()
@@ -68,18 +69,14 @@ func init_monster_caracteristiques():
 	pm_bar.reset()
 	# PA
 	pa_bar.mval = get_pa()
-	pa_bar.reset()
+	pa_bar.cval = 0
+	super()
 
 
 func attack():
 	var spell_to_cast = spells[0]
-	var spell_callable = Callable(SpellsService, spell_to_cast.spell_name)
-	var args = []
-	if spell_to_cast.per_crit > 0:
-		args.append(randi_range(0, 1) <= spell_to_cast.per_crit)
-	if spell_to_cast.has_grade:
-		args.append(grade)
-	spell_callable.callv(args)
+	var grade := 0
+	SpellsService.perform_spell(self, player_manager.player_entity, spell_to_cast, grade)
 
 
 func die():

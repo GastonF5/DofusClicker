@@ -1,12 +1,48 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=3 format=3 uid="uid://dy4gwn15h44y"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=6 format=3 uid="uid://dy4gwn15h44y"]
 
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_kx4q7"]
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_xibsw"]
 [ext_resource type="Texture2D" uid="uid://beevdgqs6aljp" path="res://assets/spells/ecaflip/griffe_de_ceangal.png" id="2_okr7j"]
 
+[sub_resource type="Resource" id="Resource_hkv5o"]
+script = ExtResource("1_kx4q7")
+type = 0
+time = 0.0
+target_type = 2
+element = 4
+caracteristic = 0
+method_name = &""
+params = []
+nb_random_effects = 0
+min_amounts = Array[int]([13])
+max_amounts = Array[int]([15])
+crit_min_amounts = Array[int]([16])
+crit_max_amounts = Array[int]([18])
+
+[sub_resource type="Resource" id="Resource_ng7v1"]
+script = ExtResource("1_kx4q7")
+type = 1
+time = 60.0
+target_type = 0
+element = 0
+caracteristic = 10
+method_name = &""
+params = []
+nb_random_effects = 0
+min_amounts = Array[int]([4])
+max_amounts = Array[int]([4])
+crit_min_amounts = Array[int]([4])
+crit_max_amounts = Array[int]([4])
+
 [resource]
 script = ExtResource("1_xibsw")
+id = 0
 name = "Griffe de Ceangal"
+description = ""
 texture = ExtResource("2_okr7j")
-spell_name = "griffe_ceangal"
+img_url = ""
+pa_cost = 2
+per_crit = 0.05
 cooldown = 0.0
-pa_cost = 0
+priority = 0
+effects = Array[ExtResource("1_kx4q7")]([SubResource("Resource_hkv5o"), SubResource("Resource_ng7v1")])

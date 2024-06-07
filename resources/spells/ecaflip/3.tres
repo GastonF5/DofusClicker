@@ -1,12 +1,34 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=3 format=3 uid="uid://cygftc5xkn67m"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=5 format=3 uid="uid://cygftc5xkn67m"]
 
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_2ylmo"]
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_yf5d6"]
-[ext_resource type="Texture2D" uid="uid://rd8ucad4anfu" path="res://assets/spells/ecaflip/trefle.png" id="2_k1hpy"]
+[ext_resource type="Texture2D" uid="uid://bgbjykdhcivsq" path="res://assets/spells/ecaflip/sort_12298.png" id="3_a2i56"]
+
+[sub_resource type="Resource" id="Resource_ussc6"]
+script = ExtResource("1_2ylmo")
+type = 1
+time = 5.0
+target_type = 0
+element = 0
+lifesteal = false
+caracteristic = 1
+method_name = &""
+params = []
+nb_random_effects = 0
+min_amounts = Array[int]([1])
+max_amounts = Array[int]([1])
+crit_min_amounts = Array[int]([1])
+crit_max_amounts = Array[int]([1])
 
 [resource]
 script = ExtResource("1_yf5d6")
-name = "Trèfle"
-texture = ExtResource("2_k1hpy")
-spell_name = "trefle"
-cooldown = 0.0
-pa_cost = 0
+id = 0
+name = "Bond du Félin"
+description = "Augment les PM pour 10 secondes."
+texture = ExtResource("3_a2i56")
+img_url = ""
+pa_cost = 1
+per_crit = 0.0
+cooldown = 2.0
+priority = 0
+effects = Array[ExtResource("1_2ylmo")]([SubResource("Resource_ussc6")])
