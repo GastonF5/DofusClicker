@@ -70,8 +70,8 @@ func initialize(selected_class: String):
 	for spell_res in FileLoader.get_spell_resources(selected_class):
 		var spell_description = FileLoader.get_packed_scene("spell/spell_description").instantiate()
 		spell_container.add_child(spell_description)
-		var spell = Spell.instantiate(spell_res, spell_description.get_node("HBC/SpellContainer"), false)
-		spell.is_clickable = false
+		var spell = Spell.instantiate(spell_res, spell_description.get_node("HBC"), false)
+		#spell.is_clickable = false
 		spell_description.init(spell_bar)
 	
 	var entity_containers = get_tree().get_nodes_in_group("monster_container")
@@ -117,26 +117,10 @@ func init_bars():
 
 
 func _input(event):
-	if console and !console.input.has_focus() and !$%RecipeManager.prompt_has_focus:
-		var size = spell_bar.get_children().size()
-		if size >= 1 and event.is_action_pressed("1"):
-			spell_bar.get_children()[0].do_action()
-		if size >= 2 and event.is_action_pressed("2"):
-			spell_bar.get_children()[1].do_action()
-		if size >= 3 and event.is_action_pressed("3"):
-			spell_bar.get_children()[2].do_action()
-		if size >= 4 and event.is_action_pressed("4"):
-			spell_bar.get_children()[3].do_action()
-		if size >= 5 and event.is_action_pressed("5"):
-			spell_bar.get_children()[4].do_action()
-		if size >= 6 and event.is_action_pressed("6"):
-			spell_bar.get_children()[5].do_action()
-		if size >= 7 and event.is_action_pressed("7"):
-			spell_bar.get_children()[6].do_action()
-		if size >= 8 and event.is_action_pressed("8"):
-			spell_bar.get_children()[7].do_action()
-		if size >= 9 and event.is_action_pressed("9"):
-			spell_bar.get_children()[8].do_action()
+	if initialized and !console.input.has_focus() and !$%RecipeManager.prompt_has_focus:
+		for i in range(1, 9):
+			if event.is_action_pressed("%d" % i) and spell_bar.has_spell(i - 1):
+				spell_bar.get_spell(i - 1).do_action()
 		if event.is_action_pressed("right"):
 			PlayerManager.select_next_plate()
 		if event.is_action_pressed("left"):

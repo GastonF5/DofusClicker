@@ -16,7 +16,7 @@ extends TextureProgressBar
 @export_category("Values")
 @export var cval: int:
 	get:
-		return cval if auto_fill else value
+		return cval if auto_fill else value as int
 	set(val):
 		if auto_fill and val < cval:
 			value = 0
@@ -28,7 +28,7 @@ extends TextureProgressBar
 
 @export var mval: int:
 	get:
-		return mval if auto_fill else max_value
+		return mval if auto_fill else max_value as int
 	set(val):
 		mval = val
 		if !auto_fill: max_value = val

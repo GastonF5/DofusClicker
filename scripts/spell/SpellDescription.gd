@@ -5,7 +5,6 @@ extends Button
 const unselected_theme = preload("res://resources/themes/spell_button/unselected.tres")
 const selected_theme = preload("res://resources/themes/spell_button/selected.tres")
 
-@export var spell_container: PanelContainer
 @export var spell_name: Label
 
 var spell: Spell
@@ -14,7 +13,8 @@ var selected = false
 
 
 func init(_spell_bar: SpellBar):
-	spell = spell_container.get_child(0)
+	spell = $HBC.get_child($HBC.get_child_count() - 1)
+	$HBC.move_child(spell, 1)
 	spell_name.text = spell.resource.name
 	spell_bar = _spell_bar
 

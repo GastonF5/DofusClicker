@@ -1,24 +1,40 @@
 class_name SpellBar
-extends GridContainer
+extends Control
 
 
-func _ready():
-	size = size * 1.5
+@export var grid: GridContainer
 
 
 func add_spell(spell_res: SpellResource):
-	Spell.instantiate(spell_res, self)
+	var empty_slot = get_next_empty_slot()
+	if empty_slot:
+		Spell.instantiate(spell_res, empty_slot)
 
 
 func remove_spell(spell: Spell):
 	var child_spell = find_spell_in_children(spell.resource.name)
-	if child_spell != null:
-		remove_child(child_spell)
+	if child_spell:
+		child_spell.get_parent().remove_child(child_spell)
 		child_spell.queue_free()
 
 
 func find_spell_in_children(spell_name: String) -> Spell:
-	for spell in get_children():
-		if spell.resource.name == spell_name:
-			return spell
+	for slot in grid.get_children():
+		if slot.get_child_count() != 0 and slot.get_child(0).resource.name == spell_name:
+			return slot.get_child(0)
 	return null
+
+
+func get_next_empty_slot():
+	for slot in grid.get_children():
+		if slot.get_child_count() == 0:
+			return slot
+	return null
+
+
+func get_spell(index: int):
+	return grid.get_child(index).get_child(0)
+
+
+func has_spell(index: int):
+	return grid.get_child(index).get_child_count() != 0

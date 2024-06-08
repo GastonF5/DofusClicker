@@ -1,10 +1,10 @@
 class_name Spell
-extends ClickableControl
+extends Control
 
 var player_manager: PlayerManager
 
 @export var spell_texture: TextureRect
-@export var cooldown_bar: TextureProgressBar
+@export var cooldown_bar: ProgressBar
 
 var resource: SpellResource
 var timer: Timer
@@ -13,7 +13,8 @@ var timer: Timer
 func _process(_delta):
 	if timer != null:
 		cooldown_bar.value = timer.time_left * 100
-	if is_clickable and player_manager:
+	#if is_clickable and player_manager:
+	if player_manager:
 		if player_manager.pa_bar.cval < resource.pa_cost:
 			spell_texture.modulate = Color.ORANGE_RED
 		else:
@@ -22,30 +23,30 @@ func _process(_delta):
 
 func init(res: SpellResource, clickable: bool):
 	player_manager = get_tree().current_scene.get_node("%PlayerManager")
-	global_position -= size/2
+	#global_position -= size/2
 	name = res.name
 	resource = res
 	spell_texture.texture = res.texture
 	if clickable:
-		init_clickable(spell_texture)
-		clicked.connect(do_action)
+		#init_clickable(spell_texture)
+		#clicked.connect(do_action)
 		if res.cooldown != 0:
 			cooldown_bar.max_value = res.cooldown * 100
 			cooldown_bar.value = 0
 		else:
 			cooldown_bar.visible = false
 	else:
-		is_clickable = false
+		#is_clickable = false
 		cooldown_bar.visible = false
 
 
 func do_action(_self = null):
-	if resource.pa_cost <= player_manager.pa_bar.cval and PlayerManager.selected_plate and is_clickable:
+	if resource.pa_cost <= player_manager.pa_bar.cval and PlayerManager.selected_plate:# and is_clickable:
 		if resource.pa_cost != 0:
 			player_manager.pa_bar.cval -= resource.pa_cost
 		cast()
 		if resource.cooldown != 0:
-			is_clickable = false
+			#is_clickable = false
 			timer = Timer.new()
 			add_child(timer)
 			timer.wait_time = resource.cooldown
@@ -57,7 +58,7 @@ func on_timeout():
 	remove_child(timer)
 	timer.queue_free()
 	timer = null
-	is_clickable = true
+	#is_clickable = true
 	cooldown_bar.value = 0
 
 
