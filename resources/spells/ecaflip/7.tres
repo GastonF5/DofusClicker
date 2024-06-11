@@ -1,38 +1,51 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=6 format=3 uid="uid://dy4gwn15h44y"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://dy4gwn15h44y"]
 
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_hqvmm"]
 [ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_kx4q7"]
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_xibsw"]
 [ext_resource type="Texture2D" uid="uid://beevdgqs6aljp" path="res://assets/spells/ecaflip/griffe_de_ceangal.png" id="2_okr7j"]
 
+[sub_resource type="Resource" id="Resource_32jmg"]
+script = ExtResource("1_hqvmm")
+min = 13
+max = 15
+min_crit = 16
+max_crit = 18
+
 [sub_resource type="Resource" id="Resource_hkv5o"]
+resource_name = "Dommages Air"
 script = ExtResource("1_kx4q7")
 type = 0
 time = 0.0
 target_type = 2
 element = 4
+lifesteal = false
 caracteristic = 0
 method_name = &""
 params = []
 nb_random_effects = 0
-min_amounts = Array[int]([13])
-max_amounts = Array[int]([15])
-crit_min_amounts = Array[int]([16])
-crit_max_amounts = Array[int]([18])
+amounts = Array[ExtResource("1_hqvmm")]([SubResource("Resource_32jmg")])
+
+[sub_resource type="Resource" id="Resource_el4xi"]
+script = ExtResource("1_hqvmm")
+min = 4
+max = 4
+min_crit = 4
+max_crit = 4
 
 [sub_resource type="Resource" id="Resource_ng7v1"]
+resource_name = "Bonus Critique (Passif)"
 script = ExtResource("1_kx4q7")
 type = 1
 time = 60.0
 target_type = 0
 element = 0
+lifesteal = false
 caracteristic = 10
 method_name = &""
 params = []
 nb_random_effects = 0
-min_amounts = Array[int]([4])
-max_amounts = Array[int]([4])
-crit_min_amounts = Array[int]([4])
-crit_max_amounts = Array[int]([4])
+amounts = Array[ExtResource("1_hqvmm")]([SubResource("Resource_el4xi")])
 
 [resource]
 script = ExtResource("1_xibsw")

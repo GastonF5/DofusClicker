@@ -1,15 +1,38 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=2 format=3 uid="uid://cbbstta8ty7x4"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=6 format=3 uid="uid://cbbstta8ty7x4"]
 
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_4qqiv"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_sq6jw"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_hwj0x"]
+
+[sub_resource type="Resource" id="Resource_kcgas"]
+script = ExtResource("1_sq6jw")
+min = 23
+max = 34
+min_crit = 33
+max_crit = 50
+
+[sub_resource type="Resource" id="Resource_2ea0k"]
+resource_name = "Dommages Neutre"
+script = ExtResource("2_hwj0x")
+type = 0
+time = 0.0
+target_type = 1
+element = 0
+lifesteal = false
+caracteristic = 0
+method_name = &""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_sq6jw")]([SubResource("Resource_kcgas")])
 
 [resource]
 script = ExtResource("1_4qqiv")
 id = 202
 name = "Morsure du Bouftou"
-spell_name = "morsure_du_bouftou"
-description = "Inflige des dégâts dans l'élément neutre."
+description = "Inflige des dommages dans l'élément neutre."
 img_url = "https://api.dofusdb.fr/img/spells/sort_10077.png"
 pa_cost = 3
 per_crit = 0.1
 cooldown = 0.0
-ordre = 0
+priority = 0
+effects = Array[ExtResource("2_hwj0x")]([SubResource("Resource_2ea0k")])

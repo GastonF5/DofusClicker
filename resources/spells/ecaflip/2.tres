@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://cfm12w1jjuosd"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=14 format=3 uid="uid://cfm12w1jjuosd"]
 
 [ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_giae6"]
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_rq11w"]
 [ext_resource type="Texture2D" uid="uid://c0wmchv6nx6fl" path="res://assets/spells/ecaflip/roue_de_la_fortune.png" id="2_huktk"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="2_qvo0b"]
 
 [sub_resource type="Resource" id="Resource_arg74"]
+resource_name = "Effet random (3)"
 script = ExtResource("1_giae6")
 type = 4
 time = 0.0
@@ -15,12 +17,17 @@ caracteristic = 8
 method_name = &""
 params = []
 nb_random_effects = 3
-min_amounts = Array[int]([])
-max_amounts = Array[int]([])
-crit_min_amounts = Array[int]([])
-crit_max_amounts = Array[int]([])
+amounts = Array[ExtResource("2_qvo0b")]([])
+
+[sub_resource type="Resource" id="Resource_8ub6b"]
+script = ExtResource("2_qvo0b")
+min = 50
+max = 50
+min_crit = 75
+max_crit = 75
 
 [sub_resource type="Resource" id="Resource_83oq8"]
+resource_name = "Bonus Puissance"
 script = ExtResource("1_giae6")
 type = 1
 time = 10.0
@@ -31,12 +38,17 @@ caracteristic = 8
 method_name = &""
 params = []
 nb_random_effects = 0
-min_amounts = Array[int]([50])
-max_amounts = Array[int]([50])
-crit_min_amounts = Array[int]([75])
-crit_max_amounts = Array[int]([75])
+amounts = Array[ExtResource("2_qvo0b")]([SubResource("Resource_8ub6b")])
+
+[sub_resource type="Resource" id="Resource_10ipx"]
+script = ExtResource("2_qvo0b")
+min = 3
+max = 3
+min_crit = 3
+max_crit = 3
 
 [sub_resource type="Resource" id="Resource_p6q70"]
+resource_name = "Bonus PA"
 script = ExtResource("1_giae6")
 type = 1
 time = 10.0
@@ -47,12 +59,17 @@ caracteristic = 0
 method_name = &""
 params = []
 nb_random_effects = 0
-min_amounts = Array[int]([3])
-max_amounts = Array[int]([3])
-crit_min_amounts = Array[int]([3])
-crit_max_amounts = Array[int]([3])
+amounts = Array[ExtResource("2_qvo0b")]([SubResource("Resource_10ipx")])
+
+[sub_resource type="Resource" id="Resource_vfs3a"]
+script = ExtResource("2_qvo0b")
+min = 2
+max = 2
+min_crit = 2
+max_crit = 2
 
 [sub_resource type="Resource" id="Resource_73f1w"]
+resource_name = "Bonus PM"
 script = ExtResource("1_giae6")
 type = 1
 time = 10.0
@@ -63,12 +80,17 @@ caracteristic = 1
 method_name = &""
 params = []
 nb_random_effects = 0
-min_amounts = Array[int]([2])
-max_amounts = Array[int]([2])
-crit_min_amounts = Array[int]([2])
-crit_max_amounts = Array[int]([2])
+amounts = Array[ExtResource("2_qvo0b")]([SubResource("Resource_vfs3a")])
+
+[sub_resource type="Resource" id="Resource_x42kc"]
+script = ExtResource("2_qvo0b")
+min = 4
+max = 4
+min_crit = 4
+max_crit = 4
 
 [sub_resource type="Resource" id="Resource_lvnuj"]
+resource_name = "Bonus Critique (Passif)"
 script = ExtResource("1_giae6")
 type = 1
 time = 60.0
@@ -79,10 +101,7 @@ caracteristic = 10
 method_name = &""
 params = []
 nb_random_effects = 0
-min_amounts = Array[int]([4])
-max_amounts = Array[int]([4])
-crit_min_amounts = Array[int]([4])
-crit_max_amounts = Array[int]([4])
+amounts = Array[ExtResource("2_qvo0b")]([SubResource("Resource_x42kc")])
 
 [resource]
 script = ExtResource("1_rq11w")

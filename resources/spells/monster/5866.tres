@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=8 format=3 uid="uid://dck1s7qr0mbdt"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=13 format=3 uid="uid://dck1s7qr0mbdt"]
 
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_bnpy0"]
 [ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_sp6tl"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="2_fvkbu"]
 
 [sub_resource type="Resource" id="Resource_tmxx5"]
+resource_name = "Effet random (4)"
 script = ExtResource("1_sp6tl")
 type = 4
 time = 0.0
@@ -14,12 +16,17 @@ caracteristic = 0
 method_name = &""
 params = []
 nb_random_effects = 4
-min_amounts = Array[int]([])
-max_amounts = Array[int]([])
-crit_min_amounts = Array[int]([])
-crit_max_amounts = Array[int]([])
+amounts = Array[ExtResource("2_fvkbu")]([])
+
+[sub_resource type="Resource" id="Resource_w62ql"]
+script = ExtResource("2_fvkbu")
+min = 6
+max = 10
+min_crit = 0
+max_crit = 0
 
 [sub_resource type="Resource" id="Resource_ep2eq"]
+resource_name = "Dommages Terre"
 script = ExtResource("1_sp6tl")
 type = 0
 time = 0.0
@@ -30,12 +37,17 @@ caracteristic = 0
 method_name = &""
 params = []
 nb_random_effects = 0
-min_amounts = Array[int]([6])
-max_amounts = Array[int]([10])
-crit_min_amounts = Array[int]([8])
-crit_max_amounts = Array[int]([12])
+amounts = Array[ExtResource("2_fvkbu")]([SubResource("Resource_w62ql")])
+
+[sub_resource type="Resource" id="Resource_w7230"]
+script = ExtResource("2_fvkbu")
+min = 6
+max = 10
+min_crit = 0
+max_crit = 0
 
 [sub_resource type="Resource" id="Resource_n8x32"]
+resource_name = "Dommages Feu"
 script = ExtResource("1_sp6tl")
 type = 0
 time = 0.0
@@ -46,12 +58,17 @@ caracteristic = 0
 method_name = &""
 params = []
 nb_random_effects = 0
-min_amounts = Array[int]([6])
-max_amounts = Array[int]([10])
-crit_min_amounts = Array[int]([8])
-crit_max_amounts = Array[int]([12])
+amounts = Array[ExtResource("2_fvkbu")]([SubResource("Resource_w7230")])
+
+[sub_resource type="Resource" id="Resource_xjq33"]
+script = ExtResource("2_fvkbu")
+min = 6
+max = 10
+min_crit = 0
+max_crit = 0
 
 [sub_resource type="Resource" id="Resource_tcnl2"]
+resource_name = "Dommages Eau"
 script = ExtResource("1_sp6tl")
 type = 0
 time = 0.0
@@ -62,12 +79,17 @@ caracteristic = 0
 method_name = &""
 params = []
 nb_random_effects = 0
-min_amounts = Array[int]([6])
-max_amounts = Array[int]([10])
-crit_min_amounts = Array[int]([8])
-crit_max_amounts = Array[int]([12])
+amounts = Array[ExtResource("2_fvkbu")]([SubResource("Resource_xjq33")])
+
+[sub_resource type="Resource" id="Resource_o47m8"]
+script = ExtResource("2_fvkbu")
+min = 6
+max = 10
+min_crit = 0
+max_crit = 0
 
 [sub_resource type="Resource" id="Resource_r4xx6"]
+resource_name = "Dommages Air"
 script = ExtResource("1_sp6tl")
 type = 0
 time = 0.0
@@ -78,10 +100,7 @@ caracteristic = 0
 method_name = &""
 params = []
 nb_random_effects = 0
-min_amounts = Array[int]([6])
-max_amounts = Array[int]([10])
-crit_min_amounts = Array[int]([8])
-crit_max_amounts = Array[int]([12])
+amounts = Array[ExtResource("2_fvkbu")]([SubResource("Resource_o47m8")])
 
 [resource]
 script = ExtResource("1_bnpy0")
@@ -90,7 +109,7 @@ name = "Brûlure légère"
 description = "Inflige des dommages dans un élément aléatoire."
 img_url = ""
 pa_cost = 2
-per_crit = 0.1
+per_crit = 0.0
 cooldown = 0.0
 priority = 0
 effects = Array[ExtResource("1_sp6tl")]([SubResource("Resource_tmxx5"), SubResource("Resource_ep2eq"), SubResource("Resource_n8x32"), SubResource("Resource_tcnl2"), SubResource("Resource_r4xx6")])

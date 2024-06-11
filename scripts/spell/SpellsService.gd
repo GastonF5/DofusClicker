@@ -45,7 +45,7 @@ static func perform_damage(caster: Entity, target: Entity, effect: EffectResourc
 			amount += do_crit.amount
 	amount = target.take_damage(amount, effect.element)
 	if effect.lifesteal:
-		caster.take_damage(-amount, effect.element)
+		caster.take_damage(-round(amount / 2.0), effect.element)
 
 
 static func perform_bonus(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
@@ -124,33 +124,6 @@ static func pile_face(caster: Entity, target: Entity, effect: EffectResource, cr
 #endregion
 
 
-#region Monstres
-#id 202
-static func morsure_du_bouftou(crit: bool):
-	var _min := 23 if !crit else 34
-	var _max := 33 if !crit else 50
-	player_entity.take_damage(randi_range(_min, _max), Element.NEUTRE)
-
-
-static func fureur_du_bouftou(grade: int):
-	var monsters = MonsterManager.monsters
-	var random_monster: Entity = monsters[randi_range(0, monsters.size() - 1)]
-	var dommages = random_monster.get_caracacteristique_for_type(StatType.DOMMAGES)
-	var value: int
-	match grade:
-		1: value = randi_range(6, 15)
-		2: value = randi_range(8, 17)
-		3: value = randi_range(10, 19)
-		4: value = randi_range(12, 21)
-		5: value = randi_range(14, 25)
-	random_monster.set_caracteristique_amount(StatType.DOMMAGES, dommages + value)
-	var timer = create_timer(10)
-	await timer.timeout
-	timer.queue_free()
-	random_monster.set_caracteristique_amount(StatType.DOMMAGES, dommages)
-#endregion
-
-
 #region Utilitaires
 static func get_multiplicateur(type: StatType) -> float:
 	var carac = StatsManager.get_caracteristique_for_type(type)
@@ -196,6 +169,7 @@ static func create_timer(time: float, name: String = "Timer"):
 
 static func get_targets(caster: Entity, target: Entity, type: EffectResource.TargetType) -> Array[Entity]:
 	var targets: Array[Entity] = []
+	var monsters = MonsterManager.monsters
 	match type:
 		TargetType.CASTER: targets.append(caster)
 		TargetType.TARGET:
@@ -206,6 +180,9 @@ static func get_targets(caster: Entity, target: Entity, type: EffectResource.Tar
 		TargetType.NEIGHBORS:
 			targets += get_neighbor_entities()
 		TargetType.ALL_MONSTERS:
-			targets += MonsterManager.monsters
+			targets += monsters
+		TargetType.RANDOM_MONSTER:
+			randomize()
+			targets.append(monsters[randi_range(0, monsters.size() - 1)])
 	return targets
 #endregion

@@ -1,10 +1,19 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=5 format=3 uid="uid://cygftc5xkn67m"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://cygftc5xkn67m"]
 
 [ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_2ylmo"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_jh2v4"]
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_yf5d6"]
 [ext_resource type="Texture2D" uid="uid://bgbjykdhcivsq" path="res://assets/spells/ecaflip/sort_12298.png" id="3_a2i56"]
 
+[sub_resource type="Resource" id="Resource_f0l74"]
+script = ExtResource("1_jh2v4")
+min = 1
+max = 1
+min_crit = 1
+max_crit = 1
+
 [sub_resource type="Resource" id="Resource_ussc6"]
+resource_name = "Bonus PM"
 script = ExtResource("1_2ylmo")
 type = 1
 time = 5.0
@@ -15,10 +24,7 @@ caracteristic = 1
 method_name = &""
 params = []
 nb_random_effects = 0
-min_amounts = Array[int]([1])
-max_amounts = Array[int]([1])
-crit_min_amounts = Array[int]([1])
-crit_max_amounts = Array[int]([1])
+amounts = Array[ExtResource("1_jh2v4")]([SubResource("Resource_f0l74")])
 
 [resource]
 script = ExtResource("1_yf5d6")

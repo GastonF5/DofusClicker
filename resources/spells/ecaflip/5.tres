@@ -1,53 +1,72 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://dak1npbphipav"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=11 format=3 uid="uid://dak1npbphipav"]
 
 [ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_frj0l"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_kbp3q"]
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_p6h2q"]
 [ext_resource type="Texture2D" uid="uid://dppn5vmuk7yri" path="res://assets/spells/ecaflip/destin_d_ecaflip.png" id="2_8s1ar"]
 
+[sub_resource type="Resource" id="Resource_ktb3b"]
+script = ExtResource("1_kbp3q")
+min = 31
+max = 34
+min_crit = 37
+max_crit = 40
+
 [sub_resource type="Resource" id="Resource_j257v"]
+resource_name = "Dommages Terre"
 script = ExtResource("1_frj0l")
 type = 0
 time = 0.0
 target_type = 1
 element = 1
+lifesteal = false
 caracteristic = 0
 method_name = &""
 params = []
 nb_random_effects = 0
-min_amounts = Array[int]([31])
-max_amounts = Array[int]([34])
-crit_min_amounts = Array[int]([37])
-crit_max_amounts = Array[int]([40])
+amounts = Array[ExtResource("1_kbp3q")]([SubResource("Resource_ktb3b")])
+
+[sub_resource type="Resource" id="Resource_0dmr1"]
+script = ExtResource("1_kbp3q")
+min = 3
+max = 3
+min_crit = 3
+max_crit = 3
 
 [sub_resource type="Resource" id="Resource_tctp1"]
+resource_name = "Retrait PM"
 script = ExtResource("1_frj0l")
 type = 2
 time = 0.0
 target_type = 1
 element = 0
+lifesteal = false
 caracteristic = 1
 method_name = &""
 params = []
 nb_random_effects = 0
-min_amounts = Array[int]([3])
-max_amounts = Array[int]([3])
-crit_min_amounts = Array[int]([3])
-crit_max_amounts = Array[int]([3])
+amounts = Array[ExtResource("1_kbp3q")]([SubResource("Resource_0dmr1")])
+
+[sub_resource type="Resource" id="Resource_f5yi1"]
+script = ExtResource("1_kbp3q")
+min = 8
+max = 8
+min_crit = 8
+max_crit = 8
 
 [sub_resource type="Resource" id="Resource_85fs3"]
+resource_name = "Bonus Critique (Passif)"
 script = ExtResource("1_frj0l")
 type = 1
 time = 0.0
 target_type = 0
 element = 0
+lifesteal = false
 caracteristic = 10
 method_name = &""
 params = []
 nb_random_effects = 0
-min_amounts = Array[int]([8])
-max_amounts = Array[int]([8])
-crit_min_amounts = Array[int]([8])
-crit_max_amounts = Array[int]([8])
+amounts = Array[ExtResource("1_kbp3q")]([SubResource("Resource_f5yi1")])
 
 [resource]
 script = ExtResource("1_p6h2q")

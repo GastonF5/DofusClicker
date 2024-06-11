@@ -1,38 +1,44 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=6 format=3 uid="uid://bng07ccfc2wv0"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=8 format=3 uid="uid://bng07ccfc2wv0"]
 
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_dc72p"]
 [ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_pk0tm"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="2_niqvl"]
 [ext_resource type="Texture2D" uid="uid://b3weums43y1jw" path="res://assets/spells/ecaflip/pile_ou_face.png" id="2_xhct6"]
 
 [sub_resource type="Resource" id="Resource_pex75"]
+resource_name = "Effet spécial"
 script = ExtResource("1_pk0tm")
 type = 3
 time = 0.0
 target_type = 1
 element = 1
+lifesteal = false
 caracteristic = 0
 method_name = &"pile_face"
 params = []
 nb_random_effects = 0
-min_amounts = Array[int]([15])
-max_amounts = Array[int]([17])
-crit_min_amounts = Array[int]([19])
-crit_max_amounts = Array[int]([21])
+amounts = Array[ExtResource("2_niqvl")]([])
+
+[sub_resource type="Resource" id="Resource_pu187"]
+script = ExtResource("2_niqvl")
+min = 4
+max = 4
+min_crit = 4
+max_crit = 4
 
 [sub_resource type="Resource" id="Resource_753xk"]
+resource_name = "Bonus Critique (Passif)"
 script = ExtResource("1_pk0tm")
 type = 1
 time = 0.0
 target_type = 0
 element = 0
+lifesteal = false
 caracteristic = 10
 method_name = &""
 params = []
 nb_random_effects = 0
-min_amounts = Array[int]([6])
-max_amounts = Array[int]([6])
-crit_min_amounts = Array[int]([6])
-crit_max_amounts = Array[int]([6])
+amounts = Array[ExtResource("2_niqvl")]([SubResource("Resource_pu187")])
 
 [resource]
 script = ExtResource("1_dc72p")

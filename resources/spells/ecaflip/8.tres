@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=8 format=3 uid="uid://b2pp4g3ky8uni"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=12 format=3 uid="uid://b2pp4g3ky8uni"]
 
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_j0ww4"]
 [ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_r5by1"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="2_t1pvk"]
 [ext_resource type="Texture2D" uid="uid://bapqecxvespbu" path="res://assets/spells/ecaflip/tout_ou_rien.png" id="2_xf5cg"]
 
 [sub_resource type="Resource" id="Resource_jymxc"]
+resource_name = "Effet random (2)"
 script = ExtResource("1_r5by1")
 type = 4
 time = 0.0
@@ -15,12 +17,17 @@ caracteristic = 0
 method_name = &""
 params = []
 nb_random_effects = 2
-min_amounts = Array[int]([])
-max_amounts = Array[int]([])
-crit_min_amounts = Array[int]([])
-crit_max_amounts = Array[int]([])
+amounts = Array[ExtResource("2_t1pvk")]([])
+
+[sub_resource type="Resource" id="Resource_lxary"]
+script = ExtResource("2_t1pvk")
+min = -29
+max = -27
+min_crit = -35
+max_crit = -32
 
 [sub_resource type="Resource" id="Resource_i7mdl"]
+resource_name = "Soin Feu"
 script = ExtResource("1_r5by1")
 type = 0
 time = 0.0
@@ -31,12 +38,17 @@ caracteristic = 0
 method_name = &""
 params = []
 nb_random_effects = 0
-min_amounts = Array[int]([-29])
-max_amounts = Array[int]([-27])
-crit_min_amounts = Array[int]([-35])
-crit_max_amounts = Array[int]([-32])
+amounts = Array[ExtResource("2_t1pvk")]([SubResource("Resource_lxary")])
+
+[sub_resource type="Resource" id="Resource_cv2si"]
+script = ExtResource("2_t1pvk")
+min = 27
+max = 29
+min_crit = 32
+max_crit = 35
 
 [sub_resource type="Resource" id="Resource_i5e4t"]
+resource_name = "Dommages Eau"
 script = ExtResource("1_r5by1")
 type = 0
 time = 0.0
@@ -47,12 +59,17 @@ caracteristic = 0
 method_name = &""
 params = []
 nb_random_effects = 0
-min_amounts = Array[int]([27])
-max_amounts = Array[int]([29])
-crit_min_amounts = Array[int]([32])
-crit_max_amounts = Array[int]([35])
+amounts = Array[ExtResource("2_t1pvk")]([SubResource("Resource_cv2si")])
+
+[sub_resource type="Resource" id="Resource_c84ur"]
+script = ExtResource("2_t1pvk")
+min = 4
+max = 4
+min_crit = 4
+max_crit = 4
 
 [sub_resource type="Resource" id="Resource_e7oih"]
+resource_name = "Bonus Critique (Passif)"
 script = ExtResource("1_r5by1")
 type = 1
 time = 60.0
@@ -63,10 +80,7 @@ caracteristic = 10
 method_name = &""
 params = []
 nb_random_effects = 0
-min_amounts = Array[int]([4])
-max_amounts = Array[int]([4])
-crit_min_amounts = Array[int]([4])
-crit_max_amounts = Array[int]([4])
+amounts = Array[ExtResource("2_t1pvk")]([SubResource("Resource_c84ur")])
 
 [resource]
 script = ExtResource("1_j0ww4")

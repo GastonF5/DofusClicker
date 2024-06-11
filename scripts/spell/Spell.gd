@@ -41,7 +41,7 @@ func init(res: SpellResource, clickable: bool):
 
 
 func do_action(_self = null):
-	if resource.pa_cost <= player_manager.pa_bar.cval and PlayerManager.selected_plate:# and is_clickable:
+	if resource.pa_cost <= player_manager.pa_bar.cval and PlayerManager.selected_plate and !timer:# and is_clickable:
 		if resource.pa_cost != 0:
 			player_manager.pa_bar.cval -= resource.pa_cost
 		cast()

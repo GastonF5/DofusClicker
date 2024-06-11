@@ -1,53 +1,72 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://cfu8l7p1ncq4x"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=11 format=3 uid="uid://cfu8l7p1ncq4x"]
 
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_dhf07"]
 [ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_nsvdl"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_pw7nm"]
 [ext_resource type="Texture2D" uid="uid://cmtv8m2kle5rx" path="res://assets/spells/ecaflip/sort_12312.png" id="3_mfi8j"]
 
+[sub_resource type="Resource" id="Resource_jx7vv"]
+script = ExtResource("1_pw7nm")
+min = 13
+max = 13
+min_crit = 13
+max_crit = 13
+
 [sub_resource type="Resource" id="Resource_qckua"]
+resource_name = "Erosion"
 script = ExtResource("1_nsvdl")
 type = 1
 time = 60.0
 target_type = 2
 element = 0
+lifesteal = false
 caracteristic = 30
 method_name = &""
 params = []
 nb_random_effects = 0
-min_amounts = Array[int]([13])
-max_amounts = Array[int]([13])
-crit_min_amounts = Array[int]([13])
-crit_max_amounts = Array[int]([13])
+amounts = Array[ExtResource("1_pw7nm")]([SubResource("Resource_jx7vv")])
+
+[sub_resource type="Resource" id="Resource_yjytp"]
+script = ExtResource("1_pw7nm")
+min = 23
+max = 26
+min_crit = 28
+max_crit = 31
 
 [sub_resource type="Resource" id="Resource_o5rgf"]
+resource_name = "Dommages Air"
 script = ExtResource("1_nsvdl")
 type = 0
 time = 0.0
 target_type = 2
 element = 4
+lifesteal = false
 caracteristic = 0
 method_name = &""
 params = []
 nb_random_effects = 0
-min_amounts = Array[int]([23])
-max_amounts = Array[int]([26])
-crit_min_amounts = Array[int]([28])
-crit_max_amounts = Array[int]([31])
+amounts = Array[ExtResource("1_pw7nm")]([SubResource("Resource_yjytp")])
+
+[sub_resource type="Resource" id="Resource_x2fbl"]
+script = ExtResource("1_pw7nm")
+min = 8
+max = 8
+min_crit = 8
+max_crit = 8
 
 [sub_resource type="Resource" id="Resource_vc7av"]
+resource_name = "Bonus Critique (Passif)"
 script = ExtResource("1_nsvdl")
 type = 1
 time = 60.0
 target_type = 0
 element = 0
+lifesteal = false
 caracteristic = 10
 method_name = &""
 params = []
 nb_random_effects = 0
-min_amounts = Array[int]([8])
-max_amounts = Array[int]([8])
-crit_min_amounts = Array[int]([8])
-crit_max_amounts = Array[int]([8])
+amounts = Array[ExtResource("1_pw7nm")]([SubResource("Resource_x2fbl")])
 
 [resource]
 script = ExtResource("1_dhf07")

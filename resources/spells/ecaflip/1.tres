@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://ce76ie2exxoyn" path="res://assets/spells/ecaflip/chance_d_ecaflip.png" id="2_0tfbt"]
 
 [sub_resource type="Resource" id="Resource_ktc2g"]
+resource_name = "Effet spécial"
 script = ExtResource("1_bvlgs")
 type = 3
 time = 0.0
@@ -15,10 +16,7 @@ caracteristic = 0
 method_name = &"chance_ecaflip"
 params = []
 nb_random_effects = 0
-min_amounts = Array[int]([])
-max_amounts = Array[int]([])
-crit_min_amounts = Array[int]([])
-crit_max_amounts = Array[int]([])
+amounts = Array[Resource("res://scripts/resources/AmountResource.gd")]([])
 
 [resource]
 script = ExtResource("1_jlsqk")
