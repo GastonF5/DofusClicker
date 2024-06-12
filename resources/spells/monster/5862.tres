@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=6 format=3 uid="uid://n3x54i8t83jy"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_e8wqd"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_pb5qv"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_ommro"]
+
+[sub_resource type="Resource" id="Resource_s52li"]
+script = ExtResource("1_pb5qv")
+min = 10
+max = 15
+min_crit = 0
+max_crit = 0
+
+[sub_resource type="Resource" id="Resource_xlpsm"]
+resource_name = "Dommages Feu"
+script = ExtResource("2_ommro")
+type = 0
+time = 0.0
+target_type = 1
+element = 2
+lifesteal = false
+caracteristic = 0
+method_name = &""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_pb5qv")]([SubResource("Resource_s52li")])
+
+[resource]
+script = ExtResource("1_e8wqd")
+id = 5862
+name = "Lancer de Feu Vif"
+description = "Occasionne des dommages Feu."
+img_url = ""
+pa_cost = 4
+per_crit = 0.0
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_ommro")]([SubResource("Resource_xlpsm")])

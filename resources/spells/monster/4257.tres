@@ -1,0 +1,59 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=8 format=3 uid="uid://bvuqnrxej7crl"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_hko8w"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_jh5dv"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_qxe3v"]
+
+[sub_resource type="Resource" id="Resource_id3o7"]
+script = ExtResource("1_jh5dv")
+min = 4
+max = 6
+min_crit = 7
+max_crit = 9
+
+[sub_resource type="Resource" id="Resource_ja58n"]
+resource_name = "Dommages Feu"
+script = ExtResource("2_qxe3v")
+type = 0
+time = 0.0
+target_type = 1
+element = 2
+lifesteal = false
+caracteristic = 0
+method_name = &""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_jh5dv")]([SubResource("Resource_id3o7")])
+
+[sub_resource type="Resource" id="Resource_85lv2"]
+script = ExtResource("1_jh5dv")
+min = 2
+max = 2
+min_crit = 3
+max_crit = 3
+
+[sub_resource type="Resource" id="Resource_ltvdu"]
+resource_name = "Retrait PM"
+script = ExtResource("2_qxe3v")
+type = 2
+time = 0.0
+target_type = 1
+element = 0
+lifesteal = false
+caracteristic = 1
+method_name = &""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_jh5dv")]([SubResource("Resource_85lv2")])
+
+[resource]
+script = ExtResource("1_hko8w")
+id = 4257
+name = "Herbe Sauvage"
+description = "Occasionne des dommages Feu et retire des PM."
+img_url = "https://api.dofusdb.fr/img/spells/sort_12716.png"
+pa_cost = 3
+per_crit = 0.1
+cooldown = 4.0
+priority = 0
+effects = Array[ExtResource("2_qxe3v")]([SubResource("Resource_ja58n"), SubResource("Resource_ltvdu")])

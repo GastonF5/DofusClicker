@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=6 format=3 uid="uid://c5gmmblfithn7"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_ab632"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_lprhr"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_n3vnc"]
+
+[sub_resource type="Resource" id="Resource_e06ae"]
+script = ExtResource("1_lprhr")
+min = 7
+max = 7
+min_crit = 10
+max_crit = 10
+
+[sub_resource type="Resource" id="Resource_w04kg"]
+resource_name = "Poison Terre"
+script = ExtResource("1_n3vnc")
+type = 5
+time = 0.0
+target_type = 1
+element = 1
+lifesteal = false
+caracteristic = 0
+method_name = &""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_lprhr")]([SubResource("Resource_e06ae")])
+
+[resource]
+script = ExtResource("1_ab632")
+id = 219
+name = "Empoisonnement"
+description = "Applique du poison dans l'élément Terre."
+img_url = "https://api.dofusdb.fr/img/spells/sort_10076.png"
+pa_cost = 4
+per_crit = 0.1
+cooldown = 10.0
+priority = 1
+effects = Array[ExtResource("1_n3vnc")]([SubResource("Resource_w04kg")])

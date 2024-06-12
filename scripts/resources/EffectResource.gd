@@ -8,6 +8,8 @@ enum Type {
 	RETRAIT,
 	SPECIAL,
 	RANDOM,
+	POISON,
+	INVOCATION,
 }
 
 enum TargetType {

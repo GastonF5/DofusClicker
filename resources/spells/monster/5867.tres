@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=6 format=3 uid="uid://cs7nxyxgm1ctc"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_42jqy"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_ipfje"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_ps07f"]
+
+[sub_resource type="Resource" id="Resource_q1yrq"]
+script = ExtResource("1_42jqy")
+min = 4
+max = 5
+min_crit = 0
+max_crit = 0
+
+[sub_resource type="Resource" id="Resource_k5scv"]
+resource_name = "Dommages Terre"
+script = ExtResource("2_ps07f")
+type = 0
+time = 0.0
+target_type = 1
+element = 1
+lifesteal = false
+caracteristic = 0
+method_name = &""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_42jqy")]([SubResource("Resource_q1yrq")])
+
+[resource]
+script = ExtResource("1_ipfje")
+id = 5867
+name = "Souffle Céleste"
+description = "Occasionne des dommages Terre."
+img_url = ""
+pa_cost = 2
+per_crit = 0.0
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_ps07f")]([SubResource("Resource_k5scv")])

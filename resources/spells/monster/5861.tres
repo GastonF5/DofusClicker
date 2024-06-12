@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=6 format=3 uid="uid://bxstavj2lmn4v"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_ffvp6"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_wc7uf"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_ai17r"]
+
+[sub_resource type="Resource" id="Resource_hgaog"]
+script = ExtResource("1_wc7uf")
+min = 9
+max = 12
+min_crit = 0
+max_crit = 0
+
+[sub_resource type="Resource" id="Resource_c4stb"]
+resource_name = "Soin"
+script = ExtResource("2_ai17r")
+type = 0
+time = 0.0
+target_type = 6
+element = 0
+lifesteal = false
+caracteristic = 0
+method_name = &""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_wc7uf")]([SubResource("Resource_hgaog")])
+
+[resource]
+script = ExtResource("1_ffvp6")
+id = 5861
+name = "Reconstitution Céleste"
+description = "Soigne un allié aléatoire."
+img_url = "https://api.dofusdb.fr/img/spells/sort_10003.png"
+pa_cost = 3
+per_crit = 0.0
+cooldown = 10.0
+priority = 1
+effects = Array[ExtResource("2_ai17r")]([SubResource("Resource_c4stb")])

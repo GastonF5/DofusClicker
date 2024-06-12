@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=6 format=3 uid="uid://ve61du4yepe1"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_iopis"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_y54pp"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_1v5mr"]
+
+[sub_resource type="Resource" id="Resource_egemv"]
+script = ExtResource("1_iopis")
+min = 15
+max = 20
+min_crit = 22
+max_crit = 30
+
+[sub_resource type="Resource" id="Resource_ab4pw"]
+resource_name = "Dommages Terre"
+script = ExtResource("2_1v5mr")
+type = 0
+time = 0.0
+target_type = 1
+element = 1
+lifesteal = false
+caracteristic = 0
+method_name = &""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_iopis")]([SubResource("Resource_egemv")])
+
+[resource]
+script = ExtResource("1_y54pp")
+id = 3453
+name = "Racine Barbelée"
+description = "Occasionne des dommages Terre."
+img_url = ""
+pa_cost = 5
+per_crit = 0.1
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_1v5mr")]([SubResource("Resource_ab4pw")])
