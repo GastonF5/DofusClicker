@@ -7,10 +7,10 @@
 
 [sub_resource type="Resource" id="Resource_x786j"]
 script = ExtResource("1_1s5gu")
-min = 27
-max = 29
-min_crit = 32
-max_crit = 35
+min = 10
+max = 13
+min_crit = 15
+max_crit = 18
 
 [sub_resource type="Resource" id="Resource_ogy41"]
 resource_name = "Dommages Eau (vol de vie)"
@@ -54,7 +54,7 @@ name = "Félintion"
 description = "Vole de la vie dans l'élement Eau."
 texture = ExtResource("2_ur1di")
 img_url = ""
-pa_cost = 4
+pa_cost = 3
 per_crit = 0.15
 cooldown = 0.0
 priority = 0

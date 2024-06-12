@@ -21,10 +21,10 @@ amounts = Array[ExtResource("2_t1pvk")]([])
 
 [sub_resource type="Resource" id="Resource_lxary"]
 script = ExtResource("2_t1pvk")
-min = -29
-max = -27
-min_crit = -35
-max_crit = -32
+min = -13
+max = -10
+min_crit = -18
+max_crit = -15
 
 [sub_resource type="Resource" id="Resource_i7mdl"]
 resource_name = "Soin Feu"
@@ -42,10 +42,10 @@ amounts = Array[ExtResource("2_t1pvk")]([SubResource("Resource_lxary")])
 
 [sub_resource type="Resource" id="Resource_cv2si"]
 script = ExtResource("2_t1pvk")
-min = 27
-max = 29
-min_crit = 32
-max_crit = 35
+min = -13
+max = -10
+min_crit = -18
+max_crit = -15
 
 [sub_resource type="Resource" id="Resource_i5e4t"]
 resource_name = "Dommages Eau"
@@ -86,7 +86,7 @@ amounts = Array[ExtResource("2_t1pvk")]([SubResource("Resource_c84ur")])
 script = ExtResource("1_j0ww4")
 id = 0
 name = "Tout ou Rien"
-description = ""
+description = "Occasionne des dommages Eau en zone ou soigne les alliés dans l'élément Feu."
 texture = ExtResource("2_xf5cg")
 img_url = ""
 pa_cost = 2

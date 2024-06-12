@@ -18,7 +18,7 @@ extends TextureProgressBar
 	get:
 		return cval if auto_fill else value as int
 	set(val):
-		if auto_fill and val < cval:
+		if auto_fill and val < cval and speed > 0:
 			value = 0
 		cval = val
 		if !auto_fill: value = val
@@ -60,7 +60,8 @@ func setup_labels():
 func _process(delta):
 	if auto_fill:
 		if cval < mval or value <= max_value:
-			value += float(delta * speed)
+			if speed > 0:
+				value += float(delta * speed)
 			# si la barre est complète, on gagne 1 PA et on reset la barre
 			if value >= max_value:
 				cval += 1

@@ -25,6 +25,7 @@ var attack_callable: Callable
 signal dies
 
 var erosion := 0.05
+var taken_damage_rate: int = 100
 
 
 #region Caractéristiques
@@ -59,7 +60,7 @@ func get_caracacteristique_for_type(type: CaracType):
 	else:
 		carac = caracteristiques.filter(func(c): return c.type == type)
 	if carac.size() != 1:
-		console.log_error(NO_CARAC_FOUND % [CaracType.find_key(type), name])
+		push_error(NO_CARAC_FOUND % [CaracType.find_key(type), name])
 		return null
 	return carac[0]
 
@@ -87,6 +88,7 @@ func init_bars():
 		pa_bar.cval += get_pa() - curmval)
 	connect_to_stat(Caracteristique.Type.PM, func():
 		var curmval = pm_bar.mval
+		pm_bar.speed = 0.0
 		pm_bar.mval = get_pm()
 		pm_bar.cval += get_pa() - curmval)
 
@@ -109,6 +111,7 @@ func get_pa() -> int:
 
 func take_damage(amount: int, element: Element):
 	if amount > 0:
+		amount = amount * round(taken_damage_rate / 100.0)
 		amount = apply_resistance(amount, element)
 		apply_erosion(amount)
 		if is_monster(self):

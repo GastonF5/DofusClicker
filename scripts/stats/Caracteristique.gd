@@ -38,7 +38,8 @@ enum Type {
 	RET_PM,
 	DO_POU,
 	RES_POU,
-	RES_CRITIQUES
+	RES_CRITIQUES,
+	RES_DOMMAGES,
 }
 
 enum Element {

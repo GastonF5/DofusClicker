@@ -70,8 +70,8 @@ func get_neighbors():
 	var index = get_plate_index()
 	var plates = get_parent().get_children()
 	var neighbor_plates = []
-	if index - 1 >= 0:
+	if index - 1 >= 1:
 		neighbor_plates.append(plates[index - 1])
-	if index + 1 <= plates.size() - 1:
+	if index + 1 <= plates.size() - 2:
 		neighbor_plates.append(plates[index + 1])
 	return neighbor_plates

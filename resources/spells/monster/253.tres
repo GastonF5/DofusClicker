@@ -6,36 +6,36 @@
 
 [sub_resource type="Resource" id="Resource_82ex0"]
 script = ExtResource("1_3hsjb")
-min = 6
-max = 15
+min = 2
+max = 5
 min_crit = 0
 max_crit = 0
 
 [sub_resource type="Resource" id="Resource_e3h6f"]
 script = ExtResource("1_3hsjb")
-min = 8
-max = 17
+min = 3
+max = 6
 min_crit = 0
 max_crit = 0
 
 [sub_resource type="Resource" id="Resource_0o6fq"]
 script = ExtResource("1_3hsjb")
-min = 10
-max = 19
+min = 4
+max = 7
 min_crit = 0
 max_crit = 0
 
 [sub_resource type="Resource" id="Resource_g2vjd"]
 script = ExtResource("1_3hsjb")
-min = 12
-max = 21
+min = 5
+max = 8
 min_crit = 0
 max_crit = 0
 
 [sub_resource type="Resource" id="Resource_vafrb"]
 script = ExtResource("1_3hsjb")
-min = 14
-max = 25
+min = 6
+max = 9
 min_crit = 0
 max_crit = 0
 

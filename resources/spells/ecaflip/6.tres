@@ -28,10 +28,10 @@ amounts = Array[ExtResource("1_pw7nm")]([SubResource("Resource_jx7vv")])
 
 [sub_resource type="Resource" id="Resource_yjytp"]
 script = ExtResource("1_pw7nm")
-min = 23
-max = 26
-min_crit = 28
-max_crit = 31
+min = 10
+max = 14
+min_crit = 15
+max_crit = 18
 
 [sub_resource type="Resource" id="Resource_o5rgf"]
 resource_name = "Dommages Air"

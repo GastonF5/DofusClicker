@@ -1,0 +1,66 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=10 format=3 uid="uid://di2mrj12648ap"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_fb6p1"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_wvavi"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_05fyn"]
+
+[sub_resource type="Resource" id="Resource_52dbk"]
+script = ExtResource("1_fb6p1")
+min = 2
+max = 4
+min_crit = 4
+max_crit = 6
+
+[sub_resource type="Resource" id="Resource_euxwq"]
+script = ExtResource("1_fb6p1")
+min = 3
+max = 5
+min_crit = 5
+max_crit = 7
+
+[sub_resource type="Resource" id="Resource_fq6x0"]
+script = ExtResource("1_fb6p1")
+min = 4
+max = 6
+min_crit = 6
+max_crit = 8
+
+[sub_resource type="Resource" id="Resource_3wwro"]
+script = ExtResource("1_fb6p1")
+min = 5
+max = 7
+min_crit = 7
+max_crit = 9
+
+[sub_resource type="Resource" id="Resource_noy7t"]
+script = ExtResource("1_fb6p1")
+min = 6
+max = 8
+min_crit = 8
+max_crit = 10
+
+[sub_resource type="Resource" id="Resource_h8mep"]
+resource_name = "Dommages Terre"
+script = ExtResource("2_05fyn")
+type = 0
+time = 0.0
+target_type = 0
+element = 1
+lifesteal = false
+caracteristic = 0
+method_name = &""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_fb6p1")]([SubResource("Resource_52dbk"), SubResource("Resource_euxwq"), SubResource("Resource_fq6x0"), SubResource("Resource_3wwro"), SubResource("Resource_noy7t")])
+
+[resource]
+script = ExtResource("1_wvavi")
+id = 247
+name = "Morsure"
+description = "Inflige des dégâts dans l'élément Terre."
+img_url = "https://api.dofusdb.fr/img/spells/sort_10076.png"
+pa_cost = 3
+per_crit = 0.05
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_05fyn")]([SubResource("Resource_h8mep")])

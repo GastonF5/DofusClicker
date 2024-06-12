@@ -43,8 +43,6 @@ var max_hp: int:
 		max_hp = value
 		update_pdv()
 
-static var taken_damage_rate: int = 100
-
 var selected_spell: Spell
 
 static var selected_plate: EntityContainer:

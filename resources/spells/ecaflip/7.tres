@@ -7,10 +7,10 @@
 
 [sub_resource type="Resource" id="Resource_32jmg"]
 script = ExtResource("1_hqvmm")
-min = 13
-max = 15
-min_crit = 16
-max_crit = 18
+min = 5
+max = 8
+min_crit = 9
+max_crit = 12
 
 [sub_resource type="Resource" id="Resource_hkv5o"]
 resource_name = "Dommages Air"
@@ -51,7 +51,7 @@ amounts = Array[ExtResource("1_hqvmm")]([SubResource("Resource_el4xi")])
 script = ExtResource("1_xibsw")
 id = 0
 name = "Griffe de Ceangal"
-description = ""
+description = "Occasionne des dommages Air en zone."
 texture = ExtResource("2_okr7j")
 img_url = ""
 pa_cost = 2

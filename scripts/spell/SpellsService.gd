@@ -50,25 +50,29 @@ static func perform_damage(caster: Entity, target: Entity, effect: EffectResourc
 
 static func perform_bonus(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
 	var amount = effect.get_amount(crit, grade)
+	var carac
 	match effect.caracteristic:
 		StatType.EROSION:
 			amount = amount / 100.0
 			target.erosion += amount
-			if effect.time != 0:
-				var timer = create_timer(effect.time)
-				await timer.timeout
-				timer.queue_free()
-				if is_instance_valid(target):
-					target.erosion -= amount
+		StatType.RES_DOMMAGES:
+			target.taken_damage_rate -= amount
 		_:
-			var carac = target.get_caracacteristique_for_type(effect.caracteristic)
+			carac = target.get_caracacteristique_for_type(effect.caracteristic)
 			carac.amount += amount
-			if effect.time != 0:
-				var timer = create_timer(effect.time)
-				await timer.timeout
-				timer.queue_free()
-				if is_instance_valid(target):
+	if effect.time != 0:
+		var timer = create_timer(effect.time)
+		await timer.timeout
+		timer.queue_free()
+		if is_instance_valid(target):
+			match effect.caracteristic:
+				StatType.EROSION:
+					target.erosion -= amount
+				StatType.RES_DOMMAGES:
+					target.taken_damage_rate += amount
+				_:
 					carac.amount -= amount
+
 
 
 static func perform_retrait(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
@@ -101,26 +105,24 @@ static func perform_random(caster: Entity, target: Entity, effect: EffectResourc
 
 
 #region Ecaflip
-static func chance_ecaflip(_caster: Entity, _target: Entity, _effect: EffectResource, _crit: bool, _grade: int, _params: Array):
-	PlayerManager.taken_damage_rate = 50
+static func chance_ecaflip(caster: Entity, _target: Entity, _effect: EffectResource, _crit: bool, _grade: int, _params: Array):
+	caster.taken_damage_rate = 50
 	var timer = create_timer(5)
 	await timer.timeout
 	timer.queue_free()
-	PlayerManager.taken_damage_rate = 200
+	caster.taken_damage_rate = 200
 	timer = create_timer(3)
 	await timer.timeout
 	timer.queue_free()
-	PlayerManager.taken_damage_rate = 100
+	caster.taken_damage_rate = 100
 
 static var face = false
 static func pile_face(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int, _params: Array):
-	var _min = effect.crit_min_amounts[grade] if crit else effect.min_amounts[grade]
-	var _max = effect.crit_max_amounts[grade] if crit else effect.max_amounts[grade]
-	if face:
-		_min -= 6 if crit else 5
-		_max -= 6 if crit else 5
+	var amount = effect.get_amount(crit, grade)
+	if !crit and face:
+		amount -= 5
 	face = !face
-	target.take_damage(randi_range(_min, _max), effect.element)
+	target.take_damage(amount, effect.element)
 #endregion
 
 
@@ -143,8 +145,8 @@ static func get_degats(min_damage: int, max_damage: int, type: StatType) -> int:
 	return multiplicateur * randi_range(min_damage, max_damage) + fixe
 
 
-static func get_neighbor_entities():
-	var neighbor_entities = []
+static func get_neighbor_entities() -> Array[Entity]:
+	var neighbor_entities: Array[Entity] = []
 	for plate in PlayerManager.selected_plate.get_neighbors():
 		if plate.entity:
 			neighbor_entities.append(plate.entity)
