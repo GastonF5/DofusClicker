@@ -12,15 +12,21 @@
 bg_color = Color(0, 0, 0, 0.505882)
 
 [node name="Spell" type="PanelContainer" node_paths=PackedStringArray("spell_texture", "cooldown_bar")]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+custom_minimum_size = Vector2(64, 64)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 2.0
+offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-mouse_filter = 1
-mouse_default_cursor_shape = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_pcjaj")
 script = ExtResource("1_vxv8w")
 spell_texture = NodePath("MarginContainer/SpellTexture")
@@ -29,12 +35,14 @@ cooldown_bar = NodePath("MarginContainer/SpellTexture/ProgressBar")
 [node name="Background" type="TextureRect" parent="."]
 visible = false
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("2_iy2cs")
 expand_mode = 3
 stretch_mode = 5
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 2
@@ -42,6 +50,7 @@ theme_override_constants/margin_bottom = 2
 
 [node name="SpellTexture" type="TextureRect" parent="MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("3_kb0pb")
 expand_mode = 3
 stretch_mode = 5
@@ -53,7 +62,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
+mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxEmpty_c3dqg")
 theme_override_styles/fill = SubResource("StyleBoxFlat_1h31x")
 value = 50.0

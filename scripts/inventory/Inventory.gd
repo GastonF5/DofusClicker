@@ -1,20 +1,15 @@
 class_name Inventory
-extends Control
-
-
-static var slots = []
-
-signal item_entered_tree
-signal item_exiting_tree
-
-var console: Console
+extends SlotContainer
 
 
 func _ready():
-	console = get_tree().current_scene.get_node("%Console")
-	for slot in get_children():
-		slots.append(slot)
-		connect_slot_signals(slot)
+	slot_group_name = "inventory_slot"
+	super()
+
+
+func connect_slot_signals(slot):
+	super(slot)
+	slot.child_exiting_tree.connect(_on_item_exiting_slot)
 
 
 func get_item(slot) -> Item:
@@ -24,7 +19,10 @@ func get_item(slot) -> Item:
 
 
 func get_slot(item):
-	var items_in_inventory = slots.map(func(s): return null if s.get_children().size() != 1 else s.get_child(0)).filter(func(i): return i != null and Item.equals(item, i))
+	var items_in_inventory = slots.map(func(s):
+		if s.get_children().size() != 1:
+			return null
+		return s.get_child(0)).filter(func(i): return i and Item.equals(item, i))
 	if items_in_inventory.size() > 1:
 		console.log_error("Plus d'un slot a été trouvé")
 		return null
@@ -36,9 +34,9 @@ func add_item(item: Item, _slot: Button = null):
 		add_item(item)
 		return
 	var item_in_slot: Item
-	if _slot != null:
+	if _slot:
 		item_in_slot = get_item(_slot)
-		if item_in_slot == null:
+		if !item_in_slot:
 			_slot.add_child(item)
 			item_entered_tree.emit(get_items())
 			return
@@ -53,7 +51,7 @@ func add_item(item: Item, _slot: Button = null):
 	else:
 		for slot in slots:
 			item_in_slot = get_item(slot)
-			if item_in_slot == null:
+			if !item_in_slot:
 				slot.add_child(item)
 				item_entered_tree.emit(get_items())
 				item.drop_parent = slot
@@ -63,7 +61,7 @@ func add_item(item: Item, _slot: Button = null):
 				item_entered_tree.emit(get_items())
 				return
 		# si l'item n'a pas été ajouté, on étend l'inventaire et on rappelle la fonction pour ajouter l'item
-		if item.get_parent() == null:
+		if !item.get_parent():
 			expand()
 			add_item(item)
 
@@ -81,24 +79,19 @@ func remove_items(items: Array):
 
 
 func check_equipment_slot(item: DraggableControl, slot) -> bool:
-	var old_parent_is_equip_slot = item.old_parent != null and item.old_parent.is_in_group("equipment_slot")
-	var drop_parent_is_equip_slot = item.drop_parent != null and item.drop_parent.is_in_group("equipment_slot")
-	return slot != null and old_parent_is_equip_slot and !drop_parent_is_equip_slot
+	var old_parent_is_equip_slot = item.old_parent and item.old_parent.is_in_group("equipment_slot")
+	var drop_parent_is_equip_slot = item.drop_parent and item.drop_parent.is_in_group("equipment_slot")
+	return slot and old_parent_is_equip_slot and !drop_parent_is_equip_slot
 
 
-static func _on_mouse_entered_slot(slot):
-	var dragged_item = PlayerManager.dragged_item
-	if dragged_item != null:
-		dragged_item.drop_parent = slot
+func set_dragged_entering_drop_parent(slot):
+	dragged = PlayerManager.dragged_item
+	super(slot)
 
 
-static func _on_mouse_exited_slot():
-	var dragged_item = PlayerManager.dragged_item
-	if dragged_item != null:
-		if EquipmentManager.is_equip_slot(dragged_item.old_parent):
-			dragged_item.drop_parent = Inventory.slots[0]
-		else:
-			dragged_item.drop_parent = dragged_item.old_parent
+func set_dragged_exited_drop_parent():
+	dragged = PlayerManager.dragged_item
+	super()
 
 
 func expand():
@@ -111,7 +104,10 @@ func expand():
 
 func get_items():
 	var items = slots.duplicate()
-	items = items.map(func(s): return null if s.get_children().size() != 1 else s.get_child(0) as Item).filter(func(i): return i != null)
+	items = items.map(func(s):
+		if s.get_children().size() != 1:
+			return null
+		return s.get_child(0) as Item).filter(func(i): return i != null)
 	return items.map(func(item): return item as Item)
 
 
@@ -119,9 +115,3 @@ func _on_item_exiting_slot(item):
 	var items = get_items()
 	items.erase(item)
 	item_exiting_tree.emit(get_items())
-
-
-func connect_slot_signals(slot):
-	slot.mouse_entered.connect(_on_mouse_entered_slot.bind(slot))
-	slot.mouse_exited.connect(_on_mouse_exited_slot)
-	slot.child_exiting_tree.connect(_on_item_exiting_slot)

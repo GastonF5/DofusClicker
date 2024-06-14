@@ -11,10 +11,12 @@ var dragged := false:
 		dragged = value
 		if value:
 			z_index = 10
-			PlayerManager.dragged_item = self
+			if is_item(): PlayerManager.dragged_item = self
+			if is_spell(): PlayerManager.dragged_spell = self
 		else:
 			z_index = 0
-			PlayerManager.dragged_item = null
+			if is_item(): PlayerManager.dragged_item = null
+			if is_spell(): PlayerManager.dragged_spell = null
 
 var inventory: Inventory
 var initialized := false
@@ -42,19 +44,21 @@ func _process(_delta):
 
 
 func _input(event):
-	if dragged and event.is_action_released("LMB"):
-		drop()
+	if dragged:
+		if (is_item() and event.is_action_released("LMB")) or (is_spell() and event.is_action_released("RMB")):
+			drop()
 
 
 func _on_button_down():
 	if draggable:
-		drag()
+		if is_item() or (is_spell() and Input.is_action_pressed("RMB")):
+			drag()
 
 
 func drag():
 	dragged = true
 	old_parent = get_parent()
-	old_parent.set_pressed_no_signal(false)
+	#old_parent.set_pressed_no_signal(false)
 	if get_parent() != null:
 		get_parent().remove_child(self)
 		OverUI.add_child(self)
@@ -70,7 +74,6 @@ func change_parent():
 	if old_parent.button_down.is_connected(_on_button_down):
 		old_parent.button_down.disconnect(_on_button_down)
 	get_parent().remove_child(self)
-	inventory.add_item(self, drop_parent)
 	old_parent = null
 	drop_parent.button_down.connect(_on_button_down)
 
@@ -81,3 +84,11 @@ func _on_mouse_entered():
 
 func _on_mouse_exited():
 	mouse_on = false
+
+
+func is_item():
+	return self is Item
+
+
+func is_spell():
+	return self is Spell

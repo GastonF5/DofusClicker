@@ -12,7 +12,6 @@
 [ext_resource type="Script" path="res://scripts/manager/EquipmentManager.gd" id="3_nkpwv"]
 [ext_resource type="Theme" uid="uid://ctf5aaqx8jyeo" path="res://resources/themes/experience_bar.tres" id="3_prl7k"]
 [ext_resource type="Script" path="res://scripts/manager/StatsManager.gd" id="4_13j6f"]
-[ext_resource type="Texture2D" uid="uid://brcl6cos3cake" path="res://assets/icons/icon_kama.png" id="4_jjqja"]
 [ext_resource type="Script" path="res://scripts/manager/RecipeManager.gd" id="5_51m8x"]
 [ext_resource type="PackedScene" uid="uid://humcuoo3q2tn" path="res://scenes/equipment/equipment_container.tscn" id="8_larhl"]
 [ext_resource type="Script" path="res://scripts/Datas.gd" id="9_u2rtq"]
@@ -21,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://bx13bnw5chi1h" path="res://assets/window_icon/sorts.png" id="16_og6sm"]
 [ext_resource type="PackedScene" uid="uid://ijqxn7khforp" path="res://scenes/area_peeker.tscn" id="17_tk01a"]
 [ext_resource type="Texture2D" uid="uid://0ujq6wd2dvfm" path="res://assets/common/window/window_green_background.jpg" id="20_5artd"]
+[ext_resource type="Texture2D" uid="uid://bov74ckekhf83" path="res://assets/common/block/block_border.png" id="21_xjomn"]
 [ext_resource type="Texture2D" uid="uid://dky7mxoyl8fbb" path="res://assets/hud/background_hud.png" id="22_8pyuk"]
 [ext_resource type="Texture2D" uid="uid://cakxs23d4ilwk" path="res://assets/window_icon/fight_info.png" id="22_tbr8n"]
 [ext_resource type="PackedScene" uid="uid://bxcvwsqptloar" path="res://scenes/stats/stats_container.tscn" id="24_ocgbs"]
@@ -49,6 +49,13 @@ expand_margin_top = 9.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3iahd"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_488av"]
+texture = ExtResource("21_xjomn")
+texture_margin_left = 7.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 7.0
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fempj"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nfdc8"]
@@ -64,10 +71,6 @@ texture = ExtResource("34_uav3t")
 texture = ExtResource("35_61trk")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_du4k8"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_vraqn"]
-outline_size = 2
-outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vjwvv"]
 
@@ -90,14 +93,13 @@ unique_name_in_owner = true
 script = ExtResource("4_13j6f")
 stats_container = NodePath("../../GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Stats")
 
-[node name="PlayerManager" type="Node" parent="Managers" node_paths=PackedStringArray("spells_container", "stats_container", "inventory_container", "xp_bar", "kamas_label", "spell_bar", "player_bars", "console")]
+[node name="PlayerManager" type="Node" parent="Managers" node_paths=PackedStringArray("spells_container", "stats_container", "inventory_container", "xp_bar", "spell_bar", "player_bars", "console")]
 unique_name_in_owner = true
 script = ExtResource("2_06gc8")
 spells_container = NodePath("../../GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Sorts")
 stats_container = NodePath("../../GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Stats")
 inventory_container = NodePath("../../GUI/Main/HBC/RightSide/VSplitContainer/InventoryContainer")
 xp_bar = NodePath("../../GUI/Main/HBC/MiddleContainer/VBC/ExperienceBar")
-kamas_label = NodePath("../../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/AspectRatioContainer/KamasContainer/KamasLabel")
 spell_bar = NodePath("../../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/SpellBar")
 player_bars = NodePath("../../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/EntityBars")
 console = NodePath("../../GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Infos/MarginContainer/Console")
@@ -267,43 +269,52 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxEmpty_3iahd")
 
-[node name="PlayerBarContainer" type="PanelContainer" parent="GUI/Main/HBC/MiddleContainer/VBC"]
+[node name="PlayerBarContainer" type="Panel" parent="GUI/Main/HBC/MiddleContainer/VBC"]
 custom_minimum_size = Vector2(0, 160)
 layout_mode = 2
 size_flags_vertical = 8
 mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_488av")
 
 [node name="PlayerBarBackground" type="TextureRect" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer"]
 layout_mode = 2
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 870.0
+offset_bottom = 149.833
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("22_8pyuk")
 expand_mode = 5
 
 [node name="HUD" type="Panel" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer"]
 layout_mode = 2
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 870.0
+offset_bottom = 149.833
 theme_override_styles/panel = SubResource("StyleBoxEmpty_fempj")
 
 [node name="EntityBars" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD" instance=ExtResource("40_5kut3")]
-layout_mode = 1
+layout_mode = 2
 anchors_preset = 0
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 86.5
-offset_top = 21.0
-offset_right = 86.5
-offset_bottom = 21.0
+offset_right = 138.0
+offset_bottom = 33.0
 grow_horizontal = 1
 grow_vertical = 1
 scale = Vector2(1.5, 1.5)
 
 [node name="StartFightButton" type="Button" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD"]
 unique_name_in_owner = true
-layout_mode = 1
-offset_left = 159.5
-offset_top = 11.0
-offset_right = 449.5
-offset_bottom = 97.0
+layout_mode = 2
+offset_left = 207.5
+offset_top = 6.0
+offset_right = 493.5
+offset_bottom = 101.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -318,12 +329,12 @@ text = "Lancer le combat"
 
 [node name="AutoStartFight" type="Control" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD"]
 unique_name_in_owner = true
-visible = false
+layout_mode = 1
 anchors_preset = 0
-offset_left = 331.5
-offset_top = 100.0
-offset_right = 371.5
-offset_bottom = 140.0
+offset_left = 323.5
+offset_top = 104.0
+offset_right = 323.5
+offset_bottom = 104.0
 
 [node name="HBC" type="HBoxContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/AutoStartFight"]
 layout_mode = 0
@@ -341,12 +352,12 @@ text = "Auto start fight"
 
 [node name="ReloadData" type="Button" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD"]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -8.0
-offset_bottom = 8.0
-grow_horizontal = 0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 100.0
+grow_vertical = 0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 text = "Reload data"
@@ -358,8 +369,6 @@ anchor_left = 1.0
 anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -419.0
-offset_right = 2.0
 grow_horizontal = 0
 
 [node name="AspectRatioContainer" type="PanelContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD"]
@@ -377,6 +386,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_du4k8")
 [node name="XPContainer" type="HBoxContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/AspectRatioContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
+size_flags_vertical = 8
 
 [node name="Space" type="Control" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/AspectRatioContainer/XPContainer"]
 custom_minimum_size = Vector2(200, 0)
@@ -397,29 +407,10 @@ layout_mode = 2
 size_flags_horizontal = 0
 text = "Nv. 1"
 
-[node name="KamasContainer" type="HBoxContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/AspectRatioContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-alignment = 2
-
-[node name="KamasTexture" type="TextureRect" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/AspectRatioContainer/KamasContainer"]
-layout_mode = 2
-texture = ExtResource("4_jjqja")
-expand_mode = 2
-stretch_mode = 3
-
-[node name="KamasLabel" type="Label" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/AspectRatioContainer/KamasContainer"]
-layout_mode = 2
-text = "5"
-label_settings = SubResource("LabelSettings_vraqn")
-
-[node name="Space" type="Control" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/AspectRatioContainer/KamasContainer"]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-
 [node name="ExperienceBar" type="ProgressBar" parent="GUI/Main/HBC/MiddleContainer/VBC" node_paths=PackedStringArray("lvl_label")]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
+size_flags_vertical = 8
 theme = ExtResource("3_prl7k")
 value = 50.0
 allow_greater = true

@@ -13,7 +13,6 @@ var player_entity: Entity
 var health_timer: Node
 
 @export var xp_bar: ExperienceBar
-@export var kamas_label: Label
 @export var spell_bar: SpellBar
 @export var player_bars: EntityBars
 var hp_bar: CustomBar:
@@ -26,7 +25,9 @@ var pm_bar: CustomBar:
 @export var console: Console
 
 static var item_description: ItemDescription
-static var dragged_item: DraggableControl
+static var dragged_item: Item
+static var dragged_spell: Spell
+
 var max_pa: int:
 	set(value):
 		max_pa = value
@@ -89,7 +90,6 @@ func initialize(selected_class: String):
 	player_entity.init(true)
 	
 	xp_bar.init()
-	kamas_label.text = "0"
 	
 	create_item_description()
 	initialized = true
@@ -116,9 +116,9 @@ func init_bars():
 
 func _input(event):
 	if initialized and !console.input.has_focus() and !$%RecipeManager.prompt_has_focus:
-		for i in range(1, 9):
-			if event.is_action_pressed("%d" % i) and spell_bar.has_spell(i - 1):
-				spell_bar.get_spell(i - 1).do_action()
+		#for i in range(1, 9):
+			#if event.is_action_pressed("%d" % i) and spell_bar.has_spell(i - 1):
+				#spell_bar.get_spell(i - 1).do_action()
 		if event.is_action_pressed("right"):
 			PlayerManager.select_next_plate()
 		if event.is_action_pressed("left"):

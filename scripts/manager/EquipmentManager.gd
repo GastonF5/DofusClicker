@@ -10,16 +10,18 @@ const SLOT_TEXTURE_PATH = "res://assets/equipment/slots/%s.png"
 @onready var console: Console = $%Console
 
 var slots = []
+var inventory: Inventory
 
 signal equiped
 signal desequiped
 
 
 func initialize():
+	inventory = get_tree().current_scene.get_node("%PlayerManager").inventory
 	for slot in equipment_container.get_node("%EquipmentSlots").get_children():
 		slots.append(slot)
 		slot.mouse_entered.connect(_on_mouse_entered_slot.bind(slot))
-		slot.mouse_exited.connect(Inventory._on_mouse_exited_slot)
+		slot.mouse_exited.connect(inventory.set_dragged_exited_drop_parent)
 		slot.child_entered_tree.connect(on_equiped.bind(slot))
 		slot.child_exiting_tree.connect(on_desequiped.bind(slot))
 
@@ -40,15 +42,11 @@ func on_desequiped(item: Item, slot):
 	desequiped.emit(item)
 
 
-#func get_equip_slot(type: EquipmentResource.Type):
-	#return slots.filter(func(s): return s.name.begins_with(EquipmentResource.Type.get(type).to_pascal_case()))[0]
-
-
 func _on_mouse_entered_slot(slot):
 	var dragged_item = PlayerManager.dragged_item
 	if dragged_item != null and dragged_item.resource.equip_res != null:
 		if slot.name.contains(dragged_item.resource.equip_res.get_type().to_pascal_case()):
-			Inventory._on_mouse_entered_slot(slot)
+			inventory.set_dragged_entering_drop_parent(slot)
 
 
 func dict_contains_key(dict: Dictionary, key: String) -> bool:
@@ -56,10 +54,4 @@ func dict_contains_key(dict: Dictionary, key: String) -> bool:
 
 
 static func is_equip_slot(slot):
-	if slot != null:
-		return slot.get_groups().has("equipment_slot")
-	return false
-
-
-func get_equipment():
-	return slots.map(func(s): return null if s.get_children().size() != 0 else s.get_child(0)).filter(func(e): return e != null)
+	return slot and slot.get_groups().has("equipment_slot")

@@ -1,5 +1,5 @@
 class_name Spell
-extends Control
+extends DraggableControl
 
 var player_manager: PlayerManager
 
@@ -10,43 +10,53 @@ var resource: SpellResource
 var timer: Timer
 
 
-func _process(_delta):
-	if timer != null:
+func init_player_manager():
+	if !player_manager:
+		player_manager = get_tree().current_scene.get_node("%PlayerManager")
+
+
+func _process(delta):
+	super(delta)
+	if timer:
 		cooldown_bar.value = timer.time_left * 100
-	#if is_clickable and player_manager:
-	if player_manager:
+	if player_manager and draggable:
 		if player_manager.pa_bar.cval < resource.pa_cost:
 			spell_texture.modulate = Color.ORANGE_RED
 		else:
 			spell_texture.modulate = Color.WHITE
 
 
-func init(res: SpellResource, clickable: bool):
-	player_manager = get_tree().current_scene.get_node("%PlayerManager")
-	#global_position -= size/2
+func _enter_tree():
+	super()
+	init_player_manager()
+
+
+func change_parent():
+	super()
+	drop_parent.add_child(self)
+
+
+func init(res: SpellResource, _draggable: bool):
+	draggable = _draggable
 	name = res.name
 	resource = res
 	spell_texture.texture = res.texture
-	if clickable:
-		#init_clickable(spell_texture)
-		#clicked.connect(do_action)
+	if _draggable:
 		if res.cooldown != 0:
 			cooldown_bar.max_value = res.cooldown * 100
 			cooldown_bar.value = 0
 		else:
 			cooldown_bar.visible = false
 	else:
-		#is_clickable = false
 		cooldown_bar.visible = false
 
 
-func do_action(_self = null):
-	if resource.pa_cost <= player_manager.pa_bar.cval and PlayerManager.selected_plate and !timer:# and is_clickable:
+func do_action():
+	if resource.pa_cost <= player_manager.pa_bar.cval and PlayerManager.selected_plate and !timer:
 		if resource.pa_cost != 0:
 			player_manager.pa_bar.cval -= resource.pa_cost
 		cast()
 		if resource.cooldown != 0:
-			#is_clickable = false
 			timer = Timer.new()
 			add_child(timer)
 			timer.wait_time = resource.cooldown
@@ -58,7 +68,6 @@ func on_timeout():
 	remove_child(timer)
 	timer.queue_free()
 	timer = null
-	#is_clickable = true
 	cooldown_bar.value = 0
 
 
@@ -68,6 +77,6 @@ func cast():
 
 static func instantiate(spell_res: SpellResource, parent: Control, clickable = true) -> Spell:
 	var spell = FileLoader.get_packed_scene("spell/spell").instantiate()
-	parent.add_child(spell)
 	spell.init(spell_res, clickable)
+	parent.add_child(spell)
 	return spell

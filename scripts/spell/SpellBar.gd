@@ -1,8 +1,24 @@
 class_name SpellBar
-extends Control
+extends SlotContainer
 
 
 @export var grid: GridContainer
+
+
+func _ready():
+	slot_group_name = "spell_slot"
+	super()
+
+
+func connect_slot_signals(slot):
+	super(slot)
+	slot.button_up.connect(cast_spell_button.bind(slot))
+
+
+func cast_spell_button(slot):
+	var spell = null if slot.get_child_count() == 0 else slot.get_child(0)
+	if spell and spell is Spell:
+		spell.do_action()
 
 
 func add_spell(spell_res: SpellResource):
@@ -38,3 +54,13 @@ func get_spell(index: int):
 
 func has_spell(index: int):
 	return grid.get_child(index).get_child_count() != 0
+
+
+func set_dragged_entering_drop_parent(slot):
+	dragged = PlayerManager.dragged_spell
+	super(slot)
+
+
+func set_dragged_exited_drop_parent():
+	dragged = PlayerManager.dragged_spell
+	super()

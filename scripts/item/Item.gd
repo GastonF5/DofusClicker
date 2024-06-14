@@ -52,6 +52,11 @@ func _exit_tree():
 			get_parent().mouse_exited.disconnect(_on_mouse_exited)
 
 
+func change_parent():
+	super()
+	inventory.add_item(self, drop_parent)
+
+
 func init(item_res: ItemResource, _inventory: Inventory, _draggable, low):
 	self.texture = null
 	count_label = $Count
@@ -91,7 +96,6 @@ static func equals(item1, item2) -> bool:
 		item1_res = item1.resource
 	if is_instance_of(item2, Item):
 		item2_res = item2.resource
-		
 	if item1_res.equip_res:
 		return false
 	return item1_res.name == item2_res.name

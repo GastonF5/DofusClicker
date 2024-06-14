@@ -62,7 +62,6 @@ func instantiate_monster() -> Monster:
 func _on_monster_dies(xp: int):
 	var player_manager = get_tree().current_scene.get_node("%PlayerManager")
 	player_manager.xp_bar.gain_xp(xp)
-	player_manager.kamas_label.text = str(int(player_manager.kamas_label.text) + randi_range(5, 10))
 	monsters.assign(get_monsters_on_plates())
 	if monsters.filter(func(m): return !m.dying).is_empty():
 		end_fight()
