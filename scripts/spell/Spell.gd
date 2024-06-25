@@ -36,6 +36,19 @@ func change_parent():
 	drop_parent.add_child(self)
 
 
+func _on_mouse_entered():
+	super()
+	if !PlayerManager.dragged_item:
+		PlayerManager.spell_description.init_spell(resource)
+		print("oui")
+
+
+func _on_mouse_exited():
+	super()
+	if !PlayerManager.dragged_item:
+		PlayerManager.spell_description.visible = false
+
+
 func init(res: SpellResource, _draggable: bool):
 	draggable = _draggable
 	name = res.name

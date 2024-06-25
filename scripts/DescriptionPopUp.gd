@@ -1,18 +1,18 @@
-class_name ItemDescription
-extends PanelContainer
+class_name DescriptionPopUp
+extends Control
 
 
-@export var item_texture: TextureRect
+@export var texture: TextureRect
 @export var name_label: RichTextLabel
 
 @export var effects_label: Label
 @export var effects_container: VBoxContainer
 
 
-func init(item_res: ItemResource, low: bool, stats: Array[StatResource] = []):
+func init_item(item_res: ItemResource, low: bool, stats: Array[StatResource] = []):
 	name = item_res.name.to_pascal_case() + "Description"
-	item_texture.texture = item_res.get_texture(low)
-	compute_name_label(item_res)
+	texture.texture = item_res.get_texture(low)
+	compute_name_label(item_res.name, item_res.id, item_res.level)
 	clear_effect_labels()
 	if !stats.is_empty():
 		for effect in stats:
@@ -21,6 +21,16 @@ func init(item_res: ItemResource, low: bool, stats: Array[StatResource] = []):
 		for effect in item_res.equip_res.stats:
 			add_effect_label(effect)
 	set_mouse_ignore()
+	visible = true
+
+
+func init_spell(spell_res: SpellResource):
+	name = spell_res.name.to_pascal_case() + "Description"
+	texture.texture = spell_res.texture
+	compute_name_label(spell_res.name, spell_res.id)
+	clear_effect_labels()
+	set_mouse_ignore()
+	visible = true
 
 
 func set_mouse_ignore():
@@ -29,13 +39,14 @@ func set_mouse_ignore():
 		child.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 
-func compute_name_label(item_res: ItemResource):
+func compute_name_label(_name: String, _id: int, _level: int = -1):
 	name_label.clear()
 	name_label.push_outline_size(-6)
-	name_label.append_text(item_res.name + " (%d)" % item_res.id + "\n")
-	name_label.push_color(Color.GRAY)
-	name_label.append_text("Niveau %s" % item_res.level)
-	name_label.pop()
+	name_label.append_text(_name + " (%d)" % _id)
+	if _level >= 0:
+		name_label.push_color(Color.GRAY)
+		name_label.append_text("\n" + "Niveau %d" % _level)
+		name_label.pop()
 
 
 func clear_effect_labels():

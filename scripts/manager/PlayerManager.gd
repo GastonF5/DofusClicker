@@ -24,7 +24,8 @@ var pm_bar: CustomBar:
 
 @export var console: Console
 
-static var item_description: ItemDescription
+static var item_description: DescriptionPopUp
+static var spell_description: DescriptionPopUp
 static var dragged_item: Item
 static var dragged_spell: Spell
 
@@ -67,11 +68,9 @@ func initialize(selected_class: String):
 	StatsManager.console = console
 	
 	for spell_res in FileLoader.get_spell_resources(selected_class):
-		var spell_description = FileLoader.get_packed_scene("spell/spell_description").instantiate()
-		spell_container.add_child(spell_description)
-		var spell = Spell.instantiate(spell_res, spell_description.get_node("HBC"), false)
-		#spell.is_clickable = false
-		spell_description.init(spell_bar)
+		var spell_button = FileLoader.get_packed_scene("spell/spell_button").instantiate()
+		spell_container.add_child(spell_button)
+		spell_button.init(spell_bar, Spell.instantiate(spell_res, spell_button.get_node("HBC"), false))
 	
 	var entity_containers = get_tree().get_nodes_in_group("monster_container")
 	entity_containers.sort_custom(func(a, b): return a.id < b.id)
@@ -91,7 +90,7 @@ func initialize(selected_class: String):
 	
 	xp_bar.init()
 	
-	create_item_description()
+	create_description_popup()
 	initialized = true
 
 
@@ -148,8 +147,10 @@ func update_pm():
 	player_entity.pm_bar.mval = max_pm
 
 
-func create_item_description():
+func create_description_popup():
 	item_description = FileLoader.get_packed_scene("item/item_description").instantiate()
-	item_description.visible = false
-	item_description.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	$%DescriptionContainer.add_child(item_description)
+	spell_description = FileLoader.get_packed_scene("spell/spell_description").instantiate()
+	for description in [item_description, spell_description]:
+		description.visible = false
+		description.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		$%DescriptionContainer.add_child(description)
