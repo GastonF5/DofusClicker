@@ -9,6 +9,8 @@ extends Control
 @export var effects_label: Label
 @export var effects_container: VBoxContainer
 
+@export var pa_cost_label: Label
+
 
 func init_item(item_res: ItemResource, low: bool, stats: Array[StatResource] = []):
 	name = item_res.name.to_pascal_case() + "Description"
@@ -21,6 +23,7 @@ func init_item(item_res: ItemResource, low: bool, stats: Array[StatResource] = [
 	elif item_res.equip_res:
 		for effect in item_res.equip_res.stats:
 			add_effect_label(effect)
+	set_effect_visibility(!stats.is_empty() and !(item_res.equip_res and item_res.equip_res.stats.is_empty()))
 	set_mouse_ignore()
 	visible = true
 
@@ -28,9 +31,14 @@ func init_item(item_res: ItemResource, low: bool, stats: Array[StatResource] = [
 func init_spell(spell_res: SpellResource):
 	name = spell_res.name.to_pascal_case() + "Description"
 	texture.texture = spell_res.texture
+	pa_cost_label.text = str(spell_res.pa_cost)
 	compute_name_label(spell_res.name, spell_res.id)
 	compute_description_label(spell_res.description)
 	clear_effect_labels()
+	for effect in spell_res.effects:
+		if effect.visible_in_description and effect.get_effect_label(0) != "ERREUR":
+			add_spell_effect_label(effect)
+	set_effect_visibility(effects_container.get_child_count() != 0)
 	set_mouse_ignore()
 	visible = true
 
@@ -68,3 +76,14 @@ func add_effect_label(stat_res: StatResource):
 	label.text = stat_res.get_effect_label()
 	label.add_theme_color_override("font_color", stat_res.get_label_color())
 	effects_container.add_child(label)
+
+
+func add_spell_effect_label(effect_res: EffectResource):
+	var label = Label.new()
+	label.text = effect_res.get_effect_label(0)
+	label.add_theme_color_override("font_color", effect_res.get_label_color())
+	effects_container.add_child(label)
+
+
+func set_effect_visibility(is_visible: bool):
+	effects_label.get_parent().visible = is_visible

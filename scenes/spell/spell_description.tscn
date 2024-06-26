@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://u4gu7k7o16fh"]
+[gd_scene load_steps=8 format=3 uid="uid://u4gu7k7o16fh"]
 
 [ext_resource type="Texture2D" uid="uid://dc4kur4fk7phx" path="res://assets/common/block/block_border_scratch.png" id="1_mc46e"]
 [ext_resource type="Script" path="res://scripts/DescriptionPopUp.gd" id="1_on5n3"]
 [ext_resource type="Texture2D" uid="uid://d1oo2xrycpenx" path="res://assets/spells/punch.png" id="2_anr3a"]
+[ext_resource type="Texture2D" uid="uid://deep4ut0ypw6e" path="res://assets/hud/icon_ap_full.png" id="4_4485n"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ucwbk"]
 bg_color = Color(0.196078, 0.196078, 0.196078, 1)
@@ -20,7 +21,7 @@ expand_margin_bottom = 5.0
 
 [sub_resource type="Theme" id="Theme_fdsd5"]
 
-[node name="SpellDescription" type="PanelContainer" node_paths=PackedStringArray("texture", "name_label", "description_label", "effects_label", "effects_container")]
+[node name="SpellDescription" type="PanelContainer" node_paths=PackedStringArray("texture", "name_label", "description_label", "effects_label", "effects_container", "pa_cost_label")]
 offset_right = 240.0
 offset_bottom = 141.0
 script = ExtResource("1_on5n3")
@@ -29,6 +30,7 @@ name_label = NodePath("MarginContainer/HBC/VBC/HeaderContainer/Name")
 description_label = NodePath("MarginContainer/HBC/VBC/Description")
 effects_label = NodePath("MarginContainer/HBC/VBC/EffectsLabelContainer/EffetsLabel")
 effects_container = NodePath("MarginContainer/HBC/VBC/EffectsContainer/EffectsContainer")
+pa_cost_label = NodePath("MarginContainer/HBC/ImageContainer/PATexture/PACostLabel")
 
 [node name="Background" type="PanelContainer" parent="."]
 layout_mode = 2
@@ -51,24 +53,42 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="ImageContainer" type="Control" parent="MarginContainer/HBC"]
-custom_minimum_size = Vector2(60, 60)
+[node name="ImageContainer" type="VBoxContainer" parent="MarginContainer/HBC"]
+custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
+size_flags_horizontal = 0
 mouse_filter = 2
 
 [node name="SpellTexture" type="TextureRect" parent="MarginContainer/HBC/ImageContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+texture = ExtResource("2_anr3a")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Space" type="Control" parent="MarginContainer/HBC/ImageContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="PATexture" type="TextureRect" parent="MarginContainer/HBC/ImageContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+texture = ExtResource("4_4485n")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="PACostLabel" type="Label" parent="MarginContainer/HBC/ImageContainer/PATexture"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 10
-texture = ExtResource("2_anr3a")
-expand_mode = 3
-stretch_mode = 5
+theme_override_colors/font_color = Color(0.796078, 0.796078, 0.796078, 1)
+theme_override_font_sizes/font_size = 28
+text = "COST"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="VBC" type="VBoxContainer" parent="MarginContainer/HBC"]
 layout_mode = 2
@@ -86,11 +106,6 @@ mouse_filter = 2
 theme = SubResource("Theme_fdsd5")
 text = "Nom du sort"
 fit_content = true
-
-[node name="Space" type="Control" parent="MarginContainer/HBC/VBC"]
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-mouse_filter = 2
 
 [node name="Description" type="RichTextLabel" parent="MarginContainer/HBC/VBC"]
 custom_minimum_size = Vector2(500, 0)

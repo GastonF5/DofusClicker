@@ -22,9 +22,12 @@ element = 1
 lifesteal = false
 caracteristic = 0
 method_name = &"pile_face"
+effect_label = "{min} à {max} ({min_crit} à {max_crit}) {elem}
+(-5 au prochain lancer)"
 params = []
 nb_random_effects = 0
 amounts = Array[ExtResource("2_niqvl")]([SubResource("Resource_85bap")])
+visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_pu187"]
 script = ExtResource("2_niqvl")
@@ -43,9 +46,11 @@ element = 0
 lifesteal = false
 caracteristic = 10
 method_name = &""
+effect_label = ""
 params = []
 nb_random_effects = 0
 amounts = Array[ExtResource("2_niqvl")]([SubResource("Resource_pu187")])
+visible_in_description = false
 
 [resource]
 script = ExtResource("1_dc72p")

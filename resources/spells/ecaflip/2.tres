@@ -15,9 +15,11 @@ element = 0
 lifesteal = false
 caracteristic = 8
 method_name = &""
+effect_label = ""
 params = []
 nb_random_effects = 3
 amounts = Array[ExtResource("2_qvo0b")]([])
+visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_8ub6b"]
 script = ExtResource("2_qvo0b")
@@ -36,9 +38,11 @@ element = 0
 lifesteal = false
 caracteristic = 8
 method_name = &""
+effect_label = ""
 params = []
 nb_random_effects = 0
 amounts = Array[ExtResource("2_qvo0b")]([SubResource("Resource_8ub6b")])
+visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_10ipx"]
 script = ExtResource("2_qvo0b")
@@ -57,9 +61,11 @@ element = 0
 lifesteal = false
 caracteristic = 0
 method_name = &""
+effect_label = ""
 params = []
 nb_random_effects = 0
 amounts = Array[ExtResource("2_qvo0b")]([SubResource("Resource_10ipx")])
+visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_vfs3a"]
 script = ExtResource("2_qvo0b")
@@ -78,9 +84,11 @@ element = 0
 lifesteal = false
 caracteristic = 1
 method_name = &""
+effect_label = ""
 params = []
 nb_random_effects = 0
 amounts = Array[ExtResource("2_qvo0b")]([SubResource("Resource_vfs3a")])
+visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_x42kc"]
 script = ExtResource("2_qvo0b")
@@ -99,18 +107,17 @@ element = 0
 lifesteal = false
 caracteristic = 10
 method_name = &""
+effect_label = ""
 params = []
 nb_random_effects = 0
 amounts = Array[ExtResource("2_qvo0b")]([SubResource("Resource_x42kc")])
+visible_in_description = false
 
 [resource]
 script = ExtResource("1_rq11w")
 id = 0
 name = "Roue de la fortune"
-description = "Procure un bonus aléatoire pendant 20 secondes.
-- 50 puissance
-- 3 PA
-- 2 PM"
+description = "Procure un bonus aléatoire pendant 20 secondes."
 texture = ExtResource("2_huktk")
 img_url = ""
 pa_cost = 2

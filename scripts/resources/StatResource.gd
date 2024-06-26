@@ -26,11 +26,11 @@ func init_amount():
 
 func get_effect_label() -> String:
 	if amount:
-		return "%d %s" % [amount, get_type_label(get_type())]
+		return "%d %s" % [amount, StatResource.get_type_label(get_type())]
 	elif min_amount >= max_amount:
-		return "%d %s" % [min_amount, get_type_label(get_type())]
+		return "%d %s" % [min_amount, StatResource.get_type_label(get_type())]
 	else:
-		return "%d à %d %s" % [min_amount, max_amount, get_type_label(get_type())]
+		return "%d à %d %s" % [min_amount, max_amount, StatResource.get_type_label(get_type())]
 
 
 func get_label_color() -> Color:

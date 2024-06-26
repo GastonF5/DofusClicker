@@ -14,15 +14,17 @@ element = 0
 lifesteal = false
 caracteristic = 0
 method_name = &"chance_ecaflip"
+effect_label = ""
 params = []
 nb_random_effects = 0
 amounts = Array[Resource("res://scripts/resources/AmountResource.gd")]([])
+visible_in_description = true
 
 [resource]
 script = ExtResource("1_jlsqk")
 id = 0
 name = "Chance d'ecaflip"
-description = "Les dommages reçus sont réduits à 50% pendant 5 secondes, puis sont élevés à 200% pendant 3 secondes."
+description = "Les dommages reçus sont réduits de 50% pendant 5 secondes, puis sont augmentés de 100% pendant 3 secondes."
 texture = ExtResource("2_0tfbt")
 img_url = ""
 pa_cost = 2

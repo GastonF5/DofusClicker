@@ -48,6 +48,11 @@ static func perform_damage(caster: Entity, target: Entity, effect: EffectResourc
 		caster.take_damage(-round(amount / 2.0), effect.element)
 
 
+static func perform_soin(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
+	var amount = effect.get_amount(crit, grade)
+	target.take_damage(-amount, effect.element)
+
+
 static func perform_bonus(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
 	var amount = effect.get_amount(crit, grade)
 	var carac

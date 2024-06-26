@@ -22,9 +22,11 @@ element = 1
 lifesteal = false
 caracteristic = 0
 method_name = &""
+effect_label = ""
 params = []
 nb_random_effects = 0
 amounts = Array[ExtResource("1_kbp3q")]([SubResource("Resource_ktb3b")])
+visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_0dmr1"]
 script = ExtResource("1_kbp3q")
@@ -43,9 +45,11 @@ element = 0
 lifesteal = false
 caracteristic = 1
 method_name = &""
+effect_label = ""
 params = []
 nb_random_effects = 0
 amounts = Array[ExtResource("1_kbp3q")]([SubResource("Resource_0dmr1")])
+visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_f5yi1"]
 script = ExtResource("1_kbp3q")
@@ -64,9 +68,11 @@ element = 0
 lifesteal = false
 caracteristic = 10
 method_name = &""
+effect_label = ""
 params = []
 nb_random_effects = 0
 amounts = Array[ExtResource("1_kbp3q")]([SubResource("Resource_f5yi1")])
+visible_in_description = false
 
 [resource]
 script = ExtResource("1_p6h2q")

@@ -22,15 +22,17 @@ element = 0
 lifesteal = false
 caracteristic = 1
 method_name = &""
+effect_label = ""
 params = []
 nb_random_effects = 0
 amounts = Array[ExtResource("1_jh2v4")]([SubResource("Resource_f0l74")])
+visible_in_description = true
 
 [resource]
 script = ExtResource("1_yf5d6")
 id = 0
 name = "Bond du Félin"
-description = "Augment les PM pour 10 secondes."
+description = "Augmente les PM pour 10 secondes."
 texture = ExtResource("3_a2i56")
 img_url = ""
 pa_cost = 1

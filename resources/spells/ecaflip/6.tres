@@ -25,6 +25,7 @@ method_name = &""
 params = []
 nb_random_effects = 0
 amounts = Array[ExtResource("1_pw7nm")]([SubResource("Resource_jx7vv")])
+visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_yjytp"]
 script = ExtResource("1_pw7nm")
@@ -46,6 +47,7 @@ method_name = &""
 params = []
 nb_random_effects = 0
 amounts = Array[ExtResource("1_pw7nm")]([SubResource("Resource_yjytp")])
+visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_x2fbl"]
 script = ExtResource("1_pw7nm")
@@ -67,6 +69,7 @@ method_name = &""
 params = []
 nb_random_effects = 0
 amounts = Array[ExtResource("1_pw7nm")]([SubResource("Resource_x2fbl")])
+visible_in_description = false
 
 [resource]
 script = ExtResource("1_dhf07")

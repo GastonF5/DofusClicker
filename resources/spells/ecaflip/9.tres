@@ -25,6 +25,7 @@ method_name = &""
 params = []
 nb_random_effects = 0
 amounts = Array[ExtResource("1_1s5gu")]([SubResource("Resource_x786j")])
+visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_nk7qs"]
 script = ExtResource("1_1s5gu")
@@ -46,6 +47,7 @@ method_name = &""
 params = []
 nb_random_effects = 0
 amounts = Array[ExtResource("1_1s5gu")]([SubResource("Resource_nk7qs")])
+visible_in_description = false
 
 [resource]
 script = ExtResource("1_hyqjk")
