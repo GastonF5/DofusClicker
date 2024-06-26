@@ -21,8 +21,6 @@ var dragged := false:
 var inventory: Inventory
 var initialized := false
 
-var mouse_on := false
-
 
 func _enter_tree():
 	if old_parent is Button:
@@ -45,13 +43,13 @@ func _process(_delta):
 
 func _input(event):
 	if dragged:
-		if (is_item() and event.is_action_released("LMB")) or (is_spell() and event.is_action_released("RMB")):
+		if event.is_action_released("LMB"):# and (!is_spell() or !GameManager.in_fight()):
 			drop()
 
 
 func _on_button_down():
 	if draggable:
-		if is_item() or (is_spell() and Input.is_action_pressed("RMB")):
+		if !is_spell() or !GameManager.in_fight():
 			drag()
 
 
@@ -76,14 +74,6 @@ func change_parent():
 	get_parent().remove_child(self)
 	old_parent = null
 	drop_parent.button_down.connect(_on_button_down)
-
-
-func _on_mouse_entered():
-	mouse_on = true
-
-
-func _on_mouse_exited():
-	mouse_on = false
 
 
 func is_item():

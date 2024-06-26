@@ -19,13 +19,11 @@ func _ready():
 
 
 func _on_mouse_entered():
-	super()
 	if !PlayerManager.dragged_item:
 		PlayerManager.item_description.init_item(resource, low_texture, stats)
 
 
 func _on_mouse_exited():
-	super()
 	if !PlayerManager.dragged_item:
 		PlayerManager.item_description.visible = false
 

@@ -20,12 +20,13 @@ expand_margin_bottom = 5.0
 
 [sub_resource type="Theme" id="Theme_fdsd5"]
 
-[node name="SpellDescription" type="PanelContainer" node_paths=PackedStringArray("texture", "name_label", "effects_label", "effects_container")]
+[node name="SpellDescription" type="PanelContainer" node_paths=PackedStringArray("texture", "name_label", "description_label", "effects_label", "effects_container")]
 offset_right = 240.0
 offset_bottom = 141.0
 script = ExtResource("1_on5n3")
 texture = NodePath("MarginContainer/HBC/ImageContainer/SpellTexture")
 name_label = NodePath("MarginContainer/HBC/VBC/HeaderContainer/Name")
+description_label = NodePath("MarginContainer/HBC/VBC/Description")
 effects_label = NodePath("MarginContainer/HBC/VBC/EffectsLabelContainer/EffetsLabel")
 effects_container = NodePath("MarginContainer/HBC/VBC/EffectsContainer/EffectsContainer")
 
@@ -51,7 +52,7 @@ layout_mode = 2
 theme_override_constants/separation = 20
 
 [node name="ImageContainer" type="Control" parent="MarginContainer/HBC"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
@@ -87,6 +88,20 @@ text = "Nom du sort"
 fit_content = true
 
 [node name="Space" type="Control" parent="MarginContainer/HBC/VBC"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Description" type="RichTextLabel" parent="MarginContainer/HBC/VBC"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+mouse_filter = 2
+theme = SubResource("Theme_fdsd5")
+text = "Description"
+fit_content = true
+
+[node name="Space2" type="Control" parent="MarginContainer/HBC/VBC"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 mouse_filter = 2

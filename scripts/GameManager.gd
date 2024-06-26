@@ -29,3 +29,7 @@ func _on_class_selected():
 	area_peeker.initialize()
 	console.initialize()
 	class_peeker.visible = false
+
+
+static func in_fight() -> bool:
+	return !MonsterManager.monsters.is_empty()

@@ -115,9 +115,6 @@ func init_bars():
 
 func _input(event):
 	if initialized and !console.input.has_focus() and !$%RecipeManager.prompt_has_focus:
-		#for i in range(1, 9):
-			#if event.is_action_pressed("%d" % i) and spell_bar.has_spell(i - 1):
-				#spell_bar.get_spell(i - 1).do_action()
 		if event.is_action_pressed("right"):
 			PlayerManager.select_next_plate()
 		if event.is_action_pressed("left"):

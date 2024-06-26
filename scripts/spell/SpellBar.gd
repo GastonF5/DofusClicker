@@ -10,6 +10,14 @@ func _ready():
 	super()
 
 
+func _input(event):
+	if GameManager.in_fight():
+		for i in range(slots.size() - 1):
+			if event.is_action_pressed(str(i + 1)):
+				if has_spell(i):
+					get_spell(i).do_action()
+
+
 func connect_slot_signals(slot):
 	super(slot)
 	slot.button_up.connect(cast_spell_button.bind(slot))
@@ -17,17 +25,17 @@ func connect_slot_signals(slot):
 
 func cast_spell_button(slot):
 	var spell = null if slot.get_child_count() == 0 else slot.get_child(0)
-	if spell and spell is Spell:
+	if GameManager.in_fight() and spell and spell is Spell:
 		spell.do_action()
 
 
-func add_spell(spell_res: SpellResource):
+func add_new_spell(spell_res: SpellResource):
 	var empty_slot = get_next_empty_slot()
 	if empty_slot:
 		Spell.instantiate(spell_res, empty_slot)
 
 
-func remove_spell(spell: Spell):
+func delete_spell(spell: Spell):
 	var child_spell = find_spell_in_children(spell.resource.name)
 	if child_spell:
 		child_spell.get_parent().remove_child(child_spell)
@@ -35,14 +43,14 @@ func remove_spell(spell: Spell):
 
 
 func find_spell_in_children(spell_name: String) -> Spell:
-	for slot in grid.get_children():
+	for slot in slots:
 		if slot.get_child_count() != 0 and slot.get_child(0).resource.name == spell_name:
 			return slot.get_child(0)
 	return null
 
 
 func get_next_empty_slot():
-	for slot in grid.get_children():
+	for slot in slots:
 		if slot.get_child_count() == 0:
 			return slot
 	return null

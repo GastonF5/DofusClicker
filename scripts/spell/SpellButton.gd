@@ -23,7 +23,17 @@ func _on_button_up():
 	selected = !selected
 	if selected:
 		theme = selected_theme
-		spell_bar.add_spell(_spell.resource)
+		spell_bar.add_new_spell(_spell.resource)
 	else:
 		theme = unselected_theme
-		spell_bar.remove_spell(_spell)
+		spell_bar.delete_spell(_spell)
+
+
+func _on_mouse_entered():
+	if !PlayerManager.dragged_item:
+		PlayerManager.spell_description.init_spell(_spell.resource)
+
+
+func _on_mouse_exited():
+	if !PlayerManager.dragged_item:
+		PlayerManager.spell_description.visible = false

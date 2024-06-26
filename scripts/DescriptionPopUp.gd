@@ -4,6 +4,7 @@ extends Control
 
 @export var texture: TextureRect
 @export var name_label: RichTextLabel
+@export var description_label: RichTextLabel
 
 @export var effects_label: Label
 @export var effects_container: VBoxContainer
@@ -28,6 +29,7 @@ func init_spell(spell_res: SpellResource):
 	name = spell_res.name.to_pascal_case() + "Description"
 	texture.texture = spell_res.texture
 	compute_name_label(spell_res.name, spell_res.id)
+	compute_description_label(spell_res.description)
 	clear_effect_labels()
 	set_mouse_ignore()
 	visible = true
@@ -47,6 +49,12 @@ func compute_name_label(_name: String, _id: int, _level: int = -1):
 		name_label.push_color(Color.GRAY)
 		name_label.append_text("\n" + "Niveau %d" % _level)
 		name_label.pop()
+
+
+func compute_description_label(_description: String):
+	description_label.clear()
+	description_label.push_color(Color.LIGHT_GRAY)
+	description_label.append_text(_description)
 
 
 func clear_effect_labels():

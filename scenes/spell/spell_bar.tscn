@@ -43,7 +43,7 @@ layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
 mouse_default_cursor_shape = 2
-button_mask = 3
+shortcut_in_tooltip = false
 expand_icon = true
 
 [node name="SpellSlot2" type="Button" parent="PanelContainer/Grid" groups=["slot", "spell_slot"]]
@@ -52,7 +52,7 @@ layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
 mouse_default_cursor_shape = 2
-button_mask = 3
+shortcut_in_tooltip = false
 expand_icon = true
 
 [node name="SpellSlot3" type="Button" parent="PanelContainer/Grid" groups=["slot", "spell_slot"]]
@@ -61,7 +61,7 @@ layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
 mouse_default_cursor_shape = 2
-button_mask = 3
+shortcut_in_tooltip = false
 expand_icon = true
 
 [node name="SpellSlot4" type="Button" parent="PanelContainer/Grid" groups=["slot", "spell_slot"]]
@@ -70,7 +70,7 @@ layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
 mouse_default_cursor_shape = 2
-button_mask = 3
+shortcut_in_tooltip = false
 expand_icon = true
 
 [node name="SpellSlot5" type="Button" parent="PanelContainer/Grid" groups=["slot", "spell_slot"]]
@@ -79,7 +79,7 @@ layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
 mouse_default_cursor_shape = 2
-button_mask = 3
+shortcut_in_tooltip = false
 expand_icon = true
 
 [node name="SpellSlot6" type="Button" parent="PanelContainer/Grid" groups=["slot", "spell_slot"]]
@@ -88,7 +88,7 @@ layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
 mouse_default_cursor_shape = 2
-button_mask = 3
+shortcut_in_tooltip = false
 expand_icon = true
 
 [node name="SpellSlot7" type="Button" parent="PanelContainer/Grid" groups=["slot", "spell_slot"]]
@@ -97,7 +97,7 @@ layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
 mouse_default_cursor_shape = 2
-button_mask = 3
+shortcut_in_tooltip = false
 expand_icon = true
 
 [node name="SpellSlot8" type="Button" parent="PanelContainer/Grid" groups=["slot", "spell_slot"]]
@@ -106,7 +106,7 @@ layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
 mouse_default_cursor_shape = 2
-button_mask = 3
+shortcut_in_tooltip = false
 expand_icon = true
 
 [node name="SpellSlot9" type="Button" parent="PanelContainer/Grid" groups=["slot", "spell_slot"]]
@@ -115,7 +115,7 @@ layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
 mouse_default_cursor_shape = 2
-button_mask = 3
+shortcut_in_tooltip = false
 expand_icon = true
 
 [node name="SpellSlot10" type="Button" parent="PanelContainer/Grid" groups=["slot", "spell_slot"]]
@@ -123,6 +123,5 @@ custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
-mouse_default_cursor_shape = 2
-button_mask = 3
+disabled = true
 expand_icon = true

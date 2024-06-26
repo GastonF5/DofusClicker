@@ -61,7 +61,7 @@ static func perform_bonus(caster: Entity, target: Entity, effect: EffectResource
 			carac = target.get_caracacteristique_for_type(effect.caracteristic)
 			carac.amount += amount
 	if effect.time != 0:
-		var timer = create_timer(effect.time)
+		var timer = create_timer(effect.time, "BonusTimer")
 		await timer.timeout
 		timer.queue_free()
 		if is_instance_valid(target):
@@ -91,7 +91,6 @@ static func perform_retrait(caster: Entity, target: Entity, effect: EffectResour
 
 static func perform_special(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
 	var callable = Callable(SpellsService, effect.method_name)
-	print(callable.get_method())
 	if callable:
 		callable.callv([caster, target, effect, crit, grade, effect.params])
 	else:
@@ -107,11 +106,11 @@ static func perform_random(caster: Entity, target: Entity, effect: EffectResourc
 #region Ecaflip
 static func chance_ecaflip(caster: Entity, _target: Entity, _effect: EffectResource, _crit: bool, _grade: int, _params: Array):
 	caster.taken_damage_rate = 50
-	var timer = create_timer(5)
+	var timer = create_timer(5, "ChanceEcaflipTimer")
 	await timer.timeout
 	timer.queue_free()
 	caster.taken_damage_rate = 200
-	timer = create_timer(3)
+	timer = create_timer(3, "ChanceEcaflipTimer")
 	await timer.timeout
 	timer.queue_free()
 	caster.taken_damage_rate = 100
