@@ -26,11 +26,11 @@ func init_amount():
 
 func get_effect_label() -> String:
 	if amount:
-		return "%d %s" % [amount, get_type_label()]
+		return "%d %s" % [amount, get_type_label(get_type())]
 	elif min_amount >= max_amount:
-		return "%d %s" % [min_amount, get_type_label()]
+		return "%d %s" % [min_amount, get_type_label(get_type())]
 	else:
-		return "%d à %d %s" % [min_amount, max_amount, get_type_label()]
+		return "%d à %d %s" % [min_amount, max_amount, get_type_label(get_type())]
 
 
 func get_label_color() -> Color:
@@ -46,9 +46,20 @@ func get_type() -> String:
 	return Caracteristique.Type.find_key(type)
 
 
-func get_type_label() -> String:
-	var type_label = get_type()
+static func get_type_label(type_label: String) -> String:
 	if !["PA", "PM"].has(type_label):
+		if type_label == "RES_POU":
+			return "Résistance Poussée"
+		if type_label == "PUI_PIEGES":
+			return "Puissance Pièges"
+		if type_label == "MAITRISE_ARME":
+			return "Maîtrise Armes"
+		if type_label.begins_with("RES_"):
+			return "Résistance %s" % type_label.split("_")[1].to_pascal_case()
+		if type_label.begins_with("DO_"):
+			return "Dommages %s" % type_label.split("_")[1].to_pascal_case()
+		if type_label.begins_with("RET_"):
+			return "Retrait %s" % type_label.split("_")[1].to_upper()
 		type_label = type_label.to_pascal_case()
 	return type_label
 

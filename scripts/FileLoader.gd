@@ -65,8 +65,11 @@ static func get_packed_scene(scene_path: String) -> PackedScene:
 	return load(SCENES_PATH + "%s.tscn" % scene_path)
 
 
-static func get_stat_asset(stat: Caracteristique):
-	var stat_path = stat.get_type().to_lower()
+static func get_stat_asset(stat_type: String):
+	var stat_path = stat_type.to_lower()
 	if stat_path.begins_with("do_") and stat_path != "do_critiques":
 		stat_path = "res_" + stat_path.split("_")[1]
-	return load(STAT_ASSET_PATH + "%s.png" % stat_path)
+	var dir = DirAccess.open(STAT_ASSET_PATH)
+	if dir.file_exists("%s.png" % stat_path):
+		return load(STAT_ASSET_PATH + "%s.png" % stat_path)
+	return null

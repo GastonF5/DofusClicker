@@ -97,7 +97,7 @@ func _process(_delta):
 func init():
 	init_child_nodes()
 	type = Type.get(get_type_label())
-	icon_texture.texture = FileLoader.get_stat_asset(self)
+	icon_texture.texture = FileLoader.get_stat_asset(get_type())
 	if init_label:
 		label.text = init_label
 	else:

@@ -11,7 +11,7 @@ var recipes: Array[Recipe] = []
 @onready var console: Console = $%Console
 var inventory: Inventory
 
-var recipe_filters: VBoxContainer
+var recipe_filters: RecipeFilters
 var prompt_has_focus := false
 
 
@@ -23,7 +23,8 @@ func initialize():
 	inventory.item_entered_tree.connect(check_recipes)
 	inventory.item_exiting_tree.connect(check_recipes)
 	
-	recipe_filters = load("res://scenes/recipe_filters.tscn").instantiate()
+	recipe_filters = load("res://scenes/filters/recipe_filters.tscn").instantiate()
+	recipe_filters.filter_toggle.connect(filter_recipes)
 	on_job_tab_changed(tab_container.current_tab)
 	for recipe in current_tab.recipe_container.get_children():
 		recipes.append(recipe)
@@ -56,6 +57,7 @@ func on_job_tab_changed(tab):
 	if last_tab: last_tab.toggle_filters(false)
 	
 	connect_inputs()
+	#filter_recipes()
 
 
 func disconnect_inputs():
@@ -119,12 +121,20 @@ func get_parent_by_type(type_id: int):
 	return job_panel.recipe_container
 
 
-func filter_recipes(text_filter: String):
-		for nrecipe in recipes:
-			if text_filter and text_filter != "":
-				nrecipe.visible = nrecipe.resource.get_result().name.to_lower().contains(text_filter.to_lower())
-			else:
-				nrecipe.visible = true
+func filter_recipes(_params = null):
+	var text_filter = current_tab.search_prompt.text
+	for nrecipe in recipes:
+		if text_filter and text_filter != "":
+			nrecipe.visible = nrecipe.resource.get_result().name.to_lower().contains(text_filter.to_lower())
+		else:
+			nrecipe.visible = true
+	if !recipe_filters.applied_filters.is_empty():
+		for nrecipe: Recipe in recipes.filter(func(r): return r.visible):
+			var is_filtered = false
+			for result_stat_type in nrecipe.resource.get_result().equip_res.stats.map(func(s): return s.get_type()):
+				is_filtered = recipe_filters.applied_filters.has(result_stat_type)
+				if is_filtered: break
+			nrecipe.visible = is_filtered
 
 
 func filter_lvl(lvl_filter: String):

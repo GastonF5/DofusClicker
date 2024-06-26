@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://booyjmpqfa6w6"]
+
+[ext_resource type="Script" path="res://scripts/filters/Filter.gd" id="1_f2at4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i6uus"]
+
+[node name="Filter" type="PanelContainer" node_paths=PackedStringArray("texture_rect", "carac_label", "checkbox")]
+offset_right = 151.0
+offset_bottom = 24.0
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_i6uus")
+script = ExtResource("1_f2at4")
+texture_rect = NodePath("HBC/TextureRect")
+carac_label = NodePath("HBC/CaracLabel")
+checkbox = NodePath("HBC/CheckBox")
+
+[node name="HBC" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBC"]
+layout_mode = 2
+
+[node name="CaracLabel" type="Label" parent="HBC"]
+layout_mode = 2
+text = "Caractéristique"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckBox" type="CheckBox" parent="HBC"]
+layout_mode = 2
+size_flags_horizontal = 10
+focus_mode = 0
