@@ -56,7 +56,6 @@ func _on_button_down():
 func drag():
 	dragged = true
 	old_parent = get_parent()
-	#old_parent.set_pressed_no_signal(false)
 	if get_parent() != null:
 		get_parent().remove_child(self)
 		OverUI.add_child(self)
@@ -72,6 +71,11 @@ func change_parent():
 	if old_parent.button_down.is_connected(_on_button_down):
 		old_parent.button_down.disconnect(_on_button_down)
 	get_parent().remove_child(self)
+	if drop_parent.get_child_count() == 1:
+		var to_swap = drop_parent.get_child(0)
+		to_swap.old_parent = drop_parent
+		to_swap.drop_parent = old_parent
+		to_swap.change_parent()
 	old_parent = null
 	drop_parent.button_down.connect(_on_button_down)
 
