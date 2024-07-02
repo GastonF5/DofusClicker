@@ -81,7 +81,7 @@ var characteristics = [["PA", 1],
 		["RES_CRITIQUES", 87]]
 
 
-@export var json_dict = {}
+var json_dict = {}
 
 
 func create_http() -> HTTPRequest:
@@ -212,7 +212,7 @@ func get_item_resource(data, item_res = null) -> ItemResource:
 		item_res.item_set_id = data["itemSetId"] as int
 		if Datas._types.has(type_id):
 			item_res.equip_res = build_equip_res(effects)
-		
+			item_res.equip_res.type = EquipmentResource.get_equip_type(Datas._types.get(type_id)._name)
 		item_res.type_id = type_id
 		item_res.name = res_name
 		item_res.id = data["id"]

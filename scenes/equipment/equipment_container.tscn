@@ -1,5 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://humcuoo3q2tn"]
+[gd_scene load_steps=20 format=3 uid="uid://humcuoo3q2tn"]
 
+[ext_resource type="Script" path="res://scripts/equipment/EquipmentContainer.gd" id="1_tcfs0"]
 [ext_resource type="PackedScene" uid="uid://coto2k3rtpqkd" path="res://scenes/window/window.tscn" id="1_vj4w5"]
 [ext_resource type="Texture2D" uid="uid://jps1sp7kid7q" path="res://assets/inventory/light_bg_inventory.png" id="2_va6wy"]
 [ext_resource type="Texture2D" uid="uid://blq7h4lvuwd65" path="res://assets/inventory/acceptDrop.png" id="3_1c2cq"]
@@ -44,6 +45,7 @@ load_path = "res://.godot/imported/bottes.png-46242090df264b980838c2242279b864.c
 [node name="EquipmentContainer" type="Panel"]
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_gtnqv")
+script = ExtResource("1_tcfs0")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -91,7 +93,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots/CoiffeSlot"]
+[node name="CoiffeSlotTexture" type="TextureRect" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots/CoiffeSlot"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -113,7 +115,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots/CapeSlot"]
+[node name="CapeSlotTexture" type="TextureRect" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots/CapeSlot"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -135,7 +137,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots/CeintureSlot"]
+[node name="CeintureSlotTexture" type="TextureRect" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots/CeintureSlot"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -157,7 +159,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots/AmuletteSlot"]
+[node name="AmuletteSlotTexture" type="TextureRect" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots/AmuletteSlot"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -179,7 +181,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots/AnneauSlot"]
+[node name="AnneauSlotTexture" type="TextureRect" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots/AnneauSlot"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -201,7 +203,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots/AnneauSlot2"]
+[node name="AnneauSlotTexture" type="TextureRect" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots/AnneauSlot2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -223,7 +225,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots/ArmeSlot"]
+[node name="ArmeSlotTexture" type="TextureRect" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots/ArmeSlot"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -245,7 +247,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots/BottesSlot"]
+[node name="BottesSlotTexture" type="TextureRect" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots/BottesSlot"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -267,7 +269,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_fss8n")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_dlddm")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_bclgm")
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots/BouclierSlot"]
+[node name="BouclierSlotTexture" type="TextureRect" parent="MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots/BouclierSlot"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

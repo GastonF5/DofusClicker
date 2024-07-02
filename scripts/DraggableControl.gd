@@ -71,7 +71,8 @@ func change_parent():
 	if old_parent.button_down.is_connected(_on_button_down):
 		old_parent.button_down.disconnect(_on_button_down)
 	get_parent().remove_child(self)
-	if drop_parent.get_child_count() == 1:
+	if (drop_parent.is_in_group("inventory_slot") or drop_parent.is_in_group("spell_slot"))\
+			and drop_parent.get_child_count() == 1:
 		var to_swap = drop_parent.get_child(0)
 		to_swap.old_parent = drop_parent
 		to_swap.drop_parent = old_parent
