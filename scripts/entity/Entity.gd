@@ -90,7 +90,7 @@ func init_bars():
 		var curmval = pm_bar.mval
 		pm_bar.speed = 0.0
 		pm_bar.mval = get_pm()
-		pm_bar.cval += get_pa() - curmval)
+		pm_bar.cval = get_pm())
 
 
 func get_vitalite() -> int:

@@ -88,6 +88,8 @@ func get_effect_label(grade: int) -> String:
 			return "%s %s" % [get_amount_label(grade), get_element_label()]
 		Type.BONUS:
 			return "%s %s" % [get_amount_label(grade), get_caracteristic_label()]
+		Type.RETRAIT:
+			return "- %s %s" % [get_amount_label(grade), get_caracteristic_label()]
 		Type.SPECIAL:
 			return compute_special_label(grade)
 		_:
@@ -108,4 +110,8 @@ func compute_special_label(grade: int) -> String:
 
 
 func get_label_color() -> Color:
-	return Color.LIME_GREEN
+	match type:
+		Type.RETRAIT:
+			return Color.CRIMSON
+		_:
+			return Color.LIME_GREEN

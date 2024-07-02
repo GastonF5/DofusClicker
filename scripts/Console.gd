@@ -82,7 +82,7 @@ func apply_color(type: LogType):
 		LogType.INFO:
 			color = Color.LIME_GREEN
 		LogType.ERROR:
-			color = Color.RED
+			color = Color.CRIMSON
 		LogType.LOG:
 			color = Color.ORANGE
 		LogType.COMMAND:

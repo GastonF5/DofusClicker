@@ -38,9 +38,9 @@ func end_fight():
 	monsters.assign([])
 	start_fight_button.disabled = false
 	if auto_start_fight_checkbox.button_pressed: start_fight()
-	var player_manager: PlayerManager = $%PlayerManager
-	player_manager.pa_bar.reset()
-	player_manager.pm_bar.reset()
+	$%StatsManager.reset_caracteristiques()
+	for timer in SpellsService.tnode.get_children():
+		timer.queue_free()
 
 
 func get_monsters_on_plates():

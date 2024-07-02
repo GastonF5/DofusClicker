@@ -21,9 +21,9 @@ func initialize():
 	create_caracteristiques()
 	reset_button.button_up.connect(reset_points)
 	update_points_label()
-	$"../PlayerManager".xp_bar.lvl_up.connect(on_lvl_up)
-	$"../EquipmentManager".equiped.connect(on_equiped)
-	$"../EquipmentManager".desequiped.connect(on_desequiped)
+	$%PlayerManager.xp_bar.lvl_up.connect(on_lvl_up)
+	$%EquipmentManager.equiped.connect(on_equiped)
+	$%EquipmentManager.desequiped.connect(on_desequiped)
 
 
 func create_caracteristiques():
@@ -41,6 +41,13 @@ func create_caracteristiques():
 			carac.type = Caracteristique.Type.get(node_name.to_upper())
 			caracteristiques.append(carac)
 			if carac.modifiable: carac.consume_point.connect(on_point_consumed)
+
+
+func reset_caracteristiques():
+	for carac in caracteristiques.filter(func(c): return c.type != Caracteristique.Type.VITALITE):
+		carac.amount = carac.base_amount + carac.equip_amount
+	$%PlayerManager.pa_bar.reset()
+	$%PlayerManager.pm_bar.reset()
 
 
 func on_point_consumed(amount: int, type: stat_type):

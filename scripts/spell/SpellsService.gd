@@ -69,7 +69,7 @@ static func perform_bonus(caster: Entity, target: Entity, effect: EffectResource
 		var timer = create_timer(effect.time, "BonusTimer")
 		await timer.timeout
 		timer.queue_free()
-		if is_instance_valid(target):
+		if is_instance_valid(timer) and GameManager.in_fight() and is_instance_valid(target):
 			match effect.caracteristic:
 				StatType.EROSION:
 					target.erosion -= amount
