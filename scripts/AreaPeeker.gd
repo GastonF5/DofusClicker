@@ -56,6 +56,8 @@ func _on_subarea_clicked(subarea_id: int):
 		print("%s (%d) :" % [mres.name, mres.id])
 		print(mres.spells)
 	monster_manager.start_fight_button.disabled = false
+	if DungeonManager.is_dungeon(subarea_id):
+		$%DungeonManager.enter_dungeon(subarea_id)
 
 
 func create_area_button(area: AreaResource, is_subarea := false):

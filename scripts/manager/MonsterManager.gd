@@ -23,13 +23,19 @@ func initialize():
 
 
 func start_fight():
-	if !monsters_res.is_empty():
-		for i in 2:
-			instantiate_monster()
-		monsters.assign(get_monsters_on_plates())
+	if DungeonManager.is_in_dungeon():
+		#for monster_res in DungeonManager.get_current_room_monsters():
+			#instantiate_monster(monster_res)
+		$%DungeonManager.exit_dungeon()
 		start_fight_button.disabled = true
 	else:
-		console.log_error("No monsters in area")
+		if !monsters_res.is_empty():
+			for i in 2:
+				instantiate_monster()
+			monsters.assign(get_monsters_on_plates())
+			start_fight_button.disabled = true
+		else:
+			console.log_error("No monsters in area")
 
 
 func end_fight():
@@ -47,12 +53,14 @@ func get_monsters_on_plates():
 	return PlayerManager.plates.map(func(p): return p.get_entity()).filter(Entity.is_monster)
 
 
-func instantiate_monster() -> Monster:
+func instantiate_monster(monster_res: MonsterResource = null) -> Monster:
 	var empty_plates = PlayerManager.plates.filter(func(plate: EntityContainer): return plate.is_empty())
 	if empty_plates.size() == 0:
 		console.log_error("Impossible d'instantier le monstre, aucun emplacement n'est disponible.")
 		return null
-	var monster = Monster.instantiate(empty_plates[randi_range(0, empty_plates.size() - 1)])
+	if !monster_res:
+		monster_res = monsters_res[randi_range(0, MonsterManager.monsters_res.size() - 1)]
+	var monster = Monster.instantiate(monster_res, empty_plates[randi_range(0, empty_plates.size() - 1)])
 	monster.dies.connect(_on_monster_dies)
 	monster.clicked.connect(_on_monster_selected)
 	monsters.append(monster)

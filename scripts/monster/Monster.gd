@@ -23,12 +23,11 @@ func _process(_delta):
 		attack()
 
 
-static func instantiate(parent: Control) -> Monster:
-	var random_monster_res: MonsterResource = MonsterManager.monsters_res[randi_range(0, MonsterManager.monsters_res.size() - 1)]
+static func instantiate(monster_res: MonsterResource, parent: Control) -> Monster:
 	var monster = FileLoader.get_packed_scene("monster").instantiate()
 	parent.add_child(monster)
 	parent.move_child(monster, 0)
-	monster.init(false, random_monster_res)
+	monster.init(false, monster_res)
 	return monster
 
 
