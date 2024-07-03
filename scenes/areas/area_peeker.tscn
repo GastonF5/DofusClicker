@@ -1,9 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://ijqxn7khforp"]
+[gd_scene load_steps=3 format=3 uid="uid://ijqxn7khforp"]
 
 [ext_resource type="Script" path="res://scripts/AreaPeeker.gd" id="1_4wb44"]
+[ext_resource type="Texture2D" uid="uid://ctn4qrfbnv0qi" path="res://assets/icons/zaap.png" id="2_tb1vn"]
 
 [node name="AreaPeeker" type="PanelContainer" node_paths=PackedStringArray("back_button")]
-custom_minimum_size = Vector2(800, 50)
+custom_minimum_size = Vector2(0, 80)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -15,6 +16,8 @@ offset_right = 4.0
 offset_bottom = 22.5
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
 script = ExtResource("1_4wb44")
 back_button = NodePath("HBC/BackButton")
 
@@ -27,7 +30,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 3
 focus_mode = 0
 disabled = true
-text = "Back"
+icon = ExtResource("2_tb1vn")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="HBC"]
 layout_mode = 2
@@ -37,6 +40,5 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-alignment = 1
 
 [connection signal="button_up" from="HBC/BackButton" to="." method="_on_back_button_button_up"]

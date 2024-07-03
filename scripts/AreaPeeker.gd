@@ -8,6 +8,9 @@ var monster_manager: MonsterManager
 var selected_area_id := -1
 var cur_lvl := 1
 
+var area_btns := {}
+var subarea_btns := {}
+
 signal subarea_selected
 
 
@@ -30,19 +33,18 @@ func init_subareas(area: AreaResource):
 	selected_area_id = area._id
 	for subarea in area.get_subareas(cur_lvl):
 		if !subarea.black_listed() and subarea.has_monsters(cur_lvl):
-			create_subarea_button(subarea)
+			create_area_button(subarea, true)
 			prints(subarea._name, subarea._id)
 
 
-func _on_area_clicked(button: Button):
+func _on_area_clicked(area_id: int):
 	clear_buttons()
 	back_button.disabled = false
-	var area_id = button.name.to_int()
 	init_subareas(Datas._areas[area_id])
 
 
-func _on_subarea_clicked(button: Button):
-	var subarea = Datas._subareas[button.name.to_int()]
+func _on_subarea_clicked(subarea_id: int):
+	var subarea = Datas._subareas[subarea_id]
 	monster_manager.start_fight_button.disabled = true
 	var monster_resources = subarea.get_monsters()
 	for monster_res in monster_resources:
@@ -56,34 +58,32 @@ func _on_subarea_clicked(button: Button):
 	monster_manager.start_fight_button.disabled = false
 
 
-func create_area_button(area: AreaResource):
-	var button = Button.new()
-	button.text = "%s (lvl %d)" % [area._name, area.get_level()]
-	button.name = str(area._id)
-	button.button_up.connect(_on_area_clicked.bind(button))
-	button.focus_mode = Control.FOCUS_NONE
-	$HBC/ScrollContainer/HBC.add_child(button)
-
-
-func create_subarea_button(subarea: AreaResource):
-	var button = Button.new()
-	button.text = "%s (lvl %d)" % [subarea._name, subarea.get_level()]
-	button.name = str(subarea._id)
-	button.button_up.connect(_on_subarea_clicked.bind(button))
-	button.focus_mode = Control.FOCUS_NONE
+func create_area_button(area: AreaResource, is_subarea := false):
+	var button: AreaButton
+	var callable = _on_subarea_clicked if is_subarea else _on_area_clicked
+	if (!is_subarea and area_btns.has(area._id)) or (is_subarea and subarea_btns.has(area._id)):
+		button = subarea_btns[area._id] if is_subarea else area_btns[area._id]
+	else:
+		var is_dungeon = DungeonManager.is_dungeon(area._id)
+		var btn_icon = load("res://assets/icons/dungeon.png")\
+			if is_dungeon\
+			else load("res://assets/icons/quest.png")
+		button = AreaButton.create(area, callable, btn_icon, is_dungeon)
+		if is_subarea:
+			subarea_btns[area._id] = button
+		else:
+			area_btns[area._id] = button
 	$HBC/ScrollContainer/HBC.add_child(button)
 
 
 func erase_button(area: AreaResource):
 	var button = $HBC/ScrollContainer/HBC.get_node(str(area._id))
 	$HBC/ScrollContainer/HBC.remove_child(button)
-	button.queue_free()
 
 
 func clear_buttons():
 	for button in $HBC/ScrollContainer/HBC.get_children():
 		$HBC/ScrollContainer/HBC.remove_child(button)
-		button.queue_free()
 
 
 func _enter_tree():

@@ -151,8 +151,8 @@ static func get_degats(min_damage: int, max_damage: int, type: StatType) -> int:
 
 static func get_neighbor_entities() -> Array[Entity]:
 	var neighbor_entities: Array[Entity] = []
-	for plate in PlayerManager.selected_plate.get_neighbors():
-		if plate.entity:
+	for plate in PlayerManager.selected_plate.get_neighbor_plates():
+		if plate.entity and is_instance_valid(plate.entity):
 			neighbor_entities.append(plate.entity)
 	return neighbor_entities
 

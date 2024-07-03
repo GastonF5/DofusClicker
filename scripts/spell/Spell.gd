@@ -17,7 +17,7 @@ func init_player_manager():
 
 func _process(delta):
 	super(delta)
-	if timer:
+	if timer and is_instance_valid(timer):
 		cooldown_bar.value = timer.time_left * 100
 	if player_manager and draggable:
 		if player_manager.pa_bar.cval < resource.pa_cost:

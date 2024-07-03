@@ -66,7 +66,7 @@ func get_plate_index():
 	return get_parent().get_children().find(self)
 
 
-func get_neighbors():
+func get_neighbor_plates():
 	var index = get_plate_index()
 	var plates = get_parent().get_children()
 	var neighbor_plates = []

@@ -10,7 +10,7 @@ signal lvl_up
 
 
 func init():
-	cur_lvl = 1
+	cur_lvl = 10
 	value = 0
 	max_value = 10
 	update_lvl_label()

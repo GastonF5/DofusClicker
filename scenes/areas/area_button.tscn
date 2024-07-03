@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://ya2u2lsy2nbs"]
+
+[ext_resource type="Script" path="res://scripts/areas/AreaButton.gd" id="1_2qiep"]
+[ext_resource type="Texture2D" uid="uid://3o142ebsb8jm" path="res://assets/icons/quest.png" id="1_k82dq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4o4fv"]
+
+[node name="AreaButton" type="PanelContainer" node_paths=PackedStringArray("_icon_txt", "_label", "_btn")]
+offset_right = 8.0
+offset_bottom = 8.0
+size_flags_horizontal = 0
+size_flags_vertical = 3
+mouse_default_cursor_shape = 2
+script = ExtResource("1_2qiep")
+_icon_txt = NodePath("MarginContainer/HBC/IconTexture")
+_label = NodePath("MarginContainer/HBC/Text")
+_btn = NodePath("Button")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="HBC" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="IconTexture" type="TextureRect" parent="MarginContainer/HBC"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_k82dq")
+expand_mode = 3
+
+[node name="Text" type="Label" parent="MarginContainer/HBC"]
+layout_mode = 2
+text = "Nom de la zone"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4o4fv")
+
+[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
