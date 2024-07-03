@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/AreaPeeker.gd" id="1_4wb44"]
 [ext_resource type="Texture2D" uid="uid://ctn4qrfbnv0qi" path="res://assets/icons/zaap.png" id="2_tb1vn"]
 
-[node name="AreaPeeker" type="PanelContainer" node_paths=PackedStringArray("back_button")]
+[node name="AreaPeeker" type="PanelContainer" node_paths=PackedStringArray("back_button", "dungeon_room_label")]
 custom_minimum_size = Vector2(0, 80)
 anchors_preset = 8
 anchor_left = 0.5
@@ -20,6 +20,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 0
 script = ExtResource("1_4wb44")
 back_button = NodePath("HBC/BackButton")
+dungeon_room_label = NodePath("HBC/ScrollContainer/HBC/DungeonRoomLabel")
 
 [node name="HBC" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -40,5 +41,14 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="DungeonRoomLabel" type="Label" parent="HBC/ScrollContainer/HBC"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Salle numéro 1"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="button_up" from="HBC/BackButton" to="." method="_on_back_button_button_up"]

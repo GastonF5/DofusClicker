@@ -24,9 +24,9 @@ func initialize():
 
 func start_fight():
 	if DungeonManager.is_in_dungeon():
-		#for monster_res in DungeonManager.get_current_room_monsters():
-			#instantiate_monster(monster_res)
-		$%DungeonManager.exit_dungeon()
+		for monster_res in DungeonManager.get_current_room_monsters():
+			instantiate_monster(monster_res)
+		#$%DungeonManager.exit_dungeon()
 		start_fight_button.disabled = true
 	else:
 		if !monsters_res.is_empty():
@@ -39,6 +39,8 @@ func start_fight():
 
 
 func end_fight():
+	if DungeonManager.is_in_dungeon():
+		$%DungeonManager.enter_next_room()
 	for monster in monsters:
 		monster.queue_free()
 	monsters.assign([])
@@ -47,6 +49,7 @@ func end_fight():
 	$%StatsManager.reset_caracteristiques()
 	for timer in SpellsService.tnode.get_children():
 		timer.queue_free()
+	$%PlayerManager.spell_bar.reset_spells()
 
 
 func get_monsters_on_plates():

@@ -4,6 +4,7 @@ extends PanelContainer
 
 var monster_manager: MonsterManager
 @export var back_button: Button
+@export var dungeon_room_label: Label
 
 var selected_area_id := -1
 var cur_lvl := 1
@@ -84,7 +85,7 @@ func erase_button(area: AreaResource):
 
 
 func clear_buttons():
-	for button in $HBC/ScrollContainer/HBC.get_children():
+	for button in $HBC/ScrollContainer/HBC.get_children().filter(func(b): return b is AreaButton):
 		$HBC/ScrollContainer/HBC.remove_child(button)
 
 
@@ -100,9 +101,15 @@ func _on_back_button_button_up():
 
 
 func _on_level_up():
-	cur_lvl = $%PlayerManager.xp_bar.cur_lvl
-	clear_buttons()
-	if selected_area_id == -1:
-		init_areas()
-	else:
-		init_subareas(Datas._areas[selected_area_id])
+	if !DungeonManager.is_in_dungeon():
+		cur_lvl = $%PlayerManager.xp_bar.cur_lvl
+		clear_buttons()
+		if selected_area_id == -1:
+			init_areas()
+		else:
+			init_subareas(Datas._areas[selected_area_id])
+
+
+func set_dungeon_room_label(label: String, _visible: bool):
+	dungeon_room_label.text = label
+	dungeon_room_label.visible = _visible

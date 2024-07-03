@@ -77,3 +77,7 @@ static func instantiate(spell_res: SpellResource, parent: Control, clickable = t
 	spell.init(spell_res, clickable)
 	parent.add_child(spell)
 	return spell
+
+
+func reset():
+	cooldown_bar.value = cooldown_bar.min_value

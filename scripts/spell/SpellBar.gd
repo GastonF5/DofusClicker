@@ -72,3 +72,10 @@ func set_dragged_entering_drop_parent(slot):
 func set_dragged_exited_drop_parent():
 	dragged = PlayerManager.dragged_spell
 	super()
+
+
+func reset_spells():
+	for spell in grid.get_children().map(func(slot):
+		return slot.get_child(0) if slot.get_child_count() == 1 else null)\
+		.filter(func(s): return s):
+		spell.reset()

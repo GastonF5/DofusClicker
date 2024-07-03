@@ -5,6 +5,7 @@ extends DirAccess
 const SPELL_RES_PATH := "res://resources/spells/"
 const SCENES_PATH := "res://scenes/"
 const STAT_ASSET_PATH := "res://assets/stats/stat_icon/"
+const DUNGEON_PATH := "res://resources/dungeons/"
 
 static var MONSTERS_PATH := "user://tmp/monsters/"
 static var EQUIPMENTS_PATH := "user://tmp/equipment/"
@@ -72,4 +73,11 @@ static func get_stat_asset(stat_type: String):
 	var dir = DirAccess.open(STAT_ASSET_PATH)
 	if dir.file_exists("%s.png" % stat_path):
 		return load(STAT_ASSET_PATH + "%s.png" % stat_path)
+	return null
+
+
+static func get_dungeon_resource(dungeon_id: int) -> DungeonResource:
+	var dir = DirAccess.open(DUNGEON_PATH)
+	if dir.file_exists("%s.tres" % dungeon_id):
+		return load(DUNGEON_PATH + "%s.tres" % dungeon_id)
 	return null
