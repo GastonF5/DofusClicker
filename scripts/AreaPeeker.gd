@@ -45,20 +45,22 @@ func _on_area_clicked(area_id: int):
 
 
 func _on_subarea_clicked(subarea_id: int):
-	var subarea = Datas._subareas[subarea_id]
 	monster_manager.start_fight_button.disabled = true
+	var subarea = Datas._subareas[subarea_id]
 	var monster_resources = subarea.get_monsters()
+	var composite_signal = API.CompositeSignal.new()
 	for monster_res in monster_resources:
 		if !monster_res.texture:
-			monster_res.load_texture($%API, $%Console)
+			composite_signal.add_method(monster_res.load_texture.bindv([$%API, $%Console]))
 	monster_resources = monster_resources.filter(func(res): return !res.archimonstre)
 	MonsterManager.monsters_res = monster_resources
 	for mres in monster_resources:
 		print("%s (%d) :" % [mres.name, mres.id])
 		print(mres.spells)
-	monster_manager.start_fight_button.disabled = false
 	if DungeonManager.is_dungeon(subarea_id):
 		$%DungeonManager.enter_dungeon(subarea_id)
+	await composite_signal.finished
+	monster_manager.start_fight_button.disabled = false
 
 
 func create_area_button(area: AreaResource, is_subarea := false):
