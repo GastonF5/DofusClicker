@@ -1,0 +1,149 @@
+[gd_scene load_steps=9 format=3 uid="uid://byf0rx2sfv1o8"]
+
+[ext_resource type="Script" path="res://scripts/DescriptionPopUp.gd" id="1_b45ym"]
+[ext_resource type="Texture2D" uid="uid://dc4kur4fk7phx" path="res://assets/common/block/block_border_scratch.png" id="2_088oy"]
+[ext_resource type="Texture2D" uid="uid://g6wqg0e5ubmn" path="res://assets/monsters/bouftou.png" id="3_gr2pr"]
+[ext_resource type="PackedScene" uid="uid://bhvgx33s3ekeh" path="res://scenes/stats/stat_description.tscn" id="4_d15mb"]
+[ext_resource type="Texture2D" uid="uid://cvuqi62qob7e4" path="res://assets/description_icons/icon_shield_cadre.png" id="5_13mvb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7fjh5"]
+bg_color = Color(0.196078, 0.196078, 0.196078, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4eiet"]
+texture = ExtResource("2_088oy")
+texture_margin_left = 15.0
+texture_margin_top = 10.0
+texture_margin_right = 15.0
+texture_margin_bottom = 10.0
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="Theme" id="Theme_7gi5f"]
+
+[node name="EntityDescription" type="PanelContainer" node_paths=PackedStringArray("texture", "name_label")]
+offset_right = 556.0
+offset_bottom = 130.0
+script = ExtResource("1_b45ym")
+texture = NodePath("MarginContainer/HBC/Identite/MonsterTexture")
+name_label = NodePath("MarginContainer/HBC/Identite/Name")
+
+[node name="Background" type="PanelContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7fjh5")
+
+[node name="Scratch" type="Panel" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_4eiet")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="HBC" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Identite" type="VBoxContainer" parent="MarginContainer/HBC"]
+layout_mode = 2
+
+[node name="Name" type="RichTextLabel" parent="MarginContainer/HBC/Identite"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme = SubResource("Theme_7gi5f")
+text = "Nom du monstre"
+fit_content = true
+
+[node name="MonsterTexture" type="TextureRect" parent="MarginContainer/HBC/Identite"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+texture = ExtResource("3_gr2pr")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="MainStatsContainer" type="VBoxContainer" parent="MarginContainer/HBC"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="GridContainer" type="VBoxContainer" parent="MarginContainer/HBC/MainStatsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="VitaliteDescription" parent="MarginContainer/HBC/MainStatsContainer/GridContainer" groups=["stat_description"] instance=ExtResource("4_d15mb")]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="PADescription" parent="MarginContainer/HBC/MainStatsContainer/GridContainer" groups=["stat_description"] instance=ExtResource("4_d15mb")]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="PMDescription" parent="MarginContainer/HBC/MainStatsContainer/GridContainer" groups=["stat_description"] instance=ExtResource("4_d15mb")]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="VBC" type="VBoxContainer" parent="MarginContainer/HBC"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="HBC1" type="HBoxContainer" parent="MarginContainer/HBC/VBC"]
+layout_mode = 2
+
+[node name="RetPADescription" parent="MarginContainer/HBC/VBC/HBC1" groups=["stat_description"] instance=ExtResource("4_d15mb")]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="RetPMDescription" parent="MarginContainer/HBC/VBC/HBC1" groups=["stat_description"] instance=ExtResource("4_d15mb")]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="ResPADescription" parent="MarginContainer/HBC/VBC/HBC1" groups=["stat_description"] instance=ExtResource("4_d15mb")]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="ResPMDescription" parent="MarginContainer/HBC/VBC/HBC1" groups=["stat_description"] instance=ExtResource("4_d15mb")]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="ErosionDescription" parent="MarginContainer/HBC/VBC/HBC1" groups=["stat_description"] instance=ExtResource("4_d15mb")]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBC/VBC"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("5_13mvb")
+
+[node name="HBC2" type="HBoxContainer" parent="MarginContainer/HBC/VBC"]
+layout_mode = 2
+
+[node name="ResNeutreDescription" parent="MarginContainer/HBC/VBC/HBC2" groups=["stat_description"] instance=ExtResource("4_d15mb")]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="ResTerreDescription" parent="MarginContainer/HBC/VBC/HBC2" groups=["stat_description"] instance=ExtResource("4_d15mb")]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="ResFeuDescription" parent="MarginContainer/HBC/VBC/HBC2" groups=["stat_description"] instance=ExtResource("4_d15mb")]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="ResEauDescription" parent="MarginContainer/HBC/VBC/HBC2" groups=["stat_description"] instance=ExtResource("4_d15mb")]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="ResAirDescription" parent="MarginContainer/HBC/VBC/HBC2" groups=["stat_description"] instance=ExtResource("4_d15mb")]
+layout_mode = 2
+size_flags_horizontal = 6

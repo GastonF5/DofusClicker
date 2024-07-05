@@ -68,7 +68,7 @@ horizontal_alignment = 1
 [node name="TextureContainer" type="Control" parent="VBC"]
 custom_minimum_size = Vector2(192, 192)
 layout_mode = 2
-mouse_filter = 2
+mouse_filter = 1
 
 [node name="Monster" type="TextureRect" parent="VBC/TextureContainer"]
 custom_minimum_size = Vector2(192, 192)
@@ -87,3 +87,6 @@ stretch_mode = 5
 [node name="EntityBars" parent="VBC" instance=ExtResource("4_07i5c")]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+
+[connection signal="mouse_entered" from="VBC/TextureContainer" to="." method="_on_texture_container_mouse_entered"]
+[connection signal="mouse_exited" from="VBC/TextureContainer" to="." method="_on_texture_container_mouse_exited"]

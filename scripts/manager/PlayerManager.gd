@@ -26,6 +26,7 @@ var pm_bar: CustomBar:
 
 static var item_description: DescriptionPopUp
 static var spell_description: DescriptionPopUp
+static var entity_description: DescriptionPopUp
 static var dragged_item: Item
 static var dragged_spell: Spell
 
@@ -147,7 +148,8 @@ func update_pm():
 func create_description_popup():
 	item_description = FileLoader.get_packed_scene("item/item_description").instantiate()
 	spell_description = FileLoader.get_packed_scene("spell/spell_description").instantiate()
-	for description in [item_description, spell_description]:
+	entity_description = FileLoader.get_packed_scene("entity/entity_description").instantiate()
+	for description in [item_description, spell_description, entity_description]:
 		description.visible = false
 		description.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		$%DescriptionContainer.add_child(description)

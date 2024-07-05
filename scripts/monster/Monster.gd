@@ -1,10 +1,6 @@
 extends Entity
 class_name Monster
 
-@export var name_label: Label
-@export var texture_rect: TextureRect
-@export var header_texture: TextureRect
-
 var resource: MonsterResource
 var grade: GradeResource
 var drops: Array[DropResource]
@@ -106,3 +102,11 @@ func select():
 
 func unselect():
 	texture_rect.custom_minimum_size = Vector2(192, 192)
+
+
+func _on_texture_container_mouse_entered():
+	show_description()
+
+
+func _on_texture_container_mouse_exited():
+	hide_description()
