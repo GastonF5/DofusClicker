@@ -5,15 +5,16 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4o4fv"]
 
-[node name="AreaButton" type="PanelContainer" node_paths=PackedStringArray("_icon_txt", "_label", "_btn")]
+[node name="AreaButton" type="PanelContainer" node_paths=PackedStringArray("_icon_txt", "_area_name_lbl", "_level_lbl", "_btn")]
 offset_right = 8.0
 offset_bottom = 8.0
 size_flags_horizontal = 0
 size_flags_vertical = 3
 mouse_default_cursor_shape = 2
 script = ExtResource("1_2qiep")
-_icon_txt = NodePath("MarginContainer/HBC/IconTexture")
-_label = NodePath("MarginContainer/HBC/Text")
+_icon_txt = NodePath("MarginContainer/VBC/HBC/IconTexture")
+_area_name_lbl = NodePath("MarginContainer/VBC/HBC/AreaName")
+_level_lbl = NodePath("MarginContainer/VBC/Level")
 _btn = NodePath("Button")
 
 [node name="Button" type="Button" parent="."]
@@ -31,20 +32,38 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="HBC" type="HBoxContainer" parent="MarginContainer"]
+[node name="VBC" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="IconTexture" type="TextureRect" parent="MarginContainer/HBC"]
+[node name="HBC" type="HBoxContainer" parent="MarginContainer/VBC"]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="IconTexture" type="TextureRect" parent="MarginContainer/VBC/HBC"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 texture = ExtResource("1_k82dq")
 expand_mode = 3
 
-[node name="Text" type="Label" parent="MarginContainer/HBC"]
+[node name="AreaName" type="Label" parent="MarginContainer/VBC/HBC"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 text = "Nom de la zone"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Level" type="Label" parent="MarginContainer/VBC"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.631373, 0.631373, 0.631373, 1)
+theme_override_font_sizes/font_size = 16
+text = "Niveau 1"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="button_up" from="Button" to="." method="_on_button_button_up"]

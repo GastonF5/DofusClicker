@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ctn4qrfbnv0qi" path="res://assets/icons/zaap.png" id="2_tb1vn"]
 
 [node name="AreaPeeker" type="PanelContainer" node_paths=PackedStringArray("back_button", "area_label")]
-custom_minimum_size = Vector2(0, 80)
+custom_minimum_size = Vector2(0, 90)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
