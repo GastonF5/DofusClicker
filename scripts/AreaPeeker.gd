@@ -4,18 +4,20 @@ extends PanelContainer
 
 var monster_manager: MonsterManager
 @export var back_button: Button
-@export var dungeon_room_label: Label
+@export var area_label: Label
 
 var selected_area_id := -1
+var selected_subarea_id := -1
 var cur_lvl := 1
 
 var area_btns := {}
 var subarea_btns := {}
 
-signal subarea_selected
+var console: Console
 
 
 func initialize():
+	console = $%Console
 	$%PlayerManager.xp_bar.lvl_up.connect(_on_level_up)
 	cur_lvl = $%PlayerManager.xp_bar.cur_lvl
 	init_areas()
@@ -45,22 +47,12 @@ func _on_area_clicked(area_id: int):
 
 
 func _on_subarea_clicked(subarea_id: int):
-	monster_manager.start_fight_button.disabled = true
 	var subarea = Datas._subareas[subarea_id]
-	var monster_resources = subarea.get_monsters()
-	var composite_signal = API.CompositeSignal.new()
-	for monster_res in monster_resources:
-		if !monster_res.texture:
-			composite_signal.add_method(monster_res.load_texture.bindv([$%API, $%Console]))
-	monster_resources = monster_resources.filter(func(res): return !res.archimonstre)
-	MonsterManager.monsters_res = monster_resources
-	for mres in monster_resources:
-		print("%s (%d) :" % [mres.name, mres.id])
-		print(mres.spells)
+	selected_subarea_id = subarea_id
 	if DungeonManager.is_dungeon(subarea_id):
 		$%DungeonManager.enter_dungeon(subarea_id)
-	await composite_signal.finished
-	monster_manager.start_fight_button.disabled = false
+	else:
+		enter_subarea(subarea)
 
 
 func create_area_button(area: AreaResource, is_subarea := false):
@@ -96,22 +88,67 @@ func _enter_tree():
 
 
 func _on_back_button_button_up():
-	clear_buttons()
-	selected_area_id = -1
-	back_button.disabled = true
-	init_areas()
+	if selected_subarea_id != -1:
+		leave_subarea()
+	else:
+		clear_buttons()
+		back_button.disabled = true
+		init_areas()
 
 
 func _on_level_up():
-	if !DungeonManager.is_in_dungeon():
-		cur_lvl = $%PlayerManager.xp_bar.cur_lvl
-		clear_buttons()
-		if selected_area_id == -1:
-			init_areas()
-		else:
-			init_subareas(Datas._areas[selected_area_id])
+	cur_lvl = $%PlayerManager.xp_bar.cur_lvl
 
 
-func set_dungeon_room_label(label: String, _visible: bool):
-	dungeon_room_label.text = label
-	dungeon_room_label.visible = _visible
+func set_area_label(label: String, _visible: bool):
+	area_label.text = label
+	area_label.visible = _visible
+
+
+func enter_subarea(subarea: AreaResource):
+	clear_buttons()
+	back_button.icon = load("res://assets/back_btn/btn_arrow_turn_character_normal.png")
+	set_area_label(subarea._name, true)
+	log_enter_subarea(subarea._name)
+	load_monsters(subarea)
+
+
+func leave_subarea():
+	back_button.icon = load("res://assets/icons/zaap.png")
+	log_leave_subarea()
+	selected_subarea_id = -1
+	set_area_label("", false)
+	init_subareas(Datas._areas[selected_area_id])
+	monster_manager.start_fight_button.disabled = true
+
+
+func log_enter_subarea(subarea_name: String):
+	console.log_info("Vous entrez la zone %s" % subarea_name)
+
+
+func log_leave_subarea():
+	if selected_subarea_id != -1:
+		var subarea = Datas._subareas[selected_subarea_id]
+		console.log_info("Vous sortez de la zone %s" % subarea._name)
+
+
+func load_monsters(subarea: AreaResource):
+	var monster_resources = subarea.get_monsters()
+	var composite_signal
+	var not_loaded_monsters = monster_resources.filter(func(r): return !r.texture)
+	if !not_loaded_monsters.is_empty():
+		composite_signal = API.CompositeSignal.new()
+		for monster_res in not_loaded_monsters:
+			if !monster_res.texture:
+				composite_signal.add_method(monster_res.load_texture.bindv([$%API, $%Console]))
+	monster_resources = monster_resources.filter(func(res): return !res.archimonstre)
+	MonsterManager.monsters_res = monster_resources
+	for mres in monster_resources:
+		print("%s (%d) :" % [mres.name, mres.id])
+		print(mres.spells)
+	if composite_signal:
+		await composite_signal.finished
+		if selected_subarea_id == subarea._id:
+			monster_manager.start_fight_button.disabled = false
+	else:
+		monster_manager.start_fight_button.disabled = false

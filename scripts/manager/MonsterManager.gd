@@ -19,10 +19,10 @@ func initialize():
 	auto_start_fight_checkbox = $%AutoStartFight.get_node("HBC/CheckBox")
 	start_fight_button.button_up.connect(start_fight)
 	start_fight_button.disabled = true
-	$%AreaPeeker.subarea_selected.connect(_on_area_changed)
 
 
 func start_fight():
+	$%AreaPeeker.back_button.disabled = true
 	if DungeonManager.is_in_dungeon():
 		for monster_res in DungeonManager.get_current_room_monsters():
 			instantiate_monster(monster_res)
@@ -39,13 +39,15 @@ func start_fight():
 
 
 func end_fight():
+	$%AreaPeeker.back_button.disabled = false
 	if DungeonManager.is_in_dungeon():
 		$%DungeonManager.enter_next_room()
 	for monster in monsters:
 		monster.queue_free()
 	monsters.assign([])
 	start_fight_button.disabled = false
-	if auto_start_fight_checkbox.button_pressed: start_fight()
+	if auto_start_fight_checkbox.button_pressed:
+		start_fight()
 	$%StatsManager.reset_caracteristiques()
 	for timer in SpellsService.tnode.get_children():
 		timer.queue_free()
@@ -80,8 +82,3 @@ func _on_monster_dies(xp: int):
 
 func _on_monster_selected(monster: Monster):
 	PlayerManager.selected_plate = monster.get_parent()
-
-
-func _on_area_changed(monster_resources: Array[MonsterResource]):
-	monsters_res = monster_resources
-	start_fight_button.disabled = false

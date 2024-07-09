@@ -24,7 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://bov74ckekhf83" path="res://assets/common/block/block_border.png" id="21_xjomn"]
 [ext_resource type="Texture2D" uid="uid://dky7mxoyl8fbb" path="res://assets/hud/background_hud.png" id="22_8pyuk"]
 [ext_resource type="Texture2D" uid="uid://cakxs23d4ilwk" path="res://assets/window_icon/fight_info.png" id="22_tbr8n"]
-[ext_resource type="PackedScene" path="res://scenes/stats/stats_container.tscn" id="24_ocgbs"]
+[ext_resource type="PackedScene" uid="uid://bxcvwsqptloar" path="res://scenes/stats/stats_container.tscn" id="24_ocgbs"]
 [ext_resource type="PackedScene" uid="uid://lce7lc5iumm6" path="res://scenes/spell/spells_container.tscn" id="25_8knwx"]
 [ext_resource type="PackedScene" uid="uid://c74kvimoxv1i" path="res://scenes/spell/spell_bar.tscn" id="28_qnef0"]
 [ext_resource type="FontFile" uid="uid://duac7keqvubh2" path="res://assets/font/Tahoma Regular font.ttf" id="31_yvxwp"]
