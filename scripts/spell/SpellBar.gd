@@ -2,11 +2,14 @@ class_name SpellBar
 extends SlotContainer
 
 
-@export var grid: GridContainer
+const WTYPE = EquipmentResource.WeaponType
 
+@export var grid: GridContainer
+@export var weapon_slot: TextureRect
 
 func _ready():
 	slot_group_name = "spell_slot"
+	update_weapon_slot(WTYPE.NONE)
 	super()
 
 
@@ -16,6 +19,16 @@ func _input(event):
 			if event.is_action_pressed(str(i + 1)):
 				if has_spell(i):
 					get_spell(i).do_action()
+
+
+func _process(_delta):
+	var pg_bar: ProgressBar = weapon_slot.get_child(0)
+	if is_instance_valid($%PlayerManager.attack_timer):
+		var attack_timer: Timer = $%PlayerManager.attack_timer
+		pg_bar.value = attack_timer.time_left
+		pg_bar.max_value = attack_timer.wait_time
+	else:
+		pg_bar.value = 0
 
 
 func connect_slot_signals(slot):
@@ -75,7 +88,17 @@ func set_dragged_exited_drop_parent():
 
 
 func reset_spells():
-	for spell in grid.get_children().map(func(slot):
+	for spell in grid.get_children()\
+	.filter(func(n): return n is Button)\
+	.map(func(slot):
 		return slot.get_child(0) if slot.get_child_count() == 1 else null)\
 		.filter(func(s): return s):
 		spell.reset()
+
+
+func update_weapon_slot(weapon_type: WTYPE):
+	var texture: Texture2D
+	match weapon_type:
+		WTYPE.NONE:
+			texture = load("res://assets/spells/punch.png")
+	weapon_slot.texture = texture

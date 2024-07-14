@@ -45,6 +45,7 @@ enum WeaponType {
 @export var weapon_type: WeaponType
 
 @export var stats: Array[StatResource]
+@export var per_crit: float
 @export var effects: Array[EffectResource]
 
 

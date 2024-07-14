@@ -30,6 +30,25 @@ static func perform_spell(caster: Entity, target: Entity, resource: SpellResourc
 	check_dying_entities([caster] + MonsterManager.monsters)
 
 
+static func perform_weapon_effects(caster: Entity, target: Entity, resource: EquipmentResource, grade: int):
+	if resource.weapon_type == EquipmentResource.WeaponType.NONE:
+		push_error("La ressource n'est pas une arme")
+		return
+	var crit_amount = resource.per_crit
+	var caster_crit = caster.get_caracacteristique_for_type(StatType.CRITIQUE)
+	if caster_crit: crit_amount += caster_crit.amount / 100.0
+	var crit = randf_range(0, 1) <= crit_amount
+	for effect: EffectResource in resource.effects:
+		if count > max_count:
+			perform_effect(caster, get_targets(caster, target, effect.target_type), effect, crit, grade)
+		else:
+			# Un effet de type "random" a été appliqué
+			if count == rand_count:
+				perform_effect(caster, get_targets(caster, target, effect.target_type), effect, crit, grade)
+			count += 1
+	check_dying_entities([caster] + MonsterManager.monsters)
+
+
 static func perform_effect(caster: Entity, targets: Array[Entity], effect: EffectResource, crit: bool, grade: int):
 	var method_name = "perform_%s" % EffectType.find_key(effect.type).to_lower()
 	var callable = Callable(SpellsService, method_name)

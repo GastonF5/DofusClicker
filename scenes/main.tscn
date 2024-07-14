@@ -104,6 +104,7 @@ xp_bar = NodePath("../../GUI/Main/HBC/MiddleContainer/VBC/ExperienceBar")
 spell_bar = NodePath("../../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/SpellBar")
 player_bars = NodePath("../../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/EntityBars")
 console = NodePath("../../GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Infos/MarginContainer/Console")
+attack_time = 1.0
 
 [node name="MonsterManager" type="Node" parent="Managers"]
 unique_name_in_owner = true

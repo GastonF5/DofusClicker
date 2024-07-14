@@ -2,6 +2,8 @@ class_name PlayerManager
 extends Node
 
 
+var punch_res: SpellResource
+
 @export var spells_container: Panel
 var spell_container: VBoxContainer
 @export var stats_container: Panel
@@ -11,6 +13,7 @@ var inventory: Inventory
 
 var player_entity: Entity
 var health_timer: Node
+var attack_timer: Timer
 
 @export var xp_bar: ExperienceBar
 @export var spell_bar: SpellBar
@@ -46,6 +49,8 @@ var max_hp: int:
 		max_hp = value
 		update_pdv()
 
+@export var attack_time: float
+
 var selected_spell: Spell
 
 static var selected_plate: EntityContainer:
@@ -60,6 +65,7 @@ static var plates: Array[EntityContainer]
 var initialized = false
 
 func initialize(selected_class: String):
+	punch_res = load("res://resources/spells/punch.tres")
 	spell_container = spells_container.get_node("%SpellContainer")
 	pdv_label = stats_container.get_node("%HPAmount")
 	inventory = inventory_container.get_node("%Inventory")
@@ -83,6 +89,7 @@ func initialize(selected_class: String):
 	add_child(player_entity)
 	SpellsService.player_entity = player_entity
 	player_entity.entity_bar = player_bars
+	player_entity.attack_callable = player_attack
 	max_hp = 50
 	max_pa = 6
 	max_pm = 3
@@ -153,3 +160,28 @@ func create_description_popup():
 		description.visible = false
 		description.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		$%DescriptionContainer.add_child(description)
+
+
+func create_attack_timer():
+	attack_timer = SpellsService.create_timer(attack_time, "PlayerAttackTimer")
+	await attack_timer.timeout
+	attack_timer.get_parent().remove_child(attack_timer)
+	attack_timer.queue_free()
+	player_entity.attack_callable.call()
+	if GameManager.in_fight():
+		create_attack_timer()
+
+
+func change_attack_timer_wait_time(new_wait_time: float):
+	var cur_wait_time = attack_timer.wait_time - attack_timer.time_left
+	attack_timer.stop()
+	attack_timer.wait_time = new_wait_time - cur_wait_time
+	attack_timer.start()
+
+
+func player_attack():
+	var weapon_res = $%EquipmentManager.equipment_container.get_weapon_resource()
+	if weapon_res:
+		SpellsService.perform_weapon_effects(player_entity, PlayerManager.selected_plate.get_entity(), weapon_res, 0)
+	else:
+		SpellsService.perform_spell(player_entity, PlayerManager.selected_plate.get_entity(), punch_res, 0)

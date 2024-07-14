@@ -36,6 +36,7 @@ func start_fight():
 			start_fight_button.disabled = true
 		else:
 			console.log_error("No monsters in area")
+	$%PlayerManager.create_attack_timer()
 
 
 func end_fight():

@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://n60yenxburg0"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_38hg8"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_idhvu"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_2swca"]
+[ext_resource type="Texture2D" uid="uid://d1oo2xrycpenx" path="res://assets/spells/punch.png" id="2_qtmua"]
+
+[sub_resource type="Resource" id="Resource_su18j"]
+script = ExtResource("1_idhvu")
+min = 5
+max = 5
+min_crit = 8
+max_crit = 8
+
+[sub_resource type="Resource" id="Resource_rshs2"]
+script = ExtResource("2_2swca")
+type = 0
+time = 0.0
+target_type = 1
+element = 0
+lifesteal = false
+caracteristic = 0
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_idhvu")]([SubResource("Resource_su18j")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_38hg8")
+id = 0
+name = "Coup de poing"
+description = "Occasionne des dommages dans l'élément neutre."
+texture = ExtResource("2_qtmua")
+img_url = ""
+pa_cost = 0
+per_crit = 0.0
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_2swca")]([SubResource("Resource_rshs2")])

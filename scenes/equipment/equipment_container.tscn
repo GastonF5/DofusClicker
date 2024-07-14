@@ -42,10 +42,11 @@ load_path = "res://.godot/imported/arme.png-ebd396828b760343dd8b0f710d60b55f.cte
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rykht"]
 load_path = "res://.godot/imported/bottes.png-46242090df264b980838c2242279b864.ctex"
 
-[node name="EquipmentContainer" type="Panel"]
+[node name="EquipmentContainer" type="Panel" node_paths=PackedStringArray("equip_slots")]
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_gtnqv")
 script = ExtResource("1_tcfs0")
+equip_slots = NodePath("MarginContainer/Window/MarginContainer/ScrollContainer/EquipmentSlots")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

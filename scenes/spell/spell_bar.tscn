@@ -1,11 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://c74kvimoxv1i"]
+[gd_scene load_steps=5 format=3 uid="uid://c74kvimoxv1i"]
 
 [ext_resource type="Script" path="res://scripts/spell/SpellBar.gd" id="1_02br4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uq8d2"]
 bg_color = Color(0.196078, 0.196078, 0.196078, 1)
 
-[node name="SpellBar" type="Control" node_paths=PackedStringArray("grid")]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yq5ej"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1vki"]
+bg_color = Color(0, 0, 0, 0.505882)
+
+[node name="SpellBar" type="Control" node_paths=PackedStringArray("grid", "weapon_slot")]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -17,6 +22,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_02br4")
 grid = NodePath("PanelContainer/Grid")
+weapon_slot = NodePath("PanelContainer/Grid/WeaponSlot")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -118,10 +124,23 @@ mouse_default_cursor_shape = 2
 shortcut_in_tooltip = false
 expand_icon = true
 
-[node name="SpellSlot10" type="Button" parent="PanelContainer/Grid" groups=["slot", "spell_slot"]]
+[node name="WeaponSlot" type="TextureRect" parent="PanelContainer/Grid"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_vertical = 3
-focus_mode = 0
-disabled = true
-expand_icon = true
+expand_mode = 3
+stretch_mode = 5
+
+[node name="ProgressBar" type="ProgressBar" parent="PanelContainer/Grid/WeaponSlot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_yq5ej")
+theme_override_styles/fill = SubResource("StyleBoxFlat_h1vki")
+value = 50.0
+fill_mode = 3
+show_percentage = false
