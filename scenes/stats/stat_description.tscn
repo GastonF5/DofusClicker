@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bhvgx33s3ekeh"]
 
 [ext_resource type="Script" path="res://scripts/stats/StatDescription.gd" id="1_d021t"]
-[ext_resource type="Texture2D" uid="uid://duh3xo0nc4y8q" path="res://assets/description_icons/icon_pv.png" id="2_wow2p"]
+[ext_resource type="Texture2D" uid="uid://duh3xo0nc4y8q" path="res://assets/description_icons/icon_vitalite.png" id="2_wow2p"]
 
 [node name="StatDescription" type="HBoxContainer" node_paths=PackedStringArray("txt", "lbl")]
 offset_right = 5.0

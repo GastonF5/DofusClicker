@@ -18,7 +18,7 @@ func init_item(item_res: ItemResource, low: bool, stats: Array[StatResource] = [
 	name = item_res.name.to_pascal_case() + "Description"
 	texture.texture = item_res.get_texture(low)
 	compute_name_label(item_res.name, item_res.id, item_res.level)
-	clear_effect_labels()
+	clear_effects()
 	# Statistiques de l'item
 	if !stats.is_empty():
 		for effect in stats:
@@ -44,7 +44,7 @@ func init_spell(spell_res: SpellResource):
 	pa_cost_label.text = str(spell_res.pa_cost)
 	compute_name_label(spell_res.name, spell_res.id)
 	compute_description_label(spell_res.description)
-	clear_effect_labels()
+	clear_effects()
 	for effect in spell_res.effects:
 		if effect.visible_in_description and effect.get_effect_label(0) != "ERREUR":
 			add_spell_effect_label(effect)
@@ -60,28 +60,7 @@ func init_entity(entity: Entity):
 	name_label.text = entity.name_label.text
 	texture.texture = entity.texture_rect.texture
 	for stat_description in get_tree().get_nodes_in_group("stat_description"):
-		var icon_path = "res://assets/description_icons/"
-		var carac_label := ""
-		var stat_lbl = stat_description.name.replace("Description", "")
-		match stat_lbl:
-			"Vitalite":
-				icon_path += "icon_pv.png"
-				carac_label = "%d / %d" % [entity.hp_bar.cval, entity.hp_bar.mval]
-			"PA":
-				icon_path += "icon_pa.png"
-			"PM":
-				icon_path += "icon_pm.png"
-			"Erosion":
-				icon_path += "icon_erosion.png"
-				carac_label = str(entity.erosion * 100 - 5)
-			_:
-				icon_path = "res://assets/stats/stat_icon/%s.png" % stat_lbl.to_snake_case().to_lower()
-		if carac_label == "":
-			var carac = entity.get_caracacteristique_for_type(Caracteristique.Type.get(stat_lbl.to_snake_case().to_upper()))
-			carac_label = str(carac.amount) if carac else ""
-			if stat_lbl.begins_with("Res") and !(stat_lbl.ends_with("PA") or stat_lbl.ends_with("PM")):
-				carac_label += "%"
-		stat_description.update(load(icon_path), carac_label)
+		stat_description.update_with_entity(entity)
 	visible = true
 
 
@@ -107,17 +86,16 @@ func compute_description_label(_description: String):
 	description_label.append_text(_description)
 
 
-func clear_effect_labels():
-	for label in effects_container.get_children():
-		effects_container.remove_child(label)
-		label.queue_free()
+func clear_effects():
+	for effect in effects_container.get_children():
+		effects_container.remove_child(effect)
+		effect.queue_free()
 
 
 func add_effect_label(stat_res: StatResource):
-	var label = Label.new()
-	label.text = stat_res.get_effect_label()
-	label.add_theme_color_override("font_color", stat_res.get_label_color())
-	effects_container.add_child(label)
+	var caracteristique = StatDescription.create(stat_res)
+	caracteristique.lbl.add_theme_color_override("font_color", stat_res.get_label_color())
+	effects_container.add_child(caracteristique)
 
 
 func add_spell_effect_label(effect_res: EffectResource):

@@ -1,6 +1,7 @@
 class_name StatResource
 extends Resource
 
+const TYPE = Caracteristique.Type
 
 @export var type: Caracteristique.Type
 @export var min_amount: int
@@ -70,3 +71,11 @@ static func create(_type: Caracteristique.Type, _min_amount: int, _max_amount: i
 	res.min_amount = _min_amount
 	res.max_amount = _max_amount
 	return res
+
+
+static func load_texture(type: TYPE):
+	match type:
+		TYPE.PA, TYPE.PM, TYPE.EROSION:
+			return load("res://assets/description_icons/icon_%s.png" % TYPE.find_key(type).to_lower())
+		_:
+			return load("res://assets/stats/stat_icon/%s.png" % TYPE.find_key(type).to_lower())
