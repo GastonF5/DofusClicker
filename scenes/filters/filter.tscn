@@ -30,3 +30,4 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 10
 focus_mode = 0
+mouse_default_cursor_shape = 2
