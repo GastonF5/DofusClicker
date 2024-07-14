@@ -5,6 +5,7 @@ extends Control
 @export var texture: TextureRect
 @export var name_label: RichTextLabel
 @export var description_label: RichTextLabel
+@export var areas_label: Label
 
 @export var effects_label: Label
 @export var effects_container: VBoxContainer
@@ -13,10 +14,12 @@ extends Control
 
 
 func init_item(item_res: ItemResource, low: bool, stats: Array[StatResource] = []):
+	# Nom et texture
 	name = item_res.name.to_pascal_case() + "Description"
 	texture.texture = item_res.get_texture(low)
 	compute_name_label(item_res.name, item_res.id, item_res.level)
 	clear_effect_labels()
+	# Statistiques de l'item
 	if !stats.is_empty():
 		for effect in stats:
 			add_effect_label(effect)
@@ -24,6 +27,13 @@ func init_item(item_res: ItemResource, low: bool, stats: Array[StatResource] = [
 		for effect in item_res.equip_res.stats:
 			add_effect_label(effect)
 	set_effect_visibility(!stats.is_empty() and !(item_res.equip_res and item_res.equip_res.stats.is_empty()))
+	# Zones sur lesquelles l'item est droppable
+	if !item_res.get_monsters():
+		areas_label.visible = false
+	else:
+		areas_label.visible = true
+		areas_label.text = item_res.get_drop_areas()
+	
 	set_mouse_ignore()
 	visible = true
 

@@ -54,3 +54,19 @@ func load_texture(api: API, low: bool):
 		high_texture = api.get_texture(url)
 		if is_resource(): Datas._resources[id].high_texture = high_texture
 		else: Datas._items[id].high_texture = high_texture
+
+
+func get_monsters():
+	if drop_monster_ids.is_empty():
+		return null
+	return drop_monster_ids\
+	.map(func(id): return Datas._monsters[id] if Datas._monsters.has(id) else null)\
+	.filter(func(r): return r)
+
+
+func get_drop_areas() -> String:
+	return get_monsters()\
+			.map(func(m: MonsterResource): return Datas._subareas[m.favorite_area]._name)\
+			.reduce(func(accum: String, area_name):
+				return accum if accum.contains(area_name) else accum + ", " + area_name, "")\
+			.erase(0, 2)
