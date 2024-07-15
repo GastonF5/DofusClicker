@@ -14,12 +14,15 @@ extends Node
 @onready var console: Console = $%Console
 
 
+@export var class_texture_rect: TextureRect
+
 func _ready():
 	class_peeker.visible = true
 	class_peeker.bselect.button_up.connect(_on_class_selected)
 
 
 func _on_class_selected():
+	class_texture_rect.texture = class_peeker.get_logo_transparent()
 	mstats.initialize()
 	mplayer.initialize(class_peeker.classes[class_peeker.selected_class])
 	mmonster.initialize()

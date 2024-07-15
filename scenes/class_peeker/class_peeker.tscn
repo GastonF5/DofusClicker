@@ -1,6 +1,6 @@
-[gd_scene load_steps=32 format=3 uid="uid://bospgqkt5v11w"]
+[gd_scene load_steps=34 format=3 uid="uid://bospgqkt5v11w"]
 
-[ext_resource type="Script" path="res://scripts/ClassPeeker.gd" id="1_kjw78"]
+[ext_resource type="Script" path="res://scripts/class_peeker/ClassPeeker.gd" id="1_7uonm"]
 [ext_resource type="Texture2D" uid="uid://f1b4iqrwl4yt" path="res://assets/class_peeker/bgIlluServeur.jpg" id="1_sgq1h"]
 [ext_resource type="Texture2D" uid="uid://bun3ycrmiu6rv" path="res://assets/classes/logo/symbol_1.png" id="3_m2pd1"]
 [ext_resource type="Texture2D" uid="uid://bqyrti6v44xi3" path="res://assets/classes/logo/symbol_2.png" id="4_od5uc"]
@@ -21,9 +21,11 @@
 [ext_resource type="Texture2D" uid="uid://d1w310itmucff" path="res://assets/classes/logo/symbol_17.png" id="19_c7vg3"]
 [ext_resource type="Texture2D" uid="uid://dgue8gx17evoo" path="res://assets/classes/logo/symbol_18.png" id="20_3stw5"]
 [ext_resource type="Texture2D" uid="uid://dsgor00d8u0a6" path="res://assets/classes/logo/symbol_19.png" id="21_3slnw"]
+[ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="22_dop45"]
 [ext_resource type="Texture2D" uid="uid://dtnvde1gv6735" path="res://assets/classes/logo_transparent/logo_transparent_1.png" id="22_ogkau"]
 [ext_resource type="Texture2D" uid="uid://qltli0blw15h" path="res://assets/common/button/btn_green_normal.png" id="24_07i0a"]
 [ext_resource type="FontFile" uid="uid://duac7keqvubh2" path="res://assets/font/Tahoma Regular font.ttf" id="24_d7krg"]
+[ext_resource type="PackedScene" uid="uid://bey8pcrl726xa" path="res://scenes/class_peeker/class_peeker_description.tscn" id="24_g77te"]
 [ext_resource type="Texture2D" uid="uid://cypqdcnr1uakv" path="res://assets/common/button/btn_green_over.png" id="25_y4bdj"]
 [ext_resource type="Texture2D" uid="uid://crr1cpji0x41k" path="res://assets/common/button/btn_green_pressed.png" id="26_x4168"]
 [ext_resource type="Texture2D" uid="uid://bw6i2v35exff6" path="res://assets/common/button/btn_green_disabled.png" id="27_y6qfc"]
@@ -40,13 +42,18 @@ texture = ExtResource("26_x4168")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qstv2"]
 texture = ExtResource("27_y6qfc")
 
-[node name="ClassPeeker" type="CanvasLayer" node_paths=PackedStringArray("bselect", "bcontainer1", "bcontainer2", "clogo", "clabel")]
-script = ExtResource("1_kjw78")
+[node name="ClassPeeker" type="CanvasLayer" node_paths=PackedStringArray("bselect", "bcontainer1", "bcontainer2", "clogo", "clabel", "role_container", "spell_container1", "spell_container2", "passif_label", "description")]
+script = ExtResource("1_7uonm")
 bselect = NodePath("SelectButton")
 bcontainer1 = NodePath("Buttons/ButtonsContainer1")
 bcontainer2 = NodePath("Buttons/ButtonsContainer2")
-clogo = NodePath("ClassPanel/ClassLogoTransparent")
-clabel = NodePath("ClassPanel/VBC/ClassLabel")
+clogo = NodePath("ClassPanel/HBC/ClassLogoTransparent")
+clabel = NodePath("ClassPanel/HBC/Roles/ClassLabel")
+role_container = NodePath("ClassPanel/HBC/Roles/RoleContainer")
+spell_container1 = NodePath("ClassPanel/HBC/Spells/SpellContainer1")
+spell_container2 = NodePath("ClassPanel/HBC/Spells/SpellContainer2")
+passif_label = NodePath("ClassPanel/HBC/Roles/PassifLabel")
+description = NodePath("ClassPanel/ClassPeekerDescription")
 
 [node name="Background" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -278,29 +285,97 @@ offset_right = 768.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("22_dop45")
 
-[node name="ClassLogoTransparent" type="TextureRect" parent="ClassPanel"]
-layout_mode = 2
-offset_left = 7.0
-offset_top = 6.0
-offset_right = 1530.0
-offset_bottom = 416.0
+[node name="HBC" type="HBoxContainer" parent="ClassPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Roles" type="VBoxContainer" parent="ClassPanel/HBC"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="ClassLabel" type="Label" parent="ClassPanel/HBC/Roles"]
+layout_mode = 2
+text = "Class Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RoleContainer" type="HBoxContainer" parent="ClassPanel/HBC/Roles"]
+layout_mode = 2
+alignment = 1
+
+[node name="PassifLabel" type="Label" parent="ClassPanel/HBC/Roles"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Description du passif"
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ClassLogoTransparent" type="TextureRect" parent="ClassPanel/HBC"]
+layout_mode = 2
+size_flags_horizontal = 6
 texture = ExtResource("22_ogkau")
 stretch_mode = 5
 
-[node name="VBC" type="VBoxContainer" parent="ClassPanel"]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 103.0
-grow_vertical = 2
-
-[node name="ClassLabel" type="Label" parent="ClassPanel/VBC"]
+[node name="Spells" type="VBoxContainer" parent="ClassPanel/HBC"]
 layout_mode = 2
-text = "Class Name"
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="ClassPanel/HBC/Spells"]
+layout_mode = 2
+text = "Liste des sorts
+"
+horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Control" type="Control" parent="ClassPanel/HBC/Spells"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="SpellContainer1" type="HBoxContainer" parent="ClassPanel/HBC/Spells"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="SpellContainer2" type="HBoxContainer" parent="ClassPanel/HBC/Spells"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="SelectionnerLabel" type="Label" parent="ClassPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Sélectionnez une classe"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ClassPeekerDescription" parent="ClassPanel" instance=ExtResource("24_g77te")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -266.5
+offset_top = -56.5
+offset_right = 266.5
+offset_bottom = 56.5
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="SelectButton" type="Button" parent="."]
 custom_minimum_size = Vector2(200, 50)

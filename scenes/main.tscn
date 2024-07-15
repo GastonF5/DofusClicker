@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://bfh3u8jwrg2ar"]
+[gd_scene load_steps=53 format=3 uid="uid://bfh3u8jwrg2ar"]
 
 [ext_resource type="PackedScene" uid="uid://2yisonfumvpt" path="res://scenes/API.tscn" id="1_0haij"]
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_7amhq"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://bx13bnw5chi1h" path="res://assets/window_icon/sorts.png" id="16_og6sm"]
 [ext_resource type="PackedScene" uid="uid://ijqxn7khforp" path="res://scenes/areas/area_peeker.tscn" id="17_tk01a"]
 [ext_resource type="Texture2D" uid="uid://0ujq6wd2dvfm" path="res://assets/common/window/window_green_background.jpg" id="20_5artd"]
+[ext_resource type="Texture2D" uid="uid://dtnvde1gv6735" path="res://assets/classes/logo_transparent/logo_transparent_1.png" id="20_b2ybu"]
 [ext_resource type="Texture2D" uid="uid://bov74ckekhf83" path="res://assets/common/block/block_border.png" id="21_xjomn"]
 [ext_resource type="Texture2D" uid="uid://dky7mxoyl8fbb" path="res://assets/hud/background_hud.png" id="22_8pyuk"]
 [ext_resource type="Texture2D" uid="uid://cakxs23d4ilwk" path="res://assets/window_icon/fight_info.png" id="22_tbr8n"]
@@ -36,7 +37,7 @@
 [ext_resource type="PackedScene" uid="uid://v3e3pddsya44" path="res://scenes/console.tscn" id="34_t67ba"]
 [ext_resource type="Texture2D" uid="uid://l5x41vqt4blf" path="res://assets/common/button/btn_greenLargeBorder_pressed.png" id="34_uav3t"]
 [ext_resource type="Texture2D" uid="uid://dne08ij0lq2cn" path="res://assets/common/button/btn_greenLargeBorder_disabled.png" id="35_61trk"]
-[ext_resource type="PackedScene" uid="uid://bospgqkt5v11w" path="res://scenes/class_peeker.tscn" id="36_f47er"]
+[ext_resource type="PackedScene" uid="uid://bospgqkt5v11w" path="res://scenes/class_peeker/class_peeker.tscn" id="36_f47er"]
 [ext_resource type="PackedScene" uid="uid://dr1xqccheukcc" path="res://scenes/bars/entity_bars.tscn" id="40_5kut3"]
 [ext_resource type="PackedScene" uid="uid://cl1b4rs0yua7e" path="res://scenes/LoadingScreen.tscn" id="43_bkaqa"]
 
@@ -142,6 +143,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="LeftSide" type="PanelContainer" parent="GUI/Main/HBC"]
 custom_minimum_size = Vector2(500, 0)
@@ -228,6 +230,14 @@ self_modulate = Color(0.439216, 0.439216, 0.439216, 1)
 clip_contents = true
 layout_mode = 2
 texture = ExtResource("2_5kihd")
+
+[node name="ClassTexture" type="TextureRect" parent="GUI/Main/HBC/MiddleContainer"]
+custom_minimum_size = Vector2(0, 650)
+layout_mode = 2
+size_flags_vertical = 8
+texture = ExtResource("20_b2ybu")
+expand_mode = 3
+stretch_mode = 3
 
 [node name="VBC" type="VBoxContainer" parent="GUI/Main/HBC/MiddleContainer"]
 layout_mode = 2
@@ -458,8 +468,9 @@ visible = false
 unique_name_in_owner = true
 visible = false
 
-[node name="GameManager" type="Node" parent="."]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("class_texture_rect")]
 script = ExtResource("1_7amhq")
+class_texture_rect = NodePath("../GUI/Main/HBC/MiddleContainer/ClassTexture")
 
 [node name="Datas" type="Node" parent="."]
 unique_name_in_owner = true

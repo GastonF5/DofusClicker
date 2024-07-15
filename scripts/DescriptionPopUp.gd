@@ -53,6 +53,13 @@ func init_spell(spell_res: SpellResource):
 	visible = true
 
 
+func init_spell_in_class_peeker(spell_res: SpellResource):
+	name = spell_res.name.to_pascal_case() + "DescriptionClassPeeker"
+	texture.texture = spell_res.texture
+	name_label.text = spell_res.name
+	compute_description_label(spell_res.description)
+
+
 func init_entity(entity: Entity):
 	if name != "EntityDescription":
 		push_error("C'est un problème ça là oh")
