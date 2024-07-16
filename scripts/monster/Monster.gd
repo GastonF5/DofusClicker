@@ -28,8 +28,8 @@ static func instantiate(monster_res: MonsterResource, parent: Control) -> Monste
 
 
 func init(is_player := false, res: MonsterResource = null):
+	super()
 	player = is_player
-	player_manager = get_tree().current_scene.get_node("%PlayerManager")
 	inventory = player_manager.inventory
 	grade = res.grades[randi_range(0, res.grades.size() - 1)]
 	drops = res.drops.duplicate()
@@ -40,7 +40,6 @@ func init(is_player := false, res: MonsterResource = null):
 	init_clickable(self)
 	texture_rect.texture = res.texture
 	
-	super()
 	init_bars()
 	init_spells(res.spells)
 	

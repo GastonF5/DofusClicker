@@ -34,6 +34,7 @@ var taken_damage_rate: int = 100
 
 #region Caractéristiques
 func init(is_player := false):
+	player_manager = get_tree().current_scene.get_node("%PlayerManager")
 	pm_bar.cval_change.connect(func():
 		pa_bar.speed = get_attack_speed())
 	pa_bar.speed = get_attack_speed()
@@ -94,9 +95,7 @@ func init_bars():
 		var curmval = pm_bar.mval
 		pm_bar.speed = 0.0
 		pm_bar.mval = get_pm()
-		pm_bar.cval = get_pm()
-		if is_player() and player_manager:
-			player_manager.attack_time = 30.0 / get_attack_speed())
+		pm_bar.cval = get_pm())
 
 
 func get_vitalite() -> int:

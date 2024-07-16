@@ -13,7 +13,6 @@ var inventory: Inventory
 
 var player_entity: Entity
 var health_timer: Node
-var attack_timer: Timer
 
 @export var xp_bar: ExperienceBar
 @export var spell_bar: SpellBar
@@ -48,11 +47,6 @@ var max_hp: int:
 		player_entity.hp_bar.cval += value - max_hp
 		max_hp = value
 		update_pdv()
-
-@export var attack_time: float:
-	set(value):
-		attack_time = value
-		change_attack_timer_wait_time(attack_time)
 
 var selected_spell: Spell
 
@@ -98,7 +92,6 @@ func initialize(selected_class: String):
 	max_pm = 3
 	init_bars()
 	player_entity.init(true)
-	attack_time = 120.0 / player_entity.get_attack_speed()
 	
 	xp_bar.init()
 	
@@ -164,24 +157,6 @@ func create_description_popup():
 		description.visible = false
 		description.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		$%DescriptionContainer.add_child(description)
-
-
-func create_attack_timer():
-	attack_timer = SpellsService.create_timer(attack_time, "PlayerAttackTimer")
-	await attack_timer.timeout
-	attack_timer.get_parent().remove_child(attack_timer)
-	attack_timer.queue_free()
-	player_entity.attack_callable.call()
-	if GameManager.in_fight():
-		create_attack_timer()
-
-
-func change_attack_timer_wait_time(new_wait_time: float):
-	if attack_timer and is_instance_valid(attack_timer):
-		var cur_wait_time = attack_timer.wait_time - attack_timer.time_left
-		attack_timer.stop()
-		attack_timer.wait_time = new_wait_time - cur_wait_time
-		attack_timer.start()
 
 
 func player_attack():

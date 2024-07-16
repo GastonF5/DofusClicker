@@ -6,10 +6,14 @@ const WTYPE = EquipmentResource.WeaponType
 
 @export var grid: GridContainer
 @export var weapon_slot: TextureRect
+var weapon_pb: ProgressBar:
+	get: return weapon_slot.get_node("ProgressBar")
+var weapon_pb_ready := false
 
 func _ready():
 	slot_group_name = "spell_slot"
 	update_weapon_slot(WTYPE.NONE)
+	weapon_pb.max_value = 100
 	super()
 
 
@@ -21,14 +25,21 @@ func _input(event):
 					get_spell(i).do_action()
 
 
-func _process(_delta):
-	var pg_bar: ProgressBar = weapon_slot.get_child(0)
-	if is_instance_valid($%PlayerManager.attack_timer):
-		var attack_timer: Timer = $%PlayerManager.attack_timer
-		pg_bar.value = attack_timer.time_left
-		pg_bar.max_value = attack_timer.wait_time
+func _process(delta):
+	if GameManager.in_fight() and weapon_pb_ready:
+		var player_entity: Entity = $%PlayerManager.player_entity
+		weapon_pb.value -= float(player_entity.get_attack_speed() * delta) / 3
+		if weapon_pb.value <= 0:
+			weapon_pb.value = weapon_pb.max_value
+			$%PlayerManager.player_attack()
+
+
+func set_weapon_pb_ready(ready: bool):
+	if ready:
+		weapon_pb.value = weapon_pb.max_value
 	else:
-		pg_bar.value = 0
+		weapon_pb.value = 0
+	weapon_pb_ready = ready
 
 
 func connect_slot_signals(slot):

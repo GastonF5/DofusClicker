@@ -23,6 +23,7 @@ func initialize():
 
 func start_fight():
 	$%AreaPeeker.back_button.disabled = true
+	$%PlayerManager.spell_bar.set_weapon_pb_ready(true)
 	if DungeonManager.is_in_dungeon():
 		for monster_res in DungeonManager.get_current_room_monsters():
 			instantiate_monster(monster_res)
@@ -36,11 +37,11 @@ func start_fight():
 			start_fight_button.disabled = true
 		else:
 			console.log_error("No monsters in area")
-	$%PlayerManager.create_attack_timer()
 
 
 func end_fight():
 	$%AreaPeeker.back_button.disabled = false
+	$%PlayerManager.spell_bar.set_weapon_pb_ready(false)
 	if DungeonManager.is_in_dungeon():
 		$%DungeonManager.enter_next_room()
 	for monster in monsters:
