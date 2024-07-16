@@ -94,7 +94,9 @@ func init_bars():
 		var curmval = pm_bar.mval
 		pm_bar.speed = 0.0
 		pm_bar.mval = get_pm()
-		pm_bar.cval = get_pm())
+		pm_bar.cval = get_pm()
+		if is_player() and player_manager:
+			player_manager.attack_time = 30.0 / get_attack_speed())
 
 
 func get_vitalite() -> int:
@@ -161,6 +163,10 @@ func apply_erosion(amount: int):
 
 static func is_monster(value: Node):
 	return is_instance_of(value, Monster)
+
+
+func is_player():
+	return !Entity.is_monster(self)
 
 
 func die():
