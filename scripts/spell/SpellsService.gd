@@ -107,11 +107,14 @@ static func perform_retrait(caster: Entity, target: Entity, effect: EffectResour
 	var ret_carac = caster.get_caracacteristique_for_type(StatType.get("RET_%s" % carac_label))
 	var res_carac = target.get_caracacteristique_for_type(StatType.get("RES_%s" % carac_label))
 	var ret_ratio = (ret_carac.amount / res_carac.amount) if res_carac.amount != 0 else 100
+	var retrait_amount := 0
 	for i in range(amount):
 		var proba = 50 * ret_ratio * (bar.cval / bar.mval)
 		proba = clamp(proba, 10, 90)
 		if randf_range(0, 1) <= proba / 100.0:
 			bar.cval -= 1
+			retrait_amount += 1
+	console.log_retrait(target, retrait_amount, effect.get_caracteristic_label())
 
 
 static func perform_special(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):

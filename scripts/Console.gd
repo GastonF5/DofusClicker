@@ -271,10 +271,14 @@ func log_damage(target: Entity, amount: int, element: Element, dead: bool):
 func log_bonus(target: Entity, amount: int, characteristic: String, time: float):
 	_log_line(get_entity_name(target), INFO, true)
 	_log_line(" : %d %s" % [amount, characteristic], INFO)
-	if time != 0:
+	if time != 0.0:
 		_log_line(" (%d secondes)" % time, INFO)
 	_new_line()
 
+
+func log_retrait(target: Entity, amount: int, characteristic: String):
+	log_bonus(target, -amount, characteristic, 0.0)
+ 
 
 func get_entity_name(entity: Entity):
 	var entity_name = entity.name
