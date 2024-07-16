@@ -31,10 +31,13 @@ signal dies
 var erosion := 0.05
 var taken_damage_rate: int = 100
 
+var console: Console
+
 
 #region Caractéristiques
 func init(is_player := false):
 	player_manager = get_tree().current_scene.get_node("%PlayerManager")
+	console = SpellsService.console
 	pm_bar.cval_change.connect(func():
 		pa_bar.speed = get_attack_speed())
 	pa_bar.speed = get_attack_speed()
@@ -130,6 +133,7 @@ func take_damage(amount: int, element: Element):
 		hp_bar.cval -= amount
 	else:
 		hp_bar.cval -= amount
+	console.log_damage(self, amount, element, dying)
 	return amount
 
 

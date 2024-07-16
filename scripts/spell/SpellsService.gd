@@ -18,6 +18,7 @@ static func perform_spell(caster: Entity, target: Entity, resource: SpellResourc
 	var caster_crit = caster.get_caracacteristique_for_type(StatType.CRITIQUE)
 	if caster_crit: crit_amount += caster_crit.amount / 100.0
 	var crit = randf_range(0, 1) <= crit_amount
+	console.log_spell_cast(caster, resource, crit)
 	for effect: EffectResource in resource.effects:
 		if count > max_count:
 			perform_effect(caster, get_targets(caster, target, effect.target_type), effect, crit, grade)
@@ -83,6 +84,7 @@ static func perform_bonus(caster: Entity, target: Entity, effect: EffectResource
 		_:
 			carac = target.get_caracacteristique_for_type(effect.caracteristic)
 			carac.amount += amount
+	console.log_bonus(target, amount, effect.get_caracteristic_label(), effect.time)
 	if effect.time != 0:
 		var timer = create_timer(effect.time, "BonusTimer")
 		await timer.timeout

@@ -3,6 +3,9 @@ extends Control
 
 
 const EQUIPMENT_RESOURCE_PATH = "res://resources/equipment/%s.tres"
+const INFO = LogType.INFO
+const Element = Caracteristique.Element
+const CaracType = Caracteristique.Type
 
 enum LogType {
 	INFO,
@@ -74,7 +77,26 @@ func is_command(text: String) -> bool:
 func _log(text: String, type: LogType = LogType.NONE, bold: bool = false):
 	if bold: output.push_bold()
 	apply_color(type)
-	output.add_text(text + "\n")
+	output.add_text(text)
+	_new_line()
+	output.pop_all()
+
+
+func _new_line():
+	output.add_text("\n")
+
+
+func _log_line(text: String, type: LogType = LogType.NONE, bold: bool = false):
+	if bold: output.push_bold()
+	apply_color(type)
+	output.add_text(text)
+	output.pop_all()
+
+
+func _log_damage_amount(amount: int, element: Element):
+	output.push_bold()
+	apply_element_color(element)
+	output.add_text("%s" % ("-" if amount > 0 else "+") + str(abs(amount)))
 	output.pop_all()
 
 
@@ -89,6 +111,22 @@ func apply_color(type: LogType):
 			color = Color.ORANGE
 		COMMAND:
 			color = Color.SKY_BLUE
+	output.push_color(color)
+
+
+func apply_element_color(element: Element):
+	var color = Color.WHITE
+	match element:
+		Element.AIR:
+			color = Color.GREEN
+		Element.EAU:
+			color = Color.DODGER_BLUE
+		Element.FEU:
+			color = Color.CRIMSON
+		Element.TERRE:
+			color = Color.SADDLE_BROWN
+		Element.NEUTRE:
+			color = Color.GRAY
 	output.push_color(color)
 
 
@@ -209,3 +247,37 @@ func log_equip(item: Item):
 	log_info("Informations de %s (%s)" % [item.name, item.resource.equip_res.get_type()])
 	for stat: StatResource in item.stats:
 		log_info("- %s : %d" % [stat.get_type(), stat.amount])
+
+
+func log_spell_cast(caster: Entity, spell_res: SpellResource, crit: bool):
+	var is_player = !Entity.is_monster(caster)
+	_log_line(get_entity_name(caster), INFO, true)
+	var lance = " lance%s " % ("z" if is_player else "")
+	_log_line(lance, INFO)
+	_log_line(spell_res.name, INFO, true)
+	if crit:
+		_log_line(" (Critique)", INFO)
+	_new_line()
+
+
+func log_damage(target: Entity, amount: int, element: Element, dead: bool):
+	_log_line(get_entity_name(target), INFO, true)
+	_log_line(" : ", INFO)
+	_log_damage_amount(amount, element)
+	_log_line(" PV%s" % (" (mort)" if dead else ""), INFO)
+	_new_line()
+
+
+func log_bonus(target: Entity, amount: int, characteristic: String, time: float):
+	_log_line(get_entity_name(target), INFO, true)
+	_log_line(" : %d %s" % [amount, characteristic], INFO)
+	if time != 0:
+		_log_line(" (%d secondes)" % time, INFO)
+	_new_line()
+
+
+func get_entity_name(entity: Entity):
+	var entity_name = entity.name
+	if !Entity.is_monster(entity):
+		entity_name = "Vous"
+	return entity_name
