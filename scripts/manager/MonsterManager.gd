@@ -14,6 +14,8 @@ signal monster_dies
 
 static var monsters_res := []
 
+var xp_to_gain := 0
+
 
 func initialize():
 	end_fight_callable = end_fight
@@ -48,6 +50,8 @@ func end_fight():
 		GameManager.in_fight = false
 		if monsters.filter(func(m): return !m.dying).is_empty():
 			console.log_info("Combat terminé")
+		$%PlayerManager.xp_bar.gain_xp(xp_to_gain)
+		xp_to_gain = 0
 		$%AreaPeeker.back_button.disabled = false
 		$%PlayerManager.spell_bar.set_weapon_pb_ready(false)
 		if DungeonManager.is_in_dungeon():
@@ -83,8 +87,7 @@ func instantiate_monster(monster_res: MonsterResource = null) -> Monster:
 
 
 func _on_monster_dies(xp: int):
-	var player_manager = get_tree().current_scene.get_node("%PlayerManager")
-	player_manager.xp_bar.gain_xp(xp)
+	xp_to_gain += xp
 	monsters.assign(get_monsters_on_plates())
 	if monsters.filter(func(m): return !m.dying).is_empty():
 		end_fight()
