@@ -51,14 +51,13 @@ func end_fight():
 		if monsters.filter(func(m): return !m.dying).is_empty():
 			console.log_info("Combat terminé")
 		$%PlayerManager.xp_bar.gain_xp(xp_to_gain)
+		console.log_info("Vous avez gagné %d d'expérience" % xp_to_gain)
 		xp_to_gain = 0
 		$%AreaPeeker.back_button.disabled = false
 		$%PlayerManager.spell_bar.set_weapon_pb_ready(false)
 		if DungeonManager.is_in_dungeon():
 			$%DungeonManager.enter_next_room()
-		for monster in monsters:
-			monster.queue_free()
-		monsters.assign([])
+		clear_monsters()
 		start_fight_button.disabled = false
 		if auto_start_fight_checkbox.button_pressed:
 			start_fight()
@@ -95,7 +94,8 @@ func _on_monster_dies(xp: int):
 
 func clear_monsters():
 	for monster in monsters:
-		monster.get_parent().remove_child(monster)
+		if monster.get_parent():
+			monster.get_parent().remove_child(monster)
 		monster.queue_free()
 	monsters.clear()
 
