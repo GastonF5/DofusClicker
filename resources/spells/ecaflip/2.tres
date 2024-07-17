@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=14 format=3 uid="uid://cfm12w1jjuosd"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=12 format=3 uid="uid://cfm12w1jjuosd"]
 
 [ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_giae6"]
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_rq11w"]
@@ -42,29 +42,6 @@ effect_label = ""
 params = []
 nb_random_effects = 0
 amounts = Array[ExtResource("2_qvo0b")]([SubResource("Resource_8ub6b")])
-visible_in_description = true
-
-[sub_resource type="Resource" id="Resource_10ipx"]
-script = ExtResource("2_qvo0b")
-min = 3
-max = 3
-min_crit = 3
-max_crit = 3
-
-[sub_resource type="Resource" id="Resource_p6q70"]
-resource_name = "Bonus PA"
-script = ExtResource("1_giae6")
-type = 1
-time = 20.0
-target_type = 0
-element = 0
-lifesteal = false
-caracteristic = 0
-method_name = &""
-effect_label = ""
-params = []
-nb_random_effects = 0
-amounts = Array[ExtResource("2_qvo0b")]([SubResource("Resource_10ipx")])
 visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_vfs3a"]
@@ -124,4 +101,4 @@ pa_cost = 2
 per_crit = 0.15
 cooldown = 20.0
 priority = 0
-effects = Array[ExtResource("1_giae6")]([SubResource("Resource_arg74"), SubResource("Resource_83oq8"), SubResource("Resource_p6q70"), SubResource("Resource_73f1w"), SubResource("Resource_lvnuj")])
+effects = Array[ExtResource("1_giae6")]([SubResource("Resource_arg74"), SubResource("Resource_83oq8"), SubResource("Resource_73f1w"), SubResource("Resource_lvnuj")])

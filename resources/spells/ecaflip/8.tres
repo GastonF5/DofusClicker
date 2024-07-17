@@ -23,10 +23,10 @@ visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_lxary"]
 script = ExtResource("2_t1pvk")
-min = 10
-max = 13
-min_crit = 15
-max_crit = 18
+min = 2
+max = 4
+min_crit = 4
+max_crit = 6
 
 [sub_resource type="Resource" id="Resource_i7mdl"]
 resource_name = "Soin Feu"
@@ -46,10 +46,10 @@ visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_cv2si"]
 script = ExtResource("2_t1pvk")
-min = 10
-max = 13
-min_crit = 15
-max_crit = 18
+min = 2
+max = 4
+min_crit = 4
+max_crit = 6
 
 [sub_resource type="Resource" id="Resource_i5e4t"]
 resource_name = "Dommages Eau"

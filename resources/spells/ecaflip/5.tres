@@ -7,10 +7,10 @@
 
 [sub_resource type="Resource" id="Resource_ktb3b"]
 script = ExtResource("1_kbp3q")
-min = 12
-max = 15
-min_crit = 16
-max_crit = 20
+min = 10
+max = 12
+min_crit = 12
+max_crit = 14
 
 [sub_resource type="Resource" id="Resource_j257v"]
 resource_name = "Dommages Terre"
@@ -30,10 +30,10 @@ visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_0dmr1"]
 script = ExtResource("1_kbp3q")
-min = 3
-max = 3
+min = 2
+max = 2
 min_crit = 3
-max_crit = 3
+max_crit = 4
 
 [sub_resource type="Resource" id="Resource_tctp1"]
 resource_name = "Retrait PM"
