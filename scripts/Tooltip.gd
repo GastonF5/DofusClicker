@@ -4,7 +4,7 @@ class_name Tooltip
 
 @export var label: Label
 
-var carac_parent: Caracteristique
+var carac_parent: Node
 
 
 func init(parent_control: Control):
@@ -25,7 +25,10 @@ func update_text(text: String):
 
 
 func _on_mouse_entered_control():
-	position = carac_parent.get_node("TooltipPosition").global_position
+	if carac_parent is Caracteristique:
+		position = carac_parent.get_node("TooltipPosition").global_position
+	if carac_parent is ExperienceBar:
+		position = carac_parent.global_position + Vector2((carac_parent.size.x - size.x) / 2, -60)
 	visible = true
 
 
