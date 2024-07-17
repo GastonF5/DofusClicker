@@ -120,9 +120,9 @@ func init_tooltip():
 	var over_ui = get_tree().current_scene.get_node("OverUI")
 	var tooltip_position = $TooltipPosition.global_position
 	if modifiable:
-		tooltip = Tooltip.create(name, over_ui, self, tooltip_position)
+		tooltip = Tooltip.create(name, over_ui, self)
 	elif static_tooltip_text:
-		tooltip = Tooltip.create(static_tooltip_text, over_ui, self, tooltip_position)
+		tooltip = Tooltip.create(static_tooltip_text, over_ui, self)
 
 
 func get_type_label():

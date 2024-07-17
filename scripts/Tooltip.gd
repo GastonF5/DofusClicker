@@ -4,12 +4,15 @@ class_name Tooltip
 
 @export var label: Label
 
+var carac_parent: Caracteristique
+
 
 func init(parent_control: Control):
 	name = parent_control.name + "Tooltip"
 	visible = false
 	z_index = 1
 	init_connections(parent_control)
+	carac_parent = parent_control
 
 
 func init_connections(control: Control):
@@ -22,6 +25,7 @@ func update_text(text: String):
 
 
 func _on_mouse_entered_control():
+	position = carac_parent.get_node("TooltipPosition").global_position
 	visible = true
 
 
@@ -29,10 +33,9 @@ func _on_mouse_exited_control():
 	visible = false
 
 
-static func create(text: String, parent: Node, control_to_connect: Control, pos: Vector2) -> Tooltip:
+static func create(text: String, parent: Node, control_to_connect: Control) -> Tooltip:
 	var tooltip = FileLoader.get_packed_scene("tooltip").instantiate()
 	tooltip.init(control_to_connect)
 	tooltip.update_text(text)
 	parent.add_child(tooltip)
-	tooltip.position = pos
 	return tooltip
