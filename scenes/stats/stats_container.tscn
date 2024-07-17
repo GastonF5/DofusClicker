@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bxcvwsqptloar"]
+[gd_scene load_steps=10 format=3 uid="uid://cp14q5ermx6mo"]
 
 [ext_resource type="Texture2D" uid="uid://0ujq6wd2dvfm" path="res://assets/common/window/window_green_background.jpg" id="1_5awq1"]
 [ext_resource type="Texture2D" uid="uid://dc4kur4fk7phx" path="res://assets/common/block/block_border_scratch.png" id="2_nveqh"]
@@ -114,7 +114,6 @@ texture = ExtResource("4_j7qus")
 layout_mode = 2
 modifiable = false
 init_label = "Points d'action (PA)"
-static_tooltip_text = "test"
 
 [node name="Separator2" type="TextureRect" parent="MarginContainer/ScrollContainer/VBC/StatsHeader/MarginContainer/StatsContainer"]
 layout_mode = 2
@@ -124,7 +123,7 @@ texture = ExtResource("4_j7qus")
 layout_mode = 2
 modifiable = false
 init_label = "Points de mouvement (PM)"
-static_tooltip_text = "test"
+static_tooltip_text = "Les points de mouvement définissent la vitesse à laquelle vous regagnez des PA, ainsi que la vitesse à laquelle vous utilisez votre corps à corps."
 
 [node name="Separator" type="TextureRect" parent="MarginContainer/ScrollContainer/VBC"]
 layout_mode = 2
