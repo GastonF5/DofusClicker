@@ -77,7 +77,8 @@ func die():
 	super()
 	await drop()
 	hp_bar.value = hp_bar.min_value
-	get_parent().remove_child(self)
+	if get_parent():
+		get_parent().remove_child(self)
 	dies.emit(grade.xp)
 	queue_free()
 

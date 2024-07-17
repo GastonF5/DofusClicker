@@ -24,6 +24,8 @@ func initialize():
 
 
 func start_fight():
+	GameManager.in_fight = true
+	console.log_info("Le combat commence")
 	$%AreaPeeker.back_button.disabled = true
 	$%PlayerManager.spell_bar.set_weapon_pb_ready(true)
 	if DungeonManager.is_in_dungeon():
@@ -42,20 +44,24 @@ func start_fight():
 
 
 func end_fight():
-	$%AreaPeeker.back_button.disabled = false
-	$%PlayerManager.spell_bar.set_weapon_pb_ready(false)
-	if DungeonManager.is_in_dungeon():
-		$%DungeonManager.enter_next_room()
-	for monster in monsters:
-		monster.queue_free()
-	monsters.assign([])
-	start_fight_button.disabled = false
-	if auto_start_fight_checkbox.button_pressed:
-		start_fight()
-	$%StatsManager.reset_caracteristiques()
-	for timer in SpellsService.tnode.get_children():
-		timer.queue_free()
-	$%PlayerManager.spell_bar.reset_spells()
+	if GameManager.in_fight:
+		GameManager.in_fight = false
+		if monsters.filter(func(m): return !m.dying).is_empty():
+			console.log_info("Combat terminé")
+		$%AreaPeeker.back_button.disabled = false
+		$%PlayerManager.spell_bar.set_weapon_pb_ready(false)
+		if DungeonManager.is_in_dungeon():
+			$%DungeonManager.enter_next_room()
+		for monster in monsters:
+			monster.queue_free()
+		monsters.assign([])
+		start_fight_button.disabled = false
+		if auto_start_fight_checkbox.button_pressed:
+			start_fight()
+		$%StatsManager.reset_caracteristiques()
+		for timer in SpellsService.tnode.get_children():
+			timer.queue_free()
+		$%PlayerManager.spell_bar.reset_spells()
 
 
 func get_monsters_on_plates():

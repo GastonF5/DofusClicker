@@ -16,6 +16,8 @@ extends Node
 
 @export var class_texture_rect: TextureRect
 
+static var in_fight := false
+
 func _ready():
 	class_peeker.visible = true
 	class_peeker.bselect.button_up.connect(_on_class_selected)
@@ -32,10 +34,6 @@ func _on_class_selected():
 	area_peeker.initialize()
 	console.initialize()
 	class_peeker.visible = false
-
-
-static func in_fight() -> bool:
-	return !MonsterManager.monsters.is_empty()
 
 
 func lose_fight():

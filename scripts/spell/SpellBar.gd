@@ -18,7 +18,7 @@ func _ready():
 
 
 func _input(event):
-	if GameManager.in_fight():
+	if GameManager.in_fight:
 		for i in range(slots.size() - 1):
 			if event.is_action_pressed(str(i + 1)):
 				if has_spell(i):
@@ -26,7 +26,7 @@ func _input(event):
 
 
 func _process(delta):
-	if GameManager.in_fight() and weapon_pb_ready:
+	if GameManager.in_fight and weapon_pb_ready:
 		weapon_pb.value -= float(PlayerManager.player_entity.get_attack_speed() * delta) / 3
 		if weapon_pb.value <= 0:
 			weapon_pb.value = weapon_pb.max_value
@@ -48,7 +48,7 @@ func connect_slot_signals(slot):
 
 func cast_spell_button(slot):
 	var spell = null if slot.get_child_count() == 0 else slot.get_child(0)
-	if GameManager.in_fight() and spell and spell is Spell:
+	if GameManager.in_fight and spell and spell is Spell:
 		spell.do_action()
 
 

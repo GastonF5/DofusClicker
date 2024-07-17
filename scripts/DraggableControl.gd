@@ -43,13 +43,13 @@ func _process(_delta):
 
 func _input(event):
 	if dragged:
-		if event.is_action_released("LMB"):# and (!is_spell() or !GameManager.in_fight()):
+		if event.is_action_released("LMB"):# and (!is_spell() or !GameManager.in_fight:
 			drop()
 
 
 func _on_button_down():
 	if draggable:
-		if !is_spell() or !GameManager.in_fight():
+		if !is_spell() or !GameManager.in_fight:
 			drag()
 
 
