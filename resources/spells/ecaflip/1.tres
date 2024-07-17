@@ -1,13 +1,21 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=5 format=3 uid="uid://q4myh60a45lb"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://q4myh60a45lb"]
 
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_b5ufl"]
 [ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_bvlgs"]
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_jlsqk"]
-[ext_resource type="Texture2D" uid="uid://ce76ie2exxoyn" path="res://assets/spells/ecaflip/chance_d_ecaflip.png" id="2_0tfbt"]
+[ext_resource type="Texture2D" uid="uid://1aptbohpomoi" path="res://assets/spells/ecaflip/perception.png" id="3_otyc7"]
+
+[sub_resource type="Resource" id="Resource_dcnwk"]
+script = ExtResource("1_b5ufl")
+min = 4
+max = 5
+min_crit = 6
+max_crit = 8
 
 [sub_resource type="Resource" id="Resource_ktc2g"]
 resource_name = "Effet spécial"
 script = ExtResource("1_bvlgs")
-type = 3
+type = 7
 time = 0.0
 target_type = 0
 element = 0
@@ -17,18 +25,18 @@ method_name = &"chance_ecaflip"
 effect_label = ""
 params = []
 nb_random_effects = 0
-amounts = Array[Resource("res://scripts/resources/AmountResource.gd")]([])
+amounts = Array[ExtResource("1_b5ufl")]([SubResource("Resource_dcnwk")])
 visible_in_description = true
 
 [resource]
 script = ExtResource("1_jlsqk")
 id = 0
-name = "Chance d'ecaflip"
-description = "Les dommages reçus sont réduits de 50% pendant 5 secondes, puis sont augmentés de 100% pendant 3 secondes."
-texture = ExtResource("2_0tfbt")
+name = "Perception"
+description = "Soigne les alliés."
+texture = ExtResource("3_otyc7")
 img_url = ""
 pa_cost = 2
-per_crit = 0.0
+per_crit = 0.15
 cooldown = 10.0
 priority = 0
 effects = Array[ExtResource("1_bvlgs")]([SubResource("Resource_ktc2g")])

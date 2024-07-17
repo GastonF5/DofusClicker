@@ -16,7 +16,7 @@ var passifs = {
 	3: "",
 	4: "",
 	5: "",
-	6: "Passif : + X critique pendant 60 secondes chaque fois qu'un sort de dégâts est lancé",
+	6: "Passif : + X critique pendant 60 secondes chaque fois qu'un sort de dégâts est lancé. Le montant dépend du coût en PA du sort.",
 	7: "",
 	8: "Passif : dommages plus importants en fonction des PV max",
 	9: "",
@@ -34,7 +34,7 @@ var passifs = {
 
 var roles_par_classe = {
 	1: [], 2: [], 3: [],
-	4: [], 5: [], 6: [6, 5, 8],
+	4: [], 5: [], 6: [6, 5, 4],
 	7: [], 8: [5, 8, 3], 9: [],
 	10: [], 11: [], 12: [],
 	13: [], 14: [], 15: [],

@@ -15,6 +15,7 @@ element = 0
 lifesteal = false
 caracteristic = 0
 method_name = &""
+effect_label = ""
 params = []
 nb_random_effects = 2
 amounts = Array[ExtResource("2_t1pvk")]([])
@@ -22,10 +23,10 @@ visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_lxary"]
 script = ExtResource("2_t1pvk")
-min = 10
-max = 13
-min_crit = 15
-max_crit = 18
+min = 2
+max = 4
+min_crit = 4
+max_crit = 6
 
 [sub_resource type="Resource" id="Resource_i7mdl"]
 resource_name = "Soin Feu"
@@ -37,6 +38,7 @@ element = 2
 lifesteal = false
 caracteristic = 0
 method_name = &""
+effect_label = ""
 params = []
 nb_random_effects = 0
 amounts = Array[ExtResource("2_t1pvk")]([SubResource("Resource_lxary")])
@@ -44,10 +46,10 @@ visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_cv2si"]
 script = ExtResource("2_t1pvk")
-min = 10
-max = 13
-min_crit = 15
-max_crit = 18
+min = 2
+max = 4
+min_crit = 4
+max_crit = 6
 
 [sub_resource type="Resource" id="Resource_i5e4t"]
 resource_name = "Dommages Eau"
@@ -59,6 +61,7 @@ element = 3
 lifesteal = false
 caracteristic = 0
 method_name = &""
+effect_label = ""
 params = []
 nb_random_effects = 0
 amounts = Array[ExtResource("2_t1pvk")]([SubResource("Resource_cv2si")])
@@ -81,6 +84,7 @@ element = 0
 lifesteal = false
 caracteristic = 10
 method_name = &""
+effect_label = ""
 params = []
 nb_random_effects = 0
 amounts = Array[ExtResource("2_t1pvk")]([SubResource("Resource_c84ur")])
