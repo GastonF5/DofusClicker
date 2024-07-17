@@ -170,6 +170,9 @@ func is_player():
 
 func die():
 	print("%s died" % name)
+	if is_player():
+		hp_bar.value = hp_bar.min_value
+		dies.emit()
 
 
 func show_description():

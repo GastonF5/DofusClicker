@@ -8,6 +8,7 @@ var auto_start_fight_checkbox: CheckBox
 var loading = false
 
 static var monsters: Array[Entity] = []
+static var end_fight_callable: Callable
 
 signal monster_dies
 
@@ -15,6 +16,7 @@ static var monsters_res := []
 
 
 func initialize():
+	end_fight_callable = end_fight
 	start_fight_button = $%StartFightButton
 	auto_start_fight_checkbox = $%AutoStartFight.get_node("HBC/CheckBox")
 	start_fight_button.button_up.connect(start_fight)

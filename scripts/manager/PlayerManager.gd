@@ -92,6 +92,7 @@ func initialize(selected_class: String):
 	max_pm = 3
 	init_bars()
 	player_entity.init(true)
+	player_entity.dies.connect(MonsterManager.end_fight_callable)
 	
 	xp_bar.init()
 	
