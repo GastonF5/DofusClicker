@@ -122,7 +122,8 @@ func init_roles(class_id: int):
 
 
 func init_spells(class_id: int):
-	for spell_res in FileLoader.get_spell_resources(classes[class_id].to_lower()):
+	var spells = FileLoader.get_spell_resources(classes[class_id].to_lower())
+	for spell_res in spells:
 		var nspell = TextureRect.new()
 		nspell.texture = spell_res.texture
 		nspell.custom_minimum_size = Vector2i(60, 60)

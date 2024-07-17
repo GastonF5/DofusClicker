@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_b5ufl"]
 [ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_bvlgs"]
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_jlsqk"]
-[ext_resource type="Texture2D" uid="uid://1aptbohpomoi" path="res://assets/spells/ecaflip/perception.png" id="3_otyc7"]
+[ext_resource type="Texture2D" path="res://assets/spells/ecaflip/perception.png" id="3_otyc7"]
 
 [sub_resource type="Resource" id="Resource_dcnwk"]
 script = ExtResource("1_b5ufl")
