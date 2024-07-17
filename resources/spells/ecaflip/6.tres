@@ -5,30 +5,6 @@
 [ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_pw7nm"]
 [ext_resource type="Texture2D" uid="uid://cmtv8m2kle5rx" path="res://assets/spells/ecaflip/sort_12312.png" id="3_mfi8j"]
 
-<<<<<<< HEAD
-[sub_resource type="Resource" id="Resource_jx7vv"]
-script = ExtResource("1_pw7nm")
-min = 13
-max = 13
-min_crit = 13
-max_crit = 13
-
-[sub_resource type="Resource" id="Resource_qckua"]
-resource_name = "Erosion"
-script = ExtResource("1_nsvdl")
-type = 1
-time = 60.0
-target_type = 2
-element = 0
-lifesteal = false
-caracteristic = 30
-method_name = &""
-effect_label = ""
-params = []
-nb_random_effects = 0
-amounts = Array[ExtResource("1_pw7nm")]([SubResource("Resource_jx7vv")])
-visible_in_description = true
-
 =======
 >>>>>>> e6c74c3 (#28 WIP : équilibrage écaflip)
 [sub_resource type="Resource" id="Resource_yjytp"]
