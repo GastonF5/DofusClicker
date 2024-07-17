@@ -27,8 +27,7 @@ func _input(event):
 
 func _process(delta):
 	if GameManager.in_fight() and weapon_pb_ready:
-		var player_entity: Entity = $%PlayerManager.player_entity
-		weapon_pb.value -= float(player_entity.get_attack_speed() * delta) / 3
+		weapon_pb.value -= float(PlayerManager.player_entity.get_attack_speed() * delta) / 3
 		if weapon_pb.value <= 0:
 			weapon_pb.value = weapon_pb.max_value
 			$%PlayerManager.player_attack()

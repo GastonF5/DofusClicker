@@ -12,6 +12,8 @@ enum LogType {
 	NONE
 }
 
+const COMMAND = LogType.COMMAND
+
 @onready var api: API = $%API
 
 @export var output: RichTextLabel
@@ -85,13 +87,18 @@ func apply_color(type: LogType):
 			color = Color.CRIMSON
 		LogType.LOG:
 			color = Color.ORANGE
-		LogType.COMMAND:
+		COMMAND:
 			color = Color.SKY_BLUE
 	output.push_color(color)
 
 
 func do_command(command: String, params: Array[String] = []):
 	match command:
+		"help":
+			_log("Commandes possibles :\n- clear\n- histo", COMMAND)
+			_log("- monster [{index} set {characteristic} {amount}] [kill {all|index}]", COMMAND)
+			_log("- add [item|resource] {id}", COMMAND)
+			_log("- get [item|monster|resource] {id}", COMMAND)
 		"clear":
 			clear()
 			pass
@@ -100,11 +107,11 @@ func do_command(command: String, params: Array[String] = []):
 				history = []
 			else:
 				if !history.is_empty():
-					_log("Historique des commandes :", LogType.COMMAND)
+					_log("Historique des commandes :", COMMAND)
 					for histo in history:
-						_log("- " + histo, LogType.COMMAND)
+						_log("- " + histo, COMMAND)
 				else:
-					_log("L'historique est vide", LogType.COMMAND)
+					_log("L'historique est vide", COMMAND)
 			return
 		"monster":
 			if params.size() > 1:

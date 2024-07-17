@@ -172,7 +172,7 @@ func die():
 	print("%s died" % name)
 	if is_player():
 		hp_bar.value = hp_bar.min_value
-		dies.emit()
+		get_tree().current_scene.get_node("GameManager").lose_fight()
 
 
 func show_description():

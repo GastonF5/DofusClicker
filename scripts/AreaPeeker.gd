@@ -123,7 +123,7 @@ func leave_subarea():
 
 
 func log_enter_subarea(subarea_name: String):
-	console.log_info("Vous entrez la zone %s" % subarea_name)
+	console.log_info("Vous entrez dans la zone %s" % subarea_name)
 
 
 func log_leave_subarea():

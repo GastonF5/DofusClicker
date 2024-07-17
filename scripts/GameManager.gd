@@ -36,3 +36,9 @@ func _on_class_selected():
 
 static func in_fight() -> bool:
 	return !MonsterManager.monsters.is_empty()
+
+
+func lose_fight():
+	mmonster.clear_monsters()
+	console.log_info("Vous avez perdu le combat")
+	mmonster.end_fight()

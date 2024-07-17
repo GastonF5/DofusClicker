@@ -11,7 +11,7 @@ var pdv_label: Label
 @export var inventory_container: Panel
 var inventory: Inventory
 
-var player_entity: Entity
+static var player_entity: Entity
 var health_timer: Node
 
 @export var xp_bar: ExperienceBar
@@ -82,17 +82,7 @@ func initialize(selected_class: String):
 		plates.append(entity_container)
 	selected_plate = plates[0]
 	
-	player_entity = Entity.new()
-	add_child(player_entity)
-	SpellsService.player_entity = player_entity
-	player_entity.entity_bar = player_bars
-	player_entity.attack_callable = player_attack
-	max_hp = 50
-	max_pa = 6
-	max_pm = 3
-	init_bars()
-	player_entity.init(true)
-	player_entity.dies.connect(MonsterManager.end_fight_callable)
+	init_player_entity()
 	
 	xp_bar.init()
 	
@@ -108,6 +98,19 @@ func _process(_delta):
 			player_entity.hp_bar.cval += 1
 			health_timer.queue_free()
 			health_timer = null
+
+
+func init_player_entity():
+	player_entity = Entity.new()
+	player_entity.name = "Player"
+	add_child(player_entity)
+	player_entity.entity_bar = player_bars
+	player_entity.attack_callable = player_attack
+	max_hp = 50
+	max_pa = 6
+	max_pm = 3
+	init_bars()
+	player_entity.init(true)
 
 
 func init_bars():

@@ -8,7 +8,6 @@ const TargetType = EffectResource.TargetType
 
 static var console: Console
 static var tnode: Node
-static var player_entity: Entity
 
 
 static var count := 1
@@ -27,7 +26,7 @@ static func perform_spell(caster: Entity, target: Entity, resource: SpellResourc
 			if count == rand_count:
 				perform_effect(caster, get_targets(caster, target, effect.target_type), effect, crit, grade)
 			count += 1
-	check_dying_entities([caster] + MonsterManager.monsters)
+	check_dying_entities([PlayerManager.player_entity] + MonsterManager.monsters)
 
 
 static func perform_weapon_effects(caster: Entity, target: Entity, resource: EquipmentResource, grade: int):

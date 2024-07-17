@@ -84,5 +84,12 @@ func _on_monster_dies(xp: int):
 		end_fight()
 
 
+func clear_monsters():
+	for monster in monsters:
+		monster.get_parent().remove_child(monster)
+		monster.queue_free()
+	monsters.clear()
+
+
 func _on_monster_selected(monster: Monster):
 	PlayerManager.selected_plate = monster.get_parent()

@@ -69,7 +69,7 @@ func on_timeout():
 
 
 func cast():
-	SpellsService.perform_spell(player_manager.player_entity, PlayerManager.selected_plate.get_entity(), resource, 0)
+	SpellsService.perform_spell(PlayerManager.player_entity, PlayerManager.selected_plate.get_entity(), resource, 0)
 
 
 static func instantiate(spell_res: SpellResource, parent: Control, clickable = true) -> Spell:
