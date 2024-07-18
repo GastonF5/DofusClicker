@@ -28,7 +28,7 @@ static func get_all_file_paths(path: String) -> Array[String]:
 		if dir.current_is_dir():
 			file_paths += get_all_file_paths(file_path)
 		else:
-			file_paths.append(file_path)
+			file_paths.append(file_path.trim_suffix(".remap").trim_suffix(".import"))
 		file_name = dir.get_next()
 	return file_paths
 
@@ -71,8 +71,9 @@ static func get_stat_asset(stat_type: String):
 	if stat_path.begins_with("do_") and stat_path != "do_critiques":
 		stat_path = "res_" + stat_path.split("_")[1]
 	var dir = DirAccess.open(STAT_ASSET_PATH)
-	if dir.file_exists("%s.png" % stat_path):
-		return load(STAT_ASSET_PATH + "%s.png" % stat_path)
+	var file_name = "%s.png" % stat_path
+	if dir.file_exists(file_name) or dir.file_exists(file_name + ".import"):
+		return load(STAT_ASSET_PATH + file_name)
 	return null
 
 
