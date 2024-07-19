@@ -238,3 +238,9 @@ func update_lvl_label():
 
 func update_max_value():
 	max_value = paliers[cur_lvl][2]
+
+
+func get_total_xp():
+	if cur_lvl == 0:
+		return value
+	return paliers[cur_lvl - 1][1] + value

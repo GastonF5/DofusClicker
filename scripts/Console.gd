@@ -137,6 +137,16 @@ func do_command(command: String, params: Array[String] = []):
 			_log("- monster [{index} set {characteristic} {amount}] [kill {all|index}]", COMMAND)
 			_log("- add [item|resource] {id}", COMMAND)
 			_log("- get [item|monster|resource] {id}", COMMAND)
+			_log("- save", COMMAND)
+		"save":
+			$%SaveManager.save()
+			pass
+		"load":
+			var save: SaveResource = $%SaveManager.load_save()
+			if save:
+				_log_line("Save %s" % save.date, COMMAND)
+				_log(" xp: %d" % save.xp_amount, COMMAND)
+			pass
 		"clear":
 			clear()
 			pass
