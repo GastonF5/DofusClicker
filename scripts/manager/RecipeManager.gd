@@ -31,6 +31,14 @@ func initialize():
 	tab_container.tab_changed.connect(on_job_tab_changed)
 
 
+func reset():
+	for recipe in recipes:
+		recipe.get_parent().remove_child(recipe)
+		recipe.queue_sort()
+	recipes.clear()
+	init_recipes(1)
+
+
 func _input(event):
 	if current_tab:
 		var search_prompt = current_tab.search_prompt

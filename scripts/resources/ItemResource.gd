@@ -66,7 +66,11 @@ func get_monsters():
 
 func get_drop_areas() -> String:
 	return get_monsters()\
-			.map(func(m: MonsterResource): return Datas._subareas[m.favorite_area]._name)\
+			.map(func(m: MonsterResource):
+				if !Datas._subareas.has(m.favorite_area):
+					return null
+				return Datas._subareas[m.favorite_area]._name)\
+			.filter(func(a): return a)\
 			.reduce(func(accum: String, area_name):
 				return accum if accum.contains(area_name) else accum + ", " + area_name, "")\
 			.erase(0, 2)

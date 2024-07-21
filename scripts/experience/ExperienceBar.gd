@@ -221,6 +221,11 @@ func init():
 	tooltip = Tooltip.create(xp_label, over_ui, self)
 
 
+func reset():
+	tooltip.queue_free()
+	init()
+
+
 func gain_xp(amount: int):
 	value += amount
 	while value >= max_value:

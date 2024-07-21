@@ -147,6 +147,11 @@ func do_command(command: String, params: Array[String] = []):
 				_log_line("Save %s" % save.date, COMMAND)
 				_log(" xp: %d" % save.xp_amount, COMMAND)
 			pass
+		"xp":
+			if params.size() > 0:
+				var amount = params[0].to_int()
+				$%PlayerManager.xp_bar.gain_xp(amount)
+			pass
 		"clear":
 			clear()
 			pass

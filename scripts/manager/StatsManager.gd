@@ -98,7 +98,10 @@ func update_points_label():
 func on_lvl_up():
 	max_points += 5
 	points += 5
-	$%PlayerManager.max_hp += 5
+	var mplayer: PlayerManager = $%PlayerManager
+	mplayer.max_hp += 5
+	mplayer.hp_bar.reset()
+	console.log_info("Vous passez niveau %d" % mplayer.xp_bar.cur_lvl)
 	update_points_label()
 
 
