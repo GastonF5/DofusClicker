@@ -8,7 +8,7 @@ extends Node
 signal init_done
 
 enum DataType {
-	ITEM_TYPE,
+	TYPE,
 	ITEM,
 	RECIPE,
 	RESOURCE,
@@ -53,8 +53,6 @@ func get_data(data_type: DataType):
 
 
 func get_data_name(data_type: DataType) -> String:
-	if data_type == DataType.ITEM_TYPE:
-		return "type"
 	return DataType.find_key(data_type).to_lower()
 
 func perform_setter_for_data_type(data_type: DataType, data):
@@ -65,7 +63,7 @@ func get_url(data_type: DataType) -> String:
 	match data_type:
 		DataType.RESOURCE:
 			return url % "items"
-		DataType.ITEM_TYPE:
+		DataType.TYPE:
 			return url % "item-types"
 		_:
 			return url % (get_data_name(data_type) + "s")
@@ -73,7 +71,7 @@ func get_url(data_type: DataType) -> String:
 func get_url_params(data_type: DataType) -> String:
 	var params := ""
 	match data_type:
-		DataType.ITEM_TYPE:
+		DataType.TYPE:
 			params += "&categoryId=0"
 			params += "&$" + api.get_select_request("name.fr")
 			params += "&$" + api.get_select_request("id")
@@ -122,7 +120,7 @@ func get_in_values(data_type: DataType) -> Array:
 func get_loading_text(data_type: DataType) -> String:
 	var text := "Chargement des "
 	match data_type:
-		DataType.ITEM_TYPE:
+		DataType.TYPE:
 			text += "types"
 		DataType.ITEM:
 			text += "équipements"
