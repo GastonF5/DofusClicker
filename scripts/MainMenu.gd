@@ -44,7 +44,7 @@ func create_save_button(file_name: String):
 	button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	button.add_theme_font_size_override("font_size", 64)
 	button.button_up.connect(load_save.bind(button.name))
-	$SavesPanel/VBC.add_child(button)
+	$Saves/SavesPanel/VBC.add_child(button)
 
 
 func format_date(file_name: String):
@@ -73,8 +73,8 @@ func _on_load_data_btn_button_up():
 
 
 func _on_close_btn_button_up():
-	$SavesPanel.visible = false
+	$Saves.visible = false
 
 
 func _on_load_btn_button_up():
-	$SavesPanel.visible = true
+	$Saves.visible = true
