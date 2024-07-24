@@ -213,7 +213,7 @@ var xp_label: String:
 	get: return "%d / %d" % [value, max_value]
 
 func init():
-	cur_lvl = 1
+	cur_lvl = 100
 	value = 0
 	update_max_value()
 	update_lvl_label()
