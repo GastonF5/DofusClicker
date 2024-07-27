@@ -1,21 +1,11 @@
-[gd_scene load_steps=53 format=3 uid="uid://bfh3u8jwrg2ar"]
+[gd_scene load_steps=43 format=3 uid="uid://bfh3u8jwrg2ar"]
 
-[ext_resource type="PackedScene" uid="uid://2yisonfumvpt" path="res://scenes/API.tscn" id="1_0haij"]
-[ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_7amhq"]
-[ext_resource type="Script" path="res://scripts/manager/MonsterManager.gd" id="1_iu0is"]
-[ext_resource type="Script" path="res://scripts/FileSaver.gd" id="1_upxrd"]
 [ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="2_4lqlq"]
 [ext_resource type="Texture2D" uid="uid://dtp2ktsnvjk8w" path="res://assets/common/window/bg_product.jpg" id="2_5kihd"]
-[ext_resource type="Script" path="res://scripts/manager/PlayerManager.gd" id="2_06gc8"]
 [ext_resource type="Texture2D" uid="uid://cl71pm2t281ug" path="res://assets/icons/XPBonus5.png" id="3_btuyi"]
 [ext_resource type="Script" path="res://scripts/experience/ExperienceBar.gd" id="3_ir03k"]
-[ext_resource type="Script" path="res://scripts/manager/EquipmentManager.gd" id="3_nkpwv"]
 [ext_resource type="Theme" uid="uid://ctf5aaqx8jyeo" path="res://resources/themes/experience_bar.tres" id="3_prl7k"]
-[ext_resource type="Script" path="res://scripts/manager/StatsManager.gd" id="4_13j6f"]
-[ext_resource type="Script" path="res://scripts/manager/RecipeManager.gd" id="5_51m8x"]
-[ext_resource type="Script" path="res://scripts/manager/DungeonManager.gd" id="8_f2r2t"]
 [ext_resource type="PackedScene" uid="uid://humcuoo3q2tn" path="res://scenes/equipment/equipment_container.tscn" id="8_larhl"]
-[ext_resource type="Script" path="res://scripts/Datas.gd" id="9_u2rtq"]
 [ext_resource type="Script" path="res://scripts/CustomTabContainer.gd" id="14_akpwt"]
 [ext_resource type="Texture2D" uid="uid://cwoycdemjcbuy" path="res://assets/window_icon/caracteristiques.png" id="15_wilnu"]
 [ext_resource type="Texture2D" uid="uid://bx13bnw5chi1h" path="res://assets/window_icon/sorts.png" id="16_og6sm"]
@@ -81,49 +71,6 @@ texture = ExtResource("35_61trk")
 [node name="Timers" type="Node" parent="."]
 unique_name_in_owner = true
 
-[node name="FileSaver" type="Node" parent="."]
-unique_name_in_owner = true
-script = ExtResource("1_upxrd")
-
-[node name="API" parent="." instance=ExtResource("1_0haij")]
-unique_name_in_owner = true
-
-[node name="Managers" type="Node" parent="."]
-
-[node name="StatsManager" type="Node" parent="Managers" node_paths=PackedStringArray("stats_container")]
-unique_name_in_owner = true
-script = ExtResource("4_13j6f")
-stats_container = NodePath("../../GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Stats")
-
-[node name="PlayerManager" type="Node" parent="Managers" node_paths=PackedStringArray("spells_container", "stats_container", "inventory_container", "xp_bar", "spell_bar", "player_bars", "console")]
-unique_name_in_owner = true
-script = ExtResource("2_06gc8")
-spells_container = NodePath("../../GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Sorts")
-stats_container = NodePath("../../GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Stats")
-inventory_container = NodePath("../../GUI/Main/HBC/RightSide/VSplitContainer/InventoryContainer")
-xp_bar = NodePath("../../GUI/Main/HBC/MiddleContainer/VBC/ExperienceBar")
-spell_bar = NodePath("../../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/SpellBar")
-player_bars = NodePath("../../GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/EntityBars")
-console = NodePath("../../GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Infos/MarginContainer/Console")
-
-[node name="MonsterManager" type="Node" parent="Managers"]
-unique_name_in_owner = true
-script = ExtResource("1_iu0is")
-
-[node name="EquipmentManager" type="Node" parent="Managers" node_paths=PackedStringArray("equipment_container")]
-unique_name_in_owner = true
-script = ExtResource("3_nkpwv")
-equipment_container = NodePath("../../GUI/Main/HBC/LeftSide/VSplitContainer/EquipmentContainer")
-
-[node name="RecipeManager" type="Node" parent="Managers" node_paths=PackedStringArray("jobs_container")]
-unique_name_in_owner = true
-script = ExtResource("5_51m8x")
-jobs_container = NodePath("../../GUI/Main/HBC/RightSide/VSplitContainer/JobsContainer")
-
-[node name="DungeonManager" type="Node" parent="Managers"]
-unique_name_in_owner = true
-script = ExtResource("8_f2r2t")
-
 [node name="GUI" type="CanvasLayer" parent="."]
 
 [node name="Main" type="Control" parent="GUI"]
@@ -160,6 +107,7 @@ layout_mode = 2
 dragger_visibility = 1
 
 [node name="EquipmentContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer" instance=ExtResource("8_larhl")]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="VBC" type="VBoxContainer" parent="GUI/Main/HBC/LeftSide/VSplitContainer"]
@@ -191,9 +139,11 @@ script = ExtResource("14_akpwt")
 tab_bar = NodePath("../TabBar")
 
 [node name="Stats" parent="GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer" instance=ExtResource("24_ocgbs")]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Sorts" parent="GUI/Main/HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer" instance=ExtResource("25_8knwx")]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
@@ -231,6 +181,7 @@ layout_mode = 2
 texture = ExtResource("2_5kihd")
 
 [node name="ClassTexture" type="TextureRect" parent="GUI/Main/HBC/MiddleContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 650)
 layout_mode = 2
 size_flags_vertical = 8
@@ -310,6 +261,7 @@ offset_bottom = 149.833
 theme_override_styles/panel = SubResource("StyleBoxEmpty_fempj")
 
 [node name="EntityBars" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD" instance=ExtResource("40_5kut3")]
+unique_name_in_owner = true
 layout_mode = 2
 anchors_preset = 0
 anchor_left = 0.0
@@ -379,6 +331,7 @@ mouse_default_cursor_shape = 2
 text = "Reload data"
 
 [node name="SpellBar" parent="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD" instance=ExtResource("28_qnef0")]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -424,6 +377,7 @@ size_flags_horizontal = 0
 text = "Nv. 1"
 
 [node name="ExperienceBar" type="ProgressBar" parent="GUI/Main/HBC/MiddleContainer/VBC" node_paths=PackedStringArray("lvl_label")]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 size_flags_vertical = 8
@@ -454,9 +408,11 @@ theme_override_constants/autohide = 0
 collapsed = true
 
 [node name="JobsContainer" parent="GUI/Main/HBC/RightSide/VSplitContainer" instance=ExtResource("32_r5qps")]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="InventoryContainer" parent="GUI/Main/HBC/RightSide/VSplitContainer" instance=ExtResource("33_0jtqp")]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="OverUI" type="CanvasLayer" parent="."]
@@ -469,14 +425,5 @@ visible = false
 unique_name_in_owner = true
 visible = false
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("class_texture_rect")]
-script = ExtResource("1_7amhq")
-class_texture_rect = NodePath("../GUI/Main/HBC/MiddleContainer/ClassTexture")
-
-[node name="Datas" type="Node" parent="."]
-unique_name_in_owner = true
-script = ExtResource("9_u2rtq")
-
-[connection signal="button_up" from="GUI/Main/HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/ReloadData" to="Datas" method="_on_reload_data_button_up"]
 [connection signal="mouse_entered" from="GUI/Main/HBC/MiddleContainer/VBC/ExperienceBar" to="GUI/Main/HBC/MiddleContainer/VBC/ExperienceBar" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="GUI/Main/HBC/MiddleContainer/VBC/ExperienceBar" to="GUI/Main/HBC/MiddleContainer/VBC/ExperienceBar" method="_on_mouse_exited"]

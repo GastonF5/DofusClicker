@@ -1,10 +1,7 @@
-class_name DungeonManager
 extends Node
 
 
 static var dungeon_list = [447]
-
-@onready var console: Console = $%Console
 
 static var dungeon_id := -1
 static var cur_room: int
@@ -26,8 +23,8 @@ static func get_current_room_monsters():
 
 func enter_dungeon(dungeon_id: int):
 	var area_name = Datas._subareas[dungeon_id]._name
-	console.log_info("Vous entrez dans le donjon %s" % area_name)
-	$%AreaPeeker.enter_subarea("Donjon %s - Salle numéro 1" % area_name)
+	Globals.console.log_info("Vous entrez dans le donjon %s" % area_name)
+	Globals.area_peeker.enter_subarea("Donjon %s - Salle numéro 1" % area_name)
 	DungeonManager.dungeon_id = dungeon_id
 	DungeonManager.cur_room = 1
 
@@ -40,12 +37,12 @@ func enter_next_room():
 		exit_dungeon()
 	else:
 		cur_room += 1
-		$%AreaPeeker.set_area_label("Donjon %s - Salle numéro %d" % [area_name, cur_room], true)
+		Globals.area_peeker.set_area_label("Donjon %s - Salle numéro %d" % [area_name, cur_room], true)
 
 
 func exit_dungeon():
 	var dungeon_res = Datas._subareas[DungeonManager.dungeon_id]
-	console.log_info("Vous sortez du donjon %s" % dungeon_res._name)
+	Globals.console.log_info("Vous sortez du donjon %s" % dungeon_res._name)
 	DungeonManager.dungeon_id = -1
 	DungeonManager.cur_room = 0
-	$%AreaPeeker.leave_subarea()
+	Globals.area_peeker.leave_subarea()

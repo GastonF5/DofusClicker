@@ -23,14 +23,12 @@ static func instantiate(monster_res: MonsterResource, parent: Control) -> Monste
 	var monster = FileLoader.get_packed_scene("monster").instantiate()
 	parent.add_child(monster)
 	parent.move_child(monster, 0)
-	monster.init(false, monster_res)
+	monster.init(monster_res)
 	return monster
 
 
-func init(is_player := false, res: MonsterResource = null):
+func init(res: MonsterResource = null):
 	super()
-	player = is_player
-	inventory = player_manager.inventory
 	grade = res.grades[randi_range(0, res.grades.size() - 1)]
 	drops = res.drops.duplicate()
 	init_caracteristiques(grade.characteristics)

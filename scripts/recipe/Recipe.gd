@@ -24,7 +24,7 @@ func init(item_recipe: RecipeResource):
 	items_container.add_sibling(result_item)
 	items_container.get_parent().move_child(result_item, 0)
 	
-	var inventory = get_tree().current_scene.get_node("%PlayerManager").inventory
+	var inventory = Globals.inventory
 	inventory.item_entered_tree.connect(check)
 	inventory.item_exiting_tree.connect(check)
 	check(inventory.get_items())

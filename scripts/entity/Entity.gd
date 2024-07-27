@@ -9,7 +9,6 @@ var caracteristiques: Array[StatResource] = []
 var spells: Array[SpellResource] = []
 
 var player_manager: PlayerManager
-var player: bool
 var inventory: Inventory
 
 @export var name_label: Label
@@ -35,13 +34,15 @@ var console: Console
 
 
 #region Caractéristiques
-func init(is_player := false):
-	player_manager = get_tree().current_scene.get_node("%PlayerManager")
+func init():
+	inventory = Globals.inventory
+	player_manager = PlayerManager
 	console = SpellsService.console
+	if is_player():
+		entity_bar = PlayerManager.player_bars
 	pm_bar.cval_change.connect(func():
 		pa_bar.speed = get_attack_speed())
 	pa_bar.speed = get_attack_speed()
-	player = is_player
 	init_bars()
 
 
@@ -63,7 +64,7 @@ func init_spells(spell_ids: Array):
 
 func get_caracacteristique_for_type(type: CaracType):
 	var carac
-	if player:
+	if is_player():
 		return StatsManager.get_caracteristique_for_type(type)
 	else:
 		carac = caracteristiques.filter(func(c): return c.type == type)
@@ -169,14 +170,14 @@ static func is_monster(value: Node):
 
 
 func is_player():
-	return !Entity.is_monster(self)
+	return name == "Player"
 
 
 func die():
 	print("%s died" % name)
 	if is_player():
 		hp_bar.value = hp_bar.min_value
-		get_tree().current_scene.get_node("GameManager").lose_fight()
+		GameManager.lose_fight()
 
 
 func show_description():

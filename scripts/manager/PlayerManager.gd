@@ -1,22 +1,15 @@
-class_name PlayerManager
 extends Node
 
 
 var punch_res: SpellResource
 
-@export var spells_container: Panel
 var spell_container: VBoxContainer
-@export var stats_container: Panel
 var pdv_label: Label
-@export var inventory_container: Panel
-var inventory: Inventory
 
-static var player_entity: Entity
+var player_entity: Entity
 var health_timer: Node
 
-@export var xp_bar: ExperienceBar
-@export var spell_bar: SpellBar
-@export var player_bars: EntityBars
+var player_bars: EntityBars
 var hp_bar: CustomBar:
 	get: return player_bars.hp_bar
 var pa_bar: CustomBar:
@@ -24,13 +17,11 @@ var pa_bar: CustomBar:
 var pm_bar: CustomBar:
 	get: return player_bars.pm_bar
 
-@export var console: Console
-
-static var item_description: DescriptionPopUp
-static var spell_description: DescriptionPopUp
-static var entity_description: DescriptionPopUp
-static var dragged_item: Item
-static var dragged_spell: Spell
+var item_description: DescriptionPopUp
+var spell_description: DescriptionPopUp
+var entity_description: DescriptionPopUp
+var dragged_item: Item
+var dragged_spell: Spell
 
 var max_pa: int:
 	set(value):
@@ -50,7 +41,7 @@ var max_hp: int:
 
 var selected_spell: Spell
 
-static var selected_plate: EntityContainer:
+var selected_plate: EntityContainer:
 	set(value):
 		if selected_plate != null:
 			selected_plate.selected = false
@@ -58,23 +49,19 @@ static var selected_plate: EntityContainer:
 		if selected_plate != null:
 			selected_plate.selected = true
 
-static var plates: Array[EntityContainer]
+var plates: Array[EntityContainer]
 var initialized = false
 
 func initialize(selected_class: String):
+	player_bars = get_tree().current_scene.get_node("%EntityBars")
 	punch_res = load("res://resources/spells/punch.tres")
-	spell_container = spells_container.get_node("%SpellContainer")
-	pdv_label = stats_container.get_node("%HPAmount")
-	inventory = inventory_container.get_node("%Inventory")
-	
-	SpellsService.console = console
-	SpellsService.tnode = $%Timers
-	StatsManager.console = console
+	spell_container = Globals.spells_container.get_node("%SpellContainer")
+	pdv_label = Globals.stats_container.get_node("%HPAmount")
 	
 	for spell_res in FileLoader.get_spell_resources(selected_class):
 		var spell_button = FileLoader.get_packed_scene("spell/spell_button").instantiate()
 		spell_container.add_child(spell_button)
-		spell_button.init(spell_bar, Spell.instantiate(spell_res, spell_button.get_node("HBC"), false))
+		spell_button.init(Globals.spell_bar, Spell.instantiate(spell_res, spell_button.get_node("HBC"), false))
 	
 	var entity_containers = get_tree().get_nodes_in_group("monster_container")
 	entity_containers.sort_custom(func(a, b): return a.id < b.id)
@@ -84,7 +71,7 @@ func initialize(selected_class: String):
 	
 	init_player_entity()
 	
-	xp_bar.init()
+	Globals.xp_bar.init()
 	
 	create_description_popup()
 	initialized = true
@@ -103,14 +90,13 @@ func _process(_delta):
 func init_player_entity():
 	player_entity = Entity.new()
 	player_entity.name = "Player"
+	player_entity.init()
 	add_child(player_entity)
-	player_entity.entity_bar = player_bars
 	player_entity.attack_callable = player_attack
 	max_hp = 50
 	max_pa = 6
 	max_pm = 3
 	init_bars()
-	player_entity.init(true)
 
 
 func init_bars():
@@ -123,19 +109,19 @@ func init_bars():
 
 
 func _input(event):
-	if initialized and !console.input.has_focus() and !$%RecipeManager.prompt_has_focus:
+	if initialized and !Globals.console.input.has_focus() and !RecipeManager.prompt_has_focus:
 		if event.is_action_pressed("right"):
 			PlayerManager.select_next_plate()
 		if event.is_action_pressed("left"):
 			PlayerManager.select_previous_plate()
 
 
-static func select_next_plate():
+func select_next_plate():
 	var pi = plates.find(selected_plate)
 	selected_plate = plates[(pi + 1) % plates.size()]
 
 
-static func select_previous_plate():
+func select_previous_plate():
 	var pi = plates.find(selected_plate)
 	selected_plate = plates[(pi - 1) % plates.size()]
 
@@ -160,11 +146,12 @@ func create_description_popup():
 	for description in [item_description, spell_description, entity_description]:
 		description.visible = false
 		description.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		$%DescriptionContainer.add_child(description)
+		var description_container = get_tree().current_scene.get_node("%DescriptionContainer")
+		description_container.add_child(description)
 
 
 func player_attack():
-	var weapon_res = $%EquipmentManager.equipment_container.get_weapon_resource()
+	var weapon_res = EquipmentManager.equipment_container.get_weapon_resource()
 	if weapon_res:
 		SpellsService.perform_weapon_effects(player_entity, PlayerManager.selected_plate.get_entity(), weapon_res, 0)
 	else:

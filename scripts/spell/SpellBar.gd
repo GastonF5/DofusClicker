@@ -30,7 +30,7 @@ func _process(delta):
 		weapon_pb.value -= float(PlayerManager.player_entity.get_attack_speed() * delta) / 3
 		if weapon_pb.value <= 0:
 			weapon_pb.value = weapon_pb.max_value
-			$%PlayerManager.player_attack()
+			PlayerManager.player_attack()
 
 
 func set_weapon_pb_ready(ready: bool):

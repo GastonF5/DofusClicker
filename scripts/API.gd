@@ -1,4 +1,3 @@
-class_name API
 extends Node
 
 

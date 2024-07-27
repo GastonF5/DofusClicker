@@ -17,8 +17,6 @@ enum LogType {
 
 const COMMAND = LogType.COMMAND
 
-@onready var api: API = $%API
-
 @export var output: RichTextLabel
 @export var input: LineEdit
 
@@ -30,7 +28,7 @@ var inventory: Inventory
 
 
 func initialize():
-	inventory = $%PlayerManager.inventory
+	inventory = Globals.inventory
 
 
 func _input(event):

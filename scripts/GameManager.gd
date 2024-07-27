@@ -1,42 +1,41 @@
-class_name GameManager
 extends Node
 
-@onready var class_peeker: ClassPeeker = $%ClassPeeker
-
-@onready var mstats: StatsManager = $%StatsManager
-@onready var mplayer: PlayerManager = $%PlayerManager
-@onready var mmonster: MonsterManager = $%MonsterManager
-@onready var mequipment: EquipmentManager = $%EquipmentManager
-@onready var mrecipe: RecipeManager = $%RecipeManager
-@onready var area_peeker: AreaPeeker = $%AreaPeeker
-@onready var loading_screen: LoadingScreen = $%LoadingScreen
-@onready var datas: Datas = $%Datas
-@onready var console: Console = $%Console
-
-
-@export var class_texture_rect: TextureRect
+var class_peeker: ClassPeeker
+var area_peeker: AreaPeeker
+var loading_screen: LoadingScreen
+var console: Console
+var class_texture_rect: TextureRect
 
 static var in_fight := false
 
 func _ready():
+	class_peeker = Globals.class_peeker
+	area_peeker = Globals.area_peeker
+	loading_screen = Globals.loading_screen
+	console = Globals.console
+	class_texture_rect = Globals.class_texture_rect
+	
+	SpellsService.console = Globals.console
+	SpellsService.tnode = Globals.timers
+	
 	class_peeker.visible = true
-	class_peeker.bselect.button_up.connect(_on_class_selected)
+	class_peeker.bselect.pressed.connect(_on_class_selected)
 
 
 func _on_class_selected():
 	class_texture_rect.texture = class_peeker.get_logo_transparent()
-	mstats.initialize()
-	mplayer.initialize(class_peeker.classes[class_peeker.selected_class])
-	mmonster.initialize()
-	mequipment.initialize()
-	mrecipe.initialize()
-	datas.load_data()
+	StatsManager.initialize()
+	PlayerManager.initialize(class_peeker.classes[class_peeker.selected_class])
+	MonsterManager.initialize()
+	EquipmentManager.initialize()
+	RecipeManager.initialize()
+	Datas.load_data()
 	area_peeker.initialize()
 	console.initialize()
 	class_peeker.visible = false
 
 
 func lose_fight():
-	mmonster.clear_monsters()
+	MonsterManager.clear_monsters()
 	console.log_info("Vous avez perdu le combat")
-	mmonster.end_fight()
+	MonsterManager.end_fight()

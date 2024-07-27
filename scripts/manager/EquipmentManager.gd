@@ -1,14 +1,10 @@
-class_name EquipmentManager
 extends Node
 
 
 const EMPTY_SLOT_TEXTURE_PATH = "res://assets/equipment/slots/emptySlot.png"
 const SLOT_TEXTURE_PATH = "res://assets/equipment/slots/%s.png"
 
-@export var equipment_container: EquipmentContainer
-
-@onready var console: Console = $%Console
-
+var equipment_container: EquipmentContainer
 var inventory: Inventory
 
 signal equiped
@@ -16,7 +12,8 @@ signal desequiped
 
 
 func initialize():
-	inventory = $%PlayerManager.inventory
+	equipment_container = get_tree().current_scene.get_node("%EquipmentContainer")
+	inventory = Globals.inventory
 	for slot in equipment_container.slots:
 		slot.mouse_entered.connect(_on_mouse_entered_slot.bind(slot))
 		slot.mouse_exited.connect(inventory.set_dragged_exited_drop_parent)
@@ -26,7 +23,7 @@ func initialize():
 
 func on_equiped(item: Item, slot):
 	if !item.resource.equip_res:
-		console.log_error("L'item équipé n'est pas un équipement : " + item.name)
+		Globals.console.log_error("L'item équipé n'est pas un équipement : " + item.name)
 		return
 	slot.get_child(0).texture = load(EMPTY_SLOT_TEXTURE_PATH)
 	equiped.emit(item)
@@ -34,7 +31,7 @@ func on_equiped(item: Item, slot):
 
 func on_desequiped(item: Item, slot):
 	if !item.resource.equip_res:
-		console.log_error("L'item déséquipé n'est pas un équipement : " + item.name)
+		Globals.console.log_error("L'item déséquipé n'est pas un équipement : " + item.name)
 		return
 	slot.get_child(0).texture = load(SLOT_TEXTURE_PATH % item.resource.equip_res.get_type().to_lower())
 	desequiped.emit(item)
@@ -43,9 +40,6 @@ func on_desequiped(item: Item, slot):
 func _on_mouse_entered_slot(slot):
 	var dragged_item = PlayerManager.dragged_item
 	if dragged_item != null and dragged_item.resource.equip_res != null:
-		#print(dragged_item.resource.equip_res.get_type().to_pascal_case())
-		#print(dragged_item.resource.type_id)
-		#print(Datas._types.keys().map(func(k): return [k, Datas._types[k]._name]))
 		if slot.name.contains(dragged_item.resource.equip_res.get_type().to_pascal_case()):
 			inventory.set_dragged_entering_drop_parent(slot)
 

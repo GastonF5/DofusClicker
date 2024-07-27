@@ -1,7 +1,6 @@
-class_name MonsterManager
 extends Node
 
-@onready var console: Console = $%Console
+var console: Console
 var start_fight_button: Button
 var auto_start_fight_checkbox: CheckBox
 
@@ -18,9 +17,10 @@ var xp_to_gain := 0
 
 
 func initialize():
+	console = Globals.console
 	end_fight_callable = end_fight
-	start_fight_button = $%StartFightButton
-	auto_start_fight_checkbox = $%AutoStartFight.get_node("HBC/CheckBox")
+	start_fight_button = get_tree().current_scene.get_node("%StartFightButton")
+	auto_start_fight_checkbox = get_tree().current_scene.get_node("%AutoStartFight").get_node("HBC/CheckBox")
 	start_fight_button.button_up.connect(start_fight)
 	start_fight_button.disabled = true
 
@@ -28,12 +28,12 @@ func initialize():
 func start_fight():
 	GameManager.in_fight = true
 	console.log_info("Le combat commence")
-	$%AreaPeeker.back_button.disabled = true
-	$%PlayerManager.spell_bar.set_weapon_pb_ready(true)
+	Globals.area_peeker.back_button.disabled = true
+	Globals.spell_bar.set_weapon_pb_ready(true)
 	if DungeonManager.is_in_dungeon():
 		for monster_res in DungeonManager.get_current_room_monsters():
 			instantiate_monster(monster_res)
-		#$%DungeonManager.exit_dungeon()
+		#%DungeonManager.exit_dungeon()
 		start_fight_button.disabled = true
 	else:
 		if !monsters_res.is_empty():
@@ -50,21 +50,21 @@ func end_fight():
 		GameManager.in_fight = false
 		if monsters.filter(func(m): return !m.dying).is_empty():
 			console.log_info("Combat terminé")
-		$%PlayerManager.xp_bar.gain_xp(xp_to_gain)
+		Globals.xp_bar.gain_xp(xp_to_gain)
 		console.log_info("Vous avez gagné %d d'expérience" % xp_to_gain)
 		xp_to_gain = 0
-		$%AreaPeeker.back_button.disabled = false
-		$%PlayerManager.spell_bar.set_weapon_pb_ready(false)
+		Globals.area_peeker.back_button.disabled = false
+		Globals.spell_bar.set_weapon_pb_ready(false)
 		if DungeonManager.is_in_dungeon():
-			$%DungeonManager.enter_next_room()
+			DungeonManager.enter_next_room()
 		clear_monsters()
 		start_fight_button.disabled = false
 		if auto_start_fight_checkbox.button_pressed:
 			start_fight()
-		$%StatsManager.reset_caracteristiques()
+		StatsManager.reset_caracteristiques()
 		for timer in SpellsService.tnode.get_children():
 			timer.queue_free()
-		$%PlayerManager.spell_bar.reset_spells()
+		Globals.spell_bar.reset_spells()
 
 
 func get_monsters_on_plates():
