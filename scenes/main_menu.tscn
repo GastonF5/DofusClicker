@@ -1,0 +1,257 @@
+[gd_scene load_steps=30 format=3 uid="uid://bss1wj12e3x3k"]
+
+[ext_resource type="Texture2D" uid="uid://f1b4iqrwl4yt" path="res://assets/class_peeker/bgIlluServeur.jpg" id="1_hpjoe"]
+[ext_resource type="Script" path="res://scripts/MainMenu.gd" id="1_mkipt"]
+[ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="1_vp6lg"]
+[ext_resource type="Script" path="res://scripts/Datas.gd" id="2_hkabe"]
+[ext_resource type="Script" path="res://scripts/API.gd" id="2_pqpsm"]
+[ext_resource type="Script" path="res://scripts/FileSaver.gd" id="3_32fog"]
+[ext_resource type="Texture2D" uid="uid://bo5ikd5gs4rjy" path="res://assets/common/button/btn_greenSecondLargeBorder_disabled.png" id="4_f03le"]
+[ext_resource type="FontFile" uid="uid://t1i0j3mapi5c" path="res://assets/font/achafont/Achafexp.ttf" id="4_nrpvk"]
+[ext_resource type="Texture2D" uid="uid://ioqtjrfeostc" path="res://assets/common/button/btn_greenSecondLargeBorder_over.png" id="5_cvrfr"]
+[ext_resource type="Texture2D" uid="uid://cpbcsmwr14xf8" path="res://assets/common/button/btn_greenSecondLargeBorder_normal.png" id="6_8qk3c"]
+[ext_resource type="Texture2D" uid="uid://ct1041x5j0e3i" path="res://assets/common/button/btn_greenSecondLargeBorder_pressed.png" id="7_leenl"]
+[ext_resource type="FontFile" uid="uid://duac7keqvubh2" path="res://assets/font/Tahoma Regular font.ttf" id="8_0uihb"]
+[ext_resource type="PackedScene" uid="uid://cl1b4rs0yua7e" path="res://scenes/LoadingScreen.tscn" id="12_o80ob"]
+[ext_resource type="Texture2D" uid="uid://btgrkqxsopord" path="res://assets/common/button/btn_grey_small_normal.png" id="14_kw64x"]
+[ext_resource type="Texture2D" uid="uid://c5rys5uh26cib" path="res://assets/common/button/btn_grey_small_over.png" id="15_urwun"]
+[ext_resource type="Texture2D" uid="uid://bw2qcipwmh8bl" path="res://assets/common/button/btn_grey_small_pressed.png" id="16_a8u5d"]
+[ext_resource type="Texture2D" uid="uid://bwhq3hutf4osc" path="res://assets/btn_icon/btn_close_normal.png" id="17_xxq8r"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_plsuf"]
+font = ExtResource("4_nrpvk")
+font_size = 256
+font_color = Color(0.368627, 1, 0.32549, 1)
+outline_size = 25
+outline_color = Color(0, 0.564706, 0, 1)
+shadow_size = 25
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(25, 15)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wjr8v"]
+texture = ExtResource("4_f03le")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_olr87"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2p8ht"]
+texture = ExtResource("5_cvrfr")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oi48c"]
+texture = ExtResource("6_8qk3c")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cptta"]
+texture = ExtResource("7_leenl")
+
+[sub_resource type="Theme" id="Theme_pkdxa"]
+default_font = ExtResource("8_0uihb")
+default_font_size = 60
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 12
+Button/styles/disabled = SubResource("StyleBoxTexture_wjr8v")
+Button/styles/focus = SubResource("StyleBoxEmpty_olr87")
+Button/styles/hover = SubResource("StyleBoxTexture_2p8ht")
+Button/styles/normal = SubResource("StyleBoxTexture_oi48c")
+Button/styles/pressed = SubResource("StyleBoxTexture_cptta")
+
+[sub_resource type="Theme" id="Theme_h3q3u"]
+default_font = ExtResource("8_0uihb")
+default_font_size = 30
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 12
+Button/styles/disabled = SubResource("StyleBoxTexture_wjr8v")
+Button/styles/focus = SubResource("StyleBoxEmpty_olr87")
+Button/styles/hover = SubResource("StyleBoxTexture_2p8ht")
+Button/styles/normal = SubResource("StyleBoxTexture_oi48c")
+Button/styles/pressed = SubResource("StyleBoxTexture_cptta")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q6g56"]
+bg_color = Color(0.196078, 0.196078, 0.196078, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p46i8"]
+texture = ExtResource("14_kw64x")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rq7l3"]
+texture = ExtResource("15_urwun")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i4t3r"]
+texture = ExtResource("16_a8u5d")
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_vp6lg")
+script = ExtResource("1_mkipt")
+
+[node name="API" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_pqpsm")
+
+[node name="FileSaver" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_32fog")
+
+[node name="Datas" type="Node" parent="."]
+script = ExtResource("2_hkabe")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_hpjoe")
+expand_mode = 3
+
+[node name="VBC" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="VBC"]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+size_flags_vertical = 0
+text = "DoFus Clicker"
+label_settings = SubResource("LabelSettings_plsuf")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="HBC" type="HBoxContainer" parent="VBC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PlayBtn" type="Button" parent="VBC/HBC"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 250)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_pkdxa")
+text = "Nouvelle
+Partie"
+
+[node name="LoadBtn" type="Button" parent="VBC/HBC"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 250)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_pkdxa")
+text = "Charger"
+
+[node name="QuitBtn" type="Button" parent="VBC/HBC"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 250)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_pkdxa")
+text = "Quitter"
+
+[node name="ReloadDataBtn" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -468.0
+offset_top = 19.0
+offset_bottom = 146.0
+grow_horizontal = 0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_h3q3u")
+text = "Recharger les données"
+
+[node name="LoadingScreen" parent="." instance=ExtResource("12_o80ob")]
+unique_name_in_owner = true
+visible = false
+
+[node name="Saves" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SavesPanel" type="PanelContainer" parent="Saves"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.5
+offset_top = -22.0
+offset_right = 21.5
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="PanelContainer" parent="Saves/SavesPanel"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_q6g56")
+
+[node name="VBC" type="VBoxContainer" parent="Saves/SavesPanel"]
+layout_mode = 2
+
+[node name="CloseBtn" type="Button" parent="Saves/SavesPanel/VBC"]
+custom_minimum_size = Vector2(30, 31)
+layout_mode = 2
+size_flags_horizontal = 8
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_p46i8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_rq7l3")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_i4t3r")
+icon = ExtResource("17_xxq8r")
+
+[connection signal="button_up" from="VBC/HBC/PlayBtn" to="." method="_on_play_btn_button_up"]
+[connection signal="button_up" from="VBC/HBC/LoadBtn" to="." method="_on_load_btn_button_up"]
+[connection signal="button_up" from="VBC/HBC/QuitBtn" to="." method="_on_quit_btn_button_up"]
+[connection signal="button_up" from="ReloadDataBtn" to="." method="_on_load_data_btn_button_up"]
+[connection signal="button_up" from="Saves/SavesPanel/VBC/CloseBtn" to="." method="_on_close_btn_button_up"]
