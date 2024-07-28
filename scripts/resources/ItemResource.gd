@@ -71,3 +71,9 @@ func get_drop_areas() -> String:
 			.reduce(func(accum: String, area_name):
 				return accum if accum.contains(area_name) else accum + ", " + area_name, "")\
 			.erase(0, 2)
+
+
+func load_save(data: Dictionary):
+	count = data["count"]
+	if equip_res:
+		equip_res.load_save(data["equip_res"])

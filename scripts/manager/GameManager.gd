@@ -22,10 +22,11 @@ func _ready():
 	class_peeker.bselect.pressed.connect(_on_class_selected)
 
 
-func _on_class_selected():
-	class_texture_rect.texture = class_peeker.get_logo_transparent()
+func _on_class_selected(selected_class: int = Globals.selected_class):
+	class_peeker.bselect.disabled = true
+	class_texture_rect.texture = class_peeker.get_logo_transparent(selected_class)
 	StatsManager.initialize()
-	PlayerManager.initialize(class_peeker.classes[class_peeker.selected_class])
+	PlayerManager.initialize(class_peeker.classes[selected_class])
 	MonsterManager.initialize()
 	EquipmentManager.initialize()
 	RecipeManager.initialize()

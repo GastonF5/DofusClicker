@@ -16,6 +16,7 @@ var spell_bar: SpellBar
 
 var xp_bar: ExperienceBar
 var inventory: Inventory
+var selected_class: int
 
 
 func _ready():

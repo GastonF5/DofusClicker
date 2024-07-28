@@ -18,7 +18,7 @@ func init(item_recipe: RecipeResource):
 	resource = item_recipe
 	instantiate_items()
 	
-	var result_item = Item.create(item_recipe.get_result(), null, false, true)
+	var result_item = Item.create(item_recipe.get_result(), false, true)
 	result_item.texture_initialized.connect(_on_item_texture_initialized)
 	result_item.custom_minimum_size = Vector2(64, 64)
 	items_container.add_sibling(result_item)
@@ -32,7 +32,7 @@ func init(item_recipe: RecipeResource):
 
 func instantiate_items():
 	for ingredient in resource.get_ingredients():
-		var recipe_item = Item.create(ingredient, null, false, true)
+		var recipe_item = Item.create(ingredient, false, true)
 		recipe_item.texture_initialized.connect(_on_item_texture_initialized)
 		recipe_item.custom_minimum_size = Vector2(64, 64)
 		recipe_item.get_node("Count").add_theme_font_size_override("FontSize", 16)

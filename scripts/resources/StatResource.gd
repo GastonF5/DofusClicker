@@ -7,7 +7,7 @@ const TYPE = Caracteristique.Type
 @export var min_amount: int
 @export var max_amount: int
 
-var amount: int:
+@export var amount: int:
 	set(value):
 		amount = value
 		amount_change.emit(amount)
@@ -19,6 +19,8 @@ func get_random_amount():
 
 
 func init_amount():
+	if amount and amount in range(min_amount, max_amount):
+		return
 	if min_amount > max_amount:
 		amount = min_amount
 	else:

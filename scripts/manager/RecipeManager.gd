@@ -15,12 +15,11 @@ var prompt_has_focus := false
 
 func initialize():
 	console = Globals.console
-	
+	inventory = Globals.inventory
 	
 	Datas.init_done.connect(init_recipes.bind(Globals.xp_bar.cur_lvl))
 	Globals.xp_bar.lvl_up.connect(init_recipes)
 	tab_container = Globals.jobs_container.get_node("TabContainer")
-	inventory = Globals.inventory
 	inventory.item_entered_tree.connect(check_recipes)
 	inventory.item_exiting_tree.connect(check_recipes)
 	
@@ -98,7 +97,7 @@ func init_recipes(lvl := -1):
 
 func on_recipe_craft(recipe: RecipeResource):
 	inventory.remove_items(recipe.get_ingredients())
-	var item = Item.create(recipe.get_result(), inventory)
+	var item = Item.create(recipe.get_result())
 	inventory.add_item(item)
 	console.log_equip(item)
 

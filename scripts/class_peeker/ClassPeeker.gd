@@ -82,6 +82,7 @@ func _on_button_toggled(toggle: bool, id: int):
 	bselect.disabled = !toggle
 	if toggle:
 		selected_class = id
+		Globals.selected_class = id
 		select_class()
 		for button: Button in buttons:
 			if button.name.to_int() != id:
@@ -106,10 +107,6 @@ func select_class(id: int = selected_class):
 	else:
 		clogo.texture = null
 		clabel.text = ""
-
-
-func _on_select_button_button_up():
-	print(classes[selected_class])
 
 
 func get_logo_transparent(id: int = selected_class) -> Texture2D:

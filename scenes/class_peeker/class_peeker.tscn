@@ -402,5 +402,3 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_gxji8")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_qstv2")
 disabled = true
 text = "Selectionner"
-
-[connection signal="button_up" from="SelectButton" to="." method="_on_select_button_button_up"]

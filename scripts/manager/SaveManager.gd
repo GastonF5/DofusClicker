@@ -1,42 +1,28 @@
-class_name SaveManager
 extends Node
-
-
-var mplayer: PlayerManager
-var mrecipe: RecipeManager
-var mstats: StatsManager
-
-
-func _ready():
-	mplayer = $%PlayerManager
-	mrecipe = $%RecipeManager
-	mstats = $%StatsManager
 
 
 func save():
 	var save = SaveResource.create()
-	save.xp_amount = mplayer.xp_bar.get_total_xp()
-	save.inventory = mplayer.inventory.get_items()\
-		.map(func(i):
-			var array = [i.resource.id, i.resource.count]
-			return array)
+	save.xp_amount = Globals.xp_bar.get_total_xp()
+	save.inventory = Globals.inventory.get_items().map(func(i): return i.get_save())
+	save.equipment = EquipmentManager.equipment_container.get_save()
 	save.characteristics = save_characteristics()
-	$%FileSaver.save_data(save.to_dict(), save.date.replace("T", "-").replace(":", "."), "user://saves/")
+	save.class_id = Globals.selected_class
+	FileSaver.save_data(save.to_dict(), save.date.replace("T", "-").replace(":", "."), "user://saves/")
 
 
 func save_characteristics() -> Dictionary:
 	var dict := {}
-	for carac: Caracteristique in mstats.caracteristiques:
+	for carac: Caracteristique in StatsManager.caracteristiques:
 		dict[carac.type] = carac.base_amount
-	dict["points"] = mstats.points
+	dict["points"] = StatsManager.points
 	return dict
 
 
 
-func load_save():
-	var save_file = FileLoader.load_save()
-	var save = SaveResource.to_save_res(save_file.data)
+func load_save(save: SaveResource):
 	load_inventory(save)
+	EquipmentManager.equipment_container.load_save(save.equipment)
 	load_xp(save)
 	load_characteristics(save)
 	if save:
@@ -46,32 +32,36 @@ func load_save():
 
 
 func load_inventory(save: SaveResource):
-	var inventory: Inventory = mplayer.inventory
+	var inventory: Inventory = Globals.inventory
 	inventory.remove_items(inventory.get_items())
-	for item in save.inventory:
-		var resource = null
-		if Datas._resources.has(item[0]):
-			resource = Datas._resources[item[0]]
-		if Datas._items.has(item[0]):
-			resource = Datas._items[item[0]]
+	for data in save.inventory:
+		var resource = get_item_or_resource(data["id"])
 		if resource:
-			inventory.add_item(Item.create(resource, inventory))
+			resource.load_save(data)
+			inventory.add_item(Item.create(resource))
+
+
+func get_item_or_resource(id: int):
+	if Datas._resources.has(id):
+		return Datas._resources[id]
+	if Datas._items.has(id):
+		return Datas._items[id]
+	return null
 
 
 func load_xp(save: SaveResource):
-	mrecipe.reset()
-	mplayer.max_hp = 50
-	mplayer.hp_bar.reset()
-	var xp_bar: ExperienceBar = mplayer.xp_bar
-	xp_bar.reset()
-	xp_bar.gain_xp(save.xp_amount)
+	RecipeManager.reset()
+	PlayerManager.max_hp = 50
+	PlayerManager.hp_bar.reset()
+	Globals.xp_bar.reset()
+	Globals.xp_bar.gain_xp(save.xp_amount)
 
 
 func load_characteristics(save: SaveResource):
-	mstats.points = save.characteristics["points"]
-	mstats.max_points = (mplayer.xp_bar.cur_lvl - 1) * 5
-	mstats.update_points_label()
+	StatsManager.points = save.characteristics["points"]
+	StatsManager.max_points = (Globals.xp_bar.cur_lvl - 1) * 5
+	StatsManager.update_points_label()
 	for carac_type in Caracteristique.Type.values():
-		var carac = mstats.get_caracteristique_for_type(carac_type)
+		var carac = StatsManager.get_caracteristique_for_type(carac_type)
 		if carac:
 			carac.base_amount = save.characteristics[carac_type]

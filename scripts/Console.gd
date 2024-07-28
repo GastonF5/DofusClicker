@@ -137,18 +137,18 @@ func do_command(command: String, params: Array[String] = []):
 			_log("- get [item|monster|resource] {id}", COMMAND)
 			_log("- save", COMMAND)
 		"save":
-			$%SaveManager.save()
+			SaveManager.save()
 			pass
-		"load":
-			var save: SaveResource = $%SaveManager.load_save()
-			if save:
-				_log_line("Save %s" % save.date, COMMAND)
-				_log(" xp: %d" % save.xp_amount, COMMAND)
-			pass
+		#"load":
+			#var save: SaveResource = SaveManager.load_save()
+			#if save:
+				#_log_line("Save %s" % save.date, COMMAND)
+				#_log(" xp: %d" % save.xp_amount, COMMAND)
+			#pass
 		"xp":
 			if params.size() > 0:
 				var amount = params[0].to_int()
-				$%PlayerManager.xp_bar.gain_xp(amount)
+				Globals.xp_bar.gain_xp(amount)
 			pass
 		"clear":
 			clear()
@@ -196,7 +196,7 @@ func do_command(command: String, params: Array[String] = []):
 				if dict.has(id):
 					item_res = dict[id]
 					item_res.count = count
-					inventory.add_item(Item.create(item_res, inventory))
+					inventory.add_item(Item.create(item_res))
 				else:
 					log_error("%s not found" % params[0].to_pascal_case())
 				pass

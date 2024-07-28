@@ -50,14 +50,13 @@ func _exit_tree():
 
 func change_parent():
 	super()
-	inventory.add_item(self, drop_parent)
+	Globals.inventory.add_item(self, drop_parent)
 
 
-func init(item_res: ItemResource, _inventory: Inventory, _draggable, low):
+func init(item_res: ItemResource, _draggable, low):
 	self.texture = null
 	count_label = $Count
 	name = item_res.name
-	inventory = _inventory
 	resource = item_res
 	count = item_res.count
 	draggable = _draggable
@@ -75,13 +74,22 @@ func init(item_res: ItemResource, _inventory: Inventory, _draggable, low):
 			stats.append(new_stat)
 
 
+func get_save() -> Dictionary:
+	var data := { "id": resource.id, "count": count }
+	var equip_res_data := {}
+	for stat in stats:
+		equip_res_data[stat.type] = stat.amount
+	data["equip_res"] = equip_res_data
+	return data
+
+
 func update_count_label():
 	count_label.text = str(count) if count > 1 else ""
 
 
-static func create(item_res: ItemResource, _inventory: Inventory, _draggable = true, recipe_item = false) -> Item:
+static func create(item_res: ItemResource, _draggable = true, recipe_item = false) -> Item:
 	var item: Item = FileLoader.get_packed_scene("item/item").instantiate()
-	item.init(item_res, _inventory, _draggable, recipe_item)
+	item.init(item_res, _draggable, recipe_item)
 	return item
 
 

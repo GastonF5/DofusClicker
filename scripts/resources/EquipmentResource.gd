@@ -65,3 +65,8 @@ static func get_equip_type(type_label: String) -> Type:
 			if keys.size() == 1:
 				return EquipmentResource.Type.get(keys[0])
 			return EquipmentResource.Type.NONE
+
+
+func load_save(data: Dictionary):
+	for stat in stats:
+		stat.amount = data[stat.type]

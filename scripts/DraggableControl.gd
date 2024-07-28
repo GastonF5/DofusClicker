@@ -3,8 +3,8 @@ extends Control
 
 @onready var OverUI = $"/root/Main/OverUI"
 
-var old_parent: Button
-var drop_parent: Button
+var old_parent
+var drop_parent
 var draggable := false
 var dragged := false:
 	set(value):
@@ -18,7 +18,6 @@ var dragged := false:
 			if is_item(): PlayerManager.dragged_item = null
 			if is_spell(): PlayerManager.dragged_spell = null
 
-var inventory: Inventory
 var initialized := false
 
 

@@ -87,7 +87,7 @@ func drop():
 			if randf_range(0, 100) < _drop.percent_drop[0]:
 				var item_res = Datas._resources[_drop.object_id]
 				item_res.count = _drop.count
-				inventory.add_item(Item.create(item_res, inventory))
+				inventory.add_item(Item.create(item_res))
 
 
 func is_selected():

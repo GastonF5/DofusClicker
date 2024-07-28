@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bfh3u8jwrg2ar"]
+[gd_scene load_steps=44 format=3 uid="uid://bfh3u8jwrg2ar"]
 
 [ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="2_4lqlq"]
 [ext_resource type="Texture2D" uid="uid://dtp2ktsnvjk8w" path="res://assets/common/window/bg_product.jpg" id="2_5kihd"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://cp14q5ermx6mo" path="res://scenes/stats/stats_container.tscn" id="24_ocgbs"]
 [ext_resource type="PackedScene" uid="uid://lce7lc5iumm6" path="res://scenes/spell/spells_container.tscn" id="25_8knwx"]
 [ext_resource type="PackedScene" uid="uid://c74kvimoxv1i" path="res://scenes/spell/spell_bar.tscn" id="28_qnef0"]
+[ext_resource type="PackedScene" uid="uid://bss1wj12e3x3k" path="res://scenes/main_menu.tscn" id="31_ab6fe"]
 [ext_resource type="FontFile" uid="uid://duac7keqvubh2" path="res://assets/font/Tahoma Regular font.ttf" id="31_yvxwp"]
 [ext_resource type="Texture2D" uid="uid://clxiokh7y7tl6" path="res://assets/common/button/btn_greenLargeBorder_normal.png" id="32_jq77i"]
 [ext_resource type="PackedScene" uid="uid://dacg0tcpohas3" path="res://scenes/jobs/jobs_container.tscn" id="32_r5qps"]
@@ -417,12 +418,17 @@ layout_mode = 2
 
 [node name="OverUI" type="CanvasLayer" parent="."]
 
-[node name="LoadingScreen" parent="." instance=ExtResource("43_bkaqa")]
-unique_name_in_owner = true
-visible = false
-
 [node name="ClassPeeker" parent="." instance=ExtResource("36_f47er")]
 unique_name_in_owner = true
+
+[node name="MainMenu" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="MainMenu" parent="MainMenu" instance=ExtResource("31_ab6fe")]
+
+[node name="LoadingScreen" parent="." instance=ExtResource("43_bkaqa")]
+unique_name_in_owner = true
+layer = 10
 visible = false
 
 [connection signal="mouse_entered" from="GUI/Main/HBC/MiddleContainer/VBC/ExperienceBar" to="GUI/Main/HBC/MiddleContainer/VBC/ExperienceBar" method="_on_mouse_entered"]
