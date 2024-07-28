@@ -1,14 +1,12 @@
-class_name RecipeManager
 extends Node
 
 
-@export var jobs_container: VBoxContainer
 var tab_container: TabContainer
 var current_tab: JobPanel
 
 var recipes: Array[Recipe] = []
 
-@onready var console: Console = $%Console
+var console: Console
 var inventory: Inventory
 
 var recipe_filters: RecipeFilters
@@ -16,10 +14,13 @@ var prompt_has_focus := false
 
 
 func initialize():
-	$%Datas.init_done.connect(init_recipes.bind($%PlayerManager.xp_bar.cur_lvl))
-	$%PlayerManager.xp_bar.lvl_up.connect(init_recipes)
-	tab_container = jobs_container.get_node("TabContainer")
-	inventory = $%PlayerManager.inventory
+	console = Globals.console
+	
+	
+	Datas.init_done.connect(init_recipes.bind(Globals.xp_bar.cur_lvl))
+	Globals.xp_bar.lvl_up.connect(init_recipes)
+	tab_container = Globals.jobs_container.get_node("TabContainer")
+	inventory = Globals.inventory
 	inventory.item_entered_tree.connect(check_recipes)
 	inventory.item_exiting_tree.connect(check_recipes)
 	
@@ -85,7 +86,7 @@ func connect_inputs():
 
 
 func init_recipes(lvl := -1):
-	if lvl == -1: lvl = $%PlayerManager.xp_bar.cur_lvl
+	if lvl == -1: lvl = Globals.xp_bar.cur_lvl
 	var recipes_to_init = Datas._recipes.values().filter(func(r): return r.get_result().level == lvl)
 	for recipe in recipes_to_init:
 		var parent = get_parent_by_type(recipe.get_result().type_id)

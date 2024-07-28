@@ -40,18 +40,18 @@ func get_texture(low: bool) -> Texture2D:
 		return high_texture
 
 
-func load_texture(api: API, low: bool):
+func load_texture(low: bool):
 	var texture = low_texture if low else high_texture
 	if texture:
 		return texture
 	var url = low_img_url if low else high_img_url
-	await api.await_for_request_completed(api.request(url))
+	await API.await_for_request_completed(API.request(url))
 	if low:
-		low_texture = api.get_texture(url)
+		low_texture = API.get_texture(url)
 		if is_resource(): Datas._resources[id].low_texture = low_texture
 		else: Datas._items[id].low_texture = low_texture
 	else:
-		high_texture = api.get_texture(url)
+		high_texture = API.get_texture(url)
 		if is_resource(): Datas._resources[id].high_texture = high_texture
 		else: Datas._items[id].high_texture = high_texture
 

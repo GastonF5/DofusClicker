@@ -35,7 +35,7 @@ func _enter_tree():
 		get_parent().mouse_exited.connect(_on_mouse_exited)
 	
 	if !self.texture:
-		await resource.load_texture(get_tree().current_scene.get_node("%API"), low_texture)
+		await resource.load_texture(low_texture)
 		self.texture = resource.get_texture(low_texture)
 		texture_initialized.emit()
 

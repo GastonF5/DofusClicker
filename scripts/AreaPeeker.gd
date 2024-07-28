@@ -2,7 +2,6 @@ class_name AreaPeeker
 extends PanelContainer
 
 
-var monster_manager: MonsterManager
 @export var back_button: Button
 @export var area_label: Label
 
@@ -17,9 +16,9 @@ var console: Console
 
 
 func initialize():
-	console = $%Console
-	$%PlayerManager.xp_bar.lvl_up.connect(_on_level_up)
-	cur_lvl = $%PlayerManager.xp_bar.cur_lvl
+	console = Globals.console
+	Globals.xp_bar.lvl_up.connect(_on_level_up)
+	cur_lvl = Globals.xp_bar.cur_lvl
 	init_areas()
 
 
@@ -50,7 +49,7 @@ func _on_subarea_clicked(subarea_id: int):
 	var subarea = Datas._subareas[subarea_id]
 	selected_subarea_id = subarea_id
 	if DungeonManager.is_dungeon(subarea_id):
-		$%DungeonManager.enter_dungeon(subarea_id)
+		DungeonManager.enter_dungeon(subarea_id)
 	else:
 		enter_subarea(subarea)
 
@@ -83,10 +82,6 @@ func clear_buttons():
 		$HBC/ScrollContainer/HBC.remove_child(button)
 
 
-func _enter_tree():
-	monster_manager = get_tree().current_scene.get_node("%MonsterManager")
-
-
 func _on_back_button_button_up():
 	if selected_subarea_id != -1:
 		leave_subarea()
@@ -97,7 +92,7 @@ func _on_back_button_button_up():
 
 
 func _on_level_up():
-	cur_lvl = $%PlayerManager.xp_bar.cur_lvl
+	cur_lvl = Globals.xp_bar.cur_lvl
 
 
 func set_area_label(label: String, _visible: bool):
@@ -119,7 +114,7 @@ func leave_subarea():
 	selected_subarea_id = -1
 	set_area_label("", false)
 	init_subareas(Datas._areas[selected_area_id])
-	monster_manager.start_fight_button.disabled = true
+	MonsterManager.start_fight_button.disabled = true
 
 
 func log_enter_subarea(subarea_name: String):
@@ -140,7 +135,7 @@ func load_monsters(subarea: AreaResource):
 		composite_signal = API.CompositeSignal.new()
 		for monster_res in not_loaded_monsters:
 			if !monster_res.texture:
-				composite_signal.add_method(monster_res.load_texture.bindv([$%API, $%Console]))
+				composite_signal.add_method(monster_res.load_texture)
 	monster_resources = monster_resources.filter(func(res): return !res.archimonstre)
 	MonsterManager.monsters_res = monster_resources
 	for mres in monster_resources:
@@ -149,6 +144,6 @@ func load_monsters(subarea: AreaResource):
 	if composite_signal:
 		await composite_signal.finished
 		if selected_subarea_id == subarea._id:
-			monster_manager.start_fight_button.disabled = false
+			MonsterManager.start_fight_button.disabled = false
 	else:
-		monster_manager.start_fight_button.disabled = false
+		MonsterManager.start_fight_button.disabled = false

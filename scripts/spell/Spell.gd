@@ -12,7 +12,7 @@ var timer: Timer
 
 func init_player_manager():
 	if !player_manager:
-		player_manager = get_tree().current_scene.get_node("%PlayerManager")
+		player_manager = PlayerManager
 
 
 func _process(delta):

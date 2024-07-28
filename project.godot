@@ -15,6 +15,20 @@ run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Globals="*res://scripts/Globals.gd"
+FileSaver="*res://scripts/FileSaver.gd"
+API="*res://scripts/API.gd"
+StatsManager="*res://scripts/manager/StatsManager.gd"
+PlayerManager="*res://scripts/manager/PlayerManager.gd"
+MonsterManager="*res://scripts/manager/MonsterManager.gd"
+EquipmentManager="*res://scripts/manager/EquipmentManager.gd"
+RecipeManager="*res://scripts/manager/RecipeManager.gd"
+DungeonManager="*res://scripts/manager/DungeonManager.gd"
+GameManager="*res://scripts/GameManager.gd"
+Datas="*res://scripts/Datas.gd"
+
 [display]
 
 window/size/viewport_width=1920

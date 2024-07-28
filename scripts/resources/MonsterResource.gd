@@ -26,9 +26,9 @@ extends Resource
 var node_texture: TextureRect
 
 
-func load_texture(api: API, console: Console):
+func load_texture():
 	#console.log_info("Loading texture...")
-	await api.await_for_request_completed(api.request(image_url))
-	texture = api.get_texture(image_url)
+	await API.await_for_request_completed(API.request(image_url))
+	texture = API.get_texture(image_url)
 	Datas._monsters[id].texture = texture
 	#console.log_info("Texture of %s loaded" % name)
