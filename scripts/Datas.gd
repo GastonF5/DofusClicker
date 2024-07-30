@@ -13,13 +13,13 @@ enum DataType {
 }
 
 
-static var _types = {}
-static var _items = {}
-static var _resources = {}
-static var _recipes = {}
-static var _monsters = {}
-static var _areas = {}
-static var _subareas = {}
+@export var _types = {}
+@export var _items = {}
+@export var _resources = {}
+@export var _recipes = {}
+@export var _monsters = {}
+@export var _areas = {}
+@export var _subareas = {}
 
 var dir: DirAccess
 

@@ -27,7 +27,7 @@ func init_areas():
 	areas = areas.filter(func(a): return !a.black_listed(cur_lvl) and a.get_level() > 0 and a.get_level() <= cur_lvl and a.has_monsters(cur_lvl))
 	areas.sort_custom(AreaResource.sort_by_level)
 	for area in areas:
-		create_area_button(area)
+		create_area_button(area._id)
 		#prints(area._name, area._id)
 
 
@@ -35,7 +35,7 @@ func init_subareas(area: AreaResource):
 	selected_area_id = area._id
 	for subarea in area.get_subareas(cur_lvl):
 		if !subarea.black_listed() and subarea.has_monsters(cur_lvl):
-			create_area_button(subarea, true)
+			create_area_button(subarea._id, true)
 			prints(subarea._name, subarea._id)
 
 
@@ -54,22 +54,25 @@ func _on_subarea_clicked(subarea_id: int):
 		enter_subarea(subarea)
 
 
-func create_area_button(area: AreaResource, is_subarea := false):
+func create_area_button(area_id: int, is_subarea := false, add_child := true):
 	var button: AreaButton
 	var callable = _on_subarea_clicked if is_subarea else _on_area_clicked
-	if (!is_subarea and area_btns.has(area._id)) or (is_subarea and subarea_btns.has(area._id)):
-		button = subarea_btns[area._id] if is_subarea else area_btns[area._id]
+	if button_exists(area_id, is_subarea):
+		button = subarea_btns[area_id] if is_subarea else area_btns[area_id]
 	else:
-		var is_dungeon = DungeonManager.is_dungeon(area._id)
+		var is_dungeon = DungeonManager.is_dungeon(area_id)
 		var btn_icon = load("res://assets/icons/dungeon.png")\
 			if is_dungeon\
 			else load("res://assets/icons/quest.png")
-		button = AreaButton.create(area, callable, btn_icon, is_dungeon)
+		button = AreaButton.create(area_id, callable, btn_icon, is_subarea, is_dungeon)
 		if is_subarea:
-			subarea_btns[area._id] = button
+			subarea_btns[area_id] = button
 		else:
-			area_btns[area._id] = button
-	$HBC/ScrollContainer/HBC.add_child(button)
+			area_btns[area_id] = button
+	if add_child:
+		$HBC/ScrollContainer/HBC.add_child(button)
+	else:
+		button.new = false
 
 
 func erase_button(area: AreaResource):
@@ -147,3 +150,16 @@ func load_monsters(subarea: AreaResource):
 			MonsterManager.start_fight_button.disabled = false
 	else:
 		MonsterManager.start_fight_button.disabled = false
+
+
+func button_exists(id: int, is_subarea: bool):
+	if is_subarea:
+		return subarea_btns.keys().has(id)
+	else:
+		return area_btns.keys().has(id)
+
+
+func get_button(id: int, is_subarea: bool):
+	if !button_exists(id, is_subarea):
+		return null
+	return subarea_btns[id] if is_subarea else area_btns[id]
