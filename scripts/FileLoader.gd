@@ -85,11 +85,9 @@ static func get_dungeon_resource(dungeon_id: int) -> DungeonResource:
 
 
 static func load_save(file_name: String) -> DataResource:
-	var dir = DirAccess.open("user://saves/")
-	if !dir: return null
-	var file_names = dir.get_files()
-	if file_names.is_empty():
+	var dir = DirAccess.open(FileSaver.SAVE_PATH)
+	if dir and dir.file_exists(file_name):
+		return load(FileSaver.SAVE_PATH + file_name)
+	else:
+		push_error("Save file not found")
 		return null
-	if file_name != "":
-		return load("user://saves/%s" % file_name)
-	return load("user://saves/%s" % file_names[file_names.size() - 1])
