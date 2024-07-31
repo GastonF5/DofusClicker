@@ -8,7 +8,11 @@ var date: String
 
 var class_id: int
 var xp_amount := 0
+
+# Les areas sont des arrays contenant : [area_id, is_subarea]
 var discovered_areas: Array = []
+# [selected_area_id, selected_subarea_id]
+var current_areas: Array = []
 
 var inventory: Array = []
 var equipment: Dictionary = {}

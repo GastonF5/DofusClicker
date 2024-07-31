@@ -2,14 +2,15 @@ extends Node
 
 
 func save():
-	var save = SaveResource.create()
-	save.xp_amount = Globals.xp_bar.get_total_xp()
-	save.inventory = Globals.inventory.get_items().map(func(i): return i.get_save())
-	save.equipment = EquipmentManager.equipment_container.get_save()
-	save.characteristics = save_characteristics()
-	save.class_id = Globals.selected_class
-	save.discovered_areas = save_areas()
-	FileSaver.save_data(save.to_dict(), save.date.replace("T", "-").replace(":", "."), "user://saves/")
+	var save_res = SaveResource.create()
+	save_res.xp_amount = Globals.xp_bar.get_total_xp()
+	save_res.inventory = Globals.inventory.get_items().map(func(i): return i.get_save())
+	save_res.equipment = EquipmentManager.equipment_container.get_save()
+	save_res.characteristics = save_characteristics()
+	save_res.class_id = Globals.selected_class
+	save_res.discovered_areas = save_areas()
+	save_res.current_areas = [Globals.area_peeker.selected_area_id, Globals.area_peeker.selected_subarea_id]
+	FileSaver.save_data(save_res.to_dict(), save_res.date.replace("T", "-").replace(":", "_"), "user://saves/")
 
 
 func save_characteristics() -> Dictionary:
@@ -22,28 +23,28 @@ func save_characteristics() -> Dictionary:
 
 
 func save_areas() -> Array:
-	var btns: Array[AreaButton]
+	var btns: Array[AreaButton] = []
 	btns.assign(Globals.area_peeker.area_btns.values() + Globals.area_peeker.subarea_btns.values())
 	return btns.filter(func(btn): return !btn.new)\
 			.map(func(btn: AreaButton): return [btn.area_id, btn.is_subarea])
 
 
-func load_save(save: SaveResource):
-	load_inventory(save)
-	EquipmentManager.equipment_container.load_save(save.equipment)
-	load_xp(save)
-	load_characteristics(save)
-	load_areas(save)
-	if save:
-		return save
+func load_save(save_res: SaveResource):
+	load_inventory(save_res)
+	EquipmentManager.equipment_container.load_save(save_res.equipment)
+	load_xp(save_res)
+	load_characteristics(save_res)
+	load_areas(save_res)
+	if save_res:
+		return save_res
 	else:
 		push_error("No save found")
 
 
-func load_inventory(save: SaveResource):
+func load_inventory(save_res: SaveResource):
 	var inventory: Inventory = Globals.inventory
 	inventory.remove_items(inventory.get_items())
-	for data in save.inventory:
+	for data in save_res.inventory:
 		var resource = get_item_or_resource(data["id"])
 		if resource:
 			resource.load_save(data)
@@ -58,32 +59,37 @@ func get_item_or_resource(id: int):
 	return null
 
 
-func load_xp(save: SaveResource):
+func load_xp(save_res: SaveResource):
 	RecipeManager.reset()
 	PlayerManager.max_hp = 50
 	PlayerManager.hp_bar.reset()
 	Globals.xp_bar.reset()
-	Globals.xp_bar.gain_xp(save.xp_amount)
+	Globals.xp_bar.gain_xp(save_res.xp_amount)
 
 
-func load_characteristics(save: SaveResource):
-	StatsManager.points = save.characteristics["points"]
+func load_characteristics(save_res: SaveResource):
+	StatsManager.points = save_res.characteristics["points"]
 	StatsManager.max_points = (Globals.xp_bar.cur_lvl - 1) * 5
 	StatsManager.update_points_label()
-	for key in save.characteristics.keys():
+	for key in save_res.characteristics.keys():
 		if key is int:
 			var carac = StatsManager.get_caracteristique_for_type(key)
 			if carac:
-				carac.base_amount = save.characteristics[key]
+				carac.base_amount = save_res.characteristics[key]
 
 
-func load_areas(save: SaveResource):
+func load_areas(save_res: SaveResource):
 	var area_peeker = Globals.area_peeker
-	for data in save.discovered_areas:
+	# discovered areas
+	for data in save_res.discovered_areas:
 		var area_id = data[0]
 		var is_subarea = data[1]
-		# si c'est une subarea
 		if area_peeker.button_exists(area_id, is_subarea):
 			area_peeker.get_button(area_id, is_subarea).new = false
 		else:
 			area_peeker.create_area_button(area_id, is_subarea, false)
+	# current area
+	if save_res.current_areas[0] != -1:
+		area_peeker._on_area_clicked(save_res.current_areas[0])
+	if save_res.current_areas[1] != -1:
+		area_peeker._on_subarea_clicked(save_res.current_areas[1])
