@@ -32,8 +32,10 @@ func check_saves():
 func load_save(save_res: SaveResource):
 	Globals.selected_class = save_res.class_id
 	GameManager._on_class_selected(save_res.class_id)
-	SaveManager.load_save(save_res)
-	resume_game()
+	if SaveManager.load_save(save_res):
+		resume_game()
+	else:
+		push_error("Une erreur est survenue lors du chargement de la sauvegarde")
 
 
 func resume_game():
@@ -42,13 +44,26 @@ func resume_game():
 
 func create_save_button(save_res: SaveResource):
 	var button = Button.new()
-	button.name = save_res.date
+	button.name = save_res.date.replace("T", "-").replace(":", "_")
 	button.text = format_date(save_res.date)
 	button.focus_mode = Control.FOCUS_NONE
 	button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	button.add_theme_font_size_override("font_size", 64)
 	button.button_up.connect(load_save.bind(save_res))
+	button.add_child(CloseButton.create(delete_save.bind(button)))
 	$Saves/SavesPanel/VBC.add_child(button)
+
+
+func delete_save(save_btn: Button):
+	var dir = DirAccess.open(FileSaver.SAVE_PATH)
+	var file_name = save_btn.name + ".tres"
+	print(file_name	)
+	if dir.file_exists(file_name):
+		dir.remove(file_name)
+		save_btn.get_parent().remove_child(save_btn)
+		save_btn.queue_free()
+	else:
+		push_error("Save file not found")
 
 
 func format_date(date: String):

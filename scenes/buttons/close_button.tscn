@@ -1,0 +1,29 @@
+[gd_scene load_steps=9 format=3 uid="uid://c5qpmm8kbuukg"]
+
+[ext_resource type="Texture2D" uid="uid://btgrkqxsopord" path="res://assets/common/button/btn_grey_small_normal.png" id="1_m8vvb"]
+[ext_resource type="Texture2D" uid="uid://c5rys5uh26cib" path="res://assets/common/button/btn_grey_small_over.png" id="2_vajef"]
+[ext_resource type="Texture2D" uid="uid://bw2qcipwmh8bl" path="res://assets/common/button/btn_grey_small_pressed.png" id="3_e5a8n"]
+[ext_resource type="Texture2D" uid="uid://bwhq3hutf4osc" path="res://assets/btn_icon/btn_close_normal.png" id="4_5p6f1"]
+[ext_resource type="Script" path="res://scripts/close_button.gd" id="5_pl66s"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p46i8"]
+texture = ExtResource("1_m8vvb")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rq7l3"]
+texture = ExtResource("2_vajef")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i4t3r"]
+texture = ExtResource("3_e5a8n")
+
+[node name="CloseBtn" type="Button"]
+custom_minimum_size = Vector2(30, 31)
+size_flags_horizontal = 8
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_p46i8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_rq7l3")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_i4t3r")
+icon = ExtResource("4_5p6f1")
+script = ExtResource("5_pl66s")
+
+[connection signal="button_up" from="." to="." method="_on_button_up"]

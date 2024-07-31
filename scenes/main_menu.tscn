@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bss1wj12e3x3k"]
+[gd_scene load_steps=24 format=3 uid="uid://bss1wj12e3x3k"]
 
 [ext_resource type="Texture2D" uid="uid://f1b4iqrwl4yt" path="res://assets/class_peeker/bgIlluServeur.jpg" id="1_hpjoe"]
 [ext_resource type="Script" path="res://scripts/MainMenu.gd" id="1_mkipt"]
@@ -13,10 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://ct1041x5j0e3i" path="res://assets/common/button/btn_greenSecondLargeBorder_pressed.png" id="7_leenl"]
 [ext_resource type="FontFile" uid="uid://duac7keqvubh2" path="res://assets/font/Tahoma Regular font.ttf" id="8_0uihb"]
 [ext_resource type="PackedScene" uid="uid://cl1b4rs0yua7e" path="res://scenes/LoadingScreen.tscn" id="12_o80ob"]
-[ext_resource type="Texture2D" uid="uid://btgrkqxsopord" path="res://assets/common/button/btn_grey_small_normal.png" id="14_kw64x"]
-[ext_resource type="Texture2D" uid="uid://c5rys5uh26cib" path="res://assets/common/button/btn_grey_small_over.png" id="15_urwun"]
-[ext_resource type="Texture2D" uid="uid://bw2qcipwmh8bl" path="res://assets/common/button/btn_grey_small_pressed.png" id="16_a8u5d"]
-[ext_resource type="Texture2D" uid="uid://bwhq3hutf4osc" path="res://assets/btn_icon/btn_close_normal.png" id="17_xxq8r"]
+[ext_resource type="PackedScene" uid="uid://c5qpmm8kbuukg" path="res://scenes/buttons/close_button.tscn" id="14_1kykl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_plsuf"]
 font = ExtResource("4_nrpvk")
@@ -94,15 +91,6 @@ Button/styles/pressed = SubResource("StyleBoxTexture_cptta")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q6g56"]
 bg_color = Color(0.196078, 0.196078, 0.196078, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p46i8"]
-texture = ExtResource("14_kw64x")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rq7l3"]
-texture = ExtResource("15_urwun")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i4t3r"]
-texture = ExtResource("16_a8u5d")
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -239,19 +227,10 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_q6g56")
 [node name="VBC" type="VBoxContainer" parent="Saves/SavesPanel"]
 layout_mode = 2
 
-[node name="CloseBtn" type="Button" parent="Saves/SavesPanel/VBC"]
-custom_minimum_size = Vector2(30, 31)
+[node name="CloseBtn" parent="Saves/SavesPanel/VBC" instance=ExtResource("14_1kykl")]
 layout_mode = 2
-size_flags_horizontal = 8
-focus_mode = 0
-mouse_default_cursor_shape = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_p46i8")
-theme_override_styles/hover = SubResource("StyleBoxTexture_rq7l3")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_i4t3r")
-icon = ExtResource("17_xxq8r")
 
 [connection signal="button_up" from="VBC/HBC/PlayBtn" to="." method="_on_play_btn_button_up"]
 [connection signal="button_up" from="VBC/HBC/LoadBtn" to="." method="_on_load_btn_button_up"]
 [connection signal="button_up" from="VBC/HBC/QuitBtn" to="." method="_on_quit_btn_button_up"]
 [connection signal="button_up" from="ReloadDataBtn" to="." method="_on_load_data_btn_button_up"]
-[connection signal="button_up" from="Saves/SavesPanel/VBC/CloseBtn" to="." method="_on_close_btn_button_up"]
