@@ -26,7 +26,8 @@ func check_saves():
 	$VBC/HBC/LoadBtn.disabled = saves.is_empty()
 	for file in saves:
 		var save_res = SaveResource.to_save_res(FileLoader.load_save(file).data)
-		create_save_button(save_res)
+		if save_res:
+			create_save_button(save_res)
 
 
 func load_save(save_res: SaveResource):
