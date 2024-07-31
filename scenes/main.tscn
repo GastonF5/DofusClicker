@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bfh3u8jwrg2ar"]
+[gd_scene load_steps=48 format=3 uid="uid://bfh3u8jwrg2ar"]
 
 [ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="2_4lqlq"]
 [ext_resource type="Texture2D" uid="uid://dtp2ktsnvjk8w" path="res://assets/common/window/bg_product.jpg" id="2_5kihd"]
@@ -7,9 +7,13 @@
 [ext_resource type="Theme" uid="uid://ctf5aaqx8jyeo" path="res://resources/themes/experience_bar.tres" id="3_prl7k"]
 [ext_resource type="PackedScene" uid="uid://humcuoo3q2tn" path="res://scenes/equipment/equipment_container.tscn" id="8_larhl"]
 [ext_resource type="Script" path="res://scripts/CustomTabContainer.gd" id="14_akpwt"]
+[ext_resource type="Theme" uid="uid://fc48wn3u4jqk" path="res://resources/themes/button.tres" id="15_qjurg"]
 [ext_resource type="Texture2D" uid="uid://cwoycdemjcbuy" path="res://assets/window_icon/caracteristiques.png" id="15_wilnu"]
+[ext_resource type="Texture2D" uid="uid://cr4dpiri4mevk" path="res://assets/btn_icon/btnIcon_refresh.png" id="16_6pvmy"]
 [ext_resource type="Texture2D" uid="uid://bx13bnw5chi1h" path="res://assets/window_icon/sorts.png" id="16_og6sm"]
+[ext_resource type="Texture2D" uid="uid://caw2ggvj6j1kb" path="res://assets/btn_icon/btnIcon_parchment.png" id="17_fqerk"]
 [ext_resource type="PackedScene" uid="uid://ijqxn7khforp" path="res://scenes/areas/area_peeker.tscn" id="17_tk01a"]
+[ext_resource type="Texture2D" uid="uid://dlogx8k6w4uq1" path="res://assets/btn_icon/btnIcon_house.png" id="18_co575"]
 [ext_resource type="Texture2D" uid="uid://0ujq6wd2dvfm" path="res://assets/common/window/window_green_background.jpg" id="20_5artd"]
 [ext_resource type="Texture2D" uid="uid://dtnvde1gv6735" path="res://assets/classes/logo_transparent/logo_transparent_1.png" id="20_b2ybu"]
 [ext_resource type="Texture2D" uid="uid://bov74ckekhf83" path="res://assets/common/block/block_border.png" id="21_xjomn"]
@@ -195,14 +199,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
+[node name="AreaPeeker" parent="GUI/Main/HBC/MiddleContainer/VBC" instance=ExtResource("17_tk01a")]
+unique_name_in_owner = true
+layout_mode = 2
+
 [node name="MainPanel" type="PanelContainer" parent="GUI/Main/HBC/MiddleContainer/VBC"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_efp50")
-
-[node name="AreaPeeker" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel" instance=ExtResource("17_tk01a")]
-unique_name_in_owner = true
-layout_mode = 2
 
 [node name="MonstersContainer" type="HBoxContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel"]
 layout_mode = 2
@@ -234,6 +238,58 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxEmpty_3iahd")
+
+[node name="Control" type="Control" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel"]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="ChangeClassButton" type="Button" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/Control/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+tooltip_text = "Changer de classe"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource("15_qjurg")
+icon = ExtResource("16_6pvmy")
+icon_alignment = 1
+
+[node name="SaveButton" type="Button" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/Control/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+tooltip_text = "Sauvegarder"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource("15_qjurg")
+icon = ExtResource("17_fqerk")
+icon_alignment = 1
+
+[node name="QuitButton" type="Button" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/Control/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+tooltip_text = "Retour au menu principal"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource("15_qjurg")
+icon = ExtResource("18_co575")
+icon_alignment = 1
 
 [node name="PlayerBarContainer" type="Panel" parent="GUI/Main/HBC/MiddleContainer/VBC"]
 custom_minimum_size = Vector2(0, 160)
@@ -431,5 +487,7 @@ unique_name_in_owner = true
 layer = 10
 visible = false
 
+[connection signal="button_up" from="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/Control/HBoxContainer/SaveButton" to="MainMenu/MainMenu" method="_on_save_button_button_up"]
+[connection signal="button_up" from="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/Control/HBoxContainer/QuitButton" to="MainMenu/MainMenu" method="_on_quit_button_button_up"]
 [connection signal="mouse_entered" from="GUI/Main/HBC/MiddleContainer/VBC/ExperienceBar" to="GUI/Main/HBC/MiddleContainer/VBC/ExperienceBar" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="GUI/Main/HBC/MiddleContainer/VBC/ExperienceBar" to="GUI/Main/HBC/MiddleContainer/VBC/ExperienceBar" method="_on_mouse_exited"]

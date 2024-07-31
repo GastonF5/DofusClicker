@@ -11,6 +11,7 @@ func save():
 	save_res.discovered_areas = save_areas()
 	save_res.current_areas = [Globals.area_peeker.selected_area_id, Globals.area_peeker.selected_subarea_id]
 	FileSaver.save_data(save_res.to_dict(), save_res.date.replace("T", "-").replace(":", "_"), "user://saves/")
+	Globals.console.log_info("Sauvegarde effectuée avec succès")
 
 
 func save_characteristics() -> Dictionary:

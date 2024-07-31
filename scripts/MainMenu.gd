@@ -83,3 +83,14 @@ func _on_close_btn_button_up():
 func _on_load_btn_button_up():
 	$PopupBackground.visible = true
 	$Saves.visible = true
+
+
+func _on_save_button_button_up():
+	SaveManager.save()
+
+
+func _on_quit_button_button_up():
+	#get_tree().current_scene.queue_free()
+	#var main_scene = load("res://scenes/main.tscn").instantiate()
+	#get_tree().root.add_child(main_scene)
+	pass
