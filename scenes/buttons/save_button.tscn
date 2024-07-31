@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://r8xtg463g2r1"]
+
+[ext_resource type="Script" path="res://scripts/buttons/SaveButton.gd" id="1_h1jfr"]
+[ext_resource type="Texture2D" uid="uid://bun3ycrmiu6rv" path="res://assets/classes/logo/symbol_1.png" id="2_vow7e"]
+[ext_resource type="PackedScene" uid="uid://c5qpmm8kbuukg" path="res://scenes/buttons/close_button.tscn" id="2_yhwx5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_22e3m"]
+
+[node name="SaveButton" type="PanelContainer" node_paths=PackedStringArray("class_texture", "close_button", "button")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.5
+offset_top = -15.5
+offset_right = 80.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_22e3m")
+script = ExtResource("1_h1jfr")
+class_texture = NodePath("HBC/ClassTexture")
+close_button = NodePath("HBC/CloseBtn")
+button = NodePath("HBC/Button")
+
+[node name="HBC" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ClassTexture" type="TextureRect" parent="HBC"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("2_vow7e")
+expand_mode = 3
+
+[node name="Button" type="Button" parent="HBC"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 64
+text = "Save name"
+
+[node name="CloseBtn" parent="HBC" instance=ExtResource("2_yhwx5")]
+layout_mode = 2
+size_flags_vertical = 4

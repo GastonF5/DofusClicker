@@ -1,0 +1,80 @@
+[gd_scene load_steps=4 format=3 uid="uid://cr0x3lykphktb"]
+
+[ext_resource type="Script" path="res://scripts/ConfirmationPopup.gd" id="1_y1bhv"]
+[ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="2_l0b3a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0lq3s"]
+bg_color = Color(0.196078, 0.196078, 0.196078, 1)
+
+[node name="ConfirmationPopup" type="CanvasLayer" node_paths=PackedStringArray("label", "cancel_btn", "confirm_btn")]
+layer = 99
+script = ExtResource("1_y1bhv")
+label = NodePath("Control/PanelContainer/MarginContainer/VBC/Label")
+cancel_btn = NodePath("Control/PanelContainer/MarginContainer/VBC/HBC/CancelButton")
+confirm_btn = NodePath("Control/PanelContainer/MarginContainer/VBC/HBC/ConfirmButton")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_l0b3a")
+
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+custom_minimum_size = Vector2(500, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.5
+offset_top = -29.0
+offset_right = 68.5
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="PanelContainer" parent="Control/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0lq3s")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBC" type="VBoxContainer" parent="Control/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/PanelContainer/MarginContainer/VBC"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Êtes-vous sûr ?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBC" type="HBoxContainer" parent="Control/PanelContainer/MarginContainer/VBC"]
+layout_mode = 2
+
+[node name="CancelButton" type="Button" parent="Control/PanelContainer/MarginContainer/VBC/HBC"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+mouse_default_cursor_shape = 2
+text = "Annuler"
+
+[node name="ConfirmButton" type="Button" parent="Control/PanelContainer/MarginContainer/VBC/HBC"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+mouse_default_cursor_shape = 2
+text = "Valider"
+
+[connection signal="button_up" from="Control/PanelContainer/MarginContainer/VBC/HBC/CancelButton" to="." method="_on_cancel_button_button_up"]
+[connection signal="button_up" from="Control/PanelContainer/MarginContainer/VBC/HBC/ConfirmButton" to="." method="_on_confirm_button_button_up"]

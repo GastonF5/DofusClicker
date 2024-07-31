@@ -48,32 +48,16 @@ func resume_game():
 
 
 func create_save_button(save_res: SaveResource):
-	var button = Button.new()
-	button.name = save_res.date.replace("T", "-").replace(":", "_")
-	button.text = format_date(save_res.date)
-	button.focus_mode = Control.FOCUS_NONE
-	button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-	button.add_theme_font_size_override("font_size", 64)
-	button.button_up.connect(load_save.bind(save_res))
-	button.add_child(CloseButton.create(delete_save.bind(button)))
-	$Saves/SavesPanel/VBC.add_child(button)
+	var save_btn = SaveButton.create(save_res)
+	save_btn.save_callable = load_save.bind(save_res)
+	save_btn.deleted.connect(check_save_buttons)
+	$Saves/SavesPanel/VBC.add_child(save_btn)
 
 
-func delete_save(save_btn: Button):
-	var dir = DirAccess.open(FileSaver.SAVE_PATH)
-	var file_name = save_btn.name + ".tres"
-	print(file_name	)
-	if dir.file_exists(file_name):
-		dir.remove(file_name)
-		save_btn.get_parent().remove_child(save_btn)
-		save_btn.queue_free()
-	else:
-		push_error("Save file not found")
-
-
-func format_date(date: String):
-	var date_split = date.split("T")
-	return "%s : %s" % [date_split[0], date_split[1]]
+func check_save_buttons():
+	if $Saves/SavesPanel/VBC.get_child_count() == 1:
+		_on_close_btn_button_up()
+		$VBC/HBC/LoadBtn.disabled = true
 
 
 func _on_quit_btn_button_up():
@@ -92,8 +76,10 @@ func _on_load_data_btn_button_up():
 
 
 func _on_close_btn_button_up():
+	$PopupBackground.visible = false
 	$Saves.visible = false
 
 
 func _on_load_btn_button_up():
+	$PopupBackground.visible = true
 	$Saves.visible = true

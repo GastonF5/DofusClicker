@@ -112,6 +112,9 @@ func select_class(id: int = selected_class):
 func get_logo_transparent(id: int = selected_class) -> Texture2D:
 	return load("res://assets/classes/logo_transparent/logo_transparent_%d.png" % id)
 
+func get_logo(id: int = selected_class) -> Texture2D:
+	return load("res://assets/classes/logo/symbol_%d.png" % id)
+
 
 func init_roles(class_id: int):
 	for role_id in roles_par_classe[class_id]:

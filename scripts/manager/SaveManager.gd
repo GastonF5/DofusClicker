@@ -93,3 +93,19 @@ func load_areas(save_res: SaveResource):
 		area_peeker._on_area_clicked(save_res.current_areas[0])
 	if save_res.current_areas[1] != -1:
 		area_peeker._on_subarea_clicked(save_res.current_areas[1])
+
+
+func delete_save(save_btn: SaveButton):
+	var dir = DirAccess.open(FileSaver.SAVE_PATH)
+	var file_name = save_btn.file_name
+	if dir.file_exists(file_name):
+		dir.remove(file_name)
+		save_btn.get_parent().remove_child(save_btn)
+		save_btn.queue_free()
+	else:
+		push_error("Save file not found")
+
+
+func format_date(date: String):
+	var date_split = date.split("T")
+	return "%s : %s" % [date_split[0], date_split[1]]

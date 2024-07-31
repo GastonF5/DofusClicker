@@ -1,6 +1,7 @@
 class_name ExperienceBar
 extends ProgressBar
 
+# [niveau, xp max, palier xp]
 var paliers = [[1,0,0],
 	[2,110,110],
 	[3,650,540],
@@ -243,6 +244,16 @@ func update_lvl_label():
 
 func update_max_value():
 	max_value = paliers[cur_lvl][2]
+
+
+func get_lvl(xp_amount: int):
+	var lvl := 0
+	for palier in paliers:
+		if xp_amount > palier[1]:
+			lvl = palier[0]
+		else:
+			return lvl
+	return 200
 
 
 func get_total_xp():
