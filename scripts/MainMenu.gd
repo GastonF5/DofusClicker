@@ -1,9 +1,13 @@
 extends Control
 
 
+@export var close_btn: CloseButton
+
+
 func _ready():
 	check_loaded_data()
 	check_saves()
+	close_btn.callable_on_close = _on_close_btn_button_up
 
 
 func check_loaded_data():

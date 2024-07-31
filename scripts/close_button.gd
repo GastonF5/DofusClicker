@@ -12,4 +12,7 @@ static func create(callable: Callable) -> CloseButton:
 
 
 func _on_button_up():
-	callable_on_close.call()
+	if callable_on_close:
+		callable_on_close.call()
+	else:
+		push_error("Callable on close not set for CloseButton %s" % name)

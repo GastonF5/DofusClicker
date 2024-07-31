@@ -92,7 +92,7 @@ Button/styles/pressed = SubResource("StyleBoxTexture_cptta")
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q6g56"]
 bg_color = Color(0.196078, 0.196078, 0.196078, 1)
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("close_btn")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -101,6 +101,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_vp6lg")
 script = ExtResource("1_mkipt")
+close_btn = NodePath("Saves/SavesPanel/VBC/CloseBtn")
 
 [node name="API" type="Node" parent="."]
 unique_name_in_owner = true
