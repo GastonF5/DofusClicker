@@ -23,6 +23,7 @@ func _ready():
 
 
 func _on_class_selected(selected_class: int = Globals.selected_class):
+	await Globals.loading_transition.fade_up()
 	class_peeker.bselect.disabled = true
 	class_texture_rect.texture = class_peeker.get_logo_transparent(selected_class)
 	StatsManager.initialize()
@@ -34,6 +35,8 @@ func _on_class_selected(selected_class: int = Globals.selected_class):
 	area_peeker.initialize()
 	console.initialize()
 	class_peeker.visible = false
+	if class_peeker.selected_class != 0:
+		await Globals.loading_transition.fade_out()
 
 
 func lose_fight():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://bfh3u8jwrg2ar"]
+[gd_scene load_steps=49 format=3 uid="uid://bfh3u8jwrg2ar"]
 
 [ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="2_4lqlq"]
 [ext_resource type="Texture2D" uid="uid://dtp2ktsnvjk8w" path="res://assets/common/window/bg_product.jpg" id="2_5kihd"]
@@ -32,6 +32,7 @@
 [ext_resource type="PackedScene" uid="uid://v3e3pddsya44" path="res://scenes/console.tscn" id="34_t67ba"]
 [ext_resource type="Texture2D" uid="uid://l5x41vqt4blf" path="res://assets/common/button/btn_greenLargeBorder_pressed.png" id="34_uav3t"]
 [ext_resource type="Texture2D" uid="uid://dne08ij0lq2cn" path="res://assets/common/button/btn_greenLargeBorder_disabled.png" id="35_61trk"]
+[ext_resource type="PackedScene" uid="uid://dvpbf44lsopmn" path="res://scenes/loading_transition.tscn" id="36_3yrpb"]
 [ext_resource type="PackedScene" uid="uid://bospgqkt5v11w" path="res://scenes/class_peeker/class_peeker.tscn" id="36_f47er"]
 [ext_resource type="PackedScene" uid="uid://dr1xqccheukcc" path="res://scenes/bars/entity_bars.tscn" id="40_5kut3"]
 [ext_resource type="PackedScene" uid="uid://cl1b4rs0yua7e" path="res://scenes/LoadingScreen.tscn" id="43_bkaqa"]
@@ -485,6 +486,10 @@ layer = 5
 [node name="LoadingScreen" parent="." instance=ExtResource("43_bkaqa")]
 unique_name_in_owner = true
 layer = 10
+visible = false
+
+[node name="LoadingTransition" parent="." instance=ExtResource("36_3yrpb")]
+unique_name_in_owner = true
 visible = false
 
 [connection signal="button_up" from="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/Control/HBoxContainer/SaveButton" to="MainMenu/MainMenu" method="_on_save_button_button_up"]

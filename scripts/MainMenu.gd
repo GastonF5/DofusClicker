@@ -36,9 +36,10 @@ func check_saves():
 
 func load_save(save_res: SaveResource):
 	Globals.selected_class = save_res.class_id
-	GameManager._on_class_selected(save_res.class_id)
+	await GameManager._on_class_selected(save_res.class_id)
 	if SaveManager.load_save(save_res):
 		resume_game()
+		await Globals.loading_transition.fade_out()
 	else:
 		push_error("Une erreur est survenue lors du chargement de la sauvegarde")
 

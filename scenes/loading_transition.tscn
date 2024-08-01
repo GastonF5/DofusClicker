@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvpbf44lsopmn"]
+
+[ext_resource type="Script" path="res://scripts/LoadingTransition.gd" id="1_2pu72"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ynr6n"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="LoadingTransition" type="CanvasLayer" node_paths=PackedStringArray("black")]
+layer = 99
+script = ExtResource("1_2pu72")
+black = NodePath("Black")
+
+[node name="Black" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ynr6n")

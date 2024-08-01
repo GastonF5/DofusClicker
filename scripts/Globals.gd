@@ -6,6 +6,7 @@ const area_black_list = [10, 29, 32, 973, 974, 975, 976, 977, 978, 980, 982]
 var class_peeker: ClassPeeker
 var area_peeker: AreaPeeker
 var loading_screen: LoadingScreen
+var loading_transition: LoadingTransition
 var console: Console
 var class_texture_rect: TextureRect
 var timers: Node
@@ -25,6 +26,7 @@ func _ready():
 	class_peeker = get_tree().current_scene.get_node("%ClassPeeker")
 	area_peeker = get_tree().current_scene.get_node("%AreaPeeker")
 	loading_screen = get_tree().current_scene.get_node("%LoadingScreen")
+	loading_transition = get_tree().current_scene.get_node("%LoadingTransition")
 	console = get_tree().current_scene.get_node("%Console")
 	class_texture_rect = get_tree().current_scene.get_node("%ClassTexture")
 	timers = get_tree().current_scene.get_node("%Timers")
