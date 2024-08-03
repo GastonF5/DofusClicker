@@ -25,7 +25,6 @@ func _on_class_selected():
 func init_game(selected_class: int = Globals.selected_class):
 	class_peeker.bselect.disabled = true
 	Globals.class_texture_rect.texture = class_peeker.get_logo_transparent(selected_class)
-	var composite_signal = API.CompositeSignal.new()
 	for manager: AbstractManager in managers:
 		manager.initialize()
 	Datas.load_data()
