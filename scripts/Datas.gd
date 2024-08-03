@@ -154,7 +154,7 @@ func perform_skip_requests(data_type: DataType, base_url: String) -> Array:
 	if data_type == DataType.ITEM:
 		base_url += get_url_params(data_type)
 	var url := base_url + "&$limit=1"
-	await API.await_for_request_completed(API.request(url))
+	await API.await_for_request_completed(await API.request(url))
 	var total = API.json_dict[url]["total"]
 	Globals.loading_screen.set_max_value(total)
 	API.json_dict.erase(url)
@@ -163,7 +163,7 @@ func perform_skip_requests(data_type: DataType, base_url: String) -> Array:
 	composite_signal._to_call_after = Globals.loading_screen.increment_loading.bind(50.0)
 	for skip in range(0, total, 50):
 		url = base_url + "&$limit=50&$skip=%s" % skip + get_url_params(data_type)
-		composite_signal.add_method(API.await_for_request_completed.bind(API.request(url)))
+		composite_signal.add_method(API.await_for_request_completed.bind(await API.request(url)))
 		urls.append(url)
 	await composite_signal.finished
 	return urls
@@ -183,12 +183,12 @@ func perform_in_requests(data_type: DataType, base_url: String, in_values: Array
 		count += 1
 		if count == 50:
 			url += "&$limit=50" + get_url_params(data_type)
-			composite_signal.add_method(API.await_for_request_completed.bind(API.request(url)))
+			composite_signal.add_method(API.await_for_request_completed.bind(await API.request(url)))
 			urls.append(url)
 			url = base_url
 			count = 0
 	if count > 0:
-		composite_signal.add_method(API.await_for_request_completed.bind(API.request(url)))
+		composite_signal.add_method(API.await_for_request_completed.bind(await API.request(url)))
 		urls.append(url)
 	await composite_signal.finished
 	return urls

@@ -1,6 +1,14 @@
 extends Node
 
 
+const resolvers_limit := 100
+var resolvers_count := 0
+var resolver_queue := []
+
+class Resolver:
+	signal ready
+
+
 class CompositeSignal:
 	signal finished
 	
@@ -93,13 +101,30 @@ func request(url: String):
 	#print("Perform HTTP request on : " + url)
 	var http = create_http()
 	http.request_completed.connect(_on_request_completed.bind(url))
-	var error = http.request(url)
+	
+	# manage resolvers
+	resolvers_count += 1
+	if resolvers_count > resolvers_limit:
+		var resolver = Resolver.new()
+		resolver_queue.append(resolver)
+		await resolver.ready
+	
+	# perform request
+	var error = http.request(url, PackedStringArray(), HTTPClient.METHOD_GET)
+	
 	log_error(error, "An error occurred in the HTTP request.")
 	return http
 
 
 func await_for_request_completed(http: HTTPRequest):
 	await http.request_completed
+	
+	# manager waiting resolvers
+	resolvers_count -= 1
+	var waiting_resolver = resolver_queue.pop_front()
+	if waiting_resolver:
+		waiting_resolver.ready.emit()
+	
 	http.queue_free()
 
 
@@ -134,7 +159,7 @@ func get_select_request(row: String) -> String:
 
 
 func _on_request_completed(_result, response_code, headers: PackedStringArray, body, _id):
-	if check_response_code(response_code) == 0:
+	if check_response_code(response_code) == 0 and !headers.is_empty():
 		var type_index = headers.bsearch("Content-Type")
 		check_format(headers[type_index].split(" ")[1]).callv([body, _id])
 		#print("request %s completed" % _id)

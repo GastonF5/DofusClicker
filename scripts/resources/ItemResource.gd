@@ -45,7 +45,7 @@ func load_texture(low: bool):
 	if texture:
 		return texture
 	var url = low_img_url if low else high_img_url
-	await API.await_for_request_completed(API.request(url))
+	await API.await_for_request_completed(await API.request(url))
 	if low:
 		low_texture = API.get_texture(url)
 		if is_resource(): Datas._resources[id].low_texture = low_texture

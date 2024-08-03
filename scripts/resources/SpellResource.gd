@@ -23,6 +23,6 @@ extends Resource
 func load_texture():
 	if texture:
 		return texture
-	await API.await_for_request_completed(API.request(img_url))
+	await API.await_for_request_completed(await API.request(img_url))
 	texture = API.get_texture(img_url)
 	return texture
