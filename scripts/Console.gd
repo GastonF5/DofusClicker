@@ -171,7 +171,7 @@ func do_command(command: String, params: Array[String] = []):
 					if index < MonsterManager.monsters.size():
 						var monster = MonsterManager.monsters[index]
 						if monster:
-							var stat_res: StatResource = monster.get_caracacteristique_for_type(Caracteristique.Type.get(params[2].to_upper()))
+							var stat_res: StatResource = monster.get_caracteristique_for_type(Caracteristique.Type.get(params[2].to_upper()))
 							if stat_res: stat_res.amount = params[3] as int
 							pass
 				if params[1] == "kill":

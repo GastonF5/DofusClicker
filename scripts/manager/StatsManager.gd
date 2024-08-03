@@ -134,3 +134,13 @@ func check_modifiable_on_caracteristiques():
 	for carac in caracteristiques:
 		if carac.modifiable:
 			carac.check_modifiable()
+
+
+func get_carac_amount(carac) -> int:
+	if carac is StatResource:
+		return get_stat_amount(carac)
+	return 0 if !carac else carac.amount
+
+
+func get_stat_amount(stat: StatResource) -> int:
+	return 0 if !stat else stat.amount

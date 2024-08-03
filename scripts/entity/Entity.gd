@@ -62,7 +62,7 @@ func init_spells(spell_ids: Array):
 			spells.append(spell)
 
 
-func get_caracacteristique_for_type(type: CaracType):
+func get_caracteristique_for_type(type: CaracType):
 	var carac
 	if is_player():
 		return StatsManager.get_caracteristique_for_type(type)
@@ -74,8 +74,12 @@ func get_caracacteristique_for_type(type: CaracType):
 	return carac[0]
 
 
+func get_caracteristique_for_element(element: Element, dommages := false):
+	return get_caracteristique_for_type(StatsManager.get_type_for_element(element, dommages))
+
+
 func set_caracteristique_amount(type: CaracType, new_amount: int):
-	var carac = get_caracacteristique_for_type(type)
+	var carac = get_caracteristique_for_type(type)
 	if carac:
 		carac.amount = new_amount
 	else:
@@ -83,7 +87,7 @@ func set_caracteristique_amount(type: CaracType, new_amount: int):
 
 
 func connect_to_stat(type: CaracType, callable: Callable):
-	var carac = get_caracacteristique_for_type(type)
+	var carac = get_caracteristique_for_type(type)
 	if carac:
 		carac.amount_change.connect(callable)
 
@@ -103,18 +107,64 @@ func init_bars():
 
 
 func get_vitalite() -> int:
-	var hp = get_caracacteristique_for_type(CaracType.VITALITE)
 	return 0 if !hp else hp.amount
 
+	var hp = get_caracteristique_for_type(CaracType.VITALITE)
 
 func get_pm() -> int:
-	var pm = get_caracacteristique_for_type(CaracType.PM)
+	var pm = get_caracteristique_for_type(CaracType.PM)
 	return 0 if !pm else pm.amount
 
-
 func get_pa() -> int:
-	var pa = get_caracacteristique_for_type(CaracType.PA)
+	var pa = get_caracteristique_for_type(CaracType.PA)
 	return 0 if !pa else pa.amount
+
+func get_critique() -> int:
+	var carac = get_caracteristique_for_type(CaracType.CRITIQUE)
+	return StatsManager.get_carac_amount(carac)
+
+func get_do_crit() -> int:
+	var carac = get_caracteristique_for_type(CaracType.DO_CRITIQUES)
+	return StatsManager.get_carac_amount(carac)
+
+func get_puissance() -> int:
+	var carac = get_caracteristique_for_type(CaracType.PUISSANCE)
+	return StatsManager.get_carac_amount(carac)
+
+func get_dommages() -> int:
+	var carac = get_caracteristique_for_type(CaracType.DOMMAGES)
+	return StatsManager.get_carac_amount(carac)
+
+func get_soin() -> int:
+	var carac = get_caracteristique_for_type(CaracType.SOIN)
+	return StatsManager.get_carac_amount(carac)
+
+func get_sagesse() -> int:
+	var carac = get_caracteristique_for_type(CaracType.SAGESSE)
+	return StatsManager.get_carac_amount(carac)
+
+func get_ret_pa() -> int:
+	var carac = get_caracteristique_for_type(CaracType.RET_PA)
+	return StatsManager.get_carac_amount(carac)
+
+func get_res_pa() -> int:
+	var carac = get_caracteristique_for_type(CaracType.RES_PA)
+	return StatsManager.get_carac_amount(carac)
+
+func get_ret_pm() -> int:
+	var carac = get_caracteristique_for_type(CaracType.RET_PM)
+	return StatsManager.get_carac_amount(carac)
+
+func get_res_pm() -> int:
+	var carac = get_caracteristique_for_type(CaracType.RES_PM)
+	return StatsManager.get_carac_amount(carac)
+
+func get_retrait(type: CaracType) -> int:
+	var carac_amount = get_ret_pa() if type == CaracType.PA else get_ret_pm()
+	return int(floor(carac_amount + (get_sagesse() / 10)))
+
+func get_resistance_retrait(type: CaracType) -> int:
+	return get_res_pa() if type == CaracType.PA else get_res_pm()
 #endregion
 
 
@@ -155,7 +205,7 @@ func apply_resistance(amount: int, element: Element) -> int:
 	if caracteristiques.is_empty():
 		res = StatsManager.get_caracteristique_for_type(type).amount
 	else:
-		res = get_caracacteristique_for_type(type).amount
+		res = get_caracteristique_for_type(type).amount
 	return amount - (amount * res / 100.0)
 
 

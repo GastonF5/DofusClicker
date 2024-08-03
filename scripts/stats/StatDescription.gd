@@ -29,7 +29,7 @@ func update_with_entity(entity: Entity):
 		"Erosion":
 			carac_amount = str(entity.erosion * 100 - 5)
 	if carac_amount == "":
-		var carac = entity.get_caracacteristique_for_type(Caracteristique.Type.get(stat_lbl.to_snake_case().to_upper()))
+		var carac = entity.get_caracteristique_for_type(Caracteristique.Type.get(stat_lbl.to_snake_case().to_upper()))
 		carac_amount = str(carac.amount) if carac else ""
 		if stat_lbl.begins_with("Res") and !(stat_lbl.ends_with("PA") or stat_lbl.ends_with("PM")):
 			carac_amount += "%"

@@ -14,9 +14,7 @@ static var count := 1
 static var max_count := 0
 static var rand_count := 0
 static func perform_spell(caster: Entity, target: Entity, resource: SpellResource, grade: int):
-	var crit_amount = resource.per_crit
-	var caster_crit = caster.get_caracacteristique_for_type(StatType.CRITIQUE)
-	if caster_crit: crit_amount += caster_crit.amount / 100.0
+	var crit_amount = resource.per_crit + caster.get_critique() / 100.0
 	var crit = randf_range(0, 1) <= crit_amount
 	console.log_spell_cast(caster, resource, crit)
 	for effect: EffectResource in resource.effects:
@@ -35,7 +33,7 @@ static func perform_weapon_effects(caster: Entity, target: Entity, resource: Equ
 		push_error("La ressource n'est pas une arme")
 		return
 	var crit_amount = resource.per_crit
-	var caster_crit = caster.get_caracacteristique_for_type(StatType.CRITIQUE)
+	var caster_crit = caster.get_critique()
 	if caster_crit: crit_amount += caster_crit.amount / 100.0
 	var crit = randf_range(0, 1) <= crit_amount
 	for effect: EffectResource in resource.effects:
@@ -57,18 +55,16 @@ static func perform_effect(caster: Entity, targets: Array[Entity], effect: Effec
 
 
 static func perform_damage(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
-	var amount = get_degats(effect.get_amount(crit, grade), effect.element)
+	var amount = get_degats(caster, effect.get_amount(crit, grade), effect.element)
 	if crit:
-		var do_crit = caster.get_caracacteristique_for_type(StatType.DO_CRITIQUES)
-		if do_crit:
-			amount += do_crit.amount
+		amount += caster.get_do_crit()
 	amount = target.take_damage(amount, effect.element)
 	if effect.lifesteal:
 		caster.take_damage(-round(amount / 2.0), effect.element)
 
 
 static func perform_soin(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
-	var amount = get_soin(effect.get_amount(crit, grade), effect.element)
+	var amount = get_soin(caster, effect.get_amount(crit, grade), effect.element)
 	target.take_damage(-amount, effect.element)
 
 
@@ -82,7 +78,7 @@ static func perform_bonus(caster: Entity, target: Entity, effect: EffectResource
 		StatType.RES_DOMMAGES:
 			target.taken_damage_rate -= amount
 		_:
-			carac = target.get_caracacteristique_for_type(effect.caracteristic)
+			carac = target.get_caracteristique_for_type(effect.caracteristic)
 			carac.amount += amount
 	console.log_bonus(target, amount, effect.get_caracteristic_label(), effect.time)
 	if effect.time != 0:
@@ -104,9 +100,9 @@ static func perform_retrait(caster: Entity, target: Entity, effect: EffectResour
 	var amount = effect.get_amount(crit, grade)
 	var carac_label = StatType.find_key(effect.caracteristic)
 	var bar: CustomBar = target.get("%s_bar" % carac_label.to_lower())
-	var ret_carac = caster.get_caracacteristique_for_type(StatType.get("RET_%s" % carac_label))
-	var res_carac = target.get_caracacteristique_for_type(StatType.get("RES_%s" % carac_label))
-	var ret_ratio = (ret_carac.amount / res_carac.amount) if res_carac.amount != 0 else 100
+	var ret_amount = caster.get_retrait(effect.caracteristic)
+	var res_amount = target.get_resistance_retrait(effect.caracteristic)
+	var ret_ratio = (ret_amount / res_amount) if res_amount != 0 else 100
 	var retrait_amount := 0
 	for i in range(amount):
 		var proba = 50 * ret_ratio * (bar.cval / bar.mval)
@@ -154,32 +150,29 @@ static func pile_face(caster: Entity, target: Entity, effect: EffectResource, cr
 
 
 #region Utilitaires
-static func get_multiplicateur(element: Element, soin: bool) -> float:
-	var carac = StatsManager.get_caracteristique_for_element(element)
-	var caracteristique = 0 if !carac else carac.amount
-	var pui_carac = StatsManager.get_caracteristique_for_type(StatType.PUISSANCE)
-	var puissance = 0 if !pui_carac and !soin else pui_carac.amount
+static func get_multiplicateur(caster: Entity, element: Element, soin: bool) -> float:
+	var carac = caster.get_caracteristique_for_element(element)
+	var caracteristique = StatsManager.get_carac_amount(carac)
+	var puissance = caster.get_puissance()
 	return (puissance + caracteristique + 100) / 100.0
 
 
-static func get_fixe(element: Element) -> int:
-	var do_carac = StatsManager.get_caracteristique_for_type(StatType.DOMMAGES)
-	var dommages = 0 if !do_carac else do_carac.amount
-	var do_elem_carac = StatsManager.get_caracteristique_for_element(element, true)
-	var dommages_elem = 0 if !do_elem_carac else do_elem_carac.amount
+static func get_fixe(caster: Entity, element: Element) -> int:
+	var dommages = caster.get_dommages()
+	var do_elem_carac = caster.get_caracteristique_for_element(element, true)
+	var dommages_elem = StatsManager.get_carac_amount(do_elem_carac)
 	return dommages + dommages_elem
 
 
-static func get_degats(amount: int, element: Element) -> int:
-	var multiplicateur = get_multiplicateur(element, false)
-	var fixe = get_fixe(element)
+static func get_degats(caster: Entity, amount: int, element: Element) -> int:
+	var multiplicateur = get_multiplicateur(caster, element, false)
+	var fixe = get_fixe(caster, element)
 	return multiplicateur * amount + fixe
 
 
-static func get_soin(amount: int, element: Element) -> int:
-	var multiplicateur = get_multiplicateur(element, true)
-	var soin_carac = StatsManager.get_caracteristique_for_type(StatType.SOIN)
-	var fixe = 0 if !soin_carac else soin_carac.amount
+static func get_soin(caster: Entity, amount: int, element: Element) -> int:
+	var multiplicateur = get_multiplicateur(caster, element, true)
+	var fixe = caster.get_soin()
 	return multiplicateur * amount + fixe
 
 
