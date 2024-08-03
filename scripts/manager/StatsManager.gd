@@ -79,8 +79,6 @@ func apply_carac_bonus(type: StatType, amount: int):
 	match type:
 		StatType.VITALITE:
 			PlayerManager.max_hp += amount
-		StatType.CHANCE:
-			StatsManager.get_caracteristique_for_type(StatType.PROSPECTION).add(amount)
 
 
 func _process(_delta):

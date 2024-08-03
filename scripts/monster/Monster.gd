@@ -84,10 +84,14 @@ func die():
 func drop():
 	for _drop: DropResource in drops:
 		if Datas._resources.keys().has(_drop.object_id):
-			if randf_range(0, 100) < _drop.percent_drop[0]:
+			if randf_range(0, 100) < get_chance_drop(_drop.percent_drop[0]):
 				var item_res = Datas._resources[_drop.object_id]
 				item_res.count = _drop.count
 				inventory.add_item(Item.create(item_res))
+
+
+func get_chance_drop(percent_drop: float):
+	return percent_drop * PlayerManager.player_entity.get_prospection() / 100.0
 
 
 func is_selected():

@@ -165,6 +165,11 @@ func get_retrait(type: CaracType) -> int:
 
 func get_resistance_retrait(type: CaracType) -> int:
 	return get_res_pa() if type == CaracType.PA else get_res_pm()
+
+func get_prospection() -> float:
+	var prospection = StatsManager.get_carac_amount(get_caracteristique_for_type(CaracType.PROSPECTION))
+	var chance = StatsManager.get_carac_amount(get_caracteristique_for_type(CaracType.CHANCE))
+	return 100 + (chance / 100.0) + prospection
 #endregion
 
 
