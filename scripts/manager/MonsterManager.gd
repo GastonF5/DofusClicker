@@ -1,4 +1,4 @@
-extends Node
+extends AbstractManager
 
 var console: Console
 var start_fight_button: Button
@@ -23,6 +23,7 @@ func initialize():
 	auto_start_fight_checkbox = get_tree().current_scene.get_node("%AutoStartFight").get_node("HBC/CheckBox")
 	start_fight_button.button_up.connect(start_fight)
 	start_fight_button.disabled = true
+	super()
 
 
 func start_fight():

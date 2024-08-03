@@ -1,4 +1,4 @@
-extends Node
+extends AbstractManager
 
 
 var punch_res: SpellResource
@@ -50,9 +50,10 @@ var selected_plate: EntityContainer:
 			selected_plate.selected = true
 
 var plates: Array[EntityContainer]
-var initialized = false
+var is_initialized = false
 
-func initialize(selected_class: String):
+func initialize():
+	var selected_class = Globals.class_peeker.classes[Globals.selected_class]
 	player_bars = get_tree().current_scene.get_node("%EntityBars")
 	punch_res = load("res://resources/spells/punch.tres")
 	spell_container = Globals.spells_container.get_node("%SpellContainer")
@@ -74,11 +75,12 @@ func initialize(selected_class: String):
 	Globals.xp_bar.init()
 	
 	create_description_popup()
-	initialized = true
+	is_initialized = true
+	super()
 
 
 func _process(_delta):
-	if initialized and MonsterManager.monsters.is_empty() and player_entity.hp_bar.cval < max_hp:
+	if is_initialized and MonsterManager.monsters.is_empty() and player_entity.hp_bar.cval < max_hp:
 		if !health_timer:
 			health_timer = SpellsService.create_timer(1.0, "HealthTimer")
 			await health_timer.timeout
@@ -109,7 +111,7 @@ func init_bars():
 
 
 func _input(event):
-	if initialized and !Globals.console.input.has_focus() and !RecipeManager.prompt_has_focus:
+	if is_initialized and !Globals.console.input.has_focus() and !RecipeManager.prompt_has_focus:
 		if event.is_action_pressed("right"):
 			PlayerManager.select_next_plate()
 		if event.is_action_pressed("left"):

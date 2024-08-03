@@ -9,6 +9,7 @@ const plus_texture = preload("res://assets/btn_icon/btnIcon_plus.png")
 var resource: RecipeResource
 
 signal craft
+signal initialized
 
 var count = 0
 
@@ -43,6 +44,7 @@ func _on_item_texture_initialized():
 	count += 1
 	if count == resource._ingredients.size() + 1:
 		self.visible = true
+		initialized.emit()
 
 
 func check(items: Array):

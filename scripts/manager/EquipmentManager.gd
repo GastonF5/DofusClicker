@@ -1,4 +1,4 @@
-extends Node
+extends AbstractManager
 
 
 const EMPTY_SLOT_TEXTURE_PATH = "res://assets/equipment/slots/emptySlot.png"
@@ -19,6 +19,7 @@ func initialize():
 		slot.mouse_exited.connect(inventory.set_dragged_exited_drop_parent)
 		slot.child_entered_tree.connect(on_equiped.bind(slot))
 		slot.child_exiting_tree.connect(on_desequiped.bind(slot))
+	super()
 
 
 func on_equiped(item: Item, slot):

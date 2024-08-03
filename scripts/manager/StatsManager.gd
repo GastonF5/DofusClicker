@@ -1,4 +1,4 @@
-extends Node
+extends AbstractManager
 
 
 const stat_type = Caracteristique.Type
@@ -23,6 +23,7 @@ func initialize():
 	Globals.xp_bar.lvl_up.connect(on_lvl_up)
 	EquipmentManager.equiped.connect(on_equiped)
 	EquipmentManager.desequiped.connect(on_desequiped)
+	super()
 
 
 func create_caracteristiques():

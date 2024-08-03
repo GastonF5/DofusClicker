@@ -1,4 +1,4 @@
-extends Node
+extends AbstractManager
 
 
 var tab_container: TabContainer
@@ -6,15 +6,15 @@ var current_tab: JobPanel
 
 var recipes: Array[Recipe] = []
 
-var console: Console
 var inventory: Inventory
 
 var recipe_filters: RecipeFilters
 var prompt_has_focus := false
 
+signal recipes_initialized
+
 
 func initialize():
-	console = Globals.console
 	inventory = Globals.inventory
 	
 	Datas.init_done.connect(init_recipes.bind(Globals.xp_bar.cur_lvl))
@@ -29,6 +29,7 @@ func initialize():
 	for recipe in current_tab.recipe_container.get_children():
 		recipes.append(recipe)
 	tab_container.tab_changed.connect(on_job_tab_changed)
+	super()
 
 
 func reset():
@@ -86,20 +87,28 @@ func connect_inputs():
 
 func init_recipes(lvl := -1):
 	if lvl == -1: lvl = Globals.xp_bar.cur_lvl
-	var recipes_to_init = Datas._recipes.values().filter(func(r): return r.get_result().level == lvl)
+	var recipes_to_init = Datas._recipes.values().filter(is_recipe_to_init.bind(lvl))
+	var composite = API.CompositeSignal.new()
 	for recipe in recipes_to_init:
 		var parent = get_parent_by_type(recipe.get_result().type_id)
 		if parent:
 			var nrecipe = Recipe.create(recipe, parent)
+			composite.add_signal(nrecipe.initialized)
 			recipes.append(nrecipe)
 			nrecipe.craft.connect(on_recipe_craft)
+	await composite.finished
+	recipes_initialized.emit()
+
+
+func is_recipe_to_init(recipe: RecipeResource, lvl: int):
+	return recipe.get_result().level <= lvl
 
 
 func on_recipe_craft(recipe: RecipeResource):
 	inventory.remove_items(recipe.get_ingredients())
 	var item = Item.create(recipe.get_result())
 	inventory.add_item(item)
-	console.log_equip(item)
+	Globals.console.log_equip(item)
 
 
 func check_recipes(items):

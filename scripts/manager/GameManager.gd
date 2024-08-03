@@ -1,19 +1,13 @@
 extends Node
 
 var class_peeker: ClassPeeker
-var area_peeker: AreaPeeker
-var loading_screen: LoadingScreen
-var console: Console
-var class_texture_rect: TextureRect
 
 static var in_fight := false
 
+
+var managers = [StatsManager, PlayerManager, MonsterManager, EquipmentManager, RecipeManager]
 func _ready():
 	class_peeker = Globals.class_peeker
-	area_peeker = Globals.area_peeker
-	loading_screen = Globals.loading_screen
-	console = Globals.console
-	class_texture_rect = Globals.class_texture_rect
 	
 	SpellsService.console = Globals.console
 	SpellsService.tnode = Globals.timers
@@ -22,24 +16,26 @@ func _ready():
 	class_peeker.bselect.pressed.connect(_on_class_selected)
 
 
-func _on_class_selected(selected_class: int = Globals.selected_class):
+func _on_class_selected():
 	await Globals.loading_transition.fade_up()
+	await init_game()
+	await Globals.loading_transition.fade_out()
+
+
+func init_game(selected_class: int = Globals.selected_class):
 	class_peeker.bselect.disabled = true
-	class_texture_rect.texture = class_peeker.get_logo_transparent(selected_class)
-	StatsManager.initialize()
-	PlayerManager.initialize(class_peeker.classes[selected_class])
-	MonsterManager.initialize()
-	EquipmentManager.initialize()
-	RecipeManager.initialize()
+	Globals.class_texture_rect.texture = class_peeker.get_logo_transparent(selected_class)
+	var composite_signal = API.CompositeSignal.new()
+	for manager: AbstractManager in managers:
+		manager.initialize()
 	Datas.load_data()
-	area_peeker.initialize()
-	console.initialize()
+	Globals.area_peeker.initialize()
+	Globals.console.initialize()
+	await RecipeManager.recipes_initialized
 	class_peeker.visible = false
-	if class_peeker.selected_class != 0:
-		await Globals.loading_transition.fade_out()
 
 
 func lose_fight():
 	MonsterManager.clear_monsters()
-	console.log_info("Vous avez perdu le combat")
+	Globals.console.log_info("Vous avez perdu le combat")
 	MonsterManager.end_fight()
