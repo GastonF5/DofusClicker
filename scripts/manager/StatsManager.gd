@@ -89,7 +89,8 @@ func _process(_delta):
 func reset_points():
 	points = max_points
 	for carac in caracteristiques:
-		carac.base_amount = 0
+		if carac.modifiable:
+			carac.base_amount = 0
 	update_points_label()
 
 
