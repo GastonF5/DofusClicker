@@ -30,10 +30,14 @@ extends TextureProgressBar
 	get:
 		return mval if auto_fill else max_value as int
 	set(val):
+		var last_mval = mval
 		mval = val
 		if !auto_fill:
 			max_value = val
-			if cval > mval: cval = mval
+			if cval >= mval:
+				cval = mval
+			else:
+				cval += val - last_mval
 		update_max_value_label()
 
 signal cval_change

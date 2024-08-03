@@ -81,10 +81,11 @@ var equip_amount = 0:
 
 var amount = 0:
 	set(value):
+		var changed = amount != value
 		amount = value
 		amount_label.text = str(amount)
 		update_tooltip()
-		amount_change.emit()
+		if changed: amount_change.emit()
 
 signal consume_point
 signal amount_change
@@ -140,8 +141,8 @@ func get_type_label():
 
 
 func check_modifiable():
-	plus_btn.visible = modifiable
-	minus_btn.visible = modifiable
+	plus_btn.visible = modifiable and !GameManager.in_fight
+	minus_btn.visible = modifiable and !GameManager.in_fight
 
 
 func add(_amount: int):

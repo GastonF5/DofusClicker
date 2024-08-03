@@ -107,9 +107,11 @@ func init_bars():
 
 
 func get_vitalite() -> int:
-	return 0 if !hp else hp.amount
-
 	var hp = get_caracteristique_for_type(CaracType.VITALITE)
+	var vitalite = 0 if !hp else hp.amount
+	if is_player():
+		vitalite = PlayerManager.max_hp
+	return vitalite
 
 func get_pm() -> int:
 	var pm = get_caracteristique_for_type(CaracType.PM)
