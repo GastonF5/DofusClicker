@@ -57,7 +57,7 @@ static func perform_effect(caster: Entity, targets: Array[Entity], effect: Effec
 
 
 static func perform_damage(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
-	var amount = effect.get_amount(crit, grade)
+	var amount = get_degats(effect.get_amount(crit, grade), effect.element)
 	if crit:
 		var do_crit = caster.get_caracacteristique_for_type(StatType.DO_CRITIQUES)
 		if do_crit:
@@ -68,7 +68,7 @@ static func perform_damage(caster: Entity, target: Entity, effect: EffectResourc
 
 
 static func perform_soin(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
-	var amount = effect.get_amount(crit, grade)
+	var amount = get_soin(effect.get_amount(crit, grade), effect.element)
 	target.take_damage(-amount, effect.element)
 
 
@@ -154,22 +154,33 @@ static func pile_face(caster: Entity, target: Entity, effect: EffectResource, cr
 
 
 #region Utilitaires
-static func get_multiplicateur(type: StatType) -> float:
-	var carac = StatsManager.get_caracteristique_for_type(type)
+static func get_multiplicateur(element: Element, soin: bool) -> float:
+	var carac = StatsManager.get_caracteristique_for_element(element)
 	var caracteristique = 0 if !carac else carac.amount
 	var pui_carac = StatsManager.get_caracteristique_for_type(StatType.PUISSANCE)
-	var puissance = 0 if !pui_carac else pui_carac.amount
+	var puissance = 0 if !pui_carac and !soin else pui_carac.amount
 	return (puissance + caracteristique + 100) / 100.0
 
 
-static func get_fixe(_type: StatType) -> int:
-	return 0
+static func get_fixe(element: Element) -> int:
+	var do_carac = StatsManager.get_caracteristique_for_type(StatType.DOMMAGES)
+	var dommages = 0 if !do_carac else do_carac.amount
+	var do_elem_carac = StatsManager.get_caracteristique_for_element(element, true)
+	var dommages_elem = 0 if !do_elem_carac else do_elem_carac.amount
+	return dommages + dommages_elem
 
 
-static func get_degats(min_damage: int, max_damage: int, type: StatType) -> int:
-	var multiplicateur = get_multiplicateur(type)
-	var fixe = get_fixe(type)
-	return multiplicateur * randi_range(min_damage, max_damage) + fixe
+static func get_degats(amount: int, element: Element) -> int:
+	var multiplicateur = get_multiplicateur(element, false)
+	var fixe = get_fixe(element)
+	return multiplicateur * amount + fixe
+
+
+static func get_soin(amount: int, element: Element) -> int:
+	var multiplicateur = get_multiplicateur(element, true)
+	var soin_carac = StatsManager.get_caracteristique_for_type(StatType.SOIN)
+	var fixe = 0 if !soin_carac else soin_carac.amount
+	return multiplicateur * amount + fixe
 
 
 static func get_neighbor_entities() -> Array[Entity]:
