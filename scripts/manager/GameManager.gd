@@ -2,7 +2,7 @@ extends Node
 
 var class_peeker: ClassPeeker
 
-static var in_fight := false
+var in_fight := false
 
 
 var managers = [StatsManager, PlayerManager, MonsterManager, EquipmentManager, RecipeManager]
@@ -22,16 +22,21 @@ func _on_class_selected():
 	await Globals.loading_transition.fade_out()
 
 
-func init_game(selected_class: int = Globals.selected_class):
+func init_game(save_res: SaveResource = null):
 	class_peeker.bselect.disabled = true
+	var selected_class = save_res.class_id if save_res else Globals.selected_class
 	Globals.class_texture_rect.texture = class_peeker.get_logo_transparent(selected_class)
 	for manager: AbstractManager in managers:
 		manager.initialize()
 	Datas.load_data()
 	Globals.area_peeker.initialize()
 	Globals.console.initialize()
-	await RecipeManager.recipes_initialized
+	if save_res:
+		if !SaveManager.load_save(save_res):
+			return false
+	await RecipeManager.composite.finished
 	class_peeker.visible = false
+	return true
 
 
 func lose_fight():

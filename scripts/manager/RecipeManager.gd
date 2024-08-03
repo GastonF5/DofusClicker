@@ -10,11 +10,13 @@ var inventory: Inventory
 
 var recipe_filters: RecipeFilters
 var prompt_has_focus := false
+var composite: API.CompositeSignal
 
 signal recipes_initialized
 
 
 func initialize():
+	composite = API.CompositeSignal.new()
 	inventory = Globals.inventory
 	
 	Datas.init_done.connect(init_recipes.bind(Globals.xp_bar.cur_lvl))
@@ -88,7 +90,6 @@ func connect_inputs():
 func init_recipes(lvl := -1):
 	if lvl == -1: lvl = Globals.xp_bar.cur_lvl
 	var recipes_to_init = Datas._recipes.values().filter(is_recipe_to_init.bind(lvl))
-	var composite = API.CompositeSignal.new()
 	for recipe in recipes_to_init:
 		var parent = get_parent_by_type(recipe.get_result().type_id)
 		if parent:
@@ -96,12 +97,10 @@ func init_recipes(lvl := -1):
 			composite.add_signal(nrecipe.initialized)
 			recipes.append(nrecipe)
 			nrecipe.craft.connect(on_recipe_craft)
-	await composite.finished
-	recipes_initialized.emit()
 
 
 func is_recipe_to_init(recipe: RecipeResource, lvl: int):
-	return recipe.get_result().level <= lvl
+	return recipe.get_result().level == lvl
 
 
 func on_recipe_craft(recipe: RecipeResource):

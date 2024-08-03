@@ -37,8 +37,7 @@ func check_saves():
 func load_save(save_res: SaveResource):
 	Globals.selected_class = save_res.class_id
 	await Globals.loading_transition.fade_up()
-	await GameManager.init_game(save_res.class_id)
-	if SaveManager.load_save(save_res):
+	if await GameManager.init_game(save_res):
 		resume_game()
 		await Globals.loading_transition.fade_out()
 	else:
