@@ -80,7 +80,7 @@ func get_url_params(data_type: DataType) -> String:
 		DataType.RESOURCE:
 			pass
 		DataType.MONSTER:
-			pass
+			params += "?&isQuestMonster=false"
 		DataType.AREA:
 			params += "&$" + API.get_select_request("id")
 			params += "&$" + API.get_select_request("name.fr")
