@@ -8,9 +8,6 @@ const Element = Caracteristique.Element
 var caracteristiques: Array[StatResource] = []
 var spells: Array[SpellResource] = []
 
-var player_manager: PlayerManager
-var inventory: Inventory
-
 @export var name_label: Label
 @export var texture_rect: TextureRect
 @export var header_texture: TextureRect
@@ -35,9 +32,7 @@ var console: Console
 
 #region Caractéristiques
 func init():
-	inventory = Globals.inventory
-	player_manager = PlayerManager
-	console = SpellsService.console
+	console = Globals.console
 	if is_player():
 		entity_bar = PlayerManager.player_bars
 	pm_bar.cval_change.connect(func():

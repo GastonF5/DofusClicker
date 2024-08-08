@@ -13,7 +13,7 @@ var dragged: DraggableControl
 
 
 func _ready():
-	console = get_tree().current_scene.get_node("%Console")
+	console = Globals.console
 	for slot in get_tree().get_nodes_in_group(slot_group_name):
 		slots.append(slot)
 		connect_slot_signals(slot)
