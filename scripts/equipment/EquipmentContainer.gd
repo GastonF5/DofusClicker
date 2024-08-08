@@ -41,3 +41,10 @@ func remove_items():
 			var item = slot.get_child(i)
 			slot.remove_child(item)
 			item.queue_free()
+
+
+func set_dragged_entering_drop_parent(slot):
+	if dragged:
+		if !dragged.is_item()\
+		or (dragged.equip_res and dragged.level <= Globals.xp_bar.cur_lvl):
+			super(slot)

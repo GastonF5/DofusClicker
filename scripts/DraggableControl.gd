@@ -62,6 +62,9 @@ func drag():
 
 func drop():
 	dragged = false
+	if drop_parent != old_parent and is_equipment() and self.resource.level > Globals.xp_bar.cur_lvl:
+		Globals.console.log_error("Vous n'avez pas le niveau pour équiper cet objet.")
+		drop_parent = old_parent
 	change_parent()
 	position = Vector2.ZERO
 
@@ -92,3 +95,7 @@ func is_item():
 
 func is_spell():
 	return self is Spell
+
+
+func is_equipment():
+	return is_item() and self.resource.equip_res
