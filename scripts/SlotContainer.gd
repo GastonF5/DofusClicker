@@ -32,6 +32,15 @@ func set_dragged_entering_drop_parent(slot):
 func set_dragged_exited_drop_parent():
 	if dragged:
 		if EquipmentManager.is_equip_slot(dragged.old_parent):
-			dragged.drop_parent = slots[0]
+			var slot = Globals.inventory.get_first_empty_slot()
+			dragged.drop_parent = Globals.inventory.get_first_empty_slot()
 		else:
 			dragged.drop_parent = dragged.old_parent
+
+
+func get_empty_slots():
+	return slots.filter(func(s): return slot_is_empty(s))
+
+
+func slot_is_empty(slot):
+	return slot.get_child_count() == 0

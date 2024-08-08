@@ -22,7 +22,9 @@ func initialize():
 	super()
 
 
-func on_equiped(item: Item, slot):
+func on_equiped(item, slot):
+	if (!item is Item):
+		Globals.console.log_error("L'objet équipé n'est pas un item : " + item.name)
 	if !item.resource.equip_res:
 		Globals.console.log_error("L'item équipé n'est pas un équipement : " + item.name)
 		return
@@ -30,7 +32,10 @@ func on_equiped(item: Item, slot):
 	equiped.emit(item)
 
 
-func on_desequiped(item: Item, slot):
+func on_desequiped(item, slot):
+	if !(item is Item):
+		Globals.console.log_error("L'objet déséquipé n'est pas un item : " + item.name)
+		return
 	if !item.resource.equip_res:
 		Globals.console.log_error("L'item déséquipé n'est pas un équipement : " + item.name)
 		return

@@ -30,9 +30,6 @@ func get_slot(item):
 
 
 func add_item(item: Item, _slot: Button = null):
-	if check_equipment_slot(item, _slot):
-		add_item(item)
-		return
 	var item_in_slot: Item
 	if _slot:
 		item_in_slot = get_item(_slot)
@@ -78,12 +75,6 @@ func remove_items(items: Array):
 				item_in_inventory.count -= item.count
 
 
-func check_equipment_slot(item: DraggableControl, slot) -> bool:
-	var old_parent_is_equip_slot = item.old_parent and item.old_parent.is_in_group("equipment_slot")
-	var drop_parent_is_equip_slot = item.drop_parent and item.drop_parent.is_in_group("equipment_slot")
-	return slot and old_parent_is_equip_slot and !drop_parent_is_equip_slot
-
-
 func set_dragged_entering_drop_parent(slot):
 	dragged = PlayerManager.dragged_item
 	super(slot)
@@ -115,3 +106,7 @@ func _on_item_exiting_slot(item):
 	var items = get_items()
 	items.erase(item)
 	item_exiting_tree.emit(get_items())
+
+
+func get_first_empty_slot():
+	return get_empty_slots()[0]

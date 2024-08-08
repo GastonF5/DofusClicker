@@ -70,14 +70,20 @@ func change_parent():
 	if old_parent.button_down.is_connected(_on_button_down):
 		old_parent.button_down.disconnect(_on_button_down)
 	get_parent().remove_child(self)
-	if (drop_parent.is_in_group("inventory_slot") or drop_parent.is_in_group("spell_slot"))\
-			and drop_parent.get_child_count() == 1:
+	if is_node_droppable(drop_parent):
 		var to_swap = drop_parent.get_child(0)
 		to_swap.old_parent = drop_parent
 		to_swap.drop_parent = old_parent
 		to_swap.change_parent()
 	old_parent = null
 	drop_parent.button_down.connect(_on_button_down)
+
+
+func is_node_droppable(node: Node):
+	var is_inventory_slot = node.is_in_group("inventory_slot")
+	var is_spell_slot = node.is_in_group("spell_slot")
+	var is_empty = node.get_child_count() == 1
+	return is_empty and ((is_inventory_slot and is_item()) or (is_spell_slot and is_spell()))
 
 
 func is_item():
