@@ -14,6 +14,7 @@ func _ready():
 	slot_group_name = "spell_slot"
 	update_weapon_slot(WTYPE.NONE)
 	weapon_pb.max_value = 100
+	weapon_pb.value = 0
 	super()
 
 

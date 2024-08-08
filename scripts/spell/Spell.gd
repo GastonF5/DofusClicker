@@ -1,8 +1,6 @@
 class_name Spell
 extends DraggableControl
 
-var player_manager: PlayerManager
-
 @export var spell_texture: TextureRect
 @export var cooldown_bar: ProgressBar
 
@@ -10,25 +8,16 @@ var resource: SpellResource
 var timer: Timer
 
 
-func init_player_manager():
-	if !player_manager:
-		player_manager = PlayerManager
-
-
 func _process(delta):
 	super(delta)
-	if timer and is_instance_valid(timer):
-		cooldown_bar.value = timer.time_left * 100
-	if player_manager and draggable:
-		if player_manager.pa_bar.cval < resource.pa_cost:
-			spell_texture.modulate = Color.ORANGE_RED
-		else:
-			spell_texture.modulate = Color.WHITE
-
-
-func _enter_tree():
-	super()
-	init_player_manager()
+	if GameManager.in_fight:
+		if timer and is_instance_valid(timer):
+			cooldown_bar.value = timer.time_left * 100
+		if draggable:
+			if PlayerManager.pa_bar.cval < resource.pa_cost:
+				spell_texture.modulate = Color.ORANGE_RED
+			else:
+				spell_texture.modulate = Color.WHITE
 
 
 func change_parent():
@@ -44,7 +33,6 @@ func init(res: SpellResource, _draggable: bool):
 	if _draggable:
 		if res.cooldown != 0:
 			cooldown_bar.max_value = res.cooldown * 100
-			cooldown_bar.value = 0
 		else:
 			cooldown_bar.visible = false
 	else:
@@ -52,9 +40,9 @@ func init(res: SpellResource, _draggable: bool):
 
 
 func do_action():
-	if resource.pa_cost <= player_manager.pa_bar.cval and PlayerManager.selected_plate and !timer:
+	if resource.pa_cost <= PlayerManager.pa_bar.cval and PlayerManager.selected_plate and !timer:
 		if resource.pa_cost != 0:
-			player_manager.pa_bar.cval -= resource.pa_cost
+			PlayerManager.pa_bar.cval -= resource.pa_cost
 		cast()
 		if resource.cooldown != 0:
 			timer = SpellsService.create_timer(resource.cooldown, "%sTimer" % resource.name.to_pascal_case())
@@ -65,7 +53,7 @@ func on_timeout():
 	timer.get_parent().remove_child(timer)
 	timer.queue_free()
 	timer = null
-	cooldown_bar.value = 0
+	reset()
 
 
 func cast():
@@ -80,4 +68,5 @@ static func instantiate(spell_res: SpellResource, parent: Control, clickable = t
 
 
 func reset():
-	cooldown_bar.value = cooldown_bar.min_value
+	cooldown_bar.value = 0
+	spell_texture.modulate = Color.WHITE
