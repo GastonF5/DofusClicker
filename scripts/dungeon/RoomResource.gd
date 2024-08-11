@@ -8,3 +8,7 @@ extends Resource
 
 func get_monster_resources():
 	return _monster_ids.map(func(id): return Datas._monsters[id])
+
+
+func get_number():
+	return _number

@@ -27,7 +27,7 @@ func save_areas() -> Array:
 	var btns: Array[AreaButton] = []
 	btns.assign(Globals.area_peeker.area_btns.values() + Globals.area_peeker.subarea_btns.values())
 	return btns.filter(func(btn): return !btn.new)\
-			.map(func(btn: AreaButton): return [btn.area_id, btn.is_subarea])
+			.map(func(btn: AreaButton): return [btn._area_id, btn.is_subarea()])
 
 
 func load_save(save_res: SaveResource):
@@ -86,7 +86,7 @@ func load_areas(save_res: SaveResource):
 		var area_id = data[0]
 		var is_subarea = data[1]
 		if area_peeker.button_exists(area_id, is_subarea):
-			area_peeker.get_button(area_id, is_subarea).new = false
+			area_peeker.get_button(area_id, is_subarea)._new = false
 		else:
 			area_peeker.create_area_button(area_id, is_subarea, false)
 	# current area

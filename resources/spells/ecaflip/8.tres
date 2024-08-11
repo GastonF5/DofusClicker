@@ -23,10 +23,10 @@ visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_lxary"]
 script = ExtResource("2_t1pvk")
-min = 2
-max = 4
-min_crit = 4
-max_crit = 6
+_min = 0
+_max = 0
+_min_crit = 0
+_max_crit = 0
 
 [sub_resource type="Resource" id="Resource_i7mdl"]
 resource_name = "Soin Feu"
@@ -46,10 +46,10 @@ visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_cv2si"]
 script = ExtResource("2_t1pvk")
-min = 2
-max = 4
-min_crit = 4
-max_crit = 6
+_min = 0
+_max = 0
+_min_crit = 0
+_max_crit = 0
 
 [sub_resource type="Resource" id="Resource_i5e4t"]
 resource_name = "Dommages Eau"
@@ -69,10 +69,10 @@ visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_c84ur"]
 script = ExtResource("2_t1pvk")
-min = 4
-max = 4
-min_crit = 4
-max_crit = 4
+_min = 0
+_max = 0
+_min_crit = 0
+_max_crit = 0
 
 [sub_resource type="Resource" id="Resource_e7oih"]
 resource_name = "Bonus Critique (Passif)"

@@ -6,10 +6,10 @@
 
 [sub_resource type="Resource" id="Resource_dc8xt"]
 script = ExtResource("1_46eoq")
-min = 2
-max = 2
-min_crit = 3
-max_crit = 3
+_min = 0
+_max = 0
+_min_crit = 0
+_max_crit = 0
 
 [sub_resource type="Resource" id="Resource_mjr68"]
 resource_name = "Retrait PM"
@@ -21,9 +21,11 @@ element = 0
 lifesteal = false
 caracteristic = 1
 method_name = &""
+effect_label = ""
 params = []
 nb_random_effects = 0
 amounts = Array[ExtResource("1_46eoq")]([SubResource("Resource_dc8xt")])
+visible_in_description = true
 
 [resource]
 script = ExtResource("1_o46xr")

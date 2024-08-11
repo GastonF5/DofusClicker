@@ -7,10 +7,10 @@
 
 [sub_resource type="Resource" id="Resource_jx7vv"]
 script = ExtResource("1_hqvmm")
-min = 13
-max = 13
-min_crit = 13
-max_crit = 13
+_min = 0
+_max = 0
+_min_crit = 0
+_max_crit = 0
 
 [sub_resource type="Resource" id="Resource_1lyjj"]
 resource_name = "Erosion"
@@ -30,10 +30,10 @@ visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_32jmg"]
 script = ExtResource("1_hqvmm")
-min = 2
-max = 3
-min_crit = 4
-max_crit = 5
+_min = 0
+_max = 0
+_min_crit = 0
+_max_crit = 0
 
 [sub_resource type="Resource" id="Resource_hkv5o"]
 resource_name = "Dommages Air"
@@ -53,10 +53,10 @@ visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_el4xi"]
 script = ExtResource("1_hqvmm")
-min = 4
-max = 4
-min_crit = 4
-max_crit = 4
+_min = 0
+_max = 0
+_min_crit = 0
+_max_crit = 0
 
 [sub_resource type="Resource" id="Resource_ng7v1"]
 resource_name = "Bonus Critique (Passif)"

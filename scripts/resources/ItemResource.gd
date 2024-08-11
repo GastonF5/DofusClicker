@@ -60,7 +60,7 @@ func get_monsters():
 	if drop_monster_ids.is_empty():
 		return null
 	return drop_monster_ids\
-	.map(func(id): return Datas._monsters[id] if Datas._monsters.has(id) else null)\
+	.map(func(mid): return Datas._monsters[mid] if Datas._monsters.has(mid) else null)\
 	.filter(func(r): return r)
 
 

@@ -6,10 +6,10 @@
 
 [sub_resource type="Resource" id="Resource_s52li"]
 script = ExtResource("1_pb5qv")
-min = 10
-max = 15
-min_crit = 0
-max_crit = 0
+_min = 0
+_max = 0
+_min_crit = 0
+_max_crit = 0
 
 [sub_resource type="Resource" id="Resource_xlpsm"]
 resource_name = "Dommages Feu"
@@ -21,9 +21,11 @@ element = 2
 lifesteal = false
 caracteristic = 0
 method_name = &""
+effect_label = ""
 params = []
 nb_random_effects = 0
 amounts = Array[ExtResource("1_pb5qv")]([SubResource("Resource_s52li")])
+visible_in_description = true
 
 [resource]
 script = ExtResource("1_e8wqd")

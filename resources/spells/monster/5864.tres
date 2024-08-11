@@ -13,9 +13,11 @@ element = 0
 lifesteal = false
 caracteristic = 0
 method_name = &""
+effect_label = ""
 params = []
 nb_random_effects = 0
 amounts = Array[Resource("res://scripts/resources/AmountResource.gd")]([])
+visible_in_description = true
 
 [resource]
 script = ExtResource("1_6vlie")

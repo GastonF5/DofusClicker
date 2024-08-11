@@ -1,31 +1,31 @@
 extends Node
 
 
-static var dungeon_list = [447]
+var dungeon_list = [447]
 
-static var dungeon_id := -1
-static var cur_room: int
+var dungeon_id := -1
+var cur_room: int
 
 
-static func is_dungeon(area_id: int):
+func is_dungeon(area_id: int):
 	return dungeon_list.has(area_id)
 
-static func is_in_dungeon():
+func is_in_dungeon():
 	return dungeon_id >= 0
 
 
-static func get_current_room_monsters():
+func get_current_room_monsters():
 	var dungeon_res = FileLoader.get_dungeon_resource(dungeon_id)
 	if dungeon_res:
 		return dungeon_res.get_room_monsters(cur_room)
 	return []
 
 
-func enter_dungeon(dungeon_id: int):
-	var area_name = Datas._subareas[dungeon_id]._name
+func enter_dungeon(id: int):
+	var area_name = Datas._subareas[id]._name
 	Globals.console.log_info("Vous entrez dans le donjon %s" % area_name)
 	Globals.area_peeker.enter_subarea("Donjon %s - Salle numéro 1" % area_name)
-	DungeonManager.dungeon_id = dungeon_id
+	DungeonManager.dungeon_id = id
 	DungeonManager.cur_room = 1
 
 

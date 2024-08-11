@@ -6,10 +6,10 @@
 
 [sub_resource type="Resource" id="Resource_flq46"]
 script = ExtResource("1_jwfuc")
-min = 5
-max = 5
-min_crit = 0
-max_crit = 0
+_min = 0
+_max = 0
+_min_crit = 0
+_max_crit = 0
 
 [sub_resource type="Resource" id="Resource_ebwgo"]
 resource_name = "Dommages réduits"
@@ -21,9 +21,11 @@ element = 0
 lifesteal = false
 caracteristic = 36
 method_name = &""
+effect_label = ""
 params = []
 nb_random_effects = 0
 amounts = Array[ExtResource("1_jwfuc")]([SubResource("Resource_flq46")])
+visible_in_description = true
 
 [resource]
 script = ExtResource("1_i7d4t")

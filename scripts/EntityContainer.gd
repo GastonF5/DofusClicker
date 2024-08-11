@@ -4,7 +4,7 @@ class_name EntityContainer
 
 var id: int
 
-var entity: Entity
+var _entity: Entity
 
 var selected: bool:
 	set(value):
@@ -26,7 +26,7 @@ func _ready():
 
 
 func init_entity_texture():
-	entity.global_position += Vector2(0, -32)
+	_entity.global_position += Vector2(0, -32)
 
 
 func get_entity():
@@ -40,14 +40,14 @@ func get_entity():
 
 func _on_child_entered_tree(node):
 	if is_instance_of(node, Entity):
-		entity = node
+		_entity = node
 		init_entity_texture()
 		if selected:
-			entity.select()
+			_entity.select()
 
 
 func _on_child_exiting_tree(_node):
-	entity = get_entity()
+	_entity = get_entity()
 
 
 func _on_tree_entered():

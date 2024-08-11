@@ -98,7 +98,7 @@ func init_bars():
 		pa_bar.mval = get_pa()
 		pa_bar.cval += get_pa() - curmval)
 	connect_to_stat(Caracteristique.Type.PM, func():
-		var curmval = pm_bar.mval
+		#var curmval = pm_bar.mval
 		pm_bar.speed = 0.0
 		pm_bar.mval = get_pm()
 		pm_bar.cval = get_pm())
@@ -161,7 +161,7 @@ func get_res_pm() -> int:
 
 func get_retrait(type: CaracType) -> int:
 	var carac_amount = get_ret_pa() if type == CaracType.PA else get_ret_pm()
-	return int(floor(carac_amount + (get_sagesse() / 10)))
+	return int(floor(carac_amount + (get_sagesse() / 10.0)))
 
 func get_resistance_retrait(type: CaracType) -> int:
 	return get_res_pa() if type == CaracType.PA else get_res_pm()
@@ -178,11 +178,11 @@ func take_damage(amount: int, element: Element):
 		amount = amount * round(taken_damage_rate / 100.0)
 		amount = apply_resistance(amount, element)
 		apply_erosion(amount)
-		if is_monster(self):
+		if Entity.is_monster(self):
 			create_taken_damage(amount)
 	if hp_bar.cval - amount <= hp_bar.min_value:
 		amount = hp_bar.cval
-		hp_bar.cval = hp_bar.min_value
+		hp_bar.cval = hp_bar.min_value as int
 		dying = true
 	elif hp_bar.cval - amount > hp_bar.mval:
 		amount = -(hp_bar.mval - hp_bar.cval)

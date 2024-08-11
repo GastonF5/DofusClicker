@@ -67,8 +67,8 @@ func init_bars():
 
 func attack():
 	var spell_to_cast = spells[0]
-	var grade := 0
-	SpellsService.perform_spell(self, PlayerManager.player_entity, spell_to_cast, grade)
+	var spell_grade := 0
+	SpellsService.perform_spell(self, PlayerManager.player_entity, spell_to_cast, spell_grade)
 
 
 func die():

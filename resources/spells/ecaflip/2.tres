@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="2_qvo0b"]
 
 [sub_resource type="Resource" id="Resource_arg74"]
-resource_name = "Effet random (3)"
+resource_name = "Effet random (2)"
 script = ExtResource("1_giae6")
 type = 4
 time = 0.0
@@ -17,16 +17,16 @@ caracteristic = 8
 method_name = &""
 effect_label = ""
 params = []
-nb_random_effects = 3
+nb_random_effects = 2
 amounts = Array[ExtResource("2_qvo0b")]([])
 visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_8ub6b"]
 script = ExtResource("2_qvo0b")
-min = 50
-max = 50
-min_crit = 75
-max_crit = 75
+_min = 50
+_max = 50
+_min_crit = 75
+_max_crit = 75
 
 [sub_resource type="Resource" id="Resource_83oq8"]
 resource_name = "Bonus Puissance"
@@ -46,10 +46,10 @@ visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_vfs3a"]
 script = ExtResource("2_qvo0b")
-min = 2
-max = 2
-min_crit = 2
-max_crit = 2
+_min = 2
+_max = 2
+_min_crit = 2
+_max_crit = 2
 
 [sub_resource type="Resource" id="Resource_73f1w"]
 resource_name = "Bonus PM"
@@ -69,10 +69,10 @@ visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_x42kc"]
 script = ExtResource("2_qvo0b")
-min = 4
-max = 4
-min_crit = 4
-max_crit = 4
+_min = 4
+_max = 4
+_min_crit = 4
+_max_crit = 4
 
 [sub_resource type="Resource" id="Resource_lvnuj"]
 resource_name = "Bonus Critique (Passif)"

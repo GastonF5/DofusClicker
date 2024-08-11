@@ -6,38 +6,38 @@
 
 [sub_resource type="Resource" id="Resource_82ex0"]
 script = ExtResource("1_3hsjb")
-min = 2
-max = 5
-min_crit = 0
-max_crit = 0
+_min = 0
+_max = 0
+_min_crit = 0
+_max_crit = 0
 
 [sub_resource type="Resource" id="Resource_e3h6f"]
 script = ExtResource("1_3hsjb")
-min = 3
-max = 6
-min_crit = 0
-max_crit = 0
+_min = 0
+_max = 0
+_min_crit = 0
+_max_crit = 0
 
 [sub_resource type="Resource" id="Resource_0o6fq"]
 script = ExtResource("1_3hsjb")
-min = 4
-max = 7
-min_crit = 0
-max_crit = 0
+_min = 0
+_max = 0
+_min_crit = 0
+_max_crit = 0
 
 [sub_resource type="Resource" id="Resource_g2vjd"]
 script = ExtResource("1_3hsjb")
-min = 5
-max = 8
-min_crit = 0
-max_crit = 0
+_min = 0
+_max = 0
+_min_crit = 0
+_max_crit = 0
 
 [sub_resource type="Resource" id="Resource_vafrb"]
 script = ExtResource("1_3hsjb")
-min = 6
-max = 9
-min_crit = 0
-max_crit = 0
+_min = 0
+_max = 0
+_min_crit = 0
+_max_crit = 0
 
 [sub_resource type="Resource" id="Resource_rgg78"]
 resource_name = "Bonus Dommages"
@@ -49,9 +49,11 @@ element = 0
 lifesteal = false
 caracteristic = 9
 method_name = &""
+effect_label = ""
 params = []
 nb_random_effects = 0
 amounts = Array[ExtResource("1_3hsjb")]([SubResource("Resource_82ex0"), SubResource("Resource_e3h6f"), SubResource("Resource_0o6fq"), SubResource("Resource_g2vjd"), SubResource("Resource_vafrb")])
+visible_in_description = true
 
 [resource]
 script = ExtResource("1_rg1p5")

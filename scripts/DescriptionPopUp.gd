@@ -112,5 +112,5 @@ func add_spell_effect_label(effect_res: EffectResource):
 	effects_container.add_child(label)
 
 
-func set_effect_visibility(is_visible: bool):
-	effects_label.get_parent().visible = is_visible
+func set_effect_visibility(is_effect_visible: bool):
+	effects_label.get_parent().visible = is_effect_visible

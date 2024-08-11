@@ -2,15 +2,15 @@ class_name AmountResource
 extends Resource
 
 
-@export var min: int
-@export var max: int
-@export var min_crit: int
-@export var max_crit: int
+@export var _min: int
+@export var _max: int
+@export var _min_crit: int
+@export var _max_crit: int
 
 
 func get_random(crit: bool = false):
 	randomize()
 	if crit:
-		return randi_range(min_crit, max_crit)
+		return randi_range(_min_crit, _max_crit)
 	else:
-		return randi_range(min, max)
+		return randi_range(_min, _max)

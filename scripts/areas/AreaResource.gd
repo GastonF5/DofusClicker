@@ -19,7 +19,11 @@ static func create(id: int, name: String, super_area_id := -1, level := -1) -> A
 	return area
 
 
-func has_monsters(level := 200) -> bool:
+func get_area_name():
+	return _name
+
+
+func has_monsters() -> bool:
 	return !get_monsters().is_empty()
 
 

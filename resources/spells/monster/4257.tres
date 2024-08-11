@@ -6,10 +6,10 @@
 
 [sub_resource type="Resource" id="Resource_id3o7"]
 script = ExtResource("1_jh5dv")
-min = 4
-max = 6
-min_crit = 7
-max_crit = 9
+_min = 0
+_max = 0
+_min_crit = 0
+_max_crit = 0
 
 [sub_resource type="Resource" id="Resource_ja58n"]
 resource_name = "Dommages Feu"
@@ -21,16 +21,18 @@ element = 2
 lifesteal = false
 caracteristic = 0
 method_name = &""
+effect_label = ""
 params = []
 nb_random_effects = 0
 amounts = Array[ExtResource("1_jh5dv")]([SubResource("Resource_id3o7")])
+visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_85lv2"]
 script = ExtResource("1_jh5dv")
-min = 2
-max = 2
-min_crit = 3
-max_crit = 3
+_min = 0
+_max = 0
+_min_crit = 0
+_max_crit = 0
 
 [sub_resource type="Resource" id="Resource_ltvdu"]
 resource_name = "Retrait PM"
@@ -42,9 +44,11 @@ element = 0
 lifesteal = false
 caracteristic = 1
 method_name = &""
+effect_label = ""
 params = []
 nb_random_effects = 0
 amounts = Array[ExtResource("1_jh5dv")]([SubResource("Resource_85lv2")])
+visible_in_description = true
 
 [resource]
 script = ExtResource("1_hko8w")

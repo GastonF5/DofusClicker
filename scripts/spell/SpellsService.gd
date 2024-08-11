@@ -68,7 +68,7 @@ static func perform_soin(caster: Entity, target: Entity, effect: EffectResource,
 	target.take_damage(-amount, effect.element)
 
 
-static func perform_bonus(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
+static func perform_bonus(_caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
 	var amount = effect.get_amount(crit, grade)
 	var carac
 	match effect.caracteristic:
@@ -102,10 +102,10 @@ static func perform_retrait(caster: Entity, target: Entity, effect: EffectResour
 	var bar: CustomBar = target.get("%s_bar" % carac_label.to_lower())
 	var ret_amount = caster.get_retrait(effect.caracteristic)
 	var res_amount = target.get_resistance_retrait(effect.caracteristic)
-	var ret_ratio = (ret_amount / res_amount) if res_amount != 0 else 100
+	var ret_ratio = (ret_amount / float(res_amount)) if res_amount != 0 else 100.0
 	var retrait_amount := 0
 	for i in range(amount):
-		var proba = 50 * ret_ratio * (bar.cval / bar.mval)
+		var proba = 50 * ret_ratio * (bar.cval / float(bar.mval))
 		proba = clamp(proba, 10, 90)
 		if randf_range(0, 1) <= proba / 100.0:
 			bar.cval -= 1
@@ -121,7 +121,7 @@ static func perform_special(caster: Entity, target: Entity, effect: EffectResour
 		console.log_error("%s not found in SpellsService")
 
 
-static func perform_random(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
+static func perform_random(_caster: Entity, _target: Entity, effect: EffectResource, _crit: bool, _grade: int):
 	count = 1
 	rand_count = randi_range(1, effect.nb_random_effects)
 	max_count = effect.nb_random_effects
@@ -140,7 +140,7 @@ static func chance_ecaflip(caster: Entity, _target: Entity, _effect: EffectResou
 	caster.taken_damage_rate = 100
 
 static var face = false
-static func pile_face(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int, _params: Array):
+static func pile_face(_caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int, _params: Array):
 	var amount = effect.get_amount(crit, grade)
 	if !crit and face:
 		amount -= 5
@@ -153,7 +153,7 @@ static func pile_face(caster: Entity, target: Entity, effect: EffectResource, cr
 static func get_multiplicateur(caster: Entity, element: Element, soin: bool) -> float:
 	var carac = caster.get_caracteristique_for_element(element)
 	var caracteristique = StatsManager.get_carac_amount(carac)
-	var puissance = caster.get_puissance()
+	var puissance = caster.get_puissance() if !soin else 0
 	return (puissance + caracteristique + 100) / 100.0
 
 
@@ -179,8 +179,8 @@ static func get_soin(caster: Entity, amount: int, element: Element) -> int:
 static func get_neighbor_entities() -> Array[Entity]:
 	var neighbor_entities: Array[Entity] = []
 	for plate in PlayerManager.selected_plate.get_neighbor_plates():
-		if plate.entity and is_instance_valid(plate.entity):
-			neighbor_entities.append(plate.entity)
+		if plate._entity and is_instance_valid(plate._entity):
+			neighbor_entities.append(plate._entity)
 	return neighbor_entities
 
 

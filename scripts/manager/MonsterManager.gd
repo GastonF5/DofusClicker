@@ -89,7 +89,7 @@ func instantiate_monster(monster_res: MonsterResource = null) -> Monster:
 
 
 func _on_monster_dies(xp: int):
-	var multiplicateur = (PlayerManager.player_entity.get_sagesse() + 100) / 100
+	var multiplicateur := (PlayerManager.player_entity.get_sagesse() + 100) / 100.0
 	xp_to_gain += int(xp * multiplicateur)
 	monsters.assign(get_monsters_on_plates())
 	if monsters.filter(func(m): return !m.dying).is_empty():

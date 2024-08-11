@@ -12,3 +12,7 @@ func get_nb_rooms():
 
 func get_room_monsters(room_number: int):
 	return _rooms[room_number - 1].get_monster_resources()
+
+
+func get_id():
+	return _id

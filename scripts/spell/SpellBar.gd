@@ -34,12 +34,12 @@ func _process(delta):
 			PlayerManager.player_attack()
 
 
-func set_weapon_pb_ready(ready: bool):
-	if ready:
+func set_weapon_pb_ready(is_ready: bool):
+	if is_ready:
 		weapon_pb.value = weapon_pb.max_value
 	else:
 		weapon_pb.value = 0
-	weapon_pb_ready = ready
+	weapon_pb_ready = is_ready
 
 
 func connect_slot_signals(slot):

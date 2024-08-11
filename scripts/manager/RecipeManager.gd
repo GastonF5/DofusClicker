@@ -153,5 +153,5 @@ func filter_recipes(_params = null):
 			nrecipe.visible = is_filtered
 
 
-func filter_lvl(lvl_filter: String):
+func filter_lvl(_lvl_filter: String):
 	pass

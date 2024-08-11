@@ -54,5 +54,5 @@ func dict_contains_key(dict: Dictionary, key: String) -> bool:
 	return dict.keys().has(key)
 
 
-static func is_equip_slot(slot):
+func is_equip_slot(slot):
 	return slot and slot.get_groups().has("equipment_slot")

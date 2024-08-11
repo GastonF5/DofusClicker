@@ -5,7 +5,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4o4fv"]
 
-[node name="AreaButton" type="PanelContainer" node_paths=PackedStringArray("_icon_txt", "_area_name_lbl", "_level_lbl", "_btn")]
+[node name="AreaButton" type="PanelContainer" node_paths=PackedStringArray("_icon_txt", "_area_name_lbl", "_level_lbl")]
 offset_right = 8.0
 offset_bottom = 8.0
 size_flags_horizontal = 0
@@ -15,7 +15,6 @@ script = ExtResource("1_2qiep")
 _icon_txt = NodePath("MarginContainer/VBC/HBC/IconTexture")
 _area_name_lbl = NodePath("MarginContainer/VBC/HBC/AreaName")
 _level_lbl = NodePath("MarginContainer/VBC/Level")
-_btn = NodePath("Button")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 2

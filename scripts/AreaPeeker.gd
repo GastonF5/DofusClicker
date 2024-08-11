@@ -24,7 +24,7 @@ func initialize():
 
 func init_areas():
 	var areas = Datas._areas.values()
-	areas = areas.filter(func(a): return !a.black_listed(cur_lvl) and a.get_level() > 0 and a.get_level() <= cur_lvl and a.has_monsters(cur_lvl))
+	areas = areas.filter(func(a): return !a.black_listed(cur_lvl) and a.get_level() > 0 and a.get_level() <= cur_lvl and a.has_monsters())
 	areas.sort_custom(AreaResource.sort_by_level)
 	for area in areas:
 		create_area_button(area._id)
@@ -34,7 +34,7 @@ func init_areas():
 func init_subareas(area: AreaResource):
 	selected_area_id = area._id
 	for subarea in area.get_subareas(cur_lvl):
-		if !subarea.black_listed() and subarea.has_monsters(cur_lvl):
+		if !subarea.black_listed() and subarea.has_monsters():
 			create_area_button(subarea._id, true)
 			prints(subarea._name, subarea._id)
 
@@ -54,7 +54,7 @@ func _on_subarea_clicked(subarea_id: int):
 		enter_subarea(subarea)
 
 
-func create_area_button(area_id: int, is_subarea := false, add_child := true):
+func create_area_button(area_id: int, is_subarea := false, do_add_child := true):
 	var button: AreaButton
 	var callable = _on_subarea_clicked if is_subarea else _on_area_clicked
 	if button_exists(area_id, is_subarea):
@@ -69,10 +69,10 @@ func create_area_button(area_id: int, is_subarea := false, add_child := true):
 			subarea_btns[area_id] = button
 		else:
 			area_btns[area_id] = button
-	if add_child:
+	if do_add_child:
 		$HBC/ScrollContainer/HBC.add_child(button)
 	else:
-		button.new = false
+		button._new = false
 
 
 func erase_button(area: AreaResource):

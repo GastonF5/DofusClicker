@@ -28,7 +28,6 @@ RecipeManager="*res://scripts/manager/RecipeManager.gd"
 DungeonManager="*res://scripts/manager/DungeonManager.gd"
 GameManager="*res://scripts/manager/GameManager.gd"
 Datas="*res://scripts/Datas.gd"
-SceneSwitcher="*res://scripts/SceneSwitcher.gd"
 SaveManager="*res://scripts/manager/SaveManager.gd"
 
 [display]

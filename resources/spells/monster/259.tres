@@ -6,38 +6,38 @@
 
 [sub_resource type="Resource" id="Resource_8crtm"]
 script = ExtResource("1_eal3i")
-min = 1
-max = 3
-min_crit = 3
-max_crit = 5
+_min = 0
+_max = 0
+_min_crit = 0
+_max_crit = 0
 
 [sub_resource type="Resource" id="Resource_l3s3s"]
 script = ExtResource("1_eal3i")
-min = 2
-max = 4
-min_crit = 4
-max_crit = 6
+_min = 0
+_max = 0
+_min_crit = 0
+_max_crit = 0
 
 [sub_resource type="Resource" id="Resource_8hvkn"]
 script = ExtResource("1_eal3i")
-min = 3
-max = 5
-min_crit = 5
-max_crit = 7
+_min = 0
+_max = 0
+_min_crit = 0
+_max_crit = 0
 
 [sub_resource type="Resource" id="Resource_4kf6m"]
 script = ExtResource("1_eal3i")
-min = 4
-max = 6
-min_crit = 6
-max_crit = 8
+_min = 0
+_max = 0
+_min_crit = 0
+_max_crit = 0
 
 [sub_resource type="Resource" id="Resource_u47qq"]
 script = ExtResource("1_eal3i")
-min = 5
-max = 7
-min_crit = 7
-max_crit = 9
+_min = 0
+_max = 0
+_min_crit = 0
+_max_crit = 0
 
 [sub_resource type="Resource" id="Resource_7j7dw"]
 resource_name = "Dommages Air"
@@ -49,9 +49,11 @@ element = 0
 lifesteal = false
 caracteristic = 0
 method_name = &""
+effect_label = ""
 params = []
 nb_random_effects = 0
 amounts = Array[ExtResource("1_eal3i")]([SubResource("Resource_8crtm"), SubResource("Resource_l3s3s"), SubResource("Resource_8hvkn"), SubResource("Resource_4kf6m"), SubResource("Resource_u47qq")])
+visible_in_description = true
 
 [resource]
 script = ExtResource("1_06hbr")

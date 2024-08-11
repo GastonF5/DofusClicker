@@ -10,14 +10,14 @@ type = 0
 time = 0.0
 target_type = 1
 element = 1
+lifesteal = false
 caracteristic = 0
 method_name = &""
+effect_label = ""
 params = []
 nb_random_effects = 0
-min_amounts = Array[int]([16])
-max_amounts = Array[int]([18])
-crit_min_amounts = Array[int]([19])
-crit_max_amounts = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+amounts = Array[Resource("res://scripts/resources/AmountResource.gd")]([])
+visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_6lmpg"]
 script = ExtResource("1_062ia")
@@ -25,14 +25,14 @@ type = 1
 time = 60.0
 target_type = 1
 element = 0
+lifesteal = false
 caracteristic = 30
 method_name = &""
+effect_label = ""
 params = []
 nb_random_effects = 0
-min_amounts = Array[int]([10])
-max_amounts = Array[int]([10])
-crit_min_amounts = Array[int]([10])
-crit_max_amounts = Array[int]([10])
+amounts = Array[Resource("res://scripts/resources/AmountResource.gd")]([])
+visible_in_description = true
 
 [resource]
 script = ExtResource("1_0ry3h")
