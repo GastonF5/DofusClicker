@@ -2,7 +2,7 @@ class_name SpellBar
 extends SlotContainer
 
 
-const WTYPE = EquipmentResource.WeaponType
+const WTYPE = WeaponResource.WeaponType
 
 @export var grid: GridContainer
 @export var weapon_slot: TextureRect

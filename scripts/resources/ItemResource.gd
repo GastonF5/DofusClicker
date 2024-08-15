@@ -77,3 +77,18 @@ func load_save(data: Dictionary):
 	count = data["count"]
 	if equip_res:
 		equip_res.load_save(data["equip_res"])
+
+
+static func map(data: Dictionary) -> ItemResource:
+	var resource = ItemResource.new()
+	resource.name = data["name"]["fr"]
+	resource.id = data["id"]
+	resource.type_id = data["typeId"] as int
+	resource.low_img_url = data["imgset"][0]["url"]
+	resource.high_img_url = data["imgset"][1]["url"]
+	resource.level = data["level"]
+	if Datas._types.has(resource.type_id):
+		resource.equip_res = EquipmentResource.map(data)
+	resource.drop_monster_ids = data["dropMonsterIds"].map(func(i): return i as int)
+	var effects = data["possibleEffects"]
+	return resource

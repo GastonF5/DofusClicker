@@ -200,7 +200,7 @@ func set_type(data: Dictionary):
 
 
 func set_item(data: Dictionary):
-	var item_res = API.get_item_resource(data)
+	var item_res = ItemResource.map(data)
 	if item_res.equip_res and !item_res.equip_res.stats.is_empty():
 		_items[item_res.id] = item_res
 
@@ -211,7 +211,7 @@ func set_recipe(data: Dictionary):
 
 
 func set_resource(data: Dictionary):
-	var resource_res = API.get_item_resource(data)
+	var resource_res = ItemResource.map(data)
 	_resources[resource_res.id as int] = resource_res
 
 

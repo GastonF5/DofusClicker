@@ -214,40 +214,6 @@ func check_response_code(response_code: int) -> int:
 	return 0
 
 
-func resource_getter(type: ResourceType) -> Callable:
-	match type:
-		ResourceType.ITEMS:
-			return get_item_resource
-		ResourceType.MONSTERS:
-			return get_monster_resource
-	return func(): return
-
-
-func get_item_resource(data, item_res = null) -> ItemResource:
-	if data:
-		if !item_res:
-			item_res = ItemResource.new()
-		var res_name = data["name"]["fr"]
-		item_res.low_img_url = data["imgset"][0]["url"]
-		item_res.high_img_url = data["imgset"][1]["url"]
-		var type_id = data["typeId"] as int
-		var effects = data["effects"]
-		item_res.level = data["level"]
-		item_res.item_set_id = data["itemSetId"] as int
-		if Datas._types.has(type_id):
-			item_res.equip_res = build_equip_res(effects)
-			item_res.equip_res.type = EquipmentResource.get_equip_type(Datas._types.get(type_id)._name)
-		item_res.type_id = type_id
-		item_res.name = res_name
-		item_res.id = data["id"]
-		item_res.drop_monster_ids = data["dropMonsterIds"].map(func(i): return i as int)
-		
-		return item_res
-	else:
-		push_error("data is null")
-		return null
-
-
 func get_monster_resource(data):
 	var res = MonsterResource.new()
 	res.name = data["name"]["fr"]
@@ -298,21 +264,6 @@ func get_monster_resource(data):
 		grade_res.characteristics.append(StatResource.create(Caracteristique.Type.RES_NEUTRE, grade["neutralResistance"]))
 		res.grades.append(grade_res)
 	return res
-
-
-func build_equip_res(effects) -> EquipmentResource:
-	var equip_res = EquipmentResource.new()
-	equip_res.stats = build_characteristics(effects)
-	return equip_res
-
-
-func build_characteristics(effects: Array) -> Array[StatResource]:
-	var result: Array[StatResource] = []
-	for effect in effects:
-		var charac_type = get_carach_type_from_id(effect["characteristic"])
-		if charac_type != -1:
-			result.append(StatResource.create(charac_type, effect["from"], effect["to"]))
-	return result
 
 
 func get_carach_type_from_id(carac_id: int) -> Caracteristique.Type:

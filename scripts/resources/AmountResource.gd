@@ -14,3 +14,12 @@ func get_random(crit: bool = false):
 		return randi_range(_min_crit, _max_crit)
 	else:
 		return randi_range(_min, _max)
+
+
+static func create(minimum: int, maximum: int, minimum_crit: int, maximum_crit: int) -> AmountResource:
+	var resource = AmountResource.new()
+	resource._min = minimum
+	resource._max = maximum
+	resource._min_crit = minimum_crit
+	resource._max_crit = maximum_crit
+	return resource

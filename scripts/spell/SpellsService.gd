@@ -29,7 +29,7 @@ static func perform_spell(caster: Entity, target: Entity, resource: SpellResourc
 
 
 static func perform_weapon_effects(caster: Entity, target: Entity, resource: EquipmentResource, grade: int):
-	if resource.weapon_type == EquipmentResource.WeaponType.NONE:
+	if resource.weapon_type == WeaponResource.WeaponType.NONE:
 		push_error("La ressource n'est pas une arme")
 		return
 	var crit_amount = resource.per_crit

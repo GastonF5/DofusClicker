@@ -29,28 +29,23 @@ enum SuperType {
 	DOFUS_TROPHEE,
 }
 
-enum WeaponType {
-	NONE,
-	MARTEAU,
-	BATON,
-	ARC,
-	EPEE,
-	DAGUES,
-	PELLE,
-	BAGUETTE,
-}
-
 
 @export var type: Type
-@export var weapon_type: WeaponType
-
 @export var stats: Array[StatResource]
-@export var per_crit: float
-@export var effects: Array[EffectResource]
+@export var weapon_resource: WeaponResource
 
 
 func get_type() -> String:
 	return Type.find_key(type)
+
+
+static func map(data: Dictionary) -> EquipmentResource:
+	var resource = EquipmentResource.new()
+	resource.type = EquipmentResource.get_equip_type(Datas._types.get(data["typeId"] as int)._name)
+	resource.stats = EquipmentResource.build_stats(data["effects"])
+	if WeaponResource.get_weapon_type(data):
+		resource.weapon_resource = WeaponResource.map(data)
+	return resource
 
 
 static func get_equip_type(type_label: String) -> Type:
@@ -65,6 +60,15 @@ static func get_equip_type(type_label: String) -> Type:
 			if keys.size() == 1:
 				return EquipmentResource.Type.get(keys[0])
 			return EquipmentResource.Type.NONE
+
+
+static func build_stats(effects: Array) -> Array[StatResource]:
+	var result: Array[StatResource] = []
+	for effect in effects:
+		var charac_type = API.get_carach_type_from_id(effect["characteristic"])
+		if charac_type != -1:
+			result.append(StatResource.create(charac_type, effect["from"], effect["to"]))
+	return result
 
 
 func load_save(data: Dictionary):
