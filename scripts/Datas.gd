@@ -10,6 +10,7 @@ enum DataType {
 	MONSTER,
 	AREA,
 	SUBAREA,
+	HIT_EFFECT,
 }
 
 
@@ -20,6 +21,7 @@ enum DataType {
 @export var _monsters = {}
 @export var _areas = {}
 @export var _subareas = {}
+@export var _hit_effects = {}
 
 var dir: DirAccess
 
@@ -32,6 +34,7 @@ func load_data():
 	for data_type in DataType.values():
 		await get_data(data_type)
 	check_areas()
+	fix_item_effects()
 	init_done.emit()
 	Globals.loading_screen.loading = false
 
@@ -60,6 +63,8 @@ func get_url(data_type: DataType) -> String:
 			return url % "items"
 		DataType.TYPE:
 			return url % "item-types"
+		DataType.HIT_EFFECT:
+			return url % "effects"
 		_:
 			return url % (get_data_name(data_type) + "s")
 
@@ -90,6 +95,11 @@ func get_url_params(data_type: DataType) -> String:
 			params += "&$" + API.get_select_request("areaId")
 			params += "&$" + API.get_select_request("monsters")
 			params += "&$" + API.get_select_request("level")
+		DataType.HIT_EFFECT:
+			params += "&$" + API.get_select_request("id")
+			params += "&$" + API.get_select_request("description")
+			params += "&$" + API.get_select_request("elementId")
+			params += "&$" + API.get_select_request("useInFight")
 	return params
 
 func get_in_values(data_type: DataType) -> Array:
@@ -110,6 +120,14 @@ func get_in_values(data_type: DataType) -> Array:
 					if !monster_ids.has(monster_id):
 						monster_ids.append(monster_id)
 			return ["id"] + monster_ids
+		DataType.HIT_EFFECT:
+			var ids = []
+			for item: ItemResource in _items.values():
+				if item.equip_res.is_weapon():
+					for hit_effect in item.equip_res.weapon_resource._hit_effects:
+						if !ids.has(hit_effect._id):
+							ids.append(hit_effect._id)
+			return ["id"] + ids
 	return []
 
 func get_loading_text(data_type: DataType) -> String:
@@ -129,6 +147,8 @@ func get_loading_text(data_type: DataType) -> String:
 			text += "zones"
 		DataType.SUBAREA:
 			text += "sous-zones"
+		DataType.HIT_EFFECT:
+			text += "effets des armes"
 	return text
 
 
@@ -234,10 +254,26 @@ func set_subarea(data: Dictionary):
 		_subareas[id] = subarea
 
 
+func set_hit_effect(data: Dictionary):
+	var effect_id = data["id"] as int
+	if data["useInFight"] and !Datas._hit_effects.has(effect_id):
+		Datas._hit_effects[effect_id] = HitEffectResource.map_data(data)
+
+
 func check_areas():
 	for area: AreaResource in _areas.values():
 		if area.is_subarea():
 			_areas.erase(area.id)
+
+
+func fix_item_effects():
+	for key in _items.keys():
+		var item_res: ItemResource = _items[key].duplicate()
+		if item_res.equip_res.is_weapon():
+			for hit_effect in item_res.equip_res.weapon_resource._hit_effects:
+				if !_hit_effects.has(hit_effect._id):
+					item_res.equip_res.weapon_resource._hit_effects.erase(hit_effect)
+		_items[key] = item_res
 
 
 func _on_reload_data_button_up():

@@ -39,11 +39,15 @@ func get_type() -> String:
 	return Type.find_key(type)
 
 
+func is_weapon() -> bool:
+	return type == Type.ARME
+
+
 static func map(data: Dictionary) -> EquipmentResource:
 	var resource = EquipmentResource.new()
 	resource.type = EquipmentResource.get_equip_type(Datas._types.get(data["typeId"] as int)._name)
 	resource.stats = EquipmentResource.build_stats(data["effects"])
-	if WeaponResource.get_weapon_type(data):
+	if resource.is_weapon():
 		resource.weapon_resource = WeaponResource.map(data)
 	return resource
 
@@ -65,7 +69,7 @@ static func get_equip_type(type_label: String) -> Type:
 static func build_stats(effects: Array) -> Array[StatResource]:
 	var result: Array[StatResource] = []
 	for effect in effects:
-		var charac_type = API.get_carach_type_from_id(effect["characteristic"])
+		var charac_type = API.get_carach_type_from_id(effect["characteristic"] as int)
 		if charac_type != -1:
 			result.append(StatResource.create(charac_type, effect["from"], effect["to"]))
 	return result

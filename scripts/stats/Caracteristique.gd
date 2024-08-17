@@ -48,6 +48,7 @@ enum Element {
 	FEU,
 	EAU,
 	AIR,
+	NONE,
 }
 
 static func get_element(id: int):
