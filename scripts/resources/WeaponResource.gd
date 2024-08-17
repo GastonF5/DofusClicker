@@ -14,8 +14,10 @@ enum WeaponType {
 
 @export var _type: WeaponType
 @export var _pa_cost: int
-@export var _hit_effects: Array[HitEffectResource]
-@export var _crit_proba: float
+@export var _hit_effects: Array[HitEffectResource]:
+	get:
+		return _hit_effects.filter(func(he): return Datas._hit_effects.has(he._id))
+@export var _crit_proba: int
 
 
 static func map(data: Dictionary) -> WeaponResource:
@@ -43,8 +45,11 @@ func get_type():
 func get_pa_cost():
 	return _pa_cost
 
-func get_hit_effects():
-	return _hit_effects
-
 func get_crit_proba():
 	return _crit_proba
+
+func get_bonus_crit() -> int:
+	if _hit_effects and !_hit_effects.is_empty():
+		var amounts = _hit_effects[0]._amounts
+		return amounts._min_crit - amounts._min
+	return 0

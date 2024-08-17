@@ -2,6 +2,9 @@ class_name DescriptionPopUp
 extends Control
 
 
+const PROBA_CRIT := "Critique %d"
+const BONUS_CRIT := "(+%d Dommages)"
+
 @export var texture: TextureRect
 @export var name_label: RichTextLabel
 @export var description_label: RichTextLabel
@@ -9,12 +12,18 @@ extends Control
 
 @export var effects_label: Label
 @export var effects_container: VBoxContainer
+@export var hit_effects_container: VBoxContainer
+@export var crit_container: VBoxContainer
 
 @export var pa_cost_label: Label
+
+@export var separator: TextureRect
 
 
 func init_item(item_res: ItemResource, low: bool, stats: Array[StatResource] = []):
 	# Nom et texture
+	separator.visible = false
+	set_crit_container()
 	name = item_res.name.to_pascal_case() + "Description"
 	texture.texture = item_res.get_texture(low)
 	compute_name_label(item_res.name, item_res.id, item_res.level)
@@ -26,6 +35,11 @@ func init_item(item_res: ItemResource, low: bool, stats: Array[StatResource] = [
 	elif item_res.equip_res:
 		for effect in item_res.equip_res.stats:
 			add_effect_label(effect)
+	if item_res.equip_res and item_res.equip_res.is_weapon() and !item_res.equip_res.weapon_resource._hit_effects.is_empty():
+		set_crit_container(item_res.equip_res.weapon_resource)
+		separator.visible = true
+		for hit_effect in item_res.equip_res.weapon_resource._hit_effects:
+			add_hit_effect_label(hit_effect)
 	set_effect_visibility(!stats.is_empty() and !(item_res.equip_res and item_res.equip_res.stats.is_empty()))
 	# Zones sur lesquelles l'item est droppable
 	if !item_res.get_monsters():
@@ -97,12 +111,24 @@ func clear_effects():
 	for effect in effects_container.get_children():
 		effects_container.remove_child(effect)
 		effect.queue_free()
+	for hit_effect in hit_effects_container.get_children():
+		hit_effects_container.remove_child(hit_effect)
+		hit_effect.queue_free()
 
 
-func add_effect_label(stat_res: StatResource):
+func add_effect_label(stat_res: StatResource, hit_effect := false):
 	var caracteristique = StatDescription.create(stat_res)
-	caracteristique.lbl.add_theme_color_override("font_color", stat_res.get_label_color())
-	effects_container.add_child(caracteristique)
+	if !hit_effect:
+		caracteristique.lbl.add_theme_color_override("font_color", stat_res.get_label_color())
+	if hit_effect:
+		hit_effects_container.add_child(caracteristique)
+	else:
+		effects_container.add_child(caracteristique)
+
+
+func add_hit_effect_label(hit_effect: HitEffectResource):
+	var stat_res = StatResource.create(hit_effect.get_characteristic(false), hit_effect._amounts._min, hit_effect._amounts._max)
+	add_effect_label(stat_res, true)
 
 
 func add_spell_effect_label(effect_res: EffectResource):
@@ -114,3 +140,16 @@ func add_spell_effect_label(effect_res: EffectResource):
 
 func set_effect_visibility(is_effect_visible: bool):
 	effects_label.get_parent().visible = is_effect_visible
+
+
+func set_crit_container(weapon_res: WeaponResource = null):
+	var proba_crit: Label = crit_container.get_child(0)
+	var bonus_crit: Label = crit_container.get_child(1)
+	if weapon_res:
+		proba_crit.text = PROBA_CRIT % weapon_res._crit_proba + "%"
+		var bonus = weapon_res.get_bonus_crit()
+		if bonus > 0:
+			bonus_crit.text = BONUS_CRIT % bonus
+	else:
+		proba_crit.text = ""
+		bonus_crit.text = ""
