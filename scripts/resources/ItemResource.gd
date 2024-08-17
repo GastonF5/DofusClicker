@@ -90,5 +90,4 @@ static func map(data: Dictionary) -> ItemResource:
 	if Datas._types.has(resource.type_id):
 		resource.equip_res = EquipmentResource.map(data)
 	resource.drop_monster_ids = data["dropMonsterIds"].map(func(i): return i as int)
-	var effects = data["possibleEffects"]
 	return resource

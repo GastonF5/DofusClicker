@@ -16,9 +16,9 @@ enum HitEffectType {
 static func map(data: Dictionary, crit_bonus: int) -> HitEffectResource:
 	var resource = HitEffectResource.new()
 	resource._id = data["effectId"]
-	var min = data["diceNum"]
-	var max = data["diceSide"]
-	resource._amounts = AmountResource.create(min, max, min + crit_bonus, max + crit_bonus)
+	var minimum = data["diceNum"]
+	var maximum = data["diceSide"]
+	resource._amounts = AmountResource.create(minimum, maximum, minimum + crit_bonus, maximum + crit_bonus)
 	return resource
 
 
@@ -54,4 +54,8 @@ func get_element() -> Caracteristique.Element:
 	if Datas._hit_effects.has(_id):
 		return Datas._hit_effects[_id]._element
 	push_error("Hit effect not found for id %s" % _id)
-	return -1
+	return Caracteristique.Element.NONE
+
+
+func get_type():
+	return _type

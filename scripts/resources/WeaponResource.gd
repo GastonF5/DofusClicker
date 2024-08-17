@@ -35,3 +35,16 @@ static func get_weapon_type(data: Dictionary) -> WeaponType:
 		return WeaponType.get(type)
 	else:
 		return WeaponType.NONE
+
+
+func get_type():
+	return _type
+
+func get_pa_cost():
+	return _pa_cost
+
+func get_hit_effects():
+	return _hit_effects
+
+func get_crit_proba():
+	return _crit_proba
