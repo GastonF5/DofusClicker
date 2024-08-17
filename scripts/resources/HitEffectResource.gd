@@ -4,12 +4,7 @@ extends Resource
 const Element = Caracteristique.Element
 const CaracType = Caracteristique.Type
 
-enum HitEffectType {
-	NONE,
-}
-
 @export var _id: int
-@export var _type: HitEffectType
 @export var _element: Element
 @export var _description: String
 @export var _amounts: AmountResource
@@ -60,9 +55,11 @@ func get_element() -> Element:
 	return Caracteristique.Element.NONE
 
 
-func get_characteristic(for_effect: bool):
+func get_characteristic(for_effect: bool) -> CaracType:
 	var element = get_element()
 	if element != Element.NONE:
+		if get_description().contains("soins"):
+			return CaracType.SOIN
 		return CaracType.get("DO_%s" % Element.find_key(element))
 	else:
 		if get_description().contains("PA"):
@@ -71,5 +68,47 @@ func get_characteristic(for_effect: bool):
 			return CaracType.RET_PM if for_effect else CaracType.PM
 
 
-func get_type():
-	return _type
+func get_effect_label() -> String:
+	var label: String
+	var element = Element.find_key(get_element()).to_pascal_case()
+	var vol = get_description().contains("vol")
+	var characteristic = get_characteristic(true)
+	match characteristic:
+		CaracType.SOIN:
+			label = "soins %s" % element
+		CaracType.DO_AIR, CaracType.DO_EAU, CaracType.DO_FEU, CaracType.DO_NEUTRE, CaracType.DO_TERRE:
+			label = "%s %s" % ["vol" if vol else "dommages", element]
+		CaracType.RET_PA:
+			label = "PA"
+		CaracType.RET_PM:
+			label = "PM"
+	var result: String
+	if _amounts._min >= _amounts._max:
+		result = "%d %s" % [_amounts._min, label]
+	else:
+		result = "%d à %d %s" % [_amounts._min, _amounts._max, label]
+	if [CaracType.RET_PA, CaracType.RET_PM].has(characteristic):
+		result = result.insert(0, "-")
+	return result
+
+
+func get_effect() -> EffectResource:
+	var effect = EffectResource.new()
+	var description = get_description()
+	var effects_label = ["dommages", "vol", "soins"]
+	if effects_label.any(func(e): return description.contains(e)):
+		if description.contains("dommages") or description.contains("vol"):
+			effect.type = EffectResource.Type.DAMAGE
+			effect.target_type = EffectResource.TargetType.TARGET
+			if description.contains("vol"):
+				effect.lifesteal = true
+		if description.contains("soins"):
+			effect.type = EffectResource.Type.SOIN
+			effect.target_type = EffectResource.TargetType.CASTER
+		effect.element = get_element()
+	else:
+		effect.type = EffectResource.Type.RETRAIT
+		effect.caracteristic = get_characteristic(true)
+		effect.target_type = EffectResource.TargetType.TARGET
+	effect.amounts.assign([_amounts])
+	return effect

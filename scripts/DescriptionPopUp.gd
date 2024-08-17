@@ -111,13 +111,14 @@ func clear_effects():
 	for effect in effects_container.get_children():
 		effects_container.remove_child(effect)
 		effect.queue_free()
-	for hit_effect in hit_effects_container.get_children():
-		hit_effects_container.remove_child(hit_effect)
-		hit_effect.queue_free()
+	if hit_effects_container:
+		for hit_effect in hit_effects_container.get_children():
+			hit_effects_container.remove_child(hit_effect)
+			hit_effect.queue_free()
 
 
-func add_effect_label(stat_res: StatResource, hit_effect := false):
-	var caracteristique = StatDescription.create(stat_res)
+func add_effect_label(stat_res: StatResource, hit_effect: HitEffectResource = null):
+	var caracteristique = StatDescription.create(stat_res, hit_effect)
 	if !hit_effect:
 		caracteristique.lbl.add_theme_color_override("font_color", stat_res.get_label_color())
 	if hit_effect:
@@ -128,7 +129,7 @@ func add_effect_label(stat_res: StatResource, hit_effect := false):
 
 func add_hit_effect_label(hit_effect: HitEffectResource):
 	var stat_res = StatResource.create(hit_effect.get_characteristic(false), hit_effect._amounts._min, hit_effect._amounts._max)
-	add_effect_label(stat_res, true)
+	add_effect_label(stat_res, hit_effect)
 
 
 func add_spell_effect_label(effect_res: EffectResource):

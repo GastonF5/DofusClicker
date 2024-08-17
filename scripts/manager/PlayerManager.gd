@@ -153,8 +153,8 @@ func create_description_popup():
 
 
 func player_attack():
-	var weapon_res = EquipmentManager.equipment_container.get_weapon_resource()
-	if weapon_res:
-		SpellsService.perform_weapon_effects(player_entity, PlayerManager.selected_plate.get_entity(), weapon_res, 0)
+	var weapon: ItemResource = EquipmentManager.equipment_container.get_weapon()
+	if weapon:
+		SpellsService.perform_weapon(player_entity, PlayerManager.selected_plate.get_entity(), weapon.equip_res.weapon_resource, weapon.name)
 	else:
 		SpellsService.perform_spell(player_entity, PlayerManager.selected_plate.get_entity(), punch_res, 0)

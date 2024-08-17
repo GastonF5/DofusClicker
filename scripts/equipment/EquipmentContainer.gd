@@ -8,11 +8,11 @@ func _ready():
 	super()
 
 
-func get_weapon_resource():
+func get_weapon() -> ItemResource:
 	var weapon_slot = equip_slots.get_children().filter(func(s): return s.name == "ArmeSlot")[0]
 	if weapon_slot.get_child_count() < 2:
 		return null
-	return weapon_slot.get_child(1).resource.equip_res
+	return weapon_slot.get_child(1).resource
 
 
 func get_save() -> Dictionary:

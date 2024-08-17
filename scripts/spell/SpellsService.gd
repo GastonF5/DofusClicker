@@ -28,23 +28,13 @@ static func perform_spell(caster: Entity, target: Entity, resource: SpellResourc
 	check_dying_entities([PlayerManager.player_entity] + MonsterManager.monsters)
 
 
-static func perform_weapon_effects(caster: Entity, target: Entity, resource: EquipmentResource, grade: int):
-	if resource.weapon_type == WeaponResource.WeaponType.NONE:
-		push_error("La ressource n'est pas une arme")
-		return
-	var crit_amount = resource.per_crit
-	var caster_crit = caster.get_critique()
-	if caster_crit: crit_amount += caster_crit.amount / 100.0
+static func perform_weapon(caster: Entity, target: Entity, resource: WeaponResource, weapon_name: String):
+	var crit_amount = (resource._crit_proba + caster.get_critique()) / 100.0
 	var crit = randf_range(0, 1) <= crit_amount
-	for effect: EffectResource in resource.effects:
-		if count > max_count:
-			perform_effect(caster, get_targets(caster, target, effect.target_type), effect, crit, grade)
-		else:
-			# Un effet de type "random" a été appliqué
-			if count == rand_count:
-				perform_effect(caster, get_targets(caster, target, effect.target_type), effect, crit, grade)
-			count += 1
-	check_dying_entities([caster] + MonsterManager.monsters)
+	console.log_weapon_cast(caster, weapon_name, crit)
+	for effect: EffectResource in resource._hit_effects.map(func(he): return he.get_effect()):
+		perform_effect(caster, get_targets(caster, target, effect.target_type), effect, crit, 0)
+	check_dying_entities([PlayerManager.player_entity] + MonsterManager.monsters)
 
 
 static func perform_effect(caster: Entity, targets: Array[Entity], effect: EffectResource, crit: bool, grade: int):

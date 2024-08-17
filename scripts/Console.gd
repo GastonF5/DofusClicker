@@ -269,7 +269,16 @@ func log_spell_cast(caster: Entity, spell_res: SpellResource, crit: bool):
 	_log_line(lance, INFO)
 	_log_line(spell_res.name, INFO, true)
 	if crit:
-		_log_line(" (Critique)", INFO)
+		log_critique()
+	_new_line()
+
+
+func log_weapon_cast(caster: Entity, weapon_name: String, crit: bool):
+	_log_line(get_entity_name(caster), INFO, true)
+	_log_line(" attaquez avec ", INFO)
+	_log_line(weapon_name, INFO, true)
+	if crit:
+		log_critique()
 	_new_line()
 
 
@@ -287,6 +296,10 @@ func log_bonus(target: Entity, amount: int, characteristic: String, time: float)
 	if time != 0.0:
 		_log_line(" (%d secondes)" % time, INFO)
 	_new_line()
+
+
+func log_critique():
+	_log_line(" (Critique)", INFO)
 
 
 func log_retrait(target: Entity, amount: int, characteristic: String):
