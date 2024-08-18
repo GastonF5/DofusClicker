@@ -12,12 +12,6 @@ func connect_slot_signals(slot):
 	slot.child_exiting_tree.connect(_on_item_exiting_slot)
 
 
-func get_item(slot) -> Item:
-	if slot.get_children().is_empty():
-		return null
-	return slot.get_child(0) as Item
-
-
 func get_slot(item):
 	var items_in_inventory = slots.map(func(s):
 		if s.get_children().size() != 1:

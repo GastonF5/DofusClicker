@@ -42,4 +42,16 @@ func get_empty_slots():
 
 
 func slot_is_empty(slot):
-	return slot.get_child_count() == 0
+	return get_item(slot) == null
+
+
+func get_item(slot: Node):
+	var item = null
+	if slot.get_child_count() > 0:
+		item = slot.get_child(0)
+		if !(item is Item):
+			if slot.get_child_count() > 1:
+				item = slot.get_child(1)
+			else:
+				item = null
+	return item

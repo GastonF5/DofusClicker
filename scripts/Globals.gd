@@ -19,6 +19,7 @@ var spell_bar: SpellBar
 
 var xp_bar: ExperienceBar
 var inventory: Inventory
+var equipment_container: EquipmentContainer
 var selected_class: int
 
 
@@ -36,3 +37,4 @@ func _ready():
 	spell_bar = get_tree().current_scene.get_node("%SpellBar")
 	xp_bar = get_tree().current_scene.get_node("%ExperienceBar")
 	inventory = get_tree().current_scene.get_node("%InventoryContainer").get_node("%Inventory")
+	equipment_container = get_tree().current_scene.get_node("%EquipmentContainer")

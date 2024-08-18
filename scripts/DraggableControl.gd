@@ -62,6 +62,10 @@ func drag():
 
 func drop():
 	dragged = false
+	# Si le slot est un slot d'équipement et qu'il est déjà occupé, on échange les items
+	if drop_parent.is_in_group("equipment_slot") and !Globals.equipment_container.slot_is_empty(drop_parent):
+		swap(Globals.equipment_container.get_item(drop_parent))
+	# On ne peut pas équiper un item dont on n'a pas le niveau
 	if drop_parent != old_parent and is_equipment() and self.resource.level > Globals.xp_bar.cur_lvl:
 		Globals.console.log_error("Vous n'avez pas le niveau pour équiper cet objet.")
 		drop_parent = old_parent
@@ -74,10 +78,7 @@ func change_parent():
 		old_parent.button_down.disconnect(_on_button_down)
 	get_parent().remove_child(self)
 	if is_node_droppable(drop_parent):
-		var to_swap = drop_parent.get_child(0)
-		to_swap.old_parent = drop_parent
-		to_swap.drop_parent = old_parent
-		to_swap.change_parent()
+		swap(drop_parent.get_child(0))
 	old_parent = null
 	drop_parent.button_down.connect(_on_button_down)
 
@@ -99,3 +100,9 @@ func is_spell():
 
 func is_equipment():
 	return is_item() and self.resource.equip_res
+
+
+func swap(draggable):
+	draggable.drop_parent = old_parent
+	draggable.old_parent = drop_parent
+	draggable.change_parent()
