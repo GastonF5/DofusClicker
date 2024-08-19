@@ -55,7 +55,7 @@ func get_element() -> Element:
 	return Caracteristique.Element.NONE
 
 
-func get_characteristic(for_effect: bool) -> CaracType:
+func get_characteristic() -> CaracType:
 	var element = get_element()
 	if element != Element.NONE:
 		if get_description().contains("soins"):
@@ -63,25 +63,26 @@ func get_characteristic(for_effect: bool) -> CaracType:
 		return CaracType.get("DO_%s" % Element.find_key(element))
 	else:
 		if get_description().contains("PA"):
-			return CaracType.RET_PA if for_effect else CaracType.PA
+			return CaracType.PA
 		else:
-			return CaracType.RET_PM if for_effect else CaracType.PM
+			return CaracType.PM
 
 
 func get_effect_label() -> String:
 	var label: String
 	var element = Element.find_key(get_element()).to_pascal_case()
 	var vol = get_description().contains("vol")
-	var characteristic = get_characteristic(true)
+	var characteristic = get_characteristic()
 	match characteristic:
 		CaracType.SOIN:
 			label = "soins %s" % element
 		CaracType.DO_AIR, CaracType.DO_EAU, CaracType.DO_FEU, CaracType.DO_NEUTRE, CaracType.DO_TERRE:
 			label = "%s %s" % ["vol" if vol else "dommages", element]
-		CaracType.RET_PA:
-			label = "PA"
-		CaracType.RET_PM:
-			label = "PM"
+		CaracType.PA, CaracType.PM:
+			label = CaracType.find_key(characteristic)
+		_:
+			label = "NOT SUPPORTED"
+			push_error("Not supported characteristic for hit effect : %s" % CaracType.find_key(characteristic))
 	var result: String
 	if _amounts._min >= _amounts._max:
 		result = "%d %s" % [_amounts._min, label]
@@ -108,7 +109,7 @@ func get_effect() -> EffectResource:
 		effect.element = get_element()
 	else:
 		effect.type = EffectResource.Type.RETRAIT
-		effect.caracteristic = get_characteristic(true)
+		effect.caracteristic = get_characteristic()
 		effect.target_type = EffectResource.TargetType.TARGET
 	effect.amounts.assign([_amounts])
 	return effect

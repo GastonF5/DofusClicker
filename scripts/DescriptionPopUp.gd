@@ -128,7 +128,7 @@ func add_effect_label(stat_res: StatResource, hit_effect: HitEffectResource = nu
 
 
 func add_hit_effect_label(hit_effect: HitEffectResource):
-	var stat_res = StatResource.create(hit_effect.get_characteristic(false), hit_effect._amounts._min, hit_effect._amounts._max)
+	var stat_res = StatResource.create(hit_effect.get_characteristic(), hit_effect._amounts._min, hit_effect._amounts._max)
 	add_effect_label(stat_res, hit_effect)
 
 

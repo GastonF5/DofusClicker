@@ -283,19 +283,21 @@ func log_weapon_cast(caster: Entity, weapon_name: String, crit: bool):
 
 
 func log_damage(target: Entity, amount: int, element: Element, dead: bool):
-	_log_line(get_entity_name(target), INFO, true)
-	_log_line(" : ", INFO)
-	_log_damage_amount(amount, element)
-	_log_line(" PV%s" % (" (mort)" if dead else ""), INFO)
-	_new_line()
+	if amount != 0:
+		_log_line(get_entity_name(target), INFO, true)
+		_log_line(" : ", INFO)
+		_log_damage_amount(amount, element)
+		_log_line(" PV%s" % (" (mort)" if dead else ""), INFO)
+		_new_line()
 
 
 func log_bonus(target: Entity, amount: int, characteristic: String, time: float):
-	_log_line(get_entity_name(target), INFO, true)
-	_log_line(" : %d %s" % [amount, characteristic], INFO)
-	if time != 0.0:
-		_log_line(" (%d secondes)" % time, INFO)
-	_new_line()
+	if amount != 0:
+		_log_line(get_entity_name(target), INFO, true)
+		_log_line(" : %d %s" % [amount, characteristic], INFO)
+		if time != 0.0:
+			_log_line(" (%d secondes)" % time, INFO)
+		_new_line()
 
 
 func log_critique():
