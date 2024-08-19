@@ -11,10 +11,17 @@ signal equiped
 signal desequiped
 
 
+func reset():
+	equipment_container = null
+	inventory = null
+	super()
+
+
 func initialize():
-	equipment_container = get_tree().current_scene.get_node("%EquipmentContainer")
+	equipment_container = Globals.equipment_container
 	inventory = Globals.inventory
 	for slot in equipment_container.slots:
+		if !slot: break
 		slot.mouse_entered.connect(_on_mouse_entered_slot.bind(slot))
 		slot.mouse_exited.connect(inventory.set_dragged_exited_drop_parent)
 		slot.child_entered_tree.connect(on_equiped.bind(slot))
@@ -33,6 +40,8 @@ func on_equiped(item, slot):
 
 
 func on_desequiped(item, slot):
+	if item.name.contains("Slot"):
+		return
 	if !(item is Item):
 		push_error("L'objet déséquipé n'est pas un item : " + item.name)
 		return

@@ -50,7 +50,23 @@ var selected_plate: EntityContainer:
 			selected_plate.selected = true
 
 var plates: Array[EntityContainer]
-var is_initialized = false
+
+
+func reset():
+	player_bars = null
+	punch_res = null
+	spell_container = null
+	pdv_label = null
+	selected_spell = null
+	selected_plate = null
+	plates.clear()
+	item_description = null
+	spell_description = null
+	entity_description = null
+	dragged_item = null
+	dragged_spell = null
+	super()
+
 
 func initialize():
 	player_bars = get_tree().current_scene.get_node("%EntityBars")
@@ -71,7 +87,6 @@ func initialize():
 	Globals.xp_bar.init()
 	
 	create_description_popup()
-	is_initialized = true
 	super()
 
 
@@ -87,13 +102,14 @@ func init_spells():
 
 
 func _process(_delta):
-	if is_initialized and MonsterManager.monsters.is_empty() and player_entity.hp_bar.cval < max_hp:
-		if !health_timer:
-			health_timer = SpellsService.create_timer(1.0, "HealthTimer")
-			await health_timer.timeout
-			player_entity.hp_bar.cval += 1
-			health_timer.queue_free()
-			health_timer = null
+	if !Globals.quitting:
+		if is_initialized and MonsterManager.monsters.is_empty() and player_entity.hp_bar.cval < max_hp:
+			if !health_timer:
+				health_timer = SpellsService.create_timer(1.0, "HealthTimer")
+				await health_timer.timeout
+				player_entity.hp_bar.cval += 1
+				health_timer.queue_free()
+				health_timer = null
 
 
 func init_player_entity():

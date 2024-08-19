@@ -1,7 +1,6 @@
 class_name DraggableControl
 extends Control
 
-@onready var OverUI = $"/root/Main/OverUI"
 
 var old_parent
 var drop_parent
@@ -57,7 +56,7 @@ func drag():
 	old_parent = get_parent()
 	if get_parent() != null:
 		get_parent().remove_child(self)
-		OverUI.add_child(self)
+		Globals.over_ui.add_child(self)
 
 
 func drop():

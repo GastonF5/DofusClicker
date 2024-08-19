@@ -10,8 +10,18 @@ var points_label: Label
 
 var caracteristiques: Array[Caracteristique] = []
 
-static var points = 0
-static var max_points = 0
+var points = 0
+var max_points = 0
+
+
+func reset():
+	stats_container = null
+	reset_button = null
+	points_label = null
+	caracteristiques.clear()
+	points = 0
+	max_points = 0
+	super()
 
 
 func initialize():
@@ -82,8 +92,9 @@ func apply_carac_bonus(type: StatType, amount: int):
 
 
 func _process(_delta):
-	if reset_button:
-		reset_button.disabled = points == max_points or GameManager.in_fight
+	if !Globals.quitting:
+		if reset_button and is_instance_valid(reset_button):
+			reset_button.disabled = points == max_points or GameManager.in_fight
 
 
 func reset_points():
@@ -110,7 +121,7 @@ func on_lvl_up():
 func get_caracteristique_for_type(type: StatType) -> Caracteristique:
 	var carac = caracteristiques.filter(func(c): return c.type == type)
 	if carac.size() != 1:
-		Globals.console.log_error("Aucune ou plus d'une caractéristique a été trouvée pour le type : " + StatType.find_key(type))
+		Globals.console.log_error("Plus d'une caractéristique a été trouvée pour le type : " + StatType.find_key(type))
 		return null
 	return carac[0]
 

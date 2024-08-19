@@ -90,7 +90,7 @@ func expand():
 func get_items():
 	var items = slots.duplicate()
 	items = items.map(func(s):
-		if s.get_children().size() != 1:
+		if !s or s.get_children().size() != 1:
 			return null
 		return s.get_child(0) as Item).filter(func(i): return i != null)
 	return items.map(func(item): return item as Item)

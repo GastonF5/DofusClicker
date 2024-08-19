@@ -4,6 +4,12 @@ extends CanvasLayer
 
 @export var black: Panel
 
+
+func _enter_tree():
+	visible = true
+	fade_out()
+
+
 func fade_up():
 	visible = true
 	var tween = create_tween()

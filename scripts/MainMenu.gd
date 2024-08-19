@@ -15,7 +15,7 @@ func check_loaded_data():
 	var dir = DirAccess.open(FileSaver.DATA_PATH)
 	var is_data_loaded = true
 	for data_type in Datas.DataType.keys():
-		data_type = data_type.split("_")[0].to_lower()
+		#data_type = data_type.split("_")[0].to_lower()
 		is_data_loaded = is_data_loaded and\
 			(dir.file_exists("%s.tres" % data_type) or dir.file_exists("%s.tres.remap" % data_type))
 	if !is_data_loaded:
@@ -91,7 +91,8 @@ func _on_save_button_button_up():
 
 
 func _on_quit_button_button_up():
-	#get_tree().current_scene.queue_free()
-	#var main_scene = load("res://scenes/main.tscn").instantiate()
-	#get_tree().root.add_child(main_scene)
-	pass
+	GameManager.reload_game()
+
+
+func _on_change_class_button_button_up():
+	GameManager.change_class()

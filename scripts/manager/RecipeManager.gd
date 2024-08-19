@@ -15,6 +15,17 @@ var composite: API.CompositeSignal
 signal recipes_initialized
 
 
+func reset():
+	tab_container = null
+	current_tab = null
+	recipes.clear()
+	inventory = null
+	recipe_filters = null
+	composite = null
+	prompt_has_focus = false
+	super()
+
+
 func initialize():
 	composite = API.CompositeSignal.new()
 	inventory = Globals.inventory
@@ -34,7 +45,7 @@ func initialize():
 	super()
 
 
-func reset():
+func reset_recipes():
 	for recipe in recipes:
 		recipe.get_parent().remove_child(recipe)
 		recipe.queue_sort()
@@ -43,10 +54,11 @@ func reset():
 
 
 func _input(event):
-	if current_tab:
-		var search_prompt = current_tab.search_prompt
-		if search_prompt.has_focus() and (event.is_action_pressed("esc") or event.is_action_pressed("LMB")):
-			search_prompt.release_focus()
+	if !Globals.quitting:
+		if current_tab:
+			var search_prompt = current_tab.search_prompt
+			if search_prompt.has_focus() and (event.is_action_pressed("esc") or event.is_action_pressed("LMB")):
+				search_prompt.release_focus()
 
 
 func on_job_tab_changed(tab):

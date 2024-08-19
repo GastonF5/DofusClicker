@@ -218,8 +218,7 @@ func init():
 	value = 0
 	update_max_value()
 	update_lvl_label()
-	var over_ui = get_tree().current_scene.get_node("OverUI")
-	tooltip = Tooltip.create(xp_label, over_ui, self)
+	tooltip = Tooltip.create(xp_label, Globals.over_ui, self)
 
 
 func reset():

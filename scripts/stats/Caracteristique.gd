@@ -119,7 +119,7 @@ func init_child_nodes():
 
 
 func init_tooltip():
-	var over_ui = get_tree().current_scene.get_node("OverUI")
+	var over_ui = Globals.over_ui
 	if modifiable:
 		tooltip = Tooltip.create(name, over_ui, self)
 	elif static_tooltip_text:

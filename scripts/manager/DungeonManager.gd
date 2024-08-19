@@ -1,10 +1,16 @@
-extends Node
+extends AbstractManager
 
 
 var dungeon_list = [447]
 
 var dungeon_id := -1
 var cur_room: int
+
+
+func reset():
+	dungeon_id = -1
+	cur_room = 0
+	super()
 
 
 func is_dungeon(area_id: int):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bss1wj12e3x3k"]
+[gd_scene load_steps=24 format=3 uid="uid://bss1wj12e3x3k"]
 
 [ext_resource type="Texture2D" uid="uid://f1b4iqrwl4yt" path="res://assets/class_peeker/bgIlluServeur.jpg" id="1_hpjoe"]
 [ext_resource type="Script" path="res://scripts/MainMenu.gd" id="1_mkipt"]
@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://cpbcsmwr14xf8" path="res://assets/common/button/btn_greenSecondLargeBorder_normal.png" id="6_8qk3c"]
 [ext_resource type="Texture2D" uid="uid://ct1041x5j0e3i" path="res://assets/common/button/btn_greenSecondLargeBorder_pressed.png" id="7_leenl"]
 [ext_resource type="FontFile" uid="uid://duac7keqvubh2" path="res://assets/font/Tahoma Regular font.ttf" id="8_0uihb"]
-[ext_resource type="PackedScene" uid="uid://cl1b4rs0yua7e" path="res://scenes/LoadingScreen.tscn" id="12_o80ob"]
 [ext_resource type="PackedScene" uid="uid://c5qpmm8kbuukg" path="res://scenes/buttons/close_button.tscn" id="14_1kykl"]
 [ext_resource type="Texture2D" uid="uid://0ujq6wd2dvfm" path="res://assets/common/window/window_green_background.jpg" id="14_uuoie"]
 
@@ -193,10 +192,6 @@ focus_mode = 0
 mouse_default_cursor_shape = 2
 theme = SubResource("Theme_h3q3u")
 text = "Recharger les données"
-
-[node name="LoadingScreen" parent="." instance=ExtResource("12_o80ob")]
-unique_name_in_owner = true
-visible = false
 
 [node name="PopupBackground" type="TextureRect" parent="."]
 visible = false

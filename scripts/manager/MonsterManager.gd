@@ -4,16 +4,27 @@ var console: Console
 var start_fight_button: Button
 var auto_start_fight_checkbox: CheckBox
 
-var loading = false
+var loading := false
 
-static var monsters: Array[Entity] = []
-static var end_fight_callable: Callable
+var monsters: Array[Entity] = []
+var end_fight_callable: Callable
 
 signal monster_dies
 
-static var monsters_res := []
+var monsters_res := []
 
 var xp_to_gain := 0
+
+
+func reset():
+	console = null
+	start_fight_button = null
+	auto_start_fight_checkbox = null
+	loading = false
+	monsters.clear()
+	monsters_res.clear()
+	xp_to_gain = 0
+	super()
 
 
 func initialize():
