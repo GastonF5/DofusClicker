@@ -257,6 +257,7 @@ theme_override_constants/separation = 15
 alignment = 1
 
 [node name="ChangeClassButton" type="Button" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/Control/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 8

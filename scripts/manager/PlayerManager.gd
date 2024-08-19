@@ -53,16 +53,12 @@ var plates: Array[EntityContainer]
 var is_initialized = false
 
 func initialize():
-	var selected_class = Globals.class_peeker.classes[Globals.selected_class]
 	player_bars = get_tree().current_scene.get_node("%EntityBars")
 	punch_res = load("res://resources/spells/punch.tres")
 	spell_container = Globals.spells_container.get_node("%SpellContainer")
 	pdv_label = Globals.stats_container.get_node("%HPAmount")
 	
-	for spell_res in FileLoader.get_spell_resources(selected_class):
-		var spell_button = FileLoader.get_packed_scene("spell/spell_button").instantiate()
-		spell_container.add_child(spell_button)
-		spell_button.init(Globals.spell_bar, Spell.instantiate(spell_res, spell_button.get_node("HBC"), false))
+	init_spells()
 	
 	var entity_containers = get_tree().get_nodes_in_group("monster_container")
 	entity_containers.sort_custom(func(a, b): return a.id < b.id)
@@ -77,6 +73,17 @@ func initialize():
 	create_description_popup()
 	is_initialized = true
 	super()
+
+
+func init_spells():
+	for spell in spell_container.get_children():
+		spell_container.remove_child(spell)
+		spell.queue_free()
+	var selected_class = Globals.class_peeker.classes[Globals.selected_class]
+	for spell_res in FileLoader.get_spell_resources(selected_class):
+		var spell_button = FileLoader.get_packed_scene("spell/spell_button").instantiate()
+		spell_container.add_child(spell_button)
+		spell_button.init(Globals.spell_bar, Spell.instantiate(spell_res, spell_button.get_node("HBC"), false))
 
 
 func _process(_delta):

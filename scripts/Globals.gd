@@ -22,6 +22,8 @@ var inventory: Inventory
 var equipment_container: EquipmentContainer
 var selected_class: int
 
+var change_class_btn: Button
+
 
 func _ready():
 	class_peeker = get_tree().current_scene.get_node("%ClassPeeker")
@@ -38,3 +40,4 @@ func _ready():
 	xp_bar = get_tree().current_scene.get_node("%ExperienceBar")
 	inventory = get_tree().current_scene.get_node("%InventoryContainer").get_node("%Inventory")
 	equipment_container = get_tree().current_scene.get_node("%EquipmentContainer")
+	change_class_btn = get_tree().current_scene.get_node("%ChangeClassButton")

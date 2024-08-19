@@ -34,10 +34,10 @@ func on_equiped(item, slot):
 
 func on_desequiped(item, slot):
 	if !(item is Item):
-		Globals.console.log_error("L'objet déséquipé n'est pas un item : " + item.name)
+		push_error("L'objet déséquipé n'est pas un item : " + item.name)
 		return
 	if !item.resource.equip_res:
-		Globals.console.log_error("L'item déséquipé n'est pas un équipement : " + item.name)
+		push_error("L'item déséquipé n'est pas un équipement : " + item.name)
 		return
 	slot.get_child(0).texture = load(SLOT_TEXTURE_PATH % item.resource.equip_res.get_type().to_lower())
 	desequiped.emit(item)
