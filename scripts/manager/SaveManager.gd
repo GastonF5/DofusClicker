@@ -26,7 +26,7 @@ func save_characteristics() -> Dictionary:
 func save_areas() -> Array:
 	var btns: Array[AreaButton] = []
 	btns.assign(Globals.area_peeker.area_btns.values() + Globals.area_peeker.subarea_btns.values())
-	return btns.filter(func(btn): return !btn.new)\
+	return btns.filter(func(btn): return !btn._new)\
 			.map(func(btn: AreaButton): return [btn._area_id, btn.is_subarea()])
 
 
