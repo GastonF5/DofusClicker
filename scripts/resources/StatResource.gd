@@ -78,7 +78,7 @@ static func create(_type: Caracteristique.Type, _min_amount: int, _max_amount: i
 static func load_texture(stat_type: TYPE):
 	var path: String
 	match stat_type:
-		TYPE.PA, TYPE.PM, TYPE.EROSION:
+		TYPE.EROSION:
 			path = "res://assets/description_icons/icon_%s.png" % TYPE.find_key(stat_type).to_lower()
 		_:
 			path = "res://assets/stats/stat_icon/%s.png" % TYPE.find_key(stat_type).to_lower()

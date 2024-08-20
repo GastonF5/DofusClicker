@@ -1,7 +1,7 @@
 class_name DescriptionPopUp
 extends Control
 
-
+const CaracType = Caracteristique.Type
 const PROBA_CRIT := "Critique %d"
 const BONUS_CRIT := "(+%d Dommages)"
 
@@ -130,8 +130,7 @@ func add_effect_label(stat_res: StatResource, hit_effect: HitEffectResource = nu
 
 
 func add_hit_effect_label(hit_effect: HitEffectResource):
-	var stat_res = StatResource.create(hit_effect.get_characteristic(), hit_effect._amounts._min, hit_effect._amounts._max)
-	add_effect_label(stat_res, hit_effect)
+	add_effect_label(null, hit_effect)
 
 
 func add_spell_effect_label(effect_res: EffectResource):

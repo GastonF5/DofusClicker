@@ -84,12 +84,14 @@ func get_effect_label() -> String:
 			label = "NOT SUPPORTED"
 			push_error("Not supported characteristic for hit effect : %s" % CaracType.find_key(characteristic))
 	var result: String
+	var amounts = [_amounts._min, _amounts._max]
+	if [CaracType.PA, CaracType.PM].has(characteristic):
+		amounts[0] *= -1
+		amounts[1] *= -1
 	if _amounts._min >= _amounts._max:
-		result = "%d %s" % [_amounts._min, label]
+		result = "%d %s" % [amounts[0], label]
 	else:
-		result = "%d à %d %s" % [_amounts._min, _amounts._max, label]
-	if [CaracType.RET_PA, CaracType.RET_PM].has(characteristic):
-		result = result.insert(0, "-")
+		result = "%d à %d %s" % [amounts[0], amounts[1], label]
 	return result
 
 

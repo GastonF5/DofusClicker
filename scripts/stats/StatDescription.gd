@@ -13,10 +13,12 @@ func update(texture: Texture2D, label: String):
 
 static func create(stat_res: StatResource, hit_effect: HitEffectResource = null):
 	var stat_description = load("res://scenes/stats/stat_description.tscn").instantiate()
-	var texture = StatResource.load_texture(stat_res.type)
+	var texture
 	if hit_effect:
+		texture = StatResource.load_texture(hit_effect.get_characteristic())
 		stat_description.update(texture, hit_effect.get_effect_label())
 	else:
+		texture = StatResource.load_texture(stat_res.type)
 		stat_description.update(texture, stat_res.get_effect_label())
 	return stat_description
 
