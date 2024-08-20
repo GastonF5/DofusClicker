@@ -5,6 +5,7 @@ extends Control
 
 
 func _ready():
+	$ReloadDataBtn.visible = Globals.debug
 	check_loaded_data()
 	check_saves()
 	close_btn.callable_on_close = _on_close_btn_button_up
