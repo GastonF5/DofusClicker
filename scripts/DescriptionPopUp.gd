@@ -94,7 +94,9 @@ func set_mouse_ignore():
 func compute_name_label(_name: String, _id: int, _level: int = -1):
 	name_label.clear()
 	name_label.push_outline_size(-6)
-	name_label.append_text(_name + " (%d)" % _id)
+	name_label.append_text(_name)
+	if Globals.debug:
+		name_label.append_text(" (%d)" % _id)
 	if _level >= 0:
 		name_label.push_color(Color.GRAY)
 		name_label.append_text("\n" + "Niveau %d" % _level)

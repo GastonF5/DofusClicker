@@ -136,7 +136,8 @@ func get_type_for_element(element: Element, dommages := false):
 		Element.EAU: return StatType.CHANCE if !dommages else StatType.DO_EAU
 		Element.FEU: return StatType.INTELLIGENCE if !dommages else StatType.DO_FEU
 		Element.TERRE, Element.NEUTRE: return StatType.FORCE if !dommages else StatType.DO_TERRE
-		_: push_error("Element not found")
+		_:
+			push_error("Element not found")
 
 
 func check_modifiable_on_caracteristiques():

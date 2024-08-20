@@ -29,6 +29,7 @@ var inventory: Inventory
 
 func initialize():
 	inventory = Globals.inventory
+	input.visible = Globals.debug
 
 
 func _input(event):
@@ -253,7 +254,8 @@ func log_info(text: String, bold: bool = false):
 
 func log_error(text: String):
 	push_error(text)
-	_log("ERROR : " + text, LogType.ERROR)
+	if Globals.debug:
+		_log("ERROR : " + text, LogType.ERROR)
 
 
 func log_equip(item: Item):

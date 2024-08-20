@@ -67,7 +67,7 @@ func get_caracteristique_for_type(type: CaracType):
 	else:
 		carac = caracteristiques.filter(func(c): return c.type == type)
 	if carac.size() != 1:
-		#push_error(NO_CARAC_FOUND % [CaracType.find_key(type), name])
+		push_error(NO_CARAC_FOUND % [CaracType.find_key(type), name])
 		return null
 	return carac[0]
 
