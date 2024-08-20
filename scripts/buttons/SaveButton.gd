@@ -25,7 +25,7 @@ static func create(save_res: SaveResource) -> SaveButton:
 	save_btn.name = save_res.date
 	save_btn.button.text = "Niveau %d - %s" % [Globals.xp_bar.get_lvl(save_res.xp_amount), save_btn.date]
 	save_btn.class_texture.texture = Globals.class_peeker.get_logo(save_res.class_id)
-	save_btn.close_button.button_up.connect(save_btn.open_confirmation_popup)
+	save_btn.close_button.callable_on_close = save_btn.open_confirmation_popup
 	return save_btn
 
 
