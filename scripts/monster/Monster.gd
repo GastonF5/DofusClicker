@@ -5,6 +5,8 @@ var resource: MonsterResource
 var grade: GradeResource
 var drops: Array[DropResource]
 
+@export var bars: EntityBars
+
 var selected = false
 
 func _ready():
@@ -28,6 +30,9 @@ static func instantiate(monster_res: MonsterResource, parent: Control) -> Monste
 
 
 func init(res: MonsterResource = null):
+	hp_bar = bars.hp_bar
+	pa_bar = bars.pa_bar
+	pm_bar = bars.pm_bar
 	super()
 	grade = res.grades[randi_range(0, res.grades.size() - 1)]
 	drops = res.drops.duplicate()

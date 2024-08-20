@@ -20,7 +20,7 @@ extends TextureProgressBar
 			return cval
 		return value as int
 	set(val):
-		if auto_fill and val < cval and speed > 0:
+		if GameManager.in_fight and auto_fill and val < cval and speed > 0:
 			value = 0
 		cval = val
 		if !auto_fill: value = val
@@ -68,7 +68,7 @@ func setup_labels():
 
 func _process(delta):
 	if auto_fill:
-		if cval < mval or value <= max_value:
+		if cval < mval or value < max_value:
 			if speed > 0:
 				value += float(delta * speed)
 			# si la barre est complète, on gagne 1 PA et on reset la barre

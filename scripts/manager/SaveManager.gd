@@ -32,8 +32,8 @@ func save_areas() -> Array:
 
 func load_save(save_res: SaveResource):
 	load_inventory(save_res)
-	EquipmentManager.equipment_container.load_save(save_res.equipment)
 	load_xp(save_res)
+	EquipmentManager.equipment_container.load_save(save_res.equipment)
 	load_characteristics(save_res)
 	load_areas(save_res)
 	if save_res:

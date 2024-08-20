@@ -7,7 +7,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_63c4l"]
 
-[node name="Monster" type="PanelContainer" node_paths=PackedStringArray("name_label", "texture_rect", "header_texture", "entity_bar")]
+[node name="Monster" type="PanelContainer" node_paths=PackedStringArray("bars", "name_label", "texture_rect", "header_texture")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -23,10 +23,10 @@ size_flags_horizontal = 3
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_63c4l")
 script = ExtResource("2_ao8xg")
+bars = NodePath("VBC/EntityBars")
 name_label = NodePath("VBC/Header/Name")
 texture_rect = NodePath("VBC/TextureContainer/Monster")
 header_texture = NodePath("VBC/Header/HeaderControl/HeaderTexture")
-entity_bar = NodePath("VBC/EntityBars")
 
 [node name="VBC" type="VBoxContainer" parent="."]
 layout_mode = 2

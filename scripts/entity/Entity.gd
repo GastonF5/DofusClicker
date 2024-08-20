@@ -14,13 +14,9 @@ var inventory: Inventory
 @export var texture_rect: TextureRect
 @export var header_texture: TextureRect
 
-@export var entity_bar: EntityBars
-var hp_bar: CustomBar:
-	get: return entity_bar.hp_bar
-var pa_bar: CustomBar:
-	get: return entity_bar.pa_bar
-var pm_bar: CustomBar:
-	get: return entity_bar.pm_bar
+@export var hp_bar: CustomBar
+@export var pa_bar: CustomBar
+@export var pm_bar: CustomBar
 
 var dying = false
 var attack_callable: Callable
@@ -30,14 +26,17 @@ var erosion := 0.05
 var taken_damage_rate: int = 100
 
 var console: Console
+var is_player := false
 
 
 #region Caractéristiques
 func init():
 	inventory = Globals.inventory
 	console = SpellsService.console
-	if is_player():
-		entity_bar = PlayerManager.player_bars
+	if is_player:
+		hp_bar = PlayerManager.hp_bar
+		pa_bar = PlayerManager.pa_bar
+		pm_bar = PlayerManager.pm_bar
 	pm_bar.cval_change.connect(func():
 		pa_bar.speed = get_attack_speed())
 	pa_bar.speed = get_attack_speed()
@@ -62,7 +61,7 @@ func init_spells(spell_ids: Array):
 
 func get_caracteristique_for_type(type: CaracType):
 	var carac
-	if is_player():
+	if is_player:
 		return StatsManager.get_caracteristique_for_type(type)
 	else:
 		carac = caracteristiques.filter(func(c): return c.type == type)
@@ -105,11 +104,10 @@ func init_bars():
 
 
 func get_vitalite() -> int:
+	if is_player:
+		return PlayerManager.max_hp
 	var hp = get_caracteristique_for_type(CaracType.VITALITE)
-	var vitalite = 0 if !hp else hp.amount
-	if is_player():
-		vitalite = PlayerManager.max_hp
-	return vitalite
+	return 0 if !hp else hp.amount
 
 func get_pm() -> int:
 	var pm = get_caracteristique_for_type(CaracType.PM)
@@ -224,13 +222,9 @@ static func is_monster(value: Node):
 	return is_instance_of(value, Monster)
 
 
-func is_player():
-	return name == "Player"
-
-
 func die():
 	print("%s died" % name)
-	if is_player():
+	if is_player:
 		hp_bar.value = hp_bar.min_value
 		GameManager.lose_fight()
 

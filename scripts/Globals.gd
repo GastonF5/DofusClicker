@@ -25,6 +25,7 @@ var xp_bar: ExperienceBar
 var inventory: Inventory
 var equipment_container: EquipmentContainer
 var selected_class: int
+var player_bars: EntityBars
 
 
 func _ready():
@@ -47,3 +48,4 @@ func initialize(root: Node = get_tree().current_scene):
 	xp_bar = root.get_node("%ExperienceBar")
 	inventory = root.get_node("%InventoryContainer").get_node("%Inventory")
 	equipment_container = root.get_node("%EquipmentContainer")
+	player_bars = root.get_node("%EntityBars")

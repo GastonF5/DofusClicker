@@ -9,13 +9,9 @@ var pdv_label: Label
 var player_entity: Entity
 var health_timer: Node
 
-var player_bars: EntityBars
-var hp_bar: CustomBar:
-	get: return player_bars.hp_bar
-var pa_bar: CustomBar:
-	get: return player_bars.pa_bar
-var pm_bar: CustomBar:
-	get: return player_bars.pm_bar
+var hp_bar: CustomBar
+var pa_bar: CustomBar
+var pm_bar: CustomBar
 
 var item_description: DescriptionPopUp
 var spell_description: DescriptionPopUp
@@ -35,7 +31,7 @@ var max_pm: int:
 
 var max_hp: int:
 	set(value):
-		player_entity.hp_bar.cval += value - max_hp
+		player_entity.hp_bar.cval = value
 		max_hp = value
 		update_pdv()
 
@@ -53,7 +49,7 @@ var plates: Array[EntityContainer]
 
 
 func reset():
-	player_bars = null
+	player_entity = null
 	punch_res = null
 	spell_container = null
 	pdv_label = null
@@ -69,7 +65,6 @@ func reset():
 
 
 func initialize():
-	player_bars = get_tree().current_scene.get_node("%EntityBars")
 	punch_res = load("res://resources/spells/punch.tres")
 	spell_container = Globals.spells_container.get_node("%SpellContainer")
 	pdv_label = Globals.stats_container.get_node("%HPAmount")
@@ -113,15 +108,19 @@ func _process(_delta):
 
 
 func init_player_entity():
+	hp_bar = Globals.player_bars.hp_bar
+	pa_bar = Globals.player_bars.pa_bar
+	pm_bar = Globals.player_bars.pm_bar
 	player_entity = Entity.new()
 	player_entity.name = "Player"
+	player_entity.is_player = true
 	player_entity.init()
-	add_child(player_entity)
-	player_entity.attack_callable = player_attack
 	max_hp = 50
 	max_pa = 6
 	max_pm = 3
 	init_bars()
+	add_child(player_entity)
+	player_entity.attack_callable = player_attack
 
 
 func init_bars():
