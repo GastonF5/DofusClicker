@@ -246,7 +246,8 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/Control"]
+[node name="HeaderButtons" type="HBoxContainer" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/Control"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -256,7 +257,7 @@ grow_vertical = 2
 theme_override_constants/separation = 15
 alignment = 1
 
-[node name="ChangeClassButton" type="Button" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/Control/HBoxContainer"]
+[node name="ChangeClassButton" type="Button" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/Control/HeaderButtons"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -268,7 +269,7 @@ theme = ExtResource("15_qjurg")
 icon = ExtResource("16_6pvmy")
 icon_alignment = 1
 
-[node name="SaveButton" type="Button" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/Control/HBoxContainer"]
+[node name="SaveButton" type="Button" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/Control/HeaderButtons"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -280,7 +281,7 @@ theme = ExtResource("15_qjurg")
 icon = ExtResource("17_fqerk")
 icon_alignment = 1
 
-[node name="QuitButton" type="Button" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/Control/HBoxContainer"]
+[node name="QuitButton" type="Button" parent="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/Control/HeaderButtons"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -493,8 +494,8 @@ visible = false
 unique_name_in_owner = true
 visible = false
 
-[connection signal="button_up" from="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/Control/HBoxContainer/ChangeClassButton" to="MainMenu/MainMenu" method="_on_change_class_button_button_up"]
-[connection signal="button_up" from="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/Control/HBoxContainer/SaveButton" to="MainMenu/MainMenu" method="_on_save_button_button_up"]
-[connection signal="button_up" from="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/Control/HBoxContainer/QuitButton" to="MainMenu/MainMenu" method="_on_quit_button_button_up"]
+[connection signal="button_up" from="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/Control/HeaderButtons/ChangeClassButton" to="MainMenu/MainMenu" method="_on_change_class_button_button_up"]
+[connection signal="button_up" from="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/Control/HeaderButtons/SaveButton" to="MainMenu/MainMenu" method="_on_save_button_button_up"]
+[connection signal="button_up" from="GUI/Main/HBC/MiddleContainer/VBC/MainPanel/Control/HeaderButtons/QuitButton" to="MainMenu/MainMenu" method="_on_quit_button_button_up"]
 [connection signal="mouse_entered" from="GUI/Main/HBC/MiddleContainer/VBC/ExperienceBar" to="GUI/Main/HBC/MiddleContainer/VBC/ExperienceBar" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="GUI/Main/HBC/MiddleContainer/VBC/ExperienceBar" to="GUI/Main/HBC/MiddleContainer/VBC/ExperienceBar" method="_on_mouse_exited"]

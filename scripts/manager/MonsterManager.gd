@@ -39,6 +39,8 @@ func initialize():
 
 func start_fight():
 	GameManager.in_fight = true
+	for button in get_tree().current_scene.get_node("%HeaderButtons").get_children():
+		button.disabled = true
 	console.log_info("Le combat commence")
 	Globals.area_peeker.back_button.disabled = true
 	Globals.spell_bar.set_weapon_pb_ready(true)
@@ -61,6 +63,8 @@ func start_fight():
 func end_fight():
 	if GameManager.in_fight:
 		GameManager.in_fight = false
+		for button in get_tree().current_scene.get_node("%HeaderButtons").get_children():
+			button.disabled = false
 		if monsters.filter(func(m): return !m.dying).is_empty():
 			console.log_info("Combat terminé")
 		Globals.xp_bar.gain_xp(xp_to_gain)
