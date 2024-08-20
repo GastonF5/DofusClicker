@@ -32,8 +32,10 @@ func initialize():
 	reset_button.button_up.connect(reset_points)
 	update_points_label()
 	Globals.xp_bar.lvl_up.connect(on_lvl_up)
-	EquipmentManager.equiped.connect(on_equiped)
-	EquipmentManager.desequiped.connect(on_desequiped)
+	if !EquipmentManager.equiped.is_connected(on_equiped):
+		EquipmentManager.equiped.connect(on_equiped)
+	if !EquipmentManager.desequiped.is_connected(on_desequiped):
+		EquipmentManager.desequiped.connect(on_desequiped)
 	super()
 
 
@@ -121,7 +123,7 @@ func on_lvl_up():
 func get_caracteristique_for_type(type: StatType) -> Caracteristique:
 	var carac = caracteristiques.filter(func(c): return c.type == type)
 	if carac.size() != 1:
-		Globals.console.log_error("Plus d'une caractéristique a été trouvée pour le type : " + StatType.find_key(type))
+		#Globals.console.log_error("Plus d'une caractéristique a été trouvée pour le type : " + StatType.find_key(type))
 		return null
 	return carac[0]
 
