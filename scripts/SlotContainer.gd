@@ -45,6 +45,7 @@ func slot_is_empty(slot):
 	return get_item(slot) == null
 
 
+## Ne fonctionne pas pour la SpellBar
 func get_item(slot: Node):
 	var item = null
 	if slot.get_child_count() > 0:

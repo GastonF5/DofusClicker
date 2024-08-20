@@ -66,7 +66,13 @@ func lose_fight():
 
 func change_class():
 	await Globals.loading_transition.fade_up()
+	for slot in Globals.spell_bar.slots:
+		if slot.get_child_count() == 1:
+			Globals.spell_bar.delete_spell(slot.get_child(0))
 	class_peeker.visible = true
+	for button: Button in class_peeker.buttons:
+		button.set_pressed_no_signal(false)
+	class_peeker.select_class(0)
 	await Globals.loading_transition.fade_out()
 
 
