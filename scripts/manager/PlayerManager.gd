@@ -170,7 +170,7 @@ func create_description_popup():
 	for description in [item_description, spell_description, entity_description]:
 		description.visible = false
 		description.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		var description_container = get_tree().current_scene.get_node("%DescriptionContainer")
+		var description_container = Globals.game.get_node("%DescriptionContainer")
 		description_container.add_child(description)
 
 

@@ -1,6 +1,10 @@
 extends Node
 
 
+func _ready():
+	Globals.game.get_node("%SaveButton").button_up.connect(save)
+
+
 func save():
 	var save_res = SaveResource.create()
 	save_res.xp_amount = Globals.xp_bar.get_total_xp()

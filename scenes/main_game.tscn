@@ -1,0 +1,470 @@
+[gd_scene load_steps=45 format=3 uid="uid://dyp84yxkk1f3d"]
+
+[ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="1_fefji"]
+[ext_resource type="Texture2D" uid="uid://dtp2ktsnvjk8w" path="res://assets/common/window/bg_product.jpg" id="2_3a1je"]
+[ext_resource type="PackedScene" uid="uid://humcuoo3q2tn" path="res://scenes/equipment/equipment_container.tscn" id="3_0bhgt"]
+[ext_resource type="Texture2D" uid="uid://cwoycdemjcbuy" path="res://assets/window_icon/caracteristiques.png" id="4_25c6h"]
+[ext_resource type="Texture2D" uid="uid://bx13bnw5chi1h" path="res://assets/window_icon/sorts.png" id="5_u2k5p"]
+[ext_resource type="Texture2D" uid="uid://cakxs23d4ilwk" path="res://assets/window_icon/fight_info.png" id="6_mn6ew"]
+[ext_resource type="Script" path="res://scripts/CustomTabContainer.gd" id="7_oobq8"]
+[ext_resource type="PackedScene" uid="uid://cp14q5ermx6mo" path="res://scenes/stats/stats_container.tscn" id="8_bphf0"]
+[ext_resource type="PackedScene" uid="uid://lce7lc5iumm6" path="res://scenes/spell/spells_container.tscn" id="9_nnu4b"]
+[ext_resource type="Texture2D" uid="uid://0ujq6wd2dvfm" path="res://assets/common/window/window_green_background.jpg" id="10_ts0qg"]
+[ext_resource type="PackedScene" uid="uid://v3e3pddsya44" path="res://scenes/console.tscn" id="11_lwfc5"]
+[ext_resource type="Texture2D" uid="uid://dtnvde1gv6735" path="res://assets/classes/logo_transparent/logo_transparent_1.png" id="12_6p4fb"]
+[ext_resource type="PackedScene" uid="uid://ijqxn7khforp" path="res://scenes/areas/area_peeker.tscn" id="13_yvj55"]
+[ext_resource type="PackedScene" uid="uid://dl2edw32vnxff" path="res://scenes/entity/entity_container.tscn" id="14_2q4g1"]
+[ext_resource type="Theme" uid="uid://fc48wn3u4jqk" path="res://resources/themes/button.tres" id="15_asvbw"]
+[ext_resource type="Texture2D" uid="uid://cr4dpiri4mevk" path="res://assets/btn_icon/btnIcon_refresh.png" id="16_lmloe"]
+[ext_resource type="Texture2D" uid="uid://caw2ggvj6j1kb" path="res://assets/btn_icon/btnIcon_parchment.png" id="17_y2bwi"]
+[ext_resource type="Texture2D" uid="uid://dlogx8k6w4uq1" path="res://assets/btn_icon/btnIcon_house.png" id="18_5tqnr"]
+[ext_resource type="Texture2D" uid="uid://bov74ckekhf83" path="res://assets/common/block/block_border.png" id="19_mc1gy"]
+[ext_resource type="Texture2D" uid="uid://dky7mxoyl8fbb" path="res://assets/hud/background_hud.png" id="20_g6nqe"]
+[ext_resource type="PackedScene" uid="uid://dr1xqccheukcc" path="res://scenes/bars/entity_bars.tscn" id="21_c15xm"]
+[ext_resource type="FontFile" uid="uid://duac7keqvubh2" path="res://assets/font/Tahoma Regular font.ttf" id="22_acdog"]
+[ext_resource type="Texture2D" uid="uid://clxiokh7y7tl6" path="res://assets/common/button/btn_greenLargeBorder_normal.png" id="23_73odx"]
+[ext_resource type="Texture2D" uid="uid://bdtpetmi38ekm" path="res://assets/common/button/btn_greenLargeBorder_over.png" id="24_jppq1"]
+[ext_resource type="Texture2D" uid="uid://l5x41vqt4blf" path="res://assets/common/button/btn_greenLargeBorder_pressed.png" id="25_gye0r"]
+[ext_resource type="Texture2D" uid="uid://dne08ij0lq2cn" path="res://assets/common/button/btn_greenLargeBorder_disabled.png" id="26_5vd1m"]
+[ext_resource type="PackedScene" uid="uid://c74kvimoxv1i" path="res://scenes/spell/spell_bar.tscn" id="27_addeo"]
+[ext_resource type="Texture2D" uid="uid://cl71pm2t281ug" path="res://assets/icons/XPBonus5.png" id="28_44c3r"]
+[ext_resource type="Theme" uid="uid://ctf5aaqx8jyeo" path="res://resources/themes/experience_bar.tres" id="29_1pia2"]
+[ext_resource type="Script" path="res://scripts/experience/ExperienceBar.gd" id="30_x1mlq"]
+[ext_resource type="PackedScene" uid="uid://dacg0tcpohas3" path="res://scenes/jobs/jobs_container.tscn" id="31_jnct6"]
+[ext_resource type="PackedScene" uid="uid://cuvrxfxt4hxgo" path="res://scenes/inventory/inventory_container.tscn" id="32_r1u5r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4qy8r"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_grw1v"]
+texture = ExtResource("10_ts0qg")
+expand_margin_top = 9.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_efp50"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3iahd"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_488av"]
+texture = ExtResource("19_mc1gy")
+texture_margin_left = 7.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 7.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fempj"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nfdc8"]
+texture = ExtResource("23_73odx")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fjntk"]
+texture = ExtResource("24_jppq1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ohgqn"]
+texture = ExtResource("25_gye0r")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8bo48"]
+texture = ExtResource("26_5vd1m")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_du4k8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vjwvv"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_fefji")
+
+[node name="HBC" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="LeftSide" type="PanelContainer" parent="HBC"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_4qy8r")
+
+[node name="LeftBackground" type="TextureRect" parent="HBC/LeftSide"]
+clip_contents = true
+layout_mode = 2
+texture = ExtResource("2_3a1je")
+
+[node name="VSplitContainer" type="VSplitContainer" parent="HBC/LeftSide"]
+layout_mode = 2
+dragger_visibility = 1
+
+[node name="EquipmentContainer" parent="HBC/LeftSide/VSplitContainer" instance=ExtResource("3_0bhgt")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="VBC" type="VBoxContainer" parent="HBC/LeftSide/VSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.5
+theme_override_constants/separation = 0
+
+[node name="TabBar" type="TabBar" parent="HBC/LeftSide/VSplitContainer/VBC"]
+z_index = 1
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+tab_count = 3
+tab_alignment = 1
+tab_0/title = "Caractéristiques"
+tab_0/icon = ExtResource("4_25c6h")
+tab_1/title = "Sorts"
+tab_1/icon = ExtResource("5_u2k5p")
+tab_2/title = "Infos"
+tab_2/icon = ExtResource("6_mn6ew")
+
+[node name="CustomTabContainer" type="TabContainer" parent="HBC/LeftSide/VSplitContainer/VBC" node_paths=PackedStringArray("tab_bar")]
+layout_mode = 2
+size_flags_vertical = 3
+tabs_visible = false
+script = ExtResource("7_oobq8")
+tab_bar = NodePath("../TabBar")
+
+[node name="Stats" parent="HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer" instance=ExtResource("8_bphf0")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Sorts" parent="HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer" instance=ExtResource("9_nnu4b")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Infos" type="Panel" parent="HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.5
+theme_override_styles/panel = SubResource("StyleBoxTexture_grw1v")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Infos"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Console" parent="HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer/Infos/MarginContainer" instance=ExtResource("11_lwfc5")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="MiddleContainer" type="PanelContainer" parent="HBC"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="MiddleBackground" type="TextureRect" parent="HBC/MiddleContainer"]
+self_modulate = Color(0.439216, 0.439216, 0.439216, 1)
+clip_contents = true
+layout_mode = 2
+texture = ExtResource("2_3a1je")
+
+[node name="ClassTexture" type="TextureRect" parent="HBC/MiddleContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 650)
+layout_mode = 2
+size_flags_vertical = 8
+texture = ExtResource("12_6p4fb")
+expand_mode = 3
+stretch_mode = 3
+
+[node name="VBC" type="VBoxContainer" parent="HBC/MiddleContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="AreaPeeker" parent="HBC/MiddleContainer/VBC" instance=ExtResource("13_yvj55")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="MainPanel" type="PanelContainer" parent="HBC/MiddleContainer/VBC"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_efp50")
+
+[node name="MonstersContainer" type="HBoxContainer" parent="HBC/MiddleContainer/VBC/MainPanel"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="Space" type="Control" parent="HBC/MiddleContainer/VBC/MainPanel/MonstersContainer"]
+layout_mode = 2
+
+[node name="Container1" parent="HBC/MiddleContainer/VBC/MainPanel/MonstersContainer" instance=ExtResource("14_2q4g1")]
+layout_mode = 2
+
+[node name="Container2" parent="HBC/MiddleContainer/VBC/MainPanel/MonstersContainer" instance=ExtResource("14_2q4g1")]
+layout_mode = 2
+
+[node name="Container3" parent="HBC/MiddleContainer/VBC/MainPanel/MonstersContainer" instance=ExtResource("14_2q4g1")]
+layout_mode = 2
+
+[node name="Container4" parent="HBC/MiddleContainer/VBC/MainPanel/MonstersContainer" instance=ExtResource("14_2q4g1")]
+layout_mode = 2
+
+[node name="Space2" type="Control" parent="HBC/MiddleContainer/VBC/MainPanel/MonstersContainer"]
+layout_mode = 2
+
+[node name="DescriptionContainer" type="PanelContainer" parent="HBC/MiddleContainer/VBC/MainPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxEmpty_3iahd")
+
+[node name="Control" type="Control" parent="HBC/MiddleContainer/VBC/MainPanel"]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="HeaderButtons" type="HBoxContainer" parent="HBC/MiddleContainer/VBC/MainPanel/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="ChangeClassButton" type="Button" parent="HBC/MiddleContainer/VBC/MainPanel/Control/HeaderButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+tooltip_text = "Changer de classe"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource("15_asvbw")
+icon = ExtResource("16_lmloe")
+icon_alignment = 1
+
+[node name="SaveButton" type="Button" parent="HBC/MiddleContainer/VBC/MainPanel/Control/HeaderButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+tooltip_text = "Sauvegarder"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource("15_asvbw")
+icon = ExtResource("17_y2bwi")
+icon_alignment = 1
+
+[node name="QuitButton" type="Button" parent="HBC/MiddleContainer/VBC/MainPanel/Control/HeaderButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+tooltip_text = "Retour au menu principal"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource("15_asvbw")
+icon = ExtResource("18_5tqnr")
+icon_alignment = 1
+
+[node name="PlayerBarContainer" type="Panel" parent="HBC/MiddleContainer/VBC"]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2
+size_flags_vertical = 8
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_488av")
+
+[node name="PlayerBarBackground" type="TextureRect" parent="HBC/MiddleContainer/VBC/PlayerBarContainer"]
+layout_mode = 2
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 870.0
+offset_bottom = 149.833
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("20_g6nqe")
+expand_mode = 5
+
+[node name="HUD" type="Panel" parent="HBC/MiddleContainer/VBC/PlayerBarContainer"]
+layout_mode = 2
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 870.0
+offset_bottom = 149.833
+theme_override_styles/panel = SubResource("StyleBoxEmpty_fempj")
+
+[node name="EntityBars" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD" instance=ExtResource("21_c15xm")]
+unique_name_in_owner = true
+layout_mode = 2
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 138.0
+offset_bottom = 33.0
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(1.5, 1.5)
+
+[node name="StartFightButton" type="Button" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 207.5
+offset_top = 6.0
+offset_right = 493.5
+offset_bottom = 101.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("22_acdog")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxTexture_nfdc8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fjntk")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ohgqn")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_8bo48")
+text = "Lancer le combat"
+
+[node name="AutoStartFight" type="Control" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 0
+offset_left = 323.5
+offset_top = 104.0
+offset_right = 323.5
+offset_bottom = 104.0
+
+[node name="HBC" type="HBoxContainer" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/AutoStartFight"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CheckBox" type="CheckBox" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/AutoStartFight/HBC"]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+
+[node name="Label" type="Label" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/AutoStartFight/HBC"]
+layout_mode = 2
+text = "Auto start fight"
+
+[node name="ReloadData" type="Button" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 100.0
+grow_vertical = 0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+text = "Reload data"
+
+[node name="SpellBar" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD" instance=ExtResource("27_addeo")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+
+[node name="AspectRatioContainer" type="PanelContainer" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_du4k8")
+
+[node name="XPContainer" type="HBoxContainer" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/AspectRatioContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="Space" type="Control" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/AspectRatioContainer/XPContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="XPTexture" type="TextureRect" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/AspectRatioContainer/XPContainer"]
+layout_mode = 2
+texture = ExtResource("28_44c3r")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Space2" type="Control" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/AspectRatioContainer/XPContainer"]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+
+[node name="LvlLabel" type="Label" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/AspectRatioContainer/XPContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Nv. 1"
+
+[node name="ExperienceBar" type="ProgressBar" parent="HBC/MiddleContainer/VBC" node_paths=PackedStringArray("lvl_label")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_vertical = 8
+theme = ExtResource("29_1pia2")
+value = 50.0
+allow_greater = true
+show_percentage = false
+script = ExtResource("30_x1mlq")
+lvl_label = NodePath("../PlayerBarContainer/HUD/AspectRatioContainer/XPContainer/LvlLabel")
+
+[node name="RightSide" type="PanelContainer" parent="HBC"]
+custom_minimum_size = Vector2(530, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vjwvv")
+
+[node name="RightBackground" type="TextureRect" parent="HBC/RightSide"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_3a1je")
+flip_h = true
+
+[node name="VSplitContainer" type="VSplitContainer" parent="HBC/RightSide"]
+layout_mode = 2
+theme_override_constants/separation = 0
+theme_override_constants/autohide = 0
+collapsed = true
+
+[node name="JobsContainer" parent="HBC/RightSide/VSplitContainer" instance=ExtResource("31_jnct6")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="InventoryContainer" parent="HBC/RightSide/VSplitContainer" instance=ExtResource("32_r1u5r")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[connection signal="mouse_entered" from="HBC/MiddleContainer/VBC/ExperienceBar" to="HBC/MiddleContainer/VBC/ExperienceBar" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="HBC/MiddleContainer/VBC/ExperienceBar" to="HBC/MiddleContainer/VBC/ExperienceBar" method="_on_mouse_exited"]

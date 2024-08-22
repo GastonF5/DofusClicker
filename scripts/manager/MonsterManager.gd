@@ -30,8 +30,8 @@ func reset():
 func initialize():
 	console = Globals.console
 	end_fight_callable = end_fight
-	start_fight_button = get_tree().current_scene.get_node("%StartFightButton")
-	auto_start_fight_checkbox = get_tree().current_scene.get_node("%AutoStartFight").get_node("HBC/CheckBox")
+	start_fight_button = Globals.game.get_node("%StartFightButton")
+	auto_start_fight_checkbox = Globals.game.get_node("%AutoStartFight").get_node("HBC/CheckBox")
 	start_fight_button.button_up.connect(start_fight)
 	start_fight_button.disabled = true
 	super()
@@ -39,7 +39,7 @@ func initialize():
 
 func start_fight():
 	GameManager.in_fight = true
-	for button in get_tree().current_scene.get_node("%HeaderButtons").get_children():
+	for button in Globals.game.get_node("%HeaderButtons").get_children():
 		button.disabled = true
 	console.log_info("Le combat commence")
 	Globals.area_peeker.back_button.disabled = true
@@ -63,7 +63,7 @@ func start_fight():
 func end_fight():
 	if GameManager.in_fight:
 		GameManager.in_fight = false
-		for button in get_tree().current_scene.get_node("%HeaderButtons").get_children():
+		for button in Globals.game.get_node("%HeaderButtons").get_children():
 			button.disabled = false
 		if monsters.filter(func(m): return !m.dying).is_empty():
 			console.log_info("Combat terminé")

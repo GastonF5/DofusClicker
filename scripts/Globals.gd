@@ -4,6 +4,7 @@ extends Node
 const area_black_list = [10, 29, 32, 973, 974, 975, 976, 977, 978, 980, 982]
 const debug := true
 
+var game: Node
 var quitting := false
 
 var class_peeker: ClassPeeker
@@ -33,19 +34,20 @@ func _ready():
 
 
 func initialize(root: Node = get_tree().current_scene):
+	game = root.get_node("%MainGame")
 	class_peeker = root.get_node("%ClassPeeker")
-	area_peeker = root.get_node("%AreaPeeker")
+	area_peeker = game.get_node("%AreaPeeker")
 	loading_screen = root.get_node("%LoadingScreen")
 	loading_transition = root.get_node("%LoadingTransition")
-	console = root.get_node("%Console")
-	class_texture_rect = root.get_node("%ClassTexture")
+	console = game.get_node("%Console")
+	class_texture_rect = game.get_node("%ClassTexture")
 	timers = root.get_node("%Timers")
 	over_ui = root.get_node("%OverUI")
-	stats_container = root.get_node("%Stats")
-	jobs_container = root.get_node("%JobsContainer")
-	spells_container = root.get_node("%Sorts")
-	spell_bar = root.get_node("%SpellBar")
-	xp_bar = root.get_node("%ExperienceBar")
-	inventory = root.get_node("%InventoryContainer").get_node("%Inventory")
-	equipment_container = root.get_node("%EquipmentContainer")
-	player_bars = root.get_node("%EntityBars")
+	stats_container = game.get_node("%Stats")
+	jobs_container = game.get_node("%JobsContainer")
+	spells_container = game.get_node("%Sorts")
+	spell_bar = game.get_node("%SpellBar")
+	xp_bar = game.get_node("%ExperienceBar")
+	inventory = game.get_node("%InventoryContainer").get_node("%Inventory")
+	equipment_container = game.get_node("%EquipmentContainer")
+	player_bars = game.get_node("%EntityBars")

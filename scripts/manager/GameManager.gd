@@ -8,6 +8,8 @@ var in_fight := false
 var managers = [StatsManager, PlayerManager, MonsterManager, EquipmentManager, RecipeManager]
 
 func _ready():
+	Globals.game.get_node("%ChangeClassButton").button_up.connect(change_class)
+	Globals.game.get_node("%QuitButton").button_up.connect(reload_game)
 	initialize()
 
 
