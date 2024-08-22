@@ -205,7 +205,7 @@ var paliers = [[1,0,0],
 
 @export var lvl_label: Label
 
-var cur_lvl: int
+var cur_lvl := 1
 var tooltip: Tooltip
 
 signal lvl_up
