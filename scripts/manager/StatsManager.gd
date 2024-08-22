@@ -118,6 +118,8 @@ func on_lvl_up():
 	points += 5
 	PlayerManager.max_hp += 5
 	update_points_label()
+	for spell_button: SpellButton in Globals.spells_container.get_node("%SpellContainer").get_children():
+		spell_button._set_disabled()
 
 
 func get_caracteristique_for_type(type: StatType) -> Caracteristique:

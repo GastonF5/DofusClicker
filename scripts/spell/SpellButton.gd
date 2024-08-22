@@ -6,6 +6,7 @@ const unselected_theme = preload("res://resources/themes/spell_button/unselected
 const selected_theme = preload("res://resources/themes/spell_button/selected.tres")
 
 @export var spell_name: Label
+@export var lvl_lbl: Label
 
 var _spell: Spell
 var spell_bar: SpellBar
@@ -17,6 +18,8 @@ func init(_spell_bar: SpellBar, spell: Spell):
 	$HBC.move_child(_spell, 1)
 	spell_name.text = _spell.resource.name
 	spell_bar = _spell_bar
+	lvl_lbl.text += str(spell.resource.level)
+	_set_disabled()
 
 
 func _on_button_up():
@@ -37,3 +40,8 @@ func _on_mouse_entered():
 func _on_mouse_exited():
 	if !PlayerManager.dragged_item:
 		PlayerManager.spell_description.visible = false
+
+
+func _set_disabled():
+	disabled = _spell.resource.level > Globals.xp_bar.cur_lvl
+	_spell.modulate = Color.GRAY if disabled else Color.WHITE

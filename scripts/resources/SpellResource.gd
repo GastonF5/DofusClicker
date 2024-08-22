@@ -11,6 +11,7 @@ extends Resource
 @export var img_url: String
 
 @export_category("")
+@export var level: int
 @export var pa_cost: int
 @export var per_crit: float
 @export var cooldown: float
