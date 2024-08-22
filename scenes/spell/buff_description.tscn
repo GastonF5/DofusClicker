@@ -1,0 +1,118 @@
+[gd_scene load_steps=7 format=3 uid="uid://deuhi7upafefa"]
+
+[ext_resource type="Script" path="res://scripts/DescriptionPopUp.gd" id="1_mpfx8"]
+[ext_resource type="Texture2D" uid="uid://dc4kur4fk7phx" path="res://assets/common/block/block_border_scratch.png" id="1_rymjv"]
+[ext_resource type="Texture2D" uid="uid://d1oo2xrycpenx" path="res://assets/spells/punch.png" id="2_ykw6g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ot1n"]
+bg_color = Color(0.196078, 0.196078, 0.196078, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vm4tf"]
+texture = ExtResource("1_rymjv")
+texture_margin_left = 15.0
+texture_margin_top = 10.0
+texture_margin_right = 15.0
+texture_margin_bottom = 10.0
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="Theme" id="Theme_gsgn7"]
+
+[node name="BuffDescription" type="PanelContainer" node_paths=PackedStringArray("texture", "name_label", "description_label", "effects_label", "effects_container")]
+offset_right = 370.0
+offset_bottom = 145.0
+mouse_filter = 2
+script = ExtResource("1_mpfx8")
+texture = NodePath("MarginContainer/HBC/BuffTexture")
+name_label = NodePath("MarginContainer/HBC/VBC/HeaderContainer/Name")
+description_label = NodePath("MarginContainer/HBC/VBC/Description")
+effects_label = NodePath("MarginContainer/HBC/VBC/EffectsLabelContainer/EffetsLabel")
+effects_container = NodePath("MarginContainer/HBC/VBC/EffectsContainer/EffectsContainer")
+
+[node name="Background" type="PanelContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0ot1n")
+
+[node name="Scratch" type="Panel" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_vm4tf")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBC" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="BuffTexture" type="TextureRect" parent="MarginContainer/HBC"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_vertical = 0
+texture = ExtResource("2_ykw6g")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="VBC" type="VBoxContainer" parent="MarginContainer/HBC"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HeaderContainer" type="HBoxContainer" parent="MarginContainer/HBC/VBC"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Name" type="RichTextLabel" parent="MarginContainer/HBC/VBC/HeaderContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+mouse_filter = 2
+theme = SubResource("Theme_gsgn7")
+text = "Nom du buff"
+fit_content = true
+
+[node name="Description" type="RichTextLabel" parent="MarginContainer/HBC/VBC"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+mouse_filter = 2
+theme = SubResource("Theme_gsgn7")
+text = "Temps restant : 15 secondes"
+fit_content = true
+
+[node name="Space2" type="Control" parent="MarginContainer/HBC/VBC"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="EffectsLabelContainer" type="HBoxContainer" parent="MarginContainer/HBC/VBC"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Space" type="Control" parent="MarginContainer/HBC/VBC/EffectsLabelContainer"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="EffetsLabel" type="Label" parent="MarginContainer/HBC/VBC/EffectsLabelContainer"]
+layout_mode = 2
+text = "Effets"
+
+[node name="EffectsContainer" type="HBoxContainer" parent="MarginContainer/HBC/VBC"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Space" type="Control" parent="MarginContainer/HBC/VBC/EffectsContainer"]
+custom_minimum_size = Vector2(16, 10)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="EffectsContainer" type="VBoxContainer" parent="MarginContainer/HBC/VBC/EffectsContainer"]
+layout_mode = 2
+mouse_filter = 2

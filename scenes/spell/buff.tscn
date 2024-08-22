@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=3 uid="uid://s0e104w182r8"]
+
+[ext_resource type="Script" path="res://scripts/spell/Buff.gd" id="1_jrnbt"]
+[ext_resource type="Texture2D" uid="uid://b8opp26pghsup" path="res://assets/spells/bg_spell_icon.png" id="2_tnnym"]
+[ext_resource type="Texture2D" uid="uid://d1oo2xrycpenx" path="res://assets/spells/punch.png" id="3_klmo5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jqn57"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5e4ak"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_chq3w"]
+bg_color = Color(0, 0, 0, 0.505882)
+
+[node name="Buff" type="PanelContainer" node_paths=PackedStringArray("spell_texture", "pb")]
+custom_minimum_size = Vector2(64, 64)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_jqn57")
+script = ExtResource("1_jrnbt")
+spell_texture = NodePath("MarginContainer/SpellTexture")
+pb = NodePath("MarginContainer/SpellTexture/ProgressBar")
+
+[node name="Background" type="TextureRect" parent="."]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_tnnym")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="SpellTexture" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_klmo5")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/SpellTexture"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_5e4ak")
+theme_override_styles/fill = SubResource("StyleBoxFlat_chq3w")
+value = 50.0
+fill_mode = 3
+show_percentage = false

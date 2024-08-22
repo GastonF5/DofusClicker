@@ -39,6 +39,7 @@ func initialize():
 
 func start_fight():
 	GameManager.in_fight = true
+	PlayerManager.static_max_hp = PlayerManager.max_hp
 	for button in Globals.game.get_node("%HeaderButtons").get_children():
 		button.disabled = true
 	console.log_info("Le combat commence")
@@ -63,6 +64,9 @@ func start_fight():
 func end_fight():
 	if GameManager.in_fight:
 		GameManager.in_fight = false
+		GameManager.end_fight.emit()
+		PlayerManager.max_hp = PlayerManager.static_max_hp
+		PlayerManager.static_max_hp = 0
 		for button in Globals.game.get_node("%HeaderButtons").get_children():
 			button.disabled = false
 		if monsters.filter(func(m): return !m.dying).is_empty():

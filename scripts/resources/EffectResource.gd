@@ -36,6 +36,7 @@ enum TargetType {
 
 @export_group("Bonus & Retrait")
 @export var caracteristic: Caracteristique.Type
+var texture: Texture2D
 
 @export_group("Special")
 @export var method_name: StringName

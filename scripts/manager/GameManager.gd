@@ -4,6 +4,8 @@ var class_peeker: ClassPeeker
 
 var in_fight := false
 
+signal end_fight
+
 
 var managers = [StatsManager, PlayerManager, MonsterManager, EquipmentManager, RecipeManager]
 

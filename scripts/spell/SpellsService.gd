@@ -72,6 +72,8 @@ static func perform_bonus(_caster: Entity, target: Entity, effect: EffectResourc
 			carac.amount += amount
 	console.log_bonus(target, amount, effect.get_caracteristic_label(), effect.time)
 	if effect.time != 0:
+		if target.is_player:
+			Buff.instantiate(effect, amount, Globals.buffs_container)
 		var timer = create_timer(effect.time, "BonusTimer")
 		await timer.timeout
 		timer.queue_free()

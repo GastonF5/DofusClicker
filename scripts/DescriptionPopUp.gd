@@ -19,15 +19,42 @@ const BONUS_CRIT := "(+%d Dommages)"
 
 @export var separator: TextureRect
 
+var _timer: Timer
+
+
+func reset():
+	_timer = null
+	texture.texture = null
+	name_label.text = ""
+	if description_label:
+		description_label.text = ""
+	if areas_label:
+		areas_label.text = ""
+	set_pa_visibility(false)
+	if pa_cost_label:
+		pa_cost_label.text = ""
+	if separator:
+		separator.visible = false
+	clear_effects()
+
+
+func _process(_delta):
+	if visible and _timer:
+		compute_description_label("Temps : %d secondes" % int(ceil(_timer.time_left)))
+
+
+func set_pa_visibility(_visible: bool):
+	if pa_cost_label:
+		pa_cost_label.get_parent().visible = _visible
+
 
 func init_item(item_res: ItemResource, low: bool, stats: Array[StatResource] = []):
+	reset()
 	# Nom et texture
-	separator.visible = false
 	set_crit_container()
 	name = item_res.name.to_pascal_case() + "Description"
 	texture.texture = item_res.get_texture(low)
 	compute_name_label(item_res.name, item_res.id, item_res.level)
-	clear_effects()
 	# Statistiques de l'item
 	if !stats.is_empty():
 		for effect in stats:
@@ -53,16 +80,29 @@ func init_item(item_res: ItemResource, low: bool, stats: Array[StatResource] = [
 
 
 func init_spell(spell_res: SpellResource):
+	reset()
 	name = spell_res.name.to_pascal_case() + "Description"
 	texture.texture = spell_res.texture
+	set_pa_visibility(true)
 	pa_cost_label.text = str(spell_res.pa_cost)
 	compute_name_label(spell_res.name, spell_res.id)
 	compute_description_label(spell_res.description)
-	clear_effects()
 	for effect in spell_res.effects:
 		if effect.visible_in_description and effect.get_effect_label(0) != "ERREUR":
 			add_spell_effect_label(effect)
 	set_effect_visibility(effects_container.get_child_count() != 0)
+	set_mouse_ignore()
+	visible = true
+
+
+func init_buff(effect: EffectResource, amount: int, timer: Timer):
+	reset()
+	name = "Buff"
+	texture.texture = effect.texture
+	compute_name_label(effect.resource_name, 0)
+	_timer = timer
+	clear_effects()
+	add_buff_label(effect, amount)
 	set_mouse_ignore()
 	visible = true
 
@@ -140,6 +180,13 @@ func add_spell_effect_label(effect_res: EffectResource):
 	effects_container.add_child(label)
 
 
+func add_buff_label(effect_res: EffectResource, amount: int):
+	var label = Label.new()
+	label.text = "%d %s" % [amount, effect_res.get_caracteristic_label()]
+	label.add_theme_color_override("font_color", effect_res.get_label_color())
+	effects_container.add_child(label)
+
+
 func set_effect_visibility(is_effect_visible: bool):
 	effects_label.get_parent().visible = is_effect_visible
 
@@ -155,3 +202,7 @@ func set_crit_container(weapon_res: WeaponResource = null):
 	else:
 		proba_crit.text = ""
 		bonus_crit.text = ""
+
+
+func hide_description():
+	visible = false

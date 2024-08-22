@@ -21,6 +21,7 @@ var jobs_container: VBoxContainer
 
 var spells_container: Panel
 var spell_bar: SpellBar
+var buffs_container: HBoxContainer
 
 var xp_bar: ExperienceBar
 var inventory: Inventory
@@ -51,3 +52,4 @@ func initialize(root: Node = get_tree().current_scene):
 	inventory = game.get_node("%InventoryContainer").get_node("%Inventory")
 	equipment_container = game.get_node("%EquipmentContainer")
 	player_bars = game.get_node("%EntityBars")
+	buffs_container = game.get_node("%BuffsContainer")

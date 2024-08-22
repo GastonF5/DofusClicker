@@ -16,6 +16,7 @@ var pm_bar: CustomBar
 var item_description: DescriptionPopUp
 var spell_description: DescriptionPopUp
 var entity_description: DescriptionPopUp
+var buff_description: DescriptionPopUp
 var dragged_item: Item
 var dragged_spell: Spell
 
@@ -34,6 +35,8 @@ var max_hp: int:
 		player_entity.hp_bar.cval = value
 		max_hp = value
 		update_pdv()
+
+var static_max_hp: int
 
 var selected_spell: Spell
 
@@ -59,6 +62,7 @@ func reset():
 	item_description = null
 	spell_description = null
 	entity_description = null
+	buff_description = null
 	dragged_item = null
 	dragged_spell = null
 	super()
@@ -90,7 +94,9 @@ func init_spells():
 		spell_container.remove_child(spell)
 		spell.queue_free()
 	var selected_class = Globals.class_peeker.classes[Globals.selected_class]
-	for spell_res in FileLoader.get_spell_resources(selected_class):
+	var spells = FileLoader.get_spell_resources(selected_class)
+	spells.sort_custom(func(a, b): return a.level <= b.level)
+	for spell_res in spells:
 		var spell_button = FileLoader.get_packed_scene("spell/spell_button").instantiate()
 		spell_container.add_child(spell_button)
 		spell_button.init(Globals.spell_bar, Spell.instantiate(spell_res, spell_button.get_node("HBC"), false))
@@ -167,7 +173,8 @@ func create_description_popup():
 	item_description = FileLoader.get_packed_scene("item/item_description").instantiate()
 	spell_description = FileLoader.get_packed_scene("spell/spell_description").instantiate()
 	entity_description = FileLoader.get_packed_scene("entity/entity_description").instantiate()
-	for description in [item_description, spell_description, entity_description]:
+	buff_description = FileLoader.get_packed_scene("spell/buff_description").instantiate()
+	for description in [item_description, spell_description, entity_description, buff_description]:
 		description.visible = false
 		description.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		var description_container = Globals.game.get_node("%DescriptionContainer")
