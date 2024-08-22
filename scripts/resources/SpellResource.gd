@@ -24,6 +24,8 @@ extends Resource
 func load_texture():
 	if texture:
 		return texture
+	if !img_url:
+		img_url = "https://api.dofusdb.fr/img/spells/sort_%d.png" % id
 	await API.await_for_request_completed(await API.request(img_url))
 	texture = API.get_texture(img_url)
 	return texture

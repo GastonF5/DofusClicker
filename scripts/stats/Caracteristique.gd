@@ -40,6 +40,7 @@ enum Type {
 	RES_POU,
 	RES_CRITIQUES,
 	RES_DOMMAGES,
+	PV,
 }
 
 enum Element {
@@ -49,11 +50,29 @@ enum Element {
 	EAU,
 	AIR,
 	NONE,
+	BEST,
 }
 
 static func get_element(id: int):
 	return Element.get(id)
 
+static func type_to_element(carac_type: Type) -> Element:
+	match carac_type:
+		Type.AGILITE: return Element.AIR
+		Type.CHANCE: return Element.EAU
+		Type.INTELLIGENCE: return Element.FEU
+		Type.FORCE: return Element.TERRE
+		_: return Element.NONE
+
+static func element_to_type(element: Element) -> Type:
+	match element:
+		Element.AIR: return Type.AGILITE
+		Element.EAU: return Type.CHANCE
+		Element.FEU: return Type.INTELLIGENCE
+		Element.TERRE: return Type.FORCE
+		_: push_error("Element %s not supported in this function" % Element.find_key(element))
+	# retourne PA par défaut, qui n'est pas une bonne valeur
+	return Type.PA
 
 @export var modifiable = true
 

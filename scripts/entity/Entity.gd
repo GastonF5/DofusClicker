@@ -47,6 +47,9 @@ func init_caracteristiques(caracs: Array[StatResource]):
 	for carac in caracs:
 		var new_carac: StatResource = carac.duplicate()
 		new_carac.init_amount()
+		var existing_carac = get_caracteristique_for_type(new_carac.type)
+		if existing_carac:
+			caracteristiques.erase(existing_carac)
 		caracteristiques.append(new_carac)
 
 
@@ -60,19 +63,49 @@ func init_spells(spell_ids: Array):
 
 
 func get_caracteristique_for_type(type: CaracType):
+	if type == CaracType.PV:
+		push_error("No characteristic available for type PV")
+		return null
 	var carac
 	if is_player:
 		return StatsManager.get_caracteristique_for_type(type)
 	else:
 		carac = caracteristiques.filter(func(c): return c.type == type)
-	if carac.size() != 1:
-		#push_error(NO_CARAC_FOUND % [CaracType.find_key(type), name])
+	if carac.size() == 0:
+		carac = StatResource.create(type, 0, 0)
+		carac.init_amount()
+		caracteristiques.append(carac)
+		return carac
+	if carac.size() > 1:
+		push_error("More than one characteristic has been found for type %s for entity %s" % [CaracType.find_key(type), name])
 		return null
 	return carac[0]
 
 
+func get_carac_amount_for_type(type: CaracType) -> int:
+	if type == CaracType.PV:
+		if is_player:
+			return PlayerManager.max_hp
+		return hp_bar.mval
+	else:
+		return get_caracteristique_for_type(type).amount
+
+
 func get_caracteristique_for_element(element: Element, dommages := false):
+	if element == Element.BEST:
+		element = get_best_element()
 	return get_caracteristique_for_type(StatsManager.get_type_for_element(element, dommages))
+
+
+func get_best_element() -> Element:
+	var amount := int(-INF)
+	var best
+	for type in [CaracType.AGILITE, CaracType.CHANCE, CaracType.INTELLIGENCE, CaracType.FORCE]:
+		var carac = get_caracteristique_for_type(type)
+		if carac.amount > amount:
+			amount = carac.amount
+			best = type
+	return Caracteristique.type_to_element(best)
 
 
 func set_caracteristique_amount(type: CaracType, new_amount: int):

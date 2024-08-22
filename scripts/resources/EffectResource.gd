@@ -29,6 +29,7 @@ enum TargetType {
 @export var type: Type
 @export var time: float
 @export var target_type: TargetType
+@export var show_time := true
 
 @export_group("Damage & Soin")
 @export var element: Caracteristique.Element
@@ -36,6 +37,7 @@ enum TargetType {
 
 @export_group("Bonus & Retrait")
 @export var caracteristic: Caracteristique.Type
+@export var pourcentage: bool
 var texture: Texture2D
 
 @export_group("Special")
@@ -57,10 +59,14 @@ func get_amount(crit: bool, grade: int) -> int:
 
 
 func get_element_label() -> String:
+	if element == Caracteristique.Element.BEST:
+		return "Meilleur Élement"
 	return Caracteristique.Element.find_key(element).to_pascal_case()
 
 
 func get_caracteristic_label() -> String:
+	if caracteristic == Caracteristique.Type.PV:
+		return "PV"
 	return StatResource.get_type_label(Caracteristique.Type.find_key(caracteristic))
 
 
@@ -84,17 +90,27 @@ func get_amount_label(grade: int) -> String:
 
 
 func get_effect_label(grade: int) -> String:
+	var result: String
+	if effect_label:
+		return compute_special_label(grade)
 	match type:
 		Type.DAMAGE, Type.SOIN:
-			return "%s %s" % [get_amount_label(grade), get_element_label()]
+			result = "%s %s" % [get_amount_label(grade), get_element_label()]
 		Type.BONUS:
-			return "%s %s" % [get_amount_label(grade), get_caracteristic_label()]
+			if !pourcentage:
+				result = "%s %s" % [get_amount_label(grade), get_caracteristic_label()]
+			else:
+				result = get_amount_label(grade) + "% " + get_caracteristic_label()
 		Type.RETRAIT:
-			return "- %s %s" % [get_amount_label(grade), get_caracteristic_label()]
-		Type.SPECIAL:
-			return compute_special_label(grade)
+			result = "- %s %s" % [get_amount_label(grade), get_caracteristic_label()]
 		_:
 			return "ERREUR"
+	if show_time:
+		if time == 0:
+			result += " (infini)"
+		else:
+			result += " (%d secondes)" % time
+	return result
 
 
 func compute_special_label(grade: int) -> String:

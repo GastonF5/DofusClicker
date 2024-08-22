@@ -18,6 +18,8 @@ static func perform_spell(caster: Entity, target: Entity, resource: SpellResourc
 	var crit = randf_range(0, 1) <= crit_amount
 	console.log_spell_cast(caster, resource, crit)
 	for effect: EffectResource in resource.effects:
+		if effect.type == EffectResource.Type.BONUS:
+			effect.texture = resource.texture
 		if count > max_count:
 			perform_effect(caster, get_targets(caster, target, effect.target_type), effect, crit, grade)
 		else:
@@ -45,21 +47,35 @@ static func perform_effect(caster: Entity, targets: Array[Entity], effect: Effec
 
 
 static func perform_damage(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
-	var amount = get_degats(caster, effect.get_amount(crit, grade), effect.element)
+	var element = effect.element
+	var amount: int
+	if element == Element.BEST:
+		var amounts := {}
+		for _elem in [Element.AIR, Element.EAU, Element.FEU, Element.TERRE]:
+			amounts[_elem] = get_degats(caster, effect.get_amount(crit, grade), _elem)
+		amount = amounts.values().max()
+		element = amounts.find_key(amount)
+	else:
+		amount = get_degats(caster, effect.get_amount(crit, grade), element)
 	if crit:
 		amount += caster.get_do_crit()
-	amount = target.take_damage(amount, effect.element)
+	amount = target.take_damage(amount, element)
 	if effect.lifesteal:
-		caster.take_damage(-round(amount / 2.0), effect.element)
+		caster.take_damage(-round(amount / 2.0), element)
 
 
 static func perform_soin(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
-	var amount = get_soin(caster, effect.get_amount(crit, grade), effect.element)
-	target.take_damage(-amount, effect.element)
+	var element = effect.element
+	if element == Element.BEST:
+		element = caster.get_best_element()
+	var amount = get_soin(caster, effect.get_amount(crit, grade), element)
+	target.take_damage(-amount, element)
 
 
-static func perform_bonus(_caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
+static func perform_bonus(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
 	var amount = effect.get_amount(crit, grade)
+	if effect.pourcentage:
+		amount = int(caster.get_carac_amount_for_type(effect.caracteristic) * (amount / 100.0))
 	var carac
 	match effect.caracteristic:
 		StatType.EROSION:
@@ -67,6 +83,8 @@ static func perform_bonus(_caster: Entity, target: Entity, effect: EffectResourc
 			target.erosion += amount
 		StatType.RES_DOMMAGES:
 			target.taken_damage_rate -= amount
+		StatType.PV:
+			add_pv_to_entity(target, amount)
 		_:
 			carac = target.get_caracteristique_for_type(effect.caracteristic)
 			carac.amount += amount
@@ -83,9 +101,10 @@ static func perform_bonus(_caster: Entity, target: Entity, effect: EffectResourc
 					target.erosion -= amount
 				StatType.RES_DOMMAGES:
 					target.taken_damage_rate += amount
+				StatType.PV:
+					add_pv_to_entity(target, -amount)
 				_:
 					carac.amount -= amount
-
 
 
 static func perform_retrait(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
@@ -108,15 +127,32 @@ static func perform_retrait(caster: Entity, target: Entity, effect: EffectResour
 static func perform_special(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
 	var callable = Callable(SpellsService, effect.method_name)
 	if callable:
-		callable.callv([caster, target, effect, crit, grade, effect.params])
+		callable.callv([caster, target, effect, crit, grade] + effect.params)
 	else:
-		console.log_error("%s not found in SpellsService")
+		console.log_error("%s not found in SpellsService" % callable.get_method())
 
 
 static func perform_random(_caster: Entity, _target: Entity, effect: EffectResource, _crit: bool, _grade: int):
 	count = 1
 	rand_count = randi_range(1, effect.nb_random_effects)
 	max_count = effect.nb_random_effects
+
+#region Spécial
+static func dommages_pourcentage_pv_caster(caster: Entity, target: Entity, effect: EffectResource, _crit: bool, grade: int):
+	var amount = caster.get_vitalite() * (effect.amounts[grade]._min / 100.0)
+	for targ in get_targets(caster, target, effect.target_type):
+		targ.take_damage(amount, effect.element)
+
+
+static func sacrifice_pourcentage_pv(caster: Entity, _target: Entity, effect: EffectResource, _crit: bool, grade: int):
+	var amount = caster.get_vitalite() * (effect.amounts[grade]._min / 100.0)
+	if caster.is_player:
+		PlayerManager.max_hp -= int(amount)
+		await GameManager.end_fight
+		PlayerManager.max_hp += int(amount)
+	else:
+		console.log_error("Target not supported")
+#endregion
 
 
 #region Ecaflip
@@ -210,4 +246,15 @@ static func get_targets(caster: Entity, target: Entity, type: EffectResource.Tar
 			randomize()
 			targets.append(monsters[randi_range(0, monsters.size() - 1)])
 	return targets
+
+
+static func add_pv_to_entity(entity: Entity, amount: int):
+	if entity.is_player:
+		PlayerManager.max_hp += amount
+	else:
+		entity.hp_bar.mval += amount
+
+
+static func create_buff():
+	pass
 #endregion
