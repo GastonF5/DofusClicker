@@ -106,7 +106,7 @@ func _process(_delta):
 	if !Globals.quitting:
 		if is_initialized and MonsterManager.monsters.is_empty() and player_entity.hp_bar.cval < max_hp:
 			if !health_timer:
-				health_timer = SpellsService.create_timer(1.0, "HealthTimer")
+				health_timer = SpellsService.create_timer(0.5, "HealthTimer")
 				await health_timer.timeout
 				player_entity.hp_bar.cval += 1
 				health_timer.queue_free()
