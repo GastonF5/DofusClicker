@@ -64,13 +64,14 @@ Vallée : glyphe dégâts + réduit dommages ennemis
 ## Sacrieur
 Passif : dommages plus importants en fonction des PV restants
 Mutilation : sacrifie une partie des PV pour gain puissance
-Épée vorace : invoque une épée qui vole de la vie dans l’élément neutre et soigne son invocateur
+#Épée vorace : invoque une épée qui vole de la vie dans l’élément neutre et soigne son invocateur
+Pacte de sang : augment la vitalité du lanceur
 Folie sanguinaire : vol de vie dans meilleur élément
 - Voie feu : réduction puissance ennemis
 Absorption : vol de vie + réduit puissance cible
-Douleur cuisante : dégâts en zone
+Douleur cuisante : dégâts en zone et augmente la puissance
 - Voie air
-Hémorragie : vol de vie + état insoignable
+Furie : dommages air et augmente les dommages finaux occasionés par le lanceur
 Carnage : sacrifie vie lanceur pour dégâts importants en zone
 - Voie terre
 Entaille : sacrifie vie lanceur pour dégâts cible
