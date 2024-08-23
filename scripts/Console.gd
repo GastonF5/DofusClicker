@@ -140,12 +140,6 @@ func do_command(command: String, params: Array[String] = []):
 		"save":
 			SaveManager.save()
 			pass
-		#"load":
-			#var save: SaveResource = SaveManager.load_save()
-			#if save:
-				#_log_line("Save %s" % save.date, COMMAND)
-				#_log(" xp: %d" % save.xp_amount, COMMAND)
-			#pass
 		"xp":
 			if params.size() > 0:
 				var amount = params[0].to_int()
