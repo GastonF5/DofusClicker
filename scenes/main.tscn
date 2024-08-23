@@ -26,6 +26,7 @@ unique_name_in_owner = true
 layer = 5
 
 [node name="MainMenu" parent="MainMenu" instance=ExtResource("31_ab6fe")]
+unique_name_in_owner = true
 
 [node name="LoadingScreen" parent="." instance=ExtResource("43_bkaqa")]
 unique_name_in_owner = true

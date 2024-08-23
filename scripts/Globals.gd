@@ -7,6 +7,7 @@ const debug := true
 var game: Node
 var quitting := false
 
+var main_menu: Control
 var class_peeker: ClassPeeker
 var area_peeker: AreaPeeker
 var loading_screen: LoadingScreen
@@ -37,6 +38,7 @@ func _ready():
 func initialize(root: Node = get_tree().current_scene):
 	game = root.get_node("%MainGame")
 	class_peeker = root.get_node("%ClassPeeker")
+	main_menu = root.get_node("%MainMenu")
 	area_peeker = game.get_node("%AreaPeeker")
 	loading_screen = root.get_node("%LoadingScreen")
 	loading_transition = root.get_node("%LoadingTransition")

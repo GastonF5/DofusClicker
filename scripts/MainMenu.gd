@@ -46,7 +46,9 @@ func load_save(save_res: SaveResource):
 
 
 func resume_game():
+	await Globals.loading_transition.fade_up()
 	visible = false
+	await Globals.loading_transition.fade_out()
 
 
 func create_save_button(save_res: SaveResource):

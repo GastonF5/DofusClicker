@@ -77,6 +77,12 @@ func _ready():
 		button.disabled = !available.has(button.name.to_int())
 
 
+func reset():
+	for button: Button in buttons:
+		button.set_pressed_no_signal(false)
+	select_class(0)
+
+
 func _on_button_toggled(toggle: bool, id: int):
 	bselect.disabled = !toggle
 	if toggle:
@@ -91,8 +97,6 @@ func _on_button_toggled(toggle: bool, id: int):
 
 
 func select_class(id: int = selected_class):
-	$ClassPanel/HBC.visible = classes.keys().has(id)
-	$ClassPanel/SelectionnerLabel.visible = not $ClassPanel/HBC.visible
 	empty_containers()
 	passif_label.text = ""
 	if classes.keys().has(id):
@@ -104,6 +108,8 @@ func select_class(id: int = selected_class):
 	else:
 		clogo.texture = null
 		clabel.text = ""
+	$ClassPanel/HBC.visible = classes.keys().has(id)
+	$ClassPanel/SelectionnerLabel.visible = not $ClassPanel/HBC.visible
 
 
 func get_logo_transparent(id: int = selected_class) -> Texture2D:

@@ -2,6 +2,7 @@ extends AbstractManager
 
 var class_peeker: ClassPeeker
 
+var in_game := false
 var in_fight := false
 
 signal end_fight
@@ -25,6 +26,7 @@ func _input(event):
 func initialize():
 	class_peeker = Globals.class_peeker
 	
+	class_peeker.get_node("BackButton").button_up.connect(cancel_class_peek)
 	SpellsService.console = Globals.console
 	SpellsService.tnode = Globals.timers
 	
@@ -34,6 +36,7 @@ func initialize():
 
 
 func reset():
+	class_peeker.get_node("BackButton").button_up.disconnect(cancel_class_peek)
 	in_fight = false
 	class_peeker = null
 	SpellsService.console = null
@@ -66,6 +69,7 @@ func init_game(save_res: SaveResource = null):
 			return false
 	await RecipeManager.composite.finished
 	class_peeker.visible = false
+	in_game = true
 	return true
 
 
@@ -80,10 +84,8 @@ func change_class():
 	for slot in Globals.spell_bar.slots:
 		if slot.get_child_count() == 1:
 			Globals.spell_bar.delete_spell(slot.get_child(0))
+	class_peeker.reset()
 	class_peeker.visible = true
-	for button: Button in class_peeker.buttons:
-		button.set_pressed_no_signal(false)
-	class_peeker.select_class(0)
 	await Globals.loading_transition.fade_out()
 
 
@@ -100,5 +102,16 @@ func reload_game():
 	get_tree().root.add_child(main)
 	get_tree().current_scene = main
 	Globals.initialize(main)
-	GameManager.initialize()
+	initialize()
+	in_game = false
 	Globals.quitting = false
+
+
+func cancel_class_peek():
+	await Globals.loading_transition.fade_up()
+	class_peeker.reset()
+	if GameManager.in_game:
+		class_peeker.visible = false
+	else:
+		Globals.main_menu.visible = true
+	await Globals.loading_transition.fade_out()
