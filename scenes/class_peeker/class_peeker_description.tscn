@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dc4kur4fk7phx" path="res://assets/common/block/block_border_scratch.png" id="1_eoeom"]
 [ext_resource type="Script" path="res://scripts/DescriptionPopUp.gd" id="1_kmhme"]
+[ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="1_m6ace"]
 [ext_resource type="Texture2D" uid="uid://d1oo2xrycpenx" path="res://assets/spells/punch.png" id="2_fypxw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7oysh"]
@@ -18,15 +19,15 @@ expand_margin_top = 5.0
 expand_margin_right = 5.0
 expand_margin_bottom = 5.0
 
-[sub_resource type="Theme" id="Theme_7dn4d"]
-
-[node name="ClassPeekerDescription" type="PanelContainer" node_paths=PackedStringArray("texture", "name_label", "description_label")]
+[node name="ClassPeekerDescription" type="PanelContainer" node_paths=PackedStringArray("texture", "name_label", "description_label", "level_label")]
 offset_right = 520.0
 offset_bottom = 100.0
+theme = ExtResource("1_m6ace")
 script = ExtResource("1_kmhme")
 texture = NodePath("MarginContainer/HBC/SpellTexture")
-name_label = NodePath("MarginContainer/HBC/VBC/Name")
+name_label = NodePath("MarginContainer/HBC/VBC/HSplitContainer/Name")
 description_label = NodePath("MarginContainer/HBC/VBC/Description")
+level_label = NodePath("MarginContainer/HBC/VBC/HSplitContainer/Level")
 
 [node name="Background" type="PanelContainer" parent="."]
 layout_mode = 2
@@ -61,14 +62,22 @@ stretch_mode = 5
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Name" type="RichTextLabel" parent="MarginContainer/HBC/VBC"]
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/HBC/VBC"]
+layout_mode = 2
+
+[node name="Name" type="RichTextLabel" parent="MarginContainer/HBC/VBC/HSplitContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 2
 mouse_filter = 2
-theme = SubResource("Theme_7dn4d")
 text = "Nom du sort"
 fit_content = true
+
+[node name="Level" type="RichTextLabel" parent="MarginContainer/HBC/VBC/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Niveau 1"
+text_direction = 2
 
 [node name="HeaderContainer" type="HBoxContainer" parent="MarginContainer/HBC/VBC"]
 layout_mode = 2
@@ -79,6 +88,5 @@ custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 2
 mouse_filter = 2
-theme = SubResource("Theme_7dn4d")
 text = "Description"
 fit_content = true

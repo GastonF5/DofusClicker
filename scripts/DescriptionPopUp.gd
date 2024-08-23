@@ -8,6 +8,7 @@ const BONUS_CRIT := "(+%d Dommages)"
 @export var texture: TextureRect
 @export var name_label: RichTextLabel
 @export var description_label: RichTextLabel
+@export var level_label: RichTextLabel
 @export var areas_label: Label
 
 @export var effects_label: Label
@@ -26,6 +27,8 @@ func reset():
 	_timer = null
 	texture.texture = null
 	name_label.text = ""
+	if level_label:
+		level_label.text = ""
 	if description_label:
 		description_label.text = ""
 	if areas_label:
@@ -35,7 +38,8 @@ func reset():
 		pa_cost_label.text = ""
 	if separator:
 		separator.visible = false
-	clear_effects()
+	if effects_container:
+		clear_effects()
 
 
 func _process(_delta):
@@ -108,9 +112,11 @@ func init_buff(effect: EffectResource, amount: int, timer: Timer):
 
 
 func init_spell_in_class_peeker(spell_res: SpellResource):
+	reset()
 	name = spell_res.name.to_pascal_case() + "DescriptionClassPeeker"
 	texture.texture = spell_res.texture
 	name_label.text = spell_res.name
+	level_label.text = "Niveau %d" % spell_res.level
 	compute_description_label(spell_res.description)
 
 

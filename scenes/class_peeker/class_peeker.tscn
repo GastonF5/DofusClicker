@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bospgqkt5v11w"]
+[gd_scene load_steps=38 format=3 uid="uid://bospgqkt5v11w"]
 
 [ext_resource type="Script" path="res://scripts/class_peeker/ClassPeeker.gd" id="1_7uonm"]
 [ext_resource type="Texture2D" uid="uid://f1b4iqrwl4yt" path="res://assets/class_peeker/bgIlluServeur.jpg" id="1_sgq1h"]
@@ -23,12 +23,28 @@
 [ext_resource type="Texture2D" uid="uid://dsgor00d8u0a6" path="res://assets/classes/logo/symbol_19.png" id="21_3slnw"]
 [ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="22_dop45"]
 [ext_resource type="Texture2D" uid="uid://dtnvde1gv6735" path="res://assets/classes/logo_transparent/logo_transparent_1.png" id="22_ogkau"]
+[ext_resource type="Texture2D" uid="uid://bmgkmqudqocy3" path="res://assets/class_peeker/background_levelup_banner.png" id="23_itj0c"]
+[ext_resource type="Texture2D" uid="uid://dc4kur4fk7phx" path="res://assets/common/block/block_border_scratch.png" id="23_o871w"]
 [ext_resource type="Texture2D" uid="uid://qltli0blw15h" path="res://assets/common/button/btn_green_normal.png" id="24_07i0a"]
 [ext_resource type="FontFile" uid="uid://duac7keqvubh2" path="res://assets/font/Tahoma Regular font.ttf" id="24_d7krg"]
 [ext_resource type="PackedScene" uid="uid://bey8pcrl726xa" path="res://scenes/class_peeker/class_peeker_description.tscn" id="24_g77te"]
 [ext_resource type="Texture2D" uid="uid://cypqdcnr1uakv" path="res://assets/common/button/btn_green_over.png" id="25_y4bdj"]
 [ext_resource type="Texture2D" uid="uid://crr1cpji0x41k" path="res://assets/common/button/btn_green_pressed.png" id="26_x4168"]
 [ext_resource type="Texture2D" uid="uid://bw6i2v35exff6" path="res://assets/common/button/btn_green_disabled.png" id="27_y6qfc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ik8s"]
+bg_color = Color(0.196078, 0.196078, 0.196078, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s3f3t"]
+texture = ExtResource("23_o871w")
+texture_margin_left = 15.0
+texture_margin_top = 10.0
+texture_margin_right = 15.0
+texture_margin_bottom = 10.0
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a6gc0"]
 texture = ExtResource("24_07i0a")
@@ -42,17 +58,16 @@ texture = ExtResource("26_x4168")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qstv2"]
 texture = ExtResource("27_y6qfc")
 
-[node name="ClassPeeker" type="CanvasLayer" node_paths=PackedStringArray("bselect", "bcontainer1", "bcontainer2", "clogo", "clabel", "role_container", "spell_container1", "spell_container2", "passif_label", "description")]
+[node name="ClassPeeker" type="CanvasLayer" node_paths=PackedStringArray("bselect", "bcontainer1", "bcontainer2", "clogo", "clabel", "role_container", "spells", "passif_label", "description")]
 script = ExtResource("1_7uonm")
 bselect = NodePath("SelectButton")
 bcontainer1 = NodePath("Buttons/ButtonsContainer1")
 bcontainer2 = NodePath("Buttons/ButtonsContainer2")
-clogo = NodePath("ClassPanel/HBC/ClassLogoTransparent")
-clabel = NodePath("ClassPanel/HBC/Roles/ClassLabel")
-role_container = NodePath("ClassPanel/HBC/Roles/RoleContainer")
-spell_container1 = NodePath("ClassPanel/HBC/Spells/SpellContainer1")
-spell_container2 = NodePath("ClassPanel/HBC/Spells/SpellContainer2")
-passif_label = NodePath("ClassPanel/HBC/Roles/PassifLabel")
+clogo = NodePath("ClassPanel/HBC/Middle/ClassLogoTransparent")
+clabel = NodePath("ClassPanel/HBC/Middle/Banner/ClassLabel")
+role_container = NodePath("ClassPanel/HBC/MarginContainer/Roles/RoleContainer")
+spells = NodePath("ClassPanel/HBC/PanelContainer/MarginContainer/Spells")
+passif_label = NodePath("ClassPanel/HBC/MarginContainer/Roles/PanelContainer/MarginContainer/VBC/PassifLabel")
 description = NodePath("ClassPanel/ClassPeekerDescription")
 
 [node name="Background" type="TextureRect" parent="."]
@@ -295,58 +310,177 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Roles" type="VBoxContainer" parent="ClassPanel/HBC"]
+[node name="MarginContainer" type="MarginContainer" parent="ClassPanel/HBC"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 4
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="ClassLabel" type="Label" parent="ClassPanel/HBC/Roles"]
+[node name="Roles" type="Control" parent="ClassPanel/HBC/MarginContainer"]
+custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
-text = "Class Name"
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="RoleContainer" type="HBoxContainer" parent="ClassPanel/HBC/Roles"]
-layout_mode = 2
+[node name="RoleContainer" type="HBoxContainer" parent="ClassPanel/HBC/MarginContainer/Roles"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -70.5
+offset_bottom = -70.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
 alignment = 1
 
-[node name="PassifLabel" type="Label" parent="ClassPanel/HBC/Roles"]
+[node name="PanelContainer" type="PanelContainer" parent="ClassPanel/HBC/MarginContainer/Roles"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -89.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+
+[node name="Background" type="PanelContainer" parent="ClassPanel/HBC/MarginContainer/Roles/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7ik8s")
+
+[node name="Scratch" type="Panel" parent="ClassPanel/HBC/MarginContainer/Roles/PanelContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_s3f3t")
+
+[node name="MarginContainer" type="MarginContainer" parent="ClassPanel/HBC/MarginContainer/Roles/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBC" type="VBoxContainer" parent="ClassPanel/HBC/MarginContainer/Roles/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ClassPanel/HBC/MarginContainer/Roles/PanelContainer/MarginContainer/VBC"]
+layout_mode = 2
+text = "Passif"
+horizontal_alignment = 1
+
+[node name="PassifLabel" type="Label" parent="ClassPanel/HBC/MarginContainer/Roles/PanelContainer/MarginContainer/VBC"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 0
 text = "Description du passif"
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="ClassLogoTransparent" type="TextureRect" parent="ClassPanel/HBC"]
+[node name="Middle" type="Control" parent="ClassPanel/HBC"]
 layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Banner" type="TextureRect" parent="ClassPanel/HBC/Middle"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -45.5
+offset_top = -44.5
+offset_right = 45.5
+offset_bottom = 91.5
+grow_horizontal = 2
+texture = ExtResource("23_itj0c")
+
+[node name="ClassLabel" type="Label" parent="ClassPanel/HBC/Middle/Banner"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -232.0
+offset_top = -38.5
+offset_right = 232.0
+offset_bottom = 1.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Class Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ClassLogoTransparent" type="TextureRect" parent="ClassPanel/HBC/Middle"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -104.5
+offset_right = 150.0
+offset_bottom = 195.5
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 6
+size_flags_vertical = 3
 texture = ExtResource("22_ogkau")
+expand_mode = 3
 stretch_mode = 5
 
-[node name="Spells" type="VBoxContainer" parent="ClassPanel/HBC"]
+[node name="PanelContainer" type="PanelContainer" parent="ClassPanel/HBC"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="Background" type="PanelContainer" parent="ClassPanel/HBC/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7ik8s")
+
+[node name="Scratch" type="Panel" parent="ClassPanel/HBC/PanelContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_s3f3t")
+
+[node name="MarginContainer" type="MarginContainer" parent="ClassPanel/HBC/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 5
+
+[node name="Spells" type="VBoxContainer" parent="ClassPanel/HBC/PanelContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme_override_constants/separation = 15
 
-[node name="Label" type="Label" parent="ClassPanel/HBC/Spells"]
+[node name="Label" type="Label" parent="ClassPanel/HBC/PanelContainer/MarginContainer/Spells"]
 layout_mode = 2
 text = "Liste des sorts
 "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Control" type="Control" parent="ClassPanel/HBC/Spells"]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-
-[node name="SpellContainer1" type="HBoxContainer" parent="ClassPanel/HBC/Spells"]
+[node name="SpellContainer1" type="HBoxContainer" parent="ClassPanel/HBC/PanelContainer/MarginContainer/Spells"]
 layout_mode = 2
 theme_override_constants/separation = 15
 alignment = 1
 
-[node name="SpellContainer2" type="HBoxContainer" parent="ClassPanel/HBC/Spells"]
+[node name="SpellContainer2" type="HBoxContainer" parent="ClassPanel/HBC/PanelContainer/MarginContainer/Spells"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="SpellContainer3" type="HBoxContainer" parent="ClassPanel/HBC/PanelContainer/MarginContainer/Spells"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="SpellContainer4" type="HBoxContainer" parent="ClassPanel/HBC/PanelContainer/MarginContainer/Spells"]
 layout_mode = 2
 theme_override_constants/separation = 15
 alignment = 1
