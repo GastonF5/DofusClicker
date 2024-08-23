@@ -103,4 +103,8 @@ func _on_item_exiting_slot(item):
 
 
 func get_first_empty_slot():
+	var empty_slots = get_empty_slots()
+	if empty_slots.is_empty():
+		expand()
+		return get_first_empty_slot()
 	return get_empty_slots()[0]
