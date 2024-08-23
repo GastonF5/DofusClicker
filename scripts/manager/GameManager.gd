@@ -16,7 +16,9 @@ func _ready():
 
 
 func _input(event):
-	if event.is_action_pressed("space") and !MonsterManager.start_fight_button.disabled:
+	if event.is_action_pressed("space")\
+	and !MonsterManager.start_fight_button.disabled\
+	and !Globals.console.input.has_focus() and !RecipeManager.prompt_has_focus:
 		MonsterManager.start_fight()
 
 
