@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://b8a8dl6lti3co"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_a47va"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_oxjyf"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_occl6"]
+[ext_resource type="Texture2D" uid="uid://bdoxxdxwn35of" path="res://assets/spells/sacrieur/sort_11930.png" id="4_2vfwo"]
+
+[sub_resource type="Resource" id="Resource_bfv7e"]
+script = ExtResource("1_oxjyf")
+_min = 16
+_max = 19
+_min_crit = 20
+_max_crit = 23
+
+[sub_resource type="Resource" id="Resource_0g7yk"]
+resource_name = "Vol Air"
+script = ExtResource("2_occl6")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+element = 4
+lifesteal = true
+caracteristic = 0
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_oxjyf")]([SubResource("Resource_bfv7e")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_a47va")
+id = 12748
+name = "Hémorragie"
+description = "Réduit les soins reçus par la cible et vole de la vie dans l'élément Air."
+texture = ExtResource("4_2vfwo")
+img_url = "https://api.dofusdb.fr/img/spells/sort_11930.png"
+level = 15
+pa_cost = 3
+per_crit = 0.15
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_occl6")]([SubResource("Resource_0g7yk")])

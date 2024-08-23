@@ -67,10 +67,13 @@ func get_element_label() -> String:
 func get_caracteristic_label() -> String:
 	if caracteristic == Caracteristique.Type.PV:
 		return "PV"
+	if caracteristic == Caracteristique.Type.DO_SORTS:
+		return "Dommages aux sorts"
 	return StatResource.get_type_label(Caracteristique.Type.find_key(caracteristic))
 
 
 func get_amount_label(grade: int) -> String:
+	var result: String
 	if amounts.size() > grade:
 		var m = amounts[grade]
 		var parameters = []
@@ -82,11 +85,14 @@ func get_amount_label(grade: int) -> String:
 		if m._min_crit != m._max_crit:
 			parameters.append(m._max_crit)
 		match parameters.size():
-			1: return str(parameters[0])
-			2: return "%d (%d)" % parameters
-			3: return "%d à %d (%d)" % parameters
-			4: return "%d à %d (%d à %d)" % parameters
-	return "ERREUR"
+			1: result = str(parameters[0])
+			2: result = "%d (%d)" % parameters
+			3: result = "%d à %d (%d)" % parameters
+			4: result = "%d à %d (%d à %d)" % parameters
+			_: result = "ERREUR"
+	if caracteristic == Caracteristique.Type.DO_SORTS:
+		result += "%"
+	return result
 
 
 func get_effect_label(grade: int) -> String:
@@ -122,6 +128,7 @@ func compute_special_label(grade: int) -> String:
 		label = label.replace("{min_crit}", str(m._min_crit))
 		label = label.replace("{max_crit}", str(m._max_crit))
 		label = label.replace("{elem}", get_element_label())
+		label = label.replace("{time}", "(%d secondes)" % time)
 		return label
 	return "ERREUR"
 

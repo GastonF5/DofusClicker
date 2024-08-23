@@ -1,0 +1,70 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://bcpyajigujwui"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_joc8b"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_k1fnr"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_glhct"]
+[ext_resource type="Texture2D" uid="uid://b4olks2wsvhap" path="res://assets/spells/sacrieur/sort_11979.png" id="4_u5x8t"]
+
+[sub_resource type="Resource" id="Resource_dpa33"]
+script = ExtResource("1_joc8b")
+_min = 12
+_max = 14
+_min_crit = 15
+_max_crit = 17
+
+[sub_resource type="Resource" id="Resource_ju3my"]
+resource_name = "Vol Feu"
+script = ExtResource("2_glhct")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+element = 2
+lifesteal = true
+caracteristic = 0
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_joc8b")]([SubResource("Resource_dpa33")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_ta3bd"]
+script = ExtResource("1_joc8b")
+_min = -50
+_max = -50
+_min_crit = -50
+_max_crit = -50
+
+[sub_resource type="Resource" id="Resource_vsvd3"]
+resource_name = "Malus Puissance"
+script = ExtResource("2_glhct")
+type = 1
+time = 5.0
+target_type = 1
+show_time = true
+element = 0
+lifesteal = false
+caracteristic = 8
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_joc8b")]([SubResource("Resource_ta3bd")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_k1fnr")
+id = 12734
+name = "Absorption"
+description = "Vole de la vie dans l'élément Feu et retire de la Puissance aux ennemis."
+texture = ExtResource("4_u5x8t")
+img_url = "https://api.dofusdb.fr/img/spells/sort_11946.png"
+level = 1
+pa_cost = 3
+per_crit = 0.15
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_glhct")]([SubResource("Resource_ju3my"), SubResource("Resource_vsvd3")])

@@ -1,0 +1,70 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://1qd80o43du6s"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_rx5i3"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_phpy5"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="3_1mupg"]
+[ext_resource type="Texture2D" uid="uid://rptf5hr54ppt" path="res://assets/spells/sacrieur/sort_12983.png" id="4_uaptx"]
+
+[sub_resource type="Resource" id="Resource_52c5u"]
+script = ExtResource("1_rx5i3")
+_min = 20
+_max = 0
+_min_crit = 0
+_max_crit = 0
+
+[sub_resource type="Resource" id="Resource_hg12m"]
+resource_name = "Spécial Dégâts"
+script = ExtResource("2_phpy5")
+type = 3
+time = 0.0
+target_type = 4
+show_time = false
+element = 0
+lifesteal = false
+caracteristic = 0
+pourcentage = false
+method_name = &"dommages_pourcentage_pv_caster"
+effect_label = "{min}% des PV de l'attaquant (dommages Neutre)"
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_rx5i3")]([SubResource("Resource_52c5u")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_g63s1"]
+script = ExtResource("1_rx5i3")
+_min = -20
+_max = -20
+_min_crit = -20
+_max_crit = -20
+
+[sub_resource type="Resource" id="Resource_rbq45"]
+resource_name = "Sacrifice PV"
+script = ExtResource("2_phpy5")
+type = 1
+time = 0.0
+target_type = 0
+show_time = true
+element = 0
+lifesteal = false
+caracteristic = 37
+pourcentage = true
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_rx5i3")]([SubResource("Resource_g63s1")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("3_1mupg")
+id = 12760
+name = "Châtiment"
+description = "Occasionne des dommages Neutre selon la vie restante du lanceur aux ennemis en zone en sacrifiant une partie de sa vie."
+texture = ExtResource("4_uaptx")
+img_url = "https://api.dofusdb.fr/img/spells/sort_12983.png"
+level = 80
+pa_cost = 3
+per_crit = 0.0
+cooldown = 20.0
+priority = 0
+effects = Array[ExtResource("2_phpy5")]([SubResource("Resource_hg12m"), SubResource("Resource_rbq45")])

@@ -1,0 +1,70 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://5sfw2hqk6swk"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_mqyyc"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_uxn5r"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_trj5b"]
+[ext_resource type="Texture2D" uid="uid://h5oco4wflueo" path="res://assets/spells/sacrieur/sort_11954.png" id="4_4twko"]
+
+[sub_resource type="Resource" id="Resource_pj2d8"]
+script = ExtResource("1_uxn5r")
+_min = 28
+_max = 28
+_min_crit = 34
+_max_crit = 34
+
+[sub_resource type="Resource" id="Resource_5pfxf"]
+resource_name = "Dommages Best"
+script = ExtResource("2_trj5b")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+element = 6
+lifesteal = false
+caracteristic = 0
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_uxn5r")]([SubResource("Resource_pj2d8")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_jm0ic"]
+script = ExtResource("1_uxn5r")
+_min = 30
+_max = 30
+_min_crit = 30
+_max_crit = 30
+
+[sub_resource type="Resource" id="Resource_d2lss"]
+resource_name = "Spécial Dommages"
+script = ExtResource("2_trj5b")
+type = 3
+time = 0.0
+target_type = 1
+show_time = false
+element = 0
+lifesteal = false
+caracteristic = 0
+pourcentage = false
+method_name = &"punition"
+effect_label = "{min}% des PV érodés du lanceur (dommages Neutre) "
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_uxn5r")]([SubResource("Resource_jm0ic")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_mqyyc")
+id = 12741
+name = "Punition"
+description = "Occasionne des dommages dans le meilleur élément d'attaque du lanceur et des dommages Neutre selon sa vie érodée."
+texture = ExtResource("4_4twko")
+img_url = "https://api.dofusdb.fr/img/spells/sort_11954.png"
+level = 90
+pa_cost = 4
+per_crit = 0.25
+cooldown = 30.0
+priority = 0
+effects = Array[ExtResource("2_trj5b")]([SubResource("Resource_5pfxf"), SubResource("Resource_d2lss")])

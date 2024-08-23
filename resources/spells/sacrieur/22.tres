@@ -1,0 +1,70 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://2emie5o7neij"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_kb62i"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_k85ow"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="3_ai4mo"]
+[ext_resource type="Texture2D" uid="uid://dfdi0io4wd0g3" path="res://assets/spells/sacrieur/sort_11975.png" id="4_sja8s"]
+
+[sub_resource type="Resource" id="Resource_80bpu"]
+script = ExtResource("1_kb62i")
+_min = -10
+_max = -10
+_min_crit = -10
+_max_crit = -10
+
+[sub_resource type="Resource" id="Resource_wue5a"]
+resource_name = "Sacrifice PV"
+script = ExtResource("2_k85ow")
+type = 1
+time = 0.0
+target_type = 0
+show_time = true
+element = 0
+lifesteal = false
+caracteristic = 37
+pourcentage = true
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_kb62i")]([SubResource("Resource_80bpu")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_85vl3"]
+script = ExtResource("1_kb62i")
+_min = 19
+_max = 22
+_min_crit = 23
+_max_crit = 26
+
+[sub_resource type="Resource" id="Resource_jbgjg"]
+resource_name = "Dommages Air"
+script = ExtResource("2_k85ow")
+type = 0
+time = 0.0
+target_type = 4
+show_time = false
+element = 4
+lifesteal = false
+caracteristic = 0
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_kb62i")]([SubResource("Resource_85vl3")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("3_ai4mo")
+id = 12752
+name = "Carnage"
+description = "Sacrifie une partie de la vie du lanceur pour occasionner des dommages Air à tous les ennemis."
+texture = ExtResource("4_sja8s")
+img_url = "https://api.dofusdb.fr/img/spells/sort_11975.png"
+level = 55
+pa_cost = 4
+per_crit = 0.25
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_k85ow")]([SubResource("Resource_wue5a"), SubResource("Resource_jbgjg")])

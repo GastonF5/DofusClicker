@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://betu1dumo1s4p"]
+
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_d7nn7"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_pcber"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="2_xtacn"]
+[ext_resource type="Texture2D" uid="uid://p4rk8c4r0ght" path="res://assets/spells/sacrieur/sort_11977.png" id="3_gana1"]
+
+[sub_resource type="Resource" id="Resource_jw0j4"]
+script = ExtResource("1_pcber")
+_min = 20
+_max = 20
+_min_crit = 20
+_max_crit = 20
+
+[sub_resource type="Resource" id="Resource_thwyy"]
+resource_name = "Bonus PV"
+script = ExtResource("1_d7nn7")
+type = 1
+time = 15.0
+target_type = 0
+show_time = true
+element = 0
+lifesteal = false
+caracteristic = 37
+pourcentage = true
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_pcber")]([SubResource("Resource_jw0j4")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("2_xtacn")
+id = 12762
+name = "Pacte de Sang"
+description = "Augmente la Vitalité du lanceur."
+texture = ExtResource("3_gana1")
+img_url = "https://api.dofusdb.fr/img/spells/sort_11977.png"
+level = 1
+pa_cost = 2
+per_crit = 0.0
+cooldown = 15.0
+priority = 0
+effects = Array[ExtResource("1_d7nn7")]([SubResource("Resource_thwyy")])

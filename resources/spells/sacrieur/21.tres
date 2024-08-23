@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://igpg78x60j14"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_ynu76"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_3dp8t"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="3_xrlai"]
+[ext_resource type="Texture2D" uid="uid://cp2uffoinl2xn" path="res://assets/spells/sacrieur/sort_11949.png" id="4_mor05"]
+
+[sub_resource type="Resource" id="Resource_ytxf7"]
+script = ExtResource("1_ynu76")
+_min = 9
+_max = 11
+_min_crit = 12
+_max_crit = 14
+
+[sub_resource type="Resource" id="Resource_g2ppo"]
+resource_name = "Spécial"
+script = ExtResource("2_3dp8t")
+type = 3
+time = 10.0
+target_type = 2
+show_time = true
+element = 4
+lifesteal = false
+caracteristic = 0
+pourcentage = false
+method_name = &"furie"
+effect_label = "{min} à {max} ({min_crit} à {max_crit}) dommages {elem}
++1 PM par ennemi touché {time}"
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_ynu76")]([SubResource("Resource_ytxf7")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("3_xrlai")
+id = 12723
+name = "Furie"
+description = "Occasionne des dommages Air en zone. Augmente les PM en fonction du nombre d'ennemis touchés."
+texture = ExtResource("4_mor05")
+img_url = "https://api.dofusdb.fr/img/spells/sort_11949.png"
+level = 25
+pa_cost = 3
+per_crit = 0.15
+cooldown = 10.0
+priority = 0
+effects = Array[ExtResource("2_3dp8t")]([SubResource("Resource_g2ppo")])

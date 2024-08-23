@@ -1,0 +1,70 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://ch145k4jelgaq"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_cov81"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_jkl80"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="3_0thej"]
+[ext_resource type="Texture2D" uid="uid://cxkn5iccxoofk" path="res://assets/spells/sacrieur/sort_11974.png" id="4_2tfdn"]
+
+[sub_resource type="Resource" id="Resource_s1c3b"]
+script = ExtResource("1_cov81")
+_min = -10
+_max = -10
+_min_crit = -10
+_max_crit = -10
+
+[sub_resource type="Resource" id="Resource_hih1q"]
+resource_name = "Sacrifice PV"
+script = ExtResource("2_jkl80")
+type = 1
+time = 0.0
+target_type = 0
+show_time = true
+element = 0
+lifesteal = false
+caracteristic = 37
+pourcentage = true
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_cov81")]([SubResource("Resource_s1c3b")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_tjrg7"]
+script = ExtResource("1_cov81")
+_min = 15
+_max = 17
+_min_crit = 18
+_max_crit = 20
+
+[sub_resource type="Resource" id="Resource_lvg48"]
+resource_name = "Dommages Terre"
+script = ExtResource("2_jkl80")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+element = 1
+lifesteal = false
+caracteristic = 0
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_cov81")]([SubResource("Resource_tjrg7")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("3_0thej")
+id = 12751
+name = "Entaille"
+description = "Sacrifie une partie de la vie du lanceur pour occasionner des dommages Terre."
+texture = ExtResource("4_2tfdn")
+img_url = "https://api.dofusdb.fr/img/spells/sort_11974.png"
+level = 20
+pa_cost = 4
+per_crit = 0.25
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_jkl80")]([SubResource("Resource_hih1q"), SubResource("Resource_lvg48")])

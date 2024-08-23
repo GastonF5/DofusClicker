@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://crwsy2hulttiv"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_j0fkw"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_wynb6"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="3_a2f3t"]
+[ext_resource type="Texture2D" uid="uid://d011lxiqqmr42" path="res://assets/spells/sacrieur/sort_11931.png" id="4_k0lp6"]
+
+[sub_resource type="Resource" id="Resource_ig5pk"]
+script = ExtResource("1_j0fkw")
+_min = 13
+_max = 15
+_min_crit = 16
+_max_crit = 18
+
+[sub_resource type="Resource" id="Resource_kmanr"]
+resource_name = "Vol Terre"
+script = ExtResource("2_wynb6")
+type = 0
+time = 0.0
+target_type = 2
+show_time = false
+element = 1
+lifesteal = true
+caracteristic = 0
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_j0fkw")]([SubResource("Resource_ig5pk")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("3_a2f3t")
+id = 12732
+name = "Bain de Sang"
+description = "Vole de la vie dans l'élément Terre en zone."
+texture = ExtResource("4_k0lp6")
+img_url = "https://api.dofusdb.fr/img/spells/sort_11931.png"
+level = 70
+pa_cost = 4
+per_crit = 0.25
+cooldown = 5.0
+priority = 0
+effects = Array[ExtResource("2_wynb6")]([SubResource("Resource_kmanr")])

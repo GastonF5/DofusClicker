@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://bwdtxpjadcp8d"]
+
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_1c5lx"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_m02i6"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_ohm3o"]
+[ext_resource type="Texture2D" uid="uid://baaqdmgdnmpjq" path="res://assets/spells/sacrieur/sort_11947.png" id="3_gqwct"]
+
+[sub_resource type="Resource" id="Resource_rc8vd"]
+script = ExtResource("1_ohm3o")
+_min = 6
+_max = 8
+_min_crit = 9
+_max_crit = 11
+
+[sub_resource type="Resource" id="Resource_4qbmv"]
+resource_name = "Dommages Terre"
+script = ExtResource("1_1c5lx")
+type = 0
+time = 0.0
+target_type = 2
+show_time = false
+element = 1
+lifesteal = false
+caracteristic = 0
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_ohm3o")]([SubResource("Resource_rc8vd")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_m02i6")
+id = 12731
+name = "Décimation"
+description = "Occasionne des dommages Terre et augmente les dommages subis par les cibles en zone."
+texture = ExtResource("3_gqwct")
+img_url = "https://api.dofusdb.fr/img/spells/sort_11947.png"
+level = 3
+pa_cost = 2
+per_crit = 0.15
+cooldown = 5.0
+priority = 0
+effects = Array[ExtResource("1_1c5lx")]([SubResource("Resource_4qbmv")])

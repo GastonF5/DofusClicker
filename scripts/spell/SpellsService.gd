@@ -154,6 +154,12 @@ static func sacrifice_pourcentage_pv(caster: Entity, _target: Entity, effect: Ef
 		console.log_error("Target not supported")
 #endregion
 
+#region Sacrieur
+static func punition(_caster: Entity, target: Entity, _effect: EffectResource, _crit: bool, _grade: int, _params: Array):
+	var amount = int((PlayerManager.static_max_hp - PlayerManager.max_hp) * 0.3)
+	target.take_damage(amount, Element.NEUTRE)
+#endregion
+
 
 #region Ecaflip
 static func chance_ecaflip(caster: Entity, _target: Entity, _effect: EffectResource, _crit: bool, _grade: int, _params: Array):

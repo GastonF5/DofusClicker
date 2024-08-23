@@ -1,0 +1,72 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://bnaj417rjvain"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_rauuj"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_wimti"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_xybm7"]
+[ext_resource type="Texture2D" uid="uid://vie0l2ruaqwm" path="res://assets/spells/sacrieur/sort_12484.png" id="4_183vu"]
+
+[sub_resource type="Resource" id="Resource_dqi7x"]
+script = ExtResource("1_wimti")
+_min = -70
+_max = -70
+_min_crit = -70
+_max_crit = -70
+
+[sub_resource type="Resource" id="Resource_v24qu"]
+resource_name = "Sacrifice PV"
+script = ExtResource("2_xybm7")
+type = 1
+time = 0.0
+target_type = 0
+show_time = true
+element = 0
+lifesteal = false
+caracteristic = 37
+pourcentage = true
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_wimti")]([SubResource("Resource_dqi7x")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_2bpyk"]
+script = ExtResource("1_wimti")
+_min = 7
+_max = 7
+_min_crit = 7
+_max_crit = 7
+
+[sub_resource type="Resource" id="Resource_0j4fo"]
+resource_name = "Dommages aux sorts"
+script = ExtResource("2_xybm7")
+type = 0
+time = 0.0
+target_type = 0
+show_time = true
+element = 0
+lifesteal = false
+caracteristic = 38
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_wimti")]([SubResource("Resource_2bpyk")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_rauuj")
+id = 12743
+name = "Berserk"
+description = "Sacrifie une partie de la vie du lanceur pour lui appliquer l'état Berserk :
+• Augmente ses dommages aux sorts.
+• Réduit les soins reçus par le lanceur."
+texture = ExtResource("4_183vu")
+img_url = "https://api.dofusdb.fr/img/spells/sort_12484.png"
+level = 85
+pa_cost = 2
+per_crit = 0.0
+cooldown = 20.0
+priority = 0
+effects = Array[ExtResource("2_xybm7")]([SubResource("Resource_v24qu"), SubResource("Resource_0j4fo")])

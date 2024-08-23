@@ -41,6 +41,7 @@ enum Type {
 	RES_CRITIQUES,
 	RES_DOMMAGES,
 	PV,
+	DO_SORTS,
 }
 
 enum Element {
