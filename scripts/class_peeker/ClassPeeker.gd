@@ -21,7 +21,7 @@ var passifs = {
 	8: "Dommages plus importants en fonction des PV max",
 	9: "",
 	10: "",
-	11: "",
+	11: "Dommages plus importants en fonction des PV restants",
 	12: "",
 	13: "",
 	14: "",
@@ -36,13 +36,13 @@ var roles_par_classe = {
 	1: [], 2: [], 3: [],
 	4: [], 5: [], 6: [6, 5, 4],
 	7: [], 8: [5, 8, 3], 9: [],
-	10: [], 11: [], 12: [],
+	10: [], 11: [2, 5, 6], 12: [],
 	13: [], 14: [], 15: [],
 	16: [], 17: [], 18: [],
 	19: [],
 }
 
-var available := [6, 8]
+var available := [6, 8, 11]
 const button_size := 150
 
 @export var bselect: Button
