@@ -15,6 +15,11 @@ func _ready():
 	initialize()
 
 
+func _input(event):
+	if event.is_action_pressed("space") and !MonsterManager.start_fight_button.disabled:
+		MonsterManager.start_fight()
+
+
 func initialize():
 	class_peeker = Globals.class_peeker
 	
