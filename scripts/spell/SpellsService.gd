@@ -238,13 +238,13 @@ static func get_fixe(caster: Entity, element: Element) -> int:
 static func get_degats(caster: Entity, amount: int, element: Element) -> int:
 	var multiplicateur = get_multiplicateur(caster, element, false)
 	var fixe = get_fixe(caster, element)
-	return multiplicateur * amount + fixe
+	return max(multiplicateur * amount + fixe, 0)
 
 
 static func get_soin(caster: Entity, amount: int, element: Element) -> int:
 	var multiplicateur = get_multiplicateur(caster, element, true)
 	var fixe = caster.get_soin()
-	return multiplicateur * amount + fixe
+	return max(multiplicateur * amount + fixe, 0)
 
 
 static func get_neighbor_entities() -> Array[Entity]:
