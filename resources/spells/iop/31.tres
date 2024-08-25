@@ -1,0 +1,70 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://2rle2ydm1ahi"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_45vg7"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_dior6"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_maojg"]
+[ext_resource type="Texture2D" uid="uid://ckeouqsqa4c1b" path="res://assets/spells/iop/sort_11833.png" id="2_t5q15"]
+
+[sub_resource type="Resource" id="Resource_is10s"]
+script = ExtResource("1_dior6")
+_min = 16
+_max = 18
+_min_crit = 19
+_max_crit = 21
+
+[sub_resource type="Resource" id="Resource_cf2yx"]
+resource_name = "Dommages Air"
+script = ExtResource("2_maojg")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+element = 4
+lifesteal = false
+caracteristic = 0
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_dior6")]([SubResource("Resource_is10s")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_xrady"]
+script = ExtResource("1_dior6")
+_min = 10
+_max = 10
+_min_crit = 10
+_max_crit = 10
+
+[sub_resource type="Resource" id="Resource_y6b8y"]
+resource_name = "Bonus Dommages"
+script = ExtResource("2_maojg")
+type = 1
+time = 15.0
+target_type = 0
+show_time = true
+element = 0
+lifesteal = false
+caracteristic = 9
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_dior6")]([SubResource("Resource_xrady")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_45vg7")
+id = 13110
+name = "Épée Divine"
+description = "Occasionne des dommages Air et augmente les dommages."
+texture = ExtResource("2_t5q15")
+img_url = "https://api.dofusdb.fr/img/spells/sort_11833.png"
+level = 6
+pa_cost = 3
+per_crit = 0.1
+cooldown = 5.0
+priority = 0
+effects = Array[ExtResource("2_maojg")]([SubResource("Resource_cf2yx"), SubResource("Resource_y6b8y")])

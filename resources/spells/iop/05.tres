@@ -1,0 +1,71 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://dkuy2uvb87hh7"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_4q6vi"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_t0lin"]
+[ext_resource type="Texture2D" uid="uid://c0mmo4eb8k4nm" path="res://assets/spells/iop/sort_11860.png" id="2_sbji4"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_t36qr"]
+
+[sub_resource type="Resource" id="Resource_5jw67"]
+script = ExtResource("1_4q6vi")
+_min = 300
+_max = 300
+_min_crit = 350
+_max_crit = 350
+
+[sub_resource type="Resource" id="Resource_esh0f"]
+resource_name = "Bouclier"
+script = ExtResource("2_t36qr")
+type = 3
+time = 0.0
+target_type = 0
+show_time = false
+element = 0
+lifesteal = false
+caracteristic = 0
+pourcentage = false
+method_name = &""
+effect_label = "{min}% ({min_crit}%) du niveau en bouclier"
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_4q6vi")]([SubResource("Resource_5jw67")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_16npc"]
+script = ExtResource("1_4q6vi")
+_min = -25
+_max = -25
+_min_crit = -25
+_max_crit = -25
+
+[sub_resource type="Resource" id="Resource_vdxvq"]
+resource_name = "Malus Puissance"
+script = ExtResource("2_t36qr")
+type = 1
+time = 10.0
+target_type = 0
+show_time = true
+element = 0
+lifesteal = false
+caracteristic = 8
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_4q6vi")]([SubResource("Resource_16npc")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_t0lin")
+id = 13142
+name = "Vertu"
+description = "Applique un bouclier sur le lanceur.
+Retire de la Puissance au lanceur si la case ciblée contient un ennemi."
+texture = ExtResource("2_sbji4")
+img_url = "https://api.dofusdb.fr/img/spells/sort_11860.png"
+level = 55
+pa_cost = 3
+per_crit = 0.25
+cooldown = 30.0
+priority = 0
+effects = Array[ExtResource("2_t36qr")]([SubResource("Resource_esh0f"), SubResource("Resource_vdxvq")])

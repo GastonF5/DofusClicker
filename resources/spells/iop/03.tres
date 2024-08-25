@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=3 format=3 uid="uid://djnek2swcacq6"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_qf2yn"]
+[ext_resource type="Texture2D" uid="uid://bwpv6q5q0r85n" path="res://assets/spells/iop/sort_12208.png" id="2_cphns"]
+
+[resource]
+script = ExtResource("1_qf2yn")
+id = 13109
+name = "Duel"
+description = "Seuls la cible et le joueur peuvent subir et infliger des dégâts."
+texture = ExtResource("2_cphns")
+img_url = "https://api.dofusdb.fr/img/spells/sort_12208.png"
+level = 85
+pa_cost = 3
+per_crit = 0.0
+cooldown = 0.0
+priority = 0
+effects = Array[Resource("res://scripts/resources/EffectResource.gd")]([])

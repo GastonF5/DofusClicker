@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://b2cna4qk7pxph"]
+
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_g42ax"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_itil2"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_x7twb"]
+[ext_resource type="Texture2D" uid="uid://c28unbema4hv3" path="res://assets/spells/iop/sort_11873.png" id="3_2f7d2"]
+
+[sub_resource type="Resource" id="Resource_ni8d2"]
+script = ExtResource("1_itil2")
+_min = 23
+_max = 26
+_min_crit = 27
+_max_crit = 31
+
+[sub_resource type="Resource" id="Resource_27wfd"]
+resource_name = "Dommages Terre"
+script = ExtResource("1_g42ax")
+type = 3
+time = 0.0
+target_type = 1
+show_time = false
+element = 1
+lifesteal = false
+caracteristic = 0
+pourcentage = false
+method_name = &"fureur"
+effect_label = "{min} à {max} ({min_crit} à {max_crit}) dommages {elem}
+Augmente les dégâts de base du sort Pugilat de 20"
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_itil2")]([SubResource("Resource_ni8d2")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_x7twb")
+id = 13156
+name = "Fureur"
+description = "Occasionne des dommages Terre.
+Les dommages du sort sont augmentés après chaque lancer. "
+texture = ExtResource("3_2f7d2")
+img_url = "https://api.dofusdb.fr/img/spells/sort_11873.png"
+level = 50
+pa_cost = 3
+per_crit = 0.15
+cooldown = 5.0
+priority = 0
+effects = Array[ExtResource("1_g42ax")]([SubResource("Resource_27wfd")])

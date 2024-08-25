@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://c24lcgl2jjxkg"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_whck0"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_y1jcr"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="3_if8ap"]
+[ext_resource type="Texture2D" uid="uid://blyhprkj6etne" path="res://assets/spells/iop/sort_11842.png" id="4_jw66k"]
+
+[sub_resource type="Resource" id="Resource_ixqk6"]
+script = ExtResource("1_whck0")
+_min = 17
+_max = 20
+_min_crit = 20
+_max_crit = 23
+
+[sub_resource type="Resource" id="Resource_foqaq"]
+script = ExtResource("2_y1jcr")
+type = 3
+time = 0.0
+target_type = 1
+show_time = false
+element = 2
+lifesteal = false
+caracteristic = 0
+pourcentage = false
+method_name = &"tempete_de_puissance"
+effect_label = "{min} à {max} ({min_crit} à {max_crit}) dommages {elem}"
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_whck0")]([SubResource("Resource_ixqk6")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("3_if8ap")
+id = 13115
+name = "Tempête de Puissance"
+description = "Occasionne des dommages Feu aux ennemis.
+
+Occasionne des dommages Feu supplémentaires sur la cible initiale si le sort est lancé sur une autre cible."
+texture = ExtResource("4_jw66k")
+img_url = ""
+level = 30
+pa_cost = 3
+per_crit = 0.1
+cooldown = 2.0
+priority = 0
+effects = Array[ExtResource("2_y1jcr")]([SubResource("Resource_foqaq")])

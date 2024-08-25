@@ -1,0 +1,70 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://fe26s3fpkl6x"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_xmek4"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_y1ikn"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_ubphw"]
+[ext_resource type="Texture2D" uid="uid://un3gqtye25qg" path="res://assets/spells/iop/sort_11835.png" id="4_2485n"]
+
+[sub_resource type="Resource" id="Resource_entft"]
+script = ExtResource("1_xmek4")
+_min = 6
+_max = 6
+_min_crit = 9
+_max_crit = 9
+
+[sub_resource type="Resource" id="Resource_n3ndv"]
+resource_name = "Dommages Best"
+script = ExtResource("2_ubphw")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+element = 6
+lifesteal = false
+caracteristic = 0
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_xmek4")]([SubResource("Resource_entft")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_4y8is"]
+script = ExtResource("1_xmek4")
+_min = -5
+_max = -5
+_min_crit = -5
+_max_crit = -5
+
+[sub_resource type="Resource" id="Resource_2jvwn"]
+resource_name = "Malus Dommages"
+script = ExtResource("2_ubphw")
+type = 1
+time = 5.0
+target_type = 1
+show_time = true
+element = 0
+lifesteal = false
+caracteristic = 9
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_xmek4")]([SubResource("Resource_4y8is")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_y1ikn")
+id = 13108
+name = "Intimidation"
+description = "Occasionne des dommages dans le meilleur élément d'attaque du lanceur et réduit les dommages de la cible."
+texture = ExtResource("4_2485n")
+img_url = "https://api.dofusdb.fr/img/spells/sort_11835.png"
+level = 1
+pa_cost = 2
+per_crit = 0.05
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_ubphw")]([SubResource("Resource_n3ndv"), SubResource("Resource_2jvwn")])

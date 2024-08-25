@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://dno4elm5qnmv0"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_ku4p0"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_v3boc"]
+[ext_resource type="Texture2D" uid="uid://ehx6gt3wtee1" path="res://assets/spells/iop/sort_11865.png" id="2_01xru"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_qoc3e"]
+
+[sub_resource type="Resource" id="Resource_1eii1"]
+script = ExtResource("1_v3boc")
+_min = 19
+_max = 21
+_min_crit = 23
+_max_crit = 25
+
+[sub_resource type="Resource" id="Resource_21mjm"]
+resource_name = "Dommages Feu"
+script = ExtResource("2_qoc3e")
+type = 3
+time = 0.0
+target_type = 2
+show_time = true
+element = 2
+lifesteal = false
+caracteristic = 0
+pourcentage = false
+method_name = &"tumulte"
+effect_label = "{min} à {max} ({min_crit} à {max_crit}) dommages {elem}
+Augmente les dégâts de base du sort Tumulte de 20"
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_v3boc")]([SubResource("Resource_1eii1")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_ku4p0")
+id = 13144
+name = "Tumulte"
+description = "Occasionne des dommages Feu en zone.
+Augmente les dommages du sort pour chaque ennemi dans la zone d'effet."
+texture = ExtResource("2_01xru")
+img_url = "https://api.dofusdb.fr/img/spells/sort_11865.png"
+level = 80
+pa_cost = 4
+per_crit = 0.2
+cooldown = 8.0
+priority = 0
+effects = Array[ExtResource("2_qoc3e")]([SubResource("Resource_21mjm")])

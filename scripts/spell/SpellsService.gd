@@ -183,6 +183,43 @@ static func pile_face(_caster: Entity, target: Entity, effect: EffectResource, c
 #endregion
 
 
+#region Iop
+static var pugilat_adder := 0
+static func pugilat(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
+	var new_effect = effect.duplicate()
+	for amount in new_effect.amounts:
+		amount += pugilat_adder
+	perform_damage(caster, target, effect, crit, grade)
+	pugilat_adder += 18
+
+
+static var fureur_adder := 0
+static func fureur(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
+	var new_effect = effect.duplicate()
+	for amount in new_effect.amounts:
+		amount += fureur_adder
+	perform_damage(caster, target, effect, crit, grade)
+	fureur_adder += 20
+
+
+static var tempete_de_puissance_last_target: Entity = null
+static func tempete_de_puissance(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
+	perform_damage(caster, target, effect, crit, grade)
+	if tempete_de_puissance_last_target:
+		perform_damage(caster, tempete_de_puissance_last_target, effect, crit, grade)
+
+
+static var tumulte_adder := 0
+static func tumulte(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
+	var new_effect = effect.duplicate()
+	for amount in new_effect.amounts:
+		amount += tumulte_adder
+	perform_damage(caster, target, effect, crit, grade)
+	tumulte_adder += 20 * get_targets(caster, target, effect.target_type).size()
+	
+#endregion
+
+
 #region Utilitaires
 static func get_multiplicateur(caster: Entity, element: Element, soin: bool) -> float:
 	var carac = caster.get_caracteristique_for_element(element)
@@ -261,6 +298,8 @@ static func add_pv_to_entity(entity: Entity, amount: int):
 		entity.hp_bar.mval += amount
 
 
-static func create_buff():
-	pass
+static func on_fight_end():
+	SpellsService.pugilat_adder = 0
+	SpellsService.fureur_adder = 0
+	SpellsService.tempete_de_puissance_last_target = null
 #endregion

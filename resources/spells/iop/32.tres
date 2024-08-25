@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://c8qgk3wipgcwy"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_f31yg"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_x7lxn"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_w004s"]
+[ext_resource type="Texture2D" uid="uid://b8i6q105jk7s6" path="res://assets/spells/iop/sort_13328.png" id="4_5dsyl"]
+
+[sub_resource type="Resource" id="Resource_66yui"]
+script = ExtResource("1_f31yg")
+_min = 8
+_max = 10
+_min_crit = 11
+_max_crit = 13
+
+[sub_resource type="Resource" id="Resource_isjgx"]
+resource_name = "Dommages Air"
+script = ExtResource("2_w004s")
+type = 0
+time = 0.0
+target_type = 3
+show_time = false
+element = 4
+lifesteal = false
+caracteristic = 0
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_f31yg")]([SubResource("Resource_66yui")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_x7lxn")
+id = 13116
+name = "Souffle"
+description = "Occasionne des dommages Air aux ennemis autour de la case ciblée."
+texture = ExtResource("4_5dsyl")
+img_url = "https://api.dofusdb.fr/img/spells/sort_13328.png"
+level = 20
+pa_cost = 2
+per_crit = 0.1
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_w004s")]([SubResource("Resource_isjgx")])

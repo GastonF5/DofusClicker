@@ -1,0 +1,70 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://beyhwjwy1p3i6"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_1ool3"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_hb5i2"]
+[ext_resource type="Texture2D" uid="uid://c6fqhrnqgrh1k" path="res://assets/spells/iop/sort_11855.png" id="2_72eyy"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_qpbrn"]
+
+[sub_resource type="Resource" id="Resource_0uo5v"]
+script = ExtResource("1_hb5i2")
+_min = 17
+_max = 19
+_min_crit = 20
+_max_crit = 23
+
+[sub_resource type="Resource" id="Resource_7i7vf"]
+resource_name = "Dommages Feu"
+script = ExtResource("2_qpbrn")
+type = 0
+time = 0.0
+target_type = 2
+show_time = false
+element = 2
+lifesteal = false
+caracteristic = 0
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_hb5i2")]([SubResource("Resource_0uo5v")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_hnrp8"]
+script = ExtResource("1_hb5i2")
+_min = 2
+_max = 2
+_min_crit = 2
+_max_crit = 2
+
+[sub_resource type="Resource" id="Resource_tj7ta"]
+resource_name = "Retrait PM"
+script = ExtResource("2_qpbrn")
+type = 2
+time = 0.0
+target_type = 0
+show_time = false
+element = 0
+lifesteal = false
+caracteristic = 1
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_hb5i2")]([SubResource("Resource_hnrp8")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_1ool3")
+id = 13115
+name = "Couperet"
+description = "Occasionne des dommages Feu et retire des PM en zone."
+texture = ExtResource("2_72eyy")
+img_url = "https://api.dofusdb.fr/img/spells/sort_11855.png"
+level = 3
+pa_cost = 3
+per_crit = 0.1
+cooldown = 3.0
+priority = 0
+effects = Array[ExtResource("2_qpbrn")]([SubResource("Resource_7i7vf"), SubResource("Resource_tj7ta")])
