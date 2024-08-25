@@ -73,22 +73,23 @@ func get_caracteristic_label() -> String:
 
 
 func get_amount_label(grade: int) -> String:
+	var pattern = "%d" if !pourcentage else "%d%%"
 	var result: String
 	if amounts.size() > grade:
 		var m = amounts[grade]
-		var parameters = []
-		parameters.append(m._min)
+		var parameters: Array[String] = []
+		parameters.append(pattern % m._min)
 		if m._min != m._max:
-			parameters.append(m._max)
+			parameters.append(pattern % m._max)
 		if m._min_crit != m._min:
-			parameters.append(m._min_crit)
+			parameters.append(pattern % m._min_crit)
 		if m._min_crit != m._max_crit:
-			parameters.append(m._max_crit)
+			parameters.append(pattern % m._max_crit)
 		match parameters.size():
 			1: result = str(parameters[0])
-			2: result = "%d (%d)" % parameters
-			3: result = "%d à %d (%d)" % parameters
-			4: result = "%d à %d (%d à %d)" % parameters
+			2: result = "%s (%s)" % parameters
+			3: result = "%s à %s (%s)" % parameters
+			4: result = "%s à %s (%s à %s)" % parameters
 			_: result = "ERREUR"
 	if caracteristic == Caracteristique.Type.DO_SORTS:
 		result += "%"
@@ -100,15 +101,14 @@ func get_effect_label(grade: int) -> String:
 	if effect_label:
 		return compute_special_label(grade)
 	match type:
-		Type.DAMAGE, Type.SOIN:
-			result = "%s %s" % [get_amount_label(grade), get_element_label()]
+		Type.DAMAGE:
+			result = "%s dommages %s" % [get_amount_label(grade), get_element_label()]
+		Type.SOIN:
+			result = "%s soins %s" % [get_amount_label(grade), get_element_label()]
 		Type.BONUS:
-			if !pourcentage:
-				result = "%s %s" % [get_amount_label(grade), get_caracteristic_label()]
-			else:
-				result = get_amount_label(grade) + "% " + get_caracteristic_label()
+			result = get_amount_label(grade) + ' ' + get_caracteristic_label()
 		Type.RETRAIT:
-			result = "- %s %s" % [get_amount_label(grade), get_caracteristic_label()]
+			result = "-%s %s" % [get_amount_label(grade), get_caracteristic_label()]
 		_:
 			return "ERREUR"
 	if show_time:
