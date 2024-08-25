@@ -9,7 +9,6 @@ var timer: Timer
 
 
 func _process(delta):
-	super(delta)
 	if GameManager.in_fight:
 		if timer and is_instance_valid(timer):
 			cooldown_bar.value = timer.time_left * 100
@@ -18,6 +17,8 @@ func _process(delta):
 				spell_texture.modulate = Color.ORANGE_RED
 			else:
 				spell_texture.modulate = Color.WHITE
+	else:
+		super(delta)
 
 
 func change_parent():
@@ -37,6 +38,7 @@ func init(res: SpellResource, _draggable: bool):
 			cooldown_bar.visible = false
 	else:
 		cooldown_bar.visible = false
+	reset()
 
 
 func do_action():
@@ -46,14 +48,7 @@ func do_action():
 		cast()
 		if resource.cooldown != 0:
 			timer = SpellsService.create_timer(resource.cooldown, "%sTimer" % resource.name.to_pascal_case())
-			timer.timeout.connect(on_timeout)
-
-
-func on_timeout():
-	timer.get_parent().remove_child(timer)
-	timer.queue_free()
-	timer = null
-	reset()
+			timer.timeout.connect(delete_timer)
 
 
 func cast():
@@ -70,3 +65,11 @@ static func instantiate(spell_res: SpellResource, parent: Control, clickable = t
 func reset():
 	cooldown_bar.value = 0
 	spell_texture.modulate = Color.WHITE
+	delete_timer()
+
+
+func delete_timer():
+	if timer and is_instance_valid(timer):
+		timer.get_parent().remove_child(timer)
+		timer.queue_free()
+		timer = null

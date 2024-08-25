@@ -45,6 +45,7 @@ func start_fight():
 	console.log_info("Le combat commence")
 	Globals.area_peeker.back_button.disabled = true
 	Globals.spell_bar.set_weapon_pb_ready(true)
+	Globals.spell_bar.reset_spells()
 	StatsManager.check_modifiable_on_caracteristiques()
 	if DungeonManager.is_in_dungeon():
 		for monster_res in DungeonManager.get_current_room_monsters():
@@ -76,6 +77,7 @@ func end_fight():
 		xp_to_gain = 0
 		Globals.area_peeker.back_button.disabled = false
 		Globals.spell_bar.set_weapon_pb_ready(false)
+		Globals.spell_bar.reset_spells()
 		if DungeonManager.is_in_dungeon():
 			DungeonManager.enter_next_room()
 		clear_monsters()
@@ -83,9 +85,6 @@ func end_fight():
 		if auto_start_fight_checkbox.button_pressed:
 			start_fight()
 		StatsManager.reset_caracteristiques()
-		for timer in SpellsService.tnode.get_children():
-			timer.queue_free()
-		Globals.spell_bar.reset_spells()
 		StatsManager.check_modifiable_on_caracteristiques()
 		SpellsService.on_fight_end()
 

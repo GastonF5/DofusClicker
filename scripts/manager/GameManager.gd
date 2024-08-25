@@ -17,8 +17,9 @@ func _ready():
 
 
 func _input(event):
-	if event.is_action_pressed("space")\
+	if event.is_action_pressed("start_fight")\
 	and !MonsterManager.start_fight_button.disabled\
+	and !PlayerManager.dragged_spell\
 	and !Globals.console.input.has_focus() and !RecipeManager.prompt_has_focus:
 		MonsterManager.start_fight()
 

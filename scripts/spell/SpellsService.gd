@@ -268,6 +268,7 @@ static func create_timer(time: float, name: String = "Timer"):
 	timer.wait_time = time
 	timer.autostart = true
 	tnode.add_child(timer)
+	GameManager.end_fight.connect(timer.queue_free)
 	return timer
 
 
