@@ -124,7 +124,10 @@ func connect_to_stat(type: CaracType, callable: Callable):
 
 func init_bars():
 	connect_to_stat(Caracteristique.Type.VITALITE, func():
-		hp_bar.mval = get_vitalite())
+		if is_player:
+			PlayerManager.max_hp = get_vitalite()
+		else:
+			hp_bar.mval = get_vitalite())
 	connect_to_stat(Caracteristique.Type.PA, func():
 		var curmval = pa_bar.mval
 		pa_bar.mval = get_pa()
@@ -247,8 +250,10 @@ func apply_resistance(amount: int, element: Element) -> int:
 
 func apply_erosion(amount: int):
 	var ero = (amount * erosion) as int
-	hp_bar.cval -= ero
-	hp_bar.mval -= ero
+	if is_player:
+		PlayerManager.max_hp -= ero
+	else:
+		hp_bar.mval -= ero
 
 
 static func is_monster(value: Node):

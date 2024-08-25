@@ -74,7 +74,7 @@ static func perform_soin(caster: Entity, target: Entity, effect: EffectResource,
 
 static func perform_bonus(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
 	var amount = effect.get_amount(crit, grade)
-	if effect.pourcentage:
+	if effect.pourcentage and effect.caracteristic != StatType.EROSION:
 		amount = int(caster.get_carac_amount_for_type(effect.caracteristic) * (amount / 100.0))
 	var carac
 	match effect.caracteristic:

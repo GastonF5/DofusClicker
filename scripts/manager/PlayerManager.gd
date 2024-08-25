@@ -32,8 +32,10 @@ var max_pm: int:
 
 var max_hp: int:
 	set(value):
-		player_entity.hp_bar.cval = value
+		var cur_max_hp = max_hp
 		max_hp = value
+		if GameManager.in_fight or value >= cur_max_hp:
+			player_entity.hp_bar.cval += value - cur_max_hp
 		update_pdv()
 
 var static_max_hp: int
