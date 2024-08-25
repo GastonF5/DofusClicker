@@ -87,6 +87,7 @@ func end_fight():
 			timer.queue_free()
 		Globals.spell_bar.reset_spells()
 		StatsManager.check_modifiable_on_caracteristiques()
+		SpellsService.on_fight_end()
 
 
 func get_monsters_on_plates():
