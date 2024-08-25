@@ -42,13 +42,12 @@ var roles_par_classe = {
 	19: [],
 }
 
-var available := [6, 8, 11]
+var available := [8, 11]
 const button_size := 150
 
 @export var bselect: Button
 
-@export var bcontainer1: Control
-@export var bcontainer2: Control
+@export var class_buttons: Control
 
 @export var clogo: TextureRect
 @export var clabel: Label
@@ -63,7 +62,7 @@ var nspells = []
 
 var buttons:
 	get:
-		return bcontainer1.get_children() + bcontainer2.get_children()
+		return get_tree().get_nodes_in_group("class_button").filter(func(b): return available.has(b.name.to_int()))
 
 var selected_class: int
 
@@ -73,6 +72,8 @@ func _ready():
 	clogo.texture = null
 	clabel.text = ""
 	for button in buttons:
+		button.get_parent().remove_child(button)
+		get_button_container().add_child(button)
 		button.toggled.connect(_on_button_toggled.bind(button.name.to_int()))
 		button.disabled = !available.has(button.name.to_int())
 
@@ -165,3 +166,11 @@ func hide_description():
 
 func get_spell_container(num: int) -> HBoxContainer:
 	return spells.get_child(num)
+
+func get_button_container() -> HBoxContainer:
+	var container = class_buttons.get_child(0)
+	var count := 0
+	while container.get_child_count() > 9:
+		count += 1
+		container = class_buttons.get_child(count)
+	return container

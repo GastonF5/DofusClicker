@@ -58,11 +58,10 @@ texture = ExtResource("26_x4168")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qstv2"]
 texture = ExtResource("27_y6qfc")
 
-[node name="ClassPeeker" type="CanvasLayer" node_paths=PackedStringArray("bselect", "bcontainer1", "bcontainer2", "clogo", "clabel", "role_container", "spells", "passif_label", "description")]
+[node name="ClassPeeker" type="CanvasLayer" node_paths=PackedStringArray("bselect", "class_buttons", "clogo", "clabel", "role_container", "spells", "passif_label", "description")]
 script = ExtResource("1_7uonm")
 bselect = NodePath("SelectButton")
-bcontainer1 = NodePath("Buttons/ButtonsContainer1")
-bcontainer2 = NodePath("Buttons/ButtonsContainer2")
+class_buttons = NodePath("Buttons")
 clogo = NodePath("ClassPanel/HBC/Middle/ClassLogoTransparent")
 clabel = NodePath("ClassPanel/HBC/Middle/Banner/ClassLabel")
 role_container = NodePath("ClassPanel/HBC/MarginContainer/Roles/RoleContainer")
@@ -103,96 +102,6 @@ offset_bottom = 150.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="1" type="Button" parent="Buttons/ButtonsContainer1"]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-focus_mode = 0
-mouse_default_cursor_shape = 2
-toggle_mode = true
-icon = ExtResource("3_m2pd1")
-expand_icon = true
-
-[node name="2" type="Button" parent="Buttons/ButtonsContainer1"]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-focus_mode = 0
-mouse_default_cursor_shape = 2
-toggle_mode = true
-icon = ExtResource("4_od5uc")
-expand_icon = true
-
-[node name="3" type="Button" parent="Buttons/ButtonsContainer1"]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-focus_mode = 0
-mouse_default_cursor_shape = 2
-toggle_mode = true
-icon = ExtResource("5_tskau")
-expand_icon = true
-
-[node name="4" type="Button" parent="Buttons/ButtonsContainer1"]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-focus_mode = 0
-mouse_default_cursor_shape = 2
-toggle_mode = true
-icon = ExtResource("6_s3dbf")
-expand_icon = true
-
-[node name="5" type="Button" parent="Buttons/ButtonsContainer1"]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-focus_mode = 0
-mouse_default_cursor_shape = 2
-toggle_mode = true
-icon = ExtResource("7_r5o52")
-expand_icon = true
-
-[node name="6" type="Button" parent="Buttons/ButtonsContainer1"]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-focus_mode = 0
-mouse_default_cursor_shape = 2
-toggle_mode = true
-icon = ExtResource("8_8ej3e")
-expand_icon = true
-
-[node name="7" type="Button" parent="Buttons/ButtonsContainer1"]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-focus_mode = 0
-mouse_default_cursor_shape = 2
-toggle_mode = true
-icon = ExtResource("9_q553h")
-expand_icon = true
-
-[node name="8" type="Button" parent="Buttons/ButtonsContainer1"]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-focus_mode = 0
-mouse_default_cursor_shape = 2
-toggle_mode = true
-icon = ExtResource("10_abd6x")
-expand_icon = true
-
-[node name="9" type="Button" parent="Buttons/ButtonsContainer1"]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-focus_mode = 0
-mouse_default_cursor_shape = 2
-toggle_mode = true
-icon = ExtResource("11_4py68")
-expand_icon = true
-
-[node name="10" type="Button" parent="Buttons/ButtonsContainer1"]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-focus_mode = 0
-mouse_default_cursor_shape = 2
-toggle_mode = true
-icon = ExtResource("12_phxy0")
-expand_icon = true
-
 [node name="ButtonsContainer2" type="HBoxContainer" parent="Buttons"]
 layout_mode = 1
 anchors_preset = 7
@@ -206,87 +115,6 @@ offset_right = 691.0
 grow_horizontal = 2
 grow_vertical = 0
 alignment = 1
-
-[node name="11" type="Button" parent="Buttons/ButtonsContainer2"]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-focus_mode = 0
-mouse_default_cursor_shape = 2
-toggle_mode = true
-icon = ExtResource("13_lguh3")
-expand_icon = true
-
-[node name="12" type="Button" parent="Buttons/ButtonsContainer2"]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-focus_mode = 0
-mouse_default_cursor_shape = 2
-toggle_mode = true
-icon = ExtResource("14_dpocx")
-expand_icon = true
-
-[node name="13" type="Button" parent="Buttons/ButtonsContainer2"]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-focus_mode = 0
-mouse_default_cursor_shape = 2
-toggle_mode = true
-icon = ExtResource("15_wr7yg")
-expand_icon = true
-
-[node name="14" type="Button" parent="Buttons/ButtonsContainer2"]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-focus_mode = 0
-mouse_default_cursor_shape = 2
-toggle_mode = true
-icon = ExtResource("16_ywbox")
-expand_icon = true
-
-[node name="15" type="Button" parent="Buttons/ButtonsContainer2"]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-focus_mode = 0
-mouse_default_cursor_shape = 2
-toggle_mode = true
-icon = ExtResource("17_lo0ek")
-expand_icon = true
-
-[node name="16" type="Button" parent="Buttons/ButtonsContainer2"]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-focus_mode = 0
-mouse_default_cursor_shape = 2
-toggle_mode = true
-icon = ExtResource("18_2ly1l")
-expand_icon = true
-
-[node name="17" type="Button" parent="Buttons/ButtonsContainer2"]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-focus_mode = 0
-mouse_default_cursor_shape = 2
-toggle_mode = true
-icon = ExtResource("19_c7vg3")
-expand_icon = true
-
-[node name="18" type="Button" parent="Buttons/ButtonsContainer2"]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-focus_mode = 0
-mouse_default_cursor_shape = 2
-toggle_mode = true
-icon = ExtResource("20_3stw5")
-expand_icon = true
-
-[node name="19" type="Button" parent="Buttons/ButtonsContainer2"]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-focus_mode = 0
-mouse_default_cursor_shape = 2
-toggle_mode = true
-icon = ExtResource("21_3slnw")
-expand_icon = true
 
 [node name="ClassPanel" type="Panel" parent="."]
 anchors_preset = 8
@@ -555,3 +383,160 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_ji3v4")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_gxji8")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_qstv2")
 text = "Retour"
+
+[node name="ClassButtons" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+
+[node name="1" type="Button" parent="ClassButtons" groups=["class_button"]]
+custom_minimum_size = Vector2(150, 150)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("3_m2pd1")
+expand_icon = true
+
+[node name="2" type="Button" parent="ClassButtons" groups=["class_button"]]
+custom_minimum_size = Vector2(150, 150)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("4_od5uc")
+expand_icon = true
+
+[node name="3" type="Button" parent="ClassButtons" groups=["class_button"]]
+custom_minimum_size = Vector2(150, 150)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("5_tskau")
+expand_icon = true
+
+[node name="4" type="Button" parent="ClassButtons" groups=["class_button"]]
+custom_minimum_size = Vector2(150, 150)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("6_s3dbf")
+expand_icon = true
+
+[node name="5" type="Button" parent="ClassButtons" groups=["class_button"]]
+custom_minimum_size = Vector2(150, 150)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("7_r5o52")
+expand_icon = true
+
+[node name="6" type="Button" parent="ClassButtons" groups=["class_button"]]
+custom_minimum_size = Vector2(150, 150)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("8_8ej3e")
+expand_icon = true
+
+[node name="7" type="Button" parent="ClassButtons" groups=["class_button"]]
+custom_minimum_size = Vector2(150, 150)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("9_q553h")
+expand_icon = true
+
+[node name="8" type="Button" parent="ClassButtons" groups=["class_button"]]
+custom_minimum_size = Vector2(150, 150)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("10_abd6x")
+expand_icon = true
+
+[node name="9" type="Button" parent="ClassButtons" groups=["class_button"]]
+custom_minimum_size = Vector2(150, 150)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("11_4py68")
+expand_icon = true
+
+[node name="10" type="Button" parent="ClassButtons" groups=["class_button"]]
+custom_minimum_size = Vector2(150, 150)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("12_phxy0")
+expand_icon = true
+
+[node name="11" type="Button" parent="ClassButtons" groups=["class_button"]]
+custom_minimum_size = Vector2(150, 150)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("13_lguh3")
+expand_icon = true
+
+[node name="12" type="Button" parent="ClassButtons" groups=["class_button"]]
+custom_minimum_size = Vector2(150, 150)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("14_dpocx")
+expand_icon = true
+
+[node name="13" type="Button" parent="ClassButtons" groups=["class_button"]]
+custom_minimum_size = Vector2(150, 150)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("15_wr7yg")
+expand_icon = true
+
+[node name="14" type="Button" parent="ClassButtons" groups=["class_button"]]
+custom_minimum_size = Vector2(150, 150)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("16_ywbox")
+expand_icon = true
+
+[node name="15" type="Button" parent="ClassButtons" groups=["class_button"]]
+custom_minimum_size = Vector2(150, 150)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("17_lo0ek")
+expand_icon = true
+
+[node name="16" type="Button" parent="ClassButtons" groups=["class_button"]]
+custom_minimum_size = Vector2(150, 150)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("18_2ly1l")
+expand_icon = true
+
+[node name="17" type="Button" parent="ClassButtons" groups=["class_button"]]
+custom_minimum_size = Vector2(150, 150)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("19_c7vg3")
+expand_icon = true
+
+[node name="18" type="Button" parent="ClassButtons" groups=["class_button"]]
+custom_minimum_size = Vector2(150, 150)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("20_3stw5")
+expand_icon = true
+
+[node name="19" type="Button" parent="ClassButtons" groups=["class_button"]]
+custom_minimum_size = Vector2(150, 150)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("21_3slnw")
+expand_icon = true
