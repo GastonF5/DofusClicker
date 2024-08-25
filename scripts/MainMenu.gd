@@ -40,7 +40,6 @@ func load_save(save_res: SaveResource):
 	await Globals.loading_transition.fade_up()
 	if await GameManager.init_game(save_res):
 		resume_game()
-		await Globals.loading_transition.fade_out()
 	else:
 		push_error("Une erreur est survenue lors du chargement de la sauvegarde")
 
