@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dyp84yxkk1f3d"]
+[gd_scene load_steps=44 format=3 uid="uid://dyp84yxkk1f3d"]
 
 [ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="1_fefji"]
 [ext_resource type="Texture2D" uid="uid://dtp2ktsnvjk8w" path="res://assets/common/window/bg_product.jpg" id="2_3a1je"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://cr4dpiri4mevk" path="res://assets/btn_icon/btnIcon_refresh.png" id="16_lmloe"]
 [ext_resource type="Texture2D" uid="uid://caw2ggvj6j1kb" path="res://assets/btn_icon/btnIcon_parchment.png" id="17_y2bwi"]
 [ext_resource type="Texture2D" uid="uid://dlogx8k6w4uq1" path="res://assets/btn_icon/btnIcon_house.png" id="18_5tqnr"]
+[ext_resource type="Texture2D" uid="uid://5yh1gkksm3vw" path="res://assets/common/level_header.png" id="19_7ctiy"]
 [ext_resource type="Texture2D" uid="uid://bov74ckekhf83" path="res://assets/common/block/block_border.png" id="19_mc1gy"]
 [ext_resource type="Texture2D" uid="uid://dky7mxoyl8fbb" path="res://assets/hud/background_hud.png" id="20_g6nqe"]
 [ext_resource type="PackedScene" uid="uid://dr1xqccheukcc" path="res://scenes/bars/entity_bars.tscn" id="21_c15xm"]
@@ -27,7 +28,6 @@
 [ext_resource type="Texture2D" uid="uid://l5x41vqt4blf" path="res://assets/common/button/btn_greenLargeBorder_pressed.png" id="25_gye0r"]
 [ext_resource type="Texture2D" uid="uid://dne08ij0lq2cn" path="res://assets/common/button/btn_greenLargeBorder_disabled.png" id="26_5vd1m"]
 [ext_resource type="PackedScene" uid="uid://c74kvimoxv1i" path="res://scenes/spell/spell_bar.tscn" id="27_addeo"]
-[ext_resource type="Texture2D" uid="uid://cl71pm2t281ug" path="res://assets/icons/XPBonus5.png" id="28_44c3r"]
 [ext_resource type="Theme" uid="uid://ctf5aaqx8jyeo" path="res://resources/themes/experience_bar.tres" id="29_1pia2"]
 [ext_resource type="Script" path="res://scripts/experience/ExperienceBar.gd" id="30_x1mlq"]
 [ext_resource type="PackedScene" uid="uid://dacg0tcpohas3" path="res://scenes/jobs/jobs_container.tscn" id="31_jnct6"]
@@ -63,8 +63,6 @@ texture = ExtResource("25_gye0r")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8bo48"]
 texture = ExtResource("26_5vd1m")
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_du4k8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vjwvv"]
 
@@ -285,6 +283,31 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 
+[node name="LevelTexture" type="TextureRect" parent="HBC/MiddleContainer/VBC/MainPanel"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+texture = ExtResource("19_7ctiy")
+stretch_mode = 5
+flip_v = true
+
+[node name="LevelLabel" type="Label" parent="HBC/MiddleContainer/VBC/MainPanel/LevelTexture"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.0
+offset_top = -13.0
+offset_right = 62.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+text = "  Niveau 100  "
+horizontal_alignment = 1
+
 [node name="DescriptionContainer" type="PanelContainer" parent="HBC/MiddleContainer/VBC/MainPanel"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -334,11 +357,18 @@ scale = Vector2(1.5, 1.5)
 
 [node name="StartFightButton" type="Button" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD"]
 unique_name_in_owner = true
-layout_mode = 2
-offset_left = 207.5
-offset_top = 6.0
-offset_right = 493.5
-offset_bottom = 101.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -218.0
+offset_top = -47.5
+offset_right = 68.0
+offset_bottom = 47.5
+grow_horizontal = 2
+grow_vertical = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -398,42 +428,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 0
 
-[node name="AspectRatioContainer" type="PanelContainer" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -26.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxEmpty_du4k8")
-
-[node name="XPContainer" type="HBoxContainer" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/AspectRatioContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-
-[node name="Space" type="Control" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/AspectRatioContainer/XPContainer"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-
-[node name="XPTexture" type="TextureRect" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/AspectRatioContainer/XPContainer"]
-layout_mode = 2
-texture = ExtResource("28_44c3r")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="Space2" type="Control" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/AspectRatioContainer/XPContainer"]
-custom_minimum_size = Vector2(2, 0)
-layout_mode = 2
-
-[node name="LvlLabel" type="Label" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/AspectRatioContainer/XPContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-text = "Nv. 1"
-
 [node name="ExperienceBar" type="ProgressBar" parent="HBC/MiddleContainer/VBC" node_paths=PackedStringArray("lvl_label")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 10)
@@ -444,7 +438,7 @@ value = 50.0
 allow_greater = true
 show_percentage = false
 script = ExtResource("30_x1mlq")
-lvl_label = NodePath("../PlayerBarContainer/HUD/AspectRatioContainer/XPContainer/LvlLabel")
+lvl_label = NodePath("../MainPanel/LevelTexture/LevelLabel")
 
 [node name="RightSide" type="PanelContainer" parent="HBC"]
 custom_minimum_size = Vector2(530, 0)

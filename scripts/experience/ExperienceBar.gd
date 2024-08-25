@@ -238,7 +238,7 @@ func gain_xp(amount: int):
 
 
 func update_lvl_label():
-	lvl_label.text = "Nv. " + str(cur_lvl)
+	lvl_label.text = "Niveau %d" % cur_lvl
 
 
 func update_max_value():
