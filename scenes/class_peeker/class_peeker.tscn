@@ -391,6 +391,7 @@ anchors_preset = 0
 
 [node name="1" type="Button" parent="ClassButtons" groups=["class_button"]]
 custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 toggle_mode = true
@@ -399,6 +400,7 @@ expand_icon = true
 
 [node name="2" type="Button" parent="ClassButtons" groups=["class_button"]]
 custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 toggle_mode = true
@@ -407,6 +409,7 @@ expand_icon = true
 
 [node name="3" type="Button" parent="ClassButtons" groups=["class_button"]]
 custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 toggle_mode = true
@@ -415,6 +418,7 @@ expand_icon = true
 
 [node name="4" type="Button" parent="ClassButtons" groups=["class_button"]]
 custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 toggle_mode = true
@@ -423,6 +427,7 @@ expand_icon = true
 
 [node name="5" type="Button" parent="ClassButtons" groups=["class_button"]]
 custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 toggle_mode = true
@@ -431,6 +436,7 @@ expand_icon = true
 
 [node name="6" type="Button" parent="ClassButtons" groups=["class_button"]]
 custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 toggle_mode = true
@@ -439,6 +445,7 @@ expand_icon = true
 
 [node name="7" type="Button" parent="ClassButtons" groups=["class_button"]]
 custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 toggle_mode = true
@@ -447,6 +454,7 @@ expand_icon = true
 
 [node name="8" type="Button" parent="ClassButtons" groups=["class_button"]]
 custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 toggle_mode = true
@@ -455,6 +463,7 @@ expand_icon = true
 
 [node name="9" type="Button" parent="ClassButtons" groups=["class_button"]]
 custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 toggle_mode = true
@@ -463,6 +472,7 @@ expand_icon = true
 
 [node name="10" type="Button" parent="ClassButtons" groups=["class_button"]]
 custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 toggle_mode = true
@@ -471,6 +481,7 @@ expand_icon = true
 
 [node name="11" type="Button" parent="ClassButtons" groups=["class_button"]]
 custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 toggle_mode = true
@@ -479,6 +490,7 @@ expand_icon = true
 
 [node name="12" type="Button" parent="ClassButtons" groups=["class_button"]]
 custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 toggle_mode = true
@@ -487,6 +499,7 @@ expand_icon = true
 
 [node name="13" type="Button" parent="ClassButtons" groups=["class_button"]]
 custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 toggle_mode = true
@@ -495,6 +508,7 @@ expand_icon = true
 
 [node name="14" type="Button" parent="ClassButtons" groups=["class_button"]]
 custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 toggle_mode = true
@@ -503,6 +517,7 @@ expand_icon = true
 
 [node name="15" type="Button" parent="ClassButtons" groups=["class_button"]]
 custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 toggle_mode = true
@@ -511,6 +526,7 @@ expand_icon = true
 
 [node name="16" type="Button" parent="ClassButtons" groups=["class_button"]]
 custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 toggle_mode = true
@@ -519,6 +535,7 @@ expand_icon = true
 
 [node name="17" type="Button" parent="ClassButtons" groups=["class_button"]]
 custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 toggle_mode = true
@@ -527,6 +544,7 @@ expand_icon = true
 
 [node name="18" type="Button" parent="ClassButtons" groups=["class_button"]]
 custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 toggle_mode = true
@@ -535,6 +553,7 @@ expand_icon = true
 
 [node name="19" type="Button" parent="ClassButtons" groups=["class_button"]]
 custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 toggle_mode = true
