@@ -52,6 +52,7 @@ enum Element {
 	AIR,
 	NONE,
 	BEST,
+	RANDOM,
 }
 
 static func get_element(id: int):

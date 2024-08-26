@@ -18,14 +18,13 @@ static func perform_spell(caster: Entity, target: Entity, resource: SpellResourc
 	var crit = randf_range(0, 1) <= crit_amount
 	console.log_spell_cast(caster, resource, crit)
 	for effect: EffectResource in resource.effects:
-		if effect.type == EffectResource.Type.BONUS:
-			effect.texture = resource.texture
+		effect.texture = resource.texture
 		if count > max_count:
-			perform_effect(caster, get_targets(caster, target, effect.target_type), effect, crit, grade)
+			perform_effect(caster, target, effect, crit, grade)
 		else:
 			# Un effet de type "random" a été appliqué
 			if count == rand_count:
-				perform_effect(caster, get_targets(caster, target, effect.target_type), effect, crit, grade)
+				perform_effect(caster, target, effect, crit, grade)
 			count += 1
 	check_dying_entities([PlayerManager.player_entity] + MonsterManager.monsters)
 
@@ -35,15 +34,18 @@ static func perform_weapon(caster: Entity, target: Entity, resource: WeaponResou
 	var crit = randf_range(0, 1) <= crit_amount
 	console.log_weapon_cast(caster, weapon_name, crit)
 	for effect: EffectResource in resource._hit_effects.map(func(he): return he.get_effect()):
-		perform_effect(caster, get_targets(caster, target, effect.target_type), effect, crit, 0)
+		perform_effect(caster, target, effect, crit, 0)
 	check_dying_entities([PlayerManager.player_entity] + MonsterManager.monsters)
 
 
-static func perform_effect(caster: Entity, targets: Array[Entity], effect: EffectResource, crit: bool, grade: int):
+static func perform_effect(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
 	var method_name = "perform_%s" % EffectType.find_key(effect.type).to_lower()
 	var callable = Callable(SpellsService, method_name)
-	for target in targets:
-		callable.callv([caster, target, effect, crit, grade])
+	if effect.type == EffectResource.Type.SPECIAL:
+		callable.bindv([caster, target, effect, crit, grade]).call()
+	else:
+		for tar in get_targets(caster, target, effect.target_type):
+			callable.bindv([caster, tar, effect, crit, grade]).call()
 
 
 static func perform_damage(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
@@ -56,6 +58,8 @@ static func perform_damage(caster: Entity, target: Entity, effect: EffectResourc
 		amount = amounts.values().max()
 		element = amounts.find_key(amount)
 	else:
+		if element == Element.RANDOM:
+			element = randi_range(0, 4) as Element
 		amount = get_degats(caster, effect.get_amount(crit, grade), element)
 	if crit:
 		amount += caster.get_do_crit()
@@ -127,7 +131,8 @@ static func perform_retrait(caster: Entity, target: Entity, effect: EffectResour
 static func perform_special(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
 	var callable = Callable(SpellsService, effect.method_name)
 	if callable:
-		callable.callv([caster, target, effect, crit, grade] + effect.params)
+		var params = [caster, target, effect, crit, grade] + effect.params
+		callable.bindv(params).call()
 	else:
 		console.log_error("%s not found in SpellsService" % callable.get_method())
 
@@ -155,9 +160,20 @@ static func sacrifice_pourcentage_pv(caster: Entity, _target: Entity, effect: Ef
 #endregion
 
 #region Sacrieur
-static func punition(_caster: Entity, target: Entity, _effect: EffectResource, _crit: bool, _grade: int, _params: Array):
+static func punition(caster: Entity, target: Entity, effect: EffectResource, _crit: bool, _grade: int, _params: Array):
 	var amount = int((PlayerManager.static_max_hp - PlayerManager.max_hp) * 0.3)
-	target.take_damage(amount, Element.NEUTRE)
+	var targets = get_targets(caster, target, effect.target_type)
+	for tar in targets:
+		tar.take_damage(amount, Element.NEUTRE)
+
+
+static func furie(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int, _params: Array = []):
+	var bonus_pm: int = get_targets(caster, target, EffectResource.TargetType.TARGET_NEIGHBORS).size()
+	var new_effect = effect.duplicate(true)
+	new_effect.amounts = effect.duplicate_amounts()
+	new_effect.amounts[grade].add(bonus_pm)
+	new_effect.texture = effect.texture
+	perform_bonus(caster, caster, new_effect, crit, grade)
 #endregion
 
 
@@ -174,12 +190,14 @@ static func chance_ecaflip(caster: Entity, _target: Entity, _effect: EffectResou
 	caster.taken_damage_rate = 100
 
 static var face = false
-static func pile_face(_caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int, _params: Array):
+static func pile_face(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int, _params: Array):
 	var amount = effect.get_amount(crit, grade)
 	if !crit and face:
 		amount -= 5
 	face = !face
-	target.take_damage(amount, effect.element)
+	var targets = get_targets(caster, target, effect.target_type)
+	for tar in targets:
+		tar.take_damage(amount, effect.element)
 #endregion
 
 
@@ -189,7 +207,8 @@ static func pugilat(caster: Entity, target: Entity, effect: EffectResource, crit
 	var new_effect = effect.duplicate(true)
 	new_effect.amounts = effect.duplicate_amounts()
 	new_effect.amounts[grade].add(pugilat_adder)
-	perform_damage(caster, target, new_effect, crit, grade)
+	new_effect.type = EffectResource.Type.DAMAGE
+	perform_effect(caster, target, new_effect, crit, grade)
 	pugilat_adder += 18
 
 
@@ -198,7 +217,8 @@ static func fureur(caster: Entity, target: Entity, effect: EffectResource, crit:
 	var new_effect = effect.duplicate(true)
 	new_effect.amounts = effect.duplicate_amounts()
 	new_effect.amounts[grade].add(fureur_adder)
-	perform_damage(caster, target, new_effect, crit, grade)
+	new_effect.type = EffectResource.Type.DAMAGE
+	perform_effect(caster, target, new_effect, crit, grade)
 	fureur_adder += 20
 
 
@@ -214,7 +234,8 @@ static func tumulte(caster: Entity, target: Entity, effect: EffectResource, crit
 	var new_effect = effect.duplicate(true)
 	new_effect.amounts = effect.duplicate_amounts()
 	new_effect.amounts[grade].add(tumulte_adder)
-	perform_damage(caster, target, new_effect, crit, grade)
+	new_effect.type = EffectResource.Type.DAMAGE
+	perform_effect(caster, target, new_effect, crit, grade)
 	tumulte_adder += 20 * get_targets(caster, target, effect.target_type).size()
 	
 #endregion

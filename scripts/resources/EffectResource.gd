@@ -29,7 +29,7 @@ enum TargetType {
 @export var type: Type
 @export var time: float
 @export var target_type: TargetType
-@export var show_time := true
+@export var show_time: bool
 
 @export_group("Damage & Soin")
 @export var element: Caracteristique.Element
@@ -43,7 +43,7 @@ var texture: Texture2D
 @export_group("Special")
 @export var method_name: StringName
 @export_multiline var effect_label: String
-@export var params: Array
+@export var params: Array = []
 
 @export_group("Random")
 @export var nb_random_effects: int
@@ -52,6 +52,13 @@ var texture: Texture2D
 @export var amounts: Array[AmountResource]
 
 @export var visible_in_description: bool = true
+
+
+func duplicate_amounts() -> Array[AmountResource]:
+	var new_amounts: Array[AmountResource] = []
+	for amount in amounts:
+		new_amounts.append(amount.duplicate())
+	return new_amounts
 
 
 func get_amount(crit: bool, grade: int) -> int:

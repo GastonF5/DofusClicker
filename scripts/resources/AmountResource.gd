@@ -23,3 +23,10 @@ static func create(minimum: int, maximum: int, minimum_crit: int, maximum_crit: 
 	resource._min_crit = minimum_crit
 	resource._max_crit = maximum_crit
 	return resource
+
+
+func add(amount: int):
+	_min += amount
+	_max += amount
+	_min_crit += amount
+	_max_crit += amount

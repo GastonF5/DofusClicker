@@ -92,8 +92,6 @@ func get_carac_amount_for_type(type: CaracType) -> int:
 
 
 func get_caracteristique_for_element(element: Element, dommages := false):
-	if element == Element.BEST:
-		element = get_best_element()
 	return get_caracteristique_for_type(StatsManager.get_type_for_element(element, dommages))
 
 
