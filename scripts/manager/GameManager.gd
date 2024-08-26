@@ -11,8 +11,6 @@ signal end_fight
 var managers = [StatsManager, PlayerManager, MonsterManager, EquipmentManager, RecipeManager]
 
 func _ready():
-	Globals.game.get_node("%ChangeClassButton").button_up.connect(change_class)
-	Globals.game.get_node("%QuitButton").button_up.connect(reload_game)
 	initialize()
 
 
@@ -27,6 +25,8 @@ func _input(event):
 func initialize():
 	class_peeker = Globals.class_peeker
 	
+	Globals.game.get_node("%ChangeClassButton").button_up.connect(change_class)
+	Globals.game.get_node("%QuitButton").button_up.connect(reload_game)
 	class_peeker.get_node("BackButton").button_up.connect(cancel_class_peek)
 	SpellsService.console = Globals.console
 	SpellsService.tnode = Globals.timers
@@ -62,6 +62,7 @@ func init_game(save_res: SaveResource = null):
 	Globals.class_texture_rect.texture = class_peeker.get_logo_transparent(selected_class)
 	for manager: AbstractManager in managers:
 		manager.initialize()
+	SaveManager.initialize()
 	Datas.load_data()
 	Globals.area_peeker.initialize()
 	Globals.console.initialize()

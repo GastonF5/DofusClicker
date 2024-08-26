@@ -1,7 +1,7 @@
 extends Node
 
 
-func _ready():
+func initialize():
 	Globals.game.get_node("%SaveButton").button_up.connect(save)
 
 
