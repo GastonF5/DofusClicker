@@ -90,7 +90,10 @@ func init_spell(spell_res: SpellResource):
 	set_pa_visibility(true)
 	pa_cost_label.text = str(spell_res.pa_cost)
 	compute_name_label(spell_res.name, spell_res.id)
-	compute_description_label(spell_res.description)
+	var description = spell_res.description
+	if spell_res.cooldown > 0:
+		description += "\nTemps de récupération : %d secondes" % spell_res.cooldown
+	compute_description_label(description)
 	for effect in spell_res.effects:
 		if effect.visible_in_description and effect.get_effect_label(0) != "ERREUR":
 			add_spell_effect_label(effect)
