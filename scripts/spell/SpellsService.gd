@@ -186,19 +186,19 @@ static func pile_face(_caster: Entity, target: Entity, effect: EffectResource, c
 #region Iop
 static var pugilat_adder := 0
 static func pugilat(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
-	var new_effect = effect.duplicate()
-	for amount in new_effect.amounts:
-		amount += pugilat_adder
-	perform_damage(caster, target, effect, crit, grade)
+	var new_effect = effect.duplicate(true)
+	new_effect.amounts = effect.duplicate_amounts()
+	new_effect.amounts[grade].add(pugilat_adder)
+	perform_damage(caster, target, new_effect, crit, grade)
 	pugilat_adder += 18
 
 
 static var fureur_adder := 0
 static func fureur(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
-	var new_effect = effect.duplicate()
-	for amount in new_effect.amounts:
-		amount += fureur_adder
-	perform_damage(caster, target, effect, crit, grade)
+	var new_effect = effect.duplicate(true)
+	new_effect.amounts = effect.duplicate_amounts()
+	new_effect.amounts[grade].add(fureur_adder)
+	perform_damage(caster, target, new_effect, crit, grade)
 	fureur_adder += 20
 
 
@@ -211,10 +211,10 @@ static func tempete_de_puissance(caster: Entity, target: Entity, effect: EffectR
 
 static var tumulte_adder := 0
 static func tumulte(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
-	var new_effect = effect.duplicate()
-	for amount in new_effect.amounts:
-		amount += tumulte_adder
-	perform_damage(caster, target, effect, crit, grade)
+	var new_effect = effect.duplicate(true)
+	new_effect.amounts = effect.duplicate_amounts()
+	new_effect.amounts[grade].add(tumulte_adder)
+	perform_damage(caster, target, new_effect, crit, grade)
 	tumulte_adder += 20 * get_targets(caster, target, effect.target_type).size()
 	
 #endregion
