@@ -6,22 +6,38 @@
 [sub_resource type="Resource" id="Resource_3gegn"]
 script = ExtResource("1_q3w3b")
 _number = 1
+_id = 0
+_name = ""
+_super_area_id = 0
 _monster_ids = Array[int]([4046, 4047, 4048])
+_level = 0
 
 [sub_resource type="Resource" id="Resource_wvlax"]
 script = ExtResource("1_q3w3b")
 _number = 2
+_id = 0
+_name = ""
+_super_area_id = 0
 _monster_ids = Array[int]([4047, 4048, 4049])
+_level = 0
 
 [sub_resource type="Resource" id="Resource_e0hsa"]
 script = ExtResource("1_q3w3b")
 _number = 3
+_id = 0
+_name = ""
+_super_area_id = 0
 _monster_ids = Array[int]([4048, 4049, 4050])
+_level = 0
 
 [sub_resource type="Resource" id="Resource_k0msj"]
 script = ExtResource("1_q3w3b")
 _number = 4
+_id = 0
+_name = ""
+_super_area_id = 0
 _monster_ids = Array[int]([4048, 4049, 4050, 4051])
+_level = 0
 
 [resource]
 script = ExtResource("1_dvrak")

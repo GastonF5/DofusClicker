@@ -103,11 +103,15 @@ func set_area_label(label: String, _visible: bool):
 	area_label.visible = _visible
 
 
-func enter_subarea(subarea: AreaResource):
+func enter_subarea(subarea: AreaResource, subarea_name: String = ""):
 	clear_buttons()
 	back_button.icon = load("res://assets/back_btn/btn_arrow_turn_character_normal.png")
-	set_area_label(subarea._name, true)
-	log_enter_subarea(subarea._name)
+	if subarea_name == "":
+		set_area_label(subarea._name, true)
+		log_enter_subarea(subarea._name)
+	else:
+		set_area_label(subarea_name, true)
+		log_enter_subarea(subarea_name)
 	load_monsters(subarea)
 
 
