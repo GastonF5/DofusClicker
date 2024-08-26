@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://dyp84yxkk1f3d"]
+[gd_scene load_steps=46 format=3 uid="uid://dyp84yxkk1f3d"]
 
 [ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="1_fefji"]
 [ext_resource type="Texture2D" uid="uid://dtp2ktsnvjk8w" path="res://assets/common/window/bg_product.jpg" id="2_3a1je"]
@@ -28,7 +28,9 @@
 [ext_resource type="Texture2D" uid="uid://l5x41vqt4blf" path="res://assets/common/button/btn_greenLargeBorder_pressed.png" id="25_gye0r"]
 [ext_resource type="Texture2D" uid="uid://dne08ij0lq2cn" path="res://assets/common/button/btn_greenLargeBorder_disabled.png" id="26_5vd1m"]
 [ext_resource type="PackedScene" uid="uid://c74kvimoxv1i" path="res://scenes/spell/spell_bar.tscn" id="27_addeo"]
+[ext_resource type="Texture2D" uid="uid://bcuv0qgqcqi1k" path="res://assets/loading.png" id="28_3m4tg"]
 [ext_resource type="Theme" uid="uid://ctf5aaqx8jyeo" path="res://resources/themes/experience_bar.tres" id="29_1pia2"]
+[ext_resource type="Script" path="res://scripts/Loading.gd" id="29_p4f5p"]
 [ext_resource type="Script" path="res://scripts/experience/ExperienceBar.gd" id="30_x1mlq"]
 [ext_resource type="PackedScene" uid="uid://dacg0tcpohas3" path="res://scenes/jobs/jobs_container.tscn" id="31_jnct6"]
 [ext_resource type="PackedScene" uid="uid://cuvrxfxt4hxgo" path="res://scenes/inventory/inventory_container.tscn" id="32_r1u5r"]
@@ -379,6 +381,27 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_fjntk")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ohgqn")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_8bo48")
 text = "Lancer le combat"
+
+[node name="Loading" type="TextureRect" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/StartFightButton"]
+visible = false
+modulate = Color(1, 1, 1, 0.658824)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(25, 25)
+texture = ExtResource("28_3m4tg")
+expand_mode = 2
+stretch_mode = 5
+script = ExtResource("29_p4f5p")
 
 [node name="AutoStartFight" type="Control" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD"]
 unique_name_in_owner = true

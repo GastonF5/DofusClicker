@@ -135,6 +135,7 @@ func log_leave_subarea():
 
 
 func load_monsters(subarea: AreaResource):
+	MonsterManager.set_start_fight_button_loading(true)
 	var monster_resources = subarea.get_monsters()
 	var composite_signal
 	var not_loaded_monsters = monster_resources.filter(func(r): return !r.texture)
@@ -152,8 +153,10 @@ func load_monsters(subarea: AreaResource):
 		await composite_signal.finished
 		if selected_subarea_id == subarea._id:
 			MonsterManager.start_fight_button.disabled = false
+			MonsterManager.set_start_fight_button_loading(false)
 	else:
 		MonsterManager.start_fight_button.disabled = false
+		MonsterManager.set_start_fight_button_loading(false)
 
 
 func button_exists(id: int, is_subarea: bool):

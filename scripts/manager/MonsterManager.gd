@@ -125,3 +125,7 @@ func clear_monsters():
 
 func _on_monster_selected(monster: Monster):
 	PlayerManager.selected_plate = monster.get_parent()
+
+
+func set_start_fight_button_loading(is_loading: bool):
+	start_fight_button.get_child(0).visible = is_loading
