@@ -24,6 +24,10 @@ expand_margin_right = 5.0
 expand_margin_bottom = 5.0
 
 [node name="Stats" type="Panel"]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 374.0
+grow_vertical = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.5
 theme_override_styles/panel = SubResource("StyleBoxTexture_fac4o")
@@ -50,6 +54,7 @@ theme_override_constants/separation = 0
 
 [node name="StatsHeader" type="PanelContainer" parent="MarginContainer/ScrollContainer/VBC"]
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="Scratch" type="Panel" parent="MarginContainer/ScrollContainer/VBC/StatsHeader"]
@@ -127,11 +132,13 @@ static_tooltip_text = "Les points de mouvement définissent la vitesse à laquel
 
 [node name="Separator" type="TextureRect" parent="MarginContainer/ScrollContainer/VBC"]
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("6_slvwl")
 
 [node name="Caracteristiques" type="PanelContainer" parent="MarginContainer/ScrollContainer/VBC"]
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="Scratch" type="Panel" parent="MarginContainer/ScrollContainer/VBC/Caracteristiques"]
@@ -238,11 +245,13 @@ size_flags_vertical = 4
 
 [node name="Separator2" type="TextureRect" parent="MarginContainer/ScrollContainer/VBC"]
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("6_slvwl")
 
 [node name="Dommages" type="PanelContainer" parent="MarginContainer/ScrollContainer/VBC"]
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="Scratch" type="Panel" parent="MarginContainer/ScrollContainer/VBC/Dommages"]
@@ -262,6 +271,7 @@ alignment = 1
 
 [node name="Puissance" parent="MarginContainer/ScrollContainer/VBC/Dommages/StatsDommages/StatsContainer" instance=ExtResource("5_477tq")]
 layout_mode = 2
+size_flags_horizontal = 4
 modifiable = false
 
 [node name="Separator" type="TextureRect" parent="MarginContainer/ScrollContainer/VBC/Dommages/StatsDommages/StatsContainer"]
@@ -298,11 +308,13 @@ modifiable = false
 
 [node name="Separator3" type="TextureRect" parent="MarginContainer/ScrollContainer/VBC"]
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("6_slvwl")
 
 [node name="DommagesElementaires" type="PanelContainer" parent="MarginContainer/ScrollContainer/VBC"]
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="Scratch" type="Panel" parent="MarginContainer/ScrollContainer/VBC/DommagesElementaires"]
@@ -374,11 +386,13 @@ modifiable = false
 
 [node name="Separator4" type="TextureRect" parent="MarginContainer/ScrollContainer/VBC"]
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("6_slvwl")
 
 [node name="Résistances" type="PanelContainer" parent="MarginContainer/ScrollContainer/VBC"]
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="Scratch" type="Panel" parent="MarginContainer/ScrollContainer/VBC/Résistances"]
@@ -455,11 +469,13 @@ modifiable = false
 
 [node name="Separator5" type="TextureRect" parent="MarginContainer/ScrollContainer/VBC"]
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("6_slvwl")
 
 [node name="Autres" type="PanelContainer" parent="MarginContainer/ScrollContainer/VBC"]
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="Scratch" type="Panel" parent="MarginContainer/ScrollContainer/VBC/Autres"]
