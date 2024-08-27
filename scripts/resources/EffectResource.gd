@@ -109,7 +109,11 @@ func get_effect_label(grade: int) -> String:
 		return compute_special_label(grade)
 	match type:
 		Type.DAMAGE:
-			result = "%s dommages %s" % [get_amount_label(grade), get_element_label()]
+			if lifesteal:
+				result = "%s vol %s"
+			else:
+				result = "%s dommages %s"
+			result = result % [get_amount_label(grade), get_element_label()]
 		Type.SOIN:
 			result = "%s soins %s" % [get_amount_label(grade), get_element_label()]
 		Type.BONUS:
