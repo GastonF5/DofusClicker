@@ -70,9 +70,13 @@ static func perform_damage(caster: Entity, target: Entity, effect: EffectResourc
 
 static func perform_soin(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
 	var element = effect.element
-	if element == Element.BEST:
-		element = caster.get_best_element()
-	var amount = get_soin(caster, effect.get_amount(crit, grade), element)
+	var amount := 0
+	if effect.pourcentage:
+		amount = int((effect.get_amount(crit, grade) * caster.get_carac_amount_for_type(effect.caracteristic)) / 100.0)
+	else:
+		if element == Element.BEST:
+			element = caster.get_best_element()
+		amount = get_soin(caster, effect.get_amount(crit, grade), element)
 	target.take_damage(-amount, element)
 
 
@@ -95,7 +99,9 @@ static func perform_bonus(caster: Entity, target: Entity, effect: EffectResource
 	console.log_bonus(target, amount, effect.get_caracteristic_label(), effect.time)
 	if effect.time != 0:
 		if target.is_player:
-			Buff.instantiate(effect, amount, Globals.buffs_container)
+			Buff.instantiate(effect, amount, PlayerManager.player_entity)
+		else:
+			Buff.instantiate(effect, amount, target)
 		var timer = create_timer(effect.time, "BonusTimer")
 		await timer.timeout
 		timer.queue_free()

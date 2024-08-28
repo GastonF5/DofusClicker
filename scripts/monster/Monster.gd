@@ -4,6 +4,9 @@ class_name Monster
 var resource: MonsterResource
 var grade: GradeResource
 var drops: Array[DropResource]
+var spell_to_cast: SpellResource
+
+var timers := {}
 
 @export var bars: EntityBars
 
@@ -16,9 +19,11 @@ func _ready():
 
 
 func _process(_delta):
-	if !spells.is_empty() and pa_bar.cval >= spells[0].pa_cost:
-		pa_bar.cval -= spells[0].pa_cost
-		attack()
+	spell_to_cast = get_spell_to_cast()
+	if spell_to_cast and pa_bar.cval >= spell_to_cast.pa_cost:
+		if attack(spell_to_cast):
+			pa_bar.cval -= spell_to_cast.pa_cost
+			spell_to_cast = null
 
 
 static func instantiate(monster_res: MonsterResource, parent: Control) -> Monster:
@@ -70,10 +75,29 @@ func init_bars():
 	super()
 
 
-func attack():
-	var spell_to_cast = spells[0]
-	var spell_grade := 0
-	SpellsService.perform_spell(self, PlayerManager.player_entity, spell_to_cast, spell_grade)
+# Renvoie true si le monstre a effectivement lancé un sort
+func attack(spell: SpellResource) -> bool:
+	if !spell:
+		return false
+	SpellsService.perform_spell(self, PlayerManager.player_entity, spell, grade.grade)
+	if spell.cooldown > 0:
+		var timer: Timer = SpellsService.create_timer(spell.cooldown, spell.name)
+		timers[spell.name] = timer
+		timer.timeout.connect(delete_timer.bind(timer))
+	return true
+
+
+func delete_timer(timer: Timer):
+	timers.erase(timer)
+	timer.queue_free()
+
+
+func get_spell_to_cast():
+	var sorted_spells = spells.duplicate()
+	sorted_spells.sort_custom(func(a, b): return a.priority > b.priority)
+	for spell in sorted_spells:
+		if !timers.has(spell.name):
+			return spell
 
 
 func die():

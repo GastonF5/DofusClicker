@@ -30,6 +30,7 @@ enum TargetType {
 @export var time: float
 @export var target_type: TargetType
 @export var show_time: bool
+@export var has_grades: bool
 
 @export_group("Damage & Soin")
 @export var element: Caracteristique.Element
@@ -62,7 +63,9 @@ func duplicate_amounts() -> Array[AmountResource]:
 
 
 func get_amount(crit: bool, grade: int) -> int:
-	return amounts[grade].get_random(crit)
+	if has_grades:
+		return amounts[grade - 1].get_random(crit)
+	return amounts[0].get_random(crit)
 
 
 func get_element_label() -> String:

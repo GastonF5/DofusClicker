@@ -7,6 +7,7 @@ const Element = Caracteristique.Element
 
 var caracteristiques: Array[StatResource] = []
 var spells: Array[SpellResource] = []
+var buffs: Array[Buff] = []
 
 var inventory: Inventory
 
@@ -17,6 +18,8 @@ var inventory: Inventory
 @export var hp_bar: CustomBar
 @export var pa_bar: CustomBar
 @export var pm_bar: CustomBar
+
+@export var buffs_container: HBoxContainer
 
 var dying = false
 var attack_callable: Callable

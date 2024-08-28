@@ -120,6 +120,7 @@ func init_player_entity():
 	pa_bar = Globals.player_bars.pa_bar
 	pm_bar = Globals.player_bars.pm_bar
 	player_entity = Entity.new()
+	player_entity.buffs_container = Globals.buffs_container
 	player_entity.name = "Player"
 	player_entity.is_player = true
 	player_entity.init()
