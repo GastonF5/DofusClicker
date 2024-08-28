@@ -1,15 +1,16 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=8 format=3 uid="uid://iyu0vwnhu3u8"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=11 format=3 uid="uid://iyu0vwnhu3u8"]
 
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_3ksl2"]
 [ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_t3rgr"]
 [ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_4qesn"]
+[ext_resource type="Texture2D" uid="uid://cjq8iluk8nbf5" path="res://assets/spells/monster/sort_10040.png" id="4_5g1kh"]
 
 [sub_resource type="Resource" id="Resource_2bysl"]
 script = ExtResource("1_t3rgr")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
+_min = 13
+_max = 24
+_min_crit = 13
+_max_crit = 24
 
 [sub_resource type="Resource" id="Resource_86jjc"]
 resource_name = "Dommages Neutre"
@@ -17,9 +18,12 @@ script = ExtResource("2_4qesn")
 type = 0
 time = 0.0
 target_type = 1
+show_time = false
+has_grades = false
 element = 0
 lifesteal = false
 caracteristic = 0
+pourcentage = false
 method_name = &""
 effect_label = ""
 params = []
@@ -29,20 +33,23 @@ visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_tu2pl"]
 script = ExtResource("1_t3rgr")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
+_min = 1
+_max = 1
+_min_crit = 1
+_max_crit = 1
 
 [sub_resource type="Resource" id="Resource_3of5c"]
 resource_name = "Retrait PA"
 script = ExtResource("2_4qesn")
 type = 2
 time = 0.0
-target_type = 0
+target_type = 1
+show_time = false
+has_grades = false
 element = 0
 lifesteal = false
 caracteristic = 0
+pourcentage = false
 method_name = &""
 effect_label = ""
 params = []
@@ -50,14 +57,42 @@ nb_random_effects = 0
 amounts = Array[ExtResource("1_t3rgr")]([SubResource("Resource_tu2pl")])
 visible_in_description = true
 
+[sub_resource type="Resource" id="Resource_bvcpe"]
+script = ExtResource("1_t3rgr")
+_min = 2
+_max = 2
+_min_crit = 2
+_max_crit = 2
+
+[sub_resource type="Resource" id="Resource_nm1el"]
+resource_name = "Bonus Dommages"
+script = ExtResource("2_4qesn")
+type = 1
+time = 10.0
+target_type = 0
+show_time = true
+has_grades = false
+element = 0
+lifesteal = false
+caracteristic = 9
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_t3rgr")]([SubResource("Resource_bvcpe")])
+visible_in_description = true
+
 [resource]
 script = ExtResource("1_3ksl2")
 id = 5857
 name = "Coup de Piléus"
 description = "Inflige des dommages dans l'élément Neutre et retire des PA."
+texture = ExtResource("4_5g1kh")
 img_url = "https://api.dofusdb.fr/img/spells/sort_10040.png"
+level = 0
 pa_cost = 4
 per_crit = 0.0
 cooldown = 0.0
 priority = 0
-effects = Array[ExtResource("2_4qesn")]([SubResource("Resource_86jjc"), SubResource("Resource_3of5c")])
+effects = Array[ExtResource("2_4qesn")]([SubResource("Resource_86jjc"), SubResource("Resource_3of5c"), SubResource("Resource_nm1el")])

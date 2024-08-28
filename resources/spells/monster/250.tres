@@ -1,15 +1,16 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=6 format=3 uid="uid://dlndtydulgayl"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://dlndtydulgayl"]
 
 [ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_46eoq"]
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_o46xr"]
 [ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_i87y4"]
+[ext_resource type="Texture2D" uid="uid://dpbx4nj1d8x5l" path="res://assets/spells/monster/sort_10039.png" id="4_kq036"]
 
 [sub_resource type="Resource" id="Resource_dc8xt"]
 script = ExtResource("1_46eoq")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
+_min = 2
+_max = 2
+_min_crit = 3
+_max_crit = 3
 
 [sub_resource type="Resource" id="Resource_mjr68"]
 resource_name = "Retrait PM"
@@ -17,9 +18,12 @@ script = ExtResource("2_i87y4")
 type = 2
 time = 0.0
 target_type = 1
+show_time = false
+has_grades = false
 element = 0
 lifesteal = false
 caracteristic = 1
+pourcentage = false
 method_name = &""
 effect_label = ""
 params = []
@@ -32,7 +36,9 @@ script = ExtResource("1_o46xr")
 id = 250
 name = "Crachouille"
 description = "Retire des PM."
+texture = ExtResource("4_kq036")
 img_url = "https://api.dofusdb.fr/img/spells/sort_10039.png"
+level = 0
 pa_cost = 3
 per_crit = 0.1
 cooldown = 10.0

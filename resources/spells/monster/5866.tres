@@ -1,125 +1,44 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=13 format=3 uid="uid://dck1s7qr0mbdt"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=6 format=3 uid="uid://c8ya22plkowt7"]
 
-[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_bnpy0"]
-[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_sp6tl"]
-[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="2_fvkbu"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_a1mb6"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_iwdr0"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="2_rnu7i"]
 
-[sub_resource type="Resource" id="Resource_tmxx5"]
-resource_name = "Effet random (4)"
-script = ExtResource("1_sp6tl")
-type = 4
-time = 0.0
-target_type = 0
-element = 0
-lifesteal = false
-caracteristic = 0
-method_name = &""
-effect_label = ""
-params = []
-nb_random_effects = 4
-amounts = Array[ExtResource("2_fvkbu")]([])
-visible_in_description = true
-
-[sub_resource type="Resource" id="Resource_w62ql"]
-script = ExtResource("2_fvkbu")
-_min = 0
-_max = 0
+[sub_resource type="Resource" id="Resource_v6hsl"]
+script = ExtResource("2_rnu7i")
+_min = 6
+_max = 8
 _min_crit = 0
 _max_crit = 0
 
-[sub_resource type="Resource" id="Resource_ep2eq"]
-resource_name = "Dommages Terre"
-script = ExtResource("1_sp6tl")
+[sub_resource type="Resource" id="Resource_ah4p6"]
+resource_name = "Dommages Random"
+script = ExtResource("1_a1mb6")
 type = 0
 time = 0.0
 target_type = 1
-element = 1
+show_time = true
+has_grades = false
+element = 7
 lifesteal = false
 caracteristic = 0
+pourcentage = false
 method_name = &""
 effect_label = ""
 params = []
 nb_random_effects = 0
-amounts = Array[ExtResource("2_fvkbu")]([SubResource("Resource_w62ql")])
-visible_in_description = true
-
-[sub_resource type="Resource" id="Resource_w7230"]
-script = ExtResource("2_fvkbu")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
-
-[sub_resource type="Resource" id="Resource_n8x32"]
-resource_name = "Dommages Feu"
-script = ExtResource("1_sp6tl")
-type = 0
-time = 0.0
-target_type = 1
-element = 2
-lifesteal = false
-caracteristic = 0
-method_name = &""
-effect_label = ""
-params = []
-nb_random_effects = 0
-amounts = Array[ExtResource("2_fvkbu")]([SubResource("Resource_w7230")])
-visible_in_description = true
-
-[sub_resource type="Resource" id="Resource_xjq33"]
-script = ExtResource("2_fvkbu")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
-
-[sub_resource type="Resource" id="Resource_tcnl2"]
-resource_name = "Dommages Eau"
-script = ExtResource("1_sp6tl")
-type = 0
-time = 0.0
-target_type = 1
-element = 3
-lifesteal = false
-caracteristic = 0
-method_name = &""
-effect_label = ""
-params = []
-nb_random_effects = 0
-amounts = Array[ExtResource("2_fvkbu")]([SubResource("Resource_xjq33")])
-visible_in_description = true
-
-[sub_resource type="Resource" id="Resource_o47m8"]
-script = ExtResource("2_fvkbu")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
-
-[sub_resource type="Resource" id="Resource_r4xx6"]
-resource_name = "Dommages Air"
-script = ExtResource("1_sp6tl")
-type = 0
-time = 0.0
-target_type = 1
-element = 4
-lifesteal = false
-caracteristic = 0
-method_name = &""
-effect_label = ""
-params = []
-nb_random_effects = 0
-amounts = Array[ExtResource("2_fvkbu")]([SubResource("Resource_o47m8")])
+amounts = Array[ExtResource("2_rnu7i")]([SubResource("Resource_v6hsl")])
 visible_in_description = true
 
 [resource]
-script = ExtResource("1_bnpy0")
+script = ExtResource("1_iwdr0")
 id = 5866
 name = "Brûlure légère"
-description = "Inflige des dommages dans un élément aléatoire."
-img_url = ""
+description = ""
+img_url = "https://api.dofusdb.fr/img/spells/sort_13208.png"
+level = 0
 pa_cost = 2
 per_crit = 0.0
 cooldown = 0.0
 priority = 0
-effects = Array[ExtResource("1_sp6tl")]([SubResource("Resource_tmxx5"), SubResource("Resource_ep2eq"), SubResource("Resource_n8x32"), SubResource("Resource_tcnl2"), SubResource("Resource_r4xx6")])
+effects = Array[ExtResource("1_a1mb6")]([SubResource("Resource_ah4p6")])

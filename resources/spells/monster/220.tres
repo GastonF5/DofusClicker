@@ -1,15 +1,70 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://lq4gyleu5opl"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=14 format=3 uid="uid://lq4gyleu5opl"]
 
 [ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_d3d26"]
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_eh6bk"]
 [ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_6rswd"]
+[ext_resource type="Texture2D" uid="uid://cjq8iluk8nbf5" path="res://assets/spells/monster/sort_10040.png" id="4_qs74k"]
+
+[sub_resource type="Resource" id="Resource_tfe0c"]
+script = ExtResource("1_d3d26")
+_min = 4
+_max = 6
+_min_crit = 6
+_max_crit = 8
+
+[sub_resource type="Resource" id="Resource_pcjb8"]
+script = ExtResource("1_d3d26")
+_min = 5
+_max = 7
+_min_crit = 7
+_max_crit = 9
+
+[sub_resource type="Resource" id="Resource_1qtrk"]
+script = ExtResource("1_d3d26")
+_min = 6
+_max = 8
+_min_crit = 8
+_max_crit = 10
+
+[sub_resource type="Resource" id="Resource_vp6ku"]
+script = ExtResource("1_d3d26")
+_min = 7
+_max = 9
+_min_crit = 9
+_max_crit = 11
+
+[sub_resource type="Resource" id="Resource_u222e"]
+script = ExtResource("1_d3d26")
+_min = 8
+_max = 10
+_min_crit = 10
+_max_crit = 12
+
+[sub_resource type="Resource" id="Resource_pcfmi"]
+resource_name = "Dommages Neutre"
+script = ExtResource("2_6rswd")
+type = 0
+time = 0.0
+target_type = 0
+show_time = false
+has_grades = true
+element = 0
+lifesteal = false
+caracteristic = 0
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_d3d26")]([SubResource("Resource_tfe0c"), SubResource("Resource_pcjb8"), SubResource("Resource_1qtrk"), SubResource("Resource_vp6ku"), SubResource("Resource_u222e")])
+visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_q7rh8"]
 script = ExtResource("1_d3d26")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
+_min = 1
+_max = 1
+_min_crit = 1
+_max_crit = 1
 
 [sub_resource type="Resource" id="Resource_su2d1"]
 resource_name = "Retrait PA"
@@ -17,9 +72,12 @@ script = ExtResource("2_6rswd")
 type = 2
 time = 0.0
 target_type = 1
+show_time = false
+has_grades = false
 element = 0
 lifesteal = false
 caracteristic = 0
+pourcentage = false
 method_name = &""
 effect_label = ""
 params = []
@@ -33,9 +91,12 @@ script = ExtResource("2_6rswd")
 type = 2
 time = 0.0
 target_type = 1
+show_time = false
+has_grades = false
 element = 0
 lifesteal = false
 caracteristic = 1
+pourcentage = false
 method_name = &""
 effect_label = ""
 params = []
@@ -47,10 +108,12 @@ visible_in_description = true
 script = ExtResource("1_eh6bk")
 id = 220
 name = "Effleurement"
-description = "Retire des PA et PM."
+description = "Occasionne des dommages Neutre et retire des PA et PM."
+texture = ExtResource("4_qs74k")
 img_url = "https://api.dofusdb.fr/img/spells/sort_10040.png"
+level = 0
 pa_cost = 4
 per_crit = 0.05
-cooldown = 0.0
-priority = 0
-effects = Array[ExtResource("2_6rswd")]([SubResource("Resource_su2d1"), SubResource("Resource_11rp8")])
+cooldown = 10.0
+priority = 1
+effects = Array[ExtResource("2_6rswd")]([SubResource("Resource_pcfmi"), SubResource("Resource_su2d1"), SubResource("Resource_11rp8")])

@@ -6,8 +6,8 @@
 
 [sub_resource type="Resource" id="Resource_q1yrq"]
 script = ExtResource("1_42jqy")
-_min = 0
-_max = 0
+_min = 4
+_max = 5
 _min_crit = 0
 _max_crit = 0
 
@@ -17,9 +17,12 @@ script = ExtResource("2_ps07f")
 type = 0
 time = 0.0
 target_type = 1
+show_time = false
+has_grades = false
 element = 1
 lifesteal = false
 caracteristic = 0
+pourcentage = false
 method_name = &""
 effect_label = ""
 params = []
@@ -33,7 +36,8 @@ id = 5867
 name = "Souffle Céleste"
 description = "Occasionne des dommages Terre."
 img_url = ""
-pa_cost = 2
+level = 0
+pa_cost = 4
 per_crit = 0.0
 cooldown = 0.0
 priority = 0

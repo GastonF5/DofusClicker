@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=6 format=3 uid="uid://vfd2gld7edyt"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_afq1b"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_xf02b"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="2_huknk"]
+
+[sub_resource type="Resource" id="Resource_q4rv5"]
+script = ExtResource("1_afq1b")
+_min = 13
+_max = 24
+_min_crit = 0
+_max_crit = 0
+
+[sub_resource type="Resource" id="Resource_4j83g"]
+resource_name = "Dommages Neutre"
+script = ExtResource("1_xf02b")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+has_grades = false
+element = 0
+lifesteal = false
+caracteristic = 0
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_afq1b")]([SubResource("Resource_q4rv5")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("2_huknk")
+id = 5863
+name = "Ron-Ron"
+description = "Occasionne des dommages Neutre."
+img_url = ""
+level = 0
+pa_cost = 4
+per_crit = 0.0
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("1_xf02b")]([SubResource("Resource_4j83g")])

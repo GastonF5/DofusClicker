@@ -1,0 +1,72 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://0cboa6mxoscv"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_d85kv"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_pev40"]
+[ext_resource type="Texture2D" uid="uid://be4itmhj6bmxx" path="res://assets/spells/monster/sort_13201.png" id="2_3iyxc"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_tum8v"]
+
+[sub_resource type="Resource" id="Resource_df885"]
+script = ExtResource("1_d85kv")
+_min = 10
+_max = 16
+_min_crit = 14
+_max_crit = 20
+
+[sub_resource type="Resource" id="Resource_i0hcj"]
+resource_name = "Dommages Feu"
+script = ExtResource("2_tum8v")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+has_grades = false
+element = 2
+lifesteal = false
+caracteristic = 0
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_d85kv")]([SubResource("Resource_df885")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_w3kj7"]
+script = ExtResource("1_d85kv")
+_min = 7
+_max = 7
+_min_crit = 9
+_max_crit = 9
+
+[sub_resource type="Resource" id="Resource_gylx8"]
+resource_name = "Bonus Do Feu"
+script = ExtResource("2_tum8v")
+type = 1
+time = 15.0
+target_type = 0
+show_time = false
+has_grades = false
+element = 0
+lifesteal = false
+caracteristic = 25
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_d85kv")]([SubResource("Resource_w3kj7")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_pev40")
+id = 5876
+name = "Flèche de Feu"
+description = "Occasionne des dommages Feu et augmente les dommages Feu du lanceur."
+texture = ExtResource("2_3iyxc")
+img_url = "https://api.dofusdb.fr/img/spells/sort_13201.png"
+level = 0
+pa_cost = 4
+per_crit = 0.1
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_tum8v")]([SubResource("Resource_i0hcj"), SubResource("Resource_gylx8")])

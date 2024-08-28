@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://cin5p4xksofsn"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_2raqq"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_d1vxu"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_f5gtw"]
+[ext_resource type="Texture2D" uid="uid://d31jwo57l4luq" path="res://assets/spells/monster/sort_10073.png" id="4_24ei5"]
+
+[sub_resource type="Resource" id="Resource_cjs5m"]
+script = ExtResource("1_2raqq")
+_min = 6
+_max = 10
+_min_crit = 0
+_max_crit = 0
+
+[sub_resource type="Resource" id="Resource_qhwfi"]
+resource_name = "Dommages Eau"
+script = ExtResource("2_f5gtw")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+has_grades = false
+element = 3
+lifesteal = false
+caracteristic = 0
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_2raqq")]([SubResource("Resource_cjs5m")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_d1vxu")
+id = 5964
+name = "Glougloutte"
+description = "Occasionne des dommages Eau."
+texture = ExtResource("4_24ei5")
+img_url = "https://api.dofusdb.fr/img/spells/sort_10073.png"
+level = 0
+pa_cost = 3
+per_crit = 0.0
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_f5gtw")]([SubResource("Resource_qhwfi")])

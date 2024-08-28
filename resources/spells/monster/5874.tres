@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://cjjau1o32r5hp"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_p1xu0"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_rwlne"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_unstx"]
+[ext_resource type="Texture2D" uid="uid://dpvcw57s0aybi" path="res://assets/spells/monster/sort_13202.png" id="4_5wtgo"]
+
+[sub_resource type="Resource" id="Resource_a6qr7"]
+script = ExtResource("1_p1xu0")
+_min = 21
+_max = 30
+_min_crit = 0
+_max_crit = 0
+
+[sub_resource type="Resource" id="Resource_i8pr0"]
+resource_name = "Dommages Air"
+script = ExtResource("2_unstx")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+has_grades = false
+element = 4
+lifesteal = false
+caracteristic = 0
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_p1xu0")]([SubResource("Resource_a6qr7")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_rwlne")
+id = 5874
+name = "Empalement"
+description = "Occasionne des dommages Air."
+texture = ExtResource("4_5wtgo")
+img_url = "https://api.dofusdb.fr/img/spells/sort_13202.png"
+level = 0
+pa_cost = 5
+per_crit = 0.0
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_unstx")]([SubResource("Resource_i8pr0")])

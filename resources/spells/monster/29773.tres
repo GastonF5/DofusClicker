@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://bb4e7bjmverlr"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_fpml0"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_vo05n"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_o2fuq"]
+[ext_resource type="Texture2D" uid="uid://dwitb4gu5g2if" path="res://assets/spells/monster/sort_13203.png" id="4_ectvy"]
+
+[sub_resource type="Resource" id="Resource_7di87"]
+script = ExtResource("1_fpml0")
+_min = 6
+_max = 8
+_min_crit = 8
+_max_crit = 10
+
+[sub_resource type="Resource" id="Resource_a2x2u"]
+resource_name = "Dommages Eau"
+script = ExtResource("2_o2fuq")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+has_grades = false
+element = 3
+lifesteal = false
+caracteristic = 0
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_fpml0")]([SubResource("Resource_7di87")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_vo05n")
+id = 29773
+name = "Mordillement"
+description = "Occasionne des dommages Eau."
+texture = ExtResource("4_ectvy")
+img_url = ""
+level = 0
+pa_cost = 3
+per_crit = 0.1
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_o2fuq")]([SubResource("Resource_a2x2u")])

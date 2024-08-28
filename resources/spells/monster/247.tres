@@ -1,43 +1,44 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=10 format=3 uid="uid://di2mrj12648ap"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=11 format=3 uid="uid://di2mrj12648ap"]
 
 [ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_fb6p1"]
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_wvavi"]
 [ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_05fyn"]
+[ext_resource type="Texture2D" uid="uid://6yd8pd4ufj6q" path="res://assets/spells/monster/sort_10076.png" id="4_33mnr"]
 
 [sub_resource type="Resource" id="Resource_52dbk"]
 script = ExtResource("1_fb6p1")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
+_min = 2
+_max = 4
+_min_crit = 4
+_max_crit = 6
 
 [sub_resource type="Resource" id="Resource_euxwq"]
 script = ExtResource("1_fb6p1")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
+_min = 3
+_max = 5
+_min_crit = 5
+_max_crit = 7
 
 [sub_resource type="Resource" id="Resource_fq6x0"]
 script = ExtResource("1_fb6p1")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
+_min = 4
+_max = 6
+_min_crit = 6
+_max_crit = 8
 
 [sub_resource type="Resource" id="Resource_3wwro"]
 script = ExtResource("1_fb6p1")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
+_min = 5
+_max = 7
+_min_crit = 7
+_max_crit = 9
 
 [sub_resource type="Resource" id="Resource_noy7t"]
 script = ExtResource("1_fb6p1")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
+_min = 6
+_max = 8
+_min_crit = 8
+_max_crit = 10
 
 [sub_resource type="Resource" id="Resource_h8mep"]
 resource_name = "Dommages Terre"
@@ -45,9 +46,12 @@ script = ExtResource("2_05fyn")
 type = 0
 time = 0.0
 target_type = 0
+show_time = false
+has_grades = true
 element = 1
 lifesteal = false
 caracteristic = 0
+pourcentage = false
 method_name = &""
 effect_label = ""
 params = []
@@ -60,7 +64,9 @@ script = ExtResource("1_wvavi")
 id = 247
 name = "Morsure"
 description = "Inflige des dégâts dans l'élément Terre."
+texture = ExtResource("4_33mnr")
 img_url = "https://api.dofusdb.fr/img/spells/sort_10076.png"
+level = 0
 pa_cost = 3
 per_crit = 0.05
 cooldown = 0.0

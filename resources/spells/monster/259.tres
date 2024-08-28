@@ -1,43 +1,16 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=10 format=3 uid="uid://b4cwg3fys8fh8"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://b4cwg3fys8fh8"]
 
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_06hbr"]
 [ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_eal3i"]
 [ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_pwjdw"]
+[ext_resource type="Texture2D" uid="uid://dpvcw57s0aybi" path="res://assets/spells/monster/sort_13202.png" id="4_tfxgt"]
 
 [sub_resource type="Resource" id="Resource_8crtm"]
 script = ExtResource("1_eal3i")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
-
-[sub_resource type="Resource" id="Resource_l3s3s"]
-script = ExtResource("1_eal3i")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
-
-[sub_resource type="Resource" id="Resource_8hvkn"]
-script = ExtResource("1_eal3i")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
-
-[sub_resource type="Resource" id="Resource_4kf6m"]
-script = ExtResource("1_eal3i")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
-
-[sub_resource type="Resource" id="Resource_u47qq"]
-script = ExtResource("1_eal3i")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
+_min = 6
+_max = 8
+_min_crit = 8
+_max_crit = 10
 
 [sub_resource type="Resource" id="Resource_7j7dw"]
 resource_name = "Dommages Air"
@@ -45,23 +18,28 @@ script = ExtResource("2_pwjdw")
 type = 0
 time = 0.0
 target_type = 1
-element = 0
+show_time = false
+has_grades = false
+element = 4
 lifesteal = false
 caracteristic = 0
+pourcentage = false
 method_name = &""
 effect_label = ""
 params = []
 nb_random_effects = 0
-amounts = Array[ExtResource("1_eal3i")]([SubResource("Resource_8crtm"), SubResource("Resource_l3s3s"), SubResource("Resource_8hvkn"), SubResource("Resource_4kf6m"), SubResource("Resource_u47qq")])
+amounts = Array[ExtResource("1_eal3i")]([SubResource("Resource_8crtm")])
 visible_in_description = true
 
 [resource]
 script = ExtResource("1_06hbr")
 id = 259
-name = "Mordillement"
+name = "Mâchouillage"
 description = "Inflige des dommages dans l'élément Air."
+texture = ExtResource("4_tfxgt")
 img_url = "https://api.dofusdb.fr/img/spells/sort_10077.png"
-pa_cost = 2
+level = 0
+pa_cost = 4
 per_crit = 0.1
 cooldown = 0.0
 priority = 0

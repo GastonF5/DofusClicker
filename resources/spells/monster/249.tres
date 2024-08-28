@@ -1,15 +1,16 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=6 format=3 uid="uid://de3l0rjki5wis"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://de3l0rjki5wis"]
 
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_q13sj"]
 [ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_rhay5"]
 [ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_1kdmb"]
+[ext_resource type="Texture2D" uid="uid://cjq8iluk8nbf5" path="res://assets/spells/monster/sort_10040.png" id="4_3t0mg"]
 
 [sub_resource type="Resource" id="Resource_klanu"]
 script = ExtResource("1_rhay5")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
+_min = 2
+_max = 2
+_min_crit = 3
+_max_crit = 3
 
 [sub_resource type="Resource" id="Resource_p16o5"]
 resource_name = "Retrait PA"
@@ -17,9 +18,12 @@ script = ExtResource("2_1kdmb")
 type = 2
 time = 0.0
 target_type = 1
+show_time = false
+has_grades = false
 element = 0
 lifesteal = false
 caracteristic = 0
+pourcentage = false
 method_name = &""
 effect_label = ""
 params = []
@@ -32,7 +36,9 @@ script = ExtResource("1_q13sj")
 id = 249
 name = "Bavouille"
 description = "Retire des PA."
+texture = ExtResource("4_3t0mg")
 img_url = "https://api.dofusdb.fr/img/spells/sort_10040.png"
+level = 0
 pa_cost = 3
 per_crit = 0.1
 cooldown = 10.0

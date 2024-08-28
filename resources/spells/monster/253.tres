@@ -1,43 +1,16 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=10 format=3 uid="uid://dee6soikbyc57"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://dee6soikbyc57"]
 
 [ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_3hsjb"]
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_rg1p5"]
 [ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_yjipq"]
+[ext_resource type="Texture2D" uid="uid://li3v4j6oons" path="res://assets/spells/monster/sort_13204.png" id="4_jpkjn"]
 
 [sub_resource type="Resource" id="Resource_82ex0"]
 script = ExtResource("1_3hsjb")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
-
-[sub_resource type="Resource" id="Resource_e3h6f"]
-script = ExtResource("1_3hsjb")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
-
-[sub_resource type="Resource" id="Resource_0o6fq"]
-script = ExtResource("1_3hsjb")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
-
-[sub_resource type="Resource" id="Resource_g2vjd"]
-script = ExtResource("1_3hsjb")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
-
-[sub_resource type="Resource" id="Resource_vafrb"]
-script = ExtResource("1_3hsjb")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
+_min = 5
+_max = 5
+_min_crit = 5
+_max_crit = 5
 
 [sub_resource type="Resource" id="Resource_rgg78"]
 resource_name = "Bonus Dommages"
@@ -45,14 +18,17 @@ script = ExtResource("1_yjipq")
 type = 1
 time = 10.0
 target_type = 6
+show_time = false
+has_grades = false
 element = 0
 lifesteal = false
 caracteristic = 9
+pourcentage = false
 method_name = &""
 effect_label = ""
 params = []
 nb_random_effects = 0
-amounts = Array[ExtResource("1_3hsjb")]([SubResource("Resource_82ex0"), SubResource("Resource_e3h6f"), SubResource("Resource_0o6fq"), SubResource("Resource_g2vjd"), SubResource("Resource_vafrb")])
+amounts = Array[ExtResource("1_3hsjb")]([SubResource("Resource_82ex0")])
 visible_in_description = true
 
 [resource]
@@ -60,9 +36,11 @@ script = ExtResource("1_rg1p5")
 id = 253
 name = "Fureur du Bouftou"
 description = "Augmente les dommages d'un monstre aléatoire."
+texture = ExtResource("4_jpkjn")
 img_url = "https://api.dofusdb.fr/img/spells/sort_10013.png"
+level = 0
 pa_cost = 3
 per_crit = 0.0
-cooldown = 10.0
+cooldown = 15.0
 priority = 1
 effects = Array[ExtResource("1_yjipq")]([SubResource("Resource_rgg78")])

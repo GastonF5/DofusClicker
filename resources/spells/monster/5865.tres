@@ -1,13 +1,14 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=8 format=3 uid="uid://dkivexuxoov2d"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://dkivexuxoov2d"]
 
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_anrly"]
 [ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_oxkl3"]
 [ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_gm1t0"]
+[ext_resource type="Texture2D" uid="uid://cjq8iluk8nbf5" path="res://assets/spells/monster/sort_10040.png" id="4_rifr2"]
 
 [sub_resource type="Resource" id="Resource_l64gv"]
 script = ExtResource("1_oxkl3")
-_min = 0
-_max = 0
+_min = 19
+_max = 24
 _min_crit = 0
 _max_crit = 0
 
@@ -17,9 +18,12 @@ script = ExtResource("2_gm1t0")
 type = 0
 time = 0.0
 target_type = 1
+show_time = false
+has_grades = false
 element = 0
 lifesteal = false
 caracteristic = 0
+pourcentage = false
 method_name = &""
 effect_label = ""
 params = []
@@ -29,10 +33,10 @@ visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_1sw1b"]
 script = ExtResource("1_oxkl3")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
+_min = 1
+_max = 1
+_min_crit = 1
+_max_crit = 1
 
 [sub_resource type="Resource" id="Resource_unw2b"]
 resource_name = "Retrait PA"
@@ -40,9 +44,12 @@ script = ExtResource("2_gm1t0")
 type = 2
 time = 0.0
 target_type = 1
+show_time = false
+has_grades = false
 element = 0
 lifesteal = false
 caracteristic = 0
+pourcentage = false
 method_name = &""
 effect_label = ""
 params = []
@@ -55,9 +62,11 @@ script = ExtResource("1_anrly")
 id = 5865
 name = "Écrasement du Ronronchon"
 description = "Occasionne des dommages Neutre et retire des PA."
+texture = ExtResource("4_rifr2")
 img_url = "https://api.dofusdb.fr/img/spells/sort_10040.png"
+level = 0
 pa_cost = 4
 per_crit = 0.0
-cooldown = 0.0
-priority = 0
+cooldown = 15.0
+priority = 1
 effects = Array[ExtResource("2_gm1t0")]([SubResource("Resource_0jgwg"), SubResource("Resource_unw2b")])

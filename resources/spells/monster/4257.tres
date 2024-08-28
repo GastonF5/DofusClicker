@@ -1,15 +1,16 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=8 format=3 uid="uid://bvuqnrxej7crl"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://bvuqnrxej7crl"]
 
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_hko8w"]
 [ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_jh5dv"]
 [ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_qxe3v"]
+[ext_resource type="Texture2D" uid="uid://dmdka4jhdy415" path="res://assets/spells/monster/sort_12716.png" id="4_037gp"]
 
 [sub_resource type="Resource" id="Resource_id3o7"]
 script = ExtResource("1_jh5dv")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
+_min = 4
+_max = 8
+_min_crit = 9
+_max_crit = 10
 
 [sub_resource type="Resource" id="Resource_ja58n"]
 resource_name = "Dommages Feu"
@@ -17,9 +18,12 @@ script = ExtResource("2_qxe3v")
 type = 0
 time = 0.0
 target_type = 1
+show_time = false
+has_grades = false
 element = 2
 lifesteal = false
 caracteristic = 0
+pourcentage = false
 method_name = &""
 effect_label = ""
 params = []
@@ -29,10 +33,10 @@ visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_85lv2"]
 script = ExtResource("1_jh5dv")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
+_min = 2
+_max = 2
+_min_crit = 3
+_max_crit = 3
 
 [sub_resource type="Resource" id="Resource_ltvdu"]
 resource_name = "Retrait PM"
@@ -40,9 +44,12 @@ script = ExtResource("2_qxe3v")
 type = 2
 time = 0.0
 target_type = 1
+show_time = false
+has_grades = false
 element = 0
 lifesteal = false
 caracteristic = 1
+pourcentage = false
 method_name = &""
 effect_label = ""
 params = []
@@ -55,8 +62,10 @@ script = ExtResource("1_hko8w")
 id = 4257
 name = "Herbe Sauvage"
 description = "Occasionne des dommages Feu et retire des PM."
+texture = ExtResource("4_037gp")
 img_url = "https://api.dofusdb.fr/img/spells/sort_12716.png"
-pa_cost = 3
+level = 0
+pa_cost = 6
 per_crit = 0.1
 cooldown = 4.0
 priority = 0

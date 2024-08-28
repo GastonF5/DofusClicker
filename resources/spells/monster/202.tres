@@ -1,67 +1,45 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=10 format=3 uid="uid://cbbstta8ty7x4"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://cbbstta8ty7x4"]
 
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_4qqiv"]
 [ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_sq6jw"]
 [ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_hwj0x"]
+[ext_resource type="Texture2D" uid="uid://be4itmhj6bmxx" path="res://assets/spells/monster/sort_13201.png" id="4_ycdai"]
 
 [sub_resource type="Resource" id="Resource_kcgas"]
 script = ExtResource("1_sq6jw")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
-
-[sub_resource type="Resource" id="Resource_uuyn7"]
-script = ExtResource("1_sq6jw")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
-
-[sub_resource type="Resource" id="Resource_duyfe"]
-script = ExtResource("1_sq6jw")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
-
-[sub_resource type="Resource" id="Resource_jm5c5"]
-script = ExtResource("1_sq6jw")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
-
-[sub_resource type="Resource" id="Resource_dhs3n"]
-script = ExtResource("1_sq6jw")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
+_min = 8
+_max = 10
+_min_crit = 11
+_max_crit = 11
 
 [sub_resource type="Resource" id="Resource_2ea0k"]
-resource_name = "Dommages Neutre"
+resource_name = "Dommages Feu"
 script = ExtResource("2_hwj0x")
 type = 0
 time = 0.0
 target_type = 1
-element = 0
+show_time = false
+has_grades = false
+element = 2
 lifesteal = false
 caracteristic = 0
+pourcentage = false
 method_name = &""
 effect_label = ""
 params = []
 nb_random_effects = 0
-amounts = Array[ExtResource("1_sq6jw")]([SubResource("Resource_kcgas"), SubResource("Resource_uuyn7"), SubResource("Resource_duyfe"), SubResource("Resource_jm5c5"), SubResource("Resource_dhs3n")])
+amounts = Array[ExtResource("1_sq6jw")]([SubResource("Resource_kcgas")])
 visible_in_description = true
 
 [resource]
 script = ExtResource("1_4qqiv")
 id = 202
 name = "Morsure du Bouftou"
-description = "Inflige des dommages dans l'élément neutre."
+description = "Inflige des dommages dans l'élément Feu."
+texture = ExtResource("4_ycdai")
 img_url = "https://api.dofusdb.fr/img/spells/sort_10077.png"
-pa_cost = 3
+level = 0
+pa_cost = 6
 per_crit = 0.1
 cooldown = 0.0
 priority = 0

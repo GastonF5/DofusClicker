@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://uc7nohqphs8b"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_8gulm"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_vlnjk"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_vmtjp"]
+[ext_resource type="Texture2D" uid="uid://li3v4j6oons" path="res://assets/spells/monster/sort_13204.png" id="4_37gdm"]
+
+[sub_resource type="Resource" id="Resource_h8l2v"]
+script = ExtResource("1_8gulm")
+_min = 25
+_max = 30
+_min_crit = 0
+_max_crit = 0
+
+[sub_resource type="Resource" id="Resource_17bit"]
+resource_name = "Dommages Terre"
+script = ExtResource("1_vmtjp")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+has_grades = false
+element = 1
+lifesteal = false
+caracteristic = 0
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_8gulm")]([SubResource("Resource_h8l2v")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_vlnjk")
+id = 207
+name = "Petit coup du Chafer"
+description = "Occasionne des dommages Terre."
+texture = ExtResource("4_37gdm")
+img_url = "https://api.dofusdb.fr/img/spells/sort_13204.png"
+level = 0
+pa_cost = 5
+per_crit = 0.0
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("1_vmtjp")]([SubResource("Resource_17bit")])

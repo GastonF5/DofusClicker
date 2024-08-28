@@ -1,43 +1,44 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=10 format=3 uid="uid://b6wfis2n5mg7w"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=11 format=3 uid="uid://b6wfis2n5mg7w"]
 
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_d5e4x"]
 [ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_vk64h"]
 [ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_ocxwp"]
+[ext_resource type="Texture2D" uid="uid://hwinyakakvpv" path="res://assets/spells/monster/sort_10075.png" id="4_p784i"]
 
 [sub_resource type="Resource" id="Resource_whtdx"]
 script = ExtResource("1_vk64h")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
+_min = 4
+_max = 6
+_min_crit = 7
+_max_crit = 7
 
 [sub_resource type="Resource" id="Resource_3041k"]
 script = ExtResource("1_vk64h")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
+_min = 5
+_max = 7
+_min_crit = 8
+_max_crit = 8
 
 [sub_resource type="Resource" id="Resource_jm47k"]
 script = ExtResource("1_vk64h")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
+_min = 6
+_max = 8
+_min_crit = 9
+_max_crit = 9
 
 [sub_resource type="Resource" id="Resource_abpg7"]
 script = ExtResource("1_vk64h")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
+_min = 6
+_max = 8
+_min_crit = 9
+_max_crit = 9
 
 [sub_resource type="Resource" id="Resource_8o5ok"]
 script = ExtResource("1_vk64h")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
+_min = 7
+_max = 9
+_min_crit = 10
+_max_crit = 10
 
 [sub_resource type="Resource" id="Resource_ksf7o"]
 resource_name = "Dommages Air"
@@ -45,9 +46,12 @@ script = ExtResource("2_ocxwp")
 type = 0
 time = 0.0
 target_type = 1
+show_time = false
+has_grades = true
 element = 4
 lifesteal = false
 caracteristic = 0
+pourcentage = false
 method_name = &""
 effect_label = ""
 params = []
@@ -60,7 +64,9 @@ script = ExtResource("1_d5e4x")
 id = 201
 name = "Béco du Tofu"
 description = "Occasionne des dommages Air."
+texture = ExtResource("4_p784i")
 img_url = "https://api.dofusdb.fr/img/spells/sort_10075.png"
+level = 0
 pa_cost = 4
 per_crit = 0.1
 cooldown = 0.0

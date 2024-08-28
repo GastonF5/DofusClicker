@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://1340exkmit8y"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_ieya0"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_mu0vq"]
+[ext_resource type="Texture2D" uid="uid://n3jbw3rf6hxp" path="res://assets/spells/monster/sort_13210.png" id="2_h0n5f"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_t2efi"]
+
+[sub_resource type="Resource" id="Resource_ov1kw"]
+script = ExtResource("1_ieya0")
+_min = 40
+_max = 40
+_min_crit = 40
+_max_crit = 40
+
+[sub_resource type="Resource" id="Resource_xxlh8"]
+resource_name = "Bonus Critique"
+script = ExtResource("2_t2efi")
+type = 1
+time = 10.0
+target_type = 0
+show_time = false
+has_grades = false
+element = 0
+lifesteal = false
+caracteristic = 10
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_ieya0")]([SubResource("Resource_ov1kw")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_mu0vq")
+id = 5877
+name = "Flèches Critiques"
+description = "Augmente les chances de critique du lanceur."
+texture = ExtResource("2_h0n5f")
+img_url = "https://api.dofusdb.fr/img/spells/sort_13210.png"
+level = 0
+pa_cost = 2
+per_crit = 0.0
+cooldown = 10.0
+priority = 1
+effects = Array[ExtResource("2_t2efi")]([SubResource("Resource_xxlh8")])
