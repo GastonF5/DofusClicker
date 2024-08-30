@@ -2,7 +2,7 @@ extends Node
 
 
 const area_black_list = [10, 29, 32, 973, 974, 975, 976, 977, 978, 980, 982]
-const debug := true
+const debug := false
 
 var game: Node
 var quitting := false
