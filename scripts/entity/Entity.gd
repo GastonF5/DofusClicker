@@ -60,7 +60,7 @@ func init_spells(spell_ids: Array):
 	print(spell_ids)
 	var dir = DirAccess.open("res://resources/spells/monster/")
 	for id in spell_ids:
-		if dir.file_exists("%d.tres" % id):
+		if dir.file_exists("%d.tres" % id) or dir.file_exists("%d.tres.remap" % id):
 			var spell = FileLoader.load_file("res://resources/spells/monster/%d.tres" % id)
 			spells.append(spell)
 
