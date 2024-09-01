@@ -79,7 +79,7 @@ static func get_stat_asset(stat_type: String):
 
 static func get_dungeon_resource(dungeon_id: int) -> DungeonResource:
 	var dir = DirAccess.open(DUNGEON_PATH)
-	if dir.file_exists("%s.tres" % dungeon_id):
+	if dir.file_exists("%s.tres" % dungeon_id) or dir.file_exists("%s.tres.remap" % dungeon_id):
 		return load(DUNGEON_PATH + "%s.tres" % dungeon_id)
 	return null
 
