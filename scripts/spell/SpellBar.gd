@@ -22,7 +22,7 @@ func _input(event):
 	if GameManager.in_fight:
 		for i in range(slots.size() - 1):
 			if event.is_action_pressed(str(i + 1)):
-				if has_spell(i):
+				if slot_contains_spell(i):
 					get_spell(i).do_action()
 
 
@@ -66,6 +66,12 @@ func delete_spell(spell: Spell):
 		child_spell.queue_free()
 
 
+func delete_spells():
+	for slot in slots:
+		if slot.get_child_count() == 1:
+			delete_spell(slot.get_child(0))
+
+
 func find_spell_in_children(spell_name: String) -> Spell:
 	for slot in slots:
 		if slot.get_child_count() != 0 and slot.get_child(0).resource.name == spell_name:
@@ -84,7 +90,15 @@ func get_spell(index: int):
 	return grid.get_child(index).get_child(0)
 
 
-func has_spell(index: int):
+func get_spells() -> Array:
+	var spells = []
+	for i in range(slots.size()):
+		if slot_contains_spell(i):
+			spells.append(get_spell(i))
+	return spells
+
+
+func slot_contains_spell(index: int):
 	return grid.get_child(index).get_child_count() != 0
 
 

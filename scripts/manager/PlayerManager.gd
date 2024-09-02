@@ -98,10 +98,14 @@ func init_spells():
 	var selected_class = Globals.class_peeker.classes[Globals.selected_class]
 	var spells = FileLoader.get_spell_resources(selected_class)
 	spells.sort_custom(func(a, b): return a.level <= b.level)
+	var spell_bar_spells = Globals.spell_bar.get_spells()
 	for spell_res in spells:
-		var spell_button = FileLoader.get_packed_scene("spell/spell_button").instantiate()
+		var spell_button: SpellButton = FileLoader.get_packed_scene("spell/spell_button").instantiate()
 		spell_container.add_child(spell_button)
 		spell_button.init(Globals.spell_bar, Spell.instantiate(spell_res, spell_button.get_node("HBC"), false))
+		if spell_bar_spells.map(func(s): return s.resource.id).has(spell_res.id):
+			spell_button.selected = true
+			spell_button.theme = SpellButton.selected_theme
 
 
 func _process(_delta):

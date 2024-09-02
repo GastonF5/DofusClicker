@@ -7,6 +7,7 @@ var in_fight := false
 
 signal end_fight
 
+var _current_class: int
 
 var managers = [StatsManager, PlayerManager, MonsterManager, EquipmentManager, RecipeManager]
 
@@ -51,6 +52,8 @@ func _on_class_selected():
 	if !managers.all(func(m): return m.is_initialized):
 		await init_game()
 	else:
+		if _current_class != Globals.selected_class:
+			Globals.spell_bar.delete_spells()
 		PlayerManager.init_spells()
 		class_peeker.visible = false
 	await Globals.loading_transition.fade_out()
@@ -83,10 +86,8 @@ func lose_fight():
 
 func change_class():
 	await Globals.loading_transition.fade_up()
-	for slot in Globals.spell_bar.slots:
-		if slot.get_child_count() == 1:
-			Globals.spell_bar.delete_spell(slot.get_child(0))
 	class_peeker.reset()
+	_current_class = Globals.selected_class
 	class_peeker.visible = true
 	await Globals.loading_transition.fade_out()
 
