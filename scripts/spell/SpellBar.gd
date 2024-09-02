@@ -16,6 +16,19 @@ func _ready():
 	weapon_pb.max_value = 100
 	weapon_pb.value = 0
 	super()
+	for i in range(slots.size()):
+		slots[i].mouse_entered.connect(_on_mouse_entered_slot.bind(i))
+		slots[i].mouse_exited.connect(_on_mouse_exited_slot.bind(i))
+
+
+func _on_mouse_entered_slot(index: int):
+	if !PlayerManager.dragged_item and !PlayerManager.dragged_spell and slot_contains_spell(index):
+		PlayerManager.spell_description.init_spell(get_spell(index).resource)
+
+
+func _on_mouse_exited_slot(index: int):
+	if !PlayerManager.dragged_item and !PlayerManager.dragged_spell and slot_contains_spell(index):
+		PlayerManager.spell_description.visible = false
 
 
 func _input(event):
