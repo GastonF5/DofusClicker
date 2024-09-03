@@ -28,7 +28,7 @@ func init(item_recipe: RecipeResource):
 	var inventory = Globals.inventory
 	inventory.item_entered_tree.connect(check)
 	inventory.item_exiting_tree.connect(check)
-	check(inventory.get_items())
+	check()
 
 
 func instantiate_items():
@@ -47,12 +47,13 @@ func _on_item_texture_initialized():
 		initialized.emit()
 
 
-func check(items: Array):
-	button.disabled = !check_recipe(items)
+func check():
+	button.disabled = !check_recipe()
 
 
-func check_recipe(inventory_items: Array) -> bool:
+func check_recipe() -> bool:
 	var recipe_items = resource.get_ingredients().duplicate()
+	var inventory_items = Globals.inventory.get_items()
 	if inventory_items.size() < recipe_items.size():
 		return false
 	for item_recipe in recipe_items:

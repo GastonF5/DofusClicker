@@ -123,9 +123,9 @@ func on_recipe_craft(recipe: RecipeResource):
 	Globals.console.log_equip(item)
 
 
-func check_recipes(items):
+func check_recipes():
 	for recipe in recipes:
-		recipe.check(items)
+		recipe.check()
 
 
 func get_parent_by_type(type_id: int):

@@ -29,32 +29,20 @@ func add_item(item: Item, _slot: Button = null):
 		item_in_slot = get_item(_slot)
 		if !item_in_slot:
 			_slot.add_child(item)
-			item_entered_tree.emit(get_items())
+			item_entered_tree.emit()
 			return
 		if Item.equals(item, item_in_slot):
 			item_in_slot.count += 1
 		else:
-			item_in_slot.drop_parent = item.old_parent
-			item_in_slot.drag()
-			item_in_slot.drop()
-			_slot.add_child(item)
-			item_entered_tree.emit(get_items())
+			item_in_slot.swap(item)
+			item_entered_tree.emit()
 	else:
-		for slot in slots:
-			item_in_slot = get_item(slot)
-			if !item_in_slot:
-				slot.add_child(item)
-				item_entered_tree.emit(get_items())
-				item.drop_parent = slot
-				break
-			if Item.equals(item, item_in_slot):
-				item_in_slot.count += 1
-				item_entered_tree.emit(get_items())
-				return
-		# si l'item n'a pas été ajouté, on étend l'inventaire et on rappelle la fonction pour ajouter l'item
-		if !item.get_parent():
-			expand()
-			add_item(item)
+		var existing_item_slot = get_slot(item)
+		if existing_item_slot:
+			get_item(existing_item_slot).count += 1
+		else:
+			add_item(item, get_first_empty_slot())
+		item_entered_tree.emit()
 
 
 func remove_items(items: Array):
@@ -87,19 +75,10 @@ func expand():
 		add_child(slot)
 
 
-func get_items():
-	var items = slots.duplicate()
-	items = items.map(func(s):
-		if !s or s.get_children().size() != 1:
-			return null
-		return s.get_child(0) as Item).filter(func(i): return i != null)
-	return items.map(func(item): return item as Item)
-
-
 func _on_item_exiting_slot(item):
 	var items = get_items()
 	items.erase(item)
-	item_exiting_tree.emit(get_items())
+	item_exiting_tree.emit()
 
 
 func get_first_empty_slot():

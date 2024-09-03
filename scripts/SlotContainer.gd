@@ -56,3 +56,13 @@ func get_item(slot: Node):
 			else:
 				item = null
 	return item
+
+
+## Ne fonctionne pas pour la SpellBar
+func get_items():
+	var items = []
+	for slot in slots:
+		var item = get_item(slot)
+		if item:
+			items.append(item)
+	return items
