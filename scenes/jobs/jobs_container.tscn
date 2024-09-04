@@ -26,7 +26,7 @@ theme_override_constants/separation = 0
 [node name="HBC" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Control" type="Control" parent="HBC"]
+[node name="Space" type="Control" parent="HBC"]
 custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 
