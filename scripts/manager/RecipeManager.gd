@@ -120,12 +120,13 @@ func on_recipe_craft(recipe: RecipeResource):
 	inventory.remove_items(recipe.get_ingredients())
 	var item = Item.create(recipe.get_result())
 	inventory.add_item(item)
-	Globals.console.log_equip(item)
+	if Globals.debug: Globals.console.log_equip(item)
 
 
 func check_recipes():
 	for recipe in recipes:
 		recipe.check()
+	filter_recipes()
 
 
 func get_parent_by_type(type_id: int):
@@ -150,20 +151,30 @@ func get_parent_by_type(type_id: int):
 	return job_panel.recipe_container
 
 
-func filter_recipes(_params = null):
+func filter_recipes():
+	# filtre barre de recherche
 	var text_filter = current_tab.search_prompt.text
 	for nrecipe in recipes:
 		if text_filter and text_filter != "":
 			nrecipe.visible = nrecipe.resource.get_result().name.to_lower().contains(text_filter.to_lower())
 		else:
 			nrecipe.visible = true
-	if !recipe_filters.applied_filters.is_empty():
-		for nrecipe: Recipe in recipes.filter(func(r): return r.visible):
-			var is_filtered = false
-			for result_stat_type in nrecipe.resource.get_result().equip_res.stats.map(func(s): return s.get_type()):
-				is_filtered = recipe_filters.applied_filters.has(result_stat_type)
-				if is_filtered: break
-			nrecipe.visible = is_filtered
+	for nrecipe: Recipe in recipes.filter(func(r): return r.visible):
+		var is_filtered = true
+		if !recipe_filters.applied_filters.is_empty():
+			# filtres caractéristiques
+			var count := 0
+			var result_stat_types = nrecipe.resource.get_result().equip_res.stats.map(func(s): return s.get_type())
+			for applied_filter in recipe_filters.applied_filters:
+				if result_stat_types.has(applied_filter):
+					count += 1
+			if count == recipe_filters.applied_filters.size():
+				is_filtered = true
+		# filtre niveau
+		is_filtered = is_filtered and range(recipe_filters._min, recipe_filters._max + 1).has(nrecipe.resource.get_result().level)
+		# filtre craftable
+		is_filtered = is_filtered and (!recipe_filters._craftable or nrecipe.check_recipe())
+		nrecipe.visible = is_filtered
 
 
 func filter_lvl(_lvl_filter: String):

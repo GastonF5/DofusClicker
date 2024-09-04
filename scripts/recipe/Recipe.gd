@@ -51,6 +51,7 @@ func check():
 	button.disabled = !check_recipe()
 
 
+## Renvoie true si la recette est craftable, false sinon
 func check_recipe() -> bool:
 	var recipe_items = resource.get_ingredients().duplicate()
 	var inventory_items = Globals.inventory.get_items()

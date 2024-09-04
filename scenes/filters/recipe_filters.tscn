@@ -2,11 +2,60 @@
 
 [ext_resource type="Script" path="res://scripts/filters/RecipeFilters.gd" id="1_qidep"]
 
-[node name="RecipeFilters" type="GridContainer"]
+[node name="RecipeFilters" type="VBoxContainer" node_paths=PackedStringArray("carac_container", "craftable_checkbox")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-columns = 2
 script = ExtResource("1_qidep")
+carac_container = NodePath("CaracteristiqueFilters")
+craftable_checkbox = NodePath("CraftableFilter/CheckBox")
+
+[node name="LevelFilter" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="NiveauLabel" type="Label" parent="LevelFilter"]
+layout_mode = 2
+text = "Niveau : "
+
+[node name="MinSpin" type="SpinBox" parent="LevelFilter"]
+layout_mode = 2
+min_value = 1.0
+max_value = 200.0
+value = 1.0
+rounded = true
+
+[node name="Label" type="Label" parent="LevelFilter"]
+layout_mode = 2
+text = " à "
+
+[node name="MaxSpin" type="SpinBox" parent="LevelFilter"]
+layout_mode = 2
+min_value = 1.0
+max_value = 200.0
+value = 200.0
+rounded = true
+
+[node name="CraftableFilter" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="CraftableLabel" type="Label" parent="CraftableFilter"]
+layout_mode = 2
+text = "Craftable :"
+
+[node name="CheckBox" type="CheckBox" parent="CraftableFilter"]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+
+[node name="CaracteristiqueFilters" type="GridContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 2
+
+[connection signal="value_changed" from="LevelFilter/MinSpin" to="." method="_on_min_spin_value_changed"]
+[connection signal="value_changed" from="LevelFilter/MaxSpin" to="." method="_on_max_spin_value_changed"]
+[connection signal="toggled" from="CraftableFilter/CheckBox" to="." method="_on_check_box_toggled"]
