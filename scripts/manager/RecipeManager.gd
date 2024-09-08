@@ -93,11 +93,11 @@ func disconnect_inputs():
 
 func connect_inputs():
 	var search_prompt = current_tab.search_prompt
-	search_prompt.text_changed.connect(filter_recipes)
 	search_prompt.focus_entered.connect(func():
 		prompt_has_focus = true)
 	search_prompt.focus_exited.connect(func():
 		prompt_has_focus = false)
+	search_prompt.text_changed.connect(filter_recipes.unbind(1))
 
 
 func init_recipes(lvl := -1):
