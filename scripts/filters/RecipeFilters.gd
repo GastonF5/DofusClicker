@@ -3,6 +3,7 @@ extends Control
 
 
 const CARAC = Caracteristique.Type
+const carac_black_list = [CARAC.PV, CARAC.EROSION]
 var applied_filters = []
 
 signal filter_toggle
@@ -23,7 +24,8 @@ func _ready():
 
 func init():
 	for carac in CARAC:
-		Filter.create(carac, apply_filter, carac_container)
+		if !carac_black_list.has(CARAC.get(carac)):
+			Filter.create(carac, apply_filter, carac_container)
 
 
 func apply_filter(apply: bool, filter_name: String):
