@@ -106,10 +106,15 @@ func init_recipes(lvl := -1):
 	for recipe in recipes_to_init:
 		var parent = get_parent_by_type(recipe.get_result().type_id)
 		if parent:
-			var nrecipe = Recipe.create(recipe, parent)
-			composite.add_signal(nrecipe.initialized)
-			recipes.append(nrecipe)
-			nrecipe.craft.connect(on_recipe_craft)
+			create_recipe(recipe, parent)
+		create_recipe(recipe, get_tout_recipe_container())
+
+
+func create_recipe(recipe_res: RecipeResource, parent: Node):
+	var nrecipe = Recipe.create(recipe_res, parent)
+	composite.add_signal(nrecipe.initialized)
+	recipes.append(nrecipe)
+	nrecipe.craft.connect(on_recipe_craft)
 
 
 func is_recipe_to_init(recipe: RecipeResource, lvl: int):
@@ -149,6 +154,10 @@ func get_parent_by_type(type_id: int):
 			return null
 	var job_panel: JobPanel = tab_container.get_node(node_name + "Panel")
 	return job_panel.recipe_container
+
+
+func get_tout_recipe_container():
+	return tab_container.get_node("ToutPanel").recipe_container
 
 
 func filter_recipes():
