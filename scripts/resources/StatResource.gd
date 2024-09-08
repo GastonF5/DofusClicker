@@ -55,11 +55,18 @@ static func get_type_label(type_label: String) -> String:
 			return "Résistance Poussée"
 		if type_label == "PUI_PIEGES":
 			return "Puissance Pièges"
+		if type_label == "DO_PIEGES":
+			return "Dommages Pièges"
 		if type_label == "MAITRISE_ARME":
 			return "Maîtrise Armes"
 		if type_label.begins_with("RES_"):
-			return "Résistance %s" % type_label.split("_")[1].to_pascal_case()
+			var carac = type_label.split("_")[1]
+			if !["PA", "PM"].has(carac):
+				return "Résistance %s" % carac.to_pascal_case()
+			return "Résistance %s" % carac
 		if type_label.begins_with("DO_"):
+			if type_label == "DO_POU":
+				return "Dommages Poussée"
 			return "Dommages %s" % type_label.split("_")[1].to_pascal_case()
 		if type_label.begins_with("RET_"):
 			return "Retrait %s" % type_label.split("_")[1].to_upper()
