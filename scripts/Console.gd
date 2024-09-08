@@ -30,6 +30,8 @@ var inventory: Inventory
 func initialize():
 	inventory = Globals.inventory
 	input.visible = Globals.debug
+	input.focus_entered.connect(Globals.take_focus)
+	input.focus_exited.connect(Globals.leave_focus)
 
 
 func _input(event):

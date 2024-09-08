@@ -4,6 +4,8 @@ extends Node
 const area_black_list = [10, 29, 32, 973, 974, 975, 976, 977, 978, 980, 982]
 const debug := true
 
+var has_focus: bool
+
 var game: Node
 var quitting := false
 
@@ -55,3 +57,11 @@ func initialize(root: Node = get_tree().current_scene):
 	equipment_container = game.get_node("%EquipmentContainer")
 	player_bars = game.get_node("%EntityBars")
 	buffs_container = game.get_node("%BuffsContainer")
+
+
+func take_focus():
+	has_focus = true
+
+
+func leave_focus():
+	has_focus = false

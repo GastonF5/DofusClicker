@@ -9,7 +9,6 @@ var recipes: Array[Recipe] = []
 var inventory: Inventory
 
 var recipe_filters: RecipeFilters
-var prompt_has_focus := false
 var composite: API.CompositeSignal
 
 signal recipes_initialized
@@ -22,7 +21,6 @@ func reset():
 	inventory = null
 	recipe_filters = null
 	composite = null
-	prompt_has_focus = false
 	super()
 
 
@@ -89,15 +87,17 @@ func disconnect_inputs():
 		var search_prompt = current_tab.search_prompt
 		if search_prompt and search_prompt.text_changed.is_connected(filter_recipes):
 			search_prompt.text_changed.disconnect(filter_recipes)
+		if search_prompt and search_prompt.focus_entered.is_connected(Globals.take_focus):
+			search_prompt.focus_entered.disconnect(Globals.take_focus)
+		if search_prompt and search_prompt.focus_exited.is_connected(Globals.leave_focus):
+			search_prompt.focus_exited.disconnect(Globals.leave_focus)
 
 
 func connect_inputs():
 	var search_prompt = current_tab.search_prompt
-	search_prompt.focus_entered.connect(func():
-		prompt_has_focus = true)
-	search_prompt.focus_exited.connect(func():
-		prompt_has_focus = false)
 	search_prompt.text_changed.connect(filter_recipes.unbind(1))
+	search_prompt.focus_entered.connect(Globals.take_focus)
+	search_prompt.focus_exited.connect(Globals.leave_focus)
 
 
 func init_recipes(lvl := -1):
