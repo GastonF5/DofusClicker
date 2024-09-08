@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://dacg0tcpohas3"]
+[gd_scene load_steps=12 format=3 uid="uid://dacg0tcpohas3"]
 
 [ext_resource type="Texture2D" uid="uid://c5pnk06ayib0j" path="res://assets/window_icon/tailleur.png" id="1_e44ds"]
 [ext_resource type="Script" path="res://scripts/CustomTabContainer.gd" id="1_hrp01"]
 [ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="1_vs0u0"]
+[ext_resource type="Texture2D" uid="uid://cdoeser7bqai8" path="res://assets/window_icon/metiers.png" id="2_n1s22"]
 [ext_resource type="Texture2D" uid="uid://10kiiskaock5" path="res://assets/window_icon/cordonnier.png" id="2_tbw3p"]
 [ext_resource type="Texture2D" uid="uid://vih7op5hhjk0" path="res://assets/window_icon/bijoutier.png" id="3_koocj"]
 [ext_resource type="Texture2D" uid="uid://c6cudfe180atn" path="res://assets/window_icon/faconneur.png" id="4_4l0uf"]
@@ -37,22 +38,24 @@ size_flags_horizontal = 3
 size_flags_vertical = 0
 focus_mode = 0
 mouse_default_cursor_shape = 2
-tab_count = 7
+tab_count = 8
 drag_to_rearrange_enabled = true
-tab_0/title = "Tailleur"
-tab_0/icon = ExtResource("1_e44ds")
-tab_1/title = "Cordonnier"
-tab_1/icon = ExtResource("2_tbw3p")
-tab_2/title = "Bijoutier"
-tab_2/icon = ExtResource("3_koocj")
-tab_3/title = "Forgeron"
-tab_3/icon = ExtResource("5_rwl5k")
-tab_4/title = "Sculpteur"
-tab_4/icon = ExtResource("6_b0vas")
-tab_5/title = "Façonneur"
-tab_5/icon = ExtResource("4_4l0uf")
-tab_6/title = "Bricoleur"
-tab_6/icon = ExtResource("7_p3wxu")
+tab_0/title = "Tout"
+tab_0/icon = ExtResource("2_n1s22")
+tab_1/title = "Tailleur"
+tab_1/icon = ExtResource("1_e44ds")
+tab_2/title = "Cordonnier"
+tab_2/icon = ExtResource("2_tbw3p")
+tab_3/title = "Bijoutier"
+tab_3/icon = ExtResource("3_koocj")
+tab_4/title = "Forgeron"
+tab_4/icon = ExtResource("5_rwl5k")
+tab_5/title = "Sculpteur"
+tab_5/icon = ExtResource("6_b0vas")
+tab_6/title = "Façonneur"
+tab_6/icon = ExtResource("4_4l0uf")
+tab_7/title = "Bricoleur"
+tab_7/icon = ExtResource("7_p3wxu")
 
 [node name="TabContainer" type="TabContainer" parent="." node_paths=PackedStringArray("tab_bar")]
 layout_mode = 2
@@ -61,7 +64,11 @@ tabs_visible = false
 script = ExtResource("1_hrp01")
 tab_bar = NodePath("../HBC/TabBar")
 
+[node name="ToutPanel" parent="TabContainer" instance=ExtResource("9_ttorv")]
+layout_mode = 2
+
 [node name="TailleurPanel" parent="TabContainer" instance=ExtResource("9_ttorv")]
+visible = false
 layout_mode = 2
 
 [node name="CordonnierPanel" parent="TabContainer" instance=ExtResource("9_ttorv")]
