@@ -146,7 +146,7 @@ func init_bars():
 
 
 func _input(event):
-	if is_initialized and !Globals.console.input.has_focus() and !RecipeManager.prompt_has_focus:
+	if is_initialized and !Globals.has_focus:
 		if event.is_action_pressed("right"):
 			PlayerManager.select_next_plate()
 		if event.is_action_pressed("left"):
