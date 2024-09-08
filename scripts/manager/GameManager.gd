@@ -5,6 +5,7 @@ var class_peeker: ClassPeeker
 var in_game := false
 var in_fight := false
 
+signal start_fight
 signal end_fight
 
 var _current_class: int

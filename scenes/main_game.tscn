@@ -112,7 +112,8 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 1.5
 theme_override_constants/separation = 0
 
-[node name="TabBar" type="TabBar" parent="HBC/LeftSide/VSplitContainer/VBC"]
+[node name="LeftTabBar" type="TabBar" parent="HBC/LeftSide/VSplitContainer/VBC"]
+unique_name_in_owner = true
 z_index = 1
 layout_mode = 2
 focus_mode = 0
@@ -131,7 +132,7 @@ layout_mode = 2
 size_flags_vertical = 3
 tabs_visible = false
 script = ExtResource("7_oobq8")
-tab_bar = NodePath("../TabBar")
+tab_bar = NodePath("../LeftTabBar")
 
 [node name="Stats" parent="HBC/LeftSide/VSplitContainer/VBC/CustomTabContainer" instance=ExtResource("8_bphf0")]
 unique_name_in_owner = true

@@ -39,6 +39,7 @@ func initialize():
 
 func start_fight():
 	GameManager.in_fight = true
+	GameManager.start_fight.emit()
 	PlayerManager.static_max_hp = PlayerManager.max_hp
 	for button in Globals.game.get_node("%HeaderButtons").get_children():
 		button.disabled = true
