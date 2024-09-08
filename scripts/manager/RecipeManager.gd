@@ -161,21 +161,29 @@ func filter_recipes():
 			nrecipe.visible = true
 	for nrecipe: Recipe in recipes.filter(func(r): return r.visible):
 		var is_filtered = true
-		if !recipe_filters.applied_filters.is_empty():
-			# filtres caractéristiques
-			var count := 0
-			var result_stat_types = nrecipe.resource.get_result().equip_res.stats.map(func(s): return s.get_type())
-			for applied_filter in recipe_filters.applied_filters:
-				if result_stat_types.has(applied_filter):
-					count += 1
-			if count == recipe_filters.applied_filters.size():
-				is_filtered = true
 		# filtre niveau
-		is_filtered = is_filtered and range(recipe_filters._min, recipe_filters._max + 1).has(nrecipe.resource.get_result().level)
+		is_filtered = is_filtered and is_filtered_by_level(nrecipe)
 		# filtre craftable
 		is_filtered = is_filtered and (!recipe_filters._craftable or nrecipe.check_recipe())
 		nrecipe.visible = is_filtered
+	if !recipe_filters.applied_filters.is_empty():
+		# filtres caractéristiques
+		for nrecipe: Recipe in recipes.filter(func(r): return r.visible):
+			nrecipe.visible = is_filtered_by_characteristics(nrecipe)
 
 
-func filter_lvl(_lvl_filter: String):
-	pass
+func is_filtered_by_characteristics(recipe_node: Recipe) -> bool:
+	var count := 0
+	var result_stat_types = recipe_node.resource.get_result().equip_res.stats.map(func(s): return s.get_type())
+	var is_filtered = false
+	for applied_filter in recipe_filters.applied_filters:
+		if result_stat_types.has(applied_filter):
+			count += 1
+	if count == recipe_filters.applied_filters.size():
+		is_filtered = true
+	return is_filtered
+
+
+func is_filtered_by_level(recipe_node: Recipe) -> bool:
+	return range(recipe_filters._min, recipe_filters._max + 1)\
+		.has(recipe_node.resource.get_result().level)
