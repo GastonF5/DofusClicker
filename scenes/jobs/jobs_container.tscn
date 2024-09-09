@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://b3aqa0jqlriwp" path="res://assets/window_icon/bricoleur.png" id="7_p3wxu"]
 [ext_resource type="PackedScene" uid="uid://brot8qkranooc" path="res://scenes/jobs/job_panel.tscn" id="9_ttorv"]
 
-[node name="JobsContainer" type="VBoxContainer"]
+[node name="JobsContainer" type="PanelContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -22,16 +22,18 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 theme = ExtResource("1_vs0u0")
-theme_override_constants/separation = 0
 
-[node name="HBC" type="HBoxContainer" parent="."]
+[node name="VBC" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Space" type="Control" parent="HBC"]
+[node name="HBC" type="HBoxContainer" parent="VBC"]
+layout_mode = 2
+
+[node name="Space" type="Control" parent="VBC/HBC"]
 custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 
-[node name="TabBar" type="TabBar" parent="HBC"]
+[node name="TabBar" type="TabBar" parent="VBC/HBC"]
 z_index = 1
 layout_mode = 2
 size_flags_horizontal = 3
@@ -57,42 +59,42 @@ tab_6/icon = ExtResource("4_4l0uf")
 tab_7/title = "Bricoleur"
 tab_7/icon = ExtResource("7_p3wxu")
 
-[node name="TabContainer" type="TabContainer" parent="." node_paths=PackedStringArray("tab_bar")]
+[node name="TabContainer" type="TabContainer" parent="VBC" node_paths=PackedStringArray("tab_bar")]
 layout_mode = 2
 size_flags_vertical = 3
 tabs_visible = false
 script = ExtResource("1_hrp01")
 tab_bar = NodePath("../HBC/TabBar")
 
-[node name="ToutPanel" parent="TabContainer" instance=ExtResource("9_ttorv")]
+[node name="ToutPanel" parent="VBC/TabContainer" instance=ExtResource("9_ttorv")]
 layout_mode = 2
 
-[node name="TailleurPanel" parent="TabContainer" instance=ExtResource("9_ttorv")]
+[node name="TailleurPanel" parent="VBC/TabContainer" instance=ExtResource("9_ttorv")]
 visible = false
 layout_mode = 2
 
-[node name="CordonnierPanel" parent="TabContainer" instance=ExtResource("9_ttorv")]
+[node name="CordonnierPanel" parent="VBC/TabContainer" instance=ExtResource("9_ttorv")]
 visible = false
 layout_mode = 2
 
-[node name="BijoutierPanel" parent="TabContainer" instance=ExtResource("9_ttorv")]
+[node name="BijoutierPanel" parent="VBC/TabContainer" instance=ExtResource("9_ttorv")]
 visible = false
 layout_mode = 2
 
-[node name="ForgeronPanel" parent="TabContainer" instance=ExtResource("9_ttorv")]
+[node name="ForgeronPanel" parent="VBC/TabContainer" instance=ExtResource("9_ttorv")]
 visible = false
 layout_mode = 2
 
-[node name="SculpteurPanel" parent="TabContainer" instance=ExtResource("9_ttorv")]
+[node name="SculpteurPanel" parent="VBC/TabContainer" instance=ExtResource("9_ttorv")]
 visible = false
 layout_mode = 2
 
-[node name="FaconneurPanel" parent="TabContainer" instance=ExtResource("9_ttorv")]
+[node name="FaconneurPanel" parent="VBC/TabContainer" instance=ExtResource("9_ttorv")]
 visible = false
 layout_mode = 2
 
-[node name="BricoleurPanel" parent="TabContainer" instance=ExtResource("9_ttorv")]
+[node name="BricoleurPanel" parent="VBC/TabContainer" instance=ExtResource("9_ttorv")]
 visible = false
 layout_mode = 2
 
-[connection signal="active_tab_rearranged" from="HBC/TabBar" to="TabContainer" method="_on_tab_bar_active_tab_rearranged"]
+[connection signal="active_tab_rearranged" from="VBC/HBC/TabBar" to="VBC/TabContainer" method="_on_tab_bar_active_tab_rearranged"]

@@ -119,6 +119,8 @@ func init_spell_in_class_peeker(spell_res: SpellResource):
 	name = spell_res.name.to_pascal_case() + "DescriptionClassPeeker"
 	texture.texture = spell_res.texture
 	name_label.text = spell_res.name
+	level_label.clear()
+	level_label.push_color(Color.GRAY)
 	level_label.text = "Niveau %d" % spell_res.level
 	compute_description_label(spell_res.description)
 

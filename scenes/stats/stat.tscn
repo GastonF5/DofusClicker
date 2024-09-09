@@ -1,15 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://bxrrue1p1pso4"]
+[gd_scene load_steps=6 format=3 uid="uid://bxrrue1p1pso4"]
 
 [ext_resource type="Script" path="res://scripts/stats/Caracteristique.gd" id="1_uqnf4"]
 [ext_resource type="Texture2D" uid="uid://btdney26jvubl" path="res://assets/stats/stat_icon/vitalite.png" id="2_x8g0m"]
 [ext_resource type="PackedScene" uid="uid://oleyftpfpaky" path="res://scenes/buttons/plus_button.tscn" id="3_5e62l"]
+[ext_resource type="Texture2D" uid="uid://ceibijqbh0b7f" path="res://assets/help_icon_normal.png" id="3_vqlq4"]
 [ext_resource type="PackedScene" uid="uid://dwek0twuhg4a3" path="res://scenes/buttons/minus_button.tscn" id="4_oc30t"]
 
-[node name="Stat" type="HBoxContainer" groups=["caracteristique"]]
+[node name="Stat" type="HBoxContainer" node_paths=PackedStringArray("info") groups=["caracteristique"]]
 custom_minimum_size = Vector2(440, 0)
 offset_right = 282.0
 offset_bottom = 32.0
 script = ExtResource("1_uqnf4")
+info = NodePath("Info")
 
 [node name="Left" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -34,10 +36,19 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Vitalité"
 
-[node name="TooltipPosition" type="Control" parent="."]
+[node name="Info" type="TextureRect" parent="."]
+visible = false
+custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-mouse_filter = 2
+size_flags_vertical = 4
+mouse_default_cursor_shape = 16
+texture = ExtResource("3_vqlq4")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="TooltipPosition" type="Control" parent="."]
+layout_mode = 2
 
 [node name="Right" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(120, 0)

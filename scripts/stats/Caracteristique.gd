@@ -89,6 +89,7 @@ var minus_btn: Button
 
 var tooltip: Tooltip
 @export var static_tooltip_text: String
+@export var info: TextureRect
 
 var type: Type
 var base_amount = 0:
@@ -144,7 +145,8 @@ func init_tooltip():
 	if modifiable:
 		tooltip = Tooltip.create(name, over_ui, self)
 	elif static_tooltip_text:
-		tooltip = Tooltip.create(static_tooltip_text, over_ui, self)
+		info.visible = true
+		info.tooltip_text = static_tooltip_text
 
 
 func get_type_label():

@@ -53,7 +53,7 @@ func change_parent():
 	Globals.inventory.add_item(self, drop_parent)
 
 
-func init(item_res: ItemResource, _draggable, low):
+func init(item_res: ItemResource, _draggable, recipe_item):
 	self.texture = null
 	count_label = $Count
 	name = item_res.name
@@ -62,14 +62,16 @@ func init(item_res: ItemResource, _draggable, low):
 	draggable = _draggable
 	mouse_filter = Control.MOUSE_FILTER_IGNORE if draggable else MOUSE_FILTER_PASS
 	
-	if low:
+	if recipe_item:
 		count_label.position -= count_label.size / 3
 		count_label.add_theme_font_size_override("font_size", 20)
+	else:
+		$Background.visible = false
 	
 	if item_res.equip_res:
 		for stat in item_res.equip_res.stats:
 			var new_stat = stat.duplicate()
-			if !low:
+			if !recipe_item:
 				new_stat.init_amount()
 			stats.append(new_stat)
 

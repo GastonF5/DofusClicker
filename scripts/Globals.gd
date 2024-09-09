@@ -20,7 +20,8 @@ var timers: Node
 var over_ui: CanvasLayer
 
 var stats_container: Panel
-var jobs_container: VBoxContainer
+var jobs_container: PanelContainer
+var main_panel: PanelContainer
 
 var spells_container: Panel
 var spell_bar: SpellBar
@@ -31,6 +32,7 @@ var inventory: Inventory
 var equipment_container: EquipmentContainer
 var selected_class: int
 var player_bars: EntityBars
+var description_container: PanelContainer
 
 
 func _ready():
@@ -49,7 +51,8 @@ func initialize(root: Node = get_tree().current_scene):
 	timers = root.get_node("%Timers")
 	over_ui = root.get_node("%OverUI")
 	stats_container = game.get_node("%Stats")
-	jobs_container = game.get_node("%JobsContainer")
+	jobs_container = game.get_node("%JobsSuperContainer").get_child(0)
+	main_panel = game.get_node("%MainPanel")
 	spells_container = game.get_node("%Sorts")
 	spell_bar = game.get_node("%SpellBar")
 	xp_bar = game.get_node("%ExperienceBar")
@@ -57,6 +60,7 @@ func initialize(root: Node = get_tree().current_scene):
 	equipment_container = game.get_node("%EquipmentContainer")
 	player_bars = game.get_node("%EntityBars")
 	buffs_container = game.get_node("%BuffsContainer")
+	description_container = game.get_node("%DescriptionContainer2")
 
 
 func take_focus():

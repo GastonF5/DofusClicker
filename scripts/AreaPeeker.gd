@@ -113,6 +113,7 @@ func enter_subarea(subarea: AreaResource, subarea_name: String = ""):
 		set_area_label(subarea_name, true)
 		log_enter_subarea(subarea_name)
 	load_monsters(subarea)
+	_show_fight_side()
 
 
 func leave_subarea():
@@ -122,6 +123,7 @@ func leave_subarea():
 	set_area_label("", false)
 	init_subareas(Datas._areas[selected_area_id])
 	MonsterManager.start_fight_button.disabled = true
+	_show_havre_sac_side()
 
 
 func log_enter_subarea(subarea_name: String):
@@ -170,3 +172,17 @@ func get_button(id: int, is_subarea: bool):
 	if !button_exists(id, is_subarea):
 		return null
 	return subarea_btns[id] if is_subarea else area_btns[id]
+
+
+func _show_fight_side():
+	Globals.jobs_container.get_parent().visible = false
+	Globals.main_panel.visible = true
+	Globals.description_container = Globals.game.get_node("%DescriptionContainer")
+	Globals.game.get_node("%PlayerBarContainer").visible = true
+
+
+func _show_havre_sac_side():
+	Globals.jobs_container.get_parent().visible = true
+	Globals.main_panel.visible = false
+	Globals.description_container = Globals.game.get_node("%DescriptionContainer2")
+	Globals.game.get_node("%PlayerBarContainer").visible = false

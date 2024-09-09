@@ -5,6 +5,10 @@ const plus_texture = preload("res://assets/btn_icon/btnIcon_plus.png")
 
 @export var button: Button
 @export var items_container: HBoxContainer
+@export var name_label: Label
+@export var level_label: Label
+
+const items_size := 80
 
 var resource: RecipeResource
 
@@ -21,9 +25,11 @@ func init(item_recipe: RecipeResource):
 	
 	var result_item = Item.create(item_recipe.get_result(), false, true)
 	result_item.texture_initialized.connect(_on_item_texture_initialized)
-	result_item.custom_minimum_size = Vector2(64, 64)
-	items_container.add_sibling(result_item)
-	items_container.get_parent().move_child(result_item, 0)
+	result_item.custom_minimum_size = Vector2(items_size, items_size)
+	items_container.get_parent().add_sibling(result_item)
+	items_container.get_parent().get_parent().move_child(result_item, 0)
+	name_label.text = item_recipe.get_result().name
+	level_label.text = "Niveau %d" % item_recipe.get_result().level
 	
 	var inventory = Globals.inventory
 	inventory.item_entered_tree.connect(check)
@@ -35,7 +41,7 @@ func instantiate_items():
 	for ingredient in resource.get_ingredients():
 		var recipe_item = Item.create(ingredient, false, true)
 		recipe_item.texture_initialized.connect(_on_item_texture_initialized)
-		recipe_item.custom_minimum_size = Vector2(64, 64)
+		recipe_item.custom_minimum_size = Vector2(items_size, items_size)
 		recipe_item.get_node("Count").add_theme_font_size_override("FontSize", 16)
 		items_container.add_child(recipe_item)
 

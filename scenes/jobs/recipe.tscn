@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://trxp6j0cq52w"]
+[gd_scene load_steps=7 format=3 uid="uid://trxp6j0cq52w"]
 
 [ext_resource type="Script" path="res://scripts/recipe/Recipe.gd" id="1_ys3ho"]
 [ext_resource type="Texture2D" uid="uid://dc4kur4fk7phx" path="res://assets/common/block/block_border_scratch.png" id="2_jqeqg"]
@@ -18,7 +18,10 @@ expand_margin_top = 5.0
 expand_margin_right = 5.0
 expand_margin_bottom = 5.0
 
-[node name="Recipe" type="PanelContainer" node_paths=PackedStringArray("button", "items_container")]
+[sub_resource type="LabelSettings" id="LabelSettings_h7xgi"]
+font_color = Color(0.745, 0.745, 0.745, 1)
+
+[node name="Recipe" type="PanelContainer" node_paths=PackedStringArray("button", "items_container", "name_label", "level_label")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -29,7 +32,9 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_ys3ho")
 button = NodePath("MarginContainer/HBC/Button")
-items_container = NodePath("MarginContainer/HBC/Items")
+items_container = NodePath("MarginContainer/HBC/VBC/Items")
+name_label = NodePath("MarginContainer/HBC/VBC/HBC/VBC/NameLabel")
+level_label = NodePath("MarginContainer/HBC/VBC/HBC/VBC/LevelLabel")
 
 [node name="Background" type="PanelContainer" parent="."]
 layout_mode = 2
@@ -50,11 +55,39 @@ theme_override_constants/margin_bottom = 5
 [node name="HBC" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="Button" parent="MarginContainer/HBC" instance=ExtResource("4_vrhie")]
+[node name="VBC" type="VBoxContainer" parent="MarginContainer/HBC"]
 layout_mode = 2
+
+[node name="HBC" type="HBoxContainer" parent="MarginContainer/HBC/VBC"]
+layout_mode = 2
+
+[node name="Space" type="Control" parent="MarginContainer/HBC/VBC/HBC"]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+
+[node name="VBC" type="VBoxContainer" parent="MarginContainer/HBC/VBC/HBC"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="MarginContainer/HBC/VBC/HBC/VBC"]
+layout_mode = 2
+text = "Nom de l'item"
+
+[node name="LevelLabel" type="Label" parent="MarginContainer/HBC/VBC/HBC/VBC"]
+layout_mode = 2
+text = "Niveau X"
+label_settings = SubResource("LabelSettings_h7xgi")
+
+[node name="Items" type="HBoxContainer" parent="MarginContainer/HBC/VBC"]
+layout_mode = 2
+
+[node name="Button" parent="MarginContainer/HBC" instance=ExtResource("4_vrhie")]
+custom_minimum_size = Vector2(38, 38)
+layout_mode = 2
+size_flags_horizontal = 10
 size_flags_vertical = 4
 
-[node name="Items" type="HBoxContainer" parent="MarginContainer/HBC"]
+[node name="Space" type="Control" parent="MarginContainer/HBC"]
+custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 
 [connection signal="button_up" from="MarginContainer/HBC/Button" to="." method="_on_button_button_up"]

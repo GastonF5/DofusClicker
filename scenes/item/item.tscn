@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://eu0rjwbwn4k2"]
+[gd_scene load_steps=5 format=3 uid="uid://eu0rjwbwn4k2"]
 
 [ext_resource type="Texture2D" uid="uid://cvhxjw0qdff20" path="res://assets/items/laine_bouftou.png" id="1_f57ig"]
 [ext_resource type="Script" path="res://scripts/item/Item.gd" id="1_mdt2f"]
 [ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="1_pgtwy"]
+[ext_resource type="Texture2D" uid="uid://brwbaxcuitpsx" path="res://assets/items/emptySlot.png" id="4_pravj"]
 
 [node name="Item" type="TextureRect"]
 custom_minimum_size = Vector2(128, 128)
@@ -22,6 +23,16 @@ texture = ExtResource("1_f57ig")
 expand_mode = 3
 stretch_mode = 5
 script = ExtResource("1_mdt2f")
+
+[node name="Background" type="TextureRect" parent="."]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_pravj")
 
 [node name="Count" type="Label" parent="."]
 layout_mode = 1

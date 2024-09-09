@@ -31,7 +31,7 @@ func initialize():
 	if !Datas.init_done.is_connected(init_recipes):
 		Datas.init_done.connect(init_recipes.bind(Globals.xp_bar.cur_lvl))
 	Globals.xp_bar.lvl_up.connect(init_recipes)
-	tab_container = Globals.jobs_container.get_node("TabContainer")
+	tab_container = Globals.jobs_container.get_node("VBC/TabContainer")
 	inventory.item_entered_tree.connect(check_recipes)
 	inventory.item_exiting_tree.connect(check_recipes)
 	
