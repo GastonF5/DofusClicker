@@ -1,0 +1,33 @@
+[gd_scene load_steps=8 format=3 uid="uid://d1d4slldxj3dr"]
+
+[ext_resource type="Script" path="res://scripts/buttons/SupprimerButton.gd" id="1_6tyt3"]
+[ext_resource type="Texture2D" uid="uid://bwhq3hutf4osc" path="res://assets/btn_icon/btn_close_normal.png" id="1_oo47q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uuaw0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xxjkg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n5ca0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_drv4r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7eoie"]
+
+[node name="SupprimerButton" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_uuaw0")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_xxjkg")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_n5ca0")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_drv4r")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7eoie")
+icon = ExtResource("1_oo47q")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("1_6tyt3")
+
+[connection signal="button_up" from="." to="." method="_on_button_up"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
