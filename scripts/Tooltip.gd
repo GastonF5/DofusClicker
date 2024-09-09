@@ -8,10 +8,14 @@ var carac_parent: Node
 
 
 func init(parent_control: Control):
-	name = parent_control.name + "Tooltip"
+	if parent_control:
+		name = parent_control.name + "Tooltip"
+	else:
+		name = "Tooltip"
 	visible = false
 	z_index = 1
-	init_connections(parent_control)
+	if parent_control:
+		init_connections(parent_control)
 	carac_parent = parent_control
 
 

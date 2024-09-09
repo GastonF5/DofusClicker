@@ -2,14 +2,31 @@ class_name Inventory
 extends SlotContainer
 
 
+var slot_under_mouse: Node
+
+
 func _ready():
 	slot_group_name = "inventory_slot"
 	super()
 
 
+func _input(event):
+	if slot_under_mouse and get_item(slot_under_mouse) and event.is_action_released("RMB"):
+		SupprimerButton.create(Globals.over_ui, slot_under_mouse.global_position, get_item(slot_under_mouse))
+
+
 func connect_slot_signals(slot):
 	super(slot)
 	slot.child_exiting_tree.connect(_on_item_exiting_slot)
+	slot.mouse_entered.connect(_on_mouse_enter_slot.bind(slot))
+	slot.mouse_exited.connect(_on_mouse_exit_slot)
+
+
+func _on_mouse_enter_slot(slot):
+	slot_under_mouse = slot
+
+func _on_mouse_exit_slot():
+	slot_under_mouse = null
 
 
 func get_slot(item):
