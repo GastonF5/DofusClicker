@@ -16,11 +16,15 @@ func check_loaded_data():
 	var dir = DirAccess.open(FileSaver.DATA_PATH)
 	var is_data_loaded = true
 	for data_type in Datas.DataType.keys():
-		#data_type = data_type.split("_")[0].to_lower()
 		is_data_loaded = is_data_loaded and\
 			(dir.file_exists("%s.tres" % data_type) or dir.file_exists("%s.tres.remap" % data_type))
 	if !is_data_loaded:
 		Datas.load_data()
+	else:
+		var types = FileLoader.load_file(FileSaver.DATA_PATH + "type.tres")
+		var version = ProjectSettings.get_setting("application/config/version")
+		if !types.data.has("version") or types.data["version"] != version:
+			_on_load_data_btn_button_up()
 
 
 func check_saves():
