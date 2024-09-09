@@ -47,6 +47,8 @@ func get_data(data_type: DataType):
 		self.set("_%ss" % data_name, file.data)
 	else:
 		await request_data(data_type)
+		if data_type == DataType.TYPE:
+			_types["version"] = ProjectSettings.get_setting("application/config/version")
 		FileSaver.save_data(self.get("_%ss" % data_name), data_name)
 
 
@@ -77,7 +79,8 @@ func get_url_params(data_type: DataType) -> String:
 			params += "&$" + API.get_select_request("id")
 		DataType.ITEM:
 			for type in _types.values():
-				params += "&typeId=%d" % type._id
+				if type is ItemTypeResource:
+					params += "&typeId=%d" % type._id
 		DataType.RECIPE:
 			params += "&$" + API.get_select_request("resultId")
 			params += "&$" + API.get_select_request("ingredientIds")
