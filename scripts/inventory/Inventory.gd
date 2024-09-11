@@ -93,9 +93,10 @@ func expand():
 
 
 func _on_item_exiting_slot(item):
-	var items = get_items()
-	items.erase(item)
-	item_exiting_tree.emit()
+	if !Globals.quitting:
+		var items = get_items()
+		items.erase(item)
+		item_exiting_tree.emit()
 
 
 func get_first_empty_slot():

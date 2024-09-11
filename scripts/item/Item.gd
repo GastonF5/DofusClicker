@@ -58,6 +58,8 @@ func init(item_res: ItemResource, _draggable, recipe_item):
 	count_label = $Count
 	name = item_res.name
 	resource = item_res
+	if !recipe_item:
+		pass
 	count = item_res.count
 	draggable = _draggable
 	mouse_filter = Control.MOUSE_FILTER_IGNORE if draggable else MOUSE_FILTER_PASS

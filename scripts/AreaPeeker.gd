@@ -114,6 +114,7 @@ func enter_subarea(subarea: AreaResource, subarea_name: String = ""):
 		log_enter_subarea(subarea_name)
 	load_monsters(subarea)
 	_show_fight_side()
+	Globals.game.get_node("%SubareaBackground").texture = FileLoader.get_subarea_asset(subarea._id)
 
 
 func leave_subarea():
@@ -175,14 +176,20 @@ func get_button(id: int, is_subarea: bool):
 
 
 func _show_fight_side():
-	Globals.jobs_container.get_parent().visible = false
+	Globals.game.get_node("%JobsSuperContainer").visible = false
 	Globals.main_panel.visible = true
-	Globals.description_container = Globals.game.get_node("%DescriptionContainer")
 	Globals.game.get_node("%PlayerBarContainer").visible = true
+	Globals.description_container = Globals.game.get_node("%DescriptionContainer2")
+	var spell_bar = Globals.spell_bar
+	spell_bar.get_parent().remove_child(spell_bar)
+	Globals.game.get_node("%SpellBarContainer1").add_child(spell_bar)
 
 
 func _show_havre_sac_side():
-	Globals.jobs_container.get_parent().visible = true
+	Globals.game.get_node("%JobsSuperContainer").visible = true
 	Globals.main_panel.visible = false
-	Globals.description_container = Globals.game.get_node("%DescriptionContainer2")
 	Globals.game.get_node("%PlayerBarContainer").visible = false
+	Globals.description_container = Globals.game.get_node("%DescriptionContainer")
+	var spell_bar = Globals.spell_bar
+	spell_bar.get_parent().remove_child(spell_bar)
+	Globals.game.get_node("%SpellBarContainer2").add_child(spell_bar)

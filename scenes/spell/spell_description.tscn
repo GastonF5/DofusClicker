@@ -22,8 +22,15 @@ expand_margin_bottom = 5.0
 [sub_resource type="Theme" id="Theme_fdsd5"]
 
 [node name="SpellDescription" type="PanelContainer" node_paths=PackedStringArray("texture", "name_label", "description_label", "effects_label", "effects_container", "pa_cost_label")]
-offset_right = 240.0
-offset_bottom = 141.0
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -620.0
+offset_top = -170.0
+grow_horizontal = 0
+grow_vertical = 0
 script = ExtResource("1_on5n3")
 texture = NodePath("MarginContainer/HBC/ImageContainer/SpellTexture")
 name_label = NodePath("MarginContainer/HBC/VBC/HeaderContainer/Name")

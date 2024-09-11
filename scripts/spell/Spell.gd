@@ -21,7 +21,21 @@ func _process(delta):
 		super(delta)
 
 
+func _enter_tree():
+	if get_parent().is_in_group("spell_slot"):
+		resize_spell()
+		if !get_parent().resized.is_connected(resize_spell):
+			get_parent().resized.connect(resize_spell)
+	super()
+
+
+func resize_spell():
+	size = get_parent().size
+	position = Vector2.ZERO
+
+
 func change_parent():
+	#old_parent.resized.disconnect(resize)
 	super()
 	drop_parent.add_child(self)
 

@@ -23,8 +23,15 @@ expand_margin_bottom = 5.0
 [sub_resource type="Theme" id="Theme_7gi5f"]
 
 [node name="EntityDescription" type="PanelContainer" node_paths=PackedStringArray("texture", "name_label")]
-offset_right = 556.0
-offset_bottom = 130.0
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -566.0
+offset_top = -130.0
+grow_horizontal = 0
+grow_vertical = 0
 script = ExtResource("1_b45ym")
 texture = NodePath("MarginContainer/HBC/Identite/MonsterTexture")
 name_label = NodePath("MarginContainer/HBC/Identite/Name")

@@ -32,7 +32,13 @@ var inventory: Inventory
 var equipment_container: EquipmentContainer
 var selected_class: int
 var player_bars: EntityBars
-var description_container: PanelContainer
+var description_container: PanelContainer:
+	set(new_container):
+		if description_container:
+			for child in description_container.get_children():
+				description_container.remove_child(child)
+				new_container.add_child(child)
+		description_container = new_container
 
 
 func _ready():
@@ -51,7 +57,7 @@ func initialize(root: Node = get_tree().current_scene):
 	timers = root.get_node("%Timers")
 	over_ui = root.get_node("%OverUI")
 	stats_container = game.get_node("%Stats")
-	jobs_container = game.get_node("%JobsSuperContainer").get_child(0)
+	jobs_container = game.get_node("%JobsSuperContainer").get_child(0).get_child(0)
 	main_panel = game.get_node("%MainPanel")
 	spells_container = game.get_node("%Sorts")
 	spell_bar = game.get_node("%SpellBar")
@@ -60,7 +66,10 @@ func initialize(root: Node = get_tree().current_scene):
 	equipment_container = game.get_node("%EquipmentContainer")
 	player_bars = game.get_node("%EntityBars")
 	buffs_container = game.get_node("%BuffsContainer")
-	description_container = game.get_node("%DescriptionContainer2")
+	description_container = game.get_node("%DescriptionContainer")
+	
+	main_panel.visible = false
+	game.get_node("%PlayerBarContainer").visible = false
 
 
 func take_focus():

@@ -64,10 +64,12 @@ func drop():
 	# Si le slot est un slot d'équipement et qu'il est déjà occupé, on échange les items
 	if drop_parent.is_in_group("equipment_slot") and !Globals.equipment_container.slot_is_empty(drop_parent):
 		swap(Globals.equipment_container.get_item(drop_parent))
+	if old_parent.is_in_group("equipment_slot") and drop_parent.get_child_count() != 0 and !drop_parent.get_child(0).is_equipment():
+		drop_parent = old_parent
 	# On ne peut pas équiper un item dont on n'a pas le niveau
-	#if drop_parent != old_parent and is_equipment() and self.resource.level > Globals.xp_bar.cur_lvl:
-		#Globals.console.log_error("Vous n'avez pas le niveau pour équiper cet objet.")
-		#drop_parent = old_parent
+	if drop_parent != old_parent and is_equipment() and self.resource.level > Globals.xp_bar.cur_lvl:
+		Globals.console.log_error("Vous n'avez pas le niveau pour équiper cet objet.")
+		drop_parent = old_parent
 	change_parent()
 	position = Vector2.ZERO
 

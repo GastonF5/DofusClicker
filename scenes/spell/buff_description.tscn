@@ -21,8 +21,15 @@ expand_margin_bottom = 5.0
 [sub_resource type="Theme" id="Theme_gsgn7"]
 
 [node name="BuffDescription" type="PanelContainer" node_paths=PackedStringArray("texture", "name_label", "description_label", "effects_label", "effects_container")]
-offset_right = 370.0
-offset_bottom = 145.0
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -370.0
+offset_top = -145.0
+grow_horizontal = 0
+grow_vertical = 0
 mouse_filter = 2
 script = ExtResource("1_mpfx8")
 texture = NodePath("MarginContainer/HBC/BuffTexture")

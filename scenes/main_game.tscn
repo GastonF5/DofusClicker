@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://dyp84yxkk1f3d"]
+[gd_scene load_steps=52 format=3 uid="uid://dyp84yxkk1f3d"]
 
 [ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="1_fefji"]
 [ext_resource type="Texture2D" uid="uid://dtp2ktsnvjk8w" path="res://assets/common/window/bg_product.jpg" id="2_3a1je"]
@@ -31,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://bcuv0qgqcqi1k" path="res://assets/loading.png" id="28_3m4tg"]
 [ext_resource type="Theme" uid="uid://ctf5aaqx8jyeo" path="res://resources/themes/experience_bar.tres" id="29_1pia2"]
 [ext_resource type="Script" path="res://scripts/Loading.gd" id="29_p4f5p"]
+[ext_resource type="Texture2D" uid="uid://ceibijqbh0b7f" path="res://assets/help_icon_normal.png" id="30_5xw66"]
 [ext_resource type="Script" path="res://scripts/experience/ExperienceBar.gd" id="30_x1mlq"]
 [ext_resource type="PackedScene" uid="uid://dacg0tcpohas3" path="res://scenes/jobs/jobs_container.tscn" id="31_jnct6"]
 [ext_resource type="PackedScene" uid="uid://cuvrxfxt4hxgo" path="res://scenes/inventory/inventory_container.tscn" id="32_r1u5r"]
@@ -60,9 +61,11 @@ expand_margin_top = 9.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_efp50"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3iahd"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ylyxk"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_457r3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3iahd"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_488av"]
 texture = ExtResource("19_mc1gy")
@@ -224,16 +227,82 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
-[node name="AreaPeeker" parent="HBC/MiddleContainer/VBC" instance=ExtResource("13_yvj55")]
+[node name="Header" type="HBoxContainer" parent="HBC/MiddleContainer/VBC"]
+layout_mode = 2
+
+[node name="AreaPeeker" parent="HBC/MiddleContainer/VBC/Header" instance=ExtResource("13_yvj55")]
 unique_name_in_owner = true
 layout_mode = 2
 
+[node name="HeaderButtonsContainer" type="PanelContainer" parent="HBC/MiddleContainer/VBC/Header"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBC/MiddleContainer/VBC/Header/HeaderButtonsContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+
+[node name="HeaderButtons" type="HBoxContainer" parent="HBC/MiddleContainer/VBC/Header/HeaderButtonsContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="ChangeClassButton" type="Button" parent="HBC/MiddleContainer/VBC/Header/HeaderButtonsContainer/MarginContainer/HeaderButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+tooltip_text = "Changer de classe"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource("15_asvbw")
+icon = ExtResource("16_lmloe")
+icon_alignment = 1
+
+[node name="SaveButton" type="Button" parent="HBC/MiddleContainer/VBC/Header/HeaderButtonsContainer/MarginContainer/HeaderButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+tooltip_text = "Sauvegarder"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource("15_asvbw")
+icon = ExtResource("17_y2bwi")
+icon_alignment = 1
+
+[node name="QuitButton" type="Button" parent="HBC/MiddleContainer/VBC/Header/HeaderButtonsContainer/MarginContainer/HeaderButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+tooltip_text = "Retour au menu principal"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource("15_asvbw")
+icon = ExtResource("18_5tqnr")
+icon_alignment = 1
+
 [node name="MainPanel" type="PanelContainer" parent="HBC/MiddleContainer/VBC"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_efp50")
+
+[node name="BackgroundContainer" type="Control" parent="HBC/MiddleContainer/VBC/MainPanel"]
+visible = false
+layout_mode = 2
+
+[node name="SubareaBackground" type="TextureRect" parent="HBC/MiddleContainer/VBC/MainPanel/BackgroundContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_right = 869.0
+offset_bottom = 403.0
+stretch_mode = 3
 
 [node name="MonstersContainer" type="HBoxContainer" parent="HBC/MiddleContainer/VBC/MainPanel"]
 layout_mode = 2
@@ -259,56 +328,6 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 
-[node name="HeaderButtons" type="HBoxContainer" parent="HBC/MiddleContainer/VBC/MainPanel/Control"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 15
-alignment = 1
-
-[node name="ChangeClassButton" type="Button" parent="HBC/MiddleContainer/VBC/MainPanel/Control/HeaderButtons"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-tooltip_text = "Changer de classe"
-focus_mode = 0
-mouse_default_cursor_shape = 2
-theme = ExtResource("15_asvbw")
-icon = ExtResource("16_lmloe")
-icon_alignment = 1
-
-[node name="SaveButton" type="Button" parent="HBC/MiddleContainer/VBC/MainPanel/Control/HeaderButtons"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-tooltip_text = "Sauvegarder"
-focus_mode = 0
-mouse_default_cursor_shape = 2
-theme = ExtResource("15_asvbw")
-icon = ExtResource("17_y2bwi")
-icon_alignment = 1
-
-[node name="QuitButton" type="Button" parent="HBC/MiddleContainer/VBC/MainPanel/Control/HeaderButtons"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-tooltip_text = "Retour au menu principal"
-focus_mode = 0
-mouse_default_cursor_shape = 2
-theme = ExtResource("15_asvbw")
-icon = ExtResource("18_5tqnr")
-icon_alignment = 1
-
 [node name="BuffsContainer" type="HBoxContainer" parent="HBC/MiddleContainer/VBC/MainPanel"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(680, 70)
@@ -316,12 +335,12 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 
-[node name="DescriptionContainer" type="PanelContainer" parent="HBC/MiddleContainer/VBC/MainPanel"]
+[node name="DescriptionContainer2" type="PanelContainer" parent="HBC/MiddleContainer/VBC/MainPanel"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
-theme_override_styles/panel = SubResource("StyleBoxEmpty_3iahd")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ylyxk")
 
 [node name="JobsSuperContainer" type="MarginContainer" parent="HBC/MiddleContainer/VBC"]
 unique_name_in_owner = true
@@ -329,20 +348,52 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_top = 10
 
-[node name="JobsContainer" parent="HBC/MiddleContainer/VBC/JobsSuperContainer" instance=ExtResource("31_jnct6")]
+[node name="VBC" type="VBoxContainer" parent="HBC/MiddleContainer/VBC/JobsSuperContainer"]
+layout_mode = 2
+
+[node name="JobsContainer" parent="HBC/MiddleContainer/VBC/JobsSuperContainer/VBC" instance=ExtResource("31_jnct6")]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_457r3")
 
-[node name="DescriptionContainer2" type="PanelContainer" parent="HBC/MiddleContainer/VBC/JobsSuperContainer"]
-unique_name_in_owner = true
+[node name="Space" type="Control" parent="HBC/MiddleContainer/VBC/JobsSuperContainer/VBC"]
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
+
+[node name="SpellBarContainer2" type="Control" parent="HBC/MiddleContainer/VBC/JobsSuperContainer/VBC/Space"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 477.0
+grow_vertical = 2
+
+[node name="SpellBar" parent="HBC/MiddleContainer/VBC/JobsSuperContainer/VBC/Space/SpellBarContainer2" instance=ExtResource("27_addeo")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="DescriptionContainer" type="PanelContainer" parent="HBC/MiddleContainer/VBC/JobsSuperContainer/VBC/Space"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -200.0
+grow_horizontal = 0
+grow_vertical = 0
 size_flags_horizontal = 8
 size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxEmpty_3iahd")
 
 [node name="PlayerBarContainer" type="Panel" parent="HBC/MiddleContainer/VBC"]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(0, 160)
 layout_mode = 2
 size_flags_vertical = 8
@@ -353,8 +404,8 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_488av")
 layout_mode = 2
 offset_left = 7.0
 offset_top = 6.0
-offset_right = 870.0
-offset_bottom = 149.833
+offset_right = 862.0
+offset_bottom = 153.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("20_g6nqe")
@@ -367,67 +418,6 @@ offset_top = 6.0
 offset_right = 870.0
 offset_bottom = 149.833
 theme_override_styles/panel = SubResource("StyleBoxEmpty_fempj")
-
-[node name="EntityBars" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD" instance=ExtResource("21_c15xm")]
-unique_name_in_owner = true
-layout_mode = 2
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 138.0
-offset_bottom = 33.0
-grow_horizontal = 1
-grow_vertical = 1
-scale = Vector2(1.5, 1.5)
-
-[node name="StartFightButton" type="Button" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -218.0
-offset_top = -47.5
-offset_right = 68.0
-offset_bottom = 47.5
-grow_horizontal = 2
-grow_vertical = 2
-focus_mode = 0
-mouse_default_cursor_shape = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("22_acdog")
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxTexture_nfdc8")
-theme_override_styles/hover = SubResource("StyleBoxTexture_fjntk")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_ohgqn")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_8bo48")
-text = "Lancer le combat"
-
-[node name="Loading" type="TextureRect" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/StartFightButton"]
-visible = false
-modulate = Color(1, 1, 1, 0.658824)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -25.0
-offset_top = -25.0
-offset_right = 25.0
-offset_bottom = 25.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(25, 25)
-texture = ExtResource("28_3m4tg")
-expand_mode = 2
-stretch_mode = 5
-script = ExtResource("29_p4f5p")
 
 [node name="AutoStartFight" type="Control" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD"]
 unique_name_in_owner = true
@@ -466,15 +456,95 @@ focus_mode = 0
 mouse_default_cursor_shape = 2
 text = "Reload data"
 
-[node name="SpellBar" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD" instance=ExtResource("27_addeo")]
-unique_name_in_owner = true
+[node name="HBC" type="HBoxContainer" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD"]
 layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_top = 0.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 0
+offset_right = -8.0
+offset_bottom = 3.16701
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EntityBarsContainer" type="Control" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/HBC"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="EntityBars" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/HBC/EntityBarsContainer" instance=ExtResource("21_c15xm")]
+unique_name_in_owner = true
+layout_mode = 1
+offset_top = -43.5
+offset_bottom = -43.5
+scale = Vector2(1.5, 1.5)
+
+[node name="StartFightButtonContainer" type="Control" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/HBC"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="StartFightButton" type="Button" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/HBC/StartFightButtonContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -143.0
+offset_top = -47.5
+offset_right = 143.0
+offset_bottom = 47.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("22_acdog")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxTexture_nfdc8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fjntk")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ohgqn")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_8bo48")
+text = "Lancer le combat"
+
+[node name="Loading" type="TextureRect" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/HBC/StartFightButtonContainer/StartFightButton"]
+visible = false
+modulate = Color(1, 1, 1, 0.658824)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(25, 25)
+texture = ExtResource("28_3m4tg")
+expand_mode = 2
+stretch_mode = 5
+script = ExtResource("29_p4f5p")
+
+[node name="TextureRect" type="TextureRect" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/HBC/StartFightButtonContainer"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 42.0
+offset_bottom = 42.0
+scale = Vector2(0.64, 0.64)
+tooltip_text = "Il est possible de lancer un combat avec les raccourcis 'Espace' et 'Entrée'."
+mouse_default_cursor_shape = 16
+texture = ExtResource("30_5xw66")
+
+[node name="SpellBarContainer1" type="Control" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/HBC"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 8
 
 [node name="ExperienceBar" type="ProgressBar" parent="HBC/MiddleContainer/VBC" node_paths=PackedStringArray("lvl_label")]
 unique_name_in_owner = true

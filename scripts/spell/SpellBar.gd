@@ -22,12 +22,12 @@ func _ready():
 
 
 func _on_mouse_entered_slot(index: int):
-	if !PlayerManager.dragged_item and !PlayerManager.dragged_spell and slot_contains_spell(index):
+	if get_parent().name != "SpellBarContainer2" and !PlayerManager.dragged_item and !PlayerManager.dragged_spell and slot_contains_spell(index):
 		PlayerManager.spell_description.init_spell(get_spell(index).resource)
 
 
 func _on_mouse_exited_slot(index: int):
-	if !PlayerManager.dragged_item and !PlayerManager.dragged_spell and slot_contains_spell(index):
+	if get_parent().name != "SpellBarContainer2" and !PlayerManager.dragged_item and !PlayerManager.dragged_spell and slot_contains_spell(index):
 		PlayerManager.spell_description.visible = false
 
 

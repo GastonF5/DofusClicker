@@ -10,8 +10,7 @@ bg_color = Color(0.196078, 0.196078, 0.196078, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1vki"]
 bg_color = Color(0, 0, 0, 0.505882)
 
-[node name="SpellBar" type="Control" node_paths=PackedStringArray("grid", "weapon_slot")]
-layout_mode = 3
+[node name="SpellBar" type="PanelContainer" node_paths=PackedStringArray("grid", "weapon_slot")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -21,117 +20,117 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_02br4")
-grid = NodePath("PanelContainer/Grid")
-weapon_slot = NodePath("PanelContainer/Grid/WeaponSlot")
+grid = NodePath("Grid")
+weapon_slot = NodePath("Grid/WeaponSlot")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -316.0
-grow_horizontal = 0
-grow_vertical = 2
-
-[node name="Background" type="PanelContainer" parent="PanelContainer"]
+[node name="Background" type="PanelContainer" parent="."]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_uq8d2")
 
-[node name="Grid" type="GridContainer" parent="PanelContainer"]
+[node name="Grid" type="GridContainer" parent="."]
 layout_mode = 2
 columns = 5
 
-[node name="SpellSlot" type="Button" parent="PanelContainer/Grid" groups=["slot", "spell_slot"]]
+[node name="SpellSlot" type="Button" parent="Grid" groups=["slot", "spell_slot"]]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 0
 mouse_default_cursor_shape = 2
 shortcut_in_tooltip = false
 expand_icon = true
 
-[node name="SpellSlot2" type="Button" parent="PanelContainer/Grid" groups=["slot", "spell_slot"]]
+[node name="SpellSlot2" type="Button" parent="Grid" groups=["slot", "spell_slot"]]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 0
 mouse_default_cursor_shape = 2
 shortcut_in_tooltip = false
 expand_icon = true
 
-[node name="SpellSlot3" type="Button" parent="PanelContainer/Grid" groups=["slot", "spell_slot"]]
+[node name="SpellSlot3" type="Button" parent="Grid" groups=["slot", "spell_slot"]]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 0
 mouse_default_cursor_shape = 2
 shortcut_in_tooltip = false
 expand_icon = true
 
-[node name="SpellSlot4" type="Button" parent="PanelContainer/Grid" groups=["slot", "spell_slot"]]
+[node name="SpellSlot4" type="Button" parent="Grid" groups=["slot", "spell_slot"]]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 0
 mouse_default_cursor_shape = 2
 shortcut_in_tooltip = false
 expand_icon = true
 
-[node name="SpellSlot5" type="Button" parent="PanelContainer/Grid" groups=["slot", "spell_slot"]]
+[node name="SpellSlot5" type="Button" parent="Grid" groups=["slot", "spell_slot"]]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 0
 mouse_default_cursor_shape = 2
 shortcut_in_tooltip = false
 expand_icon = true
 
-[node name="SpellSlot6" type="Button" parent="PanelContainer/Grid" groups=["slot", "spell_slot"]]
+[node name="SpellSlot6" type="Button" parent="Grid" groups=["slot", "spell_slot"]]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 0
 mouse_default_cursor_shape = 2
 shortcut_in_tooltip = false
 expand_icon = true
 
-[node name="SpellSlot7" type="Button" parent="PanelContainer/Grid" groups=["slot", "spell_slot"]]
+[node name="SpellSlot7" type="Button" parent="Grid" groups=["slot", "spell_slot"]]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 0
 mouse_default_cursor_shape = 2
 shortcut_in_tooltip = false
 expand_icon = true
 
-[node name="SpellSlot8" type="Button" parent="PanelContainer/Grid" groups=["slot", "spell_slot"]]
+[node name="SpellSlot8" type="Button" parent="Grid" groups=["slot", "spell_slot"]]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 0
 mouse_default_cursor_shape = 2
 shortcut_in_tooltip = false
 expand_icon = true
 
-[node name="SpellSlot9" type="Button" parent="PanelContainer/Grid" groups=["slot", "spell_slot"]]
+[node name="SpellSlot9" type="Button" parent="Grid" groups=["slot", "spell_slot"]]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 0
 mouse_default_cursor_shape = 2
 shortcut_in_tooltip = false
 expand_icon = true
 
-[node name="WeaponSlot" type="TextureRect" parent="PanelContainer/Grid"]
+[node name="WeaponSlot" type="TextureRect" parent="Grid"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 expand_mode = 3
 stretch_mode = 5
 
-[node name="ProgressBar" type="ProgressBar" parent="PanelContainer/Grid/WeaponSlot"]
+[node name="ProgressBar" type="ProgressBar" parent="Grid/WeaponSlot"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

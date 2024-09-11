@@ -6,6 +6,7 @@ const SPELL_RES_PATH := "res://resources/spells/"
 const SCENES_PATH := "res://scenes/"
 const STAT_ASSET_PATH := "res://assets/stats/stat_icon/"
 const DUNGEON_PATH := "res://resources/dungeons/"
+const MAP_IMG_PATH := "res://assets/maps/"
 
 static var MONSTERS_PATH := "user://tmp/monsters/"
 static var EQUIPMENTS_PATH := "user://tmp/equipment/"
@@ -79,8 +80,8 @@ static func get_stat_asset(stat_type: String):
 
 static func get_dungeon_resource(dungeon_id: int) -> DungeonResource:
 	var dir = DirAccess.open(DUNGEON_PATH)
-	if dir.file_exists("%s.tres" % dungeon_id) or dir.file_exists("%s.tres.remap" % dungeon_id):
-		return load(DUNGEON_PATH + "%s.tres" % dungeon_id)
+	if dir.file_exists("%d.tres" % dungeon_id) or dir.file_exists("%d.tres.remap" % dungeon_id):
+		return load(DUNGEON_PATH + "%d.tres" % dungeon_id)
 	return null
 
 
@@ -91,3 +92,10 @@ static func load_save(file_name: String) -> DataResource:
 	else:
 		push_error("Save file not found")
 		return null
+
+
+static func get_subarea_asset(subarea_id: int):
+	var dir = DirAccess.open(MAP_IMG_PATH)
+	if dir.file_exists("%d.jpg" % subarea_id) or dir.file_exists("%d.jpg.import" % subarea_id):
+		return load(MAP_IMG_PATH + "%d.jpg" % subarea_id)
+	return null

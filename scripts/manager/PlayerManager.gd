@@ -184,6 +184,7 @@ func create_description_popup():
 	for description in [item_description, spell_description, entity_description, buff_description]:
 		description.visible = false
 		description.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		description.z_index = 5
 		Globals.description_container.add_child(description)
 
 

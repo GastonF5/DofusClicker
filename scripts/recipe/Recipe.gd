@@ -61,6 +61,8 @@ func check():
 func check_recipe() -> bool:
 	var recipe_items = resource.get_ingredients().duplicate()
 	var inventory_items = Globals.inventory.get_items()
+	if resource.get_result().id == 8534 and inventory_items.size() == 3:
+		pass
 	if inventory_items.size() < recipe_items.size():
 		return false
 	for item_recipe in recipe_items:

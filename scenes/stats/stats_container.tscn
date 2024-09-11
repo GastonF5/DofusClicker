@@ -242,6 +242,7 @@ size_flags_horizontal = 0
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
+tooltip_text = "Réinitialiser"
 
 [node name="Separator2" type="TextureRect" parent="MarginContainer/ScrollContainer/VBC"]
 layout_mode = 2

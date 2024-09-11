@@ -50,7 +50,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Info" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -62,6 +62,7 @@ grow_horizontal = 0
 size_flags_horizontal = 8
 size_flags_vertical = 0
 tooltip_text = "Limite de 9 sorts
-Il est possible de réarranger les sorts dans la barre de sorts en zone de combat."
+Il est possible de réarranger les sorts dans la barre de sorts en zone de combat.
+Il est possible de lancer les sorts dans la barre de sorts avec les raccourcis '&', 'é', etc."
 mouse_default_cursor_shape = 16
 texture = ExtResource("2_pbigf")
