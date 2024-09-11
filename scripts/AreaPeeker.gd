@@ -114,7 +114,7 @@ func enter_subarea(subarea: AreaResource, subarea_name: String = ""):
 		log_enter_subarea(subarea_name)
 	load_monsters(subarea)
 	_show_fight_side()
-	Globals.game.get_node("%SubareaBackground").texture = FileLoader.get_subarea_asset(subarea._id)
+	#Globals.game.get_node("%SubareaBackground").texture = FileLoader.get_subarea_asset(subarea._id)
 
 
 func leave_subarea():

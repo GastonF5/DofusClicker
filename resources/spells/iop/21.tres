@@ -18,6 +18,7 @@ type = 3
 time = 0.0
 target_type = 1
 show_time = false
+has_grades = false
 element = 2
 lifesteal = false
 caracteristic = 0

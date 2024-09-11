@@ -35,7 +35,8 @@ func resize_spell():
 
 
 func change_parent():
-	#old_parent.resized.disconnect(resize)
+	if old_parent.resized.is_connected(resize_spell):
+		old_parent.resized.disconnect(resize_spell)
 	super()
 	drop_parent.add_child(self)
 
