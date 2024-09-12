@@ -238,6 +238,19 @@ layout_mode = 2
 [node name="CloseBtn" parent="Saves/SavesPanel/VBC" instance=ExtResource("14_1kykl")]
 layout_mode = 2
 
+[node name="VersionLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -26.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.439216, 0.439216, 0.439216, 1)
+
 [connection signal="button_up" from="VBC/HBC/PlayBtn" to="." method="_on_play_btn_button_up"]
 [connection signal="button_up" from="VBC/HBC/LoadBtn" to="." method="_on_load_btn_button_up"]
 [connection signal="button_up" from="VBC/HBC/QuitBtn" to="." method="_on_quit_btn_button_up"]

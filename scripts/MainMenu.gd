@@ -9,6 +9,7 @@ func _ready():
 	check_loaded_data()
 	check_saves()
 	close_btn.callable_on_close = _on_close_btn_button_up
+	$VersionLabel.text = ProjectSettings.get_setting("application/config/version")
 
 
 func check_loaded_data():
