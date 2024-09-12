@@ -19,26 +19,18 @@ func _process(delta):
 				spell_texture.modulate = Color.WHITE
 	else:
 		super(delta)
-
-
-func _enter_tree():
-	if get_parent().is_in_group("spell_slot"):
+	if draggable and get_parent().is_in_group("spell_slot") and size != get_parent().size:
 		resize_spell()
-		if !get_parent().resized.is_connected(resize_spell):
-			get_parent().resized.connect(resize_spell)
+
+
+func change_parent():
 	super()
+	drop_parent.add_child(self)
 
 
 func resize_spell():
 	size = get_parent().size
 	position = Vector2.ZERO
-
-
-func change_parent():
-	if old_parent.resized.is_connected(resize_spell):
-		old_parent.resized.disconnect(resize_spell)
-	super()
-	drop_parent.add_child(self)
 
 
 func init(res: SpellResource, _draggable: bool):
