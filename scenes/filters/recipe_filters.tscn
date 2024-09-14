@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cdkopp0w34ycf"]
+[gd_scene load_steps=3 format=3 uid="uid://cdkopp0w34ycf"]
 
 [ext_resource type="Script" path="res://scripts/filters/RecipeFilters.gd" id="1_qidep"]
+[ext_resource type="Texture2D" uid="uid://bs504thkj38yv" path="res://assets/common/separator/window_separator_vertical.png" id="2_3y5nl"]
 
 [node name="RecipeFilters" type="VBoxContainer" node_paths=PackedStringArray("carac_container", "craftable_checkbox")]
 anchors_preset = 15
@@ -51,10 +52,51 @@ layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
 
-[node name="CaracteristiqueFilters" type="GridContainer" parent="."]
+[node name="CaracteristiqueFilters" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="FiltersContainer1" type="VBoxContainer" parent="CaracteristiqueFilters" groups=["filter_container"]]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SplitSeparator" type="VSplitContainer" parent="CaracteristiqueFilters"]
+layout_mode = 2
+dragger_visibility = 2
+
+[node name="Separator" type="TextureRect" parent="CaracteristiqueFilters/SplitSeparator"]
 layout_mode = 2
 size_flags_vertical = 3
-columns = 2
+texture = ExtResource("2_3y5nl")
+flip_v = true
+
+[node name="Separator2" type="TextureRect" parent="CaracteristiqueFilters/SplitSeparator"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_3y5nl")
+
+[node name="FiltersContainer2" type="VBoxContainer" parent="CaracteristiqueFilters" groups=["filter_container"]]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SplitSeparator2" type="VSplitContainer" parent="CaracteristiqueFilters"]
+layout_mode = 2
+dragger_visibility = 2
+
+[node name="Separator" type="TextureRect" parent="CaracteristiqueFilters/SplitSeparator2"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_3y5nl")
+flip_v = true
+
+[node name="Separator2" type="TextureRect" parent="CaracteristiqueFilters/SplitSeparator2"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_3y5nl")
+
+[node name="FiltersContainer3" type="VBoxContainer" parent="CaracteristiqueFilters" groups=["filter_container"]]
+layout_mode = 2
+size_flags_horizontal = 3
 
 [connection signal="value_changed" from="LevelFilter/MinSpin" to="." method="_on_min_spin_value_changed"]
 [connection signal="value_changed" from="LevelFilter/MaxSpin" to="." method="_on_max_spin_value_changed"]

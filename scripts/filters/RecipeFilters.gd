@@ -12,7 +12,7 @@ var _min: int
 var _max: int
 var _craftable: bool = false
 
-@export var carac_container: GridContainer
+@export var carac_container: HBoxContainer
 @export var craftable_checkbox: CheckBox
 
 func _ready():
@@ -23,9 +23,18 @@ func _ready():
 
 
 func init():
+	var _count := 0
+	var container: VBoxContainer
 	for carac in CARAC:
+		if _count in range(0, 13):
+			container = carac_container.get_node("FiltersContainer1")
+		elif _count in range(13, 27):
+			container = carac_container.get_node("FiltersContainer2")
+		else:
+			container = carac_container.get_node("FiltersContainer3")
 		if !carac_black_list.has(CARAC.get(carac)):
-			Filter.create(carac, apply_filter, carac_container)
+			Filter.create(carac, apply_filter, container)
+			_count += 1
 
 
 func apply_filter(apply: bool, filter_name: String):
