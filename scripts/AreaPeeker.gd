@@ -193,6 +193,7 @@ func _show_fight_side():
 	spell_bar.get_parent().remove_child(spell_bar)
 	Globals.game.get_node("%SpellBarContainer1").add_child(spell_bar)
 	update_new_area_visibility()
+	spell_bar.info.get_parent().visible = false
 
 
 func _show_havre_sac_side():
@@ -203,3 +204,4 @@ func _show_havre_sac_side():
 	var spell_bar = Globals.spell_bar
 	spell_bar.get_parent().remove_child(spell_bar)
 	Globals.game.get_node("%SpellBarContainer2").add_child(spell_bar)
+	spell_bar.info.get_parent().visible = true

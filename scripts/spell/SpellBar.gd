@@ -4,6 +4,7 @@ extends SlotContainer
 
 const WTYPE = WeaponResource.WeaponType
 
+@export var info: TextureRect
 @export var grid: GridContainer
 @export var weapon_slot: TextureRect
 var weapon_pb: ProgressBar:
