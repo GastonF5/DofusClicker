@@ -44,7 +44,10 @@ func init(res: MonsterResource = null):
 	init_caracteristiques(grade.characteristics)
 	
 	name = res.name
-	name_label.text = "%s (%d)" % [res.name, res.id]
+	if Globals.debug:
+		name_label.text = "%s (%d)" % [res.name, res.id]
+	else:
+		name_label.text = "%s" % res.name
 	init_clickable(self)
 	texture_rect.texture = res.texture
 	
