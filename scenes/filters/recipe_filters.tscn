@@ -56,7 +56,7 @@ mouse_default_cursor_shape = 2
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="FiltersContainer1" type="VBoxContainer" parent="CaracteristiqueFilters" groups=["filter_container"]]
+[node name="FiltersContainer1" type="VBoxContainer" parent="CaracteristiqueFilters"]
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -75,7 +75,7 @@ layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("2_3y5nl")
 
-[node name="FiltersContainer2" type="VBoxContainer" parent="CaracteristiqueFilters" groups=["filter_container"]]
+[node name="FiltersContainer2" type="VBoxContainer" parent="CaracteristiqueFilters"]
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -94,7 +94,7 @@ layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("2_3y5nl")
 
-[node name="FiltersContainer3" type="VBoxContainer" parent="CaracteristiqueFilters" groups=["filter_container"]]
+[node name="FiltersContainer3" type="VBoxContainer" parent="CaracteristiqueFilters"]
 layout_mode = 2
 size_flags_horizontal = 3
 
