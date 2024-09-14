@@ -14,7 +14,7 @@ config/name="DofusClicker"
 config/version="0.2.0"
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
-config/icon="res://assets/icon_dofus.png"
+config/icon="res://assets/icon_dofus_clicker.png"
 
 [autoload]
 
