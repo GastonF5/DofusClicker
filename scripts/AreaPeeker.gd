@@ -25,6 +25,7 @@ func initialize():
 func init_areas():
 	var areas = Datas._areas.values()
 	areas = areas.filter(func(a): return !a.black_listed(cur_lvl) and a.get_level() > 0 and a.get_level() <= cur_lvl and a.has_monsters())
+	areas = areas.filter(func(a): return a.white_listed(cur_lvl))
 	areas.sort_custom(AreaResource.sort_by_level)
 	for area in areas:
 		create_area_button(area._id)
@@ -34,7 +35,7 @@ func init_areas():
 func init_subareas(area: AreaResource):
 	selected_area_id = area._id
 	for subarea in area.get_subareas(cur_lvl):
-		if !subarea.black_listed() and subarea.has_monsters():
+		if subarea.white_listed() and !subarea.black_listed() and subarea.has_monsters():
 			create_area_button(subarea._id, true)
 			prints(subarea._name, subarea._id)
 
@@ -96,6 +97,14 @@ func _on_back_button_button_up():
 
 func _on_level_up():
 	cur_lvl = Globals.xp_bar.cur_lvl
+	update_new_area_visibility()
+
+
+func update_new_area_visibility():
+	var cur_area_res: AreaResource = Datas._areas.get(selected_area_id)
+	var nb_subareas := cur_area_res.get_subareas(cur_lvl).filter(func(sa): return sa.white_listed()).size()
+	var nb_cur_subareas := subarea_btns.size()
+	Globals.new_area_container.visible = nb_cur_subareas < nb_subareas
 
 
 func set_area_label(label: String, _visible: bool):
@@ -183,6 +192,7 @@ func _show_fight_side():
 	var spell_bar = Globals.spell_bar
 	spell_bar.get_parent().remove_child(spell_bar)
 	Globals.game.get_node("%SpellBarContainer1").add_child(spell_bar)
+	update_new_area_visibility()
 
 
 func _show_havre_sac_side():

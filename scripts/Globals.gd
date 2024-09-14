@@ -2,6 +2,7 @@ extends Node
 
 
 const area_black_list = [10, 29, 32, 973, 974, 975, 976, 977, 978, 980, 982]
+const area_white_list = [450, 778, 445, 444, 443, 442, 449, 447]
 const debug := true
 
 var has_focus: bool
@@ -12,6 +13,7 @@ var quitting := false
 var main_menu: Control
 var class_peeker: ClassPeeker
 var area_peeker: AreaPeeker
+var new_area_container: Container
 var loading_screen: LoadingScreen
 var loading_transition: LoadingTransition
 var console: Console
@@ -50,6 +52,7 @@ func initialize(root: Node = get_tree().current_scene):
 	class_peeker = root.get_node("%ClassPeeker")
 	main_menu = root.get_node("%MainMenu")
 	area_peeker = game.get_node("%AreaPeeker")
+	new_area_container = game.get_node("%NewAreaContainer")
 	loading_screen = root.get_node("%LoadingScreen")
 	loading_transition = root.get_node("%LoadingTransition")
 	console = game.get_node("%Console")
@@ -70,6 +73,7 @@ func initialize(root: Node = get_tree().current_scene):
 	
 	main_panel.visible = false
 	game.get_node("%PlayerBarContainer").visible = false
+	new_area_container.visible = false
 
 
 func take_focus():

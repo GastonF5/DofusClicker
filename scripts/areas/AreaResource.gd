@@ -59,3 +59,9 @@ func black_listed(cur_lvl := 200) -> bool:
 	if is_subarea():
 		return Globals.area_black_list.has(_id)
 	return get_subareas(cur_lvl).all(func(sa): return sa.black_listed())
+
+
+func white_listed(cur_lvl := 200) -> bool:
+	if is_subarea():
+		return Globals.area_white_list.has(_id)
+	return get_subareas(cur_lvl).any(func(sa): return sa.white_listed())
