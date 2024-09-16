@@ -51,7 +51,6 @@ func start_fight():
 	if DungeonManager.is_in_dungeon():
 		for monster_res in DungeonManager.get_current_room_monsters():
 			instantiate_monster(monster_res)
-		#%DungeonManager.exit_dungeon()
 		start_fight_button.disabled = true
 	else:
 		if !monsters_res.is_empty():

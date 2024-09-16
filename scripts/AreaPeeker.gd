@@ -135,13 +135,16 @@ func enter_subarea(subarea: AreaResource, subarea_name: String = "", rooms: Arra
 
 
 func leave_subarea():
-	back_button.icon = load("res://assets/icons/zaap.png")
-	log_leave_subarea()
-	selected_subarea_id = -1
-	set_area_label("", false)
-	init_subareas(Datas._areas[selected_area_id])
-	MonsterManager.start_fight_button.disabled = true
-	_show_havre_sac_side()
+	if DungeonManager.is_in_dungeon():
+		DungeonManager.exit_dungeon()
+	else:
+		back_button.icon = load("res://assets/icons/zaap.png")
+		log_leave_subarea()
+		selected_subarea_id = -1
+		set_area_label("", false)
+		init_subareas(Datas._areas[selected_area_id])
+		MonsterManager.start_fight_button.disabled = true
+		_show_havre_sac_side()
 
 
 func log_enter_subarea(subarea_name: String):
