@@ -41,7 +41,7 @@ func _process(_delta):
 
 func _input(event):
 	if dragged:
-		if event.is_action_released("LMB"):# and (!is_spell() or !GameManager.in_fight:
+		if event.is_action_released("LMB") and !get_parent().is_in_group("slot"):# and (!is_spell() or !GameManager.in_fight:
 			drop()
 
 
@@ -62,9 +62,13 @@ func drag():
 func drop():
 	dragged = false
 	# Si le slot est un slot d'équipement et qu'il est déjà occupé, on échange les items
-	if drop_parent.is_in_group("equipment_slot") and !Globals.equipment_container.slot_is_empty(drop_parent):
+	var drop_is_equip = drop_parent.is_in_group("equipment_slot")
+	var drop_is_inventory = drop_parent.is_in_group("inventory_slot")
+	if drop_is_equip and !Globals.equipment_container.slot_is_empty(drop_parent):
 		swap(Globals.equipment_container.get_item(drop_parent))
-	if old_parent.is_in_group("equipment_slot") and drop_parent.get_child_count() != 0 and !drop_parent.get_child(0).is_equipment():
+	var inventory_slot_empty = drop_is_equip and drop_parent.get_child_count() != 1 and !drop_parent.get_child(1).is_equipment()
+	var equip_slot_empty = drop_is_inventory and drop_parent.get_child_count() != 0 and !drop_parent.get_child(0).is_equipment()
+	if old_parent.is_in_group("equipment_slot") and (inventory_slot_empty or equip_slot_empty):
 		drop_parent = old_parent
 	# On ne peut pas équiper un item dont on n'a pas le niveau
 	if drop_parent != old_parent and is_equipment() and self.resource.level > Globals.xp_bar.cur_lvl:
