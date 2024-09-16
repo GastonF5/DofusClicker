@@ -24,8 +24,9 @@ func initialize():
 
 func init_areas():
 	var areas = Datas._areas.values()
-	areas = areas.filter(func(a): return !a.black_listed(cur_lvl) and a.get_level() > 0 and a.get_level() <= cur_lvl and a.has_monsters())
+	areas = areas.filter(func(a): return !a.black_listed(cur_lvl))
 	areas = areas.filter(func(a): return a.white_listed(cur_lvl))
+	areas = areas.filter(func(a): return a.get_level() > 0 and a.get_level() <= cur_lvl and a.has_monsters())
 	areas.sort_custom(AreaResource.sort_by_level)
 	for area in areas:
 		create_area_button(area._id)
@@ -115,7 +116,7 @@ func set_area_label(label: String, _visible: bool):
 	area_label.visible = _visible
 
 
-func enter_subarea(subarea: AreaResource, subarea_name: String = ""):
+func enter_subarea(subarea: AreaResource, subarea_name: String = "", rooms: Array[RoomResource] = []):
 	clear_buttons()
 	back_button.icon = load("res://assets/back_btn/btn_arrow_turn_character_normal.png")
 	if subarea_name == "":
@@ -124,7 +125,11 @@ func enter_subarea(subarea: AreaResource, subarea_name: String = ""):
 	else:
 		set_area_label(subarea_name, true)
 		log_enter_subarea(subarea_name)
-	load_monsters(subarea)
+	if rooms.is_empty():
+		load_monsters(subarea)
+	else:
+		for room in rooms:
+			load_monsters(room)
 	_show_fight_side()
 	#Globals.game.get_node("%SubareaBackground").texture = FileLoader.get_subarea_asset(subarea._id)
 
@@ -169,6 +174,12 @@ func load_monsters(subarea: AreaResource):
 		if selected_subarea_id == subarea._id:
 			MonsterManager.start_fight_button.disabled = false
 			MonsterManager.set_start_fight_button_loading(false)
+		else:
+			var message = "L'id de la sous-zone n'est pas défini"
+			if Globals.debug:
+				console.log_error(message)
+			else:
+				push_error(message)
 	else:
 		MonsterManager.start_fight_button.disabled = false
 		MonsterManager.set_start_fight_button_loading(false)
