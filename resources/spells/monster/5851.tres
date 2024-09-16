@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://b7o8u0ucexd20"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_e6kwr"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_yytg7"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_2sxur"]
+[ext_resource type="Texture2D" uid="uid://bnoxhu3745v4l" path="res://assets/spells/monster/sort_10021.png" id="4_b4xl0"]
+
+[sub_resource type="Resource" id="Resource_qwpbm"]
+script = ExtResource("1_yytg7")
+_min = 1
+_max = 1
+_min_crit = 0
+_max_crit = 0
+
+[sub_resource type="Resource" id="Resource_nmlgq"]
+resource_name = "Bonus PM"
+script = ExtResource("2_2sxur")
+type = 1
+time = 5.0
+target_type = 0
+show_time = false
+has_grades = false
+element = 0
+lifesteal = false
+caracteristic = 1
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_yytg7")]([SubResource("Resource_qwpbm")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_e6kwr")
+id = 5851
+name = "Craquement d'Os"
+description = "Augmente les PM."
+texture = ExtResource("4_b4xl0")
+img_url = "https://api.beta.dofusdb.fr/img/spells/sort_10021.png"
+level = 0
+pa_cost = 4
+per_crit = 0.0
+cooldown = 20.0
+priority = 1
+effects = Array[ExtResource("2_2sxur")]([SubResource("Resource_nmlgq")])

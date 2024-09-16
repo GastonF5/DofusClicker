@@ -10,7 +10,7 @@ const TYPE = Caracteristique.Type
 @export var amount: int:
 	set(value):
 		amount = value
-		amount_change.emit(amount)
+		amount_change.emit()
 
 signal amount_change
 
