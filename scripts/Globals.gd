@@ -3,7 +3,7 @@ extends Node
 
 const area_black_list = [10, 29, 32, 973, 974, 975, 976, 977, 978, 980, 982]
 const area_white_list = [450, 778, 445, 444, 443, 442, 449, 447]
-const debug := true
+const debug := false
 const check_version_for_reload_data := false
 
 var has_focus: bool
