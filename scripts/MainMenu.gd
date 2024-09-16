@@ -24,7 +24,7 @@ func check_loaded_data():
 	else:
 		var types = FileLoader.load_file(FileSaver.DATA_PATH + "type.tres")
 		var version = ProjectSettings.get_setting("application/config/version")
-		if !types.data.has("version") or types.data["version"] != version:
+		if Globals.check_version_for_reload_data and !types.data.has("version") or types.data["version"] != version:
 			_on_load_data_btn_button_up()
 
 
