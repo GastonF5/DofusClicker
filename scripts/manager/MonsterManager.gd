@@ -63,7 +63,7 @@ func start_fight():
 			console.log_error("No monsters in area")
 
 
-func end_fight():
+func end_fight(lose := false):
 	if GameManager.in_fight:
 		GameManager.in_fight = false
 		GameManager.end_fight.emit()
@@ -80,7 +80,10 @@ func end_fight():
 		Globals.spell_bar.set_weapon_pb_ready(false)
 		Globals.spell_bar.reset_spells()
 		if DungeonManager.is_in_dungeon():
-			DungeonManager.enter_next_room()
+			if !lose:
+				DungeonManager.enter_next_room()
+			else:
+				DungeonManager.enter_dungeon()
 		clear_monsters()
 		start_fight_button.disabled = false
 		if auto_start_fight_checkbox.button_pressed:

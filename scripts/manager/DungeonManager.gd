@@ -27,7 +27,7 @@ func get_current_room_monsters():
 	return []
 
 
-func enter_dungeon(id: int):
+func enter_dungeon(id: int = dungeon_id):
 	var area_name = Datas._subareas[id]._name
 	var room_name = "Donjon %s - Salle numéro 1" % area_name
 	Globals.console.log_info("Vous entrez dans le donjon %s" % area_name)

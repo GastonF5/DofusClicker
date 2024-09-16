@@ -102,9 +102,12 @@ func _on_level_up():
 
 func update_new_area_visibility():
 	var cur_area_res: AreaResource = Datas._areas.get(selected_area_id)
-	var nb_subareas := cur_area_res.get_subareas(cur_lvl).filter(func(sa): return sa.white_listed()).size()
-	var nb_cur_subareas := subarea_btns.size()
-	Globals.new_area_container.visible = nb_cur_subareas < nb_subareas
+	if !cur_area_res:
+		Globals.new_area_container.visible = false
+	else:
+		var nb_subareas := cur_area_res.get_subareas(cur_lvl).filter(func(sa): return sa.white_listed()).size()
+		var nb_cur_subareas := subarea_btns.size()
+		Globals.new_area_container.visible = nb_cur_subareas < nb_subareas
 
 
 func set_area_label(label: String, _visible: bool):
