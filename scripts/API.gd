@@ -233,6 +233,7 @@ func get_monster_resource(data):
 		drop_res.object_id = drop["objectId"]
 		drop_res.percent_drop = [drop["percentDropForGrade1"], drop["percentDropForGrade2"], drop["percentDropForGrade3"], drop["percentDropForGrade4"], drop["percentDropForGrade5"]]
 		res.drops.append(drop_res)
+	res.drops.append_array(Datas.find_drop_exception_by_monster_id(res.id))
 	
 	res.spells = data["spells"]
 	

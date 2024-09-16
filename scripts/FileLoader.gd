@@ -7,6 +7,7 @@ const SCENES_PATH := "res://scenes/"
 const STAT_ASSET_PATH := "res://assets/stats/stat_icon/"
 const DUNGEON_PATH := "res://resources/dungeons/"
 const MAP_IMG_PATH := "res://assets/maps/"
+const DROP_EXCEPTIONS_PATH := "res://resources/drops/"
 
 static var MONSTERS_PATH := "user://tmp/monsters/"
 static var EQUIPMENTS_PATH := "user://tmp/equipment/"

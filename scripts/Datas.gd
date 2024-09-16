@@ -23,11 +23,14 @@ enum DataType {
 @export var _subareas = {}
 @export var _hit_effects = {}
 
+@export var _drop_exceptions = []
+
 var dir: DirAccess
 
 
 func load_data():
 	Globals.loading_screen.loading = true
+	load_drop_exceptions()
 	if !DirAccess.dir_exists_absolute(FileSaver.DATA_PATH):
 		DirAccess.make_dir_absolute(FileSaver.DATA_PATH)
 	dir = DirAccess.open(FileSaver.DATA_PATH)
@@ -37,6 +40,18 @@ func load_data():
 	fix_item_effects()
 	init_done.emit()
 	Globals.loading_screen.loading = false
+
+
+func load_drop_exceptions():
+	for path in FileLoader.get_all_file_paths(FileLoader.DROP_EXCEPTIONS_PATH):
+		_drop_exceptions.append(load(path))
+
+
+func find_drop_exception_by_object_id(object_id):
+	return _drop_exceptions.filter(func(d): return d.object_id == object_id).map(func(a): return a.monster_id)
+
+func find_drop_exception_by_monster_id(monster_id):
+	return _drop_exceptions.filter(func(d): return d.monster_id == monster_id)
 
 
 func get_data(data_type: DataType):

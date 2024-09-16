@@ -1,7 +1,6 @@
 class_name ItemResource
 extends Resource
 
-
 @export var id: int
 @export var name: String
 @export var type_id: int
@@ -82,7 +81,7 @@ func load_save(data: Dictionary):
 static func map(data: Dictionary) -> ItemResource:
 	var resource = ItemResource.new()
 	resource.name = data["name"]["fr"]
-	resource.id = data["id"]
+	resource.id = data["id"] as int
 	resource.type_id = data["typeId"] as int
 	resource.low_img_url = data["imgset"][0]["url"]
 	resource.high_img_url = data["imgset"][1]["url"]
@@ -90,4 +89,5 @@ static func map(data: Dictionary) -> ItemResource:
 	if Datas._types.has(resource.type_id):
 		resource.equip_res = EquipmentResource.map(data)
 	resource.drop_monster_ids = data["dropMonsterIds"].map(func(i): return i as int)
+	resource.drop_monster_ids.append_array(Datas.find_drop_exception_by_object_id(resource.id))
 	return resource

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="DropResource" load_steps=2 format=3 uid="uid://cgx3hsu5jdqdf"]
+
+[ext_resource type="Script" path="res://scripts/resources/DropResource.gd" id="1_v6px2"]
+
+[resource]
+script = ExtResource("1_v6px2")
+id = 0
+monster_id = 4107
+object_id = 16523
+percent_drop = [58, 58, 58, 58, 58]
+count = 0
