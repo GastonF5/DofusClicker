@@ -26,8 +26,8 @@ func init(item_recipe: RecipeResource):
 	var result_item = Item.create(item_recipe.get_result(), false, true)
 	result_item.texture_initialized.connect(_on_item_texture_initialized)
 	result_item.custom_minimum_size = Vector2(items_size, items_size)
-	items_container.get_parent().add_sibling(result_item)
-	items_container.get_parent().get_parent().move_child(result_item, 0)
+	$MarginContainer/HBC.add_child(result_item)
+	$MarginContainer/HBC.move_child(result_item, 0)
 	name_label.text = item_recipe.get_result().name
 	level_label.text = "Niveau %d" % item_recipe.get_result().level
 	

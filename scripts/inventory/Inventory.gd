@@ -105,3 +105,10 @@ func get_first_empty_slot():
 		expand()
 		return get_first_empty_slot()
 	return get_empty_slots()[0]
+
+
+func find_item(item_id: int):
+	var item = get_items().filter(func(i): return i.resource.id == item_id)
+	if item.is_empty():
+		return null
+	return item[0]

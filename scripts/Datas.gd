@@ -5,6 +5,7 @@ signal init_done
 enum DataType {
 	TYPE,
 	ITEM,
+	KEY,
 	RECIPE,
 	RESOURCE,
 	MONSTER,
@@ -13,6 +14,8 @@ enum DataType {
 	HIT_EFFECT,
 }
 
+const KEY_TYPE := 84
+var key_whitelist: Array[int] = []
 
 @export var _types = {}
 @export var _items = {}
@@ -22,10 +25,18 @@ enum DataType {
 @export var _areas = {}
 @export var _subareas = {}
 @export var _hit_effects = {}
+@export var _keys = {}
 
 @export var _drop_exceptions = []
 
 var dir: DirAccess
+
+
+func _init():
+	var dungeon_files = FileLoader.get_all_file_paths(FileLoader.DUNGEON_PATH)
+	for file in dungeon_files:
+		var dungeon_res: DungeonResource = load(file)
+		key_whitelist.append(dungeon_res._key_id)
 
 
 func load_data():
@@ -76,7 +87,7 @@ func perform_setter_for_data_type(data_type: DataType, data):
 func get_url(data_type: DataType) -> String:
 	var url = API.API_SUFFIX + "%s?"
 	match data_type:
-		DataType.RESOURCE:
+		DataType.RESOURCE, DataType.KEY:
 			return url % "items"
 		DataType.TYPE:
 			return url % "item-types"
@@ -118,12 +129,18 @@ func get_url_params(data_type: DataType) -> String:
 			params += "&$" + API.get_select_request("description")
 			params += "&$" + API.get_select_request("elementId")
 			params += "&$" + API.get_select_request("useInFight")
+		DataType.KEY:
+			params += "?&typeId=%d&hasRecipe=true" % KEY_TYPE
 	return params
 
 func get_in_values(data_type: DataType) -> Array:
 	match data_type:
+		DataType.KEY:
+			return ["id"] + key_whitelist
 		DataType.RECIPE:
-			return ["resultId"] + _items.values().map(func(item): return item.id)
+			var item_ids = _items.values().map(func(item): return item.id)
+			var key_ids = _keys.values().map(func(k): return k.id)
+			return ["resultId"] + (item_ids + key_ids)
 		DataType.RESOURCE:
 			var resource_ids = []
 			for recipe in _recipes.values():
@@ -167,6 +184,8 @@ func get_loading_text(data_type: DataType) -> String:
 			text += "sous-zones"
 		DataType.HIT_EFFECT:
 			text += "effets des armes"
+		DataType.KEY:
+			text += "clés"
 	return text
 
 
@@ -276,6 +295,11 @@ func set_hit_effect(data: Dictionary):
 	var effect_id = data["id"] as int
 	if data["useInFight"] and !Datas._hit_effects.has(effect_id):
 		Datas._hit_effects[effect_id] = HitEffectResource.map_data(data)
+
+
+func set_key(data: Dictionary):
+	var key_res = ItemResource.map(data)
+	_keys[key_res.id] = key_res
 
 
 func check_areas():

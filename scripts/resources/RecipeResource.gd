@@ -16,7 +16,11 @@ static func create(resultId: int, ingredient_ids: Array, quantities: Array) -> R
 
 
 func get_result() -> ItemResource:
-	return Datas._items[_result_id]
+	if Datas._items.has(_result_id):
+		return Datas._items[_result_id]
+	elif Datas._keys.has(_result_id):
+		return Datas._keys[_result_id]
+	return null
 
 
 func get_ingredients() -> Array:

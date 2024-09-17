@@ -42,4 +42,5 @@ _level = 0
 [resource]
 script = ExtResource("1_dvrak")
 _id = 447
+_key_id = 8545
 _rooms = Array[ExtResource("1_q3w3b")]([SubResource("Resource_3gegn"), SubResource("Resource_wvlax"), SubResource("Resource_e0hsa"), SubResource("Resource_k0msj")])

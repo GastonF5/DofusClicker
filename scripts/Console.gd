@@ -136,7 +136,7 @@ func do_command(command: String, params: Array[String] = []):
 		"help":
 			_log("Commandes possibles :\n- clear\n- histo", COMMAND)
 			_log("- monster [{index} set {characteristic} {amount}] [kill {all|index}]", COMMAND)
-			_log("- add [item|resource] {id}", COMMAND)
+			_log("- add [item|resource|key] {id}", COMMAND)
 			_log("- get [item|monster|resource] {id}", COMMAND)
 			_log("- save", COMMAND)
 		"save":
@@ -180,7 +180,7 @@ func do_command(command: String, params: Array[String] = []):
 						var monster: Monster = MonsterManager.monsters[index]
 						monster.die()
 		"add":
-			if ["item", "resource"].has(params[0]):
+			if ["item", "resource", "key"].has(params[0]):
 				var id = params[1].to_int()
 				var count = 1
 				if params.size() >= 3:
@@ -190,6 +190,7 @@ func do_command(command: String, params: Array[String] = []):
 				match params[0]:
 					"item": dict = Datas._items
 					"resource": dict = Datas._resources
+					"key": dict = Datas._keys
 				if dict.has(id):
 					item_res = dict[id]
 					item_res.count = count

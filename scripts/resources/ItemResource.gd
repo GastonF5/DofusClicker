@@ -29,7 +29,11 @@ static func create(_id: int, _name: String) -> ItemResource:
 
 
 func is_resource() -> bool:
-	return !equip_res
+	return !equip_res and type_id != 84
+
+
+func is_key() -> bool:
+	return type_id == 84
 
 
 func get_texture(low: bool) -> Texture2D:
@@ -48,10 +52,12 @@ func load_texture(low: bool):
 	if low:
 		low_texture = API.get_texture(url)
 		if is_resource(): Datas._resources[id].low_texture = low_texture
+		elif is_key(): Datas._keys[id].low_texture = low_texture
 		else: Datas._items[id].low_texture = low_texture
 	else:
 		high_texture = API.get_texture(url)
 		if is_resource(): Datas._resources[id].high_texture = high_texture
+		elif is_key(): Datas._keys[id].high_texture = high_texture
 		else: Datas._items[id].high_texture = high_texture
 
 

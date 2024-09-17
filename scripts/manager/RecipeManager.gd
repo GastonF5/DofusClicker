@@ -104,7 +104,11 @@ func init_recipes(lvl := -1):
 	if lvl == -1: lvl = Globals.xp_bar.cur_lvl
 	var recipes_to_init = Datas._recipes.values().filter(is_recipe_to_init.bind(lvl))
 	for recipe in recipes_to_init:
-		var parent = get_parent_by_type(recipe.get_result().type_id)
+		var parent
+		if recipe.get_result().type_id == 84:
+			parent = tab_container.get_node("BricoleurPanel").recipe_container
+		else:
+			parent = get_parent_by_type(recipe.get_result().type_id)
 		if parent:
 			create_recipe(recipe, parent)
 		create_recipe(recipe, get_tout_recipe_container())
@@ -118,14 +122,17 @@ func create_recipe(recipe_res: RecipeResource, parent: Node):
 
 
 func is_recipe_to_init(recipe: RecipeResource, lvl: int):
-	return recipe.get_result().level == lvl
+	if recipe.get_result():
+		return recipe.get_result().level == lvl
+	return false
 
 
 func on_recipe_craft(recipe: RecipeResource):
 	inventory.remove_items(recipe.get_ingredients())
 	var item = Item.create(recipe.get_result())
 	inventory.add_item(item)
-	if Globals.debug: Globals.console.log_equip(item)
+	if Globals.debug and item.resource.is_key():
+		Globals.console.log_equip(item)
 
 
 func check_recipes():

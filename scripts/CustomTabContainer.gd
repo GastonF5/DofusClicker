@@ -10,10 +10,16 @@ func _ready():
 	if tab_bar.name == "LeftTabBar":
 		GameManager.start_fight.connect(_on_fight_started)
 		GameManager.end_fight.connect(_on_fight_ended)
+	if tab_bar.name == "JobTabBar":
+		tab_bar.set_tab_title(current_tab, get_current_tab_control().name.trim_suffix("Panel"))
 
 
 func _on_tab_bar_tab_changed(tab):
 	current_tab = tab
+	if tab_bar.name == "JobTabBar":
+		for i in range(tab_bar.tab_count):
+			tab_bar.set_tab_title(i, "")
+		tab_bar.set_tab_title(tab, get_current_tab_control().name.trim_suffix("Panel"))
 
 
 func _on_tab_bar_active_tab_rearranged(idx_to):

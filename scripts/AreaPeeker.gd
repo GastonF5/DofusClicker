@@ -48,10 +48,18 @@ func _on_area_clicked(area_id: int):
 
 
 func _on_subarea_clicked(subarea_id: int):
-	var subarea = Datas._subareas[subarea_id]
+	var subarea: AreaResource = Datas._subareas[subarea_id]
 	selected_subarea_id = subarea_id
 	if DungeonManager.is_dungeon(subarea_id):
-		DungeonManager.enter_dungeon(subarea_id)
+		var key = Globals.inventory.find_item(FileLoader.get_dungeon_resource(subarea_id)._key_id)
+		if key != null:
+			if key.count > 1:
+				key.count -= 1
+			else:
+				Globals.inventory.remove_items([key])
+			DungeonManager.enter_dungeon(subarea_id)
+		else:
+			Globals.console.log_info("Vous n'avez pas la clef pour entrer dans le donjon %s." % subarea._name)
 	else:
 		enter_subarea(subarea)
 

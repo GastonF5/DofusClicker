@@ -33,7 +33,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 
-[node name="TabBar" type="TabBar" parent="VBC/HBC"]
+[node name="JobTabBar" type="TabBar" parent="VBC/HBC"]
 z_index = 1
 layout_mode = 2
 size_flags_horizontal = 3
@@ -41,22 +41,23 @@ size_flags_vertical = 0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 tab_count = 8
+tab_alignment = 1
 drag_to_rearrange_enabled = true
-tab_0/title = "Tout"
+tab_0/title = ""
 tab_0/icon = ExtResource("2_n1s22")
-tab_1/title = "Tailleur"
+tab_1/title = ""
 tab_1/icon = ExtResource("1_e44ds")
-tab_2/title = "Cordonnier"
+tab_2/title = ""
 tab_2/icon = ExtResource("2_tbw3p")
-tab_3/title = "Bijoutier"
+tab_3/title = ""
 tab_3/icon = ExtResource("3_koocj")
-tab_4/title = "Forgeron"
+tab_4/title = ""
 tab_4/icon = ExtResource("5_rwl5k")
-tab_5/title = "Sculpteur"
+tab_5/title = ""
 tab_5/icon = ExtResource("6_b0vas")
-tab_6/title = "Façonneur"
+tab_6/title = ""
 tab_6/icon = ExtResource("4_4l0uf")
-tab_7/title = "Bricoleur"
+tab_7/title = ""
 tab_7/icon = ExtResource("7_p3wxu")
 
 [node name="TabContainer" type="TabContainer" parent="VBC" node_paths=PackedStringArray("tab_bar")]
@@ -64,7 +65,7 @@ layout_mode = 2
 size_flags_vertical = 3
 tabs_visible = false
 script = ExtResource("1_hrp01")
-tab_bar = NodePath("../HBC/TabBar")
+tab_bar = NodePath("../HBC/JobTabBar")
 
 [node name="ToutPanel" parent="VBC/TabContainer" instance=ExtResource("9_ttorv")]
 layout_mode = 2
@@ -97,4 +98,4 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 
-[connection signal="active_tab_rearranged" from="VBC/HBC/TabBar" to="VBC/TabContainer" method="_on_tab_bar_active_tab_rearranged"]
+[connection signal="active_tab_rearranged" from="VBC/HBC/JobTabBar" to="VBC/TabContainer" method="_on_tab_bar_active_tab_rearranged"]
