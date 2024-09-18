@@ -1,0 +1,116 @@
+[gd_scene load_steps=12 format=3 uid="uid://cepa8tgx6ni1a"]
+
+[ext_resource type="Script" path="res://scripts/guide/main_guide.gd" id="1_a1qvq"]
+[ext_resource type="Texture2D" uid="uid://f1b4iqrwl4yt" path="res://assets/class_peeker/bgIlluServeur.jpg" id="2_uwktv"]
+[ext_resource type="FontFile" uid="uid://duac7keqvubh2" path="res://assets/font/Tahoma Regular font.ttf" id="3_nfaqx"]
+[ext_resource type="Texture2D" uid="uid://qltli0blw15h" path="res://assets/common/button/btn_green_normal.png" id="4_iu5h0"]
+[ext_resource type="Texture2D" uid="uid://cypqdcnr1uakv" path="res://assets/common/button/btn_green_over.png" id="5_i3vgh"]
+[ext_resource type="Texture2D" uid="uid://crr1cpji0x41k" path="res://assets/common/button/btn_green_pressed.png" id="6_76ej3"]
+[ext_resource type="Texture2D" uid="uid://bw6i2v35exff6" path="res://assets/common/button/btn_green_disabled.png" id="7_24qgs"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wjslw"]
+texture = ExtResource("4_iu5h0")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ef2hl"]
+texture = ExtResource("5_i3vgh")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bk1eo"]
+texture = ExtResource("6_76ej3")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mw0k8"]
+texture = ExtResource("7_24qgs")
+
+[node name="GuideMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a1qvq")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_uwktv")
+expand_mode = 3
+
+[node name="VBC" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CaracteristiquesPrincipales" type="Button" parent="VBC"]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 64
+text = "Caractéristiques principales"
+
+[node name="CaracteristiquesSecondaires" type="Button" parent="VBC"]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 64
+text = "Caractéristiques secondaires"
+
+[node name="Donjons" type="Button" parent="VBC"]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 64
+text = "Donjons"
+
+[node name="InventaireRecettes" type="Button" parent="VBC"]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 64
+text = "Inventaire & Recettes"
+
+[node name="SortsCombat" type="Button" parent="VBC"]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 64
+text = "Sorts & Combat"
+
+[node name="Zaap" type="Button" parent="VBC"]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 64
+text = "Zaap"
+
+[node name="BackButton" type="Button" parent="."]
+custom_minimum_size = Vector2(200, 50)
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 230.0
+offset_bottom = 80.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("3_nfaqx")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxTexture_wjslw")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ef2hl")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_bk1eo")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_mw0k8")
+text = "Retour"
+
+[connection signal="button_up" from="BackButton" to="." method="_on_back_button_button_up"]

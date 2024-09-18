@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbi23grlc0i53"
-path="res://.godot/imported/icon_dofus.png-d4a219cc1a57167cb49d619bfd4f8b01.ctex"
+uid="uid://bodwlh0cn2thi"
+path="res://.godot/imported/zone.png-55408819847b34a1baf5a24f0555b979.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/icon_dofus.png"
-dest_files=["res://.godot/imported/icon_dofus.png-d4a219cc1a57167cb49d619bfd4f8b01.ctex"]
+source_file="res://assets/guide/zaap/zone.png"
+dest_files=["res://.godot/imported/zone.png-55408819847b34a1baf5a24f0555b979.ctex"]
 
 [params]
 

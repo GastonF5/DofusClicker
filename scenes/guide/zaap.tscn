@@ -1,0 +1,134 @@
+[gd_scene load_steps=16 format=3 uid="uid://gsdc8wr1kv3d"]
+
+[ext_resource type="Texture2D" uid="uid://f1b4iqrwl4yt" path="res://assets/class_peeker/bgIlluServeur.jpg" id="1_01thn"]
+[ext_resource type="Texture2D" uid="uid://bodwlh0cn2thi" path="res://assets/guide/zaap/zone.png" id="2_ew7nn"]
+[ext_resource type="FontFile" uid="uid://duac7keqvubh2" path="res://assets/font/Tahoma Regular font.ttf" id="2_u0vtu"]
+[ext_resource type="Texture2D" uid="uid://qltli0blw15h" path="res://assets/common/button/btn_green_normal.png" id="3_40bry"]
+[ext_resource type="Texture2D" uid="uid://l34ns02ewlyn" path="res://assets/guide/zaap/sous_zones.png" id="3_lujk3"]
+[ext_resource type="Texture2D" uid="uid://o7qj1t033114" path="res://assets/guide/zaap/combat.png" id="4_ufi88"]
+[ext_resource type="Texture2D" uid="uid://cypqdcnr1uakv" path="res://assets/common/button/btn_green_over.png" id="4_wh0sy"]
+[ext_resource type="Texture2D" uid="uid://crr1cpji0x41k" path="res://assets/common/button/btn_green_pressed.png" id="5_qy3fw"]
+[ext_resource type="Texture2D" uid="uid://bw6i2v35exff6" path="res://assets/common/button/btn_green_disabled.png" id="6_jjd6w"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bfeos"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_xprrr"]
+font_size = 42
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_18i1v"]
+texture = ExtResource("3_40bry")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nx68x"]
+texture = ExtResource("4_wh0sy")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jqwqm"]
+texture = ExtResource("5_qy3fw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1rr6s"]
+texture = ExtResource("6_jjd6w")
+
+[node name="Zaap" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_01thn")
+expand_mode = 3
+
+[node name="Titre" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -75.5
+offset_right = 75.5
+offset_bottom = 88.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+text = "Zaap"
+label_settings = SubResource("LabelSettings_bfeos")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 50
+
+[node name="VBC" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="P1" type="Label" parent="MarginContainer/VBC"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+text = "Le zaap vous permet de vous déplacer entre les zones."
+label_settings = SubResource("LabelSettings_xprrr")
+autowrap_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBC"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+texture = ExtResource("2_ew7nn")
+stretch_mode = 5
+
+[node name="P2" type="Label" parent="MarginContainer/VBC"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+text = "Lorsque vous choisissez une zone, ses sous-zones apparaissent."
+label_settings = SubResource("LabelSettings_xprrr")
+autowrap_mode = 3
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/VBC"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+texture = ExtResource("3_lujk3")
+stretch_mode = 5
+
+[node name="P3" type="Label" parent="MarginContainer/VBC"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+text = "Lorsque vous entrez dans une sous-zone, vous entrez en zone de combat.
+Pour sortir de la zone de combat, il suffit de cliquer sur la flèche \"Retour\" à gauche du nom de la sous-zone."
+label_settings = SubResource("LabelSettings_xprrr")
+autowrap_mode = 3
+
+[node name="TextureRect3" type="TextureRect" parent="MarginContainer/VBC"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+texture = ExtResource("4_ufi88")
+stretch_mode = 5
+
+[node name="BackButton" type="Button" parent="."]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 230.0
+offset_bottom = 80.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_u0vtu")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxTexture_18i1v")
+theme_override_styles/hover = SubResource("StyleBoxTexture_nx68x")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_jqwqm")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_1rr6s")
+text = "Retour"

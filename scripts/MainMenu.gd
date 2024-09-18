@@ -33,7 +33,7 @@ func check_saves():
 	FileSaver.check_directory_path(saves_path)
 	var dir = DirAccess.open(saves_path)
 	var saves = dir.get_files()
-	$VBC/HBC/LoadBtn.disabled = saves.is_empty()
+	$VBC/PanelContainer/HBC/LoadBtn.disabled = saves.is_empty()
 	for file in saves:
 		var save_res = SaveResource.to_save_res(FileLoader.load_save(file).data)
 		if save_res:
@@ -103,3 +103,7 @@ func _on_quit_button_button_up():
 
 func _on_change_class_button_button_up():
 	GameManager.change_class()
+
+
+func _on_guide_btn_button_up():
+	$GuideMenu.visible = true

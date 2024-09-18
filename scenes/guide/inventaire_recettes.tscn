@@ -1,0 +1,112 @@
+[gd_scene load_steps=14 format=3 uid="uid://djjggduvb00wa"]
+
+[ext_resource type="Texture2D" uid="uid://f1b4iqrwl4yt" path="res://assets/class_peeker/bgIlluServeur.jpg" id="1_koypq"]
+[ext_resource type="Texture2D" uid="uid://cef0gevvb1ckn" path="res://assets/guide/recettes/filtres.png" id="2_s7iwt"]
+[ext_resource type="FontFile" uid="uid://duac7keqvubh2" path="res://assets/font/Tahoma Regular font.ttf" id="2_xochx"]
+[ext_resource type="Texture2D" uid="uid://qltli0blw15h" path="res://assets/common/button/btn_green_normal.png" id="3_p7kdd"]
+[ext_resource type="Texture2D" uid="uid://cypqdcnr1uakv" path="res://assets/common/button/btn_green_over.png" id="4_uxsnj"]
+[ext_resource type="Texture2D" uid="uid://crr1cpji0x41k" path="res://assets/common/button/btn_green_pressed.png" id="5_vr4dw"]
+[ext_resource type="Texture2D" uid="uid://bw6i2v35exff6" path="res://assets/common/button/btn_green_disabled.png" id="6_ynvqx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bx8id"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_du58l"]
+font_size = 42
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ft2hu"]
+texture = ExtResource("3_p7kdd")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ukeoc"]
+texture = ExtResource("4_uxsnj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6sglu"]
+texture = ExtResource("5_vr4dw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sacel"]
+texture = ExtResource("6_ynvqx")
+
+[node name="InventaireRecettes" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_koypq")
+expand_mode = 3
+
+[node name="Titre" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -79.0
+offset_right = 79.0
+offset_bottom = 88.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+text = "Inventaire et Recettes"
+label_settings = SubResource("LabelSettings_bx8id")
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 30
+
+[node name="VBC" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="P1" type="Label" parent="MarginContainer/VBC"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Dans votre aventure, vous allez récolter des ressources sur les monstres que vous combattrez, avec lesquelles vous fabriquerez votre équipement. Votre inventaire va vous permettre de stocker tous ces objets.
+
+Toutefois, si vous souhaitez vous débarrasser de ressources ou d'équipements que vous n'utilisez plus, il est possible de supprimer une pile d'objet avec le clic droit sur l'objet en question.
+
+Il existe un bouton \"Filtres\" qui permet de filtrer les recettes par niveaux, par possibilité de fabrication, et par caractéristiques :"
+label_settings = SubResource("LabelSettings_du58l")
+autowrap_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBC"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_s7iwt")
+stretch_mode = 5
+
+[node name="BackButton" type="Button" parent="."]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 230.0
+offset_bottom = 80.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_xochx")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxTexture_ft2hu")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ukeoc")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_6sglu")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_sacel")
+text = "Retour"

@@ -1,0 +1,113 @@
+[gd_scene load_steps=13 format=3 uid="uid://8n48bipu2h64"]
+
+[ext_resource type="Texture2D" uid="uid://f1b4iqrwl4yt" path="res://assets/class_peeker/bgIlluServeur.jpg" id="1_m75fq"]
+[ext_resource type="FontFile" uid="uid://duac7keqvubh2" path="res://assets/font/Tahoma Regular font.ttf" id="2_h7vyv"]
+[ext_resource type="Texture2D" uid="uid://qltli0blw15h" path="res://assets/common/button/btn_green_normal.png" id="3_ljd5o"]
+[ext_resource type="Texture2D" uid="uid://cypqdcnr1uakv" path="res://assets/common/button/btn_green_over.png" id="4_ep4vs"]
+[ext_resource type="Texture2D" uid="uid://crr1cpji0x41k" path="res://assets/common/button/btn_green_pressed.png" id="5_fbeu8"]
+[ext_resource type="Texture2D" uid="uid://bw6i2v35exff6" path="res://assets/common/button/btn_green_disabled.png" id="6_bc6rj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bx8id"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_du58l"]
+font_size = 42
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h6wq0"]
+texture = ExtResource("3_ljd5o")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kvtqf"]
+texture = ExtResource("4_ep4vs")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ne4oo"]
+texture = ExtResource("5_fbeu8")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m41ri"]
+texture = ExtResource("6_bc6rj")
+
+[node name="CaracteristiquesSecondaires" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_m75fq")
+expand_mode = 3
+
+[node name="Titre" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -253.0
+offset_right = 253.0
+offset_bottom = 88.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+text = "Caractéristiques"
+label_settings = SubResource("LabelSettings_bx8id")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 50
+
+[node name="VBC" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="P1" type="Label" parent="MarginContainer/VBC"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Les caractéristiques secondaires sont améliorées par les pièces de votre équipement.
+
+- Puissance : compte dans le calcul des dégâts des sorts.
+- Dommages : dommages fixes ajoutés au dégâts de vos sorts et de votre corps à corps.
+- Critique : augmente vos chances de coup critique.
+- Dommages critiques : dommages fixes en cas de coup critique.
+- Soin : soin fixe ajouté aux sorts de soin.
+
+- Dommages élémentaires : dommages fixes ajoutés aux sorts du même élément.
+- Retrait PA/PM : augmente les chances de retrait PA/PM.
+
+- Résistances élémentaires : réduit les dommages subits dans l'élement correspondant.
+- Résistance retrait PA/PM : augmente les chances d'esquiver les retraits PA/PM.
+- Invocations : limite d'invocations possibles en combat.
+- Prospection : augmente vos chances d'obtention de ressources en fin de combat."
+label_settings = SubResource("LabelSettings_du58l")
+autowrap_mode = 3
+
+[node name="BackButton" type="Button" parent="."]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 230.0
+offset_bottom = 80.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_h7vyv")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxTexture_h6wq0")
+theme_override_styles/hover = SubResource("StyleBoxTexture_kvtqf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ne4oo")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_m41ri")
+text = "Retour"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bss1wj12e3x3k"]
+[gd_scene load_steps=26 format=3 uid="uid://bss1wj12e3x3k"]
 
 [ext_resource type="Texture2D" uid="uid://f1b4iqrwl4yt" path="res://assets/class_peeker/bgIlluServeur.jpg" id="1_hpjoe"]
 [ext_resource type="Script" path="res://scripts/MainMenu.gd" id="1_mkipt"]
@@ -14,6 +14,7 @@
 [ext_resource type="FontFile" uid="uid://duac7keqvubh2" path="res://assets/font/Tahoma Regular font.ttf" id="8_0uihb"]
 [ext_resource type="PackedScene" uid="uid://c5qpmm8kbuukg" path="res://scenes/buttons/close_button.tscn" id="14_1kykl"]
 [ext_resource type="Texture2D" uid="uid://0ujq6wd2dvfm" path="res://assets/common/window/window_green_background.jpg" id="14_uuoie"]
+[ext_resource type="PackedScene" uid="uid://cepa8tgx6ni1a" path="res://scenes/guide/guide_menu.tscn" id="15_wb3m2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_plsuf"]
 font = ExtResource("4_nrpvk")
@@ -24,6 +25,8 @@ outline_color = Color(0, 0.564706, 0, 1)
 shadow_size = 25
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(25, 15)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gnn6v"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wjr8v"]
 texture = ExtResource("4_f03le")
@@ -133,7 +136,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TitleLabel" type="Label" parent="VBC"]
-custom_minimum_size = Vector2(0, 500)
+custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
 size_flags_vertical = 0
 text = "DoFus Clicker"
@@ -141,11 +144,17 @@ label_settings = SubResource("LabelSettings_plsuf")
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="HBC" type="HBoxContainer" parent="VBC"]
+[node name="PanelContainer" type="PanelContainer" parent="VBC"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_gnn6v")
 
-[node name="PlayBtn" type="Button" parent="VBC/HBC"]
+[node name="HBC" type="HBoxContainer" parent="VBC/PanelContainer"]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="PlayBtn" type="Button" parent="VBC/PanelContainer/HBC"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 250)
 layout_mode = 2
@@ -157,7 +166,7 @@ theme = SubResource("Theme_pkdxa")
 text = "Nouvelle
 Partie"
 
-[node name="LoadBtn" type="Button" parent="VBC/HBC"]
+[node name="LoadBtn" type="Button" parent="VBC/PanelContainer/HBC"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 250)
 layout_mode = 2
@@ -168,7 +177,7 @@ mouse_default_cursor_shape = 2
 theme = SubResource("Theme_pkdxa")
 text = "Charger"
 
-[node name="QuitBtn" type="Button" parent="VBC/HBC"]
+[node name="QuitBtn" type="Button" parent="VBC/PanelContainer/HBC"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 250)
 layout_mode = 2
@@ -192,6 +201,26 @@ focus_mode = 0
 mouse_default_cursor_shape = 2
 theme = SubResource("Theme_h3q3u")
 text = "Recharger les données"
+
+[node name="GuideBtn" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -179.0
+offset_top = -247.0
+offset_right = 179.0
+offset_bottom = -68.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_pkdxa")
+text = "Guide"
 
 [node name="PopupBackground" type="TextureRect" parent="."]
 visible = false
@@ -251,7 +280,12 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_colors/font_color = Color(0.439216, 0.439216, 0.439216, 1)
 
-[connection signal="button_up" from="VBC/HBC/PlayBtn" to="." method="_on_play_btn_button_up"]
-[connection signal="button_up" from="VBC/HBC/LoadBtn" to="." method="_on_load_btn_button_up"]
-[connection signal="button_up" from="VBC/HBC/QuitBtn" to="." method="_on_quit_btn_button_up"]
+[node name="GuideMenu" parent="." instance=ExtResource("15_wb3m2")]
+visible = false
+layout_mode = 1
+
+[connection signal="button_up" from="VBC/PanelContainer/HBC/PlayBtn" to="." method="_on_play_btn_button_up"]
+[connection signal="button_up" from="VBC/PanelContainer/HBC/LoadBtn" to="." method="_on_load_btn_button_up"]
+[connection signal="button_up" from="VBC/PanelContainer/HBC/QuitBtn" to="." method="_on_quit_btn_button_up"]
 [connection signal="button_up" from="ReloadDataBtn" to="." method="_on_load_data_btn_button_up"]
+[connection signal="button_up" from="GuideBtn" to="." method="_on_guide_btn_button_up"]

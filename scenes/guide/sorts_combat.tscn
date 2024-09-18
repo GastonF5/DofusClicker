@@ -1,0 +1,107 @@
+[gd_scene load_steps=13 format=3 uid="uid://bqr7og5m3f7ho"]
+
+[ext_resource type="Texture2D" uid="uid://f1b4iqrwl4yt" path="res://assets/class_peeker/bgIlluServeur.jpg" id="1_ui8sy"]
+[ext_resource type="FontFile" uid="uid://duac7keqvubh2" path="res://assets/font/Tahoma Regular font.ttf" id="2_0wuye"]
+[ext_resource type="Texture2D" uid="uid://qltli0blw15h" path="res://assets/common/button/btn_green_normal.png" id="3_ats1f"]
+[ext_resource type="Texture2D" uid="uid://cypqdcnr1uakv" path="res://assets/common/button/btn_green_over.png" id="4_m4j6e"]
+[ext_resource type="Texture2D" uid="uid://crr1cpji0x41k" path="res://assets/common/button/btn_green_pressed.png" id="5_r0s0n"]
+[ext_resource type="Texture2D" uid="uid://bw6i2v35exff6" path="res://assets/common/button/btn_green_disabled.png" id="6_tlk3g"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bx8id"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_du58l"]
+font_size = 42
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jloep"]
+texture = ExtResource("3_ats1f")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s7el4"]
+texture = ExtResource("4_m4j6e")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qcbik"]
+texture = ExtResource("5_r0s0n")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q3qcu"]
+texture = ExtResource("6_tlk3g")
+
+[node name="SortsCombat" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ui8sy")
+expand_mode = 3
+
+[node name="Titre" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -79.0
+offset_right = 79.0
+offset_bottom = 88.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+text = "Sorts et Combat"
+label_settings = SubResource("LabelSettings_bx8id")
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 50
+
+[node name="VBC" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="P1" type="Label" parent="MarginContainer/VBC"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Au niveau 1, trois sorts vous sont disponibles. Vous débloquerez des sorts au fur et à mesure de votre progression.
+Avant de lancer un combat, pensez à sélectionner les sorts souhaités à utiliser en combat. Vous ne pourrez pas sélectionnez de sorts en combat.
+
+Dans un combat, une case est constamment ciblée. Vous pouvez décider de changer la cible en cliquant sur une autre case, on en utilisant les flèches directionnelles. Les monstres lancent des sorts automatiquement lorsqu'ils ont assez de PA. Ils récupèrent leurs PA de la même façon que vous, plus ou moins vite en fonction du nombre de leurs PM.
+
+Il est possible de lancer les sorts dans votre barre de sorts avec les raccourcis '&', 'é', etc.
+Il est également possible de réarranger les sorts dans la barre de sorts.
+Le mot-clé \"zone\" dans les description des sorts signifie que le sort prendra effet sur la case ciblée ainsi que ses cases voisines."
+label_settings = SubResource("LabelSettings_du58l")
+autowrap_mode = 3
+
+[node name="BackButton" type="Button" parent="."]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 230.0
+offset_bottom = 80.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_0wuye")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxTexture_jloep")
+theme_override_styles/hover = SubResource("StyleBoxTexture_s7el4")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_qcbik")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_q3qcu")
+text = "Retour"

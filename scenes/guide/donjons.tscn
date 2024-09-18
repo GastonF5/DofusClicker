@@ -1,0 +1,102 @@
+[gd_scene load_steps=13 format=3 uid="uid://c6p5lhtp4ke7c"]
+
+[ext_resource type="Texture2D" uid="uid://f1b4iqrwl4yt" path="res://assets/class_peeker/bgIlluServeur.jpg" id="1_l76mt"]
+[ext_resource type="FontFile" uid="uid://duac7keqvubh2" path="res://assets/font/Tahoma Regular font.ttf" id="2_jpf4v"]
+[ext_resource type="Texture2D" uid="uid://qltli0blw15h" path="res://assets/common/button/btn_green_normal.png" id="3_7mv1x"]
+[ext_resource type="Texture2D" uid="uid://cypqdcnr1uakv" path="res://assets/common/button/btn_green_over.png" id="4_bwa6r"]
+[ext_resource type="Texture2D" uid="uid://crr1cpji0x41k" path="res://assets/common/button/btn_green_pressed.png" id="5_ajl63"]
+[ext_resource type="Texture2D" uid="uid://bw6i2v35exff6" path="res://assets/common/button/btn_green_disabled.png" id="6_d0432"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bx8id"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_du58l"]
+font_size = 42
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wf7j0"]
+texture = ExtResource("3_7mv1x")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qnmjx"]
+texture = ExtResource("4_bwa6r")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cbl2w"]
+texture = ExtResource("5_ajl63")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k1x21"]
+texture = ExtResource("6_d0432")
+
+[node name="Donjons" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_l76mt")
+expand_mode = 3
+
+[node name="Titre" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -79.0
+offset_right = 79.0
+offset_bottom = 88.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+text = "Donjons"
+label_settings = SubResource("LabelSettings_bx8id")
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 50
+
+[node name="VBC" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="P1" type="Label" parent="MarginContainer/VBC"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Les donjons sont des sous-zones contenant plusieurs salles, la dernière salle contenant un boss.
+
+Il faut détenir la clef du donjon pour pouvoir y entrer. Les clés sont fabricables dans l'onglet \"Bricoleur\"."
+label_settings = SubResource("LabelSettings_du58l")
+autowrap_mode = 3
+
+[node name="BackButton" type="Button" parent="."]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 230.0
+offset_bottom = 80.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_jpf4v")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxTexture_wf7j0")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qnmjx")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_cbl2w")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_k1x21")
+text = "Retour"
