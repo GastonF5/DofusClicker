@@ -59,7 +59,8 @@ func create_save_button(save_res: SaveResource):
 	var save_btn = SaveButton.create(save_res)
 	save_btn.save_callable = load_save.bind(save_res)
 	save_btn.deleted.connect(check_save_buttons)
-	$Saves/SavesPanel/VBC.add_child(save_btn)
+	$Saves/SavesPanel/VBC/ScrollContainer/VBC.add_child(save_btn)
+	$Saves/SavesPanel/VBC/ScrollContainer/VBC.move_child(save_btn, 0)
 
 
 func check_save_buttons():
