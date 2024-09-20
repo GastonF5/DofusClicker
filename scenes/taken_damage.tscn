@@ -6,11 +6,11 @@
 [sub_resource type="LabelSettings" id="LabelSettings_kphb2"]
 font = ExtResource("1_x84v6")
 font_size = 64
-font_color = Color(1, 0, 0, 1)
+font_color = Color(1, 0.427451, 0.356863, 1)
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 5
-shadow_color = Color(0.294118, 0, 0, 1)
+shadow_color = Color(0.196078, 0, 0, 1)
 shadow_offset = Vector2(2, 2)
 
 [node name="TakenDamage" type="Label"]
