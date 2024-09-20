@@ -7,10 +7,10 @@
 
 [sub_resource type="Resource" id="Resource_nqd7j"]
 script = ExtResource("1_0se28")
-_min = 150
-_max = 150
-_min_crit = 180
-_max_crit = 180
+_min = 50
+_max = 50
+_min_crit = 80
+_max_crit = 80
 
 [sub_resource type="Resource" id="Resource_ctv0m"]
 resource_name = "Bonus Puissance"
@@ -22,6 +22,7 @@ show_time = true
 has_grades = false
 element = 0
 lifesteal = false
+level_pourcentage = false
 caracteristic = 8
 pourcentage = false
 method_name = &""
@@ -38,8 +39,8 @@ name = "Puissance"
 description = "Augmente la puissance."
 texture = ExtResource("2_tuc3k")
 img_url = "https://api.dofusdb.fr/img/spells/sort_11844.png"
-level = 25
-pa_cost = 3
+level = 1
+pa_cost = 2
 per_crit = 0.25
 cooldown = 20.0
 priority = 0

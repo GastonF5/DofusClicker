@@ -256,7 +256,11 @@ static func tumulte(caster: Entity, target: Entity, effect: EffectResource, crit
 	new_effect.type = EffectResource.Type.DAMAGE
 	perform_effect(caster, target, new_effect, crit, grade)
 	tumulte_adder += 20 * get_targets(caster, target, effect.target_type).size()
-	
+
+
+static func vertu(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
+	if target:
+		perform_bonus(caster, caster, effect, crit, grade)
 #endregion
 
 
