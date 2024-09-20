@@ -40,5 +40,6 @@ static func instantiate(effect: EffectResource, amount: int, parent: Entity) -> 
 func delete():
 	if _parent:
 		_parent.buffs.erase(self)
-	get_parent().remove_child(self)
+	if get_parent():
+		get_parent().remove_child(self)
 	queue_free()

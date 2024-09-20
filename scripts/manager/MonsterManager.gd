@@ -38,28 +38,32 @@ func initialize():
 
 
 func start_fight():
-	GameManager.in_fight = true
-	GameManager.start_fight.emit()
-	PlayerManager.static_max_hp = PlayerManager.max_hp
-	for button in Globals.game.get_node("%HeaderButtons").get_children():
-		button.disabled = true
-	console.log_info("Le combat commence")
-	Globals.area_peeker.back_button.disabled = true
-	Globals.spell_bar.set_weapon_pb_ready(true)
-	Globals.spell_bar.reset_spells()
-	StatsManager.check_modifiable_on_caracteristiques()
-	if DungeonManager.is_in_dungeon():
-		for monster_res in DungeonManager.get_current_room_monsters():
-			instantiate_monster(monster_res)
-		start_fight_button.disabled = true
-	else:
-		if !monsters_res.is_empty():
-			for i in 2:
-				instantiate_monster()
-			monsters.assign(get_monsters_on_plates())
+	if DungeonManager.use_dungeon_key():
+		GameManager.in_fight = true
+		GameManager.start_fight.emit()
+		PlayerManager.static_max_hp = PlayerManager.max_hp
+		for button in Globals.game.get_node("%HeaderButtons").get_children():
+			button.disabled = true
+		console.log_info("Le combat commence")
+		Globals.area_peeker.back_button.disabled = true
+		Globals.spell_bar.set_weapon_pb_ready(true)
+		Globals.spell_bar.reset_spells()
+		StatsManager.check_modifiable_on_caracteristiques()
+		if DungeonManager.is_in_dungeon():
+			for monster_res in DungeonManager.get_current_room_monsters():
+				instantiate_monster(monster_res)
 			start_fight_button.disabled = true
 		else:
-			console.log_error("No monsters in area")
+			if !monsters_res.is_empty():
+				for i in 2:
+					instantiate_monster()
+				monsters.assign(get_monsters_on_plates())
+				start_fight_button.disabled = true
+			else:
+				console.log_error("No monsters in area")
+	else:
+		Globals.console.log_error("Vous ne possédez pas la clef du donjon.")
+		start_fight_button.disabled = true
 
 
 func end_fight(lose := false):
@@ -84,12 +88,20 @@ func end_fight(lose := false):
 			else:
 				DungeonManager.enter_dungeon()
 		clear_monsters()
-		start_fight_button.disabled = false
+		check_dungeon_key()
 		if auto_start_fight_checkbox.button_pressed:
 			start_fight()
 		StatsManager.reset_caracteristiques()
 		StatsManager.check_modifiable_on_caracteristiques()
 		SpellsService.on_fight_end()
+
+
+func check_dungeon_key():
+	var key
+	var in_dungeon_first_room = DungeonManager.is_in_dungeon() and DungeonManager.cur_room == 1
+	if in_dungeon_first_room:
+		key = Globals.inventory.find_item(DungeonManager.dungeon_res._key_id)
+	start_fight_button.disabled = key == null and in_dungeon_first_room
 
 
 func get_monsters_on_plates():
@@ -132,3 +144,10 @@ func _on_monster_selected(monster: Monster):
 
 func set_start_fight_button_loading(is_loading: bool):
 	start_fight_button.get_child(0).visible = is_loading
+
+
+func set_start_fight_button_text(first_room_of_dungeon := false):
+	if first_room_of_dungeon:
+		start_fight_button.text = "Utiliser la clef"
+	else:
+		start_fight_button.text = "Lancer le combat"

@@ -252,7 +252,7 @@ func log_info(text: String, bold: bool = false):
 func log_error(text: String):
 	push_error(text)
 	if Globals.debug:
-		_log("ERROR : " + text, LogType.ERROR)
+		_log("Erreur : " + text, LogType.ERROR)
 
 
 func log_equip(item: Item):

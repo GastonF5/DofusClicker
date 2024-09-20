@@ -51,15 +51,7 @@ func _on_subarea_clicked(subarea_id: int):
 	var subarea: AreaResource = Datas._subareas[subarea_id]
 	selected_subarea_id = subarea_id
 	if DungeonManager.is_dungeon(subarea_id):
-		var key = Globals.inventory.find_item(FileLoader.get_dungeon_resource(subarea_id)._key_id)
-		if key != null:
-			if key.count > 1:
-				key.count -= 1
-			else:
-				Globals.inventory.remove_items([key])
-			DungeonManager.enter_dungeon(subarea_id)
-		else:
-			Globals.console.log_info("Vous n'avez pas la clef pour entrer dans le donjon %s." % subarea._name)
+		DungeonManager.enter_dungeon(subarea_id)
 	else:
 		enter_subarea(subarea)
 
@@ -128,11 +120,9 @@ func enter_subarea(subarea: AreaResource, subarea_name: String = "", rooms: Arra
 	clear_buttons()
 	back_button.icon = load("res://assets/back_btn/btn_arrow_turn_character_normal.png")
 	if subarea_name == "":
-		set_area_label(subarea._name, true)
-		log_enter_subarea(subarea._name)
-	else:
-		set_area_label(subarea_name, true)
-		log_enter_subarea(subarea_name)
+		subarea_name = subarea._name
+	set_area_label(subarea_name, true)
+	log_enter_subarea(subarea_name)
 	if rooms.is_empty():
 		load_monsters(subarea)
 	else:
@@ -143,7 +133,7 @@ func enter_subarea(subarea: AreaResource, subarea_name: String = "", rooms: Arra
 
 
 func leave_subarea():
-	if DungeonManager.is_in_dungeon():
+	if DungeonManager.dungeon_res != null:
 		DungeonManager.exit_dungeon()
 	else:
 		back_button.icon = load("res://assets/icons/zaap.png")
@@ -152,6 +142,7 @@ func leave_subarea():
 		set_area_label("", false)
 		init_subareas(Datas._areas[selected_area_id])
 		MonsterManager.start_fight_button.disabled = true
+		MonsterManager.set_start_fight_button_text()
 		_show_havre_sac_side()
 
 
@@ -162,7 +153,10 @@ func log_enter_subarea(subarea_name: String):
 func log_leave_subarea():
 	if selected_subarea_id != -1:
 		var subarea = Datas._subareas[selected_subarea_id]
-		console.log_info("Vous sortez de la zone %s" % subarea._name)
+		if DungeonManager.is_in_dungeon():
+			console.log_info("Vous sortez du donjon %s" % subarea._name)
+		else:
+			console.log_info("Vous sortez de la zone %s" % subarea._name)
 
 
 func load_monsters(subarea: AreaResource):
@@ -183,7 +177,7 @@ func load_monsters(subarea: AreaResource):
 	if composite_signal:
 		await composite_signal.finished
 		if selected_subarea_id == subarea._id:
-			MonsterManager.start_fight_button.disabled = false
+			MonsterManager.check_dungeon_key()
 			MonsterManager.set_start_fight_button_loading(false)
 		else:
 			var message = "L'id de la sous-zone n'est pas défini"
@@ -192,7 +186,7 @@ func load_monsters(subarea: AreaResource):
 			else:
 				push_error(message)
 	else:
-		MonsterManager.start_fight_button.disabled = false
+		MonsterManager.check_dungeon_key()
 		MonsterManager.set_start_fight_button_loading(false)
 
 

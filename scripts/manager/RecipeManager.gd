@@ -133,7 +133,7 @@ func on_recipe_craft(recipe: RecipeResource):
 	inventory.remove_items(recipe.get_ingredients())
 	var item = Item.create(recipe.get_result())
 	inventory.add_item(item)
-	if Globals.debug and item.resource.is_key():
+	if Globals.debug and !item.resource.is_key():
 		Globals.console.log_equip(item)
 
 
