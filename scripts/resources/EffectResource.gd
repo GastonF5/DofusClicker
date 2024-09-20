@@ -11,6 +11,7 @@ enum Type {
 	POISON,
 	INVOCATION,
 	SOIN,
+	BOUCLIER,
 }
 
 enum TargetType {
@@ -35,6 +36,9 @@ enum TargetType {
 @export_group("Damage & Soin")
 @export var element: Caracteristique.Element
 @export var lifesteal: bool
+
+@export_group("Bouclier")
+@export var level_pourcentage: bool
 
 @export_group("Bonus & Retrait")
 @export var caracteristic: Caracteristique.Type
@@ -83,7 +87,7 @@ func get_caracteristic_label() -> String:
 
 
 func get_amount_label(grade: int) -> String:
-	var pattern = "%d" if !pourcentage else "%d%%"
+	var pattern = "%d" if !(pourcentage or level_pourcentage) else "%d%%"
 	var result: String
 	if amounts.size() > grade:
 		var m = amounts[grade]
@@ -123,6 +127,11 @@ func get_effect_label(grade: int) -> String:
 			result = get_amount_label(grade) + ' ' + get_caracteristic_label()
 		Type.RETRAIT:
 			result = "-%s %s" % [get_amount_label(grade), get_caracteristic_label()]
+		Type.BOUCLIER:
+			if level_pourcentage:
+				result = "%s du niveau en bouclier" % get_amount_label(grade)
+			else:
+				result = "%s en bouclier" % get_amount_label(grade)
 		_:
 			return "ERREUR"
 	if show_time:

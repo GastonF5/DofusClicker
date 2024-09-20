@@ -63,6 +63,7 @@ func reset_caracteristiques():
 		carac.amount = carac.base_amount + carac.equip_amount
 	PlayerManager.pa_bar.reset()
 	PlayerManager.pm_bar.reset()
+	PlayerManager.player_entity.hp_bar.shield_val = 0
 
 
 func on_point_consumed(amount: int, type: StatType):

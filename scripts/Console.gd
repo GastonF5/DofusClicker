@@ -305,6 +305,10 @@ func log_critique():
 
 func log_retrait(target: Entity, amount: int, characteristic: String):
 	log_bonus(target, -amount, characteristic, 0.0)
+
+
+func log_shield(target: Entity, amount: int, time: float):
+	log_bonus(target, amount, "Bouclier", time)
  
 
 func get_entity_name(entity: Entity):

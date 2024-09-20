@@ -15,7 +15,7 @@ var inventory: Inventory
 @export var texture_rect: TextureRect
 @export var header_texture: TextureRect
 
-@export var hp_bar: CustomBar
+@export var hp_bar: HealthBar
 @export var pa_bar: CustomBar
 @export var pm_bar: CustomBar
 
@@ -212,18 +212,11 @@ func take_damage(amount: int, element: Element):
 	if amount > 0:
 		amount = amount * round(taken_damage_rate / 100.0)
 		amount = apply_resistance(amount, element)
-		apply_erosion(amount)
 		if Entity.is_monster(self):
 			create_taken_damage(amount)
-	if hp_bar.cval - amount <= hp_bar.min_value:
-		amount = hp_bar.cval
-		hp_bar.cval = hp_bar.min_value as int
+	apply_erosion(hp_bar.take_damage(amount))
+	if hp_bar.cval == int(hp_bar.min_value):
 		dying = true
-	elif hp_bar.cval - amount > hp_bar.mval:
-		amount = -(hp_bar.mval - hp_bar.cval)
-		hp_bar.cval -= amount
-	else:
-		hp_bar.cval -= amount
 	console.log_damage(self, amount, element, dying)
 	return amount
 

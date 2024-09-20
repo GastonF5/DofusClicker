@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://k6u164g2ku0t"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://k6u164g2ku0t"]
 
 [ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_gausw"]
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_hjviu"]
@@ -19,8 +19,10 @@ type = 1
 time = 20.0
 target_type = 0
 show_time = true
+has_grades = false
 element = 0
 lifesteal = false
+level_pourcentage = false
 caracteristic = 0
 pourcentage = false
 method_name = &""
@@ -28,6 +30,32 @@ effect_label = ""
 params = []
 nb_random_effects = 0
 amounts = Array[ExtResource("1_gausw")]([SubResource("Resource_uesis")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_ndfnb"]
+script = ExtResource("1_gausw")
+_min = 100
+_max = 100
+_min_crit = 100
+_max_crit = 100
+
+[sub_resource type="Resource" id="Resource_lncui"]
+script = ExtResource("2_gjy1r")
+type = 8
+time = 30.0
+target_type = 0
+show_time = false
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = true
+caracteristic = 0
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_gausw")]([SubResource("Resource_ndfnb")])
 visible_in_description = true
 
 [resource]
@@ -42,4 +70,4 @@ pa_cost = 2
 per_crit = 0.0
 cooldown = 15.0
 priority = 0
-effects = Array[ExtResource("2_gjy1r")]([SubResource("Resource_2wv4w")])
+effects = Array[ExtResource("2_gjy1r")]([SubResource("Resource_2wv4w"), SubResource("Resource_lncui")])

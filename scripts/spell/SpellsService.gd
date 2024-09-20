@@ -71,8 +71,8 @@ static func perform_damage(caster: Entity, target: Entity, effect: EffectResourc
 static func perform_soin(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
 	var element = effect.element
 	var amount := 0
-	if effect.pourcentage:
-		amount = int((effect.get_amount(crit, grade) * caster.get_carac_amount_for_type(effect.caracteristic)) / 100.0)
+	if effect.pourcentage or effect.level_pourcentage:
+		amount = SpellsService.get_amount_or_pourcentage(caster, effect, crit, grade)
 	else:
 		if element == Element.BEST:
 			element = caster.get_best_element()
@@ -143,6 +143,18 @@ static func perform_special(caster: Entity, target: Entity, effect: EffectResour
 		console.log_error("%s not found in SpellsService" % callable.get_method())
 
 
+static func perform_bouclier(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
+	var amount = SpellsService.get_amount_or_pourcentage(caster, effect, crit, grade)
+	target.hp_bar.shield_val += amount
+	console.log_shield(target, amount, effect.time)
+	if effect.time != 0:
+		var timer = create_timer(effect.time, "BonusTimer")
+		await timer.timeout
+		timer.queue_free()
+		if is_instance_valid(timer) and GameManager.in_fight and is_instance_valid(target):
+			target.hp_bar.shield_val -= amount
+
+
 static func perform_random(_caster: Entity, _target: Entity, effect: EffectResource, _crit: bool, _grade: int):
 	count = 1
 	rand_count = randi_range(1, effect.nb_random_effects)
@@ -164,6 +176,7 @@ static func sacrifice_pourcentage_pv(caster: Entity, _target: Entity, effect: Ef
 	else:
 		console.log_error("Target not supported")
 #endregion
+
 
 #region Sacrieur
 static func punition(caster: Entity, target: Entity, effect: EffectResource, _crit: bool, _grade: int, _params: Array):
@@ -248,6 +261,15 @@ static func tumulte(caster: Entity, target: Entity, effect: EffectResource, crit
 
 
 #region Utilitaires
+static func get_amount_or_pourcentage(caster: Entity, effect: EffectResource, crit: bool, grade: int):
+	var amount = effect.get_amount(crit, grade)
+	if effect.pourcentage:
+		amount = int(caster.get_carac_amount_for_type(effect.caracteristic) * (effect.get_amount(crit, grade) / 100.0))
+	if effect.level_pourcentage:
+		amount = int(Globals.xp_bar.cur_lvl * (effect.get_amount(crit, grade) / 100.0))
+	return amount
+
+
 static func get_multiplicateur(caster: Entity, element: Element, soin: bool) -> float:
 	var carac = caster.get_caracteristique_for_element(element)
 	var caracteristique = StatsManager.get_carac_amount(carac)
