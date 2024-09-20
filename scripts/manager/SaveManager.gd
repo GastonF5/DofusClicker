@@ -63,6 +63,8 @@ func get_item_or_resource(id: int):
 		return Datas._resources[id].duplicate(true)
 	if Datas._items.has(id):
 		return Datas._items[id].duplicate(true)
+	if Datas._keys.has(id):
+		return Datas._keys[id].duplicate(true)
 	return null
 
 
