@@ -67,10 +67,15 @@ func cast_spell_button(slot):
 		spell.do_action()
 
 
-func add_new_spell(spell_res: SpellResource):
-	var empty_slot = get_next_empty_slot()
-	if empty_slot:
-		Spell.instantiate(spell_res, empty_slot)
+func add_new_spell(spell_res: SpellResource, index: int = -1):
+	if index == -1:
+		var empty_slot = get_next_empty_slot()
+		if empty_slot:
+			Spell.instantiate(spell_res, empty_slot)
+	else:
+		if !get_spell(index):
+			# si le slot ne contient pas déjà de sort, on ajoute le sort
+			Spell.instantiate(spell_res, slots[index])
 
 
 func delete_spell(spell: Spell):
@@ -101,6 +106,8 @@ func get_next_empty_slot():
 
 
 func get_spell(index: int):
+	if grid.get_child(index).get_child_count() == 0:
+		return null
 	return grid.get_child(index).get_child(0)
 
 
@@ -141,3 +148,19 @@ func update_weapon_slot(weapon_type: WTYPE):
 		WTYPE.NONE:
 			texture = load("res://assets/spells/punch.png")
 	weapon_slot.texture = texture
+
+
+func get_save() -> Dictionary:
+	var save = {}
+	for i in range(9):
+		if slot_contains_spell(i):
+			save[i] = get_spell(i).resource.id
+	return save
+
+
+func load_save(save: Dictionary):
+	var spells = get_spells()
+	for spell in spells:
+		spell.get_parent().remove_child(spell)
+	for spell in spells:
+		add_new_spell(spell.resource, save.find_key(spell.resource.id))

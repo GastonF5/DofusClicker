@@ -15,7 +15,8 @@ var resource: RecipeResource
 signal craft
 signal initialized
 
-var count = 0
+var items = []
+var is_initialized := false
 
 
 func init(item_recipe: RecipeResource):
@@ -26,6 +27,7 @@ func init(item_recipe: RecipeResource):
 	var result_item = Item.create(item_recipe.get_result(), false, true)
 	result_item.texture_initialized.connect(_on_item_texture_initialized)
 	result_item.custom_minimum_size = Vector2(items_size, items_size)
+	items.append(result_item)
 	$MarginContainer/HBC.add_child(result_item)
 	$MarginContainer/HBC.move_child(result_item, 0)
 	name_label.text = item_recipe.get_result().name
@@ -43,13 +45,14 @@ func instantiate_items():
 		recipe_item.texture_initialized.connect(_on_item_texture_initialized)
 		recipe_item.custom_minimum_size = Vector2(items_size, items_size)
 		recipe_item.get_node("Count").add_theme_font_size_override("FontSize", 16)
+		items.append(recipe_item)
 		items_container.add_child(recipe_item)
 
 
 func _on_item_texture_initialized():
-	count += 1
-	if count == resource._ingredients.size() + 1:
+	if items.all(func(i): return i.texture != null):
 		self.visible = true
+		is_initialized = true
 		initialized.emit()
 
 

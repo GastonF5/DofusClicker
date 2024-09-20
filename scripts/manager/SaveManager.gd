@@ -14,6 +14,7 @@ func save():
 	save_res.class_id = Globals.selected_class
 	save_res.discovered_areas = save_areas()
 	save_res.current_areas = [Globals.area_peeker.selected_area_id, Globals.area_peeker.selected_subarea_id]
+	save_res.spells = Globals.spell_bar.get_save()
 	FileSaver.save_data(save_res.to_dict(), save_res.date.replace("T", "-").replace(":", "_"), "user://saves/")
 	Globals.console.log_info("Sauvegarde effectuée avec succès")
 
@@ -40,6 +41,7 @@ func load_save(save_res: SaveResource):
 	EquipmentManager.equipment_container.load_save(save_res.equipment)
 	load_characteristics(save_res)
 	load_areas(save_res)
+	load_spells(save_res)
 	if save_res:
 		return save_res
 	else:
@@ -98,6 +100,14 @@ func load_areas(save_res: SaveResource):
 		area_peeker._on_area_clicked(save_res.current_areas[0])
 	if save_res.current_areas[1] != -1:
 		area_peeker._on_subarea_clicked(save_res.current_areas[1])
+
+
+func load_spells(save_res: SaveResource):
+	for spell_button: SpellButton in Globals.spells_container.get_node("%SpellContainer").get_children():
+		var spell_id = spell_button.get_spell_id()
+		if save_res.spells.values().has(spell_id):
+			spell_button._on_button_up()
+	Globals.spell_bar.load_save(save_res.spells)
 
 
 func delete_save(save_btn: SaveButton):

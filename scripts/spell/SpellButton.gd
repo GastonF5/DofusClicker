@@ -45,3 +45,7 @@ func _on_mouse_exited():
 func _set_disabled():
 	disabled = _spell.resource.level > Globals.xp_bar.cur_lvl
 	_spell.modulate = Color.GRAY if disabled else Color.WHITE
+
+
+func get_spell_id():
+	return _spell.resource.id

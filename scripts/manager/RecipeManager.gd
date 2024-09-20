@@ -41,6 +41,8 @@ func initialize():
 	for recipe in current_tab.recipe_container.get_children():
 		recipes.append(recipe)
 	tab_container.tab_changed.connect(on_job_tab_changed)
+	if recipes.any(func(r): return !r.is_initialized):
+		await composite.finished
 	super()
 
 

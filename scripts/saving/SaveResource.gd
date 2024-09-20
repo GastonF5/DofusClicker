@@ -17,6 +17,7 @@ var current_areas: Array = []
 var inventory: Array = []
 var equipment: Dictionary = {}
 var characteristics: Dictionary = {}
+var spells: Dictionary = {}
 
 
 func set_date_now():

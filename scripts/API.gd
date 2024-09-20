@@ -15,20 +15,26 @@ class CompositeSignal:
 	var _to_call_before: Callable
 	var _to_call_after: Callable
 	var _remaining : int
+	
+	var signals = []
 
 	func add_signal(sig: Signal):
+		signals.append(sig.get_object())
 		_remaining += 1
 		if _to_call_before: _to_call_before.call()
 		await sig
+		signals.erase(sig.get_object())
 		if _to_call_after: _to_call_after.call()
 		_remaining -= 1
 		if _remaining == 0:
 			finished.emit()
 	
 	func add_method(method: Callable):
+		signals.append(method.get_object())
 		_remaining += 1
 		if _to_call_before: _to_call_before.call()
 		await method.call()
+		signals.erase(method.get_object())
 		if _to_call_after: _to_call_after.call()
 		_remaining -= 1
 		if _remaining == 0:

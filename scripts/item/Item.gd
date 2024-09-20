@@ -33,11 +33,6 @@ func _enter_tree():
 	if draggable and get_parent() is Button:
 		get_parent().mouse_entered.connect(_on_mouse_entered)
 		get_parent().mouse_exited.connect(_on_mouse_exited)
-	
-	if !self.texture:
-		await resource.load_texture(low_texture)
-		self.texture = resource.get_texture(low_texture)
-		texture_initialized.emit()
 
 
 func _exit_tree():
@@ -76,6 +71,10 @@ func init(item_res: ItemResource, _draggable, recipe_item):
 			if !recipe_item:
 				new_stat.init_amount()
 			stats.append(new_stat)
+	
+	await resource.load_texture(low_texture)
+	self.texture = resource.get_texture(low_texture)
+	texture_initialized.emit()
 
 
 func get_save() -> Dictionary:
