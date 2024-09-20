@@ -126,8 +126,9 @@ func init_spell_in_class_peeker(spell_res: SpellResource):
 
 
 func init_entity(entity: Entity):
-	if Globals.debug and name != "EntityDescription":
-		push_error("C'est un problème ça là oh")
+	if name != "EntityDescription":
+		if Globals.debug:
+			push_error("C'est un problème ça là oh")
 		return
 	name_label.text = entity.name_label.text
 	texture.texture = entity.texture_rect.texture
