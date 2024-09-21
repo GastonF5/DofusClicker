@@ -26,6 +26,7 @@ static func perform_spell(caster: Entity, target: Entity, resource: SpellResourc
 			if count == rand_count:
 				perform_effect(caster, target, effect, crit, grade)
 			count += 1
+	console.output.add_separator()
 	check_dying_entities([PlayerManager.player_entity] + MonsterManager.monsters)
 
 

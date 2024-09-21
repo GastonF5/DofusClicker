@@ -45,6 +45,7 @@ func start_fight():
 		for button in Globals.game.get_node("%HeaderButtons").get_children():
 			button.disabled = true
 		console.log_info("Le combat commence")
+		console.output.add_separator()
 		Globals.area_peeker.back_button.disabled = true
 		Globals.spell_bar.set_weapon_pb_ready(true)
 		Globals.spell_bar.reset_spells()

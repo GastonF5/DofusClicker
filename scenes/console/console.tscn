@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://v3e3pddsya44"]
+
+[ext_resource type="Script" path="res://scripts/console/Console.gd" id="1_pq2wu"]
+[ext_resource type="PackedScene" uid="uid://cxois7if7wr8x" path="res://scenes/console/console_log.tscn" id="2_hs55e"]
+
+[node name="Console" type="VBoxContainer" node_paths=PackedStringArray("output", "input")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_pq2wu")
+output = NodePath("ConsoleOutput")
+input = NodePath("Input")
+
+[node name="ConsoleOutput" parent="." instance=ExtResource("2_hs55e")]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/line_separation = 2
+scroll_following = true
+
+[node name="Input" type="LineEdit" parent="."]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+placeholder_text = "Tapez"

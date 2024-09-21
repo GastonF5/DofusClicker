@@ -180,11 +180,7 @@ func load_monsters(subarea: AreaResource):
 			MonsterManager.check_dungeon_key()
 			MonsterManager.set_start_fight_button_loading(false)
 		else:
-			var message = "L'id de la sous-zone n'est pas défini"
-			if Globals.debug:
-				console.log_error(message)
-			else:
-				push_error(message)
+			console.log_error("L'id de la sous-zone n'est pas défini")
 	else:
 		MonsterManager.check_dungeon_key()
 		MonsterManager.set_start_fight_button_loading(false)

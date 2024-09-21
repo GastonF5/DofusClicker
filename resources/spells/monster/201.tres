@@ -50,6 +50,7 @@ show_time = false
 has_grades = true
 element = 4
 lifesteal = false
+level_pourcentage = false
 caracteristic = 0
 pourcentage = false
 method_name = &""

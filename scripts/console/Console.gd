@@ -3,21 +3,15 @@ extends Control
 
 
 const EQUIPMENT_RESOURCE_PATH = "res://resources/equipment/%s.tres"
-const INFO = LogType.INFO
+
 const Element = Caracteristique.Element
 const CaracType = Caracteristique.Type
+const LogType = ConsoleOutput.LogType
 
-enum LogType {
-	INFO,
-	LOG,
-	ERROR,
-	COMMAND,
-	NONE
-}
-
+const INFO = LogType.INFO
 const COMMAND = LogType.COMMAND
 
-@export var output: RichTextLabel
+@export var output: ConsoleOutput
 @export var input: LineEdit
 
 var history: Array[String] = []
@@ -54,8 +48,6 @@ func _input(event):
 	
 	if input.has_focus() and (event.is_action_pressed("esc") or event.is_action_pressed("LMB")):
 		input.release_focus()
-	if output.has_focus() and (event.is_action_pressed("esc") or event.is_action_pressed("LMB")):
-		output.release_focus()
 	
 	if input.has_focus():
 		if event.is_action_pressed("up"):
@@ -64,7 +56,8 @@ func _input(event):
 
 
 func copy():
-	DisplayServer.clipboard_set(output.get_selected_text())
+	if Globals.focused_node is RichTextLabel:
+		DisplayServer.clipboard_set(Globals.focused_node.get_selected_text())
 
 
 func input_empty() -> bool:
@@ -76,59 +69,12 @@ func is_command(text: String) -> bool:
 
 
 func _log(text: String, type: LogType = LogType.NONE, bold: bool = false):
-	if bold: output.push_bold()
-	apply_color(type)
-	output.add_text(text)
-	_new_line()
-	output.pop_all()
-
-
-func _new_line():
-	output.add_text("\n")
+	output.append_log(text, type, bold)
+	output.new_line()
 
 
 func _log_line(text: String, type: LogType = LogType.NONE, bold: bool = false):
-	if bold: output.push_bold()
-	apply_color(type)
-	output.add_text(text)
-	output.pop_all()
-
-
-func _log_damage_amount(amount: int, element: Element):
-	output.push_bold()
-	apply_element_color(element)
-	output.add_text("%s" % ("-" if amount > 0 else "+") + str(abs(amount)))
-	output.pop_all()
-
-
-func apply_color(type: LogType):
-	var color = Color.WHITE
-	match type:
-		LogType.INFO:
-			color = Color.LIME_GREEN
-		LogType.ERROR:
-			color = Color.CRIMSON
-		LogType.LOG:
-			color = Color.ORANGE
-		COMMAND:
-			color = Color.SKY_BLUE
-	output.push_color(color)
-
-
-func apply_element_color(element: Element):
-	var color = Color.WHITE
-	match element:
-		Element.AIR:
-			color = Color.GREEN
-		Element.EAU:
-			color = Color.DODGER_BLUE
-		Element.FEU:
-			color = Color.CRIMSON
-		Element.TERRE:
-			color = Color.SADDLE_BROWN
-		Element.NEUTRE:
-			color = Color.GRAY
-	output.push_color(color)
+	output.append_log(text, type, bold)
 
 
 func do_command(command: String, params: Array[String] = []):
@@ -259,9 +205,11 @@ func log_equip(item: Item):
 	log_info("Informations de %s (%s)" % [item.name, item.resource.equip_res.get_type()])
 	for stat: StatResource in item.stats:
 		log_info("- %s : %d" % [stat.get_type(), stat.amount])
+	output.new_line()
 
 
 func log_spell_cast(caster: Entity, spell_res: SpellResource, crit: bool):
+	output.add_spell_image(spell_res.texture)
 	var is_player = !Entity.is_monster(caster)
 	_log_line(get_entity_name(caster), INFO, true)
 	var lance = " lance%s " % ("z" if is_player else "")
@@ -269,7 +217,7 @@ func log_spell_cast(caster: Entity, spell_res: SpellResource, crit: bool):
 	_log_line(spell_res.name, INFO, true)
 	if crit:
 		log_critique()
-	_new_line()
+	output.new_line()
 
 
 func log_weapon_cast(caster: Entity, weapon_name: String, crit: bool):
@@ -278,16 +226,16 @@ func log_weapon_cast(caster: Entity, weapon_name: String, crit: bool):
 	_log_line(weapon_name, INFO, true)
 	if crit:
 		log_critique()
-	_new_line()
+	output.new_line()
 
 
 func log_damage(target: Entity, amount: int, element: Element, dead: bool):
 	if amount != 0:
 		_log_line(get_entity_name(target), INFO, true)
 		_log_line(" : ", INFO)
-		_log_damage_amount(amount, element)
+		output.append_damage(amount, element)
 		_log_line(" PV%s" % (" (mort)" if dead else ""), INFO)
-		_new_line()
+		output.new_line()
 
 
 func log_bonus(target: Entity, amount: int, characteristic: String, time: float):
@@ -296,7 +244,7 @@ func log_bonus(target: Entity, amount: int, characteristic: String, time: float)
 		_log_line(" : %d %s" % [amount, characteristic], INFO)
 		if time != 0.0:
 			_log_line(" (%d secondes)" % time, INFO)
-		_new_line()
+		output.new_line()
 
 
 func log_critique():
@@ -305,10 +253,12 @@ func log_critique():
 
 func log_retrait(target: Entity, amount: int, characteristic: String):
 	log_bonus(target, -amount, characteristic, 0.0)
+	output.new_line()
 
 
 func log_shield(target: Entity, amount: int, time: float):
 	log_bonus(target, amount, "Bouclier", time)
+	output.new_line()
  
 
 func get_entity_name(entity: Entity):

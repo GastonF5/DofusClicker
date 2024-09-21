@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cp14q5ermx6mo" path="res://scenes/stats/stats_container.tscn" id="8_bphf0"]
 [ext_resource type="PackedScene" uid="uid://lce7lc5iumm6" path="res://scenes/spell/spells_container.tscn" id="9_nnu4b"]
 [ext_resource type="Texture2D" uid="uid://0ujq6wd2dvfm" path="res://assets/common/window/window_green_background.jpg" id="10_ts0qg"]
-[ext_resource type="PackedScene" uid="uid://v3e3pddsya44" path="res://scenes/console.tscn" id="11_lwfc5"]
+[ext_resource type="PackedScene" uid="uid://v3e3pddsya44" path="res://scenes/console/console.tscn" id="11_lwfc5"]
 [ext_resource type="Texture2D" uid="uid://dtnvde1gv6735" path="res://assets/classes/logo_transparent/logo_transparent_1.png" id="12_6p4fb"]
 [ext_resource type="PackedScene" uid="uid://ijqxn7khforp" path="res://scenes/areas/area_peeker.tscn" id="13_yvj55"]
 [ext_resource type="PackedScene" uid="uid://dl2edw32vnxff" path="res://scenes/entity/entity_container.tscn" id="14_2q4g1"]

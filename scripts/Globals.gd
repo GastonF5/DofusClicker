@@ -6,7 +6,11 @@ const area_white_list = [450, 778, 445, 444, 443, 442, 449, 447]
 const debug := true
 const check_version_for_reload_data := false
 
-var has_focus: bool
+var has_focus: bool:
+	set(val):
+		has_focus = val
+		if !val: focused_node = null
+var focused_node: Node
 
 var game: Node
 var quitting := false
@@ -45,6 +49,10 @@ var description_container: PanelContainer:
 
 
 func _ready():
+	get_viewport().gui_focus_changed.connect(
+		func(n):
+			focused_node = n
+	)
 	initialize()
 
 

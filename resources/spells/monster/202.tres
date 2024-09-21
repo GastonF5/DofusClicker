@@ -22,6 +22,7 @@ show_time = false
 has_grades = false
 element = 2
 lifesteal = false
+level_pourcentage = false
 caracteristic = 0
 pourcentage = false
 method_name = &""
