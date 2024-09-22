@@ -63,19 +63,19 @@ func load_texture(low: bool):
 
 func get_monsters():
 	if drop_monster_ids.is_empty():
-		return null
+		return []
 	return drop_monster_ids\
 	.map(func(mid): return Datas._monsters[mid] if Datas._monsters.has(mid) else null)\
 	.filter(func(r): return r)
 
 
 func get_drop_areas() -> String:
-	return get_monsters()\
-			.filter(func(m): return Datas._subareas.has(m.favorite_area))\
-			.map(func(m: MonsterResource): return Datas._subareas[m.favorite_area]._name)\
-			.reduce(func(accum: String, area_name):
-				return accum if accum.contains(area_name) else accum + ", " + area_name, "")\
-			.erase(0, 2)
+	var drop_areas = ""
+	for monster in get_monsters():
+		for subarea in monster.get_areas():
+			if !drop_areas.contains(subarea._name):
+				drop_areas += ", " + subarea._name
+	return drop_areas.erase(0, 2)
 
 
 func load_save(data: Dictionary):

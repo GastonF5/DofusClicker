@@ -21,7 +21,6 @@ const black_list = [494]
 @export var spells: Array
 @export var drops: Array[DropResource]
 
-@export var favorite_area: int
 @export var areas: Array
 
 var node_texture: TextureRect
@@ -37,3 +36,12 @@ func load_texture():
 
 func black_listed():
 	return black_list.has(id)
+
+
+func get_areas():
+	var available_areas = []
+	for area_id in areas:
+		if Datas._subareas.has(area_id):
+			if Datas._subareas[area_id].white_listed():
+				available_areas.append(Datas._subareas[area_id])
+	return available_areas

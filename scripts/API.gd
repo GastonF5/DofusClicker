@@ -247,8 +247,7 @@ func get_monster_resource(data):
 	var race = "Not found" if !races.keys().has(res.race_id) else races[res.race_id]
 	res.race = race
 	
-	res.favorite_area = data["favoriteSubareaId"]
-	res.areas = data["subareas"]
+	res.areas = data["subareas"].map(func(id): return id as int).filter(func(id): return Globals.area_white_list.has(id))
 	res.image_url = Renderer.get_url(data)
 	
 	res.grades = [] as Array[GradeResource]
