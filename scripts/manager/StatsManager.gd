@@ -118,6 +118,7 @@ func on_lvl_up():
 	max_points += 5
 	points += 5
 	PlayerManager.max_hp += 5
+	PlayerManager.hp_bar.reset()
 	update_points_label()
 	for spell_button: SpellButton in Globals.spells_container.get_node("%SpellContainer").get_children():
 		spell_button._set_disabled()
