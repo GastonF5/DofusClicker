@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://rnbfd4ia4hs3"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_fd40d"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_mtxot"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_82t04"]
+[ext_resource type="Texture2D" uid="uid://dkj6mcwj80m5c" path="res://assets/spells/monster/sort_1527.png" id="4_ckpcb"]
+
+[sub_resource type="Resource" id="Resource_v2er5"]
+script = ExtResource("1_fd40d")
+_min = 10
+_max = 17
+_min_crit = 14
+_max_crit = 26
+
+[sub_resource type="Resource" id="Resource_6mj2v"]
+script = ExtResource("2_82t04")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+has_grades = false
+element = 2
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_fd40d")]([SubResource("Resource_v2er5")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_mtxot")
+id = 8558
+name = "Rejet Acide"
+description = "Occasionne des dommages Feu."
+texture = ExtResource("4_ckpcb")
+img_url = "https://api.beta.dofusdb.fr/img/spells/sort_1527.png"
+level = 0
+pa_cost = 3
+per_crit = 0.15
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_82t04")]([SubResource("Resource_6mj2v")])

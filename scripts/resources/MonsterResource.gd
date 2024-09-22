@@ -1,6 +1,7 @@
 class_name MonsterResource
 extends Resource
 
+const black_list = [494]
 
 @export var id: int
 @export var name: String
@@ -32,3 +33,7 @@ func load_texture():
 	texture = API.get_texture(image_url)
 	Datas._monsters[id].texture = texture
 	#console.log_info("Texture of %s loaded" % name)
+
+
+func black_listed():
+	return black_list.has(id)

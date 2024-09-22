@@ -30,7 +30,7 @@ func has_monsters() -> bool:
 func get_monsters() -> Array:
 	if is_subarea():
 		var monsters = Datas._monsters.values()
-		return monsters.filter(func(m): return _monster_ids.has(m.id))
+		return monsters.filter(func(m): return _monster_ids.has(m.id) and !m.black_listed())
 	return get_subareas().reduce(func(accum, sa):
 		return accum + sa.get_monsters(), [])
 

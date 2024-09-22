@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://4i4tovdgve3p"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_dnni4"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_nmrig"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_0qqhr"]
+[ext_resource type="Texture2D" uid="uid://dtmq2228o0e41" path="res://assets/spells/monster/sort_13208.png" id="2_44q00"]
+
+[sub_resource type="Resource" id="Resource_r7sgq"]
+script = ExtResource("1_dnni4")
+_min = 23
+_max = 29
+_min_crit = 32
+_max_crit = 43
+
+[sub_resource type="Resource" id="Resource_hc4br"]
+resource_name = "Dommages Air"
+script = ExtResource("2_0qqhr")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+has_grades = false
+element = 4
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_dnni4")]([SubResource("Resource_r7sgq")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_nmrig")
+id = 626
+name = "Picore"
+description = "Occasionne des dommages Air."
+texture = ExtResource("2_44q00")
+img_url = "https://api.beta.dofusdb.fr/img/spells/sort_13208.png"
+level = 0
+pa_cost = 3
+per_crit = 0.2
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_0qqhr")]([SubResource("Resource_hc4br")])

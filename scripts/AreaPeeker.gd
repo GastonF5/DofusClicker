@@ -36,7 +36,6 @@ func init_areas():
 	areas.sort_custom(AreaResource.sort_by_level)
 	for area: AreaResource in areas:
 		create_area_button(area._id, false)
-		#prints(area._name, area._id)
 
 
 func init_subareas(area: AreaResource):
@@ -44,7 +43,6 @@ func init_subareas(area: AreaResource):
 	for subarea: AreaResource in area.get_subareas():
 		if subarea.white_listed() and subarea.has_monsters():
 			create_area_button(subarea._id, true)
-			#prints(subarea._name, subarea._id)
 
 
 func create_area_button(area_id: int, is_subarea: bool):

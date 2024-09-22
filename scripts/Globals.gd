@@ -1,7 +1,13 @@
 extends Node
 
 
-const area_white_list = [450, 778, 445, 444, 443, 442, 449, 447]
+const area_white_list = [
+	# Incarnam
+	450, 778, 445, 444, 443, 442, 449, 447,
+	# Astrub
+	95, 99
+]
+
 const debug := true
 const check_version_for_reload_data := false
 

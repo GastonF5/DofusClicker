@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://cu5rufknojqpt"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_406m6"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_f0xwh"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_qpqk2"]
+[ext_resource type="Texture2D" uid="uid://d31jwo57l4luq" path="res://assets/spells/monster/sort_10073.png" id="4_hx406"]
+
+[sub_resource type="Resource" id="Resource_nm8tg"]
+script = ExtResource("1_f0xwh")
+_min = 16
+_max = 20
+_min_crit = 23
+_max_crit = 30
+
+[sub_resource type="Resource" id="Resource_b616c"]
+script = ExtResource("2_qpqk2")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+has_grades = false
+element = 3
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_f0xwh")]([SubResource("Resource_nm8tg")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_406m6")
+id = 8694
+name = "Glaire Obscure"
+description = "Occasionne des dommages Eau."
+texture = ExtResource("4_hx406")
+img_url = "https://api.beta.dofusdb.fr/img/spells/sort_10073.png"
+level = 0
+pa_cost = 5
+per_crit = 0.1
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_qpqk2")]([SubResource("Resource_b616c")])

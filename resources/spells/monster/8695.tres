@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://bsxv0lrqlcs4k"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_8rhlp"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_gn4sk"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_6ii4l"]
+[ext_resource type="Texture2D" uid="uid://hwinyakakvpv" path="res://assets/spells/monster/sort_10075.png" id="4_332kc"]
+
+[sub_resource type="Resource" id="Resource_j420h"]
+script = ExtResource("1_gn4sk")
+_min = 19
+_max = 23
+_min_crit = 27
+_max_crit = 35
+
+[sub_resource type="Resource" id="Resource_7083s"]
+resource_name = "Dommages Air"
+script = ExtResource("2_6ii4l")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+has_grades = false
+element = 4
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_gn4sk")]([SubResource("Resource_j420h")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_8rhlp")
+id = 8695
+name = "Béco Morveux"
+description = "Occasionne des dommages Air."
+texture = ExtResource("4_332kc")
+img_url = "https://api.beta.dofusdb.fr/img/spells/sort_10075.png"
+level = 0
+pa_cost = 4
+per_crit = 0.1
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_6ii4l")]([SubResource("Resource_7083s")])

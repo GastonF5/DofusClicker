@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://bh6hke8bh3vf"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_stoti"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_ipaxx"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="3_kayf4"]
+[ext_resource type="Texture2D" uid="uid://6yd8pd4ufj6q" path="res://assets/spells/monster/sort_10076.png" id="4_gdbpg"]
+
+[sub_resource type="Resource" id="Resource_hqjpu"]
+script = ExtResource("1_stoti")
+_min = 16
+_max = 20
+_min_crit = 23
+_max_crit = 30
+
+[sub_resource type="Resource" id="Resource_xnb6p"]
+script = ExtResource("2_ipaxx")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_stoti")]([SubResource("Resource_hqjpu")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("3_kayf4")
+id = 8560
+name = "Regard Effrayant"
+description = "Occasionne des dommages Neutre."
+texture = ExtResource("4_gdbpg")
+img_url = "https://api.beta.dofusdb.fr/img/spells/sort_10076.png"
+level = 0
+pa_cost = 5
+per_crit = 0.15
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_ipaxx")]([SubResource("Resource_xnb6p")])

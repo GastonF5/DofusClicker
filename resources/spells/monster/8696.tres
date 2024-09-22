@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://m4qlj13orvd3"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_mkvv3"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_yew7m"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_6y4ps"]
+[ext_resource type="Texture2D" uid="uid://bnoxhu3745v4l" path="res://assets/spells/monster/sort_10021.png" id="4_6nl4k"]
+
+[sub_resource type="Resource" id="Resource_xby4x"]
+script = ExtResource("1_mkvv3")
+_min = 2
+_max = 2
+_min_crit = 3
+_max_crit = 3
+
+[sub_resource type="Resource" id="Resource_g6eea"]
+resource_name = "Bonus PM"
+script = ExtResource("2_6y4ps")
+type = 1
+time = 5.0
+target_type = 0
+show_time = false
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 1
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_mkvv3")]([SubResource("Resource_xby4x")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_yew7m")
+id = 8696
+name = "Tentative d'Envol"
+description = "Augmente les PM."
+texture = ExtResource("4_6nl4k")
+img_url = "https://api.beta.dofusdb.fr/img/spells/sort_10021.png"
+level = 0
+pa_cost = 1
+per_crit = 0.1
+cooldown = 10.0
+priority = 1
+effects = Array[ExtResource("2_6y4ps")]([SubResource("Resource_g6eea")])
