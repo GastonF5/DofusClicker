@@ -56,7 +56,7 @@ static func get_equip_type(type_label: String) -> Type:
 	match type_label:
 		"Chapeau":
 			return EquipmentResource.Type.COIFFE
-		"Bâton", "Baguette", "Arc", "Épée", "Marteau", "Pelle", "Hache", "Pioche", "Faux":
+		"Dague", "Bâton", "Baguette", "Arc", "Épée", "Marteau", "Pelle", "Hache", "Pioche", "Faux":
 			return EquipmentResource.Type.ARME
 		_:
 			var keys = EquipmentResource.Type.keys()
