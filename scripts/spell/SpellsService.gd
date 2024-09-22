@@ -36,6 +36,7 @@ static func perform_weapon(caster: Entity, target: Entity, resource: WeaponResou
 	console.log_weapon_cast(caster, weapon_name, crit)
 	for effect: EffectResource in resource._hit_effects.map(func(he): return he.get_effect()):
 		perform_effect(caster, target, effect, crit, 0)
+	console.output.add_separator()
 	check_dying_entities([PlayerManager.player_entity] + MonsterManager.monsters)
 
 
