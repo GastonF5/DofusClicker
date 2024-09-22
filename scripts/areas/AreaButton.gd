@@ -75,4 +75,4 @@ func _on_button_button_up():
 func is_available(lvl: int):
 	if _is_dungeon:
 		return level <= lvl
-	return level <= lvl + 4
+	return level <= lvl + 3
