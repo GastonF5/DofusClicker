@@ -81,7 +81,7 @@ func on_job_tab_changed(tab):
 	if last_tab: last_tab.toggle_filters(false)
 	
 	connect_inputs()
-	#filter_recipes()
+	filter_recipes()
 
 
 func disconnect_inputs():
