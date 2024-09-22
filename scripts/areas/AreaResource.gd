@@ -41,7 +41,6 @@ func is_subarea() -> bool:
 
 func get_subareas(level := 200) -> Array:
 	var subareas = Datas._subareas.values().filter(func(sa): return sa._super_area_id == _id)
-	subareas = subareas.filter(func(sa): return !sa.black_listed())
 	subareas = subareas.filter(func(sa): return sa.white_listed())
 	subareas.sort_custom(sort_by_level)
 	return subareas.filter(func(sa): return sa.get_level() <= level)
@@ -55,12 +54,6 @@ func get_level() -> int:
 
 static func sort_by_level(a: AreaResource, b: AreaResource):
 	return a.get_level() <= b.get_level()
-
-
-func black_listed(cur_lvl := 200) -> bool:
-	if is_subarea():
-		return Globals.area_black_list.has(_id)
-	return get_subareas(cur_lvl).all(func(sa): return sa.black_listed())
 
 
 func white_listed(cur_lvl := 200) -> bool:

@@ -31,7 +31,7 @@ func save_characteristics() -> Dictionary:
 func save_areas() -> Array:
 	var btns: Array[AreaButton] = []
 	btns.assign(Globals.area_peeker.area_btns.values() + Globals.area_peeker.subarea_btns.values())
-	return btns.filter(func(btn): return !btn._new)\
+	return btns.filter(func(btn): return !btn._new and !btn._is_dungeon)\
 			.map(func(btn: AreaButton): return [btn._area_id, btn.is_subarea()])
 
 
@@ -88,15 +88,17 @@ func load_characteristics(save_res: SaveResource):
 
 
 func load_areas(save_res: SaveResource):
-	var area_peeker = Globals.area_peeker
+	var area_peeker: AreaPeeker = Globals.area_peeker
 	# discovered areas
 	for data in save_res.discovered_areas:
 		var area_id = data[0]
 		var is_subarea = data[1]
-		if area_peeker.button_exists(area_id, is_subarea):
-			area_peeker.get_button(area_id, is_subarea)._new = false
+		var button: AreaButton
+		if is_subarea:
+			button = area_peeker.subarea_btns[area_id]
 		else:
-			area_peeker.create_area_button(area_id, is_subarea, false)
+			button = area_peeker.area_btns[area_id]
+		button._new = false
 	# current area
 	if save_res.current_areas[0] != -1:
 		area_peeker._on_area_clicked(save_res.current_areas[0])

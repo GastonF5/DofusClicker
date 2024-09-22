@@ -1,6 +1,9 @@
 class_name AreaPeeker
 extends PanelContainer
 
+const DUNGEON_ICON := "res://assets/icons/dungeon.png"
+const NEW_ICON := "res://assets/icons/quest.png"
+
 
 @export var back_button: Button
 @export var area_label: Label
@@ -20,31 +23,45 @@ func initialize():
 	Globals.xp_bar.lvl_up.connect(_on_level_up)
 	cur_lvl = Globals.xp_bar.cur_lvl
 	init_areas()
+	for area_id in area_btns.keys():
+		init_subareas(Datas._areas[area_id])
+	show_area_buttons()
+	_on_level_up()
 
 
 func init_areas():
 	var areas = Datas._areas.values()
-	areas = areas.filter(func(a): return !a.black_listed(cur_lvl))
-	areas = areas.filter(func(a): return a.white_listed(cur_lvl))
-	areas = areas.filter(func(a): return a.get_level() > 0 and a.get_level() <= cur_lvl and a.has_monsters())
+	areas = areas.filter(func(a): return a.white_listed())
+	areas = areas.filter(func(a): return a.get_level() > 0 and a.has_monsters())
 	areas.sort_custom(AreaResource.sort_by_level)
-	for area in areas:
-		create_area_button(area._id)
+	for area: AreaResource in areas:
+		create_area_button(area._id, false)
 		#prints(area._name, area._id)
 
 
 func init_subareas(area: AreaResource):
 	selected_area_id = area._id
-	for subarea in area.get_subareas(cur_lvl):
-		if subarea.white_listed() and !subarea.black_listed() and subarea.has_monsters():
+	for subarea: AreaResource in area.get_subareas():
+		if subarea.white_listed() and subarea.has_monsters():
 			create_area_button(subarea._id, true)
-			prints(subarea._name, subarea._id)
+			#prints(subarea._name, subarea._id)
+
+
+func create_area_button(area_id: int, is_subarea: bool):
+	var callable = _on_subarea_clicked if is_subarea else _on_area_clicked
+	var is_dungeon = DungeonManager.is_dungeon(area_id)
+	var btn_icon = load(DUNGEON_ICON) if is_dungeon else load(NEW_ICON)
+	var button := AreaButton.create(area_id, callable, btn_icon, is_subarea, is_dungeon)
+	if is_subarea:
+		subarea_btns[area_id] = button
+	else:
+		area_btns[area_id] = button
 
 
 func _on_area_clicked(area_id: int):
 	clear_buttons()
 	back_button.disabled = false
-	init_subareas(Datas._areas[area_id])
+	show_subarea_buttons(area_id)
 
 
 func _on_subarea_clicked(subarea_id: int):
@@ -56,30 +73,14 @@ func _on_subarea_clicked(subarea_id: int):
 		enter_subarea(subarea)
 
 
-func create_area_button(area_id: int, is_subarea := false, do_add_child := true):
-	var button: AreaButton
-	var callable = _on_subarea_clicked if is_subarea else _on_area_clicked
-	if button_exists(area_id, is_subarea):
-		button = subarea_btns[area_id] if is_subarea else area_btns[area_id]
-	else:
-		var is_dungeon = DungeonManager.is_dungeon(area_id)
-		var btn_icon = load("res://assets/icons/dungeon.png")\
-			if is_dungeon\
-			else load("res://assets/icons/quest.png")
-		button = AreaButton.create(area_id, callable, btn_icon, is_subarea, is_dungeon)
-		if is_subarea:
-			subarea_btns[area_id] = button
-		else:
-			area_btns[area_id] = button
-	if do_add_child:
-		$HBC/ScrollContainer/HBC.add_child(button)
-	else:
-		button._new = false
+func show_area_buttons():
+	for area_btn in area_btns.values():
+		$HBC/ScrollContainer/HBC.add_child(area_btn)
 
 
-func erase_button(area: AreaResource):
-	var button = $HBC/ScrollContainer/HBC.get_node(str(area._id))
-	$HBC/ScrollContainer/HBC.remove_child(button)
+func show_subarea_buttons(area_id: int):
+	for subarea_btn in subarea_btns.values().filter(func(b): return b.super_area_id == area_id):
+		$HBC/ScrollContainer/HBC.add_child(subarea_btn)
 
 
 func clear_buttons():
@@ -93,22 +94,20 @@ func _on_back_button_button_up():
 	else:
 		clear_buttons()
 		back_button.disabled = true
-		init_areas()
+		show_area_buttons()
 
 
 func _on_level_up():
 	cur_lvl = Globals.xp_bar.cur_lvl
-	update_new_area_visibility()
-
-
-func update_new_area_visibility():
-	var cur_area_res: AreaResource = Datas._areas.get(selected_area_id)
-	if !cur_area_res:
-		Globals.new_area_container.visible = false
-	else:
-		var nb_subareas := cur_area_res.get_subareas(cur_lvl).filter(func(sa): return sa.white_listed()).size()
-		var nb_cur_subareas := subarea_btns.size()
-		Globals.new_area_container.visible = nb_cur_subareas < nb_subareas
+	var any_new_area := false
+	for subarea_btn in subarea_btns.values():
+		if subarea_btn.disabled and subarea_btn.is_available(cur_lvl):
+			subarea_btn.disabled = false
+			subarea_btn._new = true
+			if !any_new_area:
+				any_new_area = true
+	if any_new_area:
+		Globals.new_area_container.visible = true
 
 
 func set_area_label(label: String, _visible: bool):
@@ -140,7 +139,7 @@ func leave_subarea():
 		log_leave_subarea()
 		selected_subarea_id = -1
 		set_area_label("", false)
-		init_subareas(Datas._areas[selected_area_id])
+		show_subarea_buttons(selected_area_id)
 		MonsterManager.start_fight_button.disabled = true
 		MonsterManager.set_start_fight_button_text()
 		_show_havre_sac_side()
@@ -207,7 +206,7 @@ func _show_fight_side():
 	var spell_bar = Globals.spell_bar
 	spell_bar.get_parent().remove_child(spell_bar)
 	Globals.game.get_node("%SpellBarContainer1").add_child(spell_bar)
-	update_new_area_visibility()
+	Globals.new_area_container.visible = false
 	spell_bar.info.get_parent().visible = false
 
 
