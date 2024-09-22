@@ -59,6 +59,7 @@ func create_area_button(area_id: int, is_subarea: bool):
 func _on_area_clicked(area_id: int):
 	clear_buttons()
 	back_button.disabled = false
+	selected_area_id = area_id
 	show_subarea_buttons(area_id)
 
 
@@ -92,6 +93,7 @@ func _on_back_button_button_up():
 	else:
 		clear_buttons()
 		back_button.disabled = true
+		selected_area_id = -1
 		show_area_buttons()
 
 
