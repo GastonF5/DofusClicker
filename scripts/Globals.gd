@@ -8,8 +8,8 @@ const area_white_list = [
 	95, 99
 ]
 
-const debug := true
-const check_version_for_reload_data := false
+const debug := false
+const check_version_for_reload_data := true
 
 var has_focus: bool:
 	set(val):
