@@ -124,7 +124,10 @@ func create_recipe(recipe_res: RecipeResource, parent: Node):
 
 
 func is_recipe_to_init(recipe: RecipeResource, lvl: int):
-	if recipe.get_result():
+	var can_be_crafted = true
+	for ingredient: ItemResource in recipe.get_ingredients():
+		can_be_crafted = can_be_crafted and ingredient.get_drop_areas() != ""
+	if recipe.get_result() and can_be_crafted:
 		return recipe.get_result().level == lvl
 	return false
 
