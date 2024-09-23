@@ -22,16 +22,8 @@ var is_initialized := false
 func init(item_recipe: RecipeResource):
 	self.visible = false
 	resource = item_recipe
-	instantiate_items()
-	
-	var result_item = Item.create(item_recipe.get_result(), false, true)
-	result_item.texture_initialized.connect(_on_item_texture_initialized)
-	result_item.custom_minimum_size = Vector2(items_size, items_size)
-	items.append(result_item)
-	$MarginContainer/HBC.add_child(result_item)
-	$MarginContainer/HBC.move_child(result_item, 0)
-	name_label.text = item_recipe.get_result().name
-	level_label.text = "Niveau %d" % item_recipe.get_result().level
+	instantiate_result()
+	instantiate_ingredients()
 	
 	var inventory = Globals.inventory
 	inventory.item_entered_tree.connect(check)
@@ -39,10 +31,19 @@ func init(item_recipe: RecipeResource):
 	check()
 
 
-func instantiate_items():
+func instantiate_result():
+	var result_item = Item.create(resource.get_result(), false, true, _on_item_texture_initialized)
+	result_item.custom_minimum_size = Vector2(items_size, items_size)
+	items.append(result_item)
+	$MarginContainer/HBC.add_child(result_item)
+	$MarginContainer/HBC.move_child(result_item, 0)
+	name_label.text = resource.get_result().name
+	level_label.text = "Niveau %d" % resource.get_result().level
+
+
+func instantiate_ingredients():
 	for ingredient in resource.get_ingredients():
-		var recipe_item = Item.create(ingredient, false, true)
-		recipe_item.texture_initialized.connect(_on_item_texture_initialized)
+		var recipe_item = Item.create(ingredient, false, true, _on_item_texture_initialized)
 		recipe_item.custom_minimum_size = Vector2(items_size, items_size)
 		recipe_item.get_node("Count").add_theme_font_size_override("FontSize", 16)
 		items.append(recipe_item)
@@ -82,8 +83,9 @@ func item_match(recipe_item: ItemResource, inventory_items: Array):
 
 
 
-static func create(recipe: RecipeResource, parent) -> Recipe:
+static func create(recipe: RecipeResource, parent, composite) -> Recipe:
 	var nrecipe = FileLoader.get_packed_scene("jobs/recipe").instantiate()
+	composite.add_signal(nrecipe.initialized)
 	parent.add_child(nrecipe)
 	nrecipe.init(recipe)
 	return nrecipe
