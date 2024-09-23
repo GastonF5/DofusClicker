@@ -41,8 +41,7 @@ func initialize():
 	for recipe in current_tab.recipe_container.get_children():
 		recipes.append(recipe)
 	tab_container.tab_changed.connect(on_job_tab_changed)
-	if recipes.any(func(r): return !r.is_initialized):
-		await composite.finished
+	await composite.finished
 	super()
 
 
@@ -107,7 +106,7 @@ func init_recipes(lvl := -1):
 	var recipes_to_init = Datas._recipes.values().filter(is_recipe_to_init.bind(lvl))
 	for recipe in recipes_to_init:
 		var parent
-		if recipe.get_result().type_id == 84:
+		if recipe.get_result().is_key():
 			parent = tab_container.get_node("BricoleurPanel").recipe_container
 		else:
 			parent = get_parent_by_type(recipe.get_result().type_id)
@@ -117,8 +116,7 @@ func init_recipes(lvl := -1):
 
 
 func create_recipe(recipe_res: RecipeResource, parent: Node):
-	var nrecipe = Recipe.create(recipe_res, parent)
-	composite.add_signal(nrecipe.initialized)
+	var nrecipe = Recipe.create(recipe_res, parent, composite)
 	recipes.append(nrecipe)
 	nrecipe.craft.connect(on_recipe_craft)
 

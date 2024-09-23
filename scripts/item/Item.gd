@@ -53,8 +53,6 @@ func init(item_res: ItemResource, _draggable, recipe_item):
 	count_label = $Count
 	name = item_res.name
 	resource = item_res
-	if !recipe_item:
-		pass
 	count = item_res.count
 	draggable = _draggable
 	mouse_filter = Control.MOUSE_FILTER_IGNORE if draggable else MOUSE_FILTER_PASS
@@ -90,8 +88,9 @@ func update_count_label():
 	count_label.text = str(count) if count > 1 else ""
 
 
-static func create(item_res: ItemResource, _draggable = true, recipe_item = false) -> Item:
+static func create(item_res: ItemResource, _draggable = true, recipe_item = false, callable: Callable = func(): pass) -> Item:
 	var item: Item = FileLoader.get_packed_scene("item/item").instantiate()
+	item.texture_initialized.connect(callable)
 	item.init(item_res, _draggable, recipe_item)
 	return item
 
