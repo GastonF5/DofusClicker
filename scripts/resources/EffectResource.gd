@@ -149,8 +149,8 @@ func compute_special_label(grade: int) -> String:
 		var label = effect_label
 		for i in range(params.size()):
 			if params[i] is EffectResource:
-				var effect_label = params[i].get_effect_label(grade)
-				label = label.replace("{param%d}" % i, effect_label)
+				var eff_label = params[i].get_effect_label(grade)
+				label = label.replace("{param%d}" % i, eff_label)
 		return label
 	if ["{min}", "{max}", "{min_crit}", "{max_crit}", "{time}"].any(func(e): return effect_label.contains(e)):
 		var m = amounts[grade]
