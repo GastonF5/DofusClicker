@@ -9,7 +9,7 @@ const area_white_list = [
 ]
 
 const debug := true
-const check_version_for_reload_data := false
+const last_version_to_check := "0.3.0"
 
 var has_focus: bool:
 	set(val):

@@ -22,10 +22,21 @@ func check_loaded_data():
 	if !is_data_loaded:
 		Datas.load_data()
 	else:
-		var types = FileLoader.load_file(FileSaver.DATA_PATH + "type.tres")
-		var version = ProjectSettings.get_setting("application/config/version")
-		if Globals.check_version_for_reload_data and (!types.data.has("version") or types.data["version"] != version):
+		if check_version():
 			_on_load_data_btn_button_up()
+
+
+func check_version() -> bool:
+	var types = FileLoader.load_file(FileSaver.DATA_PATH + "type.tres")
+	if !types.data.has("version"):
+		return true
+	var installed_version = types.data["version"].split('.')
+	var check_version = Globals.last_version_to_check.split('.')
+	# on vérifie les version une par une, de la majeure vers la mineure
+	for i in range(3):
+		if int(installed_version[i]) < int(check_version[i]):
+			return true
+	return false
 
 
 func check_saves():
