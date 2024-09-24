@@ -61,10 +61,10 @@ visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_oyehk"]
 script = ExtResource("1_kupqs")
-_min = 20
-_max = 20
-_min_crit = 20
-_max_crit = 20
+_min = 300
+_max = 300
+_min_crit = 400
+_max_crit = 400
 
 [sub_resource type="Resource" id="Resource_jsp5w"]
 resource_name = "Coagulation"
@@ -121,6 +121,6 @@ img_url = "https://api.dofusdb.fr/img/spells/sort_11934.png"
 level = 10
 pa_cost = 2
 per_crit = 0.0
-cooldown = 5.0
+cooldown = 3.0
 priority = 0
 effects = Array[ExtResource("2_nch7q")]([SubResource("Resource_s3fbu")])

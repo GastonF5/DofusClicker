@@ -8,6 +8,8 @@ extends PanelContainer
 var _parent: Entity
 var _timer: Timer
 
+signal annuler
+
 
 func init(effect: EffectResource, amount: int):
 	spell_texture.texture = effect.texture
@@ -19,8 +21,9 @@ func init(effect: EffectResource, amount: int):
 	_timer = SpellsService.create_timer(effect.time, "Buff")
 	mouse_entered.connect(PlayerManager.buff_description.init_buff.bindv([effect, amount, _timer]))
 	mouse_exited.connect(PlayerManager.buff_description.hide_description)
-	_timer.timeout.connect(delete)
-	GameManager.end_fight.connect(delete)
+	_timer.timeout.connect(delete.bind(effect, amount))
+	GameManager.end_fight.connect(delete.bind(effect, amount))
+	annuler.connect(delete.bind(effect, amount))
 
 
 func _process(_delta):
@@ -40,7 +43,8 @@ static func instantiate(effect: EffectResource, amount: int, parent: Entity) -> 
 	return buff
 
 
-func delete():
+func delete(effect: EffectResource, amount: int):
+	SpellsService.annuler_bonus(self, _parent, effect, amount)
 	if _parent:
 		_parent.buffs.erase(self)
 	if get_parent():

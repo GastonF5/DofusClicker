@@ -7,10 +7,10 @@
 
 [sub_resource type="Resource" id="Resource_5jw67"]
 script = ExtResource("1_4q6vi")
-_min = 300
-_max = 300
-_min_crit = 350
-_max_crit = 350
+_min = 500
+_max = 500
+_min_crit = 600
+_max_crit = 600
 
 [sub_resource type="Resource" id="Resource_esh0f"]
 resource_name = "Bouclier"

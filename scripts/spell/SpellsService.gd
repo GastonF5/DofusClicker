@@ -92,6 +92,7 @@ static func perform_bonus(caster: Entity, target: Entity, effect: EffectResource
 			amount = amount / 100.0
 			target.erosion += amount
 		StatType.RES_DOMMAGES:
+			amount = amount / 100.0
 			target.taken_damage_rate -= amount
 		StatType.PV:
 			add_pv_to_entity(target, amount)
@@ -100,23 +101,21 @@ static func perform_bonus(caster: Entity, target: Entity, effect: EffectResource
 			carac.amount += amount
 	console.log_bonus(target, amount, effect.get_caracteristic_label(), effect.time)
 	if effect.time != 0:
-		if target.is_player:
-			Buff.instantiate(effect, amount, PlayerManager.player_entity)
-		else:
-			Buff.instantiate(effect, amount, target)
-		var timer = create_timer(effect.time, effect.resource_name)
-		await timer.timeout
-		timer.queue_free()
-		if is_instance_valid(timer) and GameManager.in_fight and is_instance_valid(target):
-			match effect.caracteristic:
-				StatType.EROSION:
-					target.erosion -= amount
-				StatType.RES_DOMMAGES:
-					target.taken_damage_rate += amount
-				StatType.PV:
-					add_pv_to_entity(target, -amount)
-				_:
-					carac.amount -= amount
+		Buff.instantiate(effect, amount, target)
+
+
+static func annuler_bonus(buff: Buff, target: Entity, effect: EffectResource, amount: int):
+	if is_instance_valid(buff) and GameManager.in_fight and is_instance_valid(target):
+		match effect.caracteristic:
+			StatType.EROSION:
+				target.erosion -= amount
+			StatType.RES_DOMMAGES:
+				target.taken_damage_rate += amount
+			StatType.PV:
+				add_pv_to_entity(target, -amount)
+			_:
+				var carac = target.get_caracteristique_for_type(effect.caracteristic)
+				carac.amount -= amount
 
 
 static func perform_retrait(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
@@ -200,15 +199,15 @@ static func furie(caster: Entity, target: Entity, effect: EffectResource, crit: 
 	perform_bonus(caster, caster, new_effect, crit, grade)
 
 
-static var is_coagulation := false
 static func mutilation(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int, params: Array):
-	if is_coagulation:
-		perform_effect(caster, target, params[2], crit, grade)
-	else:
+	var mutilation_buff = caster.buffs.filter(func(b): return b.name == "Mutilation")
+	if mutilation_buff.is_empty():
 		params[1].texture = effect.texture
 		for i in range(2):
 			perform_effect(caster, target, params[i], crit, grade)
-	is_coagulation = !is_coagulation
+	else:
+		mutilation_buff[0].annuler.emit()
+		perform_effect(caster, target, params[2], crit, grade)
 #endregion
 
 
