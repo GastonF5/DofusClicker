@@ -30,11 +30,11 @@ func check_version() -> bool:
 	var types = FileLoader.load_file(FileSaver.DATA_PATH + "type.tres")
 	if !types.data.has("version"):
 		return true
-	var installed_version = types.data["version"].split('.')
-	var check_version = Globals.last_version_to_check.split('.')
+	var installed_versions = types.data["version"].split('.')
+	var check_versions = Globals.last_version_to_check.split('.')
 	# on vérifie les version une par une, de la majeure vers la mineure
 	for i in range(3):
-		if int(installed_version[i]) < int(check_version[i]):
+		if int(installed_versions[i]) < int(check_versions[i]):
 			return true
 	return false
 
