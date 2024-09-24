@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://bwdtxpjadcp8d"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://bwdtxpjadcp8d"]
 
 [ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_1c5lx"]
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_m02i6"]
@@ -19,8 +19,10 @@ type = 0
 time = 0.0
 target_type = 2
 show_time = false
+has_grades = false
 element = 1
 lifesteal = false
+level_pourcentage = false
 caracteristic = 0
 pourcentage = false
 method_name = &""
@@ -28,6 +30,33 @@ effect_label = ""
 params = []
 nb_random_effects = 0
 amounts = Array[ExtResource("1_ohm3o")]([SubResource("Resource_rc8vd")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_axxyn"]
+script = ExtResource("1_ohm3o")
+_min = 10
+_max = 10
+_min_crit = 20
+_max_crit = 20
+
+[sub_resource type="Resource" id="Resource_hcev7"]
+resource_name = "Dommages subis"
+script = ExtResource("1_1c5lx")
+type = 1
+time = 10.0
+target_type = 2
+show_time = false
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 36
+pourcentage = true
+method_name = &"decimation"
+effect_label = ""
+params = []
+nb_random_effects = 0
+amounts = Array[ExtResource("1_ohm3o")]([SubResource("Resource_axxyn")])
 visible_in_description = true
 
 [resource]
@@ -42,4 +71,4 @@ pa_cost = 2
 per_crit = 0.15
 cooldown = 5.0
 priority = 0
-effects = Array[ExtResource("1_1c5lx")]([SubResource("Resource_4qbmv")])
+effects = Array[ExtResource("1_1c5lx")]([SubResource("Resource_4qbmv"), SubResource("Resource_hcev7")])

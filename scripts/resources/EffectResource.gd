@@ -83,6 +83,8 @@ func get_caracteristic_label() -> String:
 		return "PV"
 	if caracteristic == Caracteristique.Type.DO_SORTS:
 		return "Dommages aux sorts"
+	if caracteristic == Caracteristique.Type.RES_DOMMAGES:
+		return "de dommages subis"
 	return StatResource.get_type_label(Caracteristique.Type.find_key(caracteristic))
 
 
@@ -143,7 +145,14 @@ func get_effect_label(grade: int) -> String:
 
 
 func compute_special_label(grade: int) -> String:
-	if ["{min}", "{max}", "{min_crit}", "{max_crit}"].any(func(e): return effect_label.contains(e)):
+	if !params.is_empty():
+		var label = effect_label
+		for i in range(params.size()):
+			if params[i] is EffectResource:
+				var effect_label = params[i].get_effect_label(grade)
+				label = label.replace("{param%d}" % i, effect_label)
+		return label
+	if ["{min}", "{max}", "{min_crit}", "{max_crit}", "{time}"].any(func(e): return effect_label.contains(e)):
 		var m = amounts[grade]
 		var label = effect_label
 		label = label.replace("{min}", str(m._min))

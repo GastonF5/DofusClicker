@@ -104,7 +104,7 @@ static func perform_bonus(caster: Entity, target: Entity, effect: EffectResource
 			Buff.instantiate(effect, amount, PlayerManager.player_entity)
 		else:
 			Buff.instantiate(effect, amount, target)
-		var timer = create_timer(effect.time, "BonusTimer")
+		var timer = create_timer(effect.time, effect.resource_name)
 		await timer.timeout
 		timer.queue_free()
 		if is_instance_valid(timer) and GameManager.in_fight and is_instance_valid(target):
@@ -139,8 +139,11 @@ static func perform_retrait(caster: Entity, target: Entity, effect: EffectResour
 static func perform_special(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
 	var callable = Callable(SpellsService, effect.method_name)
 	if callable:
-		var params = [caster, target, effect, crit, grade] + effect.params
-		callable.bindv(params).call()
+		var params = [caster, target, effect, crit, grade]
+		if !effect.params.is_empty():
+			callable = callable.bind(effect.params)
+		callable = callable.bindv(params)
+		callable.call()
 	else:
 		console.log_error("%s not found in SpellsService" % callable.get_method())
 
@@ -195,6 +198,17 @@ static func furie(caster: Entity, target: Entity, effect: EffectResource, crit: 
 	new_effect.amounts[grade].add(bonus_pm)
 	new_effect.texture = effect.texture
 	perform_bonus(caster, caster, new_effect, crit, grade)
+
+
+static var is_coagulation := false
+static func mutilation(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int, params: Array):
+	if is_coagulation:
+		perform_effect(caster, target, params[2], crit, grade)
+	else:
+		params[1].texture = effect.texture
+		for i in range(2):
+			perform_effect(caster, target, params[i], crit, grade)
+	is_coagulation = !is_coagulation
 #endregion
 
 

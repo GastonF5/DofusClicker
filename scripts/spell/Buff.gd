@@ -11,7 +11,10 @@ var _timer: Timer
 
 func init(effect: EffectResource, amount: int):
 	spell_texture.texture = effect.texture
-	name = effect.resource_name
+	if effect.resource_name.is_empty():
+		Globals.console.log_error("L'effet n'a pas de nom")
+	else:
+		name = effect.resource_name
 	pb.max_value = float(effect.time)
 	_timer = SpellsService.create_timer(effect.time, "Buff")
 	mouse_entered.connect(PlayerManager.buff_description.init_buff.bindv([effect, amount, _timer]))
