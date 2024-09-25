@@ -251,7 +251,7 @@ func get_lvl(xp_amount: int):
 		if xp_amount > palier[1]:
 			lvl = palier[0]
 		else:
-			return lvl
+			return max(lvl, 1)
 	return 200
 
 
