@@ -193,8 +193,8 @@ func filter_recipes():
 
 func is_filtered_by_characteristics(recipe_node: Recipe) -> bool:
 	var count := 0
-	if !recipe_node.resource.get_result().equip_res:
-		return false
+	if recipe_node.resource.get_result().is_key():
+		return true
 	var result_stat_types = recipe_node.resource.get_result().equip_res.stats.map(func(s): return s.get_type())
 	var is_filtered = false
 	for applied_filter in recipe_filters.applied_filters:
