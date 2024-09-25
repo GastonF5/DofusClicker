@@ -48,7 +48,7 @@ func init(area_res: AreaResource, icon_txt: Texture2D, is_dungeon: bool):
 	_area_name_lbl.text = area_res._name
 	level = area_res._level
 	if level > 0:
-		_level_lbl.text = "Niveau %d" % level
+		_level_lbl.text = "Niveau %d" % (level if is_dungeon else max(level - 3, 1))
 	else:
 		_level_lbl.visible = false
 	_icon_txt.texture = icon_txt
