@@ -89,7 +89,8 @@ func get_caracteristic_label() -> String:
 
 
 func get_amount_label(grade: int) -> String:
-	var pattern = "%d" if !(pourcentage or level_pourcentage) else "%d%%"
+	var is_pourcentage_charac = caracteristic in [Caracteristique.Type.DO_SORTS, Caracteristique.Type.RES_DOMMAGES]
+	var pattern = "%d" if !(pourcentage or level_pourcentage or is_pourcentage_charac) else "%d%%"
 	var result: String
 	if amounts.size() > grade:
 		var m = amounts[grade]
@@ -107,8 +108,6 @@ func get_amount_label(grade: int) -> String:
 			3: result = "%s à %s (%s)" % parameters
 			4: result = "%s à %s (%s à %s)" % parameters
 			_: result = "ERREUR"
-	if caracteristic == Caracteristique.Type.DO_SORTS:
-		result += "%"
 	return result
 
 

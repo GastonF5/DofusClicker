@@ -26,7 +26,7 @@ var attack_callable: Callable
 signal dies
 
 var erosion := 0.05
-var taken_damage_rate: int = 100
+var taken_damage_rate: float = 100
 
 var console: Console
 var is_player := false

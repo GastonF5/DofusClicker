@@ -34,10 +34,10 @@ visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_axxyn"]
 script = ExtResource("1_ohm3o")
-_min = 10
-_max = 10
-_min_crit = 20
-_max_crit = 20
+_min = 20
+_max = 20
+_min_crit = 30
+_max_crit = 30
 
 [sub_resource type="Resource" id="Resource_hcev7"]
 resource_name = "Dommages subis"
@@ -52,7 +52,7 @@ lifesteal = false
 level_pourcentage = false
 caracteristic = 36
 pourcentage = false
-method_name = &"decimation"
+method_name = &""
 effect_label = ""
 params = []
 nb_random_effects = 0

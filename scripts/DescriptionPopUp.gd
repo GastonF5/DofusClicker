@@ -194,7 +194,11 @@ func add_spell_effect_label(effect_res: EffectResource):
 
 func add_buff_label(effect_res: EffectResource, amount: int):
 	var label = Label.new()
-	label.text = "%d %s" % [amount, effect_res.get_caracteristic_label()]
+	var is_pourcentage_charac = effect_res.caracteristic in [Caracteristique.Type.DO_SORTS, Caracteristique.Type.RES_DOMMAGES]
+	label.text = str(amount)
+	if is_pourcentage_charac:
+		label.text += "%"
+	label.text += " " + effect_res.get_caracteristic_label()
 	label.add_theme_color_override("font_color", effect_res.get_label_color())
 	effects_container.add_child(label)
 
