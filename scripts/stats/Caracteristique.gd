@@ -201,13 +201,10 @@ func _on_minus_button_button_up():
 	if Input.is_action_pressed("CTRL"):
 		x = -10
 		if Input.is_action_pressed("SHIFT"):
-			x = -amount
+			x = -base_amount
 	else:
 		x = -1
 	base_amount += x
-	if base_amount < 0:
-		x -= base_amount
-		base_amount = 0
 	consume_point.emit(x, type)
 
 
