@@ -89,6 +89,7 @@ func expand():
 	for i in range(4):
 		var slot = slot_scene.instantiate()
 		slots.append(slot)
+		connect_slot_signals(slot)
 		add_child(slot)
 
 
