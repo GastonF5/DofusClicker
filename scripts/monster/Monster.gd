@@ -118,7 +118,7 @@ func drop():
 		if Datas._resources.keys().has(_drop.object_id):
 			if randf_range(0, 100) < get_chance_drop(_drop.percent_drop[0]):
 				var item_res = Datas._resources[_drop.object_id]
-				item_res.count = _drop.count
+				item_res.count = max(_drop.count, 1)
 				inventory.add_item(Item.create(item_res))
 
 
