@@ -12,6 +12,7 @@ enum Type {
 	INVOCATION,
 	SOIN,
 	BOUCLIER,
+	POUSSEE,
 }
 
 enum TargetType {
@@ -25,6 +26,8 @@ enum TargetType {
 	RANDOM_ALLY,
 	ALL,
 }
+
+enum Direction { UP, DOWN, LEFT, RIGHT }
 
 
 @export var type: Type
@@ -52,6 +55,10 @@ var texture: Texture2D
 
 @export_group("Random")
 @export var nb_random_effects: int
+
+@export_group("Poussée")
+@export var direction: Direction
+@export var is_attirance: bool
 
 @export_category("Amounts")
 @export var amounts: Array[AmountResource]

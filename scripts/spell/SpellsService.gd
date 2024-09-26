@@ -5,6 +5,7 @@ const StatType = Caracteristique.Type
 const Element = Caracteristique.Element
 const EffectType = EffectResource.Type
 const TargetType = EffectResource.TargetType
+const Direction = EffectResource.Direction
 
 static var console: Console
 static var tnode: Node
@@ -159,6 +160,18 @@ static func perform_bouclier(caster: Entity, target: Entity, effect: EffectResou
 			target.hp_bar.shield_val -= amount
 
 
+static func perform_poussee(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
+	var plate: EntityContainer = target.get_parent()
+	#var distance = effect.get_amount(crit, grade)
+	var destination_plate = plate.call("get_%s_plate" % Direction.find_key(effect.direction).to_lower())
+	if plate != destination_plate:
+		plate.remove_child(target)
+		destination_plate.add_child(target)
+	else:
+		var amount = get_degats_poussee(caster, target, 1)
+		target.take_damage(amount, Element.NEUTRE)
+
+
 static func perform_random(_caster: Entity, _target: Entity, effect: EffectResource, _crit: bool, _grade: int):
 	count = 1
 	rand_count = randi_range(1, effect.nb_random_effects)
@@ -307,6 +320,14 @@ static func get_degats(caster: Entity, amount: int, element: Element) -> int:
 	var multiplicateur = get_multiplicateur(caster, element, false)
 	var fixe = get_fixe(caster, element)
 	return max(multiplicateur * amount + fixe, 0)
+
+
+static func get_degats_poussee(caster: Entity, target: Entity, distance: int) -> int:
+	var level = Globals.xp_bar.cur_lvl
+	var do_pou = caster.get_do_pou()
+	var re_pou = target.get_re_pou()
+	@warning_ignore("integer_division")
+	return (level / 2) + (do_pou - re_pou + 32) * distance / 4
 
 
 static func get_soin(caster: Entity, amount: int, element: Element) -> int:

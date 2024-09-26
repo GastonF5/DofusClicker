@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://fe26s3fpkl6x"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=10 format=3 uid="uid://fe26s3fpkl6x"]
 
 [ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_xmek4"]
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_y1ikn"]
@@ -19,14 +19,18 @@ type = 0
 time = 0.0
 target_type = 1
 show_time = false
+has_grades = false
 element = 6
 lifesteal = false
+level_pourcentage = false
 caracteristic = 0
 pourcentage = false
 method_name = &""
 effect_label = ""
 params = []
 nb_random_effects = 0
+direction = null
+is_attirance = false
 amounts = Array[ExtResource("1_xmek4")]([SubResource("Resource_entft")])
 visible_in_description = true
 
@@ -44,15 +48,41 @@ type = 1
 time = 5.0
 target_type = 1
 show_time = true
+has_grades = false
 element = 0
 lifesteal = false
+level_pourcentage = false
 caracteristic = 9
 pourcentage = false
 method_name = &""
 effect_label = ""
 params = []
 nb_random_effects = 0
+direction = null
+is_attirance = false
 amounts = Array[ExtResource("1_xmek4")]([SubResource("Resource_4y8is")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_6kgdp"]
+resource_name = "Poussée"
+script = ExtResource("2_ubphw")
+type = 9
+time = 0.0
+target_type = 1
+show_time = false
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+amounts = Array[ExtResource("1_xmek4")]([])
 visible_in_description = true
 
 [resource]
@@ -67,4 +97,5 @@ pa_cost = 2
 per_crit = 0.05
 cooldown = 0.0
 priority = 0
-effects = Array[ExtResource("2_ubphw")]([SubResource("Resource_n3ndv"), SubResource("Resource_2jvwn")])
+is_distance = false
+effects = Array[ExtResource("2_ubphw")]([SubResource("Resource_n3ndv"), SubResource("Resource_2jvwn"), SubResource("Resource_6kgdp")])

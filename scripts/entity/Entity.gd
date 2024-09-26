@@ -170,6 +170,14 @@ func get_dommages() -> int:
 	var carac = get_caracteristique_for_type(CaracType.DOMMAGES)
 	return StatsManager.get_carac_amount(carac)
 
+func get_do_pou() -> int:
+	var carac = get_caracteristique_for_type(CaracType.DO_POU)
+	return StatsManager.get_carac_amount(carac)
+
+func get_re_pou() -> int:
+	var carac = get_caracteristique_for_type(CaracType.RES_POU)
+	return StatsManager.get_carac_amount(carac)
+
 func get_soin() -> int:
 	var carac = get_caracteristique_for_type(CaracType.SOIN)
 	return StatsManager.get_carac_amount(carac)

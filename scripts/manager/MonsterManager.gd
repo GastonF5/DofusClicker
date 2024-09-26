@@ -164,8 +164,10 @@ func set_start_fight_button_text(first_room_of_dungeon := false):
 		start_fight_button.text = "Lancer le combat"
 
 
+#region plates
 func get_distance_plates():
 	return plates.filter(func(p): return p.is_distance())
 
 func get_melee_plates():
 	return plates.filter(func(p): return p.is_melee())
+#endregion

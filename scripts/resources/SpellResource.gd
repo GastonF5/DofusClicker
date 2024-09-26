@@ -18,6 +18,7 @@ extends Resource
 @export var priority: int
 
 @export_category("Effects")
+@export var is_distance: bool
 @export var effects: Array[EffectResource]
 
 

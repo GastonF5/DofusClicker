@@ -34,11 +34,43 @@ func is_melee():
 	return get_parent().name == MELEE
 
 
-func get_line():
+func get_line(other: bool = false):
 	if is_distance():
+		if other:
+			return MonsterManager.get_melee_plates()
 		return MonsterManager.get_distance_plates()
 	if is_melee():
+		if other:
+			return MonsterManager.get_distance_plates()
 		return MonsterManager.get_melee_plates()
+
+#region directions
+func get_right_plate():
+	var line = get_line()
+	var pi = line.find(self)
+	if pi == 3:
+		return self
+	return line[pi + 1]
+
+func get_left_plate():
+	var line = get_line()
+	var pi = line.find(self)
+	if pi == 0:
+		return self
+	return line[pi - 1]
+
+func get_up_plate():
+	if is_distance():
+		return self
+	var pi = get_line().find(self)
+	return get_line(true)[pi]
+
+func get_down_plate():
+	if is_melee():
+		return self
+	var pi = get_line().find(self)
+	return get_line(true)[pi]
+#endregion
 
 
 func init_entity_texture():
