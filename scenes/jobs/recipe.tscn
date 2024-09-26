@@ -1,8 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://trxp6j0cq52w"]
+[gd_scene load_steps=15 format=3 uid="uid://trxp6j0cq52w"]
 
 [ext_resource type="Script" path="res://scripts/recipe/Recipe.gd" id="1_ys3ho"]
 [ext_resource type="Texture2D" uid="uid://dc4kur4fk7phx" path="res://assets/common/block/block_border_scratch.png" id="2_jqeqg"]
-[ext_resource type="PackedScene" uid="uid://oleyftpfpaky" path="res://scenes/buttons/plus_button.tscn" id="4_vrhie"]
+[ext_resource type="Texture2D" uid="uid://fg67fytininp" path="res://assets/common/button/btn_green_small_normal.jpg" id="3_w0db6"]
+[ext_resource type="Texture2D" uid="uid://cck4ndl64sg2x" path="res://assets/common/button/btn_green_small_over.jpg" id="4_7d85p"]
+[ext_resource type="Texture2D" uid="uid://ioa8txwipu5x" path="res://assets/common/button/btn_green_small_pressed.jpg" id="5_yx77u"]
+[ext_resource type="Texture2D" uid="uid://dm2b6x2nro3gh" path="res://assets/common/button/btn_green_small_disabled.png" id="6_0ee0w"]
+[ext_resource type="Texture2D" uid="uid://ctqlvbfch4tdj" path="res://assets/btn_icon/btnIcon_plus.png" id="7_ioj84"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b7qw0"]
 bg_color = Color(0.196078, 0.196078, 0.196078, 1)
@@ -20,6 +24,18 @@ expand_margin_bottom = 5.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_h7xgi"]
 font_color = Color(0.745, 0.745, 0.745, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qanle"]
+texture = ExtResource("3_w0db6")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_un2rn"]
+texture = ExtResource("4_7d85p")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vhj0q"]
+texture = ExtResource("5_yx77u")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6l5dn"]
+texture = ExtResource("6_0ee0w")
 
 [node name="Recipe" type="PanelContainer" node_paths=PackedStringArray("button", "items_container", "name_label", "level_label")]
 custom_minimum_size = Vector2(0, 158)
@@ -93,10 +109,36 @@ custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="Button" parent="MarginContainer/HBC" instance=ExtResource("4_vrhie")]
+[node name="Button" type="Button" parent="MarginContainer/HBC"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+size_flags_horizontal = 8
 size_flags_vertical = 4
+tooltip_text = "Fabriquer"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_qanle")
+theme_override_styles/hover = SubResource("StyleBoxTexture_un2rn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_vhj0q")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_6l5dn")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBC/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBC/Button/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("7_ioj84")
+expand_mode = 3
+stretch_mode = 5
 
 [node name="Space" type="Control" parent="MarginContainer/HBC"]
 custom_minimum_size = Vector2(10, 0)

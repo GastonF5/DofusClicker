@@ -21,7 +21,6 @@ texture = ExtResource("4_x1qbx")
 [node name="Button" type="Button"]
 custom_minimum_size = Vector2(32, 32)
 size_flags_horizontal = 8
-tooltip_text = "Fabriquer"
 focus_mode = 0
 mouse_default_cursor_shape = 2
 theme_override_styles/normal = SubResource("StyleBoxTexture_qanle")
@@ -36,10 +35,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer"]
 layout_mode = 2
