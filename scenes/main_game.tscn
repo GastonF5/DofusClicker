@@ -22,7 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://3o142ebsb8jm" path="res://assets/icons/quest.png" id="19_0ji4a"]
 [ext_resource type="Texture2D" uid="uid://bov74ckekhf83" path="res://assets/common/block/block_border.png" id="19_mc1gy"]
 [ext_resource type="Texture2D" uid="uid://dky7mxoyl8fbb" path="res://assets/hud/background_hud.png" id="20_g6nqe"]
-[ext_resource type="PackedScene" uid="uid://dr1xqccheukcc" path="res://scenes/bars/player_bars.tscn" id="21_c15xm"]
+[ext_resource type="PackedScene" path="res://scenes/bars/player_bars.tscn" id="21_c15xm"]
 [ext_resource type="FontFile" uid="uid://duac7keqvubh2" path="res://assets/font/Tahoma Regular font.ttf" id="22_acdog"]
 [ext_resource type="Texture2D" uid="uid://clxiokh7y7tl6" path="res://assets/common/button/btn_greenLargeBorder_normal.png" id="23_73odx"]
 [ext_resource type="Texture2D" uid="uid://bdtpetmi38ekm" path="res://assets/common/button/btn_greenLargeBorder_over.png" id="24_jppq1"]

@@ -142,6 +142,8 @@ func _input(event):
 			PlayerManager.select_next_plate()
 		if event.is_action_pressed("left"):
 			PlayerManager.select_previous_plate()
+		if event.is_action_pressed("up") or event.is_action_pressed("down"):
+			PlayerManager.select_other_line()
 
 
 func select_next_plate():
@@ -154,6 +156,12 @@ func select_previous_plate():
 	var plates = selected_plate.get_line()
 	var pi = plates.find(selected_plate)
 	selected_plate = plates[(pi - 1) % plates.size()]
+
+
+func select_other_line():
+	var other_line = selected_plate.get_line(true)
+	var pi = selected_plate.get_line().find(selected_plate)
+	selected_plate = other_line[pi]
 
 
 func update_pdv():
