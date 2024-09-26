@@ -81,7 +81,7 @@ func initialize(root: Node = get_tree().current_scene):
 	xp_bar = game.get_node("%ExperienceBar")
 	inventory = game.get_node("%InventoryContainer").get_node("%Inventory")
 	equipment_container = game.get_node("%EquipmentContainer")
-	player_bars = game.get_node("%EntityBars")
+	player_bars = game.get_node("%PlayerBars")
 	buffs_container = game.get_node("%BuffsContainer")
 	description_container = game.get_node("%DescriptionContainer")
 	

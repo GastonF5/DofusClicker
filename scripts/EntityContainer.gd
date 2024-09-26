@@ -1,6 +1,8 @@
 extends ClickableControl
 class_name EntityContainer
 
+const DISTANCE := "Distance"
+const MELEE := "Melee"
 
 var id: int
 
@@ -23,6 +25,20 @@ var selected: bool:
 func _ready():
 	init_clickable(self)
 	clicked.connect(select)
+
+
+func is_distance():
+	return get_parent().name == DISTANCE
+
+func is_melee():
+	return get_parent().name == MELEE
+
+
+func get_line():
+	if is_distance():
+		return MonsterManager.get_distance_plates()
+	if is_melee():
+		return MonsterManager.get_melee_plates()
 
 
 func init_entity_texture():
