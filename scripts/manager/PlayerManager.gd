@@ -50,8 +50,6 @@ var selected_plate: EntityContainer:
 		if selected_plate != null:
 			selected_plate.selected = true
 
-var plates: Array[EntityContainer]
-
 
 func reset():
 	player_entity = null
@@ -60,7 +58,6 @@ func reset():
 	pdv_label = null
 	selected_spell = null
 	selected_plate = null
-	plates.clear()
 	item_description = null
 	spell_description = null
 	entity_description = null
@@ -76,12 +73,6 @@ func initialize():
 	pdv_label = Globals.stats_container.get_node("%HPAmount")
 	
 	init_spells()
-	
-	var entity_containers = get_tree().get_nodes_in_group("monster_container")
-	entity_containers.sort_custom(func(a, b): return a.id < b.id)
-	for entity_container in entity_containers:
-		plates.append(entity_container)
-	selected_plate = plates[0]
 	
 	init_player_entity()
 	
@@ -154,11 +145,13 @@ func _input(event):
 
 
 func select_next_plate():
+	var plates = selected_plate.get_line()
 	var pi = plates.find(selected_plate)
 	selected_plate = plates[(pi + 1) % plates.size()]
 
 
 func select_previous_plate():
+	var plates = selected_plate.get_line()
 	var pi = plates.find(selected_plate)
 	selected_plate = plates[(pi - 1) % plates.size()]
 

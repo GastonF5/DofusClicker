@@ -15,6 +15,8 @@ var monsters_res := []
 
 var xp_to_gain := 0
 
+var plates: Array[EntityContainer]
+
 
 func reset():
 	console = null
@@ -24,6 +26,7 @@ func reset():
 	monsters.clear()
 	monsters_res.clear()
 	xp_to_gain = 0
+	plates.clear()
 	super()
 
 
@@ -34,6 +37,13 @@ func initialize():
 	auto_start_fight_checkbox = Globals.game.get_node("%AutoStartFight").get_node("HBC/CheckBox")
 	start_fight_button.button_up.connect(start_fight)
 	start_fight_button.disabled = true
+	
+	var entity_containers = get_tree().get_nodes_in_group("monster_container")
+	entity_containers.sort_custom(func(a, b): return a.id < b.id)
+	for entity_container in entity_containers:
+		plates.append(entity_container)
+	PlayerManager.selected_plate = plates[0]
+	
 	super()
 
 
@@ -106,11 +116,11 @@ func check_dungeon_key():
 
 
 func get_monsters_on_plates():
-	return PlayerManager.plates.map(func(p): return p.get_entity()).filter(Entity.is_monster)
+	return plates.map(func(p): return p.get_entity()).filter(Entity.is_monster)
 
 
 func instantiate_monster(monster_res: MonsterResource = null) -> Monster:
-	var empty_plates = PlayerManager.plates.filter(func(plate: EntityContainer): return plate.is_empty())
+	var empty_plates = plates.filter(func(plate: EntityContainer): return plate.is_empty())
 	if empty_plates.size() == 0:
 		console.log_error("Impossible d'instantier le monstre, aucun emplacement n'est disponible.")
 		return null
@@ -152,3 +162,10 @@ func set_start_fight_button_text(first_room_of_dungeon := false):
 		start_fight_button.text = "Utiliser la clef"
 	else:
 		start_fight_button.text = "Lancer le combat"
+
+
+func get_distance_plates():
+	return plates.filter(func(p): return p.is_distance())
+
+func get_melee_plates():
+	return plates.filter(func(p): return p.is_melee())

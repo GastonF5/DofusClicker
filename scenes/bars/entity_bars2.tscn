@@ -1,0 +1,94 @@
+[gd_scene load_steps=10 format=3 uid="uid://b8fbqx14ak1si"]
+
+[ext_resource type="Script" path="res://scripts/EntityBars.gd" id="1_kc282"]
+[ext_resource type="PackedScene" uid="uid://c2n75dtlfnvhl" path="res://scenes/bars/custom_bar.tscn" id="2_jhjw6"]
+[ext_resource type="Script" path="res://scripts/bars/HealthBar.gd" id="3_at1fo"]
+[ext_resource type="Texture2D" uid="uid://cm7lfncp4fyny" path="res://assets/hud/icon_shield_full.png" id="4_gp3gh"]
+[ext_resource type="Texture2D" uid="uid://xay5vhc0uafq" path="res://assets/hud/icon_armor.png" id="5_0loi6"]
+[ext_resource type="Texture2D" uid="uid://deep4ut0ypw6e" path="res://assets/hud/icon_ap_full.png" id="6_av83c"]
+[ext_resource type="Texture2D" uid="uid://j4jxr7o1i7qw" path="res://assets/hud/icon_ap_empty.png" id="7_8dtuf"]
+[ext_resource type="Texture2D" uid="uid://cb1pye1b2nyyt" path="res://assets/hud/icon_mp_full.png" id="8_ijal1"]
+[ext_resource type="Texture2D" uid="uid://cyj00xy3xeikq" path="res://assets/hud/icon_mp_empty.png" id="9_7by1p"]
+
+[node name="EntityBars" type="Control" node_paths=PackedStringArray("hp_bar", "pa_bar", "pm_bar")]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kc282")
+hp_bar = NodePath("VBC/HPBar")
+pa_bar = NodePath("VBC/PAPMContainer/PABar")
+pm_bar = NodePath("VBC/PAPMContainer/PMBar")
+
+[node name="VBC" type="HBoxContainer" parent="."]
+layout_mode = 2
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 3.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HPBar" parent="VBC" node_paths=PackedStringArray("shield_label") instance=ExtResource("2_jhjw6")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+script = ExtResource("3_at1fo")
+shield_full_texture = ExtResource("4_gp3gh")
+shield_label = NodePath("ArmorTexture/ShieldLabel")
+
+[node name="ArmorTexture" type="TextureRect" parent="VBC/HPBar"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_0loi6")
+stretch_mode = 5
+
+[node name="ShieldLabel" type="Label" parent="VBC/HPBar/ArmorTexture"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -19.5
+offset_top = 2.0
+offset_right = 20.5
+offset_bottom = 30.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 16
+text = "1540"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PAPMContainer" type="VBoxContainer" parent="VBC"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="PABar" parent="VBC/PAPMContainer" instance=ExtResource("2_jhjw6")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+auto_fill = true
+full_texture = ExtResource("6_av83c")
+empty_texture = ExtResource("7_8dtuf")
+cval = 6
+mval = 6
+
+[node name="PMBar" parent="VBC/PAPMContainer" instance=ExtResource("2_jhjw6")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+auto_fill = true
+speed = 15.0
+full_texture = ExtResource("8_ijal1")
+empty_texture = ExtResource("9_7by1p")
+cval = 3
+mval = 3

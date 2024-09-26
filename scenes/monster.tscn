@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/monster/Monster.gd" id="2_ao8xg"]
 [ext_resource type="Texture2D" uid="uid://df7upr6jvfvsx" path="res://assets/icons/boss.png" id="3_cevmk"]
-[ext_resource type="PackedScene" uid="uid://dr1xqccheukcc" path="res://scenes/bars/entity_bars.tscn" id="4_07i5c"]
+[ext_resource type="PackedScene" uid="uid://de78o6iyycs4x" path="res://scenes/bars/entity_bars.tscn" id="4_qa1od"]
 [ext_resource type="Texture2D" uid="uid://g6wqg0e5ubmn" path="res://assets/monsters/bouftou.png" id="5_1404l"]
 
 [node name="Monster" type="Control" node_paths=PackedStringArray("bars", "name_label", "texture_rect", "header_texture", "buffs_container")]
@@ -22,10 +22,10 @@ size_flags_horizontal = 3
 mouse_filter = 2
 script = ExtResource("2_ao8xg")
 bars = NodePath("VBC/EntityBars")
-name_label = NodePath("VBC/Header/Name")
+name_label = NodePath("VBC/HeaderContainer/Header/Name")
 texture_rect = NodePath("VBC/TextureContainer/Monster")
-header_texture = NodePath("VBC/Header/HeaderControl/HeaderTexture")
-buffs_container = NodePath("BuffsContainer")
+header_texture = NodePath("VBC/HeaderContainer/Header/HeaderControl/HeaderTexture")
+buffs_container = NodePath("VBC/HeaderContainer/BuffsContainer")
 
 [node name="VBC" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -36,15 +36,32 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
 
-[node name="Header" type="VBoxContainer" parent="VBC"]
+[node name="HeaderContainer" type="Control" parent="VBC"]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="HeaderControl" type="Control" parent="VBC/Header"]
+[node name="BuffsContainer" type="HBoxContainer" parent="VBC/HeaderContainer"]
+layout_mode = 2
+offset_top = -32.0
+offset_right = 192.0
+offset_bottom = -32.0
+size_flags_vertical = 0
+alignment = 1
+
+[node name="Header" type="VBoxContainer" parent="VBC/HeaderContainer"]
+layout_mode = 2
+offset_top = 4.0
+offset_right = 192.0
+offset_bottom = 63.0
+mouse_filter = 2
+
+[node name="HeaderControl" type="Control" parent="VBC/HeaderContainer/Header"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+mouse_filter = 2
 
-[node name="HeaderTexture" type="TextureRect" parent="VBC/Header/HeaderControl"]
+[node name="HeaderTexture" type="TextureRect" parent="VBC/HeaderContainer/Header/HeaderControl"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -59,10 +76,11 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
+mouse_filter = 2
 texture = ExtResource("3_cevmk")
 stretch_mode = 3
 
-[node name="Name" type="Label" parent="VBC/Header"]
+[node name="Name" type="Label" parent="VBC/HeaderContainer/Header"]
 layout_mode = 2
 text = "Nom"
 horizontal_alignment = 1
@@ -86,17 +104,8 @@ texture = ExtResource("5_1404l")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="EntityBars" parent="VBC" instance=ExtResource("4_07i5c")]
-custom_minimum_size = Vector2(0, 100)
+[node name="EntityBars" parent="VBC" instance=ExtResource("4_qa1od")]
 layout_mode = 2
-
-[node name="BuffsContainer" type="HBoxContainer" parent="."]
-layout_mode = 2
-offset_top = -22.5
-offset_right = 192.0
-offset_bottom = -22.5
-size_flags_vertical = 0
-alignment = 1
 
 [connection signal="mouse_entered" from="VBC/TextureContainer" to="." method="_on_texture_container_mouse_entered"]
 [connection signal="mouse_exited" from="VBC/TextureContainer" to="." method="_on_texture_container_mouse_exited"]

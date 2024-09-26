@@ -22,7 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://3o142ebsb8jm" path="res://assets/icons/quest.png" id="19_0ji4a"]
 [ext_resource type="Texture2D" uid="uid://bov74ckekhf83" path="res://assets/common/block/block_border.png" id="19_mc1gy"]
 [ext_resource type="Texture2D" uid="uid://dky7mxoyl8fbb" path="res://assets/hud/background_hud.png" id="20_g6nqe"]
-[ext_resource type="PackedScene" uid="uid://dr1xqccheukcc" path="res://scenes/bars/entity_bars.tscn" id="21_c15xm"]
+[ext_resource type="PackedScene" uid="uid://dr1xqccheukcc" path="res://scenes/bars/player_bars.tscn" id="21_c15xm"]
 [ext_resource type="FontFile" uid="uid://duac7keqvubh2" path="res://assets/font/Tahoma Regular font.ttf" id="22_acdog"]
 [ext_resource type="Texture2D" uid="uid://clxiokh7y7tl6" path="res://assets/common/button/btn_greenLargeBorder_normal.png" id="23_73odx"]
 [ext_resource type="Texture2D" uid="uid://bdtpetmi38ekm" path="res://assets/common/button/btn_greenLargeBorder_over.png" id="24_jppq1"]
@@ -214,15 +214,6 @@ clip_contents = true
 layout_mode = 2
 texture = ExtResource("2_3a1je")
 
-[node name="ClassTexture" type="TextureRect" parent="HBC/MiddleContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 650)
-layout_mode = 2
-size_flags_vertical = 8
-texture = ExtResource("12_6p4fb")
-expand_mode = 3
-stretch_mode = 3
-
 [node name="VBC" type="VBoxContainer" parent="HBC/MiddleContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -305,22 +296,76 @@ offset_right = 869.0
 offset_bottom = 403.0
 stretch_mode = 3
 
-[node name="MonstersContainer" type="HBoxContainer" parent="HBC/MiddleContainer/VBC/MainPanel"]
+[node name="MonstersContainer" type="VBoxContainer" parent="HBC/MiddleContainer/VBC/MainPanel"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Space" type="Control" parent="HBC/MiddleContainer/VBC/MainPanel/MonstersContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="Distance" type="HBoxContainer" parent="HBC/MiddleContainer/VBC/MainPanel/MonstersContainer"]
+z_index = 1
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 24
 alignment = 1
 
-[node name="Container1" parent="HBC/MiddleContainer/VBC/MainPanel/MonstersContainer" instance=ExtResource("14_2q4g1")]
+[node name="Container1" parent="HBC/MiddleContainer/VBC/MainPanel/MonstersContainer/Distance" instance=ExtResource("14_2q4g1")]
 layout_mode = 2
 
-[node name="Container2" parent="HBC/MiddleContainer/VBC/MainPanel/MonstersContainer" instance=ExtResource("14_2q4g1")]
+[node name="Container2" parent="HBC/MiddleContainer/VBC/MainPanel/MonstersContainer/Distance" instance=ExtResource("14_2q4g1")]
 layout_mode = 2
 
-[node name="Container3" parent="HBC/MiddleContainer/VBC/MainPanel/MonstersContainer" instance=ExtResource("14_2q4g1")]
+[node name="Container3" parent="HBC/MiddleContainer/VBC/MainPanel/MonstersContainer/Distance" instance=ExtResource("14_2q4g1")]
 layout_mode = 2
 
-[node name="Container4" parent="HBC/MiddleContainer/VBC/MainPanel/MonstersContainer" instance=ExtResource("14_2q4g1")]
+[node name="Container4" parent="HBC/MiddleContainer/VBC/MainPanel/MonstersContainer/Distance" instance=ExtResource("14_2q4g1")]
+layout_mode = 2
+
+[node name="ClassTextureContainer" type="Control" parent="HBC/MiddleContainer/VBC/MainPanel/MonstersContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ClassTexture" type="TextureRect" parent="HBC/MiddleContainer/VBC/MainPanel/MonstersContainer/ClassTextureContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 650)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -325.0
+offset_top = -325.0
+offset_right = 325.0
+offset_bottom = 325.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("12_6p4fb")
+expand_mode = 3
+stretch_mode = 3
+
+[node name="Melee" type="HBoxContainer" parent="HBC/MiddleContainer/VBC/MainPanel/MonstersContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="Container1" parent="HBC/MiddleContainer/VBC/MainPanel/MonstersContainer/Melee" instance=ExtResource("14_2q4g1")]
+layout_mode = 2
+
+[node name="Container2" parent="HBC/MiddleContainer/VBC/MainPanel/MonstersContainer/Melee" instance=ExtResource("14_2q4g1")]
+layout_mode = 2
+
+[node name="Container3" parent="HBC/MiddleContainer/VBC/MainPanel/MonstersContainer/Melee" instance=ExtResource("14_2q4g1")]
+layout_mode = 2
+
+[node name="Container4" parent="HBC/MiddleContainer/VBC/MainPanel/MonstersContainer/Melee" instance=ExtResource("14_2q4g1")]
 layout_mode = 2
 
 [node name="Control" type="Control" parent="HBC/MiddleContainer/VBC/MainPanel"]
@@ -488,7 +533,7 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 6
 
-[node name="EntityBars" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/HBC/EntityBarsContainer" instance=ExtResource("21_c15xm")]
+[node name="PlayerBars" parent="HBC/MiddleContainer/VBC/PlayerBarContainer/HUD/HBC/EntityBarsContainer" instance=ExtResource("21_c15xm")]
 unique_name_in_owner = true
 layout_mode = 1
 offset_top = -43.5

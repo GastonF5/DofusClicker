@@ -7,6 +7,8 @@ extends Control
 @export var pa_bar: TextureProgressBar
 @export var pm_bar: TextureProgressBar
 
+@export var decoration: TextureRect
 
 func _ready():
-	$Decoration.position.y += 10
+	if decoration:
+		decoration.position.y += 10

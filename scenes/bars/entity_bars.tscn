@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://dr1xqccheukcc"]
+[gd_scene load_steps=10 format=3 uid="uid://de78o6iyycs4x"]
 
 [ext_resource type="Script" path="res://scripts/EntityBars.gd" id="1_njckd"]
 [ext_resource type="PackedScene" uid="uid://c2n75dtlfnvhl" path="res://scenes/bars/custom_bar.tscn" id="1_q1hml"]
-[ext_resource type="Texture2D" uid="uid://b58ukv8lwqg0b" path="res://assets/hud/hud_decoration.png" id="2_5mjds"]
 [ext_resource type="Texture2D" uid="uid://deep4ut0ypw6e" path="res://assets/hud/icon_ap_full.png" id="2_wntiw"]
 [ext_resource type="Texture2D" uid="uid://j4jxr7o1i7qw" path="res://assets/hud/icon_ap_empty.png" id="3_mhg00"]
 [ext_resource type="Script" path="res://scripts/bars/HealthBar.gd" id="4_k2pbn"]
@@ -20,51 +19,24 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_njckd")
-hp_bar = NodePath("VBC/HPBar")
-pa_bar = NodePath("VBC/HBC/PABar")
-pm_bar = NodePath("VBC/HBC/PMBar")
+hp_bar = NodePath("HPBar")
+pa_bar = NodePath("HBC/PABar")
+pm_bar = NodePath("HBC/PMBar")
 
-[node name="Decoration" type="TextureRect" parent="."]
+[node name="HPBar" parent="." node_paths=PackedStringArray("shield_label") instance=ExtResource("1_q1hml")]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_5mjds")
-expand_mode = 3
-
-[node name="VBC" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -0.5
 offset_top = -2.5
-offset_right = 0.5
 offset_bottom = 2.5
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-
-[node name="HPBar" parent="VBC" node_paths=PackedStringArray("shield_label") instance=ExtResource("1_q1hml")]
-layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
+mouse_filter = 2
 script = ExtResource("4_k2pbn")
 shield_full_texture = ExtResource("5_n4lvc")
 shield_label = NodePath("ArmorTexture/ShieldLabel")
 
-[node name="ArmorTexture" type="TextureRect" parent="VBC/HPBar"]
+[node name="ArmorTexture" type="TextureRect" parent="HPBar"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -81,7 +53,7 @@ grow_vertical = 2
 texture = ExtResource("6_5nmke")
 stretch_mode = 5
 
-[node name="ShieldLabel" type="Label" parent="VBC/HPBar/ArmorTexture"]
+[node name="ShieldLabel" type="Label" parent="HPBar/ArmorTexture"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -96,25 +68,43 @@ text = "1540"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBC" type="HBoxContainer" parent="VBC"]
-layout_mode = 2
-size_flags_vertical = 3
+[node name="HBC" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -2.5
+offset_right = 0.5
+offset_bottom = 2.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 alignment = 1
 
-[node name="PABar" parent="VBC/HBC" instance=ExtResource("1_q1hml")]
+[node name="PABar" parent="HBC" instance=ExtResource("1_q1hml")]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 0
+size_flags_vertical = 8
+mouse_filter = 2
 auto_fill = true
 full_texture = ExtResource("2_wntiw")
 empty_texture = ExtResource("3_mhg00")
 cval = 6
 mval = 6
 
-[node name="PMBar" parent="VBC/HBC" instance=ExtResource("1_q1hml")]
+[node name="Space" type="Control" parent="HBC"]
+custom_minimum_size = Vector2(80, 100)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PMBar" parent="HBC" instance=ExtResource("1_q1hml")]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 0
+size_flags_vertical = 8
+mouse_filter = 2
 auto_fill = true
 speed = 15.0
 full_texture = ExtResource("4_k2v5o")
