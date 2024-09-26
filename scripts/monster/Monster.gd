@@ -1,8 +1,6 @@
 extends Entity
 class_name Monster
 
-const INIT_POSITION = Vector2(3.5, -150)
-
 var resource: MonsterResource
 var grade: GradeResource
 var drops: Array[DropResource]
@@ -26,10 +24,6 @@ func _process(_delta):
 		if attack(spell_to_cast):
 			pa_bar.cval -= spell_to_cast.pa_cost
 			spell_to_cast = null
-
-
-func _enter_tree():
-	position = INIT_POSITION
 
 
 static func instantiate(monster_res: MonsterResource, parent: Control) -> Monster:

@@ -5,6 +5,9 @@ const NO_CARAC_FOUND = "La caractéristique %s n'a pas été trouvée pour l'ent
 const CaracType = Caracteristique.Type
 const Element = Caracteristique.Element
 
+const INIT_POSITION = Vector2(0, -182)
+const PLATE_SEPARATION = Vector2(223, 314)
+
 var caracteristiques: Array[StatResource] = []
 var spells: Array[SpellResource] = []
 var buffs: Array[Buff] = []
@@ -215,6 +218,17 @@ func get_prospection() -> float:
 	return 100 + (chance / 100.0) + prospection
 #endregion
 
+
+#region Animation
+func animate_poussee(direction: Vector2, distance: int):
+	var tween = create_tween()
+	if distance > 0:
+		position = INIT_POSITION - PLATE_SEPARATION * direction * distance
+		tween.tween_property(self, "position", INIT_POSITION, 0.3).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+	else:
+		tween.tween_property(self, "position", INIT_POSITION + direction * 30, 0.1).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+		tween.tween_property(self, "position", INIT_POSITION, 0.1).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
+#endregion
 
 func take_damage(amount: int, element: Element):
 	if amount > 0:

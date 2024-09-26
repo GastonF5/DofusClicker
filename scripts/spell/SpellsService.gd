@@ -163,13 +163,17 @@ static func perform_bouclier(caster: Entity, target: Entity, effect: EffectResou
 static func perform_poussee(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
 	var plate: EntityContainer = target.get_parent()
 	#var distance = effect.get_amount(crit, grade)
-	var destination_plate = plate.call("get_%s_plate" % Direction.find_key(effect.direction).to_lower())
-	if plate != destination_plate:
+	var destination_plate: EntityContainer = plate.call("get_%s_plate" % Direction.find_key(effect.direction).to_lower())
+	if plate != destination_plate and destination_plate.is_empty():
 		plate.remove_child(target)
 		destination_plate.add_child(target)
+		target.animate_poussee(get_direction(effect.direction), 1)
 	else:
 		var amount = get_degats_poussee(caster, target, 1)
 		target.take_damage(amount, Element.NEUTRE)
+		target.animate_poussee(get_direction(effect.direction), 0)
+		if destination_plate.get_entity() != target:
+			destination_plate.get_entity().take_damage(amount / 2, Element.NEUTRE)
 
 
 static func perform_random(_caster: Entity, _target: Entity, effect: EffectResource, _crit: bool, _grade: int):
@@ -386,6 +390,20 @@ static func add_pv_to_entity(entity: Entity, amount: int):
 		PlayerManager.max_hp += amount
 	else:
 		entity.hp_bar.mval += amount
+
+
+static func get_direction(direction: Direction) -> Vector2:
+	match direction:
+		Direction.UP:
+			return Vector2.UP
+		Direction.DOWN:
+			return Vector2.DOWN
+		Direction.RIGHT:
+			return Vector2.RIGHT
+		Direction.LEFT:
+			return Vector2.LEFT
+		_:
+			return Vector2.ZERO
 
 
 static func on_fight_end():
