@@ -17,6 +17,14 @@ signal initialized
 
 var items = []
 var is_initialized := false
+var craftable: bool:
+	get: return !button.disabled
+	set(val):
+		button.disabled = !val
+		if val:
+			get_result_item().modulate = Color.WHITE
+		else:
+			get_result_item().modulate = Color.DIM_GRAY
 
 
 func init(item_recipe: RecipeResource):
@@ -24,11 +32,7 @@ func init(item_recipe: RecipeResource):
 	resource = item_recipe
 	instantiate_result()
 	instantiate_ingredients()
-	
-	var inventory = Globals.inventory
-	inventory.item_entered_tree.connect(check)
-	inventory.item_exiting_tree.connect(check)
-	check()
+	check(null)
 
 
 func instantiate_result():
@@ -44,6 +48,7 @@ func instantiate_result():
 func instantiate_ingredients():
 	for ingredient in resource.get_ingredients():
 		var recipe_item = Item.create(ingredient, false, true, _on_item_texture_initialized)
+		recipe_item.get_node("IngredientCount").visible = true
 		recipe_item.custom_minimum_size = Vector2(items_size, items_size)
 		recipe_item.get_node("Count").add_theme_font_size_override("FontSize", 16)
 		items.append(recipe_item)
@@ -57,30 +62,61 @@ func _on_item_texture_initialized():
 		initialized.emit()
 
 
-func check():
-	button.disabled = !check_recipe()
+func check(item_to_check: Item):
+	craftable = check_recipe(item_to_check)
+	get_result_item().count = calculate_result_count()
+
+
+func calculate_result_count():
+	var amounts = []
+	for ingredient in get_ingredients_items():
+		var count = ingredient.get_node("IngredientCount/CountLabel").text.split("/")
+		@warning_ignore("integer_division")
+		amounts.append(int(count[0]) / int(count[1]))
+	return amounts.min()
 
 
 ## Renvoie true si la recette est craftable, false sinon
-func check_recipe() -> bool:
-	var recipe_items = resource.get_ingredients().duplicate()
-	var inventory_items = Globals.inventory.get_items()
-	if resource.get_result().id == 8534 and inventory_items.size() == 3:
-		pass
-	if inventory_items.size() < recipe_items.size():
-		return false
-	for item_recipe in recipe_items:
-		if !item_match(item_recipe, inventory_items):
-			return false
-	return true
+func check_recipe(item_to_check: Item) -> bool:
+	var ingredients = get_ingredients_items()
+	var matching_ingredients = ingredients.filter(func(i): return Item.equals(i, item_to_check))
+	# Si aucun ingrédient ne correspond à l'item à vérifier, on ne fait rien
+	if item_to_check and matching_ingredients.is_empty():
+		return craftable
+	# Si un ingrédient match avec item_to_check, on ne met à jour que cet ingrédient
+	if !matching_ingredients.is_empty():
+		var ingredient = matching_ingredients[0]
+		var diff = item_to_check.count - ingredient.count
+		griser_ingredient(ingredient, diff)
+	# Sinon, on vérifie tous les ingrédients par rapports aux items dans l'inventaire
+	else:
+		for ingredient in ingredients:
+			var diff = diff_inventory_recipe_item(ingredient)
+			griser_ingredient(ingredient, diff)
+	return ingredients.all(func(i): return i.is_ingredient_ok())
 
 
-func item_match(recipe_item: ItemResource, inventory_items: Array):
-	for item in inventory_items:
-		if item.name == recipe_item.name and item.count >= recipe_item.count:
-			return true
-	return false
+func get_ingredients_items():
+	return items.filter(func(i): return i.resource.id != resource.get_result().id)
 
+
+func get_result_item():
+	return items[0]
+
+
+func griser_ingredient(item: Item, diff: int):
+	item.update_recipe_count(diff)
+	if diff < 0:
+		item.modulate = Color.DIM_GRAY
+	else:
+		item.modulate = Color.WHITE
+
+
+func diff_inventory_recipe_item(ingredient: Item) -> int:
+	for item in Globals.inventory.get_items():
+		if Item.equals(item, ingredient):
+			return item.count - ingredient.count
+	return -ingredient.count
 
 
 static func create(recipe: RecipeResource, parent, composite) -> Recipe:

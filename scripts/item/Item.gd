@@ -12,6 +12,9 @@ var low_texture: bool
 
 var count_label: Label
 
+var is_ingredient: bool:
+	get: return $IngredientCount.visible
+
 signal texture_initialized
 
 func _ready():
@@ -58,8 +61,9 @@ func init(item_res: ItemResource, _draggable, recipe_item):
 	mouse_filter = Control.MOUSE_FILTER_IGNORE if draggable else MOUSE_FILTER_PASS
 	
 	if recipe_item:
-		count_label.position -= count_label.size / 3
-		count_label.add_theme_font_size_override("font_size", 20)
+		if item_res.is_resource():
+			count_label.position -= count_label.size / 3
+			count_label.add_theme_font_size_override("font_size", 20)
 	else:
 		$Background.visible = false
 	
@@ -96,12 +100,26 @@ static func create(item_res: ItemResource, _draggable = true, recipe_item = fals
 
 
 static func equals(item1, item2) -> bool:
+	if !item1 or !item2:
+		return false
 	var item1_res = item1
 	var item2_res = item2
 	if is_instance_of(item1, Item):
 		item1_res = item1.resource
 	if is_instance_of(item2, Item):
 		item2_res = item2.resource
-	if item1_res.equip_res:
-		return false
-	return item1_res.name == item2_res.name
+	return item1_res.id == item2_res.id
+
+
+func update_recipe_count(amount: int):
+	toggle_recipe_ok(amount >= 0)
+	$IngredientCount/CountLabel.text = "%d/%d" % [amount + count, count]
+
+
+func toggle_recipe_ok(enough: bool):
+	$IngredientCount/OkTexture.visible = enough
+	$IngredientCount/CountLabel.visible = !enough
+
+
+func is_ingredient_ok():
+	return $IngredientCount/OkTexture.visible

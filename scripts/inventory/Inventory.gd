@@ -12,7 +12,9 @@ func _ready():
 
 func _input(event):
 	if slot_under_mouse and get_item(slot_under_mouse) and event.is_action_released("RMB"):
-		SupprimerButton.create(Globals.over_ui, slot_under_mouse.global_position, get_item(slot_under_mouse))
+		SupprimerButton.create(Globals.over_ui,\
+			slot_under_mouse.global_position, (slot_under_mouse),\
+			remove_items.bind([get_item(slot_under_mouse)]))
 
 
 func connect_slot_signals(slot):
@@ -30,12 +32,18 @@ func _on_mouse_exit_slot():
 
 
 func get_slot(item):
-	var items_in_inventory = slots.map(func(s):
-		if s.get_children().size() != 1:
-			return null
-		return s.get_child(0)).filter(func(i): return i and Item.equals(item, i))
+	if item is Item and item.get_parent() and item.get_parent().is_in_group("slot"):
+		return item.get_parent()
+	var items_in_inventory = slots.map(
+		func(s):
+			if s.get_children().size() != 1:
+				return null
+			return s.get_child(0))\
+		.filter(
+			func(i):
+				return Item.equals(item, i))
 	if items_in_inventory.size() > 1:
-		console.log_error("Plus d'un slot a été trouvé")
+		Globals.console.log_error("Plus d'un slot a été trouvé")
 		return null
 	return null if items_in_inventory.size() == 0 else items_in_inventory[0].get_parent()
 
@@ -46,20 +54,22 @@ func add_item(item: Item, _slot: Button = null):
 		item_in_slot = get_item(_slot)
 		if !item_in_slot:
 			_slot.add_child(item)
-			item_entered_tree.emit()
 			return
 		if Item.equals(item, item_in_slot):
-			item_in_slot.count += 1
+			item_in_slot.count += item.count
 		else:
 			item_in_slot.swap(item)
-			item_entered_tree.emit()
 	else:
 		var existing_item_slot = get_slot(item)
-		if existing_item_slot:
-			get_item(existing_item_slot).count += 1
+		if existing_item_slot and !item.is_equipment():
+			item_in_slot = get_item(existing_item_slot)
+			item_in_slot.count += item.count
 		else:
 			add_item(item, get_first_empty_slot())
-		item_entered_tree.emit()
+	if item_in_slot:
+		item_entered_tree.emit(item_in_slot)
+	else:
+		item_entered_tree.emit(item)
 
 
 func remove_items(items: Array):
@@ -68,10 +78,13 @@ func remove_items(items: Array):
 		if slot:
 			var item_in_inventory = slot.get_child(0)
 			if item_in_inventory.count <= item.count:
+				item_in_inventory.count = 0
+				item_exiting_tree.emit(item_in_inventory)
 				item_in_inventory.get_parent().remove_child(item_in_inventory)
 				item_in_inventory.queue_free()
 			else:
 				item_in_inventory.count -= item.count
+				item_exiting_tree.emit(item_in_inventory)
 
 
 func set_dragged_entering_drop_parent(slot):
@@ -97,7 +110,7 @@ func _on_item_exiting_slot(item):
 	if !Globals.quitting:
 		var items = get_items()
 		items.erase(item)
-		item_exiting_tree.emit()
+		item_exiting_tree.emit(item)
 
 
 func get_first_empty_slot():

@@ -138,9 +138,9 @@ func on_recipe_craft(recipe: RecipeResource):
 		Globals.console.log_equip(item)
 
 
-func check_recipes():
+func check_recipes(item_to_check: Item):
 	for recipe in recipes:
-		recipe.check()
+		recipe.check(item_to_check)
 	filter_recipes()
 
 
@@ -183,7 +183,7 @@ func filter_recipes():
 		# filtre niveau
 		is_filtered = is_filtered and is_filtered_by_level(nrecipe)
 		# filtre craftable
-		is_filtered = is_filtered and (!recipe_filters._craftable or nrecipe.check_recipe())
+		is_filtered = is_filtered and (!recipe_filters._craftable or nrecipe.craftable)
 		nrecipe.visible = is_filtered
 	if !recipe_filters.applied_filters.is_empty():
 		# filtres caractéristiques

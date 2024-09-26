@@ -1,8 +1,8 @@
 class_name SupprimerButton extends Button
 
 
-var _node_to_delete: Node
 var _mouse_on: bool
+var _callable: Callable
 
 
 func _input(event):
@@ -10,19 +10,16 @@ func _input(event):
 		queue_free()
 
 
-static func create(parent: Node, pos: Vector2, node_to_delete: Node):
+static func create(parent: Node, pos: Vector2, node_to_delete: Node, callable: Callable):
 	var button = preload("res://scenes/buttons/supprimer_button.tscn").instantiate()
 	parent.add_child(button)
 	button.global_position = pos
-	button._node_to_delete = node_to_delete
 	button.size = node_to_delete.size
-	node_to_delete.tree_exited.connect(button.queue_free)
+	button._callable = callable
 
 
 func _on_button_up():
-	if _node_to_delete:
-		_node_to_delete.get_parent().remove_child(_node_to_delete)
-		_node_to_delete.queue_free()
+	_callable.call()
 	queue_free()
 
 

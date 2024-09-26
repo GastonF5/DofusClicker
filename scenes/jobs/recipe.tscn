@@ -94,7 +94,7 @@ layout_mode = 2
 size_flags_horizontal = 8
 
 [node name="Button" parent="MarginContainer/HBC" instance=ExtResource("4_vrhie")]
-custom_minimum_size = Vector2(38, 38)
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_vertical = 4
 
