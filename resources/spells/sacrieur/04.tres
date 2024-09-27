@@ -29,6 +29,8 @@ method_name = &""
 effect_label = ""
 params = []
 nb_random_effects = 0
+direction = 0
+is_attirance = false
 amounts = Array[ExtResource("1_wimti")]([SubResource("Resource_dqi7x")])
 visible_in_description = true
 
@@ -56,6 +58,8 @@ method_name = &""
 effect_label = ""
 params = []
 nb_random_effects = 0
+direction = 0
+is_attirance = false
 amounts = Array[ExtResource("1_wimti")]([SubResource("Resource_2bpyk")])
 visible_in_description = true
 
@@ -73,4 +77,5 @@ pa_cost = 2
 per_crit = 0.0
 cooldown = 20.0
 priority = 0
+is_distance = false
 effects = Array[ExtResource("2_xybm7")]([SubResource("Resource_v24qu"), SubResource("Resource_0j4fo")])

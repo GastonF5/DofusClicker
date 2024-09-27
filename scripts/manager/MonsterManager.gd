@@ -120,7 +120,7 @@ func get_monsters_on_plates():
 
 
 func instantiate_monster(monster_res: MonsterResource = null) -> Monster:
-	var empty_plates = plates.filter(func(plate: EntityContainer): return plate.is_empty())
+	var empty_plates = plates.filter(func(plate: EntityContainer): return plate.is_empty() and plate.id == 1)
 	if empty_plates.size() == 0:
 		console.log_error("Impossible d'instantier le monstre, aucun emplacement n'est disponible.")
 		return null

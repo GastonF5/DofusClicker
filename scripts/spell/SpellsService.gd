@@ -6,6 +6,7 @@ const Element = Caracteristique.Element
 const EffectType = EffectResource.Type
 const TargetType = EffectResource.TargetType
 const Direction = EffectResource.Direction
+const Zone = EffectResource.Zone
 
 static var console: Console
 static var tnode: Node
@@ -14,10 +15,10 @@ static var tnode: Node
 static var count := 1
 static var max_count := 0
 static var rand_count := 0
+static var effects_log = []
 static func perform_spell(caster: Entity, target: Entity, resource: SpellResource, grade: int):
 	var crit_amount = resource.per_crit + caster.get_critique() / 100.0
 	var crit = randf_range(0, 1) <= crit_amount
-	console.log_spell_cast(caster, resource, crit)
 	for effect: EffectResource in resource.effects:
 		effect.texture = resource.texture
 		if count > max_count:
@@ -27,7 +28,11 @@ static func perform_spell(caster: Entity, target: Entity, resource: SpellResourc
 			if count == rand_count:
 				perform_effect(caster, target, effect, crit, grade)
 			count += 1
+	# console log
+	console.log_spell_cast(caster, resource, crit)
+	console.log_effects(effects_log)
 	console.output.add_separator()
+	effects_log.clear()
 	check_dying_entities([PlayerManager.player_entity] + MonsterManager.monsters)
 
 
@@ -42,33 +47,31 @@ static func perform_weapon(caster: Entity, target: Entity, resource: WeaponResou
 
 
 static func perform_effect(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
-	var method_name = "perform_%s" % EffectType.find_key(effect.type).to_lower()
-	var callable = Callable(SpellsService, method_name)
-	if effect.type == EffectResource.Type.SPECIAL:
-		callable.bindv([caster, target, effect, crit, grade]).call()
-	else:
-		for tar in get_targets(caster, target, effect.target_type):
-			callable.bindv([caster, tar, effect, crit, grade]).call()
+	if is_effective_by_zone(effect.effective_zone):
+		var method_name = "perform_%s" % EffectType.find_key(effect.type).to_lower()
+		var callable = Callable(SpellsService, method_name)
+		if effect.type == EffectResource.Type.SPECIAL:
+			callable.bindv([caster, target, effect, crit, grade]).call()
+		else:
+			for tar in get_targets(caster, target, effect.target_type):
+				callable.bindv([caster, tar, effect, crit, grade]).call()
 
 
 static func perform_damage(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
 	var element = effect.element
 	var amount: int
 	if element == Element.BEST:
-		var amounts := {}
-		for _elem in [Element.AIR, Element.EAU, Element.FEU, Element.TERRE]:
-			amounts[_elem] = get_degats(caster, effect.get_amount(crit, grade), _elem)
-		amount = amounts.values().max()
-		element = amounts.find_key(amount)
+		element = caster.get_best_element()
 	else:
 		if element == Element.RANDOM:
 			element = randi_range(0, 4) as Element
-		amount = get_degats(caster, effect.get_amount(crit, grade), element)
+	amount = get_degats(caster, effect.get_amount(crit, grade), element)
 	if crit:
 		amount += caster.get_do_crit()
 	amount = target.take_damage(amount, element)
 	if effect.lifesteal:
 		caster.take_damage(-round(amount / 2.0), element)
+	effects_log.append([EffectType.DAMAGE, target, amount, element, target.dying])
 
 
 static func perform_soin(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
@@ -100,7 +103,7 @@ static func perform_bonus(caster: Entity, target: Entity, effect: EffectResource
 		_:
 			carac = target.get_caracteristique_for_type(effect.caracteristic)
 			carac.amount += amount
-	console.log_bonus(target, amount, effect.get_caracteristic_label(), effect.time)
+	effects_log.append([EffectType.BONUS, target, amount, effect.get_caracteristic_label(), effect.time])
 	if effect.time != 0:
 		Buff.instantiate(effect, amount, target)
 
@@ -133,7 +136,7 @@ static func perform_retrait(caster: Entity, target: Entity, effect: EffectResour
 		if randf_range(0, 1) <= proba / 100.0:
 			bar.cval -= 1
 			retrait_amount += 1
-	console.log_retrait(target, retrait_amount, effect.get_caracteristic_label())
+	effects_log.append([EffectType.RETRAIT, target, retrait_amount, effect.get_caracteristic_label()])
 
 
 static func perform_special(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
@@ -151,7 +154,7 @@ static func perform_special(caster: Entity, target: Entity, effect: EffectResour
 static func perform_bouclier(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
 	var amount = SpellsService.get_amount_or_pourcentage(caster, effect, crit, grade)
 	target.hp_bar.shield_val += amount
-	console.log_shield(target, amount, effect.time)
+	effects_log.append([EffectType.BOUCLIER, target, amount, effect.time])
 	if effect.time != 0:
 		var timer = create_timer(effect.time, "BonusTimer")
 		await timer.timeout
@@ -161,19 +164,33 @@ static func perform_bouclier(caster: Entity, target: Entity, effect: EffectResou
 
 
 static func perform_poussee(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
+	var direction_callable_name = "get_%s_plate" % Direction.find_key(effect.direction).to_lower()
 	var plate: EntityContainer = target.get_parent()
-	#var distance = effect.get_amount(crit, grade)
-	var destination_plate: EntityContainer = plate.call("get_%s_plate" % Direction.find_key(effect.direction).to_lower())
-	if plate != destination_plate and destination_plate.is_empty():
+	var distance = effect.get_amount(crit, grade)
+	var destination_plate: EntityContainer = plate.call(direction_callable_name, distance)
+	var second_target = plate.get_first_entity(plate.get(direction_callable_name), distance)
+	var dist_between_plates: int
+	# si on trouve une entité sur le chemin, on calcule la distance entre cette entité et la cible
+	# sinon on calcule la distance entre la dernière case disponible et la cible
+	if second_target and second_target != target:
+		dist_between_plates = plate.distance_to(second_target.get_parent()) - 1
+	else:
+		dist_between_plates = plate.distance_to(destination_plate)
+	# dommages
+	if dist_between_plates < distance:
+		var amount = get_degats_poussee(caster, target, distance - dist_between_plates)
+		target.take_damage(amount, Element.POUSSEE)
+		effects_log.append([EffectType.DAMAGE, target, amount, Element.POUSSEE, target.dying])
+		if second_target and second_target != target:
+			@warning_ignore("integer_division")
+			second_target.take_damage(amount / 2, Element.POUSSEE)
+			effects_log.append([EffectType.DAMAGE, second_target, amount / 2, Element.POUSSEE, second_target.dying])
+	# animation
+	if dist_between_plates > 0:
+		destination_plate = plate.call(direction_callable_name, dist_between_plates)
 		plate.remove_child(target)
 		destination_plate.add_child(target)
-		target.animate_poussee(get_direction(effect.direction), 1)
-	else:
-		var amount = get_degats_poussee(caster, target, 1)
-		target.take_damage(amount, Element.NEUTRE)
-		target.animate_poussee(get_direction(effect.direction), 0)
-		if destination_plate.get_entity() != target:
-			destination_plate.get_entity().take_damage(amount / 2, Element.NEUTRE)
+	target.animate_poussee(get_direction(effect.direction), dist_between_plates)
 
 
 static func perform_random(_caster: Entity, _target: Entity, effect: EffectResource, _crit: bool, _grade: int):
@@ -404,6 +421,17 @@ static func get_direction(direction: Direction) -> Vector2:
 			return Vector2.LEFT
 		_:
 			return Vector2.ZERO
+
+
+static func is_effective_by_zone(zone: Zone):
+	var cur_plate = PlayerManager.selected_plate
+	match zone:
+		Zone.ALL:
+			return true
+		Zone.MELEE:
+			return MonsterManager.get_melee_plates().has(cur_plate)
+		Zone.DISTANCE:
+			return MonsterManager.get_distance_plates().has(cur_plate)
 
 
 static func on_fight_end():

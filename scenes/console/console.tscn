@@ -19,6 +19,11 @@ input = NodePath("Input")
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/line_separation = 2
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+theme_override_font_sizes/italics_font_size = 20
+theme_override_font_sizes/bold_italics_font_size = 20
+theme_override_font_sizes/mono_font_size = 20
 scroll_following = true
 
 [node name="Input" type="LineEdit" parent="."]

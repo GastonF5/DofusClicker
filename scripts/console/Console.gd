@@ -8,6 +8,8 @@ const Element = Caracteristique.Element
 const CaracType = Caracteristique.Type
 const LogType = ConsoleOutput.LogType
 
+const EffectType = EffectResource.Type
+
 const INFO = LogType.INFO
 const COMMAND = LogType.COMMAND
 
@@ -220,6 +222,40 @@ func log_spell_cast(caster: Entity, spell_res: SpellResource, crit: bool):
 	output.new_line()
 
 
+func log_effects(effects_to_log: Array):
+	var targets = {}
+	for effect in effects_to_log:
+		var target: Entity = effect[1]
+		if !targets.has(target):
+			targets[target] = [effect]
+		else:
+			targets[target].append(effect)
+	for target_effects in targets.values():
+		var target = targets.find_key(target_effects)
+		for type in EffectType.values():
+			var effects: Array = target_effects.filter(func(e): return e[0] == type)
+			if !effects.is_empty():
+				match type:
+					EffectType.DAMAGE:
+						# [type, target, amount, element, dead]
+						var amounts = effects.map(func(e): return e[2])
+						var elements = effects.map(func(e): return e[3])
+						var dead = effects.reduce(func(accum, e): return accum or e[4], false)
+						log_damage(target, amounts, elements, dead)
+					EffectType.BONUS:
+						# [type, target, amount, characteristic, time]
+						for bonus in effects:
+							log_bonus(target, bonus[2], bonus[3], bonus[4])
+					EffectType.RETRAIT:
+						# [type, target, amount, characteristic]
+						for retrait in effects:
+							log_retrait(target, retrait[2], retrait[3])
+					EffectType.BOUCLIER:
+						# [type, target, amount, time]
+						for shield in effects:
+							log_shield(target, shield[2], shield[3])
+
+
 func log_weapon_cast(caster: Entity, weapon_name: String, crit: bool):
 	_log_line(get_entity_name(caster), INFO, true)
 	_log_line(" attaquez avec ", INFO)
@@ -229,11 +265,13 @@ func log_weapon_cast(caster: Entity, weapon_name: String, crit: bool):
 	output.new_line()
 
 
-func log_damage(target: Entity, amount: int, element: Element, dead: bool):
-	if amount != 0:
+func log_damage(target: Entity, amounts: Array, elements: Array, dead: bool):
+	if amounts.size() != elements.size():
+		log_error("in log_damage : amounts size != elements size")
+	if !amounts.is_empty():
 		_log_line(get_entity_name(target), INFO, true)
 		_log_line(" : ", INFO)
-		output.append_damage(amount, element)
+		output.append_damages(amounts, elements)
 		_log_line(" PV%s" % (" (mort)" if dead else ""), INFO)
 		output.new_line()
 

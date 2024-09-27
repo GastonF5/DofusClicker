@@ -19,6 +19,7 @@ type = 1
 time = 20.0
 target_type = 0
 show_time = true
+effective_zone = 0
 has_grades = false
 element = 0
 lifesteal = false
@@ -29,7 +30,8 @@ method_name = &""
 effect_label = ""
 params = []
 nb_random_effects = 0
-direction = null
+direction = 0
+is_attirance = false
 amounts = Array[ExtResource("1_gausw")]([SubResource("Resource_uesis")])
 visible_in_description = true
 

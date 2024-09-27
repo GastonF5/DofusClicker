@@ -29,6 +29,8 @@ method_name = &"dommages_pourcentage_pv_caster"
 effect_label = "{min}% des PV de l'attaquant (dommages Neutre)"
 params = []
 nb_random_effects = 0
+direction = 0
+is_attirance = false
 amounts = Array[ExtResource("1_rx5i3")]([SubResource("Resource_52c5u")])
 visible_in_description = true
 
@@ -56,6 +58,8 @@ method_name = &""
 effect_label = ""
 params = []
 nb_random_effects = 0
+direction = 0
+is_attirance = false
 amounts = Array[ExtResource("1_rx5i3")]([SubResource("Resource_g63s1")])
 visible_in_description = true
 
@@ -71,4 +75,5 @@ pa_cost = 3
 per_crit = 0.0
 cooldown = 20.0
 priority = 0
+is_distance = false
 effects = Array[ExtResource("2_phpy5")]([SubResource("Resource_hg12m"), SubResource("Resource_rbq45")])

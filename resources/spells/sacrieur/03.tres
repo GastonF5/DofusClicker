@@ -29,6 +29,8 @@ method_name = &""
 effect_label = ""
 params = []
 nb_random_effects = 0
+direction = 0
+is_attirance = false
 amounts = Array[ExtResource("1_fmudq")]([SubResource("Resource_oi1rt")])
 visible_in_description = true
 
@@ -44,4 +46,5 @@ pa_cost = 2
 per_crit = 0.0
 cooldown = 15.0
 priority = 0
+is_distance = false
 effects = Array[ExtResource("2_tf8hh")]([SubResource("Resource_uh55n")])

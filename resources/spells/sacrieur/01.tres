@@ -29,6 +29,8 @@ method_name = &""
 effect_label = ""
 params = []
 nb_random_effects = 0
+direction = 0
+is_attirance = false
 amounts = Array[ExtResource("1_kupqs")]([SubResource("Resource_a0id0")])
 visible_in_description = true
 
@@ -56,6 +58,8 @@ method_name = &""
 effect_label = ""
 params = []
 nb_random_effects = 0
+direction = 0
+is_attirance = false
 amounts = Array[ExtResource("1_kupqs")]([SubResource("Resource_hft5w")])
 visible_in_description = true
 
@@ -83,6 +87,8 @@ method_name = &""
 effect_label = ""
 params = []
 nb_random_effects = 0
+direction = 0
+is_attirance = false
 amounts = Array[ExtResource("1_kupqs")]([SubResource("Resource_oyehk")])
 visible_in_description = true
 
@@ -106,6 +112,8 @@ Coagulation :
 {param2}"
 params = [SubResource("Resource_a4xav"), SubResource("Resource_bc0ra"), SubResource("Resource_jsp5w")]
 nb_random_effects = 0
+direction = 0
+is_attirance = false
 amounts = Array[ExtResource("1_kupqs")]([])
 visible_in_description = true
 
@@ -123,4 +131,5 @@ pa_cost = 2
 per_crit = 0.0
 cooldown = 3.0
 priority = 0
+is_distance = false
 effects = Array[ExtResource("2_nch7q")]([SubResource("Resource_s3fbu")])

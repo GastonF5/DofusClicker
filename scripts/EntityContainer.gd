@@ -44,28 +44,54 @@ func get_line(other: bool = false):
 			return MonsterManager.get_distance_plates()
 		return MonsterManager.get_melee_plates()
 
+
+func distance_to(plate: EntityContainer):
+	var distance = abs(id - plate.id)
+	if get_line() != plate.get_line():
+		distance += 1
+	return distance
+
+
+func get_first_entity(direction_method: Callable, distance: int = 1):
+	var next_plate: EntityContainer = direction_method.call()
+	if next_plate.is_empty() and distance > 1 and next_plate != self:
+		return next_plate.get_first_entity(direction_method, distance - 1)
+	return next_plate.get_entity()
+	
+
+
 #region directions
-func get_right_plate():
+func get_right_plate(distance: int = 1):
 	var line = get_line()
 	var pi = line.find(self)
+	var next_plate: EntityContainer
 	if pi == 3:
-		return self
-	return line[pi + 1]
+		next_plate = self
+	else:
+		next_plate = line[pi + 1]
+	if distance > 1:
+		return next_plate.get_right_plate(distance - 1)
+	return next_plate
 
-func get_left_plate():
+func get_left_plate(distance: int = 1):
 	var line = get_line()
 	var pi = line.find(self)
+	var next_plate: EntityContainer
 	if pi == 0:
-		return self
-	return line[pi - 1]
+		next_plate = self
+	else:
+		next_plate = line[pi - 1]
+	if distance > 1:
+		return next_plate.get_left_plate(distance - 1)
+	return next_plate
 
-func get_up_plate():
+func get_up_plate(_distance: int = 1):
 	if is_distance():
 		return self
 	var pi = get_line().find(self)
 	return get_line(true)[pi]
 
-func get_down_plate():
+func get_down_plate(_distance: int = 1):
 	if is_melee():
 		return self
 	var pi = get_line().find(self)

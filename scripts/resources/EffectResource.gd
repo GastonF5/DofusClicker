@@ -28,12 +28,14 @@ enum TargetType {
 }
 
 enum Direction { UP, DOWN, LEFT, RIGHT }
+enum Zone { ALL, MELEE, DISTANCE }
 
 
 @export var type: Type
 @export var time: float
 @export var target_type: TargetType
 @export var show_time: bool
+@export var effective_zone: Zone
 @export var has_grades: bool
 
 @export_group("Damage & Soin")
@@ -119,27 +121,32 @@ func get_amount_label(grade: int) -> String:
 
 
 func get_effect_label(grade: int) -> String:
-	var result: String
+	var result: String = ""
 	if effect_label:
 		return compute_special_label(grade)
 	match type:
 		Type.DAMAGE:
 			if lifesteal:
-				result = "%s vol %s"
+				result += "%s vol %s"
 			else:
-				result = "%s dommages %s"
+				result += "%s dommages %s"
 			result = result % [get_amount_label(grade), get_element_label()]
 		Type.SOIN:
-			result = "%s soins %s" % [get_amount_label(grade), get_element_label()]
+			result += "%s soins %s" % [get_amount_label(grade), get_element_label()]
 		Type.BONUS:
-			result = get_amount_label(grade) + ' ' + get_caracteristic_label()
+			result += get_amount_label(grade) + ' ' + get_caracteristic_label()
 		Type.RETRAIT:
-			result = "-%s %s" % [get_amount_label(grade), get_caracteristic_label()]
+			result += "-%s %s" % [get_amount_label(grade), get_caracteristic_label()]
 		Type.BOUCLIER:
 			if level_pourcentage:
-				result = "%s du niveau en bouclier" % get_amount_label(grade)
+				result += "%s du niveau en bouclier" % get_amount_label(grade)
 			else:
-				result = "%s en bouclier" % get_amount_label(grade)
+				result += "%s en bouclier" % get_amount_label(grade)
+		Type.POUSSEE:
+			var nb_cases = get_amount_label(grade)
+			result += "Repousse de %s case" % nb_cases
+			if int(nb_cases) > 1:
+				result += "s"
 		_:
 			return "ERREUR"
 	if show_time:
@@ -147,6 +154,11 @@ func get_effect_label(grade: int) -> String:
 			result += " (infini)"
 		else:
 			result += " (%d secondes)" % time
+	match effective_zone:
+		Zone.MELEE:
+			result += " (Mélée)"
+		Zone.DISTANCE:
+			result += " (Distance)"
 	return result
 
 
