@@ -4,6 +4,7 @@ const SCENE_PATH := "res://scenes/console/console_log.tscn"
 const SEPARATOR_PATH = "res://assets/common/separator/window_separator_green_horizontal.png"
 const LOG_GROUP := "console_output"
 const SPELL_SIZE := 45
+const SEPARATOR_SIZE := 477
 
 const Element = Caracteristique.Element
 
@@ -53,7 +54,7 @@ func new_line():
 
 
 func add_separator():
-	add_image(preload(SEPARATOR_PATH), get_parent().get_parent().size.x)
+	add_image(preload(SEPARATOR_PATH), SEPARATOR_SIZE)
 
 
 func add_spell_image(spell_image: Texture2D):

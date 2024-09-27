@@ -42,6 +42,7 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="BuffsContainer" type="HBoxContainer" parent="VBC/HeaderContainer"]
+z_index = 1
 layout_mode = 2
 offset_top = -32.0
 offset_right = 192.0

@@ -224,7 +224,7 @@ func animate_poussee(direction: Vector2, distance: int):
 	var tween = create_tween()
 	var init_position = position
 	if distance > 0:
-		position = init_position - PLATE_SEPARATION * direction * distance
+		position = init_position - Vector2(0, -32) - PLATE_SEPARATION * direction * distance
 		tween.tween_property(self, "position", init_position - Vector2(0, -32), 0.3).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
 	else:
 		tween.tween_property(self, "position", init_position + direction * 30, 0.1).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)

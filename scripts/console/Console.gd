@@ -225,11 +225,12 @@ func log_spell_cast(caster: Entity, spell_res: SpellResource, crit: bool):
 func log_effects(effects_to_log: Array):
 	var targets = {}
 	for effect in effects_to_log:
-		var target: Entity = effect[1]
-		if !targets.has(target):
-			targets[target] = [effect]
-		else:
-			targets[target].append(effect)
+		if effect[1] != null:
+			var target: Entity = effect[1]
+			if !targets.has(target):
+				targets[target] = [effect]
+			else:
+				targets[target].append(effect)
 	for target_effects in targets.values():
 		var target = targets.find_key(target_effects)
 		for type in EffectType.values():

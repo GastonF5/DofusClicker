@@ -163,6 +163,7 @@ static func perform_bouclier(caster: Entity, target: Entity, effect: EffectResou
 			target.hp_bar.shield_val -= amount
 
 
+@warning_ignore("integer_division")
 static func perform_poussee(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
 	var direction_callable_name = "get_%s_plate" % Direction.find_key(effect.direction).to_lower()
 	var plate: EntityContainer = target.get_parent()
@@ -177,12 +178,11 @@ static func perform_poussee(caster: Entity, target: Entity, effect: EffectResour
 	else:
 		dist_between_plates = plate.distance_to(destination_plate)
 	# dommages
-	if dist_between_plates < distance:
+	if !effect.is_attirance and dist_between_plates < distance:
 		var amount = get_degats_poussee(caster, target, distance - dist_between_plates)
 		target.take_damage(amount, Element.POUSSEE)
 		effects_log.append([EffectType.DAMAGE, target, amount, Element.POUSSEE, target.dying])
 		if second_target and second_target != target:
-			@warning_ignore("integer_division")
 			second_target.take_damage(amount / 2, Element.POUSSEE)
 			effects_log.append([EffectType.DAMAGE, second_target, amount / 2, Element.POUSSEE, second_target.dying])
 	# animation

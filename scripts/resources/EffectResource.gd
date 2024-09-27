@@ -144,7 +144,11 @@ func get_effect_label(grade: int) -> String:
 				result += "%s en bouclier" % get_amount_label(grade)
 		Type.POUSSEE:
 			var nb_cases = get_amount_label(grade)
-			result += "Repousse de %s case" % nb_cases
+			if is_attirance:
+				result += "Attire"
+			else:
+				result += "Repousse"
+			result += " de %s case" % nb_cases
 			if int(nb_cases) > 1:
 				result += "s"
 		_:
