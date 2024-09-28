@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=3 format=3 uid="uid://bei8k1246lgs0"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_ce3sg"]
+[ext_resource type="Texture2D" uid="uid://b1p8wqm0slx18" path="res://assets/spells/cra/sort_13292.png" id="2_3fff0"]
+
+[resource]
+script = ExtResource("1_ce3sg")
+id = 13056
+name = "Flèche d'Immobilisation"
+available = true
+description = ""
+texture = ExtResource("2_3fff0")
+img_url = "https://api.beta.dofusdb.fr/img/spells/sort_13292.png"
+level = 0
+pa_cost = 0
+per_crit = 0.0
+cooldown = 0.0
+priority = 0
+effects = Array[Resource("res://scripts/resources/EffectResource.gd")]([])

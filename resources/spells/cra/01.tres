@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=3 format=3 uid="uid://bbt8jjokmx6k"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_xrc4u"]
+[ext_resource type="Texture2D" uid="uid://bb1yvmjx37230" path="res://assets/spells/cra/sort_11877.png" id="2_0kbku"]
+
+[resource]
+script = ExtResource("1_xrc4u")
+id = 13067
+name = "Flèche de Dispersion"
+available = true
+description = ""
+texture = ExtResource("2_0kbku")
+img_url = "https://api.beta.dofusdb.fr/img/spells/sort_11877.png"
+level = 0
+pa_cost = 0
+per_crit = 0.0
+cooldown = 0.0
+priority = 0
+effects = Array[Resource("res://scripts/resources/EffectResource.gd")]([])

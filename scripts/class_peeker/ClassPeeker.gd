@@ -35,14 +35,14 @@ var passifs = {
 var roles_par_classe = {
 	1: [], 2: [], 3: [],
 	4: [], 5: [], 6: [6, 5, 4],
-	7: [], 8: [5, 8, 3], 9: [],
+	7: [], 8: [5, 8, 3], 9: [5, 8, 1],
 	10: [], 11: [2, 5, 6], 12: [],
 	13: [], 14: [], 15: [],
 	16: [], 17: [], 18: [],
 	19: [],
 }
 
-var available := [8, 11]
+var available := [8, 9, 11]
 const button_size := 150
 
 @export var bselect: Button

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=3 format=3 uid="uid://3y5fs1d802wj"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_tkkp1"]
+[ext_resource type="Texture2D" uid="uid://dl0rstae6yyo8" path="res://assets/spells/cra/sort_11904.png" id="2_ek6sj"]
+
+[resource]
+script = ExtResource("1_tkkp1")
+id = 13072
+name = "Tir Répulsif"
+available = true
+description = ""
+texture = ExtResource("2_ek6sj")
+img_url = "https://api.beta.dofusdb.fr/img/spells/sort_11904.png"
+level = 0
+pa_cost = 0
+per_crit = 0.0
+cooldown = 0.0
+priority = 0
+effects = Array[Resource("res://scripts/resources/EffectResource.gd")]([])

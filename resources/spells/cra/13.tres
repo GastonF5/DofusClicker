@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=3 format=3 uid="uid://cdhbmg52w70it"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_uj5kf"]
+[ext_resource type="Texture2D" uid="uid://clwtmcsqfqsv0" path="res://assets/spells/cra/sort_11882.png" id="2_mw2sv"]
+
+[resource]
+script = ExtResource("1_uj5kf")
+id = 13053
+name = "Flèche d'Expiation"
+available = true
+description = ""
+texture = ExtResource("2_mw2sv")
+img_url = "https://api.beta.dofusdb.fr/img/spells/sort_11882.png"
+level = 0
+pa_cost = 0
+per_crit = 0.0
+cooldown = 0.0
+priority = 0
+effects = Array[Resource("res://scripts/resources/EffectResource.gd")]([])

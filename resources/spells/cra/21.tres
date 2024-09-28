@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=3 format=3 uid="uid://dlny4yw1ilvwf"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_w4gc6"]
+[ext_resource type="Texture2D" uid="uid://cmykq0p6xsdse" path="res://assets/spells/cra/sort_11876.png" id="2_arcn3"]
+
+[resource]
+script = ExtResource("1_w4gc6")
+id = 13055
+name = "Tir de Recul"
+available = true
+description = ""
+texture = ExtResource("2_arcn3")
+img_url = "https://api.beta.dofusdb.fr/img/spells/sort_11876.png"
+level = 0
+pa_cost = 0
+per_crit = 0.0
+cooldown = 0.0
+priority = 0
+effects = Array[Resource("res://scripts/resources/EffectResource.gd")]([])

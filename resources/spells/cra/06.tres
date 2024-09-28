@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=3 format=3 uid="uid://dn5i8o7beglle"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_62r4l"]
+[ext_resource type="Texture2D" uid="uid://cgp4cth4m445f" path="res://assets/spells/cra/sort_11895.png" id="2_4owpb"]
+
+[resource]
+script = ExtResource("1_62r4l")
+id = 13050
+name = "Flèches Érosives"
+available = true
+description = ""
+texture = ExtResource("2_4owpb")
+img_url = "https://api.beta.dofusdb.fr/img/spells/sort_11895.png"
+level = 0
+pa_cost = 0
+per_crit = 0.0
+cooldown = 0.0
+priority = 0
+effects = Array[Resource("res://scripts/resources/EffectResource.gd")]([])

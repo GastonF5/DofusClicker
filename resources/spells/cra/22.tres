@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=3 format=3 uid="uid://wokhsib50oul"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_1r7si"]
+[ext_resource type="Texture2D" uid="uid://bdbg0sgb2soi" path="res://assets/spells/cra/sort_11888.png" id="2_ae2r1"]
+
+[resource]
+script = ExtResource("1_1r7si")
+id = 13059
+name = "Pluie de Flèches"
+available = true
+description = ""
+texture = ExtResource("2_ae2r1")
+img_url = "https://api.beta.dofusdb.fr/img/spells/sort_11888.png"
+level = 0
+pa_cost = 0
+per_crit = 0.0
+cooldown = 0.0
+priority = 0
+effects = Array[Resource("res://scripts/resources/EffectResource.gd")]([])
