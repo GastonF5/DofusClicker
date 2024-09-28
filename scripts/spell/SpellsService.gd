@@ -201,13 +201,13 @@ static func perform_random(_caster: Entity, _target: Entity, effect: EffectResou
 	max_count = effect.nb_random_effects
 
 #region Spécial
-static func dommages_pourcentage_pv_caster(caster: Entity, target: Entity, effect: EffectResource, _crit: bool, grade: int):
+static func dommages_pourcentage_pv_caster(caster: Entity, plate: EntityContainer, effect: EffectResource, _crit: bool, grade: int):
 	var amount = caster.get_vitalite() * (effect.amounts[grade]._min / 100.0)
-	for targ in get_targets(caster, target, effect.target_type):
+	for targ in get_targets(caster, plate, effect.target_type):
 		targ.take_damage(amount, effect.element)
 
 
-static func sacrifice_pourcentage_pv(caster: Entity, _target: Entity, effect: EffectResource, _crit: bool, grade: int):
+static func sacrifice_pourcentage_pv(caster: Entity, _plate: EntityContainer, effect: EffectResource, _crit: bool, grade: int):
 	var amount = caster.get_vitalite() * (effect.amounts[grade]._min / 100.0)
 	if caster.is_player:
 		PlayerManager.max_hp -= int(amount)
