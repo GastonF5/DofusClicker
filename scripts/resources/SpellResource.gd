@@ -4,6 +4,7 @@ extends Resource
 
 @export var id: int
 @export var name: String
+@export var available := true
 @export_multiline var description: String
 
 @export_category("Texture")
@@ -18,7 +19,6 @@ extends Resource
 @export var priority: int
 
 @export_category("Effects")
-@export var is_distance: bool
 @export var effects: Array[EffectResource]
 
 

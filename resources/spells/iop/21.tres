@@ -18,15 +18,19 @@ type = 3
 time = 0.0
 target_type = 1
 show_time = false
+effective_zone = 0
 has_grades = false
 element = 2
 lifesteal = false
+level_pourcentage = false
 caracteristic = 0
 pourcentage = false
 method_name = &"tempete_de_puissance"
 effect_label = "{min} à {max} ({min_crit} à {max_crit}) dommages {elem}"
 params = []
 nb_random_effects = 0
+direction = 0
+is_attirance = false
 amounts = Array[ExtResource("1_whck0")]([SubResource("Resource_ixqk6")])
 visible_in_description = true
 
@@ -34,6 +38,7 @@ visible_in_description = true
 script = ExtResource("3_if8ap")
 id = 13115
 name = "Tempête de Puissance"
+available = true
 description = "Occasionne des dommages Feu aux ennemis.
 
 Occasionne des dommages Feu supplémentaires sur la cible initiale si le sort est lancé sur une autre cible."

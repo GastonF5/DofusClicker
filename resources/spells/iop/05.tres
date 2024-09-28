@@ -69,6 +69,7 @@ visible_in_description = true
 script = ExtResource("1_t0lin")
 id = 13142
 name = "Vertu"
+available = true
 description = "Applique un bouclier sur le lanceur.
 Retire de la Puissance au lanceur si la case ciblée contient un ennemi."
 texture = ExtResource("2_sbji4")
@@ -78,5 +79,4 @@ pa_cost = 2
 per_crit = 0.25
 cooldown = 30.0
 priority = 0
-is_distance = false
 effects = Array[ExtResource("2_t36qr")]([SubResource("Resource_esh0f"), SubResource("Resource_vdxvq")])

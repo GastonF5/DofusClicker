@@ -19,8 +19,11 @@ type = 3
 time = 0.0
 target_type = 1
 show_time = false
+effective_zone = 0
+has_grades = false
 element = 1
 lifesteal = false
+level_pourcentage = false
 caracteristic = 0
 pourcentage = false
 method_name = &"fureur"
@@ -28,6 +31,8 @@ effect_label = "{min} à {max} ({min_crit} à {max_crit}) dommages {elem}
 Augmente les dégâts de base du sort Pugilat de 20"
 params = []
 nb_random_effects = 0
+direction = 0
+is_attirance = false
 amounts = Array[ExtResource("1_itil2")]([SubResource("Resource_ni8d2")])
 visible_in_description = true
 
@@ -35,6 +40,7 @@ visible_in_description = true
 script = ExtResource("1_x7twb")
 id = 13156
 name = "Fureur"
+available = true
 description = "Occasionne des dommages Terre.
 Les dommages du sort sont augmentés après chaque lancer. "
 texture = ExtResource("3_2f7d2")

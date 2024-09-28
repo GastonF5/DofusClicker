@@ -65,7 +65,8 @@ func init_spells(spell_ids: Array):
 	for id in spell_ids:
 		if dir.file_exists("%d.tres" % id) or dir.file_exists("%d.tres.remap" % id):
 			var spell = FileLoader.load_file("res://resources/spells/monster/%d.tres" % id)
-			spells.append(spell)
+			if spell.available:
+				spells.append(spell)
 
 
 func get_caracteristique_for_type(type: CaracType):

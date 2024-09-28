@@ -1,6 +1,8 @@
 extends ClickableControl
 class_name EntityContainer
 
+const Direction = EffectResource.Direction
+
 const DISTANCE := "Distance"
 const MELEE := "Melee"
 
@@ -50,6 +52,21 @@ func distance_to(plate: EntityContainer):
 	if get_line() != plate.get_line():
 		distance += 1
 	return distance
+
+
+func direction_to(plate: EntityContainer) -> Direction:
+	# Même case, pas de direction
+	if plate == self:
+		return Direction.NONE
+	var distance = id - plate.id
+	# Même colonne
+	if distance == 0:
+		return Direction.UP if is_melee() else Direction.DOWN
+	# Si les cases ne sont pas sur la même ligne et la même colonne, pas de direction
+	if get_line() != plate.get_line():
+		return Direction.NONE
+	# Même ligne
+	return Direction.RIGHT if distance < 0 else Direction.LEFT
 
 
 func get_first_entity(direction_method: Callable, distance: int = 1):
@@ -141,11 +158,11 @@ func get_plate_index():
 
 
 func get_neighbor_plates():
-	var index = get_plate_index()
-	var plates = get_parent().get_children()
-	var neighbor_plates = []
-	if index - 1 >= 0:
-		neighbor_plates.append(plates[index - 1])
-	if index + 1 <= plates.size() - 1:
-		neighbor_plates.append(plates[index + 1])
-	return neighbor_plates
+	var left = get_left_plate()
+	var right = get_right_plate()
+	var result = []
+	if left != self:
+		result.append(left)
+	if right != self:
+		result.append(right)
+	return result

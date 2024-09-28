@@ -82,7 +82,7 @@ func init_bars():
 func attack(spell: SpellResource) -> bool:
 	if !spell:
 		return false
-	SpellsService.perform_spell(self, PlayerManager.player_entity, spell, grade.grade)
+	SpellsService.perform_spell(self, null, spell, grade.grade)
 	if spell.cooldown > 0:
 		var timer: Timer = SpellsService.create_timer(spell.cooldown, spell.name)
 		timers[spell.name] = timer

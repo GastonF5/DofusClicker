@@ -59,7 +59,7 @@ func do_action():
 
 
 func cast():
-	SpellsService.perform_spell(PlayerManager.player_entity, PlayerManager.selected_plate.get_entity(), resource, 0)
+	SpellsService.perform_spell(PlayerManager.player_entity, PlayerManager.selected_plate, resource, 0)
 
 
 static func instantiate(spell_res: SpellResource, parent: Control, clickable = true) -> Spell:

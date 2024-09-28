@@ -99,6 +99,7 @@ visible_in_description = true
 script = ExtResource("1_y1ikn")
 id = 13108
 name = "Intimidation"
+available = true
 description = "Occasionne des dommages dans le meilleur élément d'attaque du lanceur en mélée.
 Repousse la cible et réduit ses dommages."
 texture = ExtResource("4_2485n")
@@ -108,5 +109,4 @@ pa_cost = 2
 per_crit = 0.05
 cooldown = 0.0
 priority = 0
-is_distance = false
 effects = Array[ExtResource("2_ubphw")]([SubResource("Resource_n3ndv"), SubResource("Resource_6kgdp"), SubResource("Resource_2jvwn")])

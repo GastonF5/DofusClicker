@@ -19,15 +19,20 @@ type = 3
 time = 0.0
 target_type = 2
 show_time = false
+effective_zone = 1
+has_grades = false
 element = 1
 lifesteal = false
+level_pourcentage = false
 caracteristic = 0
 pourcentage = false
 method_name = &"pugilat"
 effect_label = "{min} à {max} ({min_crit} à {max_crit}) dommages {elem}
-Augmente les dégâts de base du sort Pugilat de 18"
-params = []
+Augmente les dégâts de base du sort Pugilat de {param0}"
+params = [8]
 nb_random_effects = 0
+direction = 0
+is_attirance = false
 amounts = Array[ExtResource("1_c6v8s")]([SubResource("Resource_11asr")])
 visible_in_description = true
 
@@ -35,6 +40,7 @@ visible_in_description = true
 script = ExtResource("3_8kxvq")
 id = 13146
 name = "Pugilat"
+available = true
 description = "Occasionne des dommages Terre en zone.
 Les dommages du sort sont augmentés après chaque lancer."
 texture = ExtResource("4_y8a2a")
@@ -42,6 +48,6 @@ img_url = "https://api.dofusdb.fr/img/spells/sort_11781.png"
 level = 10
 pa_cost = 2
 per_crit = 0.05
-cooldown = 8.0
+cooldown = 4.0
 priority = 0
 effects = Array[ExtResource("2_twark")]([SubResource("Resource_ybl2p")])

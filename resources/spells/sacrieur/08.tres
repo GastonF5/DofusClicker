@@ -1,0 +1,51 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://82vgjwhgtldg"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_5gca3"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_8b3gl"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_qosn7"]
+[ext_resource type="Texture2D" uid="uid://dw18obeuifpdr" path="res://assets/spells/sacrieur/sort_11929.png" id="3_wjemx"]
+
+[sub_resource type="Resource" id="Resource_h7y8c"]
+script = ExtResource("1_qosn7")
+_min = 1
+_max = 1
+_min_crit = 1
+_max_crit = 1
+
+[sub_resource type="Resource" id="Resource_mvufy"]
+resource_name = "Attirance"
+script = ExtResource("1_8b3gl")
+type = 9
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 1
+is_attirance = true
+amounts = Array[ExtResource("1_qosn7")]([SubResource("Resource_h7y8c")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_5gca3")
+id = 12735
+name = "Attirance"
+available = true
+description = "Attire la cible."
+texture = ExtResource("3_wjemx")
+img_url = "https://api.beta.dofusdb.fr/img/spells/sort_11929.png"
+level = 1
+pa_cost = 1
+per_crit = 0.0
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("1_8b3gl")]([SubResource("Resource_mvufy")])

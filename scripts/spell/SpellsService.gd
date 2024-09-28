@@ -16,17 +16,17 @@ static var count := 1
 static var max_count := 0
 static var rand_count := 0
 static var effects_log = []
-static func perform_spell(caster: Entity, target: Entity, resource: SpellResource, grade: int):
+static func perform_spell(caster: Entity, plate: EntityContainer, resource: SpellResource, grade: int):
 	var crit_amount = resource.per_crit + caster.get_critique() / 100.0
 	var crit = randf_range(0, 1) <= crit_amount
 	for effect: EffectResource in resource.effects:
 		effect.texture = resource.texture
 		if count > max_count:
-			perform_effect(caster, target, effect, crit, grade)
+			perform_effect(caster, plate, effect, crit, grade)
 		else:
 			# Un effet de type "random" a été appliqué
 			if count == rand_count:
-				perform_effect(caster, target, effect, crit, grade)
+				perform_effect(caster, plate, effect, crit, grade)
 			count += 1
 	# console log
 	console.log_spell_cast(caster, resource, crit)
@@ -36,24 +36,24 @@ static func perform_spell(caster: Entity, target: Entity, resource: SpellResourc
 	check_dying_entities([PlayerManager.player_entity] + MonsterManager.monsters)
 
 
-static func perform_weapon(caster: Entity, target: Entity, resource: WeaponResource, weapon_name: String):
+static func perform_weapon(caster: Entity, plate: EntityContainer, resource: WeaponResource, weapon_name: String):
 	var crit_amount = (resource._crit_proba + caster.get_critique()) / 100.0
 	var crit = randf_range(0, 1) <= crit_amount
 	console.log_weapon_cast(caster, weapon_name, crit)
 	for effect: EffectResource in resource._hit_effects.map(func(he): return he.get_effect()):
-		perform_effect(caster, target, effect, crit, 0)
+		perform_effect(caster, plate, effect, crit, 0)
 	console.output.add_separator()
 	check_dying_entities([PlayerManager.player_entity] + MonsterManager.monsters)
 
 
-static func perform_effect(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
+static func perform_effect(caster: Entity, plate: EntityContainer, effect: EffectResource, crit: bool, grade: int):
 	if is_effective_by_zone(effect.effective_zone):
 		var method_name = "perform_%s" % EffectType.find_key(effect.type).to_lower()
 		var callable = Callable(SpellsService, method_name)
 		if effect.type == EffectResource.Type.SPECIAL:
-			callable.bindv([caster, target, effect, crit, grade]).call()
+			callable.bindv([caster, plate, effect, crit, grade]).call()
 		else:
-			for tar in get_targets(caster, target, effect.target_type):
+			for tar in get_targets(caster, plate, effect.target_type):
 				callable.bindv([caster, tar, effect, crit, grade]).call()
 
 
@@ -139,10 +139,10 @@ static func perform_retrait(caster: Entity, target: Entity, effect: EffectResour
 	effects_log.append([EffectType.RETRAIT, target, retrait_amount, effect.get_caracteristic_label()])
 
 
-static func perform_special(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
+static func perform_special(caster: Entity, plate: EntityContainer, effect: EffectResource, crit: bool, grade: int):
 	var callable = Callable(SpellsService, effect.method_name)
 	if callable:
-		var params = [caster, target, effect, crit, grade]
+		var params = [caster, plate.get_entity(), effect, crit, grade]
 		if !effect.params.is_empty():
 			callable = callable.bind(effect.params)
 		callable = callable.bindv(params)
@@ -165,8 +165,11 @@ static func perform_bouclier(caster: Entity, target: Entity, effect: EffectResou
 
 @warning_ignore("integer_division")
 static func perform_poussee(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
-	var direction_callable_name = "get_%s_plate" % Direction.find_key(effect.direction).to_lower()
+	var direction = effect.direction
 	var plate: EntityContainer = target.get_parent()
+	if effect.target_type in [TargetType.AROUND, TargetType.TARGET_AROUND]:
+		direction = PlayerManager.selected_plate.direction_to(plate)
+	var direction_callable_name = "get_%s_plate" % Direction.find_key(direction).to_lower()
 	var distance = effect.get_amount(crit, grade)
 	var destination_plate: EntityContainer = plate.call(direction_callable_name, distance)
 	var second_target = plate.get_first_entity(plate.get(direction_callable_name), distance)
@@ -188,9 +191,8 @@ static func perform_poussee(caster: Entity, target: Entity, effect: EffectResour
 	# animation
 	if dist_between_plates > 0:
 		destination_plate = plate.call(direction_callable_name, dist_between_plates)
-		plate.remove_child(target)
-		destination_plate.add_child(target)
-	target.animate_poussee(get_direction(effect.direction), dist_between_plates)
+		target.reparent(destination_plate, false)
+	target.animate_poussee(get_direction(direction), dist_between_plates)
 
 
 static func perform_random(_caster: Entity, _target: Entity, effect: EffectResource, _crit: bool, _grade: int):
@@ -217,15 +219,15 @@ static func sacrifice_pourcentage_pv(caster: Entity, _target: Entity, effect: Ef
 
 
 #region Sacrieur
-static func punition(caster: Entity, target: Entity, effect: EffectResource, _crit: bool, _grade: int, _params: Array):
+static func punition(caster: Entity, plate: EntityContainer, effect: EffectResource, _crit: bool, _grade: int, _params: Array):
 	var amount = int((PlayerManager.static_max_hp - PlayerManager.max_hp) * 0.3)
-	var targets = get_targets(caster, target, effect.target_type)
+	var targets = get_targets(caster, plate, effect.target_type)
 	for tar in targets:
 		tar.take_damage(amount, Element.NEUTRE)
 
 
-static func furie(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int, _params: Array = []):
-	var bonus_pm: int = get_targets(caster, target, EffectResource.TargetType.TARGET_NEIGHBORS).size()
+static func furie(caster: Entity, plate: EntityContainer, effect: EffectResource, crit: bool, grade: int, _params: Array = []):
+	var bonus_pm: int = get_targets(caster, plate, EffectResource.TargetType.TARGET_NEIGHBORS).size()
 	var new_effect = effect.duplicate(true)
 	new_effect.amounts = effect.duplicate_amounts()
 	new_effect.amounts[grade].add(bonus_pm)
@@ -233,7 +235,8 @@ static func furie(caster: Entity, target: Entity, effect: EffectResource, crit: 
 	perform_bonus(caster, caster, new_effect, crit, grade)
 
 
-static func mutilation(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int, params: Array):
+static func mutilation(caster: Entity, plate: EntityContainer, effect: EffectResource, crit: bool, grade: int, params: Array):
+	var target = plate.get_entity()
 	var mutilation_buff = caster.buffs.filter(func(b): return b.name == "Mutilation")
 	if mutilation_buff.is_empty():
 		params[1].texture = effect.texture
@@ -246,7 +249,7 @@ static func mutilation(caster: Entity, target: Entity, effect: EffectResource, c
 
 
 #region Ecaflip
-static func chance_ecaflip(caster: Entity, _target: Entity, _effect: EffectResource, _crit: bool, _grade: int, _params: Array):
+static func chance_ecaflip(caster: Entity, _plate: EntityContainer, _effect: EffectResource, _crit: bool, _grade: int, _params: Array):
 	caster.taken_damage_rate = 50
 	var timer = create_timer(5, "ChanceEcaflipTimer")
 	await timer.timeout
@@ -258,12 +261,12 @@ static func chance_ecaflip(caster: Entity, _target: Entity, _effect: EffectResou
 	caster.taken_damage_rate = 100
 
 static var face = false
-static func pile_face(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int, _params: Array):
+static func pile_face(caster: Entity, plate: EntityContainer, effect: EffectResource, crit: bool, grade: int, _params: Array):
 	var amount = effect.get_amount(crit, grade)
 	if !crit and face:
 		amount -= 5
 	face = !face
-	var targets = get_targets(caster, target, effect.target_type)
+	var targets = get_targets(caster, plate, effect.target_type)
 	for tar in targets:
 		tar.take_damage(amount, effect.element)
 #endregion
@@ -271,44 +274,44 @@ static func pile_face(caster: Entity, target: Entity, effect: EffectResource, cr
 
 #region Iop
 static var pugilat_adder := 0
-static func pugilat(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
+static func pugilat(caster: Entity, plate: EntityContainer, effect: EffectResource, crit: bool, grade: int, params: Array):
 	var new_effect = effect.duplicate(true)
 	new_effect.amounts = effect.duplicate_amounts()
 	new_effect.amounts[grade].add(pugilat_adder)
 	new_effect.type = EffectResource.Type.DAMAGE
-	perform_effect(caster, target, new_effect, crit, grade)
-	pugilat_adder += 18
+	perform_effect(caster, plate, new_effect, crit, grade)
+	pugilat_adder += params[0]
 
 
 static var fureur_adder := 0
-static func fureur(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
+static func fureur(caster: Entity, plate: EntityContainer, effect: EffectResource, crit: bool, grade: int):
 	var new_effect = effect.duplicate(true)
 	new_effect.amounts = effect.duplicate_amounts()
 	new_effect.amounts[grade].add(fureur_adder)
 	new_effect.type = EffectResource.Type.DAMAGE
-	perform_effect(caster, target, new_effect, crit, grade)
+	perform_effect(caster, plate, new_effect, crit, grade)
 	fureur_adder += 20
 
 
 static var tempete_de_puissance_last_target: Entity = null
-static func tempete_de_puissance(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
-	perform_damage(caster, target, effect, crit, grade)
+static func tempete_de_puissance(caster: Entity, plate: EntityContainer, effect: EffectResource, crit: bool, grade: int):
+	perform_damage(caster, plate.get_entity(), effect, crit, grade)
 	if tempete_de_puissance_last_target:
 		perform_damage(caster, tempete_de_puissance_last_target, effect, crit, grade)
 
 
 static var tumulte_adder := 0
-static func tumulte(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
+static func tumulte(caster: Entity, plate: EntityContainer, effect: EffectResource, crit: bool, grade: int, params: Array):
 	var new_effect = effect.duplicate(true)
 	new_effect.amounts = effect.duplicate_amounts()
 	new_effect.amounts[grade].add(tumulte_adder)
 	new_effect.type = EffectResource.Type.DAMAGE
-	perform_effect(caster, target, new_effect, crit, grade)
-	tumulte_adder += 20 * get_targets(caster, target, effect.target_type).size()
+	perform_effect(caster, plate, new_effect, crit, grade)
+	tumulte_adder += params[0] * get_targets(caster, plate, effect.target_type).size()
 
 
-static func vertu(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
-	if target:
+static func vertu(caster: Entity, plate: EntityContainer, effect: EffectResource, crit: bool, grade: int):
+	if plate.get_entity():
 		perform_bonus(caster, caster, effect, crit, grade)
 #endregion
 
@@ -357,11 +360,12 @@ static func get_soin(caster: Entity, amount: int, element: Element) -> int:
 	return max(multiplicateur * amount + fixe, 0)
 
 
-static func get_neighbor_entities() -> Array[Entity]:
+static func get_neighbor_entities(plate: EntityContainer) -> Array[Entity]:
 	var neighbor_entities: Array[Entity] = []
-	for plate in PlayerManager.selected_plate.get_neighbor_plates():
-		if plate._entity and is_instance_valid(plate._entity):
-			neighbor_entities.append(plate._entity)
+	for nplate in plate.get_neighbor_plates():
+		var target = nplate.get_entity()
+		if target and is_instance_valid(target):
+			neighbor_entities.append(target)
 	return neighbor_entities
 
 
@@ -382,24 +386,34 @@ static func create_timer(time: float, name: String = "Timer"):
 	return timer
 
 
-static func get_targets(caster: Entity, target: Entity, type: EffectResource.TargetType) -> Array[Entity]:
+static func get_targets(caster: Entity, plate: EntityContainer, type: EffectResource.TargetType) -> Array[Entity]:
 	var targets: Array[Entity] = []
 	var monsters = MonsterManager.monsters
+	var target = plate.get_entity() if plate else PlayerManager.player_entity
 	match type:
-		TargetType.CASTER: targets.append(caster)
+		TargetType.CASTER:
+			targets.append(caster)
 		TargetType.TARGET:
-			if target: targets.append(target)
+			targets.append(target)
 		TargetType.TARGET_NEIGHBORS:
-			if target: targets.append(target)
-			targets += get_neighbor_entities()
+			targets.append(target)
+			targets += get_neighbor_entities(plate)
 		TargetType.NEIGHBORS:
-			targets += get_neighbor_entities()
+			targets += get_neighbor_entities(plate)
 		TargetType.ALL_MONSTERS:
 			targets += monsters
 		TargetType.RANDOM_MONSTER:
 			randomize()
 			targets.append(monsters[randi_range(0, monsters.size() - 1)])
-	return targets
+		TargetType.AROUND, TargetType.TARGET_AROUND:
+			targets += get_neighbor_entities(plate)
+			if plate:
+				var updown_target = plate.get_line(true)[plate.id - 1].get_entity()
+				if is_instance_valid(updown_target):
+					targets.append(updown_target)
+			if type == TargetType.TARGET_AROUND:
+				targets.append(target)
+	return targets.filter(func(t): return t != null)
 
 
 static func add_pv_to_entity(entity: Entity, amount: int):

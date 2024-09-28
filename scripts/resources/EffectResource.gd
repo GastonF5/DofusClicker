@@ -25,9 +25,11 @@ enum TargetType {
 	RANDOM_MONSTER,
 	RANDOM_ALLY,
 	ALL,
+	AROUND,
+	TARGET_AROUND,
 }
 
-enum Direction { UP, DOWN, LEFT, RIGHT }
+enum Direction { UP, DOWN, LEFT, RIGHT, NONE }
 enum Zone { ALL, MELEE, DISTANCE }
 
 
@@ -160,23 +162,23 @@ func get_effect_label(grade: int) -> String:
 			result += " (%d secondes)" % time
 	match effective_zone:
 		Zone.MELEE:
-			result += " (Mélée)"
+			result += " (Mêlée)"
 		Zone.DISTANCE:
 			result += " (Distance)"
 	return result
 
 
 func compute_special_label(grade: int) -> String:
+	var label = effect_label
 	if !params.is_empty():
-		var label = effect_label
 		for i in range(params.size()):
 			if params[i] is EffectResource:
 				var eff_label = params[i].get_effect_label(grade)
 				label = label.replace("{param%d}" % i, eff_label)
-		return label
+			if params[i] is int:
+				label = label.replace("{param%d}" % i, str(params[i]))
 	if ["{min}", "{max}", "{min_crit}", "{max_crit}", "{time}"].any(func(e): return effect_label.contains(e)):
 		var m = amounts[grade]
-		var label = effect_label
 		label = label.replace("{min}", str(m._min))
 		label = label.replace("{max}", str(m._max))
 		label = label.replace("{min_crit}", str(m._min_crit))
