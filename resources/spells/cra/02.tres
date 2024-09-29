@@ -78,6 +78,6 @@ img_url = "https://api.beta.dofusdb.fr/img/spells/sort_11887.png"
 level = 15
 pa_cost = 2
 per_crit = 0.25
-cooldown = 0.0
+cooldown = 15.0
 priority = 0
 effects = Array[ExtResource("2_repke")]([SubResource("Resource_eeefx"), SubResource("Resource_u3jwc")])
