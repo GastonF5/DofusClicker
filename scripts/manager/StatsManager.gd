@@ -45,9 +45,15 @@ func create_caracteristiques():
 		var node_name = carac.name
 		if node_name.begins_with("Résistance "):
 			var node_name_split = node_name.split(" ")
-			node_name = "RES_" + node_name_split[node_name_split.size() - 1]
+			if node_name_split[1] == "Poussée":
+				node_name = "RES_POU"
+			else:
+				node_name = "RES_" + node_name_split[node_name_split.size() - 1]
 		if node_name.begins_with("Dommages "):
-			node_name = "DO_" + node_name.split(" ")[1]
+			if node_name.split(" ")[1] == "Poussée":
+				node_name = "DO_POU"
+			else:
+				node_name = "DO_" + node_name.split(" ")[1]
 		if node_name.begins_with("Retrait "):
 			node_name = "RET_" + node_name.split(" ")[1]
 		if StatType.keys().has(node_name.to_upper()) and !caracteristiques.has(carac):

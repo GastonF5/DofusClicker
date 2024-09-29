@@ -154,10 +154,16 @@ func get_type_label():
 	var type_label = name.to_snake_case().to_upper()
 	if name.begins_with("Résistance "):
 		var name_split = name.split(" ")
-		type_label = "RES_" + name_split[name_split.size() - 1].to_upper()
+		if name_split[1] == "Poussée":
+			type_label = "RES_POU"
+		else:
+			type_label = "RES_" + name_split[name_split.size() - 1].to_upper()
 	if name.begins_with("Dommages "):
 		var name_split = name.split(" ")
-		type_label = "DO_" + name_split[name_split.size() - 1].to_upper()
+		if name_split[1] == "Poussée":
+			type_label = "DO_POU"
+		else:
+			type_label = "DO_" + name_split[name_split.size() - 1].to_upper()
 	if name.begins_with("Retrait "):
 		var name_split = name.split(" ")
 		type_label = "RET_" + name_split[name_split.size() - 1].to_upper()

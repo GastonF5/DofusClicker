@@ -303,6 +303,14 @@ modifiable = false
 layout_mode = 2
 texture = ExtResource("4_j7qus")
 
+[node name="Dommages Poussée" parent="MarginContainer/ScrollContainer/VBC/Dommages/StatsDommages/StatsContainer" instance=ExtResource("5_477tq")]
+layout_mode = 2
+modifiable = false
+
+[node name="Separator5" type="TextureRect" parent="MarginContainer/ScrollContainer/VBC/Dommages/StatsDommages/StatsContainer"]
+layout_mode = 2
+texture = ExtResource("4_j7qus")
+
 [node name="Soin" parent="MarginContainer/ScrollContainer/VBC/Dommages/StatsDommages/StatsContainer" instance=ExtResource("5_477tq")]
 layout_mode = 2
 modifiable = false
@@ -465,6 +473,22 @@ layout_mode = 2
 texture = ExtResource("4_j7qus")
 
 [node name="Résistance retrait PM" parent="MarginContainer/ScrollContainer/VBC/Résistances/StatsResistances/StatsContainer" instance=ExtResource("5_477tq")]
+layout_mode = 2
+modifiable = false
+
+[node name="Separator12" type="TextureRect" parent="MarginContainer/ScrollContainer/VBC/Résistances/StatsResistances/StatsContainer"]
+layout_mode = 2
+texture = ExtResource("4_j7qus")
+
+[node name="Résistance Critiques" parent="MarginContainer/ScrollContainer/VBC/Résistances/StatsResistances/StatsContainer" instance=ExtResource("5_477tq")]
+layout_mode = 2
+modifiable = false
+
+[node name="Separator13" type="TextureRect" parent="MarginContainer/ScrollContainer/VBC/Résistances/StatsResistances/StatsContainer"]
+layout_mode = 2
+texture = ExtResource("4_j7qus")
+
+[node name="Résistance Poussée" parent="MarginContainer/ScrollContainer/VBC/Résistances/StatsResistances/StatsContainer" instance=ExtResource("5_477tq")]
 layout_mode = 2
 modifiable = false
 
