@@ -8,10 +8,12 @@ script = ExtResource("1_hvgca")
 id = 23508
 name = "Œil pour Œil"
 available = true
-description = ""
+description = "Applique l'état Œil pour Œil sur la cible :
+• Si la cible est un ennemi, la repousse si elle attaque.
+Les entités qui attaquent l'ennemi ciblé sont soignées d'une partie des dommages occasionnés."
 texture = ExtResource("2_1u6vs")
 img_url = "https://api.beta.dofusdb.fr/img/spells/sort_13147.png"
-level = 0
+level = 90
 pa_cost = 0
 per_crit = 0.0
 cooldown = 0.0

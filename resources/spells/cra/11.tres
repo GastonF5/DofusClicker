@@ -1,19 +1,81 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=3 format=3 uid="uid://d22ys3kik5igx"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://d22ys3kik5igx"]
 
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_cms6t"]
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_ui1lr"]
 [ext_resource type="Texture2D" uid="uid://c0cmb4cjptr0r" path="res://assets/spells/cra/sort_13032.png" id="2_7ju0l"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_s0tfs"]
+
+[sub_resource type="Resource" id="Resource_hbn1w"]
+script = ExtResource("1_cms6t")
+_min = 14
+_max = 17
+_min_crit = 18
+_max_crit = 21
+
+[sub_resource type="Resource" id="Resource_px5qq"]
+resource_name = "Dommages Eau"
+script = ExtResource("2_s0tfs")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 3
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+amounts = Array[ExtResource("1_cms6t")]([SubResource("Resource_hbn1w")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_cfani"]
+script = ExtResource("1_cms6t")
+_min = 2
+_max = 2
+_min_crit = 2
+_max_crit = 2
+
+[sub_resource type="Resource" id="Resource_2q6kd"]
+resource_name = "Retrait PA"
+script = ExtResource("2_s0tfs")
+type = 2
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+amounts = Array[ExtResource("1_cms6t")]([SubResource("Resource_cfani")])
+visible_in_description = true
 
 [resource]
 script = ExtResource("1_ui1lr")
 id = 13049
 name = "Flèche Glacée"
 available = true
-description = ""
+description = "Occasionne des dommages Eau et retire des PA."
 texture = ExtResource("2_7ju0l")
 img_url = "https://api.beta.dofusdb.fr/img/spells/sort_13032.png"
-level = 0
-pa_cost = 0
-per_crit = 0.0
+level = 1
+pa_cost = 3
+per_crit = 0.1
 cooldown = 0.0
 priority = 0
-effects = Array[Resource("res://scripts/resources/EffectResource.gd")]([])
+effects = Array[ExtResource("2_s0tfs")]([SubResource("Resource_px5qq"), SubResource("Resource_2q6kd")])

@@ -30,3 +30,10 @@ func add(amount: int):
 	_max += amount
 	_min_crit += amount
 	_max_crit += amount
+
+
+func mult(amount: int):
+	_min = _min * amount
+	_max = _max * amount
+	_min_crit = _min_crit * amount
+	_max_crit = _max_crit * amount

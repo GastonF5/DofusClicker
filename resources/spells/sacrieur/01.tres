@@ -26,6 +26,7 @@ lifesteal = false
 level_pourcentage = false
 caracteristic = 37
 pourcentage = true
+retrait_vol = false
 method_name = &""
 effect_label = ""
 params = []
@@ -56,6 +57,7 @@ lifesteal = false
 level_pourcentage = false
 caracteristic = 8
 pourcentage = false
+retrait_vol = false
 method_name = &""
 effect_label = ""
 params = []
@@ -86,6 +88,7 @@ lifesteal = false
 level_pourcentage = true
 caracteristic = 0
 pourcentage = false
+retrait_vol = false
 method_name = &""
 effect_label = ""
 params = []
@@ -109,6 +112,7 @@ lifesteal = false
 level_pourcentage = false
 caracteristic = 0
 pourcentage = false
+retrait_vol = false
 method_name = &"mutilation"
 effect_label = "{param0}
 {param1}
@@ -128,7 +132,7 @@ name = "Mutilation"
 available = true
 description = "Sacrifie une partie de la vie du lanceur pour augmenter sa Puissance.
 Relancer le sort retire les effets et lance le sort Coagulation :
-- applique un bouclier au lanceur."
+• Applique un bouclier au lanceur."
 texture = ExtResource("4_hdovg")
 img_url = "https://api.dofusdb.fr/img/spells/sort_11934.png"
 level = 10

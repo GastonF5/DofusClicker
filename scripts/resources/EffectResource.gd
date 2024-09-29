@@ -50,6 +50,7 @@ enum Zone { ALL, MELEE, DISTANCE }
 @export_group("Bonus & Retrait")
 @export var caracteristic: Caracteristique.Type
 @export var pourcentage: bool
+@export var retrait_vol: bool
 var texture: Texture2D
 
 @export_group("Special")

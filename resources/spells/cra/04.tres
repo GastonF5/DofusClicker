@@ -8,10 +8,12 @@ script = ExtResource("1_55fek")
 id = 13082
 name = "Flèche Tyrannique"
 available = true
-description = ""
+description = "Occasionne des dommages Feu et Air et applique l'état Flèche Tyrannique sur l'ennemi ciblé :
+• Occasionne des dommages Feu si la cible subit des dommages de poussée.
+• Occasionne des dommages Air si elle est attirée ou poussée."
 texture = ExtResource("2_680bt")
 img_url = "https://api.beta.dofusdb.fr/img/spells/sort_11917.png"
-level = 0
+level = 80
 pa_cost = 0
 per_crit = 0.0
 cooldown = 0.0

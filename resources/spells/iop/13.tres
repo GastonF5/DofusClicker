@@ -26,6 +26,7 @@ lifesteal = false
 level_pourcentage = false
 caracteristic = 0
 pourcentage = false
+retrait_vol = false
 method_name = &"fureur"
 effect_label = "{min} à {max} ({min_crit} à {max_crit}) dommages {elem}
 Augmente les dégâts de base du sort Pugilat de 20"

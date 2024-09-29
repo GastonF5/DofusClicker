@@ -26,6 +26,7 @@ lifesteal = false
 level_pourcentage = false
 caracteristic = 37
 pourcentage = true
+retrait_vol = false
 method_name = &""
 effect_label = ""
 params = []
