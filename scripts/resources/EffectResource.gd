@@ -139,7 +139,11 @@ func get_effect_label(grade: int) -> String:
 		Type.BONUS:
 			result += get_amount_label(grade) + ' ' + get_caracteristic_label()
 		Type.RETRAIT:
-			result += "-%s %s" % [get_amount_label(grade), get_caracteristic_label()]
+			if retrait_vol:
+				result += "Vole "
+			else:
+				result += "-"
+			result += "%s %s" % [get_amount_label(grade), get_caracteristic_label()]
 		Type.BOUCLIER:
 			if level_pourcentage:
 				result += "%s du niveau en bouclier" % get_amount_label(grade)
@@ -191,8 +195,6 @@ func compute_special_label(grade: int) -> String:
 
 
 func get_label_color() -> Color:
-	match type:
-		Type.RETRAIT:
-			return Color.CRIMSON
-		_:
-			return Color.LIME_GREEN
+	if type == Type.RETRAIT and !retrait_vol:
+		return Color.CRIMSON
+	return Color.LIME_GREEN
