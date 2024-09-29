@@ -39,10 +39,13 @@ static func perform_spell(caster: Entity, plate: EntityContainer, resource: Spel
 static func perform_weapon(caster: Entity, plate: EntityContainer, resource: WeaponResource, weapon_name: String):
 	var crit_amount = (resource._crit_proba + caster.get_critique()) / 100.0
 	var crit = randf_range(0, 1) <= crit_amount
-	console.log_weapon_cast(caster, weapon_name, crit)
 	for effect: EffectResource in resource._hit_effects.map(func(he): return he.get_effect()):
 		perform_effect(caster, plate, effect, crit, 0)
+	# console log
+	console.log_weapon_cast(caster, weapon_name, crit)
+	console.log_effects(effects_log)
 	console.output.add_separator()
+	effects_log.clear()
 	check_dying_entities([PlayerManager.player_entity] + MonsterManager.monsters)
 
 
