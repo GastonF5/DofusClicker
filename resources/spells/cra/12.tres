@@ -7,10 +7,10 @@
 
 [sub_resource type="Resource" id="Resource_mfhia"]
 script = ExtResource("1_ccee7")
-_min = 7
-_max = 9
-_min_crit = 10
-_max_crit = 12
+_min = 5
+_max = 7
+_min_crit = 8
+_max_crit = 8
 
 [sub_resource type="Resource" id="Resource_3msr6"]
 resource_name = "Vol Eau"
@@ -47,7 +47,7 @@ _max_crit = 1
 resource_name = "Vol PM"
 script = ExtResource("1_umf5p")
 type = 2
-time = 3.0
+time = 5.0
 target_type = 1
 show_time = true
 effective_zone = 0
@@ -75,7 +75,7 @@ available = true
 description = "Vole des PM et de la vie dans l'élément Eau."
 texture = ExtResource("2_3fff0")
 img_url = "https://api.beta.dofusdb.fr/img/spells/sort_13292.png"
-level = 6
+level = 10
 pa_cost = 2
 per_crit = 0.5
 cooldown = 0.0

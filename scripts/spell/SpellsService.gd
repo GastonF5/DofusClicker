@@ -141,13 +141,12 @@ static func perform_retrait(caster: Entity, target: Entity, effect: EffectResour
 			retrait_amount += 1
 	effects_log.append([EffectType.RETRAIT, target, retrait_amount, effect.get_caracteristic_label()])
 	if effect.retrait_vol and retrait_amount > 0:
-		effect.amounts[grade]._min = retrait_amount
-		effect.amounts[grade]._max = retrait_amount
-		effect.amounts[grade]._min_crit = retrait_amount
-		effect.amounts[grade]._max_crit = retrait_amount
-		effect.type = EffectType.BONUS
-		effect.target_type = TargetType.CASTER
-		perform_bonus(caster, target, effect, crit, grade)
+		var new_effect = effect.duplicate(true)
+		new_effect.amounts = effect.duplicate_amounts()
+		new_effect.amounts[grade] = AmountResource.create(retrait_amount, retrait_amount, retrait_amount, retrait_amount)
+		new_effect.type = EffectResource.Type.BONUS
+		new_effect.texture = effect.texture
+		perform_bonus(caster, caster, new_effect, crit, grade)
 
 
 static func perform_special(caster: Entity, plate: EntityContainer, effect: EffectResource, crit: bool, grade: int):
@@ -373,7 +372,7 @@ static func get_degats_poussee(caster: Entity, target: Entity, distance: int) ->
 	var do_pou = caster.get_do_pou()
 	var re_pou = target.get_re_pou()
 	@warning_ignore("integer_division")
-	return (level / 4) + (do_pou - re_pou + 32) * distance / 4
+	return (level / 2) + (do_pou - re_pou + 32) * distance / 4
 
 
 static func get_soin(caster: Entity, amount: int, element: Element) -> int:
