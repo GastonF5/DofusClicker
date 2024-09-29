@@ -2,6 +2,7 @@ extends ClickableControl
 class_name EntityContainer
 
 const Direction = EffectResource.Direction
+const TargetType = EffectResource.TargetType
 
 const DISTANCE := "Distance"
 const MELEE := "Melee"
@@ -15,11 +16,11 @@ var selected: bool:
 		var entity = get_entity()
 		selected = value
 		if selected:
-			self_modulate = Color.ORANGE_RED
+			_set_color(Color.ORANGE_RED)
 			if entity:
 				entity.select()
 		else:
-			self_modulate = Color.WHITE
+			_set_color(Color.WHITE)
 			if entity:
 				entity.unselect()
 
@@ -78,7 +79,7 @@ func get_first_entity(direction_method: Callable, distance: int = 1):
 
 
 #region directions
-func get_right_plate(distance: int = 1):
+func get_right_plate(distance: int = 1, not_self := false):
 	var line = get_line()
 	var pi = line.find(self)
 	var next_plate: EntityContainer
@@ -88,9 +89,11 @@ func get_right_plate(distance: int = 1):
 		next_plate = line[pi + 1]
 	if distance > 1:
 		return next_plate.get_right_plate(distance - 1)
-	return next_plate
+	if !(not_self and next_plate == self):
+		return next_plate
+	return null
 
-func get_left_plate(distance: int = 1):
+func get_left_plate(distance: int = 1, not_self := false):
 	var line = get_line()
 	var pi = line.find(self)
 	var next_plate: EntityContainer
@@ -100,7 +103,9 @@ func get_left_plate(distance: int = 1):
 		next_plate = line[pi - 1]
 	if distance > 1:
 		return next_plate.get_left_plate(distance - 1)
-	return next_plate
+	if !(not_self and next_plate == self):
+		return next_plate
+	return null
 
 func get_up_plate(_distance: int = 1):
 	if is_distance():
@@ -166,3 +171,38 @@ func get_neighbor_plates():
 	if right != self:
 		result.append(right)
 	return result
+
+
+func set_spell_previsualization(is_active: bool):
+	if is_active:
+		_set_color(Color.GREEN)
+	else:
+		if selected:
+			_set_color(Color.ORANGE_RED)
+		else:
+			_set_color(Color.WHITE)
+
+
+func get_plates_for_target_type(type: TargetType):
+	var plates = MonsterManager.plates
+	match type:
+		TargetType.ALL:
+			return plates
+		TargetType.ALL_MONSTERS:
+			return MonsterManager.monsters.map(func(m): return m.get_parent())
+		TargetType.TARGET:
+			return [self]
+		TargetType.NEIGHBORS:
+			return [get_right_plate(1, true), get_left_plate(1, true)]
+		TargetType.TARGET_NEIGHBORS:
+			return [get_right_plate(1, true), get_left_plate(1, true), self]
+		TargetType.AROUND:
+			return [get_right_plate(1, true), get_left_plate(1, true), get_line(true)[id - 1]]
+		TargetType.TARGET_AROUND:
+			return [get_right_plate(1, true), get_left_plate(1, true), get_line(true)[id - 1], self]
+		_:
+			return []
+
+
+func _set_color(color: Color):
+	self_modulate = color

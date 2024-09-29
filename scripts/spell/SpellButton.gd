@@ -35,11 +35,14 @@ func _on_button_up():
 func _on_mouse_entered():
 	if !PlayerManager.dragged_item:
 		PlayerManager.spell_description.init_spell(_spell.resource)
+		PlayerManager.previsualize_spell_zone(_spell.resource.effects.map(func(e): return e.target_type))
 
 
 func _on_mouse_exited():
 	if !PlayerManager.dragged_item:
 		PlayerManager.spell_description.visible = false
+		for plate in MonsterManager.plates:
+			plate.set_spell_previsualization(false)
 
 
 func _set_disabled():

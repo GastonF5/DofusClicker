@@ -24,7 +24,8 @@ func _ready():
 
 func _on_mouse_entered_slot(index: int):
 	if get_parent().name != "SpellBarContainer2" and !PlayerManager.dragged_item and !PlayerManager.dragged_spell and slot_contains_spell(index):
-		PlayerManager.spell_description.init_spell(get_spell(index).resource)
+		var spell_res: SpellResource = get_spell(index).resource
+		PlayerManager.spell_description.init_spell(spell_res)
 
 
 func _on_mouse_exited_slot(index: int):

@@ -195,3 +195,15 @@ func player_attack():
 		SpellsService.perform_weapon(player_entity, PlayerManager.selected_plate, weapon.equip_res.weapon_resource, weapon.name)
 	else:
 		SpellsService.perform_spell(player_entity, PlayerManager.selected_plate, punch_res, 0)
+
+
+func previsualize_spell_zone(target_types: Array):
+	var target_plates = target_types.reduce(
+		func(accum, type):
+			var plates = selected_plate.get_plates_for_target_type(type)
+			for plate in plates:
+				if plate and !accum.has(plate):
+					accum.append(plate)
+			return accum, [])
+	for plate in target_plates:
+		plate.set_spell_previsualization(true)
