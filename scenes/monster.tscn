@@ -48,6 +48,7 @@ offset_top = -32.0
 offset_right = 192.0
 offset_bottom = -32.0
 size_flags_vertical = 0
+mouse_filter = 2
 alignment = 1
 
 [node name="Header" type="VBoxContainer" parent="VBC/HeaderContainer"]
