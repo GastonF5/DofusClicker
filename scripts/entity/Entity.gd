@@ -34,6 +34,12 @@ var taken_damage_rate: float = 100
 var console: Console
 var is_player := false
 
+var damage_animated := false
+signal damage_animation_finished
+
+var poussee_animated := false
+signal poussee_animation_finished
+
 
 #region Caractéristiques
 func init():
@@ -220,6 +226,9 @@ func get_prospection() -> float:
 
 #region Animation
 func animate_poussee(direction: Vector2, distance: int):
+	if poussee_animated:
+		await poussee_animation_finished
+	poussee_animated = true
 	var tween = create_tween()
 	var init_position = position
 	if distance > 0:
@@ -228,6 +237,25 @@ func animate_poussee(direction: Vector2, distance: int):
 	else:
 		tween.tween_property(self, "position", init_position + direction * 30, 0.1).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
 		tween.tween_property(self, "position", init_position, 0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	await tween.finished
+	poussee_animated = false
+	poussee_animation_finished.emit()
+
+
+func animate_damage():
+	if poussee_animated:
+		return
+	if damage_animated:
+		await damage_animation_finished
+	damage_animated = true
+	var tween = create_tween()
+	var init_position = position
+	tween.tween_property(self, "position", init_position + Vector2.LEFT * 30, 0.06)
+	tween.tween_property(self, "position", init_position + Vector2.RIGHT * 30, 0.06)
+	tween.tween_property(self, "position", init_position, 0.06)
+	await tween.finished
+	damage_animated = false
+	damage_animation_finished.emit()
 #endregion
 
 
@@ -241,6 +269,7 @@ func take_damage(amount: int, element: Element):
 	apply_erosion(hp_bar.take_damage(amount))
 	if hp_bar.cval == int(hp_bar.min_value):
 		dying = true
+	animate_damage()
 	return amount
 
 
