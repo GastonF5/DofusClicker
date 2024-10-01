@@ -138,8 +138,6 @@ func init_bars():
 		pa_bar.mval = get_pa()
 		pa_bar.cval += get_pa() - curmval)
 	connect_to_stat(Caracteristique.Type.PM, func():
-		#var curmval = pm_bar.mval
-		pm_bar.speed = 0.0
 		pm_bar.mval = get_pm()
 		pm_bar.cval = get_pm())
 

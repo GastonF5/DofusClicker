@@ -152,7 +152,7 @@ static func perform_retrait(caster: Entity, target: Entity, effect: EffectResour
 static func perform_special(caster: Entity, plate: EntityContainer, effect: EffectResource, crit: bool, grade: int):
 	var callable = Callable(SpellsService, effect.method_name)
 	if callable:
-		var params = [caster, plate.get_entity(), effect, crit, grade]
+		var params = [caster, plate, effect, crit, grade]
 		if !effect.params.is_empty():
 			callable = callable.bind(effect.params)
 		callable = callable.bindv(params)
@@ -246,15 +246,14 @@ static func furie(caster: Entity, plate: EntityContainer, effect: EffectResource
 
 
 static func mutilation(caster: Entity, plate: EntityContainer, effect: EffectResource, crit: bool, grade: int, params: Array):
-	var target = plate.get_entity()
 	var mutilation_buff = caster.buffs.filter(func(b): return b.name == "Mutilation")
 	if mutilation_buff.is_empty():
 		params[1].texture = effect.texture
 		for i in range(2):
-			perform_effect(caster, target, params[i], crit, grade)
+			perform_effect(caster, plate, params[i], crit, grade)
 	else:
 		mutilation_buff[0].annuler.emit()
-		perform_effect(caster, target, params[2], crit, grade)
+		perform_effect(caster, plate, params[2], crit, grade)
 #endregion
 
 

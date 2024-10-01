@@ -3,9 +3,9 @@ extends Control
 
 
 @export_category("TextureProgressBars")
-@export var hp_bar: TextureProgressBar
-@export var pa_bar: TextureProgressBar
-@export var pm_bar: TextureProgressBar
+@export var hp_bar: CustomBar
+@export var pa_bar: CustomBar
+@export var pm_bar: CustomBar
 
 @export var decoration: TextureRect
 
