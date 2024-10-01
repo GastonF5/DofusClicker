@@ -269,7 +269,8 @@ func take_damage(amount: int, element: Element):
 	apply_erosion(hp_bar.take_damage(amount))
 	if hp_bar.cval == int(hp_bar.min_value):
 		dying = true
-	animate_damage()
+	if element != Element.POUSSEE and amount > 0:
+		animate_damage()
 	return amount
 
 
