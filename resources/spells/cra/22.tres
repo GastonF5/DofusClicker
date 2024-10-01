@@ -7,10 +7,10 @@
 
 [sub_resource type="Resource" id="Resource_yscvh"]
 script = ExtResource("1_cptt2")
-_min = 14
-_max = 16
-_min_crit = 16
-_max_crit = 19
+_min = 10
+_max = 13
+_min_crit = 14
+_max_crit = 15
 
 [sub_resource type="Resource" id="Resource_tekeh"]
 resource_name = "Dommages Air"
@@ -19,7 +19,7 @@ type = 0
 time = 0.0
 target_type = 2
 show_time = false
-effective_zone = 0
+effective_zone = 2
 has_grades = false
 element = 4
 lifesteal = false
@@ -41,11 +41,11 @@ script = ExtResource("1_1r7si")
 id = 13059
 name = "Pluie de Flèches"
 available = true
-description = "Occasionne des dommages Air en zone."
+description = "Occasionne des dommages Air en zone à distance."
 texture = ExtResource("2_ae2r1")
 img_url = "https://api.beta.dofusdb.fr/img/spells/sort_11888.png"
 level = 1
-pa_cost = 3
+pa_cost = 2
 per_crit = 0.15
 cooldown = 0.0
 priority = 0
