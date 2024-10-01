@@ -26,6 +26,7 @@ lifesteal = false
 level_pourcentage = false
 caracteristic = 0
 pourcentage = false
+retrait_vol = false
 method_name = &""
 effect_label = ""
 params = []
@@ -33,36 +34,6 @@ nb_random_effects = 0
 direction = 0
 is_attirance = false
 amounts = Array[ExtResource("1_xmek4")]([SubResource("Resource_entft")])
-visible_in_description = true
-
-[sub_resource type="Resource" id="Resource_o7vh8"]
-script = ExtResource("1_xmek4")
-_min = 1
-_max = 1
-_min_crit = 1
-_max_crit = 1
-
-[sub_resource type="Resource" id="Resource_6kgdp"]
-resource_name = "Poussée"
-script = ExtResource("2_ubphw")
-type = 9
-time = 0.0
-target_type = 1
-show_time = false
-effective_zone = 0
-has_grades = false
-element = 0
-lifesteal = false
-level_pourcentage = false
-caracteristic = 0
-pourcentage = false
-method_name = &""
-effect_label = ""
-params = []
-nb_random_effects = 0
-direction = 0
-is_attirance = false
-amounts = Array[ExtResource("1_xmek4")]([SubResource("Resource_o7vh8")])
 visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_4y8is"]
@@ -86,6 +57,7 @@ lifesteal = false
 level_pourcentage = false
 caracteristic = 9
 pourcentage = false
+retrait_vol = false
 method_name = &""
 effect_label = ""
 params = []
@@ -93,6 +65,37 @@ nb_random_effects = 0
 direction = 0
 is_attirance = false
 amounts = Array[ExtResource("1_xmek4")]([SubResource("Resource_4y8is")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_o7vh8"]
+script = ExtResource("1_xmek4")
+_min = 1
+_max = 1
+_min_crit = 1
+_max_crit = 1
+
+[sub_resource type="Resource" id="Resource_6kgdp"]
+resource_name = "Poussée"
+script = ExtResource("2_ubphw")
+type = 9
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+amounts = Array[ExtResource("1_xmek4")]([SubResource("Resource_o7vh8")])
 visible_in_description = true
 
 [resource]
@@ -109,4 +112,4 @@ pa_cost = 2
 per_crit = 0.05
 cooldown = 0.0
 priority = 0
-effects = Array[ExtResource("2_ubphw")]([SubResource("Resource_n3ndv"), SubResource("Resource_6kgdp"), SubResource("Resource_2jvwn")])
+effects = Array[ExtResource("2_ubphw")]([SubResource("Resource_n3ndv"), SubResource("Resource_2jvwn"), SubResource("Resource_6kgdp")])
