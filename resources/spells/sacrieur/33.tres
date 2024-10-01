@@ -7,10 +7,10 @@
 
 [sub_resource type="Resource" id="Resource_rc8vd"]
 script = ExtResource("1_ohm3o")
-_min = 6
-_max = 8
-_min_crit = 9
-_max_crit = 11
+_min = 9
+_max = 11
+_min_crit = 12
+_max_crit = 14
 
 [sub_resource type="Resource" id="Resource_4qbmv"]
 resource_name = "Dommages Terre"
@@ -26,6 +26,7 @@ lifesteal = false
 level_pourcentage = false
 caracteristic = 0
 pourcentage = false
+retrait_vol = false
 method_name = &""
 effect_label = ""
 params = []
@@ -56,6 +57,7 @@ lifesteal = false
 level_pourcentage = false
 caracteristic = 36
 pourcentage = false
+retrait_vol = false
 method_name = &""
 effect_label = ""
 params = []

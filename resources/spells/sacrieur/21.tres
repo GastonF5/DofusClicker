@@ -7,10 +7,10 @@
 
 [sub_resource type="Resource" id="Resource_3sln7"]
 script = ExtResource("1_ynu76")
-_min = 9
-_max = 11
-_min_crit = 12
-_max_crit = 14
+_min = 11
+_max = 13
+_min_crit = 14
+_max_crit = 16
 
 [sub_resource type="Resource" id="Resource_ms5yn"]
 resource_name = "Dommages Air"
