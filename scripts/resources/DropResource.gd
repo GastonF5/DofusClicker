@@ -7,3 +7,7 @@ extends Resource
 @export var object_id: int
 @export var percent_drop: Array
 @export var count: int
+
+
+func get_id():
+	return id

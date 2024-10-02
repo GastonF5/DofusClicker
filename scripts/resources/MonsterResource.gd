@@ -25,6 +25,8 @@ const black_list = [494]
 
 var node_texture: TextureRect
 
+func get_id():
+	return id
 
 func load_texture():
 	#console.log_info("Loading texture...")

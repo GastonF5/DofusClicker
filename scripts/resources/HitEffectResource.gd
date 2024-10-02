@@ -9,6 +9,8 @@ const CaracType = Caracteristique.Type
 @export var _description: String
 @export var _amounts: AmountResource
 
+func get_id():
+	return _id
 
 ## Mapping pour les armes
 static func map(data: Dictionary, crit_bonus: int) -> HitEffectResource:
