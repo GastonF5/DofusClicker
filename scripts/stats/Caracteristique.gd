@@ -42,6 +42,11 @@ enum Type {
 	RES_DOMMAGES,
 	PV,
 	DO_SORTS,
+	RES_AIR_FIXE,
+	RES_EAU_FIXE,
+	RES_TERRE_FIXE,
+	RES_FEU_FIXE,
+	RES_NEUTRE_FIXE,
 }
 
 enum Element {
