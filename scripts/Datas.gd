@@ -1,5 +1,7 @@
 extends Node
 
+const OVERRIDE_PATH := 'res://resources/override/'
+
 signal init_done
 
 enum DataType {
@@ -47,10 +49,18 @@ func load_data():
 	dir = DirAccess.open(FileSaver.DATA_PATH)
 	for data_type in DataType.values():
 		await get_data(data_type)
+		load_override(data_type)
 	check_areas()
 	fix_item_effects()
 	init_done.emit()
 	Globals.loading_screen.loading = false
+
+
+func load_override(data_type: DataType):
+	var data_label = DataType.find_key(data_type).to_lower()
+	for path in FileLoader.get_all_file_paths(OVERRIDE_PATH + data_label + "/"):
+		var resource = load(path)
+		self.get("_%ss" % data_label)[resource.get_id()] = resource
 
 
 func load_drop_exceptions():
@@ -309,6 +319,7 @@ func check_areas():
 			_areas.erase(area.id)
 
 
+## Supprime les effets des armes qui n'existent pas dans _hit_effects
 func fix_item_effects():
 	for key in _items.keys():
 		var item_res: ItemResource = _items[key].duplicate()

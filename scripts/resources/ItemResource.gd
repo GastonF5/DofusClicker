@@ -20,6 +20,8 @@ extends Resource
 @export var drop_monster_ids: Array
 @export var drop_rate: float
 
+func get_id():
+	return id
 
 static func create(_id: int, _name: String) -> ItemResource:
 	var item_res = ItemResource.new()

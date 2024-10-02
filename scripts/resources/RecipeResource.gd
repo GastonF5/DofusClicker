@@ -6,6 +6,8 @@ extends Resource
 @export var _ingredients: Array
 @export var _quantities: Array
 
+func get_id():
+	return _result_id
 
 static func create(resultId: int, ingredient_ids: Array, quantities: Array) -> RecipeResource:
 		var recipe = RecipeResource.new()
