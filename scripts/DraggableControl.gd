@@ -71,9 +71,9 @@ func drop():
 	if old_parent.is_in_group("equipment_slot") and (inventory_slot_empty or equip_slot_empty):
 		drop_parent = old_parent
 	# On ne peut pas équiper un item dont on n'a pas le niveau
-	if drop_parent != old_parent and is_equipment() and self.resource.level > Globals.xp_bar.cur_lvl:
-		Globals.console.log_error("Vous n'avez pas le niveau pour équiper cet objet.")
-		drop_parent = old_parent
+	#if drop_parent != old_parent and is_equipment() and self.resource.level > Globals.xp_bar.cur_lvl:
+		#Globals.console.log_error("Vous n'avez pas le niveau pour équiper cet objet.")
+		#drop_parent = old_parent
 	change_parent()
 	position = Vector2.ZERO
 

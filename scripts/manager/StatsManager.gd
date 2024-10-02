@@ -28,6 +28,7 @@ func initialize():
 	stats_container = Globals.stats_container
 	reset_button = stats_container.get_node("%ResetButton")
 	points_label = stats_container.get_node("%PointsLabel")
+	Globals.stats_container.init()
 	create_caracteristiques()
 	reset_button.button_up.connect(reset_points)
 	update_points_label()
@@ -42,26 +43,11 @@ func initialize():
 func create_caracteristiques():
 	var carac_nodes = get_tree().get_nodes_in_group("caracteristique")
 	for carac in carac_nodes:
-		var node_name = carac.name
-		if node_name.begins_with("Résistance "):
-			var node_name_split = node_name.split(" ")
-			if node_name_split[1] == "Poussée":
-				node_name = "RES_POU"
-			else:
-				node_name = "RES_" + node_name_split[node_name_split.size() - 1]
-		if node_name.begins_with("Dommages "):
-			if node_name.split(" ")[1] == "Poussée":
-				node_name = "DO_POU"
-			else:
-				node_name = "DO_" + node_name.split(" ")[1]
-		if node_name.begins_with("Retrait "):
-			node_name = "RET_" + node_name.split(" ")[1]
-		if StatType.keys().has(node_name.to_upper()) and !caracteristiques.has(carac):
+		if !carac.initialized:
 			carac.init()
-			carac.type = StatType.get(node_name.to_upper())
-			caracteristiques.append(carac)
-			if carac.modifiable:
-				carac.consume_point.connect(on_point_consumed)
+		caracteristiques.append(carac)
+		if carac.modifiable:
+			carac.consume_point.connect(on_point_consumed)
 
 
 func reset_caracteristiques():

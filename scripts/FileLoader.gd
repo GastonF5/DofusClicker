@@ -70,7 +70,7 @@ static func get_packed_scene(scene_path: String) -> PackedScene:
 
 static func get_stat_asset(stat_type: String):
 	var stat_path = stat_type.to_lower()
-	if stat_path.begins_with("do_") and stat_path != "do_critiques" and stat_path != "do_pou":
+	if (stat_path.begins_with("res_") or stat_path.begins_with("do_")) and stat_path != "do_critiques" and stat_path != "do_pou":
 		stat_path = "res_" + stat_path.split("_")[1]
 	var dir = DirAccess.open(STAT_ASSET_PATH)
 	var file_name = "%s.png" % stat_path

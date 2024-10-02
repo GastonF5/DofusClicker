@@ -4,6 +4,8 @@ class_name ToggleControl extends Control
 @export var button: Button
 @export var content: Control
 
+@export var stats_container: VBoxContainer
+
 
 func _ready():
 	if button:

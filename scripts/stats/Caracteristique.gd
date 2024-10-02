@@ -97,6 +97,8 @@ var tooltip: Tooltip
 @export var static_tooltip_text: String
 @export var info: TextureRect
 
+var initialized := false
+
 var type: Type
 var base_amount = 0:
 	set(value):
@@ -126,16 +128,17 @@ func _process(_delta):
 
 func init():
 	init_child_nodes()
-	type = Type.get(get_type_label())
+	type = Type.get(name)
 	icon_texture.texture = FileLoader.get_stat_asset(get_type())
 	if init_label:
 		label.text = init_label
 	else:
-		label.text = name
+		label.text = StatResource.get_type_label(name)
 	init_tooltip()
 	update_tooltip()
 	add(0)
 	check_modifiable()
+	initialized = true
 
 
 func init_child_nodes():
@@ -153,26 +156,6 @@ func init_tooltip():
 	elif static_tooltip_text:
 		info.visible = true
 		info.tooltip_text = static_tooltip_text
-
-
-func get_type_label():
-	var type_label = name.to_snake_case().to_upper()
-	if name.begins_with("Résistance "):
-		var name_split = name.split(" ")
-		if name_split[1] == "Poussée":
-			type_label = "RES_POU"
-		else:
-			type_label = "RES_" + name_split[name_split.size() - 1].to_upper()
-	if name.begins_with("Dommages "):
-		var name_split = name.split(" ")
-		if name_split[1] == "Poussée":
-			type_label = "DO_POU"
-		else:
-			type_label = "DO_" + name_split[name_split.size() - 1].to_upper()
-	if name.begins_with("Retrait "):
-		var name_split = name.split(" ")
-		type_label = "RET_" + name_split[name_split.size() - 1].to_upper()
-	return type_label
 
 
 func check_modifiable():

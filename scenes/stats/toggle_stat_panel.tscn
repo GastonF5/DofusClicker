@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2c5ie5xwmw0c"]
+
+[ext_resource type="Script" path="res://scripts/ToggleControl.gd" id="1_o1mx5"]
+[ext_resource type="Texture2D" uid="uid://dc4kur4fk7phx" path="res://assets/common/block/block_border_scratch.png" id="1_vimaf"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6xqkp"]
+texture = ExtResource("1_vimaf")
+texture_margin_left = 15.0
+texture_margin_top = 10.0
+texture_margin_right = 15.0
+texture_margin_bottom = 10.0
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[node name="ToggleStatPanel" type="VBoxContainer" node_paths=PackedStringArray("button", "content", "stats_container")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o1mx5")
+button = NodePath("ToggleButton")
+content = NodePath("Content")
+stats_container = NodePath("Content/PanelContainer/StatsDommages/StatsContainer")
+
+[node name="ToggleButton" type="Button" parent="."]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+text = "Caractéristiques secondaires"
+
+[node name="Content" type="Control" parent="."]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="Content"]
+layout_mode = 1
+offset_right = 10.0
+offset_bottom = 15.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Scratch" type="Panel" parent="Content/PanelContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_6xqkp")
+
+[node name="StatsDommages" type="MarginContainer" parent="Content/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 10
+
+[node name="StatsContainer" type="VBoxContainer" parent="Content/PanelContainer/StatsDommages"]
+layout_mode = 2
+alignment = 1
