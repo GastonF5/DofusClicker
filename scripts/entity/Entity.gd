@@ -286,13 +286,17 @@ func get_attack_speed() -> float:
 
 
 func apply_resistance(amount: int, element: Element) -> int:
-	var type = CaracType.get("RES_" + Element.keys()[element])
-	var res = 0
+	var type_perc = CaracType.get("RES_" + Element.keys()[element])
+	var type_fixe = CaracType.get("RES_%s_FIXE" % Element.keys()[element])
+	var res_perc = 0
+	var res_fixe = 0
 	if caracteristiques.is_empty():
-		res = StatsManager.get_caracteristique_for_type(type).amount
+		res_perc = StatsManager.get_caracteristique_for_type(type_perc).amount
+		res_fixe = StatsManager.get_caracteristique_for_type(type_fixe).amount
 	else:
-		res = get_caracteristique_for_type(type).amount
-	return amount - (amount * res / 100.0)
+		res_perc = get_caracteristique_for_type(type_perc).amount
+		res_fixe = get_caracteristique_for_type(type_fixe).amount
+	return amount - res_fixe - (amount * res_perc / 100.0)
 
 
 func apply_erosion(amount: int):
