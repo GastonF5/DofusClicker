@@ -2,14 +2,14 @@ class_name CaracteristiquesContainer extends Panel
 
 const stat_scene = preload("res://scenes/stats/stat.tscn")
 const toggle_scene = preload("res://scenes/stats/toggle_stat_panel.tscn")
+const favori_scene = preload("res://scenes/stats/stat_favori.tscn")
 
 const Stat = Caracteristique.Type
 
 @export var stat_separator: TextureRect
 @export var toggle_separator: TextureRect
 
-var toggle_panels: Array:
-	get: return get_tree().get_nodes_in_group("toggle_stat_panel")
+var favoris_panel: ToggleControl
 
 var caracteristiques = {
 	"Favoris": [],
@@ -25,13 +25,18 @@ var caracteristiques = {
 
 func init():
 	var toggle_container = $MarginContainer/ScrollContainer/VBC
+	var toggle: ToggleControl
 	for categorie in caracteristiques.keys():
-		var toggle = toggle_scene.instantiate()
+		toggle = toggle_scene.instantiate()
 		toggle.button.text = categorie
 		init_toggle_panel(toggle, categorie)
 		toggle_container.add_child(toggle)
 		toggle_container.add_child(toggle_separator.duplicate())
+		toggle.init()
+		if categorie == "Favoris":
+			favoris_panel = toggle
 	toggle_container.get_child(-1).queue_free()
+	favoris_panel.content.get_child(0).custom_minimum_size = Vector2(toggle.content.size.x, 0)
 
 
 func init_toggle_panel(toggle: ToggleControl, categorie: String):
@@ -47,16 +52,34 @@ func init_toggle_panel(toggle: ToggleControl, categorie: String):
 		toggle.stats_container.get_child(-1).queue_free()
 
 
-func get_toggle_panel(panel_name: String):
-	var filtered = toggle_panels.filter(func(p): return p.button.text == panel_name)
-	if filtered.is_empty():
-		push_error("No toggle stat panel with name %s" % panel_name)
-	else:
-		return filtered[0]
-
-
 func favori_toggled(toggled: bool, stat: Caracteristique):
 	if toggled:
-		print("%s added to favoris" % stat.name)
+		stat.favori = favori_scene.instantiate()
+		add_favori(stat)
 	else:
-		print("%s removed from favoris" % stat.name)
+		remove_favori(stat)
+
+
+func add_favori(stat: Caracteristique):
+	var container = favoris_panel.stats_container
+	if container.get_child_count() != 0:
+		container.add_child(stat_separator.duplicate())
+	else:
+		favoris_panel.button.disabled = false
+		favoris_panel.button.button_pressed = true
+	container.add_child(stat.favori)
+
+
+func remove_favori(stat: Caracteristique):
+	var container = favoris_panel.stats_container
+	var index = stat.favori.get_index()
+	# on supprime le séparateur si c'est pas le dernier favori
+	if index >= 1:
+		container.get_child(index - 1).queue_free()
+	if index == 0 and container.get_child_count() > 2:
+		container.get_child(index + 1).queue_free()
+	if container.get_child_count() < 2:
+		favoris_panel.button.disabled = true
+		favoris_panel.button.set_pressed_no_signal(false)
+		await favoris_panel.toggle_content(false)
+	container.get_child(index).queue_free()

@@ -100,6 +100,14 @@ var tooltip: Tooltip
 @export var static_tooltip_text: String
 @export var info: TextureRect
 
+var favori: Control:
+	set(value):
+		favori = value
+		if value:
+			update_favori()
+		else:
+			$Left/Favori.button_pressed = false
+
 var initialized := false
 
 var type: Type
@@ -119,7 +127,9 @@ var amount = 0:
 		amount = value
 		amount_label.text = str(amount)
 		update_tooltip()
-		if changed: amount_change.emit()
+		if changed:
+			update_favori()
+			amount_change.emit()
 
 signal consume_point
 signal amount_change
@@ -143,6 +153,13 @@ func init():
 	check_modifiable()
 	$Favori.visible = !modifiable and !(type in [Type.PA, Type.PM])
 	initialized = true
+
+
+func update_favori():
+	if favori:
+		favori.get_node("Left/Icon").texture = icon_texture.texture
+		favori.get_node("Left/Label").text = label.text
+		favori.get_node("Right/Amount").text = str(amount)
 
 
 func init_child_nodes():

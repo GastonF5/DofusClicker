@@ -60,3 +60,5 @@ theme_override_constants/margin_bottom = 10
 [node name="StatsContainer" type="VBoxContainer" parent="Content/PanelContainer/StatsDommages"]
 layout_mode = 2
 alignment = 1
+
+[connection signal="resized" from="Content/PanelContainer" to="." method="_on_panel_container_resized"]
