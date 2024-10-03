@@ -98,6 +98,10 @@ var characteristics = [
 	["RES_TERRE_FIXE", 54],
 	["RES_FEU_FIXE", 55],
 	["RES_NEUTRE_FIXE", 58],
+	["DO_SORTS", 123],
+	["DO_ARME", 122],
+	["DO_DISTANCE", 120],
+	["DO_MELEE", 125]
 ]
 
 
