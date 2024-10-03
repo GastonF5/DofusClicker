@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2c5ie5xwmw0c"]
+[gd_scene load_steps=5 format=3 uid="uid://d2c5ie5xwmw0c"]
 
 [ext_resource type="Script" path="res://scripts/ToggleControl.gd" id="1_o1mx5"]
 [ext_resource type="Texture2D" uid="uid://dc4kur4fk7phx" path="res://assets/common/block/block_border_scratch.png" id="1_vimaf"]
+[ext_resource type="Texture2D" uid="uid://b3vuusiidgdeo" path="res://assets/icons/green_arrow_right.png" id="2_angyj"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6xqkp"]
 texture = ExtResource("1_vimaf")
@@ -31,6 +32,7 @@ focus_mode = 0
 mouse_default_cursor_shape = 2
 toggle_mode = true
 text = "Caractéristiques secondaires"
+icon = ExtResource("2_angyj")
 
 [node name="Content" type="Control" parent="."]
 clip_contents = true
