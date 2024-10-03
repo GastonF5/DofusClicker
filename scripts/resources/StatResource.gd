@@ -61,7 +61,7 @@ static func get_type_label(type_label: String) -> String:
 			return "Maîtrise Armes"
 		if type_label.begins_with("RES_"):
 			var carac = type_label.split("_")[1]
-			if type_label.ends_with("FIXE"):
+			if type_label.ends_with("FIXE") or type_label.contains("CRIT") or type_label.contains("DO"):
 				return "Résistance %s" % carac.to_pascal_case()
 			if !["PA", "PM"].has(carac):
 				return "Résistance %s (%%)" % carac.to_pascal_case()
