@@ -13,6 +13,12 @@ offset_bottom = 32.0
 script = ExtResource("1_uqnf4")
 info = NodePath("Info")
 
+[node name="Favori" type="CheckBox" parent="."]
+layout_mode = 2
+tooltip_text = "Ajouter aux favoris"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+
 [node name="Left" type="HBoxContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 2
@@ -74,5 +80,6 @@ layout_mode = 2
 [node name="PlusButton" parent="Right" instance=ExtResource("3_5e62l")]
 layout_mode = 2
 
+[connection signal="toggled" from="Favori" to="." method="_on_favori_toggled"]
 [connection signal="button_up" from="Right/MinusButton" to="." method="_on_minus_button_button_up"]
 [connection signal="button_up" from="Right/PlusButton" to="." method="_on_plus_button_button_up"]

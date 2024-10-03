@@ -141,6 +141,7 @@ func init():
 	update_tooltip()
 	add(0)
 	check_modifiable()
+	$Favori.visible = !modifiable and !(type in [Type.PA, Type.PM])
 	initialized = true
 
 
