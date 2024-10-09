@@ -42,6 +42,14 @@ enum Type {
 	RES_DOMMAGES,
 	PV,
 	DO_SORTS,
+	DO_ARME,
+	DO_DISTANCE,
+	DO_MELEE,
+	RES_AIR_FIXE,
+	RES_EAU_FIXE,
+	RES_TERRE_FIXE,
+	RES_FEU_FIXE,
+	RES_NEUTRE_FIXE,
 }
 
 enum Element {
@@ -92,6 +100,16 @@ var tooltip: Tooltip
 @export var static_tooltip_text: String
 @export var info: TextureRect
 
+var favori: Control:
+	set(value):
+		favori = value
+		if value:
+			update_favori()
+		else:
+			$Left/Favori.button_pressed = false
+
+var initialized := false
+
 var type: Type
 var base_amount = 0:
 	set(value):
@@ -109,7 +127,9 @@ var amount = 0:
 		amount = value
 		amount_label.text = str(amount)
 		update_tooltip()
-		if changed: amount_change.emit()
+		if changed:
+			update_favori()
+			amount_change.emit()
 
 signal consume_point
 signal amount_change
@@ -121,16 +141,25 @@ func _process(_delta):
 
 func init():
 	init_child_nodes()
-	type = Type.get(get_type_label())
+	type = Type.get(name)
 	icon_texture.texture = FileLoader.get_stat_asset(get_type())
 	if init_label:
 		label.text = init_label
 	else:
-		label.text = name
+		label.text = StatResource.get_type_label(name)
 	init_tooltip()
 	update_tooltip()
 	add(0)
 	check_modifiable()
+	$Favori.visible = !modifiable and !(type in [Type.PA, Type.PM])
+	initialized = true
+
+
+func update_favori():
+	if favori:
+		favori.get_node("Left/Icon").texture = icon_texture.texture
+		favori.get_node("Left/Label").text = label.text
+		favori.get_node("Right/Amount").text = str(amount)
 
 
 func init_child_nodes():
@@ -148,26 +177,6 @@ func init_tooltip():
 	elif static_tooltip_text:
 		info.visible = true
 		info.tooltip_text = static_tooltip_text
-
-
-func get_type_label():
-	var type_label = name.to_snake_case().to_upper()
-	if name.begins_with("Résistance "):
-		var name_split = name.split(" ")
-		if name_split[1] == "Poussée":
-			type_label = "RES_POU"
-		else:
-			type_label = "RES_" + name_split[name_split.size() - 1].to_upper()
-	if name.begins_with("Dommages "):
-		var name_split = name.split(" ")
-		if name_split[1] == "Poussée":
-			type_label = "DO_POU"
-		else:
-			type_label = "DO_" + name_split[name_split.size() - 1].to_upper()
-	if name.begins_with("Retrait "):
-		var name_split = name.split(" ")
-		type_label = "RET_" + name_split[name_split.size() - 1].to_upper()
-	return type_label
 
 
 func check_modifiable():

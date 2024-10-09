@@ -28,9 +28,10 @@ func get_result() -> ItemResource:
 func get_ingredients() -> Array:
 	var result = []
 	for i in range(_ingredients.size()):
-		var ingredient = Datas._resources[_ingredients[i]]
-		ingredient.count = _quantities[i]
-		result.append(ingredient)
+		if Datas._resources.has(_ingredients[i]):
+			var ingredient = Datas._resources[_ingredients[i]]
+			ingredient.count = _quantities[i]
+			result.append(ingredient)
 	return result
 
 

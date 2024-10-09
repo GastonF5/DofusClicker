@@ -4,6 +4,25 @@ extends AbstractManager
 const StatType = Caracteristique.Type
 const Element = Caracteristique.Element
 
+const stat_scene = preload("res://scenes/stats/stat.tscn")
+const toggle_scene = preload("res://scenes/stats/toggle_stat_panel.tscn")
+const favori_scene = preload("res://scenes/stats/stat_favori.tscn")
+
+const stat_separator_scene = preload("res://scenes/separators/stat_separator.tscn")
+const container_separator_scene = preload("res://scenes/separators/container_separator.tscn")
+
+var stats_categories = {
+	"Favoris": [],
+	"Caractéristiques Secondaires": [StatType.PUISSANCE, StatType.DOMMAGES, StatType.SOIN, StatType.INVOCATIONS, StatType.PROSPECTION],
+	"Critique": [StatType.CRITIQUE, StatType.DO_CRITIQUES, StatType.RES_CRITIQUES],
+	"Dommages élémentaires": [StatType.DO_AIR, StatType.DO_EAU, StatType.DO_TERRE, StatType.DO_FEU, StatType.DO_NEUTRE],
+	"Dommages autres": [StatType.DO_MELEE, StatType.DO_DISTANCE, StatType.DO_SORTS, StatType.DO_ARME],
+	"Résistances élémentaires (fixe)": [StatType.RES_AIR_FIXE, StatType.RES_EAU_FIXE, StatType.RES_TERRE_FIXE, StatType.RES_FEU_FIXE, StatType.RES_NEUTRE_FIXE],
+	"Résistances élémentaires (%)": [StatType.RES_AIR, StatType.RES_EAU, StatType.RES_TERRE, StatType.RES_FEU, StatType.RES_NEUTRE],
+	"Poussée": [StatType.DO_POU, StatType.RES_POU],
+	"Retrait": [StatType.RET_PA, StatType.RET_PM, StatType.RES_PA, StatType.RES_PM],
+}
+
 var stats_container: Panel
 var reset_button: Button
 var points_label: Label
@@ -28,6 +47,7 @@ func initialize():
 	stats_container = Globals.stats_container
 	reset_button = stats_container.get_node("%ResetButton")
 	points_label = stats_container.get_node("%PointsLabel")
+	Globals.stats_container.init()
 	create_caracteristiques()
 	reset_button.button_up.connect(reset_points)
 	update_points_label()
@@ -42,26 +62,11 @@ func initialize():
 func create_caracteristiques():
 	var carac_nodes = get_tree().get_nodes_in_group("caracteristique")
 	for carac in carac_nodes:
-		var node_name = carac.name
-		if node_name.begins_with("Résistance "):
-			var node_name_split = node_name.split(" ")
-			if node_name_split[1] == "Poussée":
-				node_name = "RES_POU"
-			else:
-				node_name = "RES_" + node_name_split[node_name_split.size() - 1]
-		if node_name.begins_with("Dommages "):
-			if node_name.split(" ")[1] == "Poussée":
-				node_name = "DO_POU"
-			else:
-				node_name = "DO_" + node_name.split(" ")[1]
-		if node_name.begins_with("Retrait "):
-			node_name = "RET_" + node_name.split(" ")[1]
-		if StatType.keys().has(node_name.to_upper()) and !caracteristiques.has(carac):
+		if !carac.initialized:
 			carac.init()
-			carac.type = StatType.get(node_name.to_upper())
-			caracteristiques.append(carac)
-			if carac.modifiable:
-				carac.consume_point.connect(on_point_consumed)
+		caracteristiques.append(carac)
+		if carac.modifiable:
+			carac.consume_point.connect(on_point_consumed)
 
 
 func reset_caracteristiques():

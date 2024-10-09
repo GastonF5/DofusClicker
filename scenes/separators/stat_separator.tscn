@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbokmfaf0frck"]
+
+[ext_resource type="Texture2D" uid="uid://ctdds4f63al2c" path="res://assets/common/separator/window_separator_black_horizontal.png" id="1_xw2py"]
+
+[node name="Separator" type="TextureRect"]
+texture = ExtResource("1_xw2py")
