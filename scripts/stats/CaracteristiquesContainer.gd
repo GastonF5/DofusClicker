@@ -2,9 +2,6 @@ class_name CaracteristiquesContainer extends Panel
 
 const Stat = Caracteristique.Type
 
-@export var stat_separator: TextureRect
-@export var toggle_separator: TextureRect
-
 var favoris_panel: ToggleControl
 
 func init():
@@ -15,7 +12,7 @@ func init():
 		toggle.button.text = categorie
 		init_toggle_panel(toggle, categorie)
 		toggle_container.add_child(toggle)
-		toggle_container.add_child(toggle_separator.duplicate())
+		toggle_container.add_child(StatsManager.container_separator_scene.instantiate())
 		toggle.init(categorie != "Favoris")
 		if categorie == "Favoris":
 			favoris_panel = toggle
@@ -31,7 +28,7 @@ func init_toggle_panel(toggle: ToggleControl, categorie: String):
 		stat.init()
 		stat.get_node("Favori").toggled.connect(favori_toggled.bind(stat))
 		toggle.stats_container.add_child(stat)
-		toggle.stats_container.add_child(stat_separator.duplicate())
+		toggle.stats_container.add_child(StatsManager.stat_separator_scene.instantiate())
 	if toggle.stats_container.get_child_count() > 0:
 		toggle.stats_container.get_child(-1).queue_free()
 
@@ -47,7 +44,7 @@ func favori_toggled(toggled: bool, stat: Caracteristique):
 func add_favori(stat: Caracteristique):
 	var container = favoris_panel.stats_container
 	if container.get_child_count() != 0:
-		container.add_child(stat_separator.duplicate())
+		container.add_child(StatsManager.stat_separator_scene.instantiate())
 	else:
 		favoris_panel.button.disabled = false
 		favoris_panel.button.button_pressed = true

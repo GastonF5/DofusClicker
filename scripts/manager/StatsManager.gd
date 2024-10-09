@@ -8,6 +8,9 @@ const stat_scene = preload("res://scenes/stats/stat.tscn")
 const toggle_scene = preload("res://scenes/stats/toggle_stat_panel.tscn")
 const favori_scene = preload("res://scenes/stats/stat_favori.tscn")
 
+const stat_separator_scene = preload("res://scenes/separators/stat_separator.tscn")
+const container_separator_scene = preload("res://scenes/separators/container_separator.tscn")
+
 var stats_categories = {
 	"Favoris": [],
 	"Caractéristiques Secondaires": [StatType.PUISSANCE, StatType.DOMMAGES, StatType.SOIN, StatType.INVOCATIONS, StatType.PROSPECTION],

@@ -26,22 +26,29 @@ func _ready():
 func init():
 	var toggle: ToggleControl
 	var _count := 0
+	var container: VBoxContainer
 	for categorie in StatsManager.stats_categories.keys():
 		if categorie != "Favoris":
 			toggle = StatsManager.toggle_scene.instantiate()
 			toggle.button.text = categorie
 			init_toggle_panel(toggle, categorie)
 			if _count < 4:
-				carac_container1.add_child(toggle)
+				container = carac_container1
 			else:
-				carac_container2.add_child(toggle)
+				container = carac_container2
+			container.add_child(toggle)
+			container.add_child(StatsManager.container_separator_scene.instantiate())
 			toggle.init(true)
 			_count += 1
+	carac_container1.get_child(-1).queue_free()
+	carac_container2.get_child(-1).queue_free()
 
 
 func init_toggle_panel(toggle: ToggleControl, categorie: String):
 	for type in StatsManager.stats_categories[categorie]:
 		Filter.create(StatType.find_key(type), apply_filter, toggle.stats_container)
+		toggle.stats_container.add_child(StatsManager.stat_separator_scene.instantiate())
+	toggle.stats_container.get_child(-1).queue_free()
 
 
 func apply_filter(apply: bool, filter_name: String):

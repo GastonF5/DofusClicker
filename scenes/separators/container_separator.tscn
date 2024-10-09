@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5ruya62ahcxn"]
+
+[ext_resource type="Texture2D" uid="uid://cig7rslj0pse5" path="res://assets/common/separator/window_separator_green_horizontal.png" id="1_xddkl"]
+
+[node name="Separator" type="TextureRect"]
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_xddkl")
