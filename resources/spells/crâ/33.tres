@@ -1,0 +1,83 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://cwnrl2iixd6n"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_4yrjs"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_tlco6"]
+[ext_resource type="Texture2D" uid="uid://d24n4c23gkhla" path="res://assets/spells/crâ/sort_13035.png" id="2_oc726"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_u1do4"]
+
+[sub_resource type="Resource" id="Resource_qu17e"]
+script = ExtResource("1_4yrjs")
+_min = 27
+_max = 31
+_min_crit = 32
+_max_crit = 37
+
+[sub_resource type="Resource" id="Resource_vlxmo"]
+resource_name = "Dommages Feu"
+script = ExtResource("2_u1do4")
+type = 0
+time = 0.0
+target_type = 2
+show_time = false
+effective_zone = 2
+has_grades = false
+element = 2
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+amounts = Array[ExtResource("1_4yrjs")]([SubResource("Resource_qu17e")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_qegcg"]
+script = ExtResource("1_4yrjs")
+_min = 50
+_max = 50
+_min_crit = 50
+_max_crit = 50
+
+[sub_resource type="Resource" id="Resource_qqsda"]
+resource_name = "Spécial Puissance"
+script = ExtResource("2_u1do4")
+type = 3
+time = 15.0
+target_type = 0
+show_time = false
+effective_zone = 2
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 8
+pourcentage = false
+retrait_vol = false
+method_name = &"fleche_assaillante"
+effect_label = "{min} Puissance par entité touchée {time} (Distance)"
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+amounts = Array[ExtResource("1_4yrjs")]([SubResource("Resource_qegcg")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_tlco6")
+id = 13077
+name = "Flèche Assaillante"
+available = true
+description = "Augmente la Puissance du lanceur pour chaque entité dans la zone d'effet et occasionne des dommages Feu en zone à distance."
+texture = ExtResource("2_oc726")
+img_url = "https://api.beta.dofusdb.fr/img/spells/sort_13035.png"
+level = 20
+pa_cost = 4
+per_crit = 0.15
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_u1do4")]([SubResource("Resource_vlxmo"), SubResource("Resource_qqsda")])

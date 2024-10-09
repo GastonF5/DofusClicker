@@ -1,0 +1,83 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://bei8k1246lgs0"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_ccee7"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_ce3sg"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_umf5p"]
+[ext_resource type="Texture2D" uid="uid://b1p8wqm0slx18" path="res://assets/spells/crâ/sort_13292.png" id="2_3fff0"]
+
+[sub_resource type="Resource" id="Resource_mfhia"]
+script = ExtResource("1_ccee7")
+_min = 5
+_max = 7
+_min_crit = 8
+_max_crit = 8
+
+[sub_resource type="Resource" id="Resource_3msr6"]
+resource_name = "Vol Eau"
+script = ExtResource("1_umf5p")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 3
+lifesteal = true
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+amounts = Array[ExtResource("1_ccee7")]([SubResource("Resource_mfhia")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_1tr73"]
+script = ExtResource("1_ccee7")
+_min = 1
+_max = 1
+_min_crit = 1
+_max_crit = 1
+
+[sub_resource type="Resource" id="Resource_lu5ix"]
+resource_name = "Vol PM"
+script = ExtResource("1_umf5p")
+type = 2
+time = 5.0
+target_type = 1
+show_time = true
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 1
+pourcentage = false
+retrait_vol = true
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+amounts = Array[ExtResource("1_ccee7")]([SubResource("Resource_1tr73")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_ce3sg")
+id = 13056
+name = "Flèche d'Immobilisation"
+available = true
+description = "Vole des PM et de la vie dans l'élément Eau."
+texture = ExtResource("2_3fff0")
+img_url = "https://api.beta.dofusdb.fr/img/spells/sort_13292.png"
+level = 10
+pa_cost = 2
+per_crit = 0.5
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("1_umf5p")]([SubResource("Resource_3msr6"), SubResource("Resource_lu5ix")])

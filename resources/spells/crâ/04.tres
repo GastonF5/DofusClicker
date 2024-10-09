@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=3 format=3 uid="uid://brj8d1wql13lg"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_55fek"]
+[ext_resource type="Texture2D" uid="uid://b3ix5siksbtoj" path="res://assets/spells/crâ/sort_11917.png" id="2_680bt"]
+
+[resource]
+script = ExtResource("1_55fek")
+id = 13082
+name = "Flèche Tyrannique"
+available = true
+description = "Occasionne des dommages Feu et Air et applique l'état Flèche Tyrannique sur l'ennemi ciblé :
+• Occasionne des dommages Feu si la cible subit des dommages de poussée.
+• Occasionne des dommages Air si elle est attirée ou poussée."
+texture = ExtResource("2_680bt")
+img_url = "https://api.beta.dofusdb.fr/img/spells/sort_11917.png"
+level = 80
+pa_cost = 0
+per_crit = 0.0
+cooldown = 0.0
+priority = 0
+effects = Array[Resource("res://scripts/resources/EffectResource.gd")]([])

@@ -1,0 +1,83 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://dn5i8o7beglle"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_62r4l"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_onuii"]
+[ext_resource type="Texture2D" uid="uid://cgp4cth4m445f" path="res://assets/spells/crâ/sort_11895.png" id="2_4owpb"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_46nwr"]
+
+[sub_resource type="Resource" id="Resource_x5hcn"]
+script = ExtResource("1_onuii")
+_min = 10
+_max = 10
+_min_crit = 10
+_max_crit = 10
+
+[sub_resource type="Resource" id="Resource_tpjx6"]
+resource_name = "Erosion"
+script = ExtResource("2_46nwr")
+type = 1
+time = 20.0
+target_type = 1
+show_time = true
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 30
+pourcentage = true
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+amounts = Array[ExtResource("1_onuii")]([SubResource("Resource_x5hcn")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_lrok1"]
+script = ExtResource("1_onuii")
+_min = 2
+_max = 2
+_min_crit = 2
+_max_crit = 2
+
+[sub_resource type="Resource" id="Resource_m0ac8"]
+resource_name = "Poussée"
+script = ExtResource("2_46nwr")
+type = 9
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 1
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+amounts = Array[ExtResource("1_onuii")]([SubResource("Resource_lrok1")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_62r4l")
+id = 13050
+name = "Flèches Érosives"
+available = true
+description = "Érode l'ennemi ciblé et repousse la cible en mêlée."
+texture = ExtResource("2_4owpb")
+img_url = "https://api.beta.dofusdb.fr/img/spells/sort_11895.png"
+level = 25
+pa_cost = 2
+per_crit = 0.0
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_46nwr")]([SubResource("Resource_tpjx6"), SubResource("Resource_m0ac8")])

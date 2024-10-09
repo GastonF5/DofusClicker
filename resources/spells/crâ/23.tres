@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=3 format=3 uid="uid://b0wcgjs7ljq0t"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_bwj75"]
+[ext_resource type="Texture2D" uid="uid://b17kluxiq3nb" path="res://assets/spells/crâ/sort_11900.png" id="2_haban"]
+
+[resource]
+script = ExtResource("1_bwj75")
+id = 13068
+name = "Flèche de Concentration"
+available = true
+description = "Attire les cibles vers le centre et occasionne des dommages Air aux ennemis sur les cases centrales."
+texture = ExtResource("2_haban")
+img_url = "https://api.beta.dofusdb.fr/img/spells/sort_11900.png"
+level = 70
+pa_cost = 0
+per_crit = 0.0
+cooldown = 0.0
+priority = 0
+effects = Array[Resource("res://scripts/resources/EffectResource.gd")]([])

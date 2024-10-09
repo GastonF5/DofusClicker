@@ -1,0 +1,51 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://bbt8jjokmx6k"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_hxcnp"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_xrc4u"]
+[ext_resource type="Texture2D" uid="uid://bb1yvmjx37230" path="res://assets/spells/crâ/sort_11877.png" id="2_0kbku"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_lka4x"]
+
+[sub_resource type="Resource" id="Resource_hhmdd"]
+script = ExtResource("1_hxcnp")
+_min = 2
+_max = 2
+_min_crit = 2
+_max_crit = 2
+
+[sub_resource type="Resource" id="Resource_76it5"]
+resource_name = "Poussée"
+script = ExtResource("2_lka4x")
+type = 9
+time = 0.0
+target_type = 9
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+amounts = Array[ExtResource("1_hxcnp")]([SubResource("Resource_hhmdd")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_xrc4u")
+id = 13067
+name = "Flèche de Dispersion"
+available = true
+description = "Repousse les cibles autour de la case ciblée."
+texture = ExtResource("2_0kbku")
+img_url = "https://api.beta.dofusdb.fr/img/spells/sort_11877.png"
+level = 1
+pa_cost = 2
+per_crit = 0.0
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_lka4x")]([SubResource("Resource_76it5")])

@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://3y5fs1d802wj"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_tkkp1"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_w3inj"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_yw3gj"]
+[ext_resource type="Texture2D" uid="uid://dl0rstae6yyo8" path="res://assets/spells/crâ/sort_11904.png" id="2_ek6sj"]
+
+[sub_resource type="Resource" id="Resource_iuq80"]
+script = ExtResource("1_yw3gj")
+_min = 17
+_max = 19
+_min_crit = 20
+_max_crit = 23
+
+[sub_resource type="Resource" id="Resource_glgcq"]
+resource_name = "Dommages Feu"
+script = ExtResource("1_w3inj")
+type = 0
+time = 0.0
+target_type = 2
+show_time = false
+effective_zone = 1
+has_grades = false
+element = 2
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+amounts = Array[ExtResource("1_yw3gj")]([SubResource("Resource_iuq80")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_jaynt"]
+script = ExtResource("1_yw3gj")
+_min = 1
+_max = 1
+_min_crit = 1
+_max_crit = 1
+
+[sub_resource type="Resource" id="Resource_y2fsu"]
+resource_name = "Poussée"
+script = ExtResource("1_w3inj")
+type = 9
+time = 0.0
+target_type = 2
+show_time = false
+effective_zone = 1
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+amounts = Array[ExtResource("1_yw3gj")]([SubResource("Resource_jaynt")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_tkkp1")
+id = 13072
+name = "Tir Répulsif"
+available = true
+description = "Occasionne des dommages Feu aux ennemis et repousse les cibles en zone en mêlée."
+texture = ExtResource("2_ek6sj")
+img_url = "https://api.beta.dofusdb.fr/img/spells/sort_11904.png"
+level = 3
+pa_cost = 3
+per_crit = 0.1
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("1_w3inj")]([SubResource("Resource_glgcq"), SubResource("Resource_y2fsu")])

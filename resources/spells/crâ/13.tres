@@ -1,0 +1,54 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://cdhbmg52w70it"]
+
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_op8um"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_sk385"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_uj5kf"]
+[ext_resource type="Texture2D" uid="uid://clwtmcsqfqsv0" path="res://assets/spells/crâ/sort_11882.png" id="2_mw2sv"]
+
+[sub_resource type="Resource" id="Resource_yxtx8"]
+script = ExtResource("1_sk385")
+_min = 28
+_max = 30
+_min_crit = 34
+_max_crit = 36
+
+[sub_resource type="Resource" id="Resource_2inhg"]
+resource_name = "Dommages Eau"
+script = ExtResource("1_op8um")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &"fleche_expiation"
+effect_label = "{min} à {max} ({min_crit} à {max_crit}) dommages Eau
+Augmente les dégâts de base du sort Flèche d'Expiation de {param0}"
+params = [35]
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+amounts = Array[ExtResource("1_sk385")]([SubResource("Resource_yxtx8")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_uj5kf")
+id = 13053
+name = "Flèche d'Expiation"
+available = true
+description = "Occasionne des dommages Eau.
+Les dommages du sort sont augmentés après chaque lancer."
+texture = ExtResource("2_mw2sv")
+img_url = "https://api.beta.dofusdb.fr/img/spells/sort_11882.png"
+level = 30
+pa_cost = 4
+per_crit = 0.25
+cooldown = 8.0
+priority = 0
+effects = Array[ExtResource("1_op8um")]([SubResource("Resource_2inhg")])
