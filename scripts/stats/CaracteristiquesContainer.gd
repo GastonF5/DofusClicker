@@ -12,11 +12,9 @@ func init():
 		toggle.button.text = categorie
 		init_toggle_panel(toggle, categorie)
 		toggle_container.add_child(toggle)
-		toggle_container.add_child(StatsManager.container_separator_scene.instantiate())
 		toggle.init(categorie != "Favoris")
 		if categorie == "Favoris":
 			favoris_panel = toggle
-	toggle_container.get_child(-1).queue_free()
 	favoris_panel.content.get_child(0).custom_minimum_size = Vector2(toggle.content.size.x, 0)
 
 

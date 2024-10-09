@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cdkopp0w34ycf"]
+[gd_scene load_steps=3 format=3 uid="uid://cdkopp0w34ycf"]
 
 [ext_resource type="Script" path="res://scripts/filters/RecipeFilters.gd" id="1_qidep"]
+[ext_resource type="PackedScene" uid="uid://b5ruya62ahcxn" path="res://scenes/separators/container_separator.tscn" id="2_1ve30"]
 
 [node name="RecipeFilters" type="VBoxContainer" node_paths=PackedStringArray("carac_container1", "carac_container2", "craftable_checkbox")]
 anchors_preset = 15
@@ -13,6 +14,9 @@ script = ExtResource("1_qidep")
 carac_container1 = NodePath("HBC2/CaracteristiqueFilters")
 carac_container2 = NodePath("HBC2/CaracteristiqueFilters2")
 craftable_checkbox = NodePath("HBC/CraftableFilter/CheckBox")
+
+[node name="Separator" parent="." instance=ExtResource("2_1ve30")]
+layout_mode = 2
 
 [node name="HBC" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -59,6 +63,9 @@ layout_mode = 2
 tooltip_text = "Filtrer"
 focus_mode = 0
 mouse_default_cursor_shape = 2
+
+[node name="Separator2" parent="." instance=ExtResource("2_1ve30")]
+layout_mode = 2
 
 [node name="HBC2" type="HBoxContainer" parent="."]
 layout_mode = 2

@@ -37,11 +37,8 @@ func init():
 			else:
 				container = carac_container2
 			container.add_child(toggle)
-			container.add_child(StatsManager.container_separator_scene.instantiate())
 			toggle.init(true)
 			_count += 1
-	carac_container1.get_child(-1).queue_free()
-	carac_container2.get_child(-1).queue_free()
 
 
 func init_toggle_panel(toggle: ToggleControl, categorie: String):
