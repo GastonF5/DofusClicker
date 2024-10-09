@@ -4,6 +4,22 @@ extends AbstractManager
 const StatType = Caracteristique.Type
 const Element = Caracteristique.Element
 
+const stat_scene = preload("res://scenes/stats/stat.tscn")
+const toggle_scene = preload("res://scenes/stats/toggle_stat_panel.tscn")
+const favori_scene = preload("res://scenes/stats/stat_favori.tscn")
+
+var stats_categories = {
+	"Favoris": [],
+	"Caractéristiques Secondaires": [StatType.PUISSANCE, StatType.DOMMAGES, StatType.SOIN, StatType.INVOCATIONS, StatType.PROSPECTION],
+	"Critique": [StatType.CRITIQUE, StatType.DO_CRITIQUES, StatType.RES_CRITIQUES],
+	"Dommages élémentaires": [StatType.DO_AIR, StatType.DO_EAU, StatType.DO_TERRE, StatType.DO_FEU, StatType.DO_NEUTRE],
+	"Dommages autres": [StatType.DO_MELEE, StatType.DO_DISTANCE, StatType.DO_SORTS, StatType.DO_ARME],
+	"Résistances élémentaires (fixe)": [StatType.RES_AIR_FIXE, StatType.RES_EAU_FIXE, StatType.RES_TERRE_FIXE, StatType.RES_FEU_FIXE, StatType.RES_NEUTRE_FIXE],
+	"Résistances élémentaires (%)": [StatType.RES_AIR, StatType.RES_EAU, StatType.RES_TERRE, StatType.RES_FEU, StatType.RES_NEUTRE],
+	"Poussée": [StatType.DO_POU, StatType.RES_POU],
+	"Retrait": [StatType.RET_PA, StatType.RET_PM, StatType.RES_PA, StatType.RES_PM],
+}
+
 var stats_container: Panel
 var reset_button: Button
 var points_label: Label

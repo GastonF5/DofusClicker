@@ -11,7 +11,7 @@ const arrow_right = preload("res://assets/icons/green_arrow_right.png")
 var _content_size: Vector2
 
 
-func init():
+func init(opened: bool):
 	if button:
 		button.toggled.connect(toggle_content)
 	else:
@@ -20,9 +20,10 @@ func init():
 		push_error("Content not set for %s" % name)
 	if stats_container.get_child_count() > 0:
 		_content_size = content.get_child(0).size
+		button.button_pressed = opened
 	else:
 		button.disabled = true
-	toggle_content(false)
+		toggle_content(false)
 
 
 func toggle_content(toggled: bool):

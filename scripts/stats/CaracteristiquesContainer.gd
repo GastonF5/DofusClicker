@@ -1,9 +1,5 @@
 class_name CaracteristiquesContainer extends Panel
 
-const stat_scene = preload("res://scenes/stats/stat.tscn")
-const toggle_scene = preload("res://scenes/stats/toggle_stat_panel.tscn")
-const favori_scene = preload("res://scenes/stats/stat_favori.tscn")
-
 const Stat = Caracteristique.Type
 
 @export var stat_separator: TextureRect
@@ -11,28 +7,16 @@ const Stat = Caracteristique.Type
 
 var favoris_panel: ToggleControl
 
-var caracteristiques = {
-	"Favoris": [],
-	"Caractéristiques Secondaires": [Stat.PUISSANCE, Stat.DOMMAGES, Stat.SOIN, Stat.INVOCATIONS, Stat.PROSPECTION],
-	"Critique": [Stat.CRITIQUE, Stat.DO_CRITIQUES, Stat.RES_CRITIQUES],
-	"Dommages élémentaires": [Stat.DO_AIR, Stat.DO_EAU, Stat.DO_TERRE, Stat.DO_FEU, Stat.DO_NEUTRE],
-	"Dommages autres": [Stat.DO_MELEE, Stat.DO_DISTANCE, Stat.DO_SORTS, Stat.DO_ARME],
-	"Résistances élémentaires (fixe)": [Stat.RES_AIR_FIXE, Stat.RES_EAU_FIXE, Stat.RES_TERRE_FIXE, Stat.RES_FEU_FIXE, Stat.RES_NEUTRE_FIXE],
-	"Résistances élémentaires (%)": [Stat.RES_AIR, Stat.RES_EAU, Stat.RES_TERRE, Stat.RES_FEU, Stat.RES_NEUTRE],
-	"Poussée": [Stat.DO_POU, Stat.RES_POU],
-	"Retrait": [Stat.RET_PA, Stat.RET_PM, Stat.RES_PA, Stat.RES_PM],
-}
-
 func init():
 	var toggle_container = $MarginContainer/ScrollContainer/VBC
 	var toggle: ToggleControl
-	for categorie in caracteristiques.keys():
-		toggle = toggle_scene.instantiate()
+	for categorie in StatsManager.stats_categories.keys():
+		toggle = StatsManager.toggle_scene.instantiate()
 		toggle.button.text = categorie
 		init_toggle_panel(toggle, categorie)
 		toggle_container.add_child(toggle)
 		toggle_container.add_child(toggle_separator.duplicate())
-		toggle.init()
+		toggle.init(categorie != "Favoris")
 		if categorie == "Favoris":
 			favoris_panel = toggle
 	toggle_container.get_child(-1).queue_free()
@@ -40,8 +24,8 @@ func init():
 
 
 func init_toggle_panel(toggle: ToggleControl, categorie: String):
-	for type in caracteristiques[categorie]:
-		var stat = stat_scene.instantiate()
+	for type in StatsManager.stats_categories[categorie]:
+		var stat = StatsManager.stat_scene.instantiate()
 		stat.name = Stat.find_key(type)
 		stat.modifiable = false
 		stat.init()
@@ -54,7 +38,7 @@ func init_toggle_panel(toggle: ToggleControl, categorie: String):
 
 func favori_toggled(toggled: bool, stat: Caracteristique):
 	if toggled:
-		stat.favori = favori_scene.instantiate()
+		stat.favori = StatsManager.favori_scene.instantiate()
 		add_favori(stat)
 	else:
 		remove_favori(stat)
