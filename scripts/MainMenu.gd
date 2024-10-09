@@ -31,6 +31,8 @@ func check_version() -> bool:
 	if !types.data.has("version"):
 		return true
 	var installed_versions = types.data["version"].split('.')
+	if installed_versions.size() == 1:
+		return true
 	var check_versions = Globals.last_version_to_check.split('.')
 	# on vérifie les version une par une, de la majeure vers la mineure
 	for i in range(3):
