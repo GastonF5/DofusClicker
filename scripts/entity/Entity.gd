@@ -265,7 +265,7 @@ func take_damage(amount: int, element: Element):
 		if element != Element.POUSSEE:
 			amount = apply_resistance(amount, element)
 		if Entity.is_monster(self):
-			create_taken_damage(amount)
+			create_taken_damage(amount, TakenDamage.Type.DAMAGE)
 	apply_erosion(hp_bar.take_damage(amount))
 	if hp_bar.cval == int(hp_bar.min_value):
 		dying = true
@@ -274,10 +274,10 @@ func take_damage(amount: int, element: Element):
 	return amount
 
 
-func create_taken_damage(amount: int):
+func create_taken_damage(amount: int, type: TakenDamage.Type):
 	var taken_damage: TakenDamage = FileLoader.get_packed_scene("taken_damage").instantiate()
 	get_parent().add_child(taken_damage)
-	taken_damage.init(amount)
+	taken_damage.init(amount, type)
 
 
 func get_attack_speed() -> float:

@@ -140,6 +140,8 @@ static func perform_retrait(caster: Entity, target: Entity, effect: EffectResour
 			bar.cval -= 1
 			retrait_amount += 1
 	effects_log.append([EffectType.RETRAIT, target, retrait_amount, effect.get_caracteristic_label()])
+	if !target.is_player and retrait_amount > 0:
+		target.create_taken_damage(retrait_amount, TakenDamage.Type.RET_PA if effect.caracteristic == StatType.PA else TakenDamage.Type.RET_PM)
 	if effect.retrait_vol and retrait_amount > 0:
 		var new_effect = effect.duplicate(true)
 		new_effect.amounts = effect.duplicate_amounts()
