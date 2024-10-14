@@ -58,7 +58,7 @@ func init_item(item_res: ItemResource, stats: Array[StatResource] = []):
 	set_crit_container()
 	name = item_res.name.to_pascal_case() + "Description"
 	texture.texture = item_res.texture
-	compute_name_label(item_res.name, item_res.id, item_res.level)
+	compute_name_label(item_res.name, item_res.id, item_res.level, item_res.type_id)
 	# Statistiques de l'item
 	if !stats.is_empty():
 		for effect in stats:
@@ -139,7 +139,7 @@ func set_mouse_ignore():
 		child.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 
-func compute_name_label(_name: String, _id: int, _level: int = -1):
+func compute_name_label(_name: String, _id: int, _level: int = -1, _item_type_id: int = -1):
 	name_label.clear()
 	name_label.push_outline_size(-6)
 	name_label.append_text(_name)
@@ -148,6 +148,8 @@ func compute_name_label(_name: String, _id: int, _level: int = -1):
 	if _level >= 0:
 		name_label.push_color(Color.GRAY)
 		name_label.append_text("\n" + "Niveau %d" % _level)
+		if (Datas._types.has(_item_type_id)):
+			name_label.append_text(" - %s" % Datas._types[_item_type_id]._name)
 		name_label.pop()
 
 
