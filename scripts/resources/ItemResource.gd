@@ -38,13 +38,13 @@ func is_key() -> bool:
 func load_texture():
 	if texture:
 		return texture
-	var asset: CompressedTexture2D = FileLoader.get_asset("items/250/", id)
+	var asset = FileLoader.get_asset("items/images/", id)
 	if asset:
 		texture = ImageTexture.create_from_image(asset.get_image())
-		return asset
+		return texture
 	await API.await_for_request_completed(await API.request(img_url))
 	texture = API.get_texture(img_url)
-	FileSaver.save_item_asset(texture, img_url, id)
+	FileSaver.save_item_asset(texture, id)
 
 
 func get_monsters():

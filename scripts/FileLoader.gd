@@ -102,8 +102,9 @@ static func get_subarea_asset(subarea_id: int):
 	return null
 
 
+
 static func get_asset(path: String, id: int) -> CompressedTexture2D:
-	path = FileSaver.ASSET_PATH + path
+	path = "res://assets/" + path
 	if DirAccess.dir_exists_absolute(path):
 		var dir = DirAccess.open(path)
 		if dir.file_exists("%d.png" % id) or dir.file_exists("%d.jpg.import" % id):

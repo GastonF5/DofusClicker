@@ -186,7 +186,7 @@ func filter_recipes():
 		# filtre craftable
 		is_filtered = is_filtered and (!recipe_filters.craftable or nrecipe.craftable)
 		# filtre introuvable
-		is_filtered = is_filtered and (!recipe_filters.introuvable or is_filtered_by_introuvable(nrecipe))
+		is_filtered = is_filtered and is_filtered_by_introuvable(nrecipe, !recipe_filters.introuvable)
 		nrecipe.visible = is_filtered
 	if !recipe_filters.applied_filters.is_empty():
 		# filtres caractéristiques
@@ -213,5 +213,7 @@ func is_filtered_by_level(recipe_node: Recipe) -> bool:
 		.has(recipe_node.resource.get_result().level)
 
 
-func is_filtered_by_introuvable(recipe_node: Recipe) -> bool:
+func is_filtered_by_introuvable(recipe_node: Recipe, trouvable: bool) -> bool:
+	if trouvable:
+		return recipe_node.get_ingredients_items().all(func(i): return i.modulate != Color.RED)
 	return recipe_node.get_ingredients_items().any(func(i): return i.modulate == Color.RED)

@@ -31,8 +31,8 @@ func get_id():
 func load_texture():
 	var asset = FileLoader.get_asset("monsters/images/", id)
 	if asset:
-		texture = asset
-		return asset
+		texture = ImageTexture.create_from_image(asset.get_image())
+		return texture
 	#console.log_info("Loading texture...")
 	await API.await_for_request_completed(await API.request(image_url))
 	texture = API.get_texture(image_url)
