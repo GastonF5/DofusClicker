@@ -36,7 +36,7 @@ func save_areas() -> Array:
 
 
 func load_save(save_res: SaveResource):
-	log.info("Chargment de la sauvegarde")
+	log.info("Chargement de la sauvegarde")
 	load_inventory(save_res)
 	load_xp(save_res)
 	EquipmentManager.equipment_container.load_save(save_res.equipment)
@@ -44,7 +44,7 @@ func load_save(save_res: SaveResource):
 	load_areas(save_res)
 	load_spells(save_res)
 	if save_res:
-		log.info("Sauvegarde effectuée avec succès")
+		log.info("Chargement de la sauvegarde effectué avec succès")
 		return save_res
 	else:
 		log.error("No save found")
