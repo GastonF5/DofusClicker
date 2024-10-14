@@ -161,7 +161,7 @@ func log_leave_subarea():
 func load_monsters(subarea: AreaResource):
 	MonsterManager.set_start_fight_button_loading(true)
 	var monster_resources = subarea.get_monsters()
-	var composite_signal
+	var composite_signal: API.CompositeSignal
 	var not_loaded_monsters = monster_resources.filter(func(r): return !r.texture)
 	if !not_loaded_monsters.is_empty():
 		composite_signal = API.CompositeSignal.new()
@@ -174,7 +174,8 @@ func load_monsters(subarea: AreaResource):
 		print("%s (%d) :" % [mres.name, mres.id])
 		print(mres.spells)
 	if composite_signal:
-		await composite_signal.finished
+		if !composite_signal.signals.is_empty():
+			await composite_signal.finished
 		if selected_subarea_id == subarea._id:
 			MonsterManager.check_dungeon_key()
 			MonsterManager.set_start_fight_button_loading(false)
