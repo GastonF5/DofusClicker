@@ -123,8 +123,9 @@ func create_recipe(recipe_res: RecipeResource, parent: Node):
 
 func is_recipe_to_init(recipe: RecipeResource, lvl: int):
 	var can_be_crafted = true
-	for ingredient: ItemResource in recipe.get_ingredients():
-		can_be_crafted = can_be_crafted and ingredient.get_drop_areas() != ""
+	if !Globals.debug:
+		for ingredient: ItemResource in recipe.get_ingredients():
+			can_be_crafted = can_be_crafted and ingredient.get_drop_areas() != ""
 	if recipe.get_result() and can_be_crafted:
 		return recipe.get_result().level == lvl
 	return false
@@ -183,7 +184,9 @@ func filter_recipes():
 		# filtre niveau
 		is_filtered = is_filtered and is_filtered_by_level(nrecipe)
 		# filtre craftable
-		is_filtered = is_filtered and (!recipe_filters._craftable or nrecipe.craftable)
+		is_filtered = is_filtered and (!recipe_filters.craftable or nrecipe.craftable)
+		# filtre introuvable
+		is_filtered = is_filtered and (!recipe_filters.introuvable or is_filtered_by_introuvable(nrecipe))
 		nrecipe.visible = is_filtered
 	if !recipe_filters.applied_filters.is_empty():
 		# filtres caractéristiques
@@ -208,3 +211,7 @@ func is_filtered_by_characteristics(recipe_node: Recipe) -> bool:
 func is_filtered_by_level(recipe_node: Recipe) -> bool:
 	return range(recipe_filters._min, recipe_filters._max + 1)\
 		.has(recipe_node.resource.get_result().level)
+
+
+func is_filtered_by_introuvable(recipe_node: Recipe) -> bool:
+	return recipe_node.get_ingredients_items().any(func(i): return i.modulate == Color.RED)

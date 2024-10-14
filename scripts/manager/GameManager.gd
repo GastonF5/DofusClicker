@@ -73,7 +73,8 @@ func init_game(save_res: SaveResource = null):
 	if save_res:
 		if !SaveManager.load_save(save_res):
 			return false
-	await RecipeManager.initialized
+	if !RecipeManager.is_initialized:
+		await RecipeManager.initialized
 	class_peeker.visible = false
 	in_game = true
 	return true

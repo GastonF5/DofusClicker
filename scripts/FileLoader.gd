@@ -100,3 +100,12 @@ static func get_subarea_asset(subarea_id: int):
 	if dir.file_exists("%d.jpg" % subarea_id) or dir.file_exists("%d.jpg.import" % subarea_id):
 		return load(MAP_IMG_PATH + "%d.jpg" % subarea_id)
 	return null
+
+
+static func get_asset(path: String, id: int) -> CompressedTexture2D:
+	path = FileSaver.ASSET_PATH + path
+	if DirAccess.dir_exists_absolute(path):
+		var dir = DirAccess.open(path)
+		if dir.file_exists("%d.png" % id) or dir.file_exists("%d.jpg.import" % id):
+			return load(path + "%d.png" % id)
+	return null

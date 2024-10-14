@@ -13,7 +13,7 @@ size_flags_horizontal = 3
 script = ExtResource("1_qidep")
 carac_container1 = NodePath("HBC2/CaracteristiqueFilters")
 carac_container2 = NodePath("HBC2/CaracteristiqueFilters2")
-craftable_checkbox = NodePath("HBC/CraftableFilter/CheckBox")
+craftable_checkbox = NodePath("HBC/CraftableFilter/CraftableCheckBox")
 
 [node name="Separator" parent="." instance=ExtResource("2_1ve30")]
 layout_mode = 2
@@ -58,7 +58,21 @@ size_flags_horizontal = 0
 layout_mode = 2
 text = "Fabriquable :"
 
-[node name="CheckBox" type="CheckBox" parent="HBC/CraftableFilter"]
+[node name="CraftableCheckBox" type="CheckBox" parent="HBC/CraftableFilter"]
+layout_mode = 2
+tooltip_text = "Filtrer"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+
+[node name="IntrouvableFilter" type="HBoxContainer" parent="HBC"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="IntrouvableLabel" type="Label" parent="HBC/IntrouvableFilter"]
+layout_mode = 2
+text = "Introuvable :"
+
+[node name="IntrouvableCheckBox" type="CheckBox" parent="HBC/IntrouvableFilter"]
 layout_mode = 2
 tooltip_text = "Filtrer"
 focus_mode = 0
@@ -82,4 +96,5 @@ size_flags_vertical = 0
 
 [connection signal="value_changed" from="HBC/LevelFilter/MinSpin" to="." method="_on_min_spin_value_changed"]
 [connection signal="value_changed" from="HBC/LevelFilter/MaxSpin" to="." method="_on_max_spin_value_changed"]
-[connection signal="toggled" from="HBC/CraftableFilter/CheckBox" to="." method="_on_check_box_toggled"]
+[connection signal="toggled" from="HBC/CraftableFilter/CraftableCheckBox" to="." method="_on_craftable_check_box_toggled"]
+[connection signal="toggled" from="HBC/IntrouvableFilter/IntrouvableCheckBox" to="." method="_on_introuvable_check_box_toggled"]

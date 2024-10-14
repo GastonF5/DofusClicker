@@ -8,7 +8,6 @@ var count = 1:
 
 var resource: ItemResource
 var stats: Array[StatResource] = []
-var low_texture: bool
 
 var count_label: Label
 
@@ -23,7 +22,7 @@ func _ready():
 
 func _on_mouse_entered():
 	if !PlayerManager.dragged_item:
-		PlayerManager.item_description.init_item(resource, low_texture, stats)
+		PlayerManager.item_description.init_item(resource, stats)
 
 
 func _on_mouse_exited():
@@ -74,8 +73,8 @@ func init(item_res: ItemResource, _draggable, recipe_item):
 				new_stat.init_amount()
 			stats.append(new_stat)
 	
-	await resource.load_texture(low_texture)
-	self.texture = resource.get_texture(low_texture)
+	await resource.load_texture()
+	self.texture = resource.texture
 	texture_initialized.emit()
 
 

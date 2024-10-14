@@ -10,7 +10,8 @@ signal filter_toggle
 
 var _min: int
 var _max: int
-var _craftable: bool = false
+var craftable: bool = false
+var introuvable: bool = false
 
 @export var carac_container1: VBoxContainer
 @export var carac_container2: VBoxContainer
@@ -19,7 +20,7 @@ var _craftable: bool = false
 func _ready():
 	_min = $HBC/LevelFilter/MinSpin.min_value
 	_max = $HBC/LevelFilter/MaxSpin.max_value
-	_craftable = false
+	$HBC/IntrouvableFilter.visible = Globals.debug
 	init()
 
 
@@ -56,11 +57,6 @@ func apply_filter(apply: bool, filter_name: String):
 	filter_toggle.emit()
 
 
-func _on_check_box_toggled(toggled_on):
-	_craftable = toggled_on
-	filter_toggle.emit()
-
-
 func _on_min_spin_value_changed(value):
 	_min = value
 	filter_toggle.emit()
@@ -68,4 +64,14 @@ func _on_min_spin_value_changed(value):
 
 func _on_max_spin_value_changed(value):
 	_max = value
+	filter_toggle.emit()
+
+
+func _on_craftable_check_box_toggled(toggled_on):
+	craftable = toggled_on
+	filter_toggle.emit()
+
+
+func _on_introuvable_check_box_toggled(toggled_on):
+	introuvable = toggled_on
 	filter_toggle.emit()

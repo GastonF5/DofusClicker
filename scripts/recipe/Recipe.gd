@@ -46,13 +46,16 @@ func instantiate_result():
 
 
 func instantiate_ingredients():
-	for ingredient in resource.get_ingredients():
+	for ingredient: ItemResource in resource.get_ingredients():
 		var recipe_item = Item.create(ingredient, false, true, _on_item_texture_initialized)
 		recipe_item.get_node("IngredientCount").visible = true
 		recipe_item.custom_minimum_size = Vector2(items_size, items_size)
 		recipe_item.get_node("Count").add_theme_font_size_override("FontSize", 16)
 		items.append(recipe_item)
 		items_container.add_child(recipe_item)
+		# Permet de repérer les items non droppables dans le jeu
+		if ingredient.get_drop_areas() == "":
+			recipe_item.modulate = Color.RED
 
 
 func _on_item_texture_initialized():
@@ -105,11 +108,12 @@ func get_result_item():
 
 
 func griser_ingredient(item: Item, diff: int):
-	item.update_recipe_count(diff)
-	if diff < 0:
-		item.modulate = Color.DIM_GRAY
-	else:
-		item.modulate = Color.WHITE
+	if item.modulate != Color.RED:
+		item.update_recipe_count(diff)
+		if diff < 0:
+			item.modulate = Color.DIM_GRAY
+		else:
+			item.modulate = Color.WHITE
 
 
 func diff_inventory_recipe_item(ingredient: Item) -> int:

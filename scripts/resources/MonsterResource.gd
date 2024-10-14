@@ -29,10 +29,14 @@ func get_id():
 	return id
 
 func load_texture():
+	var asset = FileLoader.get_asset("monsters/images/", id)
+	if asset:
+		texture = asset
+		return asset
 	#console.log_info("Loading texture...")
 	await API.await_for_request_completed(await API.request(image_url))
 	texture = API.get_texture(image_url)
-	Datas._monsters[id].texture = texture
+	FileSaver.save_monster_asset(texture, id)
 	#console.log_info("Texture of %s loaded" % name)
 
 
