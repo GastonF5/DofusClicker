@@ -54,6 +54,7 @@ func load_data():
 	fix_item_effects()
 	init_done.emit()
 	Globals.loading_screen.loading = false
+	log.info("Données chargées avec succès")
 
 
 func load_override(data_type: DataType):

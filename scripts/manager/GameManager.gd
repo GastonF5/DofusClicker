@@ -61,6 +61,7 @@ func _on_class_selected():
 
 
 func init_game(save_res: SaveResource = null):
+	log.info("Début de l'initialisation du jeu")
 	class_peeker.bselect.disabled = true
 	var selected_class = save_res.class_id if save_res else Globals.selected_class
 	Globals.class_texture_rect.texture = class_peeker.get_logo_transparent(selected_class)
@@ -77,6 +78,7 @@ func init_game(save_res: SaveResource = null):
 		await RecipeManager.initialized
 	class_peeker.visible = false
 	in_game = true
+	log.info("Initialisation effectuée avec succès")
 	return true
 
 

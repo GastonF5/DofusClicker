@@ -198,7 +198,7 @@ func log_info(text: String, bold: bool = false):
 
 
 func log_error(text: String):
-	push_error(text)
+	log.error(text)
 	if Globals.debug:
 		_log("Erreur : " + text, LogType.ERROR)
 
