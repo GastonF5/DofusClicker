@@ -17,7 +17,6 @@ enum DataType {
 }
 
 const KEY_TYPE := 84
-var key_whitelist: Array[int] = []
 
 @export var _types = {}
 @export var _items = {}
@@ -32,13 +31,6 @@ var key_whitelist: Array[int] = []
 @export var _drop_exceptions = []
 
 var dir: DirAccess
-
-
-func _init():
-	var dungeon_files = FileLoader.get_all_file_paths(FileLoader.DUNGEON_PATH)
-	for file in dungeon_files:
-		var dungeon_res: DungeonResource = load(file)
-		key_whitelist.append(dungeon_res._key_id)
 
 
 func load_data():
@@ -147,8 +139,6 @@ func get_url_params(data_type: DataType) -> String:
 
 func get_in_values(data_type: DataType) -> Array:
 	match data_type:
-		DataType.KEY:
-			return ["id"] + key_whitelist
 		DataType.RECIPE:
 			var item_ids = _items.values().map(func(item): return item.id)
 			var key_ids = _keys.values().map(func(k): return k.id)
