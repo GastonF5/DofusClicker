@@ -7,10 +7,8 @@ const STAT_ASSET_PATH := "res://assets/stats/stat_icon/"
 const DUNGEON_PATH := "res://resources/dungeons/"
 const MAP_IMG_PATH := "res://assets/maps/"
 const DROP_EXCEPTIONS_PATH := "res://resources/drops/"
-
-var MONSTERS_PATH := "user://tmp/monsters/"
-var EQUIPMENTS_PATH := "user://tmp/equipment/"
-var ITEMS_PATH := "user://tmp/items/"
+const MONSTERS_PATH := "user://tmp/monsters/"
+const EQUIPMENTS_PATH := "user://tmp/equipment/"
 
 
 func load_file(path: String):
@@ -101,7 +99,7 @@ func get_subarea_asset(subarea_id: int):
 	return null
 
 
-func get_asset(path: String, id: int) -> CompressedTexture2D:
+func load_asset(path: String, id: int) -> Texture2D:
 	path = "res://assets/" + path
 	if DirAccess.dir_exists_absolute(path):
 		var dir = DirAccess.open(path)

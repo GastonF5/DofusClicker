@@ -20,6 +20,12 @@ func _ready():
 	update_count_label()
 
 
+func _process(delta):
+	super(delta)
+	if visible and !self.texture:
+		self.texture = resource.texture
+
+
 func _on_mouse_entered():
 	if !PlayerManager.dragged_item:
 		PlayerManager.item_description.init_item(resource, stats)
@@ -72,8 +78,6 @@ func init(item_res: ItemResource, _draggable, recipe_item):
 			if !recipe_item:
 				new_stat.init_amount()
 			stats.append(new_stat)
-	
-	resource.load_texture()
 	texture_initialized.emit()
 
 
@@ -91,7 +95,7 @@ func update_count_label():
 
 
 static func create(item_res: ItemResource, _draggable = true, recipe_item = false, callable: Callable = func(): pass) -> Item:
-	var item: Item = FileLoader.get_packed_scene("item/item").instantiate()
+	var item: Item = preload("res://scenes/item/item.tscn").instantiate()
 	item.texture_initialized.connect(callable)
 	item.init(item_res, _draggable, recipe_item)
 	return item
@@ -123,9 +127,10 @@ func is_ingredient_ok():
 	return $IngredientCount/OkTexture.visible
 
 
-func _on_visible_on_screen_notifier_screen_entered():
-	self.texture = resource.texture
-
-
-func _on_visible_on_screen_notifier_screen_exited():
-	self.texture = null
+func _on_visibility_changed():
+	if visible:
+		if self.texture == null:
+			resource.load_texture()
+		self.texture = resource.texture
+	else:
+		self.texture = null

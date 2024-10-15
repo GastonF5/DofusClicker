@@ -37,6 +37,7 @@ func init(item_recipe: RecipeResource):
 
 func instantiate_result():
 	var result_item = Item.create(resource.get_result(), false, true, _on_item_texture_initialized)
+	result_item.visible = false
 	result_item.custom_minimum_size = Vector2(items_size, items_size)
 	items.append(result_item)
 	$MarginContainer/HBC.add_child(result_item)
@@ -48,6 +49,7 @@ func instantiate_result():
 func instantiate_ingredients():
 	for ingredient: ItemResource in resource.get_ingredients():
 		var recipe_item = Item.create(ingredient, false, true, _on_item_texture_initialized)
+		recipe_item.visible = false
 		recipe_item.get_node("IngredientCount").visible = true
 		recipe_item.custom_minimum_size = Vector2(items_size, items_size)
 		recipe_item.get_node("Count").add_theme_font_size_override("FontSize", 16)
@@ -81,6 +83,8 @@ func calculate_result_count():
 
 ## Renvoie true si la recette est craftable, false sinon
 func check_recipe(item_to_check: Item) -> bool:
+	if Globals.debug:
+		return true
 	var ingredients = get_ingredients_items()
 	var matching_ingredients = ingredients.filter(func(i): return Item.equals(i, item_to_check))
 	# Si aucun ingrédient ne correspond à l'item à vérifier, on ne fait rien
@@ -124,7 +128,7 @@ func diff_inventory_recipe_item(ingredient: Item) -> int:
 
 
 static func create(recipe: RecipeResource, parent, composite) -> Recipe:
-	var nrecipe = FileLoader.get_packed_scene("jobs/recipe").instantiate()
+	var nrecipe = preload("res://scenes/jobs/recipe.tscn").instantiate()
 	composite.add_signal(nrecipe.initialized)
 	parent.add_child(nrecipe)
 	nrecipe.init(recipe)
@@ -133,3 +137,13 @@ static func create(recipe: RecipeResource, parent, composite) -> Recipe:
 
 func _on_button_button_up():
 	craft.emit(resource)
+
+
+func _on_visible_on_screen_notifier_screen_entered():
+	for item in items:
+		item.visible = true
+
+
+func _on_visible_on_screen_notifier_screen_exited():
+	for item in items:
+		item.visible = true

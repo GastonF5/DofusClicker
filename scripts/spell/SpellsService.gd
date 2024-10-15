@@ -155,8 +155,7 @@ static func perform_special(caster: Entity, plate: EntityContainer, effect: Effe
 	var callable = Callable(SpellsService, effect.method_name)
 	if callable:
 		var params = [caster, plate, effect, crit, grade]
-		if !effect.params.is_empty():
-			callable = callable.bind(effect.params)
+		callable = callable.bind(effect.params)
 		callable = callable.bindv(params)
 		callable.call()
 	else:

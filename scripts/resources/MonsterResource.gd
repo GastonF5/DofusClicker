@@ -1,5 +1,5 @@
 class_name MonsterResource
-extends Resource
+extends ThreadedLoadingTexture
 
 const black_list = [494]
 
@@ -8,7 +8,6 @@ const black_list = [494]
 @export var race_id: int
 @export var race: String
 
-@export var texture: Texture2D
 @export var image_url: String
 
 @export var boss: bool
@@ -29,15 +28,8 @@ func get_id():
 	return id
 
 func load_texture():
-	var asset = FileLoader.get_asset("monsters/images/", id)
-	if asset:
-		texture = ImageTexture.create_from_image(asset.get_image())
-		return texture
-	#console.log_info("Loading texture...")
-	await API.await_for_request_completed(await API.request(image_url))
-	texture = API.get_texture(image_url)
-	FileSaver.save_monster_asset(texture, id)
-	#console.log_info("Texture of %s loaded" % name)
+	if !texture:
+		_load("monsters/images/", id)
 
 
 func black_listed():

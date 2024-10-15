@@ -1,11 +1,10 @@
 class_name ItemResource
-extends Resource
+extends ThreadedLoadingTexture
 
 @export var id: int
 @export var name: String
 @export var type_id: int
 
-@export var texture: Texture2D
 @export var img_url: String
 
 @export var count: int = 1
@@ -33,15 +32,6 @@ func is_resource() -> bool:
 
 func is_key() -> bool:
 	return type_id == 84
-
-
-func load_texture():
-	if texture:
-		return texture
-	var asset = FileLoader.get_asset("items/images/", id)
-	if asset:
-		texture = ImageTexture.create_from_image(asset.get_image())
-		return texture
 
 
 func get_monsters():
@@ -79,3 +69,8 @@ static func map(data: Dictionary) -> ItemResource:
 	resource.drop_monster_ids = data["dropMonsterIds"].map(func(i): return i as int)
 	resource.drop_monster_ids.append_array(Datas.find_drop_exception_by_object_id(resource.id))
 	return resource
+
+
+func load_texture() -> void:
+	if !texture:
+		_load("items/images/", id)
