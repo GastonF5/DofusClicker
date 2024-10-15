@@ -42,9 +42,6 @@ func load_texture():
 	if asset:
 		texture = ImageTexture.create_from_image(asset.get_image())
 		return texture
-	await API.await_for_request_completed(await API.request(img_url))
-	texture = API.get_texture(img_url)
-	FileSaver.save_item_asset(texture, id)
 
 
 func get_monsters():

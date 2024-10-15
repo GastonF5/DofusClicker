@@ -73,8 +73,7 @@ func init(item_res: ItemResource, _draggable, recipe_item):
 				new_stat.init_amount()
 			stats.append(new_stat)
 	
-	await resource.load_texture()
-	self.texture = resource.texture
+	resource.load_texture()
 	texture_initialized.emit()
 
 
@@ -122,3 +121,11 @@ func toggle_recipe_ok(enough: bool):
 
 func is_ingredient_ok():
 	return $IngredientCount/OkTexture.visible
+
+
+func _on_visible_on_screen_notifier_screen_entered():
+	self.texture = resource.texture
+
+
+func _on_visible_on_screen_notifier_screen_exited():
+	self.texture = null

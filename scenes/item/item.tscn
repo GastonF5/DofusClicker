@@ -88,5 +88,9 @@ texture = ExtResource("5_d47u5")
 expand_mode = 1
 stretch_mode = 5
 
+[node name="VisibleOnScreenNotifier" type="VisibleOnScreenNotifier2D" parent="."]
+
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier" to="." method="_on_visible_on_screen_notifier_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier" to="." method="_on_visible_on_screen_notifier_screen_exited"]

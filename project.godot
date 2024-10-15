@@ -30,6 +30,7 @@ GameManager="*res://scripts/manager/GameManager.gd"
 Datas="*res://scripts/Datas.gd"
 SaveManager="*res://scripts/manager/SaveManager.gd"
 log="*res://scripts/Logger.gd"
+FileLoader="*res://scripts/FileLoader.gd"
 
 [display]
 
