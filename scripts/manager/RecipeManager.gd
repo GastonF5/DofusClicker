@@ -80,7 +80,6 @@ func on_job_tab_changed(tab):
 	if last_tab: last_tab.toggle_filters(false)
 	
 	connect_inputs()
-	filter_recipes()
 
 
 func disconnect_inputs():
@@ -117,6 +116,7 @@ func init_recipes(lvl := -1):
 
 func create_recipe(recipe_res: RecipeResource, parent: Node):
 	var nrecipe = Recipe.create(recipe_res, parent, composite)
+	filter_recipe(nrecipe)
 	recipes.append(nrecipe)
 	nrecipe.craft.connect(on_recipe_craft)
 
@@ -171,30 +171,35 @@ func get_tout_recipe_container():
 	return tab_container.get_node("ToutPanel").recipe_container
 
 
+var filter_methods = [is_filtered_by_research, is_filtered_by_level, is_filtered_by_introuvable, is_filtered_by_craftable, is_filtered_by_characteristics]
+func filter_recipe(nrecipe: Node):
+	var is_filtered = true
+	for filter_method in filter_methods:
+		is_filtered = is_filtered and filter_method.call(nrecipe)
+		if !is_filtered:
+			break
+	nrecipe.visible = is_filtered
+
+
 func filter_recipes():
-	# filtre barre de recherche
-	var text_filter = current_tab.search_prompt.text
 	for nrecipe in recipes:
-		if text_filter and text_filter != "":
-			nrecipe.visible = nrecipe.resource.get_result().name.to_lower().contains(text_filter.to_lower())
-		else:
-			nrecipe.visible = true
-	for nrecipe: Recipe in recipes.filter(func(r): return r.visible):
-		var is_filtered = true
-		# filtre niveau
-		is_filtered = is_filtered and is_filtered_by_level(nrecipe)
-		# filtre craftable
-		is_filtered = is_filtered and (!recipe_filters.craftable or nrecipe.craftable)
-		# filtre introuvable
-		is_filtered = is_filtered and is_filtered_by_introuvable(nrecipe, !recipe_filters.introuvable)
-		nrecipe.visible = is_filtered
-	if !recipe_filters.applied_filters.is_empty():
-		# filtres caractéristiques
-		for nrecipe: Recipe in recipes.filter(func(r): return r.visible):
-			nrecipe.visible = is_filtered_by_characteristics(nrecipe)
+		filter_recipe(nrecipe)
+
+
+func is_filtered_by_research(recipe_node: Recipe) -> bool:
+	var text_filter = current_tab.search_prompt.text
+	if text_filter and text_filter != "":
+		return recipe_node.resource.get_result().name.to_lower().contains(text_filter.to_lower())
+	return true
+
+
+func is_filtered_by_craftable(recipe_node: Recipe) -> bool:
+	return !recipe_filters.craftable or recipe_node.craftable
 
 
 func is_filtered_by_characteristics(recipe_node: Recipe) -> bool:
+	if recipe_filters.applied_filters.is_empty():
+		return true
 	var count := 0
 	if recipe_node.resource.get_result().is_key():
 		return true
@@ -213,7 +218,7 @@ func is_filtered_by_level(recipe_node: Recipe) -> bool:
 		.has(recipe_node.resource.get_result().level)
 
 
-func is_filtered_by_introuvable(recipe_node: Recipe, trouvable: bool) -> bool:
-	if trouvable:
+func is_filtered_by_introuvable(recipe_node: Recipe) -> bool:
+	if !recipe_filters.introuvable:
 		return recipe_node.get_ingredients_items().all(func(i): return i.modulate != Color.RED)
 	return recipe_node.get_ingredients_items().any(func(i): return i.modulate == Color.RED)
