@@ -320,7 +320,7 @@ static func tumulte(caster: Entity, plate: EntityContainer, effect: EffectResour
 	tumulte_adder += params[0] * get_targets(caster, plate, effect.target_type).size()
 
 
-static func vertu(caster: Entity, plate: EntityContainer, effect: EffectResource, crit: bool, grade: int):
+static func vertu(caster: Entity, plate: EntityContainer, effect: EffectResource, crit: bool, grade: int, _params: Array):
 	if plate.get_entity():
 		perform_bonus(caster, caster, effect, crit, grade)
 #endregion
