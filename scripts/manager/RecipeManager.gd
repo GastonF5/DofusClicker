@@ -9,7 +9,6 @@ var recipes: Array[Recipe] = []
 var inventory: Inventory
 
 var recipe_filters: RecipeFilters
-var composite: API.CompositeSignal
 
 signal recipes_initialized
 
@@ -20,12 +19,10 @@ func reset():
 	recipes.clear()
 	inventory = null
 	recipe_filters = null
-	composite = null
 	super()
 
 
 func initialize():
-	composite = API.CompositeSignal.new()
 	inventory = Globals.inventory
 	
 	if !Datas.init_done.is_connected(init_recipes):
@@ -41,13 +38,13 @@ func initialize():
 	for recipe in current_tab.recipe_container.get_children():
 		recipes.append(recipe)
 	tab_container.tab_changed.connect(on_job_tab_changed)
-	await composite.finished
 	super()
 
 
 func reset_recipes():
 	for recipe in recipes:
-		recipe.get_parent().remove_child(recipe)
+		if recipe.get_parent():
+			recipe.get_parent().remove_child(recipe)
 		recipe.queue_sort()
 	recipes.clear()
 	init_recipes(1)
@@ -63,8 +60,11 @@ func _input(event):
 
 func on_job_tab_changed(tab):
 	disconnect_inputs()
+	
+	reset_current_tab_recipes()
 	var last_tab := current_tab
 	current_tab = tab_container.get_child(tab) as JobPanel
+	init_current_tab_recipes()
 	
 	# Search prompt
 	var text = "" if !last_tab else last_tab.search_prompt.text
@@ -80,6 +80,19 @@ func on_job_tab_changed(tab):
 	if last_tab: last_tab.toggle_filters(false)
 	
 	connect_inputs()
+
+
+func init_current_tab_recipes():
+	if current_tab:
+		for recipe: Recipe in recipes.filter(func(r): return r.parent == current_tab):
+			recipe.init()
+			filter_recipe(recipe)
+
+
+func reset_current_tab_recipes():
+	if current_tab:
+		for recipe in current_tab.recipe_container.get_children():
+			recipe.reset()
 
 
 func disconnect_inputs():
@@ -106,19 +119,23 @@ func init_recipes(lvl := -1):
 	for recipe in recipes_to_init:
 		var parent
 		if recipe.get_result().is_key():
-			parent = tab_container.get_node("BricoleurPanel").recipe_container
+			parent = tab_container.get_node("BricoleurPanel")
 		else:
 			parent = get_parent_by_type(recipe.get_result().type_id)
 		if parent:
 			create_recipe(recipe, parent)
-		create_recipe(recipe, get_tout_recipe_container())
+		create_recipe(recipe, tab_container.get_node("ToutPanel"))
 
 
-func create_recipe(recipe_res: RecipeResource, parent: Node):
-	var nrecipe = Recipe.create(recipe_res, parent, composite)
-	filter_recipe(nrecipe)
+func create_recipe(recipe_res: RecipeResource, parent: JobPanel):
+	var nrecipe = Recipe.create(recipe_res, parent)
+	if parent == current_tab:
+		nrecipe.init(recipe_res)
+		filter_recipe(nrecipe)
+		nrecipe.craft.connect(on_recipe_craft)
+	else:
+		nrecipe.resource = recipe_res
 	recipes.append(nrecipe)
-	nrecipe.craft.connect(on_recipe_craft)
 
 
 func is_recipe_to_init(recipe: RecipeResource, lvl: int):
@@ -145,7 +162,7 @@ func check_recipes(item_to_check: Item):
 	filter_recipes()
 
 
-func get_parent_by_type(type_id: int):
+func get_parent_by_type(type_id: int) -> JobPanel:
 	var type: ItemTypeResource = Datas._types[type_id]
 	var node_name: String
 	match type._name.to_upper():
@@ -163,12 +180,7 @@ func get_parent_by_type(type_id: int):
 			node_name = "Forgeron"
 		_:
 			return null
-	var job_panel: JobPanel = tab_container.get_node(node_name + "Panel")
-	return job_panel.recipe_container
-
-
-func get_tout_recipe_container():
-	return tab_container.get_node("ToutPanel").recipe_container
+	return tab_container.get_node(node_name + "Panel")
 
 
 var filter_methods = [is_filtered_by_research, is_filtered_by_level, is_filtered_by_introuvable, is_filtered_by_craftable, is_filtered_by_characteristics]

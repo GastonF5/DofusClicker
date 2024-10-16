@@ -209,9 +209,11 @@ func _show_fight_side():
 	Globals.game.get_node("%SpellBarContainer1").add_child(spell_bar)
 	Globals.new_area_container.visible = false
 	spell_bar.info.get_parent().visible = false
+	RecipeManager.reset_current_tab_recipes()
 
 
 func _show_havre_sac_side():
+	RecipeManager.init_current_tab_recipes()
 	Globals.game.get_node("%JobsSuperContainer").visible = true
 	Globals.main_panel.visible = false
 	Globals.game.get_node("%PlayerBarContainer").visible = false

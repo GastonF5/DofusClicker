@@ -1,6 +1,8 @@
 class_name Item
 extends DraggableControl
 
+static var scene = preload("res://scenes/item/item.tscn")
+
 var count = 1:
 	set(value):
 		count = value
@@ -95,7 +97,7 @@ func update_count_label():
 
 
 static func create(item_res: ItemResource, _draggable = true, recipe_item = false, callable: Callable = func(): pass) -> Item:
-	var item: Item = preload("res://scenes/item/item.tscn").instantiate()
+	var item = Item.scene.instantiate()
 	item.texture_initialized.connect(callable)
 	item.init(item_res, _draggable, recipe_item)
 	return item
@@ -133,4 +135,5 @@ func _on_visibility_changed():
 			resource.load_texture()
 		self.texture = resource.texture
 	else:
+		resource.texture = null
 		self.texture = null
