@@ -91,7 +91,8 @@ func init_recipes(lvl := -1):
 			parent = get_parent_by_type(recipe.get_result().type_id)
 		if parent:
 			create_recipe(recipe, parent)
-		create_recipe(recipe, tab_container.get_node("ToutPanel"))
+		if !recipe.get_result().is_key():
+			create_recipe(recipe, tab_container.get_node("ToutPanel"))
 
 
 func create_recipe(recipe_res: RecipeResource, parent: JobPanel):
