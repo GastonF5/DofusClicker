@@ -27,12 +27,20 @@ func has_monsters() -> bool:
 	return !get_monsters().is_empty()
 
 
-func get_monsters() -> Array:
+func _get_all_monsters() -> Array:
 	if is_subarea():
 		var monsters = Datas._monsters.values()
 		return monsters.filter(func(m): return _monster_ids.has(m.id) and !m.black_listed())
 	return get_subareas().reduce(func(accum, sa):
 		return accum + sa.get_monsters(), [])
+
+
+func get_monsters() -> Array:
+	return _get_all_monsters().filter(func(m): return !MonsterResource.is_protecteur(m))
+
+
+func get_protecteurs() -> Array:
+	return _get_all_monsters().filter(MonsterResource.is_protecteur)
 
 
 func is_subarea() -> bool:

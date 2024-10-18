@@ -1,5 +1,7 @@
 extends AbstractManager
 
+const TX_PROTECTEUR_SPAWN := 0.05
+
 var console: Console
 var start_fight_button: Button
 var auto_start_fight_checkbox: CheckBox
@@ -12,6 +14,7 @@ var end_fight_callable: Callable
 signal monster_dies
 
 var monsters_res := []
+var protecteur: MonsterResource
 
 var xp_to_gain := 0
 
@@ -66,15 +69,22 @@ func start_fight():
 			start_fight_button.disabled = true
 		else:
 			if !monsters_res.is_empty():
-				for i in 2:
-					instantiate_monster()
-				monsters.assign(get_monsters_on_plates())
-				start_fight_button.disabled = true
+				instantiate_monsters()
 			else:
 				console.log_error("No monsters in area")
 	else:
 		Globals.console.log_error("Vous ne possédez pas la clef du donjon.")
 		start_fight_button.disabled = true
+
+
+func instantiate_monsters():
+	if protecteur and randf_range(0, 1) <= TX_PROTECTEUR_SPAWN:
+		instantiate_monster(protecteur)
+	else:
+		for i in 2:
+			instantiate_monster()
+	monsters.assign(get_monsters_on_plates())
+	start_fight_button.disabled = true
 
 
 func end_fight(lose := false):
@@ -125,7 +135,7 @@ func instantiate_monster(monster_res: MonsterResource = null) -> Monster:
 		console.log_error("Impossible d'instantier le monstre, aucun emplacement n'est disponible.")
 		return null
 	if !monster_res:
-		monster_res = monsters_res[randi_range(0, MonsterManager.monsters_res.size() - 1)]
+		monster_res = monsters_res[randi_range(0, monsters_res.size() - 1)]
 	var monster = Monster.instantiate(monster_res, empty_plates[randi_range(0, empty_plates.size() - 1)])
 	monster.dies.connect(_on_monster_dies)
 	monster.clicked.connect(_on_monster_selected)

@@ -41,6 +41,7 @@ func load_data():
 	dir = DirAccess.open(FileSaver.DATA_PATH)
 	for data_type in DataType.values():
 		await get_data(data_type)
+	for data_type in DataType.values():
 		load_override(data_type)
 	check_areas()
 	fix_item_effects()
@@ -54,6 +55,11 @@ func load_override(data_type: DataType):
 	for path in FileLoader.get_all_file_paths(OVERRIDE_PATH + data_label + "/"):
 		var resource = load(path)
 		self.get("_%ss" % data_label)[resource.get_id()] = resource
+		if resource is MonsterResource:
+			for area_id in resource.areas:
+				_subareas[area_id]._monster_ids.append(resource.id)
+			for drop in resource.drops:
+				_resources[drop.object_id].drop_monster_ids.append(resource.id)
 
 
 func load_drop_exceptions():

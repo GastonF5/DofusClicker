@@ -122,6 +122,7 @@ func enter_subarea(subarea: AreaResource, subarea_name: String = "", rooms: Arra
 		subarea_name = subarea._name
 	set_area_label(subarea_name, true)
 	log_enter_subarea(subarea_name)
+	log.info("Vous entrez dans la zone %s (%d)" % [subarea_name, subarea._id])
 	if rooms.is_empty():
 		load_monsters(subarea)
 	else:
@@ -170,6 +171,7 @@ func load_monsters(subarea: AreaResource):
 				composite_signal.add_method(monster_res.load_texture)
 	monster_resources = monster_resources.filter(func(res): return !res.archimonstre)
 	MonsterManager.monsters_res = monster_resources
+	MonsterManager.protecteur = subarea.get_protecteurs()[0]
 	for mres in monster_resources:
 		print("%s (%d) :" % [mres.name, mres.id])
 		print(mres.spells)

@@ -3,14 +3,14 @@ extends Resource
 
 
 var thread: Thread
-var texture: Texture2D
+@export var texture: Texture2D
 
 
 func _load(path: String, id: int):
 	if is_instance_valid(thread) and thread.is_started():
 		thread.wait_to_finish()
 	thread = Thread.new()
-	log.info("Start loading texture : %d" % id)
+	log.debug("Start loading texture : %d" % id)
 	thread.start(_bg_load.bind(path, id))
 
 

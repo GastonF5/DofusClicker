@@ -17,11 +17,11 @@ var stats_categories = {
 	"Caractéristiques Secondaires": [StatType.PUISSANCE, StatType.DOMMAGES, StatType.SOIN, StatType.INVOCATIONS, StatType.PROSPECTION],
 	"Critique": [StatType.CRITIQUE, StatType.DO_CRITIQUES, StatType.RES_CRITIQUES],
 	"Dommages élémentaires": [StatType.DO_AIR, StatType.DO_EAU, StatType.DO_TERRE, StatType.DO_FEU, StatType.DO_NEUTRE],
-	"Dommages autres": [StatType.DO_MELEE, StatType.DO_DISTANCE, StatType.DO_SORTS, StatType.DO_ARME],
 	"Résistances élémentaires (fixe)": [StatType.RES_AIR_FIXE, StatType.RES_EAU_FIXE, StatType.RES_TERRE_FIXE, StatType.RES_FEU_FIXE, StatType.RES_NEUTRE_FIXE],
 	"Résistances élémentaires (%)": [StatType.RES_AIR, StatType.RES_EAU, StatType.RES_TERRE, StatType.RES_FEU, StatType.RES_NEUTRE],
 	"Poussée": [StatType.DO_POU, StatType.RES_POU],
 	"Retrait": [StatType.RET_PA, StatType.RET_PM, StatType.RES_PA, StatType.RES_PM],
+	"Dommages autres": [StatType.DO_MELEE, StatType.DO_DISTANCE, StatType.DO_SORTS, StatType.DO_ARME],
 }
 
 var stats_container: Panel

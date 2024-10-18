@@ -43,3 +43,7 @@ func get_areas():
 			if Datas._subareas[area_id].white_listed():
 				available_areas.append(Datas._subareas[area_id])
 	return available_areas
+
+
+static func is_protecteur(monster: MonsterResource):
+	return monster.race.begins_with("Protecteur")
