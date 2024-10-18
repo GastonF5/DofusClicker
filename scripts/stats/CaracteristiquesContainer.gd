@@ -8,13 +8,14 @@ func init():
 	var toggle_container = $MarginContainer/ScrollContainer/VBC
 	var toggle: ToggleControl
 	for categorie in StatsManager.stats_categories.keys():
-		toggle = StatsManager.toggle_scene.instantiate()
-		toggle.button.text = categorie
-		init_toggle_panel(toggle, categorie)
-		toggle_container.add_child(toggle)
-		toggle.init(categorie != "Favoris")
-		if categorie == "Favoris":
-			favoris_panel = toggle
+		if categorie != "Caractéristiques primaires":
+			toggle = StatsManager.toggle_scene.instantiate()
+			toggle.button.text = categorie
+			init_toggle_panel(toggle, categorie)
+			toggle_container.add_child(toggle)
+			toggle.init(categorie != "Favoris")
+			if categorie == "Favoris":
+				favoris_panel = toggle
 	favoris_panel.content.get_child(0).custom_minimum_size = Vector2(toggle.content.size.x, 0)
 
 

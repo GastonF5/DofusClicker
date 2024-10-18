@@ -13,6 +13,7 @@ const container_separator_scene = preload("res://scenes/separators/container_sep
 
 var stats_categories = {
 	"Favoris": [],
+	"Caractéristiques primaires": [StatType.PA, StatType.PM, StatType.VITALITE, StatType.AGILITE, StatType.CHANCE, StatType.FORCE, StatType.INTELLIGENCE, StatType.SAGESSE],
 	"Caractéristiques Secondaires": [StatType.PUISSANCE, StatType.DOMMAGES, StatType.SOIN, StatType.INVOCATIONS, StatType.PROSPECTION],
 	"Critique": [StatType.CRITIQUE, StatType.DO_CRITIQUES, StatType.RES_CRITIQUES],
 	"Dommages élémentaires": [StatType.DO_AIR, StatType.DO_EAU, StatType.DO_TERRE, StatType.DO_FEU, StatType.DO_NEUTRE],
