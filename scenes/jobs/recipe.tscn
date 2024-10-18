@@ -39,11 +39,9 @@ texture = ExtResource("6_0ee0w")
 
 [node name="Recipe" type="PanelContainer" node_paths=PackedStringArray("button", "items_container", "name_label", "level_label")]
 custom_minimum_size = Vector2(0, 158)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -145,8 +143,4 @@ custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="VisibleOnScreenNotifier" type="VisibleOnScreenNotifier2D" parent="."]
-
 [connection signal="button_up" from="MarginContainer/HBC/Button" to="." method="_on_button_button_up"]
-[connection signal="screen_entered" from="VisibleOnScreenNotifier" to="." method="_on_visible_on_screen_notifier_screen_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenNotifier" to="." method="_on_visible_on_screen_notifier_screen_exited"]

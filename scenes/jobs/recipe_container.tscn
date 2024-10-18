@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://sw0jaine2euu"]
+
+[ext_resource type="Script" path="res://scripts/jobs/RecipeContainer.gd" id="1_8ixxm"]
+
+[node name="RecipeContainer" type="Control"]
+custom_minimum_size = Vector2(300, 155)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_8ixxm")
+
+[node name="VisibleOnScreenNotifier" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier" to="." method="_on_visible_on_screen_notifier_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier" to="." method="_on_visible_on_screen_notifier_screen_exited"]

@@ -56,9 +56,9 @@ func init(res: MonsterResource = null):
 	
 	resource = res
 	if res.boss:
-		header_texture.texture = load("res://assets/icons/boss.png")
+		header_texture.texture = preload("res://assets/icons/boss.png")
 	elif res.archimonstre:
-		header_texture.texture = load("res://assets/icons/archimonstre.png")
+		header_texture.texture = preload("res://assets/icons/archimonstre.png")
 	else:
 		header_texture.texture = null
 	

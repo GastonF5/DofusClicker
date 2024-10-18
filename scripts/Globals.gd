@@ -8,7 +8,7 @@ const area_white_list = [
 	95, 99
 ]
 
-const debug := false
+const debug := true
 const last_version_to_check := "0.5.0"
 
 var has_focus: bool:

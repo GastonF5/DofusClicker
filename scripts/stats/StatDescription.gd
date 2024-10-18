@@ -2,17 +2,10 @@ class_name StatDescription
 extends Control
 
 
-@export var txt: TextureRect
-@export var lbl: Label
-
-
-func update(texture: Texture2D, label: String):
-	txt.texture = texture
-	lbl.text = label if label != "" else "0"
-
+static var scene = preload("res://scenes/stats/stat_description.tscn")
 
 static func create(stat_res: StatResource, hit_effect: HitEffectResource = null):
-	var stat_description = load("res://scenes/stats/stat_description.tscn").instantiate()
+	var stat_description = StatDescription.scene.instantiate()
 	var texture
 	if hit_effect:
 		texture = FileLoader.get_stat_asset(Caracteristique.Type.find_key(hit_effect.get_characteristic()))
@@ -23,6 +16,15 @@ static func create(stat_res: StatResource, hit_effect: HitEffectResource = null)
 	return stat_description
 
 
+@export var txt: TextureRect
+@export var lbl: Label
+
+
+func update(texture: Texture2D, label: String):
+	txt.texture = texture
+	lbl.text = label if label != "" else "0"
+
+
 func update_with_entity(entity: Entity):
 	var carac_amount := ""
 	var stat_lbl = name.replace("Description", "")
@@ -30,7 +32,7 @@ func update_with_entity(entity: Entity):
 	match stat_lbl:
 		"Vitalite":
 			carac_amount = "%d / %d" % [entity.hp_bar.cval, entity.hp_bar.mval]
-			texture = load("res://assets/description_icons/icon_vitalite.png")
+			texture = preload("res://assets/description_icons/icon_vitalite.png")
 		"Erosion":
 			carac_amount = str(entity.erosion * 100 - 5)
 	if carac_amount == "":

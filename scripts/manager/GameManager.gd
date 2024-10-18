@@ -102,7 +102,7 @@ func reload_game():
 	var main = get_tree().root.get_node("Main")
 	get_tree().root.remove_child(main)
 	main.queue_free()
-	main = load("res://scenes/main.tscn").instantiate()
+	main = preload("res://scenes/main.tscn").instantiate()
 	main.name = "Main"
 	get_tree().root.add_child(main)
 	get_tree().current_scene = main

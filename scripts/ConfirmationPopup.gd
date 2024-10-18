@@ -2,6 +2,9 @@ class_name ConfirmationPopup
 extends CanvasLayer
 
 
+static var scene = preload("res://scenes/confirmation_popup.tscn")
+
+
 @export var label: Label
 @export var cancel_btn: Button
 @export var confirm_btn: Button
@@ -28,11 +31,6 @@ var confirm_label:
 
 signal cancel
 signal confirm
-
-
-static func create() -> ConfirmationPopup:
-	var conf_popup = load("res://scenes/confirmation_popup.tscn").instantiate()
-	return conf_popup
 
 
 func _on_cancel_button_button_up():

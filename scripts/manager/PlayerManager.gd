@@ -68,7 +68,7 @@ func reset():
 
 
 func initialize():
-	punch_res = load("res://resources/spells/punch.tres")
+	punch_res = preload("res://resources/spells/punch.tres")
 	spell_container = Globals.spells_container.get_node("%SpellContainer")
 	pdv_label = Globals.stats_container.get_node("%HPAmount")
 	

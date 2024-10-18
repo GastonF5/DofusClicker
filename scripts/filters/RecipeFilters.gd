@@ -1,6 +1,7 @@
 class_name RecipeFilters
 extends Control
 
+static var scene = preload("res://scenes/filters/recipe_filters.tscn")
 
 const StatType = Caracteristique.Type
 

@@ -71,7 +71,6 @@ func get_item_or_resource(id: int):
 
 
 func load_xp(save_res: SaveResource):
-	RecipeManager.reset_recipes()
 	PlayerManager.max_hp = 50
 	PlayerManager.hp_bar.reset()
 	Globals.xp_bar.reset()

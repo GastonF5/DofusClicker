@@ -43,6 +43,9 @@ func _enter_tree():
 	if draggable and get_parent() is Button:
 		get_parent().mouse_entered.connect(_on_mouse_entered)
 		get_parent().mouse_exited.connect(_on_mouse_exited)
+	if self.texture == null:
+		resource.load_texture()
+	self.texture = resource.texture
 
 
 func _exit_tree():
@@ -51,6 +54,8 @@ func _exit_tree():
 			get_parent().mouse_entered.disconnect(_on_mouse_entered)
 		if get_parent().mouse_exited.is_connected(_on_mouse_exited):
 			get_parent().mouse_exited.disconnect(_on_mouse_exited)
+	resource.texture = null
+	self.texture = null
 
 
 func change_parent():
@@ -126,14 +131,4 @@ func toggle_recipe_ok(enough: bool):
 
 
 func is_ingredient_ok():
-	return $IngredientCount/OkTexture.visible
-
-
-func _on_visibility_changed():
-	if visible:
-		if self.texture == null:
-			resource.load_texture()
-		self.texture = resource.texture
-	else:
-		resource.texture = null
-		self.texture = null
+	return $IngredientCount/OkTexture.visible	

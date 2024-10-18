@@ -51,6 +51,10 @@ func get_drop_areas() -> String:
 	return drop_areas.erase(0, 2)
 
 
+func is_trouvable():
+	return get_drop_areas() != ""
+
+
 func load_save(data: Dictionary):
 	count = data["count"]
 	if equip_res:

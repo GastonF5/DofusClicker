@@ -1,8 +1,8 @@
 class_name AreaPeeker
 extends PanelContainer
 
-const DUNGEON_ICON := "res://assets/icons/dungeon.png"
-const NEW_ICON := "res://assets/icons/quest.png"
+const DUNGEON_ICON := preload("res://assets/icons/dungeon.png")
+const NEW_ICON := preload("res://assets/icons/quest.png")
 
 
 @export var back_button: Button
@@ -48,7 +48,7 @@ func init_subareas(area: AreaResource):
 func create_area_button(area_id: int, is_subarea: bool):
 	var callable = _on_subarea_clicked if is_subarea else _on_area_clicked
 	var is_dungeon = DungeonManager.is_dungeon(area_id)
-	var btn_icon = load(DUNGEON_ICON) if is_dungeon else load(NEW_ICON)
+	var btn_icon = DUNGEON_ICON if is_dungeon else NEW_ICON
 	var button := AreaButton.create(area_id, callable, btn_icon, is_subarea, is_dungeon)
 	if is_subarea:
 		subarea_btns[area_id] = button
@@ -117,7 +117,7 @@ func set_area_label(label: String, _visible: bool):
 
 func enter_subarea(subarea: AreaResource, subarea_name: String = "", rooms: Array[RoomResource] = []):
 	clear_buttons()
-	back_button.icon = load("res://assets/back_btn/btn_arrow_turn_character_normal.png")
+	back_button.icon = preload("res://assets/back_btn/btn_arrow_turn_character_normal.png")
 	if subarea_name == "":
 		subarea_name = subarea._name
 	set_area_label(subarea_name, true)
@@ -135,7 +135,7 @@ func leave_subarea():
 	if DungeonManager.dungeon_res != null:
 		DungeonManager.exit_dungeon()
 	else:
-		back_button.icon = load("res://assets/icons/zaap.png")
+		back_button.icon = preload("res://assets/icons/zaap.png")
 		log_leave_subarea()
 		selected_subarea_id = -1
 		set_area_label("", false)
@@ -209,11 +209,9 @@ func _show_fight_side():
 	Globals.game.get_node("%SpellBarContainer1").add_child(spell_bar)
 	Globals.new_area_container.visible = false
 	spell_bar.info.get_parent().visible = false
-	RecipeManager.reset_current_tab_recipes()
 
 
 func _show_havre_sac_side():
-	RecipeManager.init_current_tab_recipes()
 	Globals.game.get_node("%JobsSuperContainer").visible = true
 	Globals.main_panel.visible = false
 	Globals.game.get_node("%PlayerBarContainer").visible = false

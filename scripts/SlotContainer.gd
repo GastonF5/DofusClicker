@@ -4,9 +4,6 @@ extends Control
 
 var slots = []
 
-signal item_entered_tree
-signal item_exiting_tree
-
 var console: Console
 var slot_group_name: String
 var dragged: DraggableControl

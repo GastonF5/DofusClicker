@@ -266,7 +266,6 @@ layout_mode = 2
 
 [node name="CloseBtn" parent="Saves/SavesPanel/VBC" instance=ExtResource("14_1kykl")]
 layout_mode = 2
-size_flags_vertical = 0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Saves/SavesPanel/VBC"]
 custom_minimum_size = Vector2(1200, 300)

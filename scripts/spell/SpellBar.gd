@@ -147,7 +147,7 @@ func update_weapon_slot(weapon_type: WTYPE):
 	var texture: Texture2D
 	match weapon_type:
 		WTYPE.NONE:
-			texture = load("res://assets/spells/punch.png")
+			texture = preload("res://assets/spells/punch.png")
 	weapon_slot.texture = texture
 
 

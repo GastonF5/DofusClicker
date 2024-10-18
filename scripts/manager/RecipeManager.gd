@@ -4,9 +4,7 @@ extends AbstractManager
 var tab_container: TabContainer
 var current_tab: JobPanel
 
-var recipes: Array[Recipe] = []
-
-var inventory: Inventory
+var recipe_containers: Array[RecipeContainer] = []
 
 var recipe_filters: RecipeFilters
 
@@ -16,38 +14,22 @@ signal recipes_initialized
 func reset():
 	tab_container = null
 	current_tab = null
-	recipes.clear()
-	inventory = null
+	recipe_containers.clear()
 	recipe_filters = null
 	super()
 
 
 func initialize():
-	inventory = Globals.inventory
-	
 	if !Datas.init_done.is_connected(init_recipes):
 		Datas.init_done.connect(init_recipes.bind(Globals.xp_bar.cur_lvl))
 	Globals.xp_bar.lvl_up.connect(init_recipes)
 	tab_container = Globals.jobs_container.get_node("VBC/TabContainer")
-	inventory.item_entered_tree.connect(check_recipes)
-	inventory.item_exiting_tree.connect(check_recipes)
 	
-	recipe_filters = load("res://scenes/filters/recipe_filters.tscn").instantiate()
+	recipe_filters = RecipeFilters.scene.instantiate()
 	recipe_filters.filter_toggle.connect(filter_recipes)
 	on_job_tab_changed(tab_container.current_tab)
-	for recipe in current_tab.recipe_container.get_children():
-		recipes.append(recipe)
 	tab_container.tab_changed.connect(on_job_tab_changed)
 	super()
-
-
-func reset_recipes():
-	for recipe in recipes:
-		if recipe.get_parent():
-			recipe.get_parent().remove_child(recipe)
-		recipe.queue_sort()
-	recipes.clear()
-	init_recipes(1)
 
 
 func _input(event):
@@ -61,10 +43,8 @@ func _input(event):
 func on_job_tab_changed(tab):
 	disconnect_inputs()
 	
-	reset_current_tab_recipes()
 	var last_tab := current_tab
 	current_tab = tab_container.get_child(tab) as JobPanel
-	init_current_tab_recipes()
 	
 	# Search prompt
 	var text = "" if !last_tab else last_tab.search_prompt.text
@@ -80,19 +60,6 @@ func on_job_tab_changed(tab):
 	if last_tab: last_tab.toggle_filters(false)
 	
 	connect_inputs()
-
-
-func init_current_tab_recipes():
-	if current_tab:
-		for recipe: Recipe in recipes.filter(func(r): return r.parent == current_tab):
-			recipe.init()
-			filter_recipe(recipe)
-
-
-func reset_current_tab_recipes():
-	if current_tab:
-		for recipe in current_tab.recipe_container.get_children():
-			recipe.reset()
 
 
 func disconnect_inputs():
@@ -128,14 +95,10 @@ func init_recipes(lvl := -1):
 
 
 func create_recipe(recipe_res: RecipeResource, parent: JobPanel):
-	var nrecipe = Recipe.create(recipe_res, parent)
-	if parent == current_tab:
-		nrecipe.init(recipe_res)
-		filter_recipe(nrecipe)
-		nrecipe.craft.connect(on_recipe_craft)
-	else:
-		nrecipe.resource = recipe_res
-	recipes.append(nrecipe)
+	var recipe_container = RecipeContainer.create(recipe_res, parent.recipe_container)
+	recipe_container.crafted.connect(_on_recipe_craft)
+	recipe_containers.append(recipe_container)
+	filter_recipe(recipe_container)
 
 
 func is_recipe_to_init(recipe: RecipeResource, lvl: int):
@@ -148,18 +111,12 @@ func is_recipe_to_init(recipe: RecipeResource, lvl: int):
 	return false
 
 
-func on_recipe_craft(recipe: RecipeResource):
-	inventory.remove_items(recipe.get_ingredients())
+func _on_recipe_craft(recipe: RecipeResource):
+	Globals.inventory.remove_items(recipe.get_ingredients())
 	var item = Item.create(recipe.get_result())
-	inventory.add_item(item)
+	Globals.inventory.add_item(item)
 	if Globals.debug and !item.resource.is_key():
 		Globals.console.log_equip(item)
-
-
-func check_recipes(item_to_check: Item):
-	for recipe in recipes:
-		recipe.check(item_to_check)
-	filter_recipes()
 
 
 func get_parent_by_type(type_id: int) -> JobPanel:
@@ -183,39 +140,39 @@ func get_parent_by_type(type_id: int) -> JobPanel:
 	return tab_container.get_node(node_name + "Panel")
 
 
+func filter_recipes():
+	for recipe_container in recipe_containers:
+		filter_recipe(recipe_container)
+
+
 var filter_methods = [is_filtered_by_research, is_filtered_by_level, is_filtered_by_introuvable, is_filtered_by_craftable, is_filtered_by_characteristics]
-func filter_recipe(nrecipe: Node):
+func filter_recipe(recipe_container: RecipeContainer):
 	var is_filtered = true
 	for filter_method in filter_methods:
-		is_filtered = is_filtered and filter_method.call(nrecipe)
+		is_filtered = is_filtered and filter_method.call(recipe_container)
 		if !is_filtered:
 			break
-	nrecipe.visible = is_filtered
+	recipe_container.visible = is_filtered
 
 
-func filter_recipes():
-	for nrecipe in recipes:
-		filter_recipe(nrecipe)
-
-
-func is_filtered_by_research(recipe_node: Recipe) -> bool:
+func is_filtered_by_research(recipe_container: RecipeContainer) -> bool:
 	var text_filter = current_tab.search_prompt.text
 	if text_filter and text_filter != "":
-		return recipe_node.resource.get_result().name.to_lower().contains(text_filter.to_lower())
+		return recipe_container._resource.get_result().name.to_lower().contains(text_filter.to_lower())
 	return true
 
 
-func is_filtered_by_craftable(recipe_node: Recipe) -> bool:
-	return !recipe_filters.craftable or recipe_node.craftable
+func is_filtered_by_craftable(recipe_container: RecipeContainer) -> bool:
+	return !recipe_filters.craftable or recipe_container.is_craftable()
 
 
-func is_filtered_by_characteristics(recipe_node: Recipe) -> bool:
+func is_filtered_by_characteristics(recipe_container: RecipeContainer) -> bool:
 	if recipe_filters.applied_filters.is_empty():
 		return true
 	var count := 0
-	if recipe_node.resource.get_result().is_key():
+	if recipe_container._resource.get_result().is_key():
 		return true
-	var result_stat_types = recipe_node.resource.get_result().equip_res.stats.map(func(s): return s.get_type())
+	var result_stat_types = recipe_container._resource.get_result().equip_res.stats.map(func(s): return s.get_type())
 	var is_filtered = false
 	for applied_filter in recipe_filters.applied_filters:
 		if result_stat_types.has(applied_filter):
@@ -225,12 +182,12 @@ func is_filtered_by_characteristics(recipe_node: Recipe) -> bool:
 	return is_filtered
 
 
-func is_filtered_by_level(recipe_node: Recipe) -> bool:
+func is_filtered_by_level(recipe_container: RecipeContainer) -> bool:
 	return range(recipe_filters._min, recipe_filters._max + 1)\
-		.has(recipe_node.resource.get_result().level)
+		.has(recipe_container._resource.get_result().level)
 
 
-func is_filtered_by_introuvable(recipe_node: Recipe) -> bool:
-	if !recipe_filters.introuvable:
-		return recipe_node.get_ingredients_items().all(func(i): return i.modulate != Color.RED)
-	return recipe_node.get_ingredients_items().any(func(i): return i.modulate == Color.RED)
+func is_filtered_by_introuvable(recipe_container: RecipeContainer) -> bool:
+	if recipe_filters.introuvable:
+		return !recipe_container.is_trouvable()
+	return recipe_container.is_trouvable()

@@ -3,14 +3,21 @@ extends PanelContainer
 
 const plus_texture = preload("res://assets/btn_icon/btnIcon_plus.png")
 
+static var scene = preload("res://scenes/jobs/recipe.tscn")
+
+static func create(recipe: RecipeResource, new_parent) -> Recipe:
+	var nrecipe: Recipe = Recipe.scene.instantiate()
+	nrecipe.resource = recipe
+	nrecipe.init()
+	new_parent.add_child(nrecipe)
+	return nrecipe
+
 @export var button: Button
 @export var items_container: HBoxContainer
 @export var name_label: Label
 @export var level_label: Label
 
 const items_size := 80
-
-static var scene = preload("res://scenes/jobs/recipe.tscn")
 
 var resource: RecipeResource
 
@@ -33,29 +40,18 @@ var _result_item: Item
 var parent: JobPanel
 
 
-func init(item_recipe: RecipeResource = resource):
-	resource = item_recipe
+func init():
 	instantiate_result()
 	instantiate_ingredients()
-	check(null)
-	add_to_parent()
+	for ingredient in get_ingredients_items():
+		var diff = diff_inventory_recipe_item(ingredient)
+		griser_ingredient(ingredient, diff)
+	_result_item.count = calculate_result_count()
 
 
-func reset():
-	if get_parent():
-		get_parent().remove_child(self)
-	is_initialized = false
-	_result_item = null
-	for item in items:
-		if is_instance_valid(item):
-			if item.texture_initialized.is_connected(_on_item_texture_initialized):
-				item.texture_initialized.disconnect(_on_item_texture_initialized)
-			item.queue_free()
-
-
-func instantiate_result(result_res: ItemResource, callable: Callable):
-	var result_item = Item.create(result_res, false, true, callable)
-	init_result.call_deferred(result_item)
+func instantiate_result():
+	var result_item = Item.create(resource.get_result(), false, true, _on_item_texture_initialized)
+	init_result(result_item)
 
 
 func init_result(result_item: Item):
@@ -77,19 +73,13 @@ func instantiate_ingredients():
 		items.append(recipe_item)
 		items_container.add_child(recipe_item)
 		# Permet de repérer les items non droppables dans le jeu
-		if ingredient.get_drop_areas() == "":
+		if !ingredient.is_trouvable():
 			recipe_item.modulate = Color.RED
 
 
 func _on_item_texture_initialized():
 	if items.filter(func(i): return is_instance_valid(i)).all(func(i): return i.texture != null):
 		is_initialized = true
-
-
-func check(item_to_check: Item):
-	craftable = check_recipe(item_to_check)
-	if _result_item:
-		_result_item.count = calculate_result_count()
 
 
 func calculate_result_count():
@@ -101,32 +91,8 @@ func calculate_result_count():
 	return amounts.min()
 
 
-## Renvoie true si la recette est craftable, false sinon
-func check_recipe(item_to_check: Item) -> bool:
-	var ingredients = get_ingredients_items()
-	var matching_ingredients = ingredients.filter(func(i): return Item.equals(i, item_to_check))
-	# Si aucun ingrédient ne correspond à l'item à vérifier, on ne fait rien
-	if item_to_check and matching_ingredients.is_empty():
-		return craftable
-	# Si un ingrédient match avec item_to_check, on ne met à jour que cet ingrédient
-	if !matching_ingredients.is_empty():
-		var ingredient = matching_ingredients[0]
-		var diff = item_to_check.count - ingredient.count
-		griser_ingredient(ingredient, diff)
-	# Sinon, on vérifie tous les ingrédients par rapports aux items dans l'inventaire
-	else:
-		for ingredient in ingredients:
-			var diff = diff_inventory_recipe_item(ingredient)
-			griser_ingredient(ingredient, diff)
-	return ingredients.all(func(i): return i.is_ingredient_ok())
-
-
 func get_ingredients_items():
-	return items.filter(
-		func(i):
-			if is_instance_valid(i):
-				return i.resource.id != resource.get_result().id
-			return false)
+	return items.filter(func(i): return i.resource.id != resource.get_result().id)
 
 
 func griser_ingredient(item: Item, diff: int):
@@ -145,29 +111,5 @@ func diff_inventory_recipe_item(ingredient: Item) -> int:
 	return -ingredient.count
 
 
-static func create(recipe: RecipeResource, new_parent) -> Recipe:
-	var nrecipe = Recipe.scene.instantiate()
-	nrecipe.parent = new_parent
-	nrecipe.resource = recipe
-	return nrecipe
-
-
-func add_to_parent():
-	if !get_parent() and parent:
-		parent.recipe_container.add_child(self)
-
-
 func _on_button_button_up():
-	craft.emit(resource)
-
-
-func _on_visible_on_screen_notifier_screen_entered():
-	for item in items:
-		if is_instance_valid(item):
-			item.visible = true
-
-
-func _on_visible_on_screen_notifier_screen_exited():
-	for item in items:
-		if is_instance_valid(item):
-			item.visible = true
+	craft.emit()
