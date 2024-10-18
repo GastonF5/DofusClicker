@@ -13,21 +13,26 @@ _min_crit = 1
 _max_crit = 1
 
 [sub_resource type="Resource" id="Resource_1rtq6"]
+resource_name = "Bonus PM"
 script = ExtResource("2_3li3h")
 type = 1
 time = 10.0
 target_type = 0
 show_time = false
+effective_zone = 0
 has_grades = false
 element = 0
 lifesteal = false
 level_pourcentage = false
 caracteristic = 1
 pourcentage = false
+retrait_vol = false
 method_name = &""
 effect_label = ""
 params = []
 nb_random_effects = 0
+direction = 0
+is_attirance = false
 amounts = Array[ExtResource("1_vi8ei")]([SubResource("Resource_rmt3c")])
 visible_in_description = true
 
@@ -35,6 +40,7 @@ visible_in_description = true
 script = ExtResource("1_r0khq")
 id = 8557
 name = "Toile Fragile"
+available = true
 description = "Augmente les PM."
 texture = ExtResource("4_yp6k1")
 img_url = "https://api.beta.dofusdb.fr/img/spells/sort_12451.png"

@@ -13,21 +13,26 @@ _min_crit = 14
 _max_crit = 26
 
 [sub_resource type="Resource" id="Resource_6mj2v"]
+resource_name = "Dommages Feu"
 script = ExtResource("2_82t04")
 type = 0
 time = 0.0
 target_type = 1
 show_time = false
+effective_zone = 0
 has_grades = false
 element = 2
 lifesteal = false
 level_pourcentage = false
 caracteristic = 0
 pourcentage = false
+retrait_vol = false
 method_name = &""
 effect_label = ""
 params = []
 nb_random_effects = 0
+direction = 0
+is_attirance = false
 amounts = Array[ExtResource("1_fd40d")]([SubResource("Resource_v2er5")])
 visible_in_description = true
 
@@ -35,6 +40,7 @@ visible_in_description = true
 script = ExtResource("1_mtxot")
 id = 8558
 name = "Rejet Acide"
+available = true
 description = "Occasionne des dommages Feu."
 texture = ExtResource("4_ckpcb")
 img_url = "https://api.beta.dofusdb.fr/img/spells/sort_1527.png"
