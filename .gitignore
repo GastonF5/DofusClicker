@@ -1,2 +1,7 @@
 # Godot 4+ specific ignores
 .godot/
+resources/themes/button.tres
+resources/themes/experience_bar.tres
+resources/themes/main_theme.tres
+resources/themes/spell_button/selected.tres
+resources/themes/spell_button/unselected.tres
