@@ -2,6 +2,7 @@ class_name DescriptionPopUp
 extends Control
 
 const CaracType = Caracteristique.Type
+const EffectType = EffectResource.Type
 const PROBA_CRIT := "Critique %d"
 const BONUS_CRIT := "(+%d Dommages)"
 
@@ -192,11 +193,17 @@ func add_spell_effect_label(effect_res: EffectResource):
 
 func add_buff_label(effect_res: EffectResource, amount: int):
 	var label = Label.new()
-	var is_pourcentage_charac = effect_res.caracteristic in [Caracteristique.Type.DO_SORTS, Caracteristique.Type.RES_DOMMAGES]
-	label.text = str(amount)
-	if is_pourcentage_charac:
-		label.text += "%"
-	label.text += " " + effect_res.get_caracteristic_label()
+	if effect_res.type == EffectType.POISON:
+		if effect_res.is_poison_carac:
+			label.text = "1 %s utilisé fait perdre %d PV" % [effect_res.get_caracteristic_label(), amount]
+		else:
+			label.text = "%d Poison %s" % [amount, effect_res.get_element_label()]
+	else:
+		var is_pourcentage_charac = effect_res.caracteristic in [Caracteristique.Type.DO_SORTS, Caracteristique.Type.RES_DOMMAGES]
+		label.text = str(amount)
+		if is_pourcentage_charac:
+			label.text += "%"
+		label.text += " " + effect_res.get_caracteristic_label()
 	label.add_theme_color_override("font_color", effect_res.get_label_color())
 	effects_container.add_child(label)
 

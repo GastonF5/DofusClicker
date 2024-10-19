@@ -307,14 +307,16 @@ func apply_erosion(amount: int):
 		hp_bar.mval -= ero
 
 
-func apply_poison(amount: int, carac: CaracType):
+func apply_poison(amount: int, carac: CaracType) -> Array:
+	var effects_log = []
 	var carac_poison_buffs = buffs.filter(Buff.is_poison_carac)
 	for buff: Buff in carac_poison_buffs:
 		if buff._effect.caracteristic == carac:
-			var poison_amount = amount * buff._amount
+			var poison_amount = amount * SpellsService.get_degats(buff._caster, buff._amount, buff._effect.element)
 			var element = buff._effect.element
 			take_damage(poison_amount, element)
-			Globals.console.log_damage(self, poison_amount, element, dying)
+			effects_log.append([EffectResource.Type.DAMAGE, self, poison_amount, element, dying, true])
+	return effects_log
 
 
 static func is_monster(value: Node):

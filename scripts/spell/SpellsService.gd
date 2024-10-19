@@ -16,7 +16,7 @@ static var count := 1
 static var max_count := 0
 static var rand_count := 0
 static var effects_log = []
-static func perform_spell(caster: Entity, plate: EntityContainer, resource: SpellResource, grade: int):
+static func perform_spell(caster: Entity, plate: EntityContainer, resource: SpellResource, grade: int, logs_before: Array = [], logs_after: Array = []):
 	var crit_amount = resource.per_crit + caster.get_critique() / 100.0
 	var crit = randf_range(0, 1) <= crit_amount
 	for effect: EffectResource in resource.effects:
@@ -30,7 +30,9 @@ static func perform_spell(caster: Entity, plate: EntityContainer, resource: Spel
 			count += 1
 	# console log
 	console.log_spell_cast(caster, resource, crit)
+	console.log_effects(logs_before)
 	console.log_effects(effects_log)
+	console.log_effects(logs_after)
 	console.output.add_separator()
 	effects_log.clear()
 	check_dying_entities([PlayerManager.player_entity] + MonsterManager.monsters)
@@ -74,7 +76,7 @@ static func perform_damage(caster: Entity, target: Entity, effect: EffectResourc
 	amount = target.take_damage(amount, element)
 	if effect.lifesteal:
 		caster.take_damage(-round(amount / 2.0), element)
-	effects_log.append([EffectType.DAMAGE, target, amount, element, target.dying])
+	effects_log.append([EffectType.DAMAGE, target, amount, element, target.dying, false])
 
 
 static func perform_soin(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
@@ -108,7 +110,7 @@ static func perform_bonus(caster: Entity, target: Entity, effect: EffectResource
 			carac.amount += amount
 	effects_log.append([EffectType.BONUS, target, amount, effect.get_caracteristic_label(), effect.time])
 	if effect.time != 0:
-		Buff.instantiate(effect, amount, target)
+		Buff.instantiate(effect, amount, target, caster)
 
 
 static func annuler_bonus(buff: Buff, target: Entity, effect: EffectResource, amount: int):
@@ -125,9 +127,9 @@ static func annuler_bonus(buff: Buff, target: Entity, effect: EffectResource, am
 				carac.amount -= amount
 
 
-static func perform_poison(_caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
+static func perform_poison(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
 	var amount = effect.get_amount(crit, grade)
-	Buff.instantiate(effect, amount, target)
+	Buff.instantiate(effect, amount, target, caster)
 	effects_log.append([EffectType.POISON, target, amount, effect.element, effect.time, effect.get_caracteristic_label() if effect.is_poison_carac else ""])
 
 
@@ -185,7 +187,7 @@ static func perform_poussee(caster: Entity, target: Entity, effect: EffectResour
 	if target.is_player:
 		var amount = get_degats_poussee(caster, target, effect.get_amount(crit, grade))
 		target.take_damage(amount, Element.POUSSEE)
-		effects_log.append([EffectType.DAMAGE, target, amount, Element.POUSSEE, target.dying])
+		effects_log.append([EffectType.DAMAGE, target, amount, Element.POUSSEE, target.dying, false])
 		return
 	var direction = effect.direction
 	var plate: EntityContainer = target.get_parent()
@@ -206,10 +208,10 @@ static func perform_poussee(caster: Entity, target: Entity, effect: EffectResour
 	if !effect.is_attirance and dist_between_plates < distance:
 		var amount = get_degats_poussee(caster, target, distance - dist_between_plates)
 		target.take_damage(amount, Element.POUSSEE)
-		effects_log.append([EffectType.DAMAGE, target, amount, Element.POUSSEE, target.dying])
+		effects_log.append([EffectType.DAMAGE, target, amount, Element.POUSSEE, target.dying, false])
 		if second_target and second_target != target:
 			second_target.take_damage(amount / 2, Element.POUSSEE)
-			effects_log.append([EffectType.DAMAGE, second_target, amount / 2, Element.POUSSEE, second_target.dying])
+			effects_log.append([EffectType.DAMAGE, second_target, amount / 2, Element.POUSSEE, second_target.dying, false])
 	# animation
 	if dist_between_plates > 0:
 		destination_plate = plate.call(direction_callable_name, dist_between_plates)
@@ -373,6 +375,8 @@ static func get_fixe(caster: Entity, element: Element) -> int:
 
 
 static func get_degats(caster: Entity, amount: int, element: Element) -> int:
+	if Entity.is_monster(caster):
+		return amount
 	var multiplicateur = get_multiplicateur(caster, element, false)
 	var fixe = get_fixe(caster, element)
 	return max(multiplicateur * amount + fixe, 0)

@@ -238,11 +238,12 @@ func log_effects(effects_to_log: Array):
 			if !effects.is_empty():
 				match type:
 					EffectType.DAMAGE:
-						# [type, target, amount, element, dead]
+						# [type, target, amount, element, dead, is_poison]
 						var amounts = effects.map(func(e): return e[2])
 						var elements = effects.map(func(e): return e[3])
 						var dead = effects.reduce(func(accum, e): return accum or e[4], false)
-						log_damage(target, amounts, elements, dead)
+						var poison = effects.reduce(func(accum, e): return accum or e[5], false)
+						log_damage(target, amounts, elements, dead, poison)
 					EffectType.BONUS:
 						# [type, target, amount, characteristic, time]
 						for bonus in effects:

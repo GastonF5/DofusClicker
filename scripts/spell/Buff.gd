@@ -1,9 +1,10 @@
 class_name Buff
 extends PanelContainer
 
-static func instantiate(effect: EffectResource, amount: int, parent: Entity) -> Buff:
+static func instantiate(effect: EffectResource, amount: int, parent: Entity, caster: Entity) -> Buff:
 	var buff = FileLoader.get_packed_scene("spell/buff").instantiate()
 	buff._parent = parent
+	buff._caster = caster
 	buff._effect = effect
 	buff._amount = amount
 	buff.init()
@@ -25,6 +26,7 @@ const POISON_TIME := 5
 @export var pb: ProgressBar
 
 var _parent: Entity
+var _caster: Entity
 var _timer: Timer
 var _effect: EffectResource
 var _amount: int
@@ -57,13 +59,15 @@ func do_poison_effect():
 	if _effect.type == EffectResource.Type.POISON and !_effect.is_poison_carac:
 		var time = _effect.time - _timer.time_left
 		if (int(time) - time) == 0.0 and int(time) % POISON_TIME == 0:
-			_parent.take_damage(_amount, _effect.element)
-			Globals.console.log_effects([[EffectResource.Type.DAMAGE, _parent, 0, _effect.element, _parent.dying]])
+			var amount = SpellsService.get_degats(_caster, _amount, _effect.element)
+			_parent.take_damage(amount, _effect.element)
+			Globals.console.log_effects([[EffectResource.Type.DAMAGE, _parent, amount, _effect.element, _parent.dying]])
 			Globals.console.output.add_separator()
 
 
 func delete(effect: EffectResource, amount: int):
-	SpellsService.annuler_bonus(self, _parent, effect, amount)
+	if effect.type == EffectResource.Type.BONUS:
+		SpellsService.annuler_bonus(self, _parent, effect, amount)
 	if _parent:
 		_parent.buffs.erase(self)
 	if get_parent():

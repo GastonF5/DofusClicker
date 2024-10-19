@@ -39,6 +39,7 @@ enum Zone { ALL, MELEE, DISTANCE }
 @export var show_time: bool
 @export var effective_zone: Zone
 @export var has_grades: bool
+var caster: Entity
 
 @export_group("Damage & Soin")
 @export var element: Caracteristique.Element
