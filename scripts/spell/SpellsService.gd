@@ -182,6 +182,11 @@ static func perform_bouclier(caster: Entity, target: Entity, effect: EffectResou
 
 @warning_ignore("integer_division")
 static func perform_poussee(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
+	if target.is_player:
+		var amount = get_degats_poussee(caster, target, effect.get_amount(crit, grade))
+		target.take_damage(amount, Element.POUSSEE)
+		effects_log.append([EffectType.DAMAGE, target, amount, Element.POUSSEE, target.dying])
+		return
 	var direction = effect.direction
 	var plate: EntityContainer = target.get_parent()
 	if effect.target_type in [TargetType.AROUND, TargetType.TARGET_AROUND]:
