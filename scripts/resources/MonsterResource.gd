@@ -29,7 +29,11 @@ func get_id():
 
 func load_texture():
 	if !texture:
-		_load("monsters/images/", id)
+		var success = _load("monsters/images/", id)
+		if !success:
+			await API.await_for_request_completed(await API.request(image_url))
+			texture = API.get_texture(image_url)
+			FileSaver.save_monster_asset(texture, id)
 
 
 func black_listed():

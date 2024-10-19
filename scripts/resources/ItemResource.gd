@@ -77,4 +77,8 @@ static func map(data: Dictionary) -> ItemResource:
 
 func load_texture() -> void:
 	if !texture:
-		_load("items/images/", id)
+		var success = _load("items/images/", id)
+		if !success:
+			await API.await_for_request_completed(await API.request(img_url))
+			texture = API.get_texture(img_url)
+			FileSaver.save_item_asset(texture, id)
