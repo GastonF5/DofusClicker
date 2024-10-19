@@ -171,7 +171,7 @@ func load_monsters(subarea: AreaResource):
 				composite_signal.add_method(monster_res.load_texture)
 	monster_resources = monster_resources.filter(func(res): return !res.archimonstre)
 	MonsterManager.monsters_res = monster_resources
-	MonsterManager.protecteur = subarea.get_protecteurs()[0]
+	MonsterManager.protecteur = null if subarea.get_protecteurs().is_empty() else subarea.get_protecteurs()[0]
 	for mres in monster_resources:
 		print("%s (%d) :" % [mres.name, mres.id])
 		print(mres.spells)
