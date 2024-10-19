@@ -19,6 +19,10 @@ static func create(id: int, name: String, super_area_id := -1, level := -1) -> A
 	return area
 
 
+func get_id() -> int:
+	return _id
+
+
 func get_area_name():
 	return _name
 
