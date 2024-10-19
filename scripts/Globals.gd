@@ -5,7 +5,7 @@ const area_white_list = [
 	# Incarnam
 	450, 778, 445, 444, 443, 442, 449, 447,
 	# Astrub
-	95, 99
+	95, 99, 173, 97, 96, 98, 100
 ]
 
 const debug := true

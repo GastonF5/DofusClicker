@@ -1,7 +1,7 @@
 extends AbstractManager
 
 
-var dungeon_list = [447]
+var dungeon_list = [447, 306]
 
 var dungeon_id := -1
 var cur_room: int
