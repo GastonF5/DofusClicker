@@ -1,0 +1,80 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=11 format=3 uid="uid://ctphjbuv7hgof"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_nswas"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_vh1c5"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_8435n"]
+[ext_resource type="Texture2D" uid="uid://hwinyakakvpv" path="res://assets/spells/monster/sort_10075.png" id="4_1ijqe"]
+
+[sub_resource type="Resource" id="Resource_suey5"]
+script = ExtResource("1_vh1c5")
+_min = 24
+_max = 38
+_min_crit = 36
+_max_crit = 56
+
+[sub_resource type="Resource" id="Resource_aht0i"]
+script = ExtResource("1_vh1c5")
+_min = 25
+_max = 39
+_min_crit = 37
+_max_crit = 59
+
+[sub_resource type="Resource" id="Resource_g573c"]
+script = ExtResource("1_vh1c5")
+_min = 27
+_max = 41
+_min_crit = 39
+_max_crit = 61
+
+[sub_resource type="Resource" id="Resource_80ry8"]
+script = ExtResource("1_vh1c5")
+_min = 28
+_max = 42
+_min_crit = 40
+_max_crit = 64
+
+[sub_resource type="Resource" id="Resource_ihocj"]
+script = ExtResource("1_vh1c5")
+_min = 29
+_max = 44
+_min_crit = 42
+_max_crit = 66
+
+[sub_resource type="Resource" id="Resource_825o6"]
+resource_name = "Dommages Air"
+script = ExtResource("2_8435n")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 0
+has_grades = true
+element = 4
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+amounts = Array[ExtResource("1_vh1c5")]([SubResource("Resource_suey5"), SubResource("Resource_aht0i"), SubResource("Resource_g573c"), SubResource("Resource_80ry8"), SubResource("Resource_ihocj")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_nswas")
+id = 10231
+name = "Marteau Branlant"
+available = true
+description = "Occasionne des dommages Air."
+texture = ExtResource("4_1ijqe")
+img_url = ""
+level = 0
+pa_cost = 5
+per_crit = 0.1
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_8435n")]([SubResource("Resource_825o6")])

@@ -1,0 +1,111 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=13 format=3 uid="uid://dt6gdpw2mkwyi"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_0x4ij"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_qxdvn"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_ygqj5"]
+[ext_resource type="Texture2D" uid="uid://bnxgujc8opnlq" path="res://assets/spells/monster/sort_10074.png" id="4_m5r3b"]
+
+[sub_resource type="Resource" id="Resource_ufbut"]
+script = ExtResource("1_0x4ij")
+_min = 12
+_max = 25
+_min_crit = 27
+_max_crit = 48
+
+[sub_resource type="Resource" id="Resource_aaiie"]
+script = ExtResource("1_0x4ij")
+_min = 13
+_max = 27
+_min_crit = 29
+_max_crit = 51
+
+[sub_resource type="Resource" id="Resource_pf3mr"]
+script = ExtResource("1_0x4ij")
+_min = 15
+_max = 29
+_min_crit = 31
+_max_crit = 53
+
+[sub_resource type="Resource" id="Resource_s3ex3"]
+script = ExtResource("1_0x4ij")
+_min = 16
+_max = 31
+_min_crit = 33
+_max_crit = 56
+
+[sub_resource type="Resource" id="Resource_6df7h"]
+script = ExtResource("1_0x4ij")
+_min = 17
+_max = 33
+_min_crit = 35
+_max_crit = 59
+
+[sub_resource type="Resource" id="Resource_4k58f"]
+resource_name = "Dommages Feu"
+script = ExtResource("2_ygqj5")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 0
+has_grades = true
+element = 2
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+amounts = Array[ExtResource("1_0x4ij")]([SubResource("Resource_ufbut"), SubResource("Resource_aaiie"), SubResource("Resource_pf3mr"), SubResource("Resource_s3ex3"), SubResource("Resource_6df7h")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_sxms7"]
+script = ExtResource("1_0x4ij")
+_min = 1
+_max = 1
+_min_crit = 1
+_max_crit = 1
+
+[sub_resource type="Resource" id="Resource_wvcbx"]
+resource_name = "Poussée"
+script = ExtResource("2_ygqj5")
+type = 9
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+amounts = Array[ExtResource("1_0x4ij")]([SubResource("Resource_sxms7")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_qxdvn")
+id = 10235
+name = "Vissage"
+available = true
+description = "Occasionne des dommages Feu et repousse la cible."
+texture = ExtResource("4_m5r3b")
+img_url = ""
+level = 0
+pa_cost = 5
+per_crit = 0.1
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_ygqj5")]([SubResource("Resource_4k58f"), SubResource("Resource_wvcbx")])

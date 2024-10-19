@@ -1,0 +1,80 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=11 format=3 uid="uid://7fthjmxk8vya"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_vpwi0"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_k6ajp"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="3_umxwm"]
+[ext_resource type="Texture2D" uid="uid://6yd8pd4ufj6q" path="res://assets/spells/monster/sort_10076.png" id="4_oy04h"]
+
+[sub_resource type="Resource" id="Resource_t71um"]
+script = ExtResource("1_vpwi0")
+_min = 32
+_max = 45
+_min_crit = 47
+_max_crit = 68
+
+[sub_resource type="Resource" id="Resource_k3ceo"]
+script = ExtResource("1_vpwi0")
+_min = 33
+_max = 47
+_min_crit = 49
+_max_crit = 71
+
+[sub_resource type="Resource" id="Resource_wvsjv"]
+script = ExtResource("1_vpwi0")
+_min = 35
+_max = 49
+_min_crit = 51
+_max_crit = 73
+
+[sub_resource type="Resource" id="Resource_dgatk"]
+script = ExtResource("1_vpwi0")
+_min = 36
+_max = 51
+_min_crit = 53
+_max_crit = 76
+
+[sub_resource type="Resource" id="Resource_l111n"]
+script = ExtResource("1_vpwi0")
+_min = 37
+_max = 53
+_min_crit = 55
+_max_crit = 79
+
+[sub_resource type="Resource" id="Resource_taopx"]
+resource_name = "Dommages Terre"
+script = ExtResource("2_k6ajp")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 0
+has_grades = true
+element = 1
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+amounts = Array[ExtResource("1_vpwi0")]([SubResource("Resource_t71um"), SubResource("Resource_k3ceo"), SubResource("Resource_wvsjv"), SubResource("Resource_dgatk"), SubResource("Resource_l111n")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("3_umxwm")
+id = 10233
+name = "Lancer de Caillou"
+available = true
+description = "Occasionne des dommages Terre."
+texture = ExtResource("4_oy04h")
+img_url = ""
+level = 0
+pa_cost = 5
+per_crit = 0.1
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_k6ajp")]([SubResource("Resource_taopx")])

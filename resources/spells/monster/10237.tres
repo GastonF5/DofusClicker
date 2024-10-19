@@ -1,0 +1,113 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=13 format=3 uid="uid://8jnu5x1reh7y"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_8o1b6"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_mwyyb"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_d03ta"]
+[ext_resource type="Texture2D" uid="uid://d31jwo57l4luq" path="res://assets/spells/monster/sort_10073.png" id="4_wm0qv"]
+
+[sub_resource type="Resource" id="Resource_85mx4"]
+script = ExtResource("1_mwyyb")
+_min = 28
+_max = 38
+_min_crit = 41
+_max_crit = 56
+
+[sub_resource type="Resource" id="Resource_gprh0"]
+script = ExtResource("1_mwyyb")
+_min = 29
+_max = 39
+_min_crit = 43
+_max_crit = 59
+
+[sub_resource type="Resource" id="Resource_d6cju"]
+script = ExtResource("1_mwyyb")
+_min = 31
+_max = 41
+_min_crit = 45
+_max_crit = 61
+
+[sub_resource type="Resource" id="Resource_fpnr2"]
+script = ExtResource("1_mwyyb")
+_min = 32
+_max = 42
+_min_crit = 47
+_max_crit = 64
+
+[sub_resource type="Resource" id="Resource_0d53u"]
+script = ExtResource("1_mwyyb")
+_min = 33
+_max = 44
+_min_crit = 48
+_max_crit = 66
+
+[sub_resource type="Resource" id="Resource_vt1og"]
+resource_name = "Dommages Eau"
+script = ExtResource("2_d03ta")
+type = 0
+time = 0.0
+target_type = 0
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 3
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+is_poison_carac = false
+amounts = Array[ExtResource("1_mwyyb")]([SubResource("Resource_85mx4"), SubResource("Resource_gprh0"), SubResource("Resource_d6cju"), SubResource("Resource_fpnr2"), SubResource("Resource_0d53u")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_iecfj"]
+script = ExtResource("1_mwyyb")
+_min = 2
+_max = 2
+_min_crit = 2
+_max_crit = 2
+
+[sub_resource type="Resource" id="Resource_j7vvy"]
+resource_name = "Poison PA"
+script = ExtResource("2_d03ta")
+type = 5
+time = 10.0
+target_type = 1
+show_time = true
+effective_zone = 0
+has_grades = false
+element = 3
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+is_poison_carac = true
+amounts = Array[ExtResource("1_mwyyb")]([SubResource("Resource_iecfj")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_8o1b6")
+id = 10237
+name = "Piochage"
+available = true
+description = "Occasionne des dommages Eau."
+texture = ExtResource("4_wm0qv")
+img_url = ""
+level = 0
+pa_cost = 5
+per_crit = 0.1
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_d03ta")]([SubResource("Resource_vt1og"), SubResource("Resource_j7vvy")])
