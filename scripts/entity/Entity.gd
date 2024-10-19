@@ -307,6 +307,16 @@ func apply_erosion(amount: int):
 		hp_bar.mval -= ero
 
 
+func apply_poison(amount: int, carac: CaracType):
+	var carac_poison_buffs = buffs.filter(Buff.is_poison_carac)
+	for buff: Buff in carac_poison_buffs:
+		if buff._effect.caracteristic == carac:
+			var poison_amount = amount * buff._amount
+			var element = buff._effect.element
+			take_damage(poison_amount, element)
+			Globals.console.log_damage(self, poison_amount, element, dying)
+
+
 static func is_monster(value: Node):
 	return is_instance_of(value, Monster)
 

@@ -65,6 +65,9 @@ var texture: Texture2D
 @export var direction: Direction
 @export var is_attirance: bool
 
+@export_group("Poison")
+@export var is_poison_carac: bool
+
 @export_category("Amounts")
 @export var amounts: Array[AmountResource]
 

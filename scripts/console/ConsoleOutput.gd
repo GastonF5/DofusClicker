@@ -33,7 +33,10 @@ func append_damages(amounts: Array, elements: Array):
 		append_log(" (", LogType.INFO)
 		_append_damage(amounts[0], elements[0], false)
 		for i in range(1, amounts.size()):
-			append_log(" + ", LogType.INFO)
+			if amounts[i] >= 0:
+				append_log(" + ", LogType.INFO)
+			else:
+				append_log(" - ", LogType.INFO)
 			_append_damage(amounts[i], elements[i], false)
 		append_log(")", LogType.INFO)
 
@@ -47,6 +50,10 @@ func _append_damage(amount: int, element: Element, with_sign := true):
 	_apply_element_color(element)
 	add_text(new_text)
 	pop_all()
+
+
+func append_poison_apply(amount: int, element: Element):
+	_append_damage(amount, element, false)
 
 
 func new_line():

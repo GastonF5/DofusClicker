@@ -255,6 +255,10 @@ func log_effects(effects_to_log: Array):
 						# [type, target, amount, time]
 						for shield in effects:
 							log_shield(target, shield[2], shield[3])
+					EffectType.POISON:
+						# [type, target, amount, element, time, characteristic]
+						for poison in effects:
+							log_poison(target, poison[2], poison[3], poison[4], poison[5])
 
 
 func log_weapon_cast(caster: Entity, weapon_name: String, crit: bool):
@@ -266,14 +270,18 @@ func log_weapon_cast(caster: Entity, weapon_name: String, crit: bool):
 	output.new_line()
 
 
-func log_damage(target: Entity, amounts: Array, elements: Array, dead: bool):
+func log_damage(target: Entity, amounts: Array, elements: Array, dead: bool, poison := false):
 	if amounts.size() != elements.size():
 		log_error("in log_damage : amounts size != elements size")
 	if !amounts.is_empty():
 		_log_line(get_entity_name(target), INFO, true)
 		_log_line(" : ", INFO)
 		output.append_damages(amounts, elements)
-		_log_line(" PV%s" % (" (mort)" if dead else ""), INFO)
+		_log_line(" PV", INFO)
+		if poison:
+			_log_line(" (Poison)", INFO)
+		if dead:
+			_log_line(" (mort)", INFO)
 		output.new_line()
 
 
@@ -296,6 +304,18 @@ func log_retrait(target: Entity, amount: int, characteristic: String):
 
 func log_shield(target: Entity, amount: int, time: float):
 	log_bonus(target, amount, "Bouclier", time)
+
+
+func log_poison(target: Entity, amount: int, element: Element, time: float, characteristic: String):
+	if amount != 0:
+		_log_line(get_entity_name(target), INFO, true)
+		_log_line(" : ", INFO)
+		output.append_poison_apply(amount, element)
+		_log_line(" Poison", INFO)
+		if characteristic != "":
+			_log_line(" (%s)" % characteristic, INFO)
+		if time != 0.0:
+			_log_line(" (%d secondes)" % time, INFO)
  
 
 func get_entity_name(entity: Entity):
