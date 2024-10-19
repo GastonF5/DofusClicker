@@ -11,6 +11,10 @@ func check_directory_path(path: String):
 		DirAccess.make_dir_recursive_absolute(path)
 
 
+func check_directory_existence(path: String):
+	return DirAccess.dir_exists_absolute(path)
+
+
 func save_data(data: Dictionary, file_name: String, path: String = DATA_PATH):
 	var data_res := DataResource.new()
 	data_res.data = data
