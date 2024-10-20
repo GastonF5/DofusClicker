@@ -21,7 +21,7 @@ func get_random_amount():
 func init_amount():
 	if amount and amount in range(min_amount, max_amount):
 		return
-	if min_amount > max_amount:
+	if min_amount > max_amount or min_amount < 0:
 		amount = min_amount
 	else:
 		amount = get_random_amount()
@@ -30,7 +30,7 @@ func init_amount():
 func get_effect_label() -> String:
 	if amount:
 		return "%d %s" % [amount, StatResource.get_type_label(get_type())]
-	elif min_amount >= max_amount:
+	elif min_amount >= max_amount or min_amount < 0:
 		return "%d %s" % [min_amount, StatResource.get_type_label(get_type())]
 	else:
 		return "%d à %d %s" % [min_amount, max_amount, StatResource.get_type_label(get_type())]
