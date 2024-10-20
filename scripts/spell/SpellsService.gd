@@ -16,6 +16,7 @@ static var count := 1
 static var max_count := 0
 static var rand_count := 0
 static var effects_log = []
+static var effects_buff := {}
 static func perform_spell(caster: Entity, plate: EntityContainer, resource: SpellResource, grade: int, logs_before: Array = [], logs_after: Array = []):
 	var crit_amount = resource.per_crit + caster.get_critique() / 100.0
 	var crit = randf_range(0, 1) <= crit_amount
@@ -28,6 +29,11 @@ static func perform_spell(caster: Entity, plate: EntityContainer, resource: Spel
 			if count == rand_count:
 				perform_effect(caster, plate, effect, crit, grade)
 			count += 1
+	# instantier buff
+	if !effects_buff.is_empty():
+		for target in effects_buff.keys():
+			Buff.instantiate(resource, effects_buff[target], target, caster)
+	effects_buff.clear()
 	# console log
 	console.log_spell_cast(caster, resource, crit)
 	console.log_effects(logs_before)
@@ -110,7 +116,7 @@ static func perform_bonus(caster: Entity, target: Entity, effect: EffectResource
 			carac.amount += amount
 	effects_log.append([EffectType.BONUS, target, amount, effect.get_caracteristic_label(), effect.time])
 	if effect.time != 0:
-		Buff.instantiate(effect, amount, target, caster)
+		add_buff_effect(target, effect, amount)
 
 
 static func annuler_bonus(buff: Buff, target: Entity, effect: EffectResource, amount: int):
@@ -127,9 +133,9 @@ static func annuler_bonus(buff: Buff, target: Entity, effect: EffectResource, am
 				carac.amount -= amount
 
 
-static func perform_poison(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
+static func perform_poison(_caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
 	var amount = effect.get_amount(crit, grade)
-	Buff.instantiate(effect, amount, target, caster)
+	add_buff_effect(target, effect, amount)
 	effects_log.append([EffectType.POISON, target, amount, effect.element, effect.time, effect.get_caracteristic_label() if effect.is_poison_carac else ""])
 
 
@@ -412,12 +418,12 @@ static func check_dying_entities(entities: Array):
 			entity.dying = false
 
 
-static func create_timer(time: float, name: String = "Timer"):
+static func create_timer(time: float, name: String = "Timer", parent: Node = tnode):
 	var timer = Timer.new()
 	timer.name = name
 	timer.wait_time = time
 	timer.autostart = true
-	tnode.add_child(timer)
+	parent.add_child(timer)
 	GameManager.end_fight.connect(timer.queue_free)
 	return timer
 
@@ -488,4 +494,12 @@ static func on_fight_end():
 	SpellsService.pugilat_adder = 0
 	SpellsService.fureur_adder = 0
 	SpellsService.tempete_de_puissance_last_target = null
+
+
+static func add_buff_effect(target: Entity, effect: EffectResource, amount: int):
+	if !effects_buff.has(target):
+		effects_buff[target] = {}
+	if effects_buff[target].has(effect.resource_name):
+		log.debug("Attention ! Le sort lancé contient deux effets avec le même nom : %s" % effect.resource_name)
+	effects_buff[target][effect.resource_name] = [effect, amount]
 #endregion

@@ -21,11 +21,11 @@ const BONUS_CRIT := "(+%d Dommages)"
 
 @export var separator: TextureRect
 
-var _timer: Timer
+var _timers := {}
 
 
 func reset():
-	_timer = null
+	_timers.clear()
 	texture.texture = null
 	name_label.text = ""
 	if level_label:
@@ -44,8 +44,19 @@ func reset():
 
 
 func _process(_delta):
-	if visible and _timer:
-		compute_description_label("Temps : %d secondes" % int(ceil(_timer.time_left)))
+	if visible:
+		# Partie Buff (gestion des timers)
+		for timer in _timers.keys():
+			var label: Label = _timers[timer]
+			if is_instance_valid(timer):
+				var text = label.text
+				var time_left = int(ceil(timer.time_left))
+				var label_time = text.split("-")[-1]
+				label.text = text.trim_suffix(label_time) + " (%d)" % time_left
+			else:
+				label.get_parent().remove_child(label)
+				label.queue_free()
+				_timers.erase(timer)
 
 
 func set_pa_visibility(_visible: bool):
@@ -103,14 +114,16 @@ func init_spell(spell_res: SpellResource):
 	visible = true
 
 
-func init_buff(effect: EffectResource, amount: int, timer: Timer):
+func init_buff(spell_res: SpellResource, effects: Dictionary, timers: Array):
 	reset()
 	name = "Buff"
-	texture.texture = effect.texture
-	compute_name_label(effect.resource_name, 0)
-	_timer = timer
+	texture.texture = spell_res.texture
+	compute_name_label(spell_res.name, 0)
 	clear_effects()
-	add_buff_label(effect, amount)
+	var index := 0
+	for effect_name in effects:
+		add_buff_label(effects[effect_name][0], effects[effect_name][1], timers[index])
+		index += 1
 	set_mouse_ignore()
 	visible = true
 
@@ -191,7 +204,7 @@ func add_spell_effect_label(effect_res: EffectResource):
 	effects_container.add_child(label)
 
 
-func add_buff_label(effect_res: EffectResource, amount: int):
+func add_buff_label(effect_res: EffectResource, amount: int, timer: Timer):
 	var label = Label.new()
 	if effect_res.type == EffectType.POISON:
 		if effect_res.is_poison_carac:
@@ -204,8 +217,10 @@ func add_buff_label(effect_res: EffectResource, amount: int):
 		if is_pourcentage_charac:
 			label.text += "%"
 		label.text += " " + effect_res.get_caracteristic_label()
+	label.text += " - ()"
 	label.add_theme_color_override("font_color", effect_res.get_label_color())
 	effects_container.add_child(label)
+	_timers[timer] = label
 
 
 func set_effect_visibility(is_effect_visible: bool):

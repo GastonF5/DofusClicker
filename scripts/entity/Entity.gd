@@ -309,11 +309,15 @@ func apply_erosion(amount: int):
 
 func apply_poison(amount: int, carac: CaracType) -> Array:
 	var effects_log = []
-	var carac_poison_buffs = buffs.filter(Buff.is_poison_carac)
-	for buff: Buff in carac_poison_buffs:
-		if buff._effect.caracteristic == carac:
-			var poison_amount = amount * SpellsService.get_degats(buff._caster, buff._amount, buff._effect.element)
-			var element = buff._effect.element
+	var carac_poison_effects = buffs.map(Buff.get_poison_carac_effects).reduce(func(accum, a): return accum + a, [])
+	for effect_amount_caster in carac_poison_effects:
+		# effect_amount_caster = [effect, amount, caster]
+		var effect = effect_amount_caster[0]
+		var buff_amount = effect_amount_caster[1]
+		var caster = effect_amount_caster[2]
+		if effect.caracteristic == carac:
+			var element = effect.element
+			var poison_amount = amount * SpellsService.get_degats(caster, buff_amount, element)
 			take_damage(poison_amount, element)
 			effects_log.append([EffectResource.Type.DAMAGE, self, poison_amount, element, dying, true])
 	return effects_log
