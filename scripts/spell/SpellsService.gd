@@ -454,6 +454,9 @@ static func get_targets(caster: Entity, plate: EntityContainer, type: EffectReso
 			targets += get_neighbor_entities(plate)
 		TargetType.ALL_MONSTERS:
 			targets += monsters
+		TargetType.ALL:
+			targets += monsters
+			targets.append(PlayerManager.player_entity)
 		TargetType.RANDOM_MONSTER:
 			randomize()
 			targets.append(monsters[randi_range(0, monsters.size() - 1)])
