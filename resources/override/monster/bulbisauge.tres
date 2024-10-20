@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="MonsterResource" load_steps=19 format=3 uid="uid://bivvwmdddmd13"]
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=15 format=3 uid="uid://bivvwmdddmd13"]
 
 [ext_resource type="Script" path="res://scripts/resources/DropResource.gd" id="1_7q070"]
 [ext_resource type="Script" path="res://scripts/resources/MonsterResource.gd" id="1_8hae7"]
@@ -63,40 +63,12 @@ min_amount = 5
 max_amount = 5
 amount = 0
 
-[sub_resource type="Resource" id="Resource_peuy2"]
-script = ExtResource("2_t6bui")
-type = 44
-min_amount = 72
-max_amount = 72
-amount = 0
-
-[sub_resource type="Resource" id="Resource_0o27o"]
-script = ExtResource("2_t6bui")
-type = 45
-min_amount = 72
-max_amount = 72
-amount = 0
-
-[sub_resource type="Resource" id="Resource_elki1"]
-script = ExtResource("2_t6bui")
-type = 43
-min_amount = 72
-max_amount = 72
-amount = 0
-
-[sub_resource type="Resource" id="Resource_a1d7e"]
-script = ExtResource("2_t6bui")
-type = 42
-min_amount = 72
-max_amount = 72
-amount = 0
-
 [sub_resource type="Resource" id="Resource_bv3b3"]
 script = ExtResource("3_331s3")
 grade = 1
 monster_id = 705
 level = 10
-characteristics = Array[ExtResource("2_t6bui")]([SubResource("Resource_6606g"), SubResource("Resource_70mub"), SubResource("Resource_qskfh"), SubResource("Resource_ngman"), SubResource("Resource_yv35u"), SubResource("Resource_hddcj"), SubResource("Resource_ef4cc"), SubResource("Resource_peuy2"), SubResource("Resource_0o27o"), SubResource("Resource_elki1"), SubResource("Resource_a1d7e")])
+characteristics = Array[ExtResource("2_t6bui")]([SubResource("Resource_6606g"), SubResource("Resource_70mub"), SubResource("Resource_qskfh"), SubResource("Resource_ngman"), SubResource("Resource_yv35u"), SubResource("Resource_hddcj"), SubResource("Resource_ef4cc")])
 xp = 208
 
 [resource]
