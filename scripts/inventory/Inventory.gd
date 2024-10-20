@@ -42,7 +42,7 @@ func get_slot(item):
 		.filter(
 			func(i):
 				return Item.equals(item, i))
-	if items_in_inventory.size() > 1:
+	if items_in_inventory.size() > 1 and !(item is Item and item.is_equipment()):
 		Globals.console.log_error("Plus d'un slot a été trouvé")
 		return null
 	return null if items_in_inventory.size() == 0 else items_in_inventory[0].get_parent()

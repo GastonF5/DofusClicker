@@ -34,6 +34,10 @@ func is_key() -> bool:
 	return type_id == 84
 
 
+func is_equipment() -> bool:
+	return equip_res != null
+
+
 func get_monsters():
 	if drop_monster_ids.is_empty():
 		return []
