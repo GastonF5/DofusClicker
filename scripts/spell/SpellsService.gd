@@ -65,7 +65,8 @@ static func perform_effect(caster: Entity, plate: EntityContainer, effect: Effec
 			callable.bindv([caster, plate, effect, crit, grade]).call()
 		else:
 			for tar in get_targets(caster, plate, effect.target_type):
-				callable.bindv([caster, tar, effect, crit, grade]).call()
+				if caster == tar or !tar.is_invisible:
+					callable.bindv([caster, tar, effect, crit, grade]).call()
 
 
 static func perform_damage(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
@@ -121,6 +122,9 @@ static func perform_bonus(caster: Entity, target: Entity, effect: EffectResource
 
 static func annuler_bonus(buff: Buff, target: Entity, effect: EffectResource, amount: int):
 	if is_instance_valid(buff) and GameManager.in_fight and is_instance_valid(target):
+		if effect.type == EffectType.INVISIBILITE:
+			target.set_invisible(false)
+			return
 		match effect.caracteristic:
 			StatType.EROSION:
 				target.erosion -= amount
@@ -223,6 +227,11 @@ static func perform_poussee(caster: Entity, target: Entity, effect: EffectResour
 		destination_plate = plate.call(direction_callable_name, dist_between_plates)
 		target.reparent(destination_plate, false)
 	target.animate_poussee(get_direction(direction), dist_between_plates)
+
+
+static func perform_invisibilite(_caster: Entity, target: Entity, effect: EffectResource, _crit: bool, _grade: int):
+	target.set_invisible()
+	add_buff_effect(target, effect, 0)
 
 
 static func perform_random(_caster: Entity, _target: Entity, effect: EffectResource, _crit: bool, _grade: int):

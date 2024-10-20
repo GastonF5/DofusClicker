@@ -13,6 +13,7 @@ enum Type {
 	SOIN,
 	BOUCLIER,
 	POUSSEE,
+	INVISIBILITE,
 }
 
 enum TargetType {

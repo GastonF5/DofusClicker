@@ -8,6 +8,8 @@ const Element = Caracteristique.Element
 const INIT_POSITION = Vector2(4, -182)
 const PLATE_SEPARATION = Vector2(223, 314)
 
+const TRANSPARENT := Color(1, 1, 1, 0.3)
+
 var caracteristiques: Array[StatResource] = []
 var spells: Array[SpellResource] = []
 var buffs: Array[Buff] = []
@@ -30,6 +32,7 @@ signal dies
 
 var erosion := 0.05
 var taken_damage_rate: float = 100
+var is_invisible: bool
 
 var console: Console
 var is_player := false
@@ -342,3 +345,9 @@ func show_description():
 func hide_description():
 	if !PlayerManager.dragged_item:
 		PlayerManager.entity_description.visible = false
+
+
+func set_invisible(is_invi := true):
+	is_invisible = is_invi
+	if !is_player:
+		texture_rect.modulate = TRANSPARENT if is_invi else Color.WHITE
