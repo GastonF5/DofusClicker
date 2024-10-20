@@ -1,0 +1,113 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=13 format=3 uid="uid://bm87u1aroswe0"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_68nsh"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_tae2b"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_mdhev"]
+[ext_resource type="Texture2D" uid="uid://hwinyakakvpv" path="res://assets/spells/monster/sort_10075.png" id="4_tp5oj"]
+
+[sub_resource type="Resource" id="Resource_sdcx5"]
+script = ExtResource("1_tae2b")
+_min = 39
+_max = 53
+_min_crit = 58
+_max_crit = 79
+
+[sub_resource type="Resource" id="Resource_5lypg"]
+script = ExtResource("1_tae2b")
+_min = 41
+_max = 55
+_min_crit = 61
+_max_crit = 82
+
+[sub_resource type="Resource" id="Resource_s2nfs"]
+script = ExtResource("1_tae2b")
+_min = 43
+_max = 57
+_min_crit = 63
+_max_crit = 86
+
+[sub_resource type="Resource" id="Resource_vhx77"]
+script = ExtResource("1_tae2b")
+_min = 45
+_max = 59
+_min_crit = 66
+_max_crit = 89
+
+[sub_resource type="Resource" id="Resource_20brs"]
+script = ExtResource("1_tae2b")
+_min = 46
+_max = 62
+_min_crit = 68
+_max_crit = 92
+
+[sub_resource type="Resource" id="Resource_4ua3e"]
+resource_name = "Dommages Air"
+script = ExtResource("2_mdhev")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 0
+has_grades = true
+element = 4
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+is_poison_carac = false
+amounts = Array[ExtResource("1_tae2b")]([SubResource("Resource_sdcx5"), SubResource("Resource_5lypg"), SubResource("Resource_s2nfs"), SubResource("Resource_vhx77"), SubResource("Resource_20brs")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_ho76k"]
+script = ExtResource("1_tae2b")
+_min = -10
+_max = -10
+_min_crit = -15
+_max_crit = -15
+
+[sub_resource type="Resource" id="Resource_xmej7"]
+resource_name = "Malus Soin"
+script = ExtResource("2_mdhev")
+type = 1
+time = 10.0
+target_type = 1
+show_time = true
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 12
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+is_poison_carac = false
+amounts = Array[ExtResource("1_tae2b")]([SubResource("Resource_ho76k")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_68nsh")
+id = 8570
+name = "Rafale Venteuse"
+available = true
+description = "Occasionne des dommages Air et retire du Soin."
+texture = ExtResource("4_tp5oj")
+img_url = "https://api.dofusdb.fr/img/spells/sort_10075.png"
+level = 0
+pa_cost = 6
+per_crit = 0.15
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_mdhev")]([SubResource("Resource_4ua3e"), SubResource("Resource_xmej7")])

@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=5 format=3 uid="uid://dbxej1qmshyup"]
+
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_f2j51"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_vkd32"]
+[ext_resource type="Texture2D" uid="uid://cvr3k36uvtbir" path="res://assets/spells/monster/sort_12972.png" id="3_cykmw"]
+
+[sub_resource type="Resource" id="Resource_t700d"]
+resource_name = "Invisibilite"
+script = ExtResource("1_f2j51")
+type = 10
+time = 8.0
+target_type = 0
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+is_poison_carac = false
+amounts = Array[Resource("res://scripts/resources/AmountResource.gd")]([])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_vkd32")
+id = 10228
+name = "Cache-cache"
+available = true
+description = "Rend le personnage invisible."
+texture = ExtResource("3_cykmw")
+img_url = "https://api.dofusdb.fr/img/spells/sort_421.png"
+level = 0
+pa_cost = 3
+per_crit = 0.0
+cooldown = 5.0
+priority = 1
+effects = Array[ExtResource("1_f2j51")]([SubResource("Resource_t700d")])

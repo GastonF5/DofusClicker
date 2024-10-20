@@ -33,6 +33,7 @@ params = []
 nb_random_effects = 0
 direction = 0
 is_attirance = false
+is_poison_carac = false
 amounts = Array[ExtResource("1_t3rgr")]([SubResource("Resource_2bysl")])
 visible_in_description = true
 
@@ -64,6 +65,7 @@ params = []
 nb_random_effects = 0
 direction = 0
 is_attirance = false
+is_poison_carac = false
 amounts = Array[ExtResource("1_t3rgr")]([SubResource("Resource_tu2pl")])
 visible_in_description = true
 
@@ -95,6 +97,7 @@ params = []
 nb_random_effects = 0
 direction = 0
 is_attirance = false
+is_poison_carac = false
 amounts = Array[ExtResource("1_t3rgr")]([SubResource("Resource_bvcpe")])
 visible_in_description = true
 

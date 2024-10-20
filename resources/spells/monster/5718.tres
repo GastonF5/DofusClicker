@@ -33,6 +33,7 @@ params = []
 nb_random_effects = 0
 direction = 0
 is_attirance = false
+is_poison_carac = false
 amounts = Array[ExtResource("1_720qc")]([SubResource("Resource_0cn4o")])
 visible_in_description = true
 

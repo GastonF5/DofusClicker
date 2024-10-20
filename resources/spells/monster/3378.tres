@@ -1,0 +1,128 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=10 format=3 uid="uid://bayw43thv3ldq"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_sh78b"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_xrlti"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_vcgfj"]
+[ext_resource type="Texture2D" uid="uid://cfatx0i13pp4j" path="res://assets/spells/monster/sort_115.png" id="4_q3vxi"]
+
+[sub_resource type="Resource" id="Resource_ecics"]
+script = ExtResource("1_sh78b")
+_min = 2
+_max = 3
+_min_crit = 2
+_max_crit = 3
+
+[sub_resource type="Resource" id="Resource_d1ilh"]
+resource_name = "Retrait PA"
+script = ExtResource("2_vcgfj")
+type = 2
+time = 0.0
+target_type = 8
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+is_poison_carac = false
+amounts = Array[ExtResource("1_sh78b")]([SubResource("Resource_ecics")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_7rfc8"]
+resource_name = "Retrait PM"
+script = ExtResource("2_vcgfj")
+type = 2
+time = 0.0
+target_type = 8
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 1
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+is_poison_carac = false
+amounts = Array[ExtResource("1_sh78b")]([SubResource("Resource_ecics")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_dxc4f"]
+resource_name = "Bonus PA"
+script = ExtResource("2_vcgfj")
+type = 1
+time = 10.0
+target_type = 8
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+is_poison_carac = false
+amounts = Array[ExtResource("1_sh78b")]([SubResource("Resource_ecics")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_nqbsa"]
+resource_name = "Bonus PM"
+script = ExtResource("2_vcgfj")
+type = 1
+time = 10.0
+target_type = 8
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 1
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+is_poison_carac = false
+amounts = Array[ExtResource("1_sh78b")]([SubResource("Resource_ecics")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_xrlti")
+id = 3378
+name = "Flair"
+available = true
+description = "Retire des PA et des PM à tout le monde. Donne des PA et des PM à tout le monde."
+texture = ExtResource("4_q3vxi")
+img_url = "https://api.dofusdb.fr/img/spells/sort_115.png"
+level = 0
+pa_cost = 4
+per_crit = 0.05
+cooldown = 10.0
+priority = 1
+effects = Array[ExtResource("2_vcgfj")]([SubResource("Resource_d1ilh"), SubResource("Resource_7rfc8"), SubResource("Resource_dxc4f"), SubResource("Resource_nqbsa")])

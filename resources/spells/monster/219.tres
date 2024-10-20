@@ -1,21 +1,22 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=6 format=3 uid="uid://c5gmmblfithn7"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://c5gmmblfithn7"]
 
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_ab632"]
 [ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_lprhr"]
 [ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_n3vnc"]
+[ext_resource type="Texture2D" uid="uid://6yd8pd4ufj6q" path="res://assets/spells/monster/sort_10076.png" id="4_xlb0y"]
 
 [sub_resource type="Resource" id="Resource_e06ae"]
 script = ExtResource("1_lprhr")
-_min = 0
-_max = 0
-_min_crit = 0
-_max_crit = 0
+_min = 10
+_max = 10
+_min_crit = 15
+_max_crit = 15
 
 [sub_resource type="Resource" id="Resource_w04kg"]
 resource_name = "Poison Terre"
 script = ExtResource("1_n3vnc")
 type = 5
-time = 0.0
+time = 10.0
 target_type = 1
 show_time = false
 effective_zone = 0
@@ -32,6 +33,7 @@ params = []
 nb_random_effects = 0
 direction = 0
 is_attirance = false
+is_poison_carac = false
 amounts = Array[ExtResource("1_lprhr")]([SubResource("Resource_e06ae")])
 visible_in_description = true
 
@@ -41,6 +43,7 @@ id = 219
 name = "Empoisonnement"
 available = true
 description = "Applique du poison dans l'élément Terre."
+texture = ExtResource("4_xlb0y")
 img_url = "https://api.dofusdb.fr/img/spells/sort_10076.png"
 level = 0
 pa_cost = 4

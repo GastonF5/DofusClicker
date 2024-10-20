@@ -1,0 +1,113 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=13 format=3 uid="uid://cf3lv3swx8jfa"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_il1bm"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_tcg0b"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_g6piv"]
+[ext_resource type="Texture2D" uid="uid://cjq8iluk8nbf5" path="res://assets/spells/monster/sort_10040.png" id="4_qjhwt"]
+
+[sub_resource type="Resource" id="Resource_q5f03"]
+script = ExtResource("1_tcg0b")
+_min = 39
+_max = 49
+_min_crit = 58
+_max_crit = 73
+
+[sub_resource type="Resource" id="Resource_sdpmx"]
+script = ExtResource("1_tcg0b")
+_min = 41
+_max = 51
+_min_crit = 61
+_max_crit = 76
+
+[sub_resource type="Resource" id="Resource_hfmc7"]
+script = ExtResource("1_tcg0b")
+_min = 43
+_max = 53
+_min_crit = 63
+_max_crit = 80
+
+[sub_resource type="Resource" id="Resource_80k7n"]
+script = ExtResource("1_tcg0b")
+_min = 45
+_max = 55
+_min_crit = 66
+_max_crit = 83
+
+[sub_resource type="Resource" id="Resource_li44s"]
+script = ExtResource("1_tcg0b")
+_min = 46
+_max = 57
+_min_crit = 68
+_max_crit = 86
+
+[sub_resource type="Resource" id="Resource_7adrm"]
+resource_name = "Dommages Feu"
+script = ExtResource("2_g6piv")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 0
+has_grades = true
+element = 2
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+is_poison_carac = false
+amounts = Array[ExtResource("1_tcg0b")]([SubResource("Resource_q5f03"), SubResource("Resource_sdpmx"), SubResource("Resource_hfmc7"), SubResource("Resource_80k7n"), SubResource("Resource_li44s")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_t0are"]
+script = ExtResource("1_tcg0b")
+_min = 1
+_max = 1
+_min_crit = 2
+_max_crit = 2
+
+[sub_resource type="Resource" id="Resource_qylub"]
+resource_name = "Retrait PA"
+script = ExtResource("2_g6piv")
+type = 2
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+is_poison_carac = false
+amounts = Array[ExtResource("1_tcg0b")]([SubResource("Resource_t0are")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_il1bm")
+id = 203
+name = "Moquerie"
+available = true
+description = "Occasionne des dommages Feu et retire des PA."
+texture = ExtResource("4_qjhwt")
+img_url = "https://api.dofusdb.fr/img/spells/sort_10040.png"
+level = 0
+pa_cost = 6
+per_crit = 0.1
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_g6piv")]([SubResource("Resource_7adrm"), SubResource("Resource_qylub")])

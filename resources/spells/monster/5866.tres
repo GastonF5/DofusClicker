@@ -33,6 +33,7 @@ params = []
 nb_random_effects = 0
 direction = 0
 is_attirance = false
+is_poison_carac = false
 amounts = Array[ExtResource("2_rnu7i")]([SubResource("Resource_v6hsl")])
 visible_in_description = true
 

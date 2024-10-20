@@ -61,6 +61,7 @@ params = []
 nb_random_effects = 0
 direction = 0
 is_attirance = false
+is_poison_carac = false
 amounts = Array[ExtResource("1_vk64h")]([SubResource("Resource_whtdx"), SubResource("Resource_3041k"), SubResource("Resource_jm47k"), SubResource("Resource_abpg7"), SubResource("Resource_8o5ok")])
 visible_in_description = true
 

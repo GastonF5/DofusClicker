@@ -1,0 +1,113 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=13 format=3 uid="uid://bdm775t126yak"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_1mp1v"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_p4rt6"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_pxh6r"]
+[ext_resource type="Texture2D" uid="uid://cnfx521j68iox" path="res://assets/spells/monster/sort_10064.png" id="4_qld2r"]
+
+[sub_resource type="Resource" id="Resource_1mwed"]
+script = ExtResource("1_p4rt6")
+_min = 21
+_max = 30
+_min_crit = 30
+_max_crit = 45
+
+[sub_resource type="Resource" id="Resource_0wfoh"]
+script = ExtResource("1_p4rt6")
+_min = 22
+_max = 31
+_min_crit = 31
+_max_crit = 47
+
+[sub_resource type="Resource" id="Resource_4srtb"]
+script = ExtResource("1_p4rt6")
+_min = 22
+_max = 33
+_min_crit = 33
+_max_crit = 49
+
+[sub_resource type="Resource" id="Resource_eqsgr"]
+script = ExtResource("1_p4rt6")
+_min = 23
+_max = 34
+_min_crit = 34
+_max_crit = 51
+
+[sub_resource type="Resource" id="Resource_nljib"]
+script = ExtResource("1_p4rt6")
+_min = 24
+_max = 35
+_min_crit = 35
+_max_crit = 53
+
+[sub_resource type="Resource" id="Resource_538rv"]
+resource_name = "Dommages Neutre"
+script = ExtResource("2_pxh6r")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 0
+has_grades = true
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+is_poison_carac = false
+amounts = Array[ExtResource("1_p4rt6")]([SubResource("Resource_1mwed"), SubResource("Resource_0wfoh"), SubResource("Resource_4srtb"), SubResource("Resource_eqsgr"), SubResource("Resource_nljib")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_4o6xo"]
+script = ExtResource("1_p4rt6")
+_min = 1
+_max = 1
+_min_crit = 1
+_max_crit = 1
+
+[sub_resource type="Resource" id="Resource_t58ae"]
+resource_name = "Retrait PM"
+script = ExtResource("2_pxh6r")
+type = 2
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 1
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+is_poison_carac = false
+amounts = Array[ExtResource("1_p4rt6")]([SubResource("Resource_4o6xo")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_1mp1v")
+id = 8569
+name = "Taie de Gland"
+available = true
+description = "Occasionne des dommages Neutre et retire des PM."
+texture = ExtResource("4_qld2r")
+img_url = "https://api.dofusdb.fr/img/spells/sort_10064.png"
+level = 0
+pa_cost = 4
+per_crit = 0.15
+cooldown = 10.0
+priority = 1
+effects = Array[ExtResource("2_pxh6r")]([SubResource("Resource_538rv"), SubResource("Resource_t58ae")])

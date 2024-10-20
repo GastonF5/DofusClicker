@@ -1,0 +1,116 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=16 format=3 uid="uid://lnl27wkkpmfv"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_d625j"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_knxtx"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_kqfau"]
+[ext_resource type="Texture2D" uid="uid://6yd8pd4ufj6q" path="res://assets/spells/monster/sort_10076.png" id="4_tqalk"]
+
+[sub_resource type="Resource" id="Resource_x16d5"]
+script = ExtResource("1_knxtx")
+_min = 39
+_max = 56
+_min_crit = 58
+_max_crit = 85
+
+[sub_resource type="Resource" id="Resource_o5310"]
+script = ExtResource("1_knxtx")
+_min = 41
+_max = 59
+_min_crit = 61
+_max_crit = 88
+
+[sub_resource type="Resource" id="Resource_5n6mo"]
+script = ExtResource("1_knxtx")
+_min = 43
+_max = 61
+_min_crit = 63
+_max_crit = 92
+
+[sub_resource type="Resource" id="Resource_4vcbc"]
+script = ExtResource("1_knxtx")
+_min = 45
+_max = 64
+_min_crit = 66
+_max_crit = 95
+
+[sub_resource type="Resource" id="Resource_r4brb"]
+script = ExtResource("1_knxtx")
+_min = 46
+_max = 66
+_min_crit = 68
+_max_crit = 99
+
+[sub_resource type="Resource" id="Resource_3qgp8"]
+script = ExtResource("1_knxtx")
+_min = 63
+_max = 90
+_min_crit = 93
+_max_crit = 135
+
+[sub_resource type="Resource" id="Resource_qyblq"]
+script = ExtResource("1_knxtx")
+_min = 65
+_max = 93
+_min_crit = 96
+_max_crit = 140
+
+[sub_resource type="Resource" id="Resource_a27im"]
+script = ExtResource("1_knxtx")
+_min = 67
+_max = 96
+_min_crit = 99
+_max_crit = 144
+
+[sub_resource type="Resource" id="Resource_aoorl"]
+script = ExtResource("1_knxtx")
+_min = 69
+_max = 99
+_min_crit = 102
+_max_crit = 148
+
+[sub_resource type="Resource" id="Resource_55ldj"]
+script = ExtResource("1_knxtx")
+_min = 71
+_max = 102
+_min_crit = 105
+_max_crit = 153
+
+[sub_resource type="Resource" id="Resource_h00n8"]
+resource_name = "Dommages Terre"
+script = ExtResource("2_kqfau")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 0
+has_grades = true
+element = 1
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+is_poison_carac = false
+amounts = Array[ExtResource("1_knxtx")]([SubResource("Resource_x16d5"), SubResource("Resource_o5310"), SubResource("Resource_5n6mo"), SubResource("Resource_4vcbc"), SubResource("Resource_r4brb"), SubResource("Resource_3qgp8"), SubResource("Resource_qyblq"), SubResource("Resource_a27im"), SubResource("Resource_aoorl"), SubResource("Resource_55ldj")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_d625j")
+id = 10226
+name = "Déboyautage"
+available = true
+description = "Occasionne des dommages Terre."
+texture = ExtResource("4_tqalk")
+img_url = "https://api.dofusdb.fr/img/spells/sort_10076.png"
+level = 0
+pa_cost = 7
+per_crit = 0.1
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_kqfau")]([SubResource("Resource_h00n8")])
