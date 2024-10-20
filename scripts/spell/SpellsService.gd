@@ -323,10 +323,11 @@ static func fureur(caster: Entity, plate: EntityContainer, effect: EffectResourc
 
 
 static var tempete_de_puissance_last_target: Entity = null
-static func tempete_de_puissance(caster: Entity, plate: EntityContainer, effect: EffectResource, crit: bool, grade: int):
+static func tempete_de_puissance(caster: Entity, plate: EntityContainer, effect: EffectResource, crit: bool, grade: int, _params: Array):
 	perform_damage(caster, plate.get_entity(), effect, crit, grade)
 	if tempete_de_puissance_last_target:
 		perform_damage(caster, tempete_de_puissance_last_target, effect, crit, grade)
+	tempete_de_puissance_last_target = plate.get_entity()
 
 
 static var tumulte_adder := 0
