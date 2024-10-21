@@ -40,6 +40,6 @@ img_url = "https://api.dofusdb.fr/img/spells/sort_421.png"
 level = 0
 pa_cost = 3
 per_crit = 0.0
-cooldown = 5.0
+cooldown = 10.0
 priority = 1
 effects = Array[ExtResource("1_f2j51")]([SubResource("Resource_t700d")])

@@ -20,6 +20,8 @@ func _ready():
 
 func _process(_delta):
 	spell_to_cast = get_spell_to_cast()
+	if timers.is_empty():
+		pass
 	if spell_to_cast and pa_bar.cval >= spell_to_cast.pa_cost:
 		if attack(spell_to_cast):
 			pa_bar.cval -= spell_to_cast.pa_cost
@@ -84,14 +86,14 @@ func attack(spell: SpellResource) -> bool:
 		return false
 	SpellsService.perform_spell(self, null, spell, grade.grade)
 	if spell.cooldown > 0:
-		var timer: Timer = SpellsService.create_timer(spell.cooldown, spell.name)
+		var timer: Timer = SpellsService.create_timer(spell.cooldown, spell.name, self)
 		timers[spell.name] = timer
 		timer.timeout.connect(delete_timer.bind(timer))
 	return true
 
 
 func delete_timer(timer: Timer):
-	timers.erase(timer)
+	timers.erase(timer.name)
 	timer.queue_free()
 
 

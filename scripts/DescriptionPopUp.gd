@@ -118,7 +118,7 @@ func init_buff(spell_res: SpellResource, effects: Dictionary, timers: Array):
 	reset()
 	name = "Buff"
 	texture.texture = spell_res.texture
-	compute_name_label(spell_res.name, 0)
+	compute_name_label(spell_res.name, spell_res.id)
 	clear_effects()
 	var index := 0
 	for effect_name in effects:
