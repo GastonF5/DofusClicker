@@ -277,7 +277,7 @@ func take_damage(amount: int, element: Element):
 			amount = apply_resistance(amount, element)
 		if Entity.is_monster(self):
 			create_taken_damage(amount, TakenDamage.Type.DAMAGE)
-	amount = min(amount - reduced_damage, 0)
+	amount = max(amount - reduced_damage, 0)
 	apply_erosion(hp_bar.take_damage(amount))
 	if hp_bar.cval == int(hp_bar.min_value):
 		dying = true
