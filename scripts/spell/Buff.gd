@@ -28,7 +28,13 @@ const POISON_TIME := 5
 
 var _parent: Entity
 var _caster: Entity
-var _longer_timer: Timer
+var _longer_timer: Timer:
+	set(val):
+		if _longer_timer:
+			_longer_timer.timeout.disconnect(delete_all)
+		_longer_timer = val
+		if _longer_timer:
+			_longer_timer.timeout.connect(delete_all)
 
 # Dictionnaire dont les values sont : [timer, count]
 var _timers := {}
@@ -60,8 +66,8 @@ func init(spell_res: SpellResource):
 	mouse_entered.connect(PlayerManager.buff_description.init_buff.bindv([spell_res, self]))
 	mouse_exited.connect(PlayerManager.buff_description.hide_description)
 	
-	GameManager.end_fight.connect(delete)
-	annuler.connect(delete)
+	GameManager.end_fight.connect(delete_all)
+	annuler.connect(delete_all)
 
 
 func _process(_delta):
@@ -86,7 +92,7 @@ func do_poison_effect(effect_amount: Array, count: int):
 		_timers[timer.name] = [timer, count - 1]
 
 
-func annuler_bonus(timer_name: String):
+func annuler_bonus(timer_name: String, check_empty := true):
 	var effect = _effects[timer_name][0]
 	var amount = _effects[timer_name][1]
 	var timer = _timers[timer_name][0]
@@ -95,22 +101,20 @@ func annuler_bonus(timer_name: String):
 		_longer_timer = null
 	remove_child(timer)
 	timer.queue_free()
-	_timers.erase(timer_name)
 	if effect.type in [EffectType.BONUS, EffectType.INVISIBILITE, EffectType.AVEUGLE]:
 		SpellsService.annuler_bonus(self, _parent, effect, amount)
 	if effect.type == EffectType.POISON:
 		do_poison_effect(_effects[timer_name], count)
-	if _timers.is_empty():
-		delete()
+	if check_empty and _timers.is_empty():
+		delete_all(false)
 
 
-func delete():
-	if !_timers.is_empty():
+func delete_all(annule_bonus := true):
+	if annule_bonus:
 		for timer_name in _timers:
-			annuler_bonus(timer_name)
-	else:
-		if _parent:
-			_parent.buffs.erase(self)
-		if get_parent():
-			get_parent().remove_child(self)
-		queue_free()
+			annuler_bonus(timer_name, false)
+	if _parent:
+		_parent.buffs.erase(self)
+	if get_parent():
+		get_parent().remove_child(self)
+	queue_free()
