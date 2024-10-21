@@ -242,6 +242,11 @@ static func perform_invisibilite(_caster: Entity, target: Entity, effect: Effect
 	add_buff_effect(target, effect, 0)
 
 
+static func perform_aveugle(_caster: Entity, target: Entity, effect: EffectResource, _crit: bool, _grade: int):
+	target.is_aveugle = true
+	add_buff_effect(target, effect, 0)
+
+
 static func perform_random(_caster: Entity, _target: Entity, effect: EffectResource, _crit: bool, _grade: int):
 	count = 1
 	rand_count = randi_range(1, effect.nb_random_effects)

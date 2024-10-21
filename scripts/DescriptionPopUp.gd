@@ -213,6 +213,8 @@ func add_buff_label(effect_res: EffectResource, amount: int, timer: Timer):
 			label.text = "%d Poison %s" % [amount, effect_res.get_element_label()]
 	elif effect_res.type == EffectType.INVISIBILITE:
 		label.text = "Invisible"
+	elif effect_res.type == EffectType.AVEUGLE:
+		label.text = "Aveuglé"
 	else:
 		var is_pourcentage_charac = effect_res.caracteristic in [Caracteristique.Type.DO_SORTS, Caracteristique.Type.RES_DOMMAGES]
 		label.text = str(amount)

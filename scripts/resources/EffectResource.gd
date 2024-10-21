@@ -14,6 +14,7 @@ enum Type {
 	BOUCLIER,
 	POUSSEE,
 	INVISIBILITE,
+	AVEUGLE,
 }
 
 enum TargetType {
@@ -176,6 +177,8 @@ func get_effect_label(grade: int) -> String:
 			result += " de %s case" % nb_cases
 			if int(nb_cases) > 1:
 				result += "s"
+		Type.AVEUGLE:
+			result += "Rend aveugle"
 		_:
 			return "ERREUR"
 	if show_time:

@@ -34,6 +34,12 @@ var erosion := 0.05
 var taken_damage_rate: float = 100
 var returned_damage: int
 var is_invisible: bool
+var is_aveugle: bool:
+	set(val):
+		is_aveugle = val
+		if is_player:
+			for plate in MonsterManager.get_distance_plates():
+				plate.modulate = Color.DIM_GRAY if val else Color.WHITE
 
 var console: Console
 var is_player := false
