@@ -177,6 +177,8 @@ func get_effect_label(grade: int) -> String:
 			result += " de %s case" % nb_cases
 			if int(nb_cases) > 1:
 				result += "s"
+		Type.INVISIBILITE:
+			result += "Rend invisible"
 		Type.AVEUGLE:
 			result += "Rend aveugle"
 		_:
