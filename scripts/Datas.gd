@@ -162,7 +162,7 @@ func get_in_values(data_type: DataType) -> Array:
 				for monster_id in resource.drop_monster_ids:
 					if !monster_ids.has(monster_id):
 						monster_ids.append(monster_id)
-			return ["id"] + monster_ids
+			return ["id"] + monster_ids + Globals.invoc_ids
 		DataType.HIT_EFFECT:
 			var ids = []
 			for item: ItemResource in _items.values():

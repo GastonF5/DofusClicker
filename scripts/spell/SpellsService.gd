@@ -298,7 +298,7 @@ static func furie(caster: Entity, plate: EntityContainer, effect: EffectResource
 	perform_bonus(caster, caster, new_effect, crit, grade)
 
 
-static func mutilation(caster: Entity, plate: EntityContainer, effect: EffectResource, crit: bool, grade: int, params: Array):
+static func mutilation(caster: Entity, plate: EntityContainer, _effect: EffectResource, crit: bool, grade: int, params: Array):
 	var mutilation_buff = caster.buffs.filter(func(b): return b.name == "Mutilation")
 	if mutilation_buff.is_empty():
 		for i in range(2):

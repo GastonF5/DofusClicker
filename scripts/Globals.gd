@@ -8,6 +8,8 @@ const area_white_list = [
 	95, 99, 173, 97, 96, 98, 100
 ]
 
+const invoc_ids = [4813]
+
 const debug := true
 const last_version_to_check := "0.5.0"
 

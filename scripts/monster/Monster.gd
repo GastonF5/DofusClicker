@@ -51,6 +51,10 @@ func init(res: MonsterResource = null):
 	else:
 		name_label.text = "%s" % res.name
 	init_clickable(self)
+	
+	# Ligne permettant de télécharger les assets des invocations lorsqu'elles sont invoquées
+	if Globals.debug and !res.texture:
+		await res.load_texture()
 	texture_rect.texture = res.texture
 	
 	init_bars()
