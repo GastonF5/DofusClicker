@@ -133,6 +133,9 @@ static func annuler_bonus(buff: Buff, target: Entity, effect: EffectResource, am
 		if effect.type == EffectType.INVISIBILITE:
 			target.set_invisible(false)
 			return
+		if effect.type == EffectType.AVEUGLE:
+			target.is_aveugle = false
+			return
 		match effect.caracteristic:
 			StatType.EROSION:
 				target.erosion -= amount

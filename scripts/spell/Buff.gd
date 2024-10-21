@@ -90,7 +90,7 @@ func annuler_bonus(timer: Timer):
 	var effect = _effects[timer.name][0]
 	var amount = _effects[timer.name][1]
 	_timers.erase(timer)
-	if effect.type in [EffectType.BONUS, EffectType.INVISIBILITE]:
+	if effect.type in [EffectType.BONUS, EffectType.INVISIBILITE, EffectType.AVEUGLE]:
 		SpellsService.annuler_bonus(self, _parent, effect, amount)
 	if _timers.is_empty():
 		delete()
