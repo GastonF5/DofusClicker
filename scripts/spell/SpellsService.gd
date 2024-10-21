@@ -114,6 +114,8 @@ static func perform_bonus(caster: Entity, target: Entity, effect: EffectResource
 			amount = amount * 100.0
 		StatType.RES_DOMMAGES:
 			target.taken_damage_rate += amount
+		StatType.RES_DOMMAGES_FIXE:
+			target.reduced_damage += amount
 		StatType.PV:
 			add_pv_to_entity(target, amount)
 		StatType.DOMMAGE_RETOURNE:
@@ -136,6 +138,8 @@ static func annuler_bonus(buff: Buff, target: Entity, effect: EffectResource, am
 				target.erosion -= amount
 			StatType.RES_DOMMAGES:
 				target.taken_damage_rate -= amount
+			StatType.RES_DOMMAGES_FIXE:
+				target.reduced_damage -= amount
 			StatType.PV:
 				add_pv_to_entity(target, -amount)
 			StatType.DOMMAGE_RETOURNE:

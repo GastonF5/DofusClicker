@@ -1,6 +1,94 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=2 format=3 uid="uid://dlw71cjq4m3qp"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=12 format=3 uid="uid://dlw71cjq4m3qp"]
 
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_4vr21"]
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_32ne5"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_p2rrk"]
+[ext_resource type="Texture2D" uid="uid://d2sbkfi4bcuoe" path="res://assets/spells/monster/sort_10051.png" id="4_0kyi3"]
+
+[sub_resource type="Resource" id="Resource_n2v7c"]
+script = ExtResource("1_4vr21")
+_min = 21
+_max = 26
+_min_crit = 31
+_max_crit = 39
+
+[sub_resource type="Resource" id="Resource_1ea11"]
+script = ExtResource("1_4vr21")
+_min = 22
+_max = 27
+_min_crit = 32
+_max_crit = 40
+
+[sub_resource type="Resource" id="Resource_l4xon"]
+script = ExtResource("1_4vr21")
+_min = 22
+_max = 28
+_min_crit = 33
+_max_crit = 41
+
+[sub_resource type="Resource" id="Resource_ynnit"]
+script = ExtResource("1_4vr21")
+_min = 23
+_max = 28
+_min_crit = 33
+_max_crit = 42
+
+[sub_resource type="Resource" id="Resource_y78cd"]
+script = ExtResource("1_4vr21")
+_min = 23
+_max = 29
+_min_crit = 34
+_max_crit = 43
+
+[sub_resource type="Resource" id="Resource_u4j4a"]
+resource_name = "Dommages Terre"
+script = ExtResource("2_p2rrk")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 0
+has_grades = true
+element = 1
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+is_poison_carac = false
+amounts = Array[ExtResource("1_4vr21")]([SubResource("Resource_n2v7c"), SubResource("Resource_1ea11"), SubResource("Resource_l4xon"), SubResource("Resource_ynnit"), SubResource("Resource_y78cd")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_1hd0s"]
+resource_name = "Aveuglement"
+script = ExtResource("2_p2rrk")
+type = 11
+time = 5.0
+target_type = 1
+show_time = true
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+is_poison_carac = false
+amounts = Array[ExtResource("1_4vr21")]([])
+visible_in_description = true
 
 [resource]
 script = ExtResource("1_32ne5")
@@ -8,10 +96,11 @@ id = 10202
 name = "Postillon Aveuglant"
 available = true
 description = "Occasionne des dommages Terre et aveugle la cible."
-img_url = ""
+texture = ExtResource("4_0kyi3")
+img_url = "https://api.dofusdb.fr/img/spells/sort_10051.png"
 level = 0
-pa_cost = 0
-per_crit = 0.0
+pa_cost = 5
+per_crit = 0.1
 cooldown = 0.0
 priority = 0
-effects = Array[Resource("res://scripts/resources/EffectResource.gd")]([])
+effects = Array[ExtResource("2_p2rrk")]([SubResource("Resource_u4j4a"), SubResource("Resource_1hd0s")])

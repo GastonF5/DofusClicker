@@ -1,6 +1,7 @@
 class_name EffectResource
 extends Resource
 
+const StatType = Caracteristique.Type
 
 enum Type {
 	DAMAGE,
@@ -51,7 +52,7 @@ var caster: Entity
 @export var level_pourcentage: bool
 
 @export_group("Bonus & Retrait")
-@export var caracteristic: Caracteristique.Type
+@export var caracteristic: StatType
 @export var pourcentage: bool
 @export var retrait_vol: bool
 var texture: Texture2D
@@ -97,24 +98,26 @@ func get_element_label() -> String:
 
 
 func get_caracteristic_label() -> String:
-	if caracteristic == Caracteristique.Type.PV:
+	if caracteristic == StatType.PV:
 		return "PV"
-	if caracteristic == Caracteristique.Type.DO_SORTS:
+	if caracteristic == StatType.DO_SORTS:
 		return "Dommages aux sorts"
-	if caracteristic == Caracteristique.Type.RES_DOMMAGES:
+	if caracteristic == StatType.RES_DOMMAGES:
 		return "Dommages subis"
-	if caracteristic == Caracteristique.Type.DOMMAGE_RETOURNE:
+	if caracteristic == StatType.RES_DOMMAGES_FIXE:
+		return "Dommages réduits"
+	if caracteristic == StatType.DOMMAGE_RETOURNE:
 		return "Dommages retournés"
-	return StatResource.get_type_label(Caracteristique.Type.find_key(caracteristic))
+	return StatResource.get_type_label(StatType.find_key(caracteristic))
 
 
 func get_amount_label(grade: int) -> String:
-	var is_pourcentage_charac = caracteristic in [Caracteristique.Type.DO_SORTS, Caracteristique.Type.RES_DOMMAGES]
+	var is_pourcentage_charac = caracteristic in [StatType.DO_SORTS, StatType.RES_DOMMAGES]
 	var formatter = func(d): return str(d)
 	var pattern = "%s"
 	if pourcentage or level_pourcentage or is_pourcentage_charac:
 		pattern = "%s%%"
-	if caracteristic == Caracteristique.Type.RES_DOMMAGES:
+	if caracteristic == StatType.RES_DOMMAGES:
 		formatter = func(d): return str(100 + d)
 		pattern = "x%s%%"
 	var result: String
@@ -151,12 +154,15 @@ func get_effect_label(grade: int) -> String:
 		Type.SOIN:
 			result += "%s soins %s" % [get_amount_label(grade), get_element_label()]
 		Type.BONUS:
-			if caracteristic == Caracteristique.Type.RES_DOMMAGES:
-				result += get_caracteristic_label() + ' ' + get_amount_label(grade)
-			elif caracteristic == Caracteristique.Type.DOMMAGE_RETOURNE:
-				result += get_caracteristic_label() + ' : ' + get_amount_label(grade)
-			else:
-				result += get_amount_label(grade) + ' ' + get_caracteristic_label()
+			match caracteristic:
+				StatType.RES_DOMMAGES:
+					result += get_caracteristic_label() + ' ' + get_amount_label(grade)
+				StatType.RES_DOMMAGES_FIXE:
+					result += get_caracteristic_label() + ' de ' + get_amount_label(grade)
+				StatType.DOMMAGE_RETOURNE:
+					result += get_caracteristic_label() + ' : ' + get_amount_label(grade)
+				_:
+					result += get_amount_label(grade) + ' ' + get_caracteristic_label()
 		Type.RETRAIT:
 			if retrait_vol:
 				result += "Vole "

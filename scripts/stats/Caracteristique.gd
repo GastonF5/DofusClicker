@@ -51,6 +51,7 @@ enum Type {
 	RES_FEU_FIXE,
 	RES_NEUTRE_FIXE,
 	DOMMAGE_RETOURNE,
+	RES_DOMMAGES_FIXE,
 }
 
 enum Element {

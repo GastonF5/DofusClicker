@@ -1,0 +1,52 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://duthvv81svvd2"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_7a7o3"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_hg1og"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_ksa8s"]
+[ext_resource type="Texture2D" uid="uid://cvtsayk4puy72" path="res://assets/spells/monster/sort_10027.png" id="4_p6wmi"]
+
+[sub_resource type="Resource" id="Resource_ckh02"]
+script = ExtResource("1_hg1og")
+_min = 4
+_max = 4
+_min_crit = 5
+_max_crit = 5
+
+[sub_resource type="Resource" id="Resource_bpsn2"]
+script = ExtResource("2_ksa8s")
+type = 1
+time = 8.0
+target_type = 0
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 36
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+is_poison_carac = false
+amounts = Array[ExtResource("1_hg1og")]([SubResource("Resource_ckh02")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_7a7o3")
+id = 10203
+name = "Corps Spongieux"
+available = true
+description = "Réduit les dommages subis."
+texture = ExtResource("4_p6wmi")
+img_url = "https://api.dofusdb.fr/img/spells/sort_10027.png"
+level = 0
+pa_cost = 2
+per_crit = 0.1
+cooldown = 10.0
+priority = 1
+effects = Array[ExtResource("2_ksa8s")]([SubResource("Resource_bpsn2")])

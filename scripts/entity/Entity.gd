@@ -32,6 +32,7 @@ signal dies
 
 var erosion := 0.05
 var taken_damage_rate: float = 100
+var reduced_damage: int
 var returned_damage: int
 var is_invisible: bool
 var is_aveugle: bool:
@@ -276,6 +277,7 @@ func take_damage(amount: int, element: Element):
 			amount = apply_resistance(amount, element)
 		if Entity.is_monster(self):
 			create_taken_damage(amount, TakenDamage.Type.DAMAGE)
+	amount = min(amount - reduced_damage, 0)
 	apply_erosion(hp_bar.take_damage(amount))
 	if hp_bar.cval == int(hp_bar.min_value):
 		dying = true
