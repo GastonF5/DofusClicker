@@ -50,6 +50,7 @@ enum Type {
 	RES_TERRE_FIXE,
 	RES_FEU_FIXE,
 	RES_NEUTRE_FIXE,
+	DOMMAGE_RETOURNE,
 }
 
 enum Element {

@@ -80,10 +80,14 @@ static func perform_damage(caster: Entity, target: Entity, effect: EffectResourc
 	amount = get_degats(caster, effect.get_amount(crit, grade), element)
 	if crit:
 		amount += caster.get_do_crit()
-	amount = target.take_damage(amount, element)
+	amount = target.take_damage(amount - target.returned_damage, element)
 	if effect.lifesteal:
 		caster.take_damage(-round(amount / 2.0), element)
 	effects_log.append([EffectType.DAMAGE, target, amount, element, target.dying, false])
+	if target.returned_damage > 0:
+		amount = target.returned_damage
+		caster.take_damage(amount, element)
+		effects_log.append([EffectType.DAMAGE, caster, amount, element, caster.dying, false])
 
 
 static func perform_soin(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
@@ -112,6 +116,8 @@ static func perform_bonus(caster: Entity, target: Entity, effect: EffectResource
 			target.taken_damage_rate += amount
 		StatType.PV:
 			add_pv_to_entity(target, amount)
+		StatType.DOMMAGE_RETOURNE:
+			target.returned_damage += amount
 		_:
 			carac = target.get_caracteristique_for_type(effect.caracteristic)
 			carac.amount += amount
@@ -132,6 +138,8 @@ static func annuler_bonus(buff: Buff, target: Entity, effect: EffectResource, am
 				target.taken_damage_rate -= amount
 			StatType.PV:
 				add_pv_to_entity(target, -amount)
+			StatType.DOMMAGE_RETOURNE:
+				target.returned_damage -= amount
 			_:
 				var carac = target.get_caracteristique_for_type(effect.caracteristic)
 				carac.amount -= amount

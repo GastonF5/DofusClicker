@@ -32,6 +32,7 @@ signal dies
 
 var erosion := 0.05
 var taken_damage_rate: float = 100
+var returned_damage: int
 var is_invisible: bool
 
 var console: Console

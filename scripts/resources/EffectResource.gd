@@ -102,6 +102,8 @@ func get_caracteristic_label() -> String:
 		return "Dommages aux sorts"
 	if caracteristic == Caracteristique.Type.RES_DOMMAGES:
 		return "Dommages subis"
+	if caracteristic == Caracteristique.Type.DOMMAGE_RETOURNE:
+		return "Dommages retournés"
 	return StatResource.get_type_label(Caracteristique.Type.find_key(caracteristic))
 
 
@@ -150,6 +152,8 @@ func get_effect_label(grade: int) -> String:
 		Type.BONUS:
 			if caracteristic == Caracteristique.Type.RES_DOMMAGES:
 				result += get_caracteristic_label() + ' ' + get_amount_label(grade)
+			elif caracteristic == Caracteristique.Type.DOMMAGE_RETOURNE:
+				result += get_caracteristic_label() + ' : ' + get_amount_label(grade)
 			else:
 				result += get_amount_label(grade) + ' ' + get_caracteristic_label()
 		Type.RETRAIT:
