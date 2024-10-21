@@ -95,17 +95,17 @@ func annuler_bonus(timer_name: String):
 		_longer_timer = null
 	remove_child(timer)
 	timer.queue_free()
-	_timers.erase(timer_name)
+	_effects.erase(timer_name)
 	if effect.type in [EffectType.BONUS, EffectType.INVISIBILITE, EffectType.AVEUGLE]:
 		SpellsService.annuler_bonus(self, _parent, effect, amount)
 	if effect.type == EffectType.POISON:
 		do_poison_effect(_effects[timer_name], count)
-	if _timers.is_empty():
+	if _effects.is_empty():
 		delete()
 
 
 func delete():
-	if !_timers.is_empty():
+	if !_effects.is_empty():
 		for timer_name in _timers:
 			annuler_bonus(timer_name)
 	else:
