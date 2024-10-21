@@ -156,7 +156,7 @@ static func annuler_bonus(buff: Buff, target: Entity, effect: EffectResource, am
 static func perform_poison(_caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
 	var amount = effect.get_amount(crit, grade)
 	add_buff_effect(target, effect, amount)
-	effects_log.append([EffectType.POISON, target, amount, effect.element, effect.time, effect.get_caracteristic_label() if effect.is_poison_carac else ""])
+	effects_log.append([EffectType.POISON, target, amount, effect.element, effect.time, effect.get_caracteristic_label() if effect.is_poison_carac else "", effect.nb_hits])
 
 
 static func perform_retrait(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):

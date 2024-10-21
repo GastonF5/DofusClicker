@@ -30,8 +30,8 @@ var _parent: Entity
 var _caster: Entity
 var _longer_timer: Timer
 
-# Dictionnaire dont les values sont : timer
-var _timers: Array[Timer] = []
+# Dictionnaire dont les values sont : [timer, count]
+var _timers := {}
 # Dictionnaire dont les values sont : [effect, amount]
 var _effects := {}
 
@@ -51,17 +51,15 @@ func init(spell_res: SpellResource):
 		if effect.resource_name == "":
 			log.error("L'effet n'a pas de nom pour le sort %d" % spell_res.id)
 		var timer = SpellsService.create_timer(effect.time, effect.resource_name, self)
-		_timers.append(timer)
+		timer.timeout.connect(annuler_bonus.bind(timer.name))
+		_timers[timer.name] = [timer, effect.nb_hits]
 		if effect.time == max_time:
 			_longer_timer = timer
 	
 	# Gestion de l'affichage de la description du buff
-	mouse_entered.connect(PlayerManager.buff_description.init_buff.bindv([spell_res, _effects, _timers]))
+	mouse_entered.connect(PlayerManager.buff_description.init_buff.bindv([spell_res, self]))
 	mouse_exited.connect(PlayerManager.buff_description.hide_description)
 	
-	# Gestion du timeout des timers
-	for timer in _timers:
-		timer.timeout.connect(annuler_bonus.bind(timer))
 	GameManager.end_fight.connect(delete)
 	annuler.connect(delete)
 
@@ -69,37 +67,47 @@ func init(spell_res: SpellResource):
 func _process(_delta):
 	if is_instance_valid(_longer_timer):
 		pb.value = _longer_timer.time_left
-	for timer in _timers:
-		if is_instance_valid(timer):
-			do_poison_effect(_effects[timer.name], timer)
 
 
-func do_poison_effect(effect_amount: Array, timer: Timer):
+func do_poison_effect(effect_amount: Array, count: int):
 	var effect = effect_amount[0]
 	var amount = effect_amount[1]
-	if effect.type == EffectResource.Type.POISON and !effect.is_poison_carac:
-		var time = effect.time - timer.time_left
-		if (int(time) - time) == 0.0 and int(time) % POISON_TIME == 0:
-			var degats = SpellsService.get_degats(_caster, amount, effect.element)
-			_parent.take_damage(degats, effect.element)
-			Globals.console.log_effects([[EffectResource.Type.DAMAGE, _parent, degats, effect.element, _parent.dying, true]])
-			Globals.console.output.add_separator()
+	if !effect.is_poison_carac and !_caster.dying:
+		var degats = SpellsService.get_degats(_caster, amount, effect.element)
+		_parent.take_damage(degats, effect.element)
+		Globals.console.log_effects([[EffectResource.Type.DAMAGE, _parent, degats, effect.element, _parent.dying, true]])
+		Globals.console.output.add_separator()
+	if count - 1 >= 1 and !_caster.dying:
+		var timer = SpellsService.create_timer(effect.time, effect.resource_name, self)
+		timer.timeout.connect(annuler_bonus.bind(timer.name))
+		if _longer_timer == null:
+			pb.max_value = float(effect.time)
+			_longer_timer = timer
+		_timers[timer.name] = [timer, count - 1]
 
 
-func annuler_bonus(timer: Timer):
-	var effect = _effects[timer.name][0]
-	var amount = _effects[timer.name][1]
-	_timers.erase(timer)
+func annuler_bonus(timer_name: String):
+	var effect = _effects[timer_name][0]
+	var amount = _effects[timer_name][1]
+	var timer = _timers[timer_name][0]
+	var count = _timers[timer_name][1]
+	if _longer_timer == timer:
+		_longer_timer = null
+	remove_child(timer)
+	timer.queue_free()
+	_timers.erase(timer_name)
 	if effect.type in [EffectType.BONUS, EffectType.INVISIBILITE, EffectType.AVEUGLE]:
 		SpellsService.annuler_bonus(self, _parent, effect, amount)
+	if effect.type == EffectType.POISON:
+		do_poison_effect(_effects[timer_name], count)
 	if _timers.is_empty():
 		delete()
 
 
 func delete():
 	if !_timers.is_empty():
-		for timer in _timers:
-			annuler_bonus(timer)
+		for timer_name in _timers:
+			annuler_bonus(timer_name)
 	else:
 		if _parent:
 			_parent.buffs.erase(self)

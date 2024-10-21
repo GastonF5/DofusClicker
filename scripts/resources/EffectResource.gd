@@ -70,6 +70,7 @@ var texture: Texture2D
 @export var is_attirance: bool
 
 @export_group("Poison")
+@export var nb_hits: int = 1
 @export var is_poison_carac: bool
 
 @export_category("Amounts")

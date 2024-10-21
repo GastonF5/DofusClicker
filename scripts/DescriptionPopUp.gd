@@ -21,11 +21,15 @@ const BONUS_CRIT := "(+%d Dommages)"
 
 @export var separator: TextureRect
 
-var _timers := {}
+var _labels := {}
+var _buff: Buff
+var _spell_res: SpellResource
 
 
 func reset():
-	_timers.clear()
+	_buff = null
+	_spell_res = null
+	_labels.clear()
 	texture.texture = null
 	name_label.text = ""
 	if level_label:
@@ -46,9 +50,10 @@ func reset():
 func _process(_delta):
 	if visible:
 		# Partie Buff (gestion des timers)
-		for timer in _timers.keys():
-			var label: Label = _timers[timer]
-			if is_instance_valid(timer):
+		for label_name in _labels.keys():
+			var label: Label = _labels[label_name][1]
+			if is_instance_valid(_labels[label_name][0]):
+				var timer: Timer = _labels[label_name][0]
 				var text = label.text
 				var time_left = int(ceil(timer.time_left))
 				var label_time = text.split("-")[-1]
@@ -56,7 +61,9 @@ func _process(_delta):
 			else:
 				label.get_parent().remove_child(label)
 				label.queue_free()
-				_timers.erase(timer)
+				_labels.erase(label_name)
+				init_buff(_spell_res, _buff)
+				return
 
 
 func set_pa_visibility(_visible: bool):
@@ -114,16 +121,16 @@ func init_spell(spell_res: SpellResource):
 	visible = true
 
 
-func init_buff(spell_res: SpellResource, effects: Dictionary, timers: Array):
+func init_buff(spell_res: SpellResource, buff: Buff):
 	reset()
+	_buff = buff
+	_spell_res = spell_res
 	name = "Buff"
 	texture.texture = spell_res.texture
 	compute_name_label(spell_res.name, spell_res.id)
 	clear_effects()
-	var index := 0
-	for effect_name in effects:
-		add_buff_label(effects[effect_name][0], effects[effect_name][1], timers[index])
-		index += 1
+	for effect_name in buff._effects:
+		add_buff_label(buff._effects[effect_name][0], buff._effects[effect_name][1], buff._timers)
 	set_mouse_ignore()
 	visible = true
 
@@ -204,13 +211,14 @@ func add_spell_effect_label(effect_res: EffectResource):
 	effects_container.add_child(label)
 
 
-func add_buff_label(effect_res: EffectResource, amount: int, timer: Timer):
+func add_buff_label(effect_res: EffectResource, amount: int, timers: Dictionary):
 	var label = Label.new()
+	var poison_count = timers[effect_res.resource_name][1]
 	if effect_res.type == EffectType.POISON:
 		if effect_res.is_poison_carac:
 			label.text = "1 %s utilisé fait perdre %d PV" % [effect_res.get_caracteristic_label(), amount]
 		else:
-			label.text = "%d Poison %s" % [amount, effect_res.get_element_label()]
+			label.text = "%d Poison %s (%d fois restante%s)" % [amount, effect_res.get_element_label(), poison_count, "s" if poison_count > 1 else ""]
 	elif effect_res.type == EffectType.INVISIBILITE:
 		label.text = "Invisible"
 	elif effect_res.type == EffectType.AVEUGLE:
@@ -224,7 +232,7 @@ func add_buff_label(effect_res: EffectResource, amount: int, timer: Timer):
 	label.text += " - ()"
 	label.add_theme_color_override("font_color", effect_res.get_label_color())
 	effects_container.add_child(label)
-	_timers[timer] = label
+	_labels[effect_res.resource_name] = [timers[effect_res.resource_name][0], label]
 
 
 func set_effect_visibility(is_effect_visible: bool):

@@ -257,9 +257,9 @@ func log_effects(effects_to_log: Array):
 						for shield in effects:
 							log_shield(target, shield[2], shield[3])
 					EffectType.POISON:
-						# [type, target, amount, element, time, characteristic]
+						# [type, target, amount, element, time, characteristic, nb_hits]
 						for poison in effects:
-							log_poison(target, poison[2], poison[3], poison[4], poison[5])
+							log_poison(target, poison[2], poison[3], poison[4], poison[5], poison[6])
 					EffectType.INVISIBILITE:
 						# [type, target, time]
 						for invi in effects:
@@ -315,7 +315,7 @@ func log_shield(target: Entity, amount: int, time: float):
 	log_bonus(target, amount, "Bouclier", time)
 
 
-func log_poison(target: Entity, amount: int, element: Element, time: float, characteristic: String):
+func log_poison(target: Entity, amount: int, element: Element, time: float, characteristic: String, nb_hits: int):
 	if amount != 0:
 		_log_line(get_entity_name(target), INFO, true)
 		_log_line(" : ", INFO)
@@ -325,6 +325,8 @@ func log_poison(target: Entity, amount: int, element: Element, time: float, char
 			_log_line(" (%s)" % characteristic, INFO)
 		if time != 0.0:
 			_log_line(" (%d secondes)" % time, INFO)
+		if characteristic == "":
+			_log_line(" (%d fois)" % nb_hits, INFO)
 
 
 func log_invisibilite(target: Entity, time: float):
