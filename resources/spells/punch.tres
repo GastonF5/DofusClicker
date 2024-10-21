@@ -35,6 +35,7 @@ direction = 0
 is_attirance = false
 nb_hits = 1
 is_poison_carac = false
+invoc_id = 0
 amounts = Array[ExtResource("1_idhvu")]([SubResource("Resource_su18j")])
 visible_in_description = true
 

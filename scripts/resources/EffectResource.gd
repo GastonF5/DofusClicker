@@ -55,7 +55,6 @@ var caster: Entity
 @export var caracteristic: StatType
 @export var pourcentage: bool
 @export var retrait_vol: bool
-var texture: Texture2D
 
 @export_group("Special")
 @export var method_name: StringName
@@ -72,6 +71,9 @@ var texture: Texture2D
 @export_group("Poison")
 @export var nb_hits: int = 1
 @export var is_poison_carac: bool
+
+@export_group("Invocation")
+@export var invoc_id: int
 
 @export_category("Amounts")
 @export var amounts: Array[AmountResource]
