@@ -211,6 +211,8 @@ func add_buff_label(effect_res: EffectResource, amount: int, timer: Timer):
 			label.text = "1 %s utilisé fait perdre %d PV" % [effect_res.get_caracteristic_label(), amount]
 		else:
 			label.text = "%d Poison %s" % [amount, effect_res.get_element_label()]
+	elif effect_res.type == EffectType.INVISIBILITE:
+		label.text = "Invisible"
 	else:
 		var is_pourcentage_charac = effect_res.caracteristic in [Caracteristique.Type.DO_SORTS, Caracteristique.Type.RES_DOMMAGES]
 		label.text = str(amount)
