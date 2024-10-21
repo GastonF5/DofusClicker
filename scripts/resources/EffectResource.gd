@@ -101,24 +101,30 @@ func get_caracteristic_label() -> String:
 	if caracteristic == Caracteristique.Type.DO_SORTS:
 		return "Dommages aux sorts"
 	if caracteristic == Caracteristique.Type.RES_DOMMAGES:
-		return "de dommages subis"
+		return "Dommages subis"
 	return StatResource.get_type_label(Caracteristique.Type.find_key(caracteristic))
 
 
 func get_amount_label(grade: int) -> String:
 	var is_pourcentage_charac = caracteristic in [Caracteristique.Type.DO_SORTS, Caracteristique.Type.RES_DOMMAGES]
-	var pattern = "%d" if !(pourcentage or level_pourcentage or is_pourcentage_charac) else "%d%%"
+	var formatter = func(d): return str(d)
+	var pattern = "%s"
+	if pourcentage or level_pourcentage or is_pourcentage_charac:
+		pattern = "%s%%"
+	if caracteristic == Caracteristique.Type.RES_DOMMAGES:
+		formatter = func(d): return str(100 + d)
+		pattern = "x%s%%"
 	var result: String
 	if amounts.size() > grade:
 		var m = amounts[grade]
 		var parameters: Array[String] = []
-		parameters.append(pattern % m._min)
+		parameters.append(pattern % formatter.call(m._min))
 		if m._min != m._max:
-			parameters.append(pattern % m._max)
+			parameters.append(pattern % formatter.call(m._max))
 		if m._min_crit != m._min:
-			parameters.append(pattern % m._min_crit)
+			parameters.append(pattern % formatter.call(m._min_crit))
 		if m._min_crit != m._max_crit:
-			parameters.append(pattern % m._max_crit)
+			parameters.append(pattern % formatter.call(m._max_crit))
 		match parameters.size():
 			1: result = str(parameters[0])
 			2: result = "%s (%s)" % parameters
@@ -142,7 +148,10 @@ func get_effect_label(grade: int) -> String:
 		Type.SOIN:
 			result += "%s soins %s" % [get_amount_label(grade), get_element_label()]
 		Type.BONUS:
-			result += get_amount_label(grade) + ' ' + get_caracteristic_label()
+			if caracteristic == Caracteristique.Type.RES_DOMMAGES:
+				result += get_caracteristic_label() + ' ' + get_amount_label(grade)
+			else:
+				result += get_amount_label(grade) + ' ' + get_caracteristic_label()
 		Type.RETRAIT:
 			if retrait_vol:
 				result += "Vole "
