@@ -61,12 +61,13 @@ static func perform_effect(caster: Entity, plate: EntityContainer, effect: Effec
 	if is_effective_by_zone(effect.effective_zone):
 		var method_name = "perform_%s" % EffectType.find_key(effect.type).to_lower()
 		var callable = Callable(SpellsService, method_name)
-		if effect.type == EffectResource.Type.SPECIAL:
-			callable.bindv([caster, plate, effect, crit, grade]).call()
-		else:
-			for tar in get_targets(caster, plate, effect.target_type):
-				if caster == tar or !tar.is_invisible:
-					callable.bindv([caster, tar, effect, crit, grade]).call()
+		if caster.can_cast_spell_in_zone(effect.effective_zone, plate):
+			if effect.type == EffectResource.Type.SPECIAL:
+				callable.bindv([caster, plate, effect, crit, grade]).call()
+			else:
+				for tar in get_targets(caster, plate, effect.target_type):
+					if !(tar.is_invisible and caster != tar):
+						callable.bindv([caster, tar, effect, crit, grade]).call()
 
 
 static func perform_damage(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
@@ -247,11 +248,13 @@ static func perform_poussee(caster: Entity, target: Entity, effect: EffectResour
 static func perform_invisibilite(_caster: Entity, target: Entity, effect: EffectResource, _crit: bool, _grade: int):
 	target.set_invisible()
 	add_buff_effect(target, effect, 0)
+	effects_log.append([EffectType.INVISIBILITE, target, effect.time])
 
 
 static func perform_aveugle(_caster: Entity, target: Entity, effect: EffectResource, _crit: bool, _grade: int):
 	target.is_aveugle = true
 	add_buff_effect(target, effect, 0)
+	effects_log.append([EffectType.AVEUGLE, target, effect.time])
 
 
 static func perform_random(_caster: Entity, _target: Entity, effect: EffectResource, _crit: bool, _grade: int):

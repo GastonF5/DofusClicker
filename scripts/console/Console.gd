@@ -260,6 +260,14 @@ func log_effects(effects_to_log: Array):
 						# [type, target, amount, element, time, characteristic]
 						for poison in effects:
 							log_poison(target, poison[2], poison[3], poison[4], poison[5])
+					EffectType.INVISIBILITE:
+						# [type, target, time]
+						for invi in effects:
+							log_invisibilite(target, invi[2])
+					EffectType.AVEUGLE:
+						# [type, target, time]
+						for aveugle in effects:
+							log_aveuglement(target, aveugle[2])
 
 
 func log_weapon_cast(caster: Entity, weapon_name: String, crit: bool):
@@ -317,7 +325,19 @@ func log_poison(target: Entity, amount: int, element: Element, time: float, char
 			_log_line(" (%s)" % characteristic, INFO)
 		if time != 0.0:
 			_log_line(" (%d secondes)" % time, INFO)
- 
+
+
+func log_invisibilite(target: Entity, time: float):
+	_log_line(get_entity_name(target), INFO, true)
+	_log_line(" : devient invisible", INFO)
+	_log_line(" (%d secondes)" % time, INFO)
+
+
+func log_aveuglement(target: Entity, time: float):
+	_log_line(get_entity_name(target), INFO, true)
+	_log_line(" : devient aveugle", INFO)
+	_log_line(" (%d secondes)" % time, INFO)
+
 
 func get_entity_name(entity: Entity):
 	var entity_name = entity.name
