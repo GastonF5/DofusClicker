@@ -85,5 +85,5 @@ corresponding_non_archimonstre_id = 0
 grades = Array[ExtResource("2_h2e5i")]([SubResource("Resource_htvep")])
 spells = [24576, 24577, 24578]
 drops = Array[ExtResource("1_4wrnc")]([SubResource("Resource_ndu66")])
-areas = [99]
+areas = [99, 96]
 texture = ExtResource("5_6msru")

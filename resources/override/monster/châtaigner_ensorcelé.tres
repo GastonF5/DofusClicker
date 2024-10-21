@@ -1,0 +1,89 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=15 format=3 uid="uid://bsgifu4lmcqo1"]
+
+[ext_resource type="Script" path="res://scripts/resources/DropResource.gd" id="1_6o701"]
+[ext_resource type="Script" path="res://scripts/resources/StatResource.gd" id="2_tl4ah"]
+[ext_resource type="Script" path="res://scripts/resources/GradeResource.gd" id="3_567m4"]
+[ext_resource type="Script" path="res://scripts/resources/MonsterResource.gd" id="4_p2d2v"]
+[ext_resource type="Texture2D" uid="uid://cskbnipwfehty" path="res://assets/monsters/images/712.png" id="5_hah6h"]
+
+[sub_resource type="Resource" id="Resource_ndu66"]
+script = ExtResource("1_6o701")
+id = 0
+monster_id = 712
+object_id = 473
+percent_drop = [100]
+count = 20
+
+[sub_resource type="Resource" id="Resource_6606g"]
+script = ExtResource("2_tl4ah")
+type = 2
+min_amount = 50
+max_amount = 50
+amount = 0
+
+[sub_resource type="Resource" id="Resource_70mub"]
+script = ExtResource("2_tl4ah")
+type = 0
+min_amount = 6
+max_amount = 6
+amount = 0
+
+[sub_resource type="Resource" id="Resource_qskfh"]
+script = ExtResource("2_tl4ah")
+type = 1
+min_amount = 3
+max_amount = 3
+amount = 0
+
+[sub_resource type="Resource" id="Resource_ngman"]
+script = ExtResource("2_tl4ah")
+type = 31
+min_amount = 5
+max_amount = 5
+amount = 0
+
+[sub_resource type="Resource" id="Resource_yv35u"]
+script = ExtResource("2_tl4ah")
+type = 32
+min_amount = 5
+max_amount = 5
+amount = 0
+
+[sub_resource type="Resource" id="Resource_hddcj"]
+script = ExtResource("2_tl4ah")
+type = 18
+min_amount = 5
+max_amount = 5
+amount = 0
+
+[sub_resource type="Resource" id="Resource_ef4cc"]
+script = ExtResource("2_tl4ah")
+type = 19
+min_amount = 5
+max_amount = 5
+amount = 0
+
+[sub_resource type="Resource" id="Resource_htvep"]
+script = ExtResource("3_567m4")
+grade = 1
+monster_id = 694
+level = 10
+characteristics = Array[ExtResource("2_tl4ah")]([SubResource("Resource_6606g"), SubResource("Resource_70mub"), SubResource("Resource_qskfh"), SubResource("Resource_ngman"), SubResource("Resource_yv35u"), SubResource("Resource_hddcj"), SubResource("Resource_ef4cc")])
+xp = 208
+
+[resource]
+script = ExtResource("4_p2d2v")
+id = 712
+name = "Châtaigner Ensorcelé"
+race_id = 64
+race = "Protecteurs des Arbres"
+image_url = "https://renderer.dofusdb.fr/look/7b3530387c33377d/full/1/300_300.png"
+boss = false
+archimonstre = false
+corresponding_archimonstre_id = 0
+corresponding_non_archimonstre_id = 0
+grades = Array[ExtResource("3_567m4")]([SubResource("Resource_htvep")])
+spells = [24576, 24577, 24578]
+drops = Array[ExtResource("1_6o701")]([SubResource("Resource_ndu66")])
+areas = [97]
+texture = ExtResource("5_hah6h")
