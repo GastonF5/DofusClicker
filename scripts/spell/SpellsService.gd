@@ -21,7 +21,6 @@ static func perform_spell(caster: Entity, plate: EntityContainer, resource: Spel
 	var crit_amount = resource.per_crit + caster.get_critique() / 100.0
 	var crit = randf_range(0, 1) <= crit_amount
 	for effect: EffectResource in resource.effects:
-		effect.texture = resource.texture
 		if count > max_count:
 			perform_effect(caster, plate, effect, crit, grade)
 		else:
@@ -58,7 +57,7 @@ static func perform_weapon(caster: Entity, plate: EntityContainer, resource: Wea
 
 
 static func perform_effect(caster: Entity, plate: EntityContainer, effect: EffectResource, crit: bool, grade: int):
-	if is_effective_by_zone(effect.effective_zone):
+	if !caster.is_player or is_effective_by_zone(effect.effective_zone):
 		var method_name = "perform_%s" % EffectType.find_key(effect.type).to_lower()
 		var callable = Callable(SpellsService, method_name)
 		if caster.can_cast_spell_in_zone(effect.effective_zone, plate):
@@ -181,7 +180,6 @@ static func perform_retrait(caster: Entity, target: Entity, effect: EffectResour
 		new_effect.amounts = effect.duplicate_amounts()
 		new_effect.amounts[grade] = AmountResource.create(retrait_amount, retrait_amount, retrait_amount, retrait_amount)
 		new_effect.type = EffectResource.Type.BONUS
-		new_effect.texture = effect.texture
 		perform_bonus(caster, caster, new_effect, crit, grade)
 
 
@@ -257,6 +255,10 @@ static func perform_aveugle(_caster: Entity, target: Entity, effect: EffectResou
 	effects_log.append([EffectType.AVEUGLE, target, effect.time])
 
 
+static func perform_invocation(_caster: Entity, _target: Entity, effect: EffectResource, _crit: bool, _grade: int):
+	print(effect.invoc_id)
+
+
 static func perform_random(_caster: Entity, _target: Entity, effect: EffectResource, _crit: bool, _grade: int):
 	count = 1
 	rand_count = randi_range(1, effect.nb_random_effects)
@@ -293,14 +295,12 @@ static func furie(caster: Entity, plate: EntityContainer, effect: EffectResource
 	var new_effect = effect.duplicate(true)
 	new_effect.amounts = effect.duplicate_amounts()
 	new_effect.amounts[grade].add(bonus_pm)
-	new_effect.texture = effect.texture
 	perform_bonus(caster, caster, new_effect, crit, grade)
 
 
 static func mutilation(caster: Entity, plate: EntityContainer, effect: EffectResource, crit: bool, grade: int, params: Array):
 	var mutilation_buff = caster.buffs.filter(func(b): return b.name == "Mutilation")
 	if mutilation_buff.is_empty():
-		params[1].texture = effect.texture
 		for i in range(2):
 			perform_effect(caster, plate, params[i], crit, grade)
 	else:
@@ -384,7 +384,6 @@ static func fleche_assaillante(caster: Entity, plate: EntityContainer, effect: E
 	var new_effect = effect.duplicate(true)
 	new_effect.amounts = effect.duplicate_amounts()
 	new_effect.amounts[grade].mult(bonus_puissance)
-	new_effect.texture = effect.texture
 	perform_bonus(caster, caster, new_effect, crit, grade)
 #endregion
 
