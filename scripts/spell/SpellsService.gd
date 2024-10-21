@@ -129,7 +129,7 @@ static func perform_bonus(caster: Entity, target: Entity, effect: EffectResource
 
 
 static func annuler_bonus(buff: Buff, target: Entity, effect: EffectResource, amount: int):
-	if is_instance_valid(buff) and GameManager.in_fight and is_instance_valid(target):
+	if is_instance_valid(buff) and is_instance_valid(target):
 		if effect.type == EffectType.INVISIBILITE:
 			target.set_invisible(false)
 			return

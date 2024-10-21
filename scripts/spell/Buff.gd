@@ -97,8 +97,12 @@ func annuler_bonus(timer: Timer):
 
 
 func delete():
-	if _parent:
-		_parent.buffs.erase(self)
-	if get_parent():
-		get_parent().remove_child(self)
-	queue_free()
+	if !_timers.is_empty():
+		for timer in _timers:
+			annuler_bonus(timer)
+	else:
+		if _parent:
+			_parent.buffs.erase(self)
+		if get_parent():
+			get_parent().remove_child(self)
+		queue_free()
