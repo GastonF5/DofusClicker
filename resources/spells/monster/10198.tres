@@ -1,0 +1,113 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=13 format=3 uid="uid://dnaxq3j6clf5w"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_m5xfx"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_mjvey"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_ldsee"]
+[ext_resource type="Texture2D" uid="uid://dl0xnmscf0m3w" path="res://assets/spells/monster/sort_10048.png" id="4_0d28q"]
+
+[sub_resource type="Resource" id="Resource_gyfni"]
+script = ExtResource("1_mjvey")
+_min = 21
+_max = 26
+_min_crit = 31
+_max_crit = 39
+
+[sub_resource type="Resource" id="Resource_rba83"]
+script = ExtResource("1_mjvey")
+_min = 22
+_max = 27
+_min_crit = 32
+_max_crit = 40
+
+[sub_resource type="Resource" id="Resource_06cka"]
+script = ExtResource("1_mjvey")
+_min = 22
+_max = 28
+_min_crit = 33
+_max_crit = 41
+
+[sub_resource type="Resource" id="Resource_oey5p"]
+script = ExtResource("1_mjvey")
+_min = 23
+_max = 28
+_min_crit = 33
+_max_crit = 42
+
+[sub_resource type="Resource" id="Resource_em36q"]
+script = ExtResource("1_mjvey")
+_min = 23
+_max = 29
+_min_crit = 34
+_max_crit = 43
+
+[sub_resource type="Resource" id="Resource_1qykc"]
+resource_name = "Dommages Eau"
+script = ExtResource("2_ldsee")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 0
+has_grades = true
+element = 3
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+is_poison_carac = false
+amounts = Array[ExtResource("1_mjvey")]([SubResource("Resource_gyfni"), SubResource("Resource_rba83"), SubResource("Resource_06cka"), SubResource("Resource_oey5p"), SubResource("Resource_em36q")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_wt8jo"]
+script = ExtResource("1_mjvey")
+_min = 1
+_max = 1
+_min_crit = 1
+_max_crit = 1
+
+[sub_resource type="Resource" id="Resource_10j7i"]
+resource_name = "Retrait PA"
+script = ExtResource("2_ldsee")
+type = 2
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+is_poison_carac = false
+amounts = Array[ExtResource("1_mjvey")]([SubResource("Resource_wt8jo")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_m5xfx")
+id = 10198
+name = "Postillon Handicapant"
+available = true
+description = "Occasionne des dommages Eau et retire des PA."
+texture = ExtResource("4_0d28q")
+img_url = "https://api.dofusdb.fr/img/spells/sort_10048.png"
+level = 0
+pa_cost = 4
+per_crit = 0.1
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_ldsee")]([SubResource("Resource_1qykc"), SubResource("Resource_10j7i")])

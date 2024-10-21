@@ -1,0 +1,227 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=18 format=3 uid="uid://bnrpfqok2ogio"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_dx6my"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_mfhyr"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_gn22o"]
+[ext_resource type="Texture2D" uid="uid://cjq8iluk8nbf5" path="res://assets/spells/monster/sort_10040.png" id="4_vaxtp"]
+
+[sub_resource type="Resource" id="Resource_4wuma"]
+script = ExtResource("1_mfhyr")
+_min = 27
+_max = 31
+_min_crit = 33
+_max_crit = 37
+
+[sub_resource type="Resource" id="Resource_b1j2w"]
+script = ExtResource("1_mfhyr")
+_min = 28
+_max = 32
+_min_crit = 34
+_max_crit = 38
+
+[sub_resource type="Resource" id="Resource_egs2y"]
+script = ExtResource("1_mfhyr")
+_min = 29
+_max = 33
+_min_crit = 35
+_max_crit = 40
+
+[sub_resource type="Resource" id="Resource_jp8cj"]
+script = ExtResource("1_mfhyr")
+_min = 30
+_max = 34
+_min_crit = 36
+_max_crit = 41
+
+[sub_resource type="Resource" id="Resource_dslt7"]
+script = ExtResource("1_mfhyr")
+_min = 31
+_max = 35
+_min_crit = 37
+_max_crit = 42
+
+[sub_resource type="Resource" id="Resource_hjvj0"]
+resource_name = "Dommages Terre"
+script = ExtResource("2_gn22o")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 0
+has_grades = true
+element = 1
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+amounts = Array[ExtResource("1_mfhyr")]([SubResource("Resource_4wuma"), SubResource("Resource_b1j2w"), SubResource("Resource_egs2y"), SubResource("Resource_jp8cj"), SubResource("Resource_dslt7")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_lw7w5"]
+script = ExtResource("1_mfhyr")
+_min = -30
+_max = -30
+_min_crit = -35
+_max_crit = -35
+
+[sub_resource type="Resource" id="Resource_od621"]
+resource_name = "Malus Intelligence"
+script = ExtResource("2_gn22o")
+type = 1
+time = 10.0
+target_type = 1
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 6
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+amounts = Array[ExtResource("1_mfhyr")]([SubResource("Resource_lw7w5")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_y5pan"]
+resource_name = "Malus Agilité"
+script = ExtResource("2_gn22o")
+type = 1
+time = 10.0
+target_type = 1
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 3
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+amounts = Array[ExtResource("1_mfhyr")]([SubResource("Resource_lw7w5")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_wn27h"]
+resource_name = "Malus Force"
+script = ExtResource("2_gn22o")
+type = 1
+time = 10.0
+target_type = 1
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 5
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+amounts = Array[ExtResource("1_mfhyr")]([SubResource("Resource_lw7w5")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_oxnlb"]
+resource_name = "Malus Chance"
+script = ExtResource("2_gn22o")
+type = 1
+time = 10.0
+target_type = 1
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 4
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+amounts = Array[ExtResource("1_mfhyr")]([SubResource("Resource_lw7w5")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_hrjix"]
+script = ExtResource("1_mfhyr")
+_min = 1
+_max = 1
+_min_crit = 1
+_max_crit = 1
+
+[sub_resource type="Resource" id="Resource_s4tiq"]
+resource_name = "Retrait PA"
+script = ExtResource("2_gn22o")
+type = 2
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+amounts = Array[ExtResource("1_mfhyr")]([SubResource("Resource_hrjix")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_dx6my")
+id = 503
+name = "Roblochon ancestral"
+available = true
+description = "Occasionne des dommages Terre.
+Retire de l'Intelligence, de l'Agilité, de la Force, de la Chance et des PA à la cible."
+texture = ExtResource("4_vaxtp")
+img_url = "https://api.dofusdb.fr/img/spells/sort_10040.png"
+level = 0
+pa_cost = 6
+per_crit = 0.15
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_gn22o")]([SubResource("Resource_hjvj0"), SubResource("Resource_od621"), SubResource("Resource_y5pan"), SubResource("Resource_wn27h"), SubResource("Resource_oxnlb"), SubResource("Resource_s4tiq")])

@@ -1,0 +1,116 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=10 format=3 uid="uid://d2fu1cs0ycsui"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_5plfy"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_7j8j3"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_iex67"]
+[ext_resource type="Texture2D" uid="uid://cituo525qvwy7" path="res://assets/spells/monster/sort_10002.png" id="2_05k1s"]
+
+[sub_resource type="Resource" id="Resource_pgv5v"]
+script = ExtResource("1_5plfy")
+_min = 25
+_max = 25
+_min_crit = 25
+_max_crit = 25
+
+[sub_resource type="Resource" id="Resource_cuvey"]
+resource_name = "Bonus Puissance"
+script = ExtResource("1_7j8j3")
+type = 1
+time = 0.0
+target_type = 0
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 8
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_5plfy")]([SubResource("Resource_pgv5v")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_3awr0"]
+script = ExtResource("1_5plfy")
+_min = 37
+_max = 42
+_min_crit = 0
+_max_crit = 0
+
+[sub_resource type="Resource" id="Resource_ecx58"]
+resource_name = "Soin Feu"
+script = ExtResource("1_7j8j3")
+type = 7
+time = 0.0
+target_type = 0
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 2
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_5plfy")]([SubResource("Resource_3awr0")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_vs0u5"]
+resource_name = "Invocation"
+script = ExtResource("1_7j8j3")
+type = 6
+time = 0.0
+target_type = 0
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 4813
+amounts = Array[ExtResource("1_5plfy")]([])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_iex67")
+id = 10222
+name = "Trou d'Emmental"
+available = true
+description = "Gagne de la Puissance et soigne le lanceur dans l'élément Feu. Invoque un Kolérat Strubien."
+texture = ExtResource("2_05k1s")
+img_url = "https://api.dofusdb.fr/img/spells/sort_10002.png"
+level = 0
+pa_cost = 3
+per_crit = 0.0
+cooldown = 30.0
+priority = 1
+effects = Array[ExtResource("1_7j8j3")]([SubResource("Resource_cuvey"), SubResource("Resource_ecx58"), SubResource("Resource_vs0u5")])

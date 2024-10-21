@@ -1,0 +1,110 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=12 format=3 uid="uid://c2qlkpejm3s5g"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_ieabq"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_tvgvf"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_ke51t"]
+[ext_resource type="Texture2D" uid="uid://d2sbkfi4bcuoe" path="res://assets/spells/monster/sort_10051.png" id="4_pddcc"]
+
+[sub_resource type="Resource" id="Resource_53sc4"]
+script = ExtResource("1_ieabq")
+_min = 24
+_max = 27
+_min_crit = 27
+_max_crit = 33
+
+[sub_resource type="Resource" id="Resource_nvccq"]
+script = ExtResource("1_ieabq")
+_min = 24
+_max = 28
+_min_crit = 28
+_max_crit = 34
+
+[sub_resource type="Resource" id="Resource_bokdx"]
+script = ExtResource("1_ieabq")
+_min = 25
+_max = 29
+_min_crit = 29
+_max_crit = 35
+
+[sub_resource type="Resource" id="Resource_023rq"]
+script = ExtResource("1_ieabq")
+_min = 26
+_max = 30
+_min_crit = 30
+_max_crit = 36
+
+[sub_resource type="Resource" id="Resource_dunoj"]
+script = ExtResource("1_ieabq")
+_min = 26
+_max = 31
+_min_crit = 31
+_max_crit = 37
+
+[sub_resource type="Resource" id="Resource_cdyrc"]
+resource_name = "Dommages Eau"
+script = ExtResource("2_ke51t")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 2
+has_grades = true
+element = 3
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_ieabq")]([SubResource("Resource_53sc4"), SubResource("Resource_nvccq"), SubResource("Resource_bokdx"), SubResource("Resource_023rq"), SubResource("Resource_dunoj")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_crwcw"]
+resource_name = "Aveuglement"
+script = ExtResource("2_ke51t")
+type = 11
+time = 2.0
+target_type = 1
+show_time = true
+effective_zone = 2
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_ieabq")]([])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_tvgvf")
+id = 10223
+name = "Lancer de Lance"
+available = true
+description = "Occasionne des dommages Eau et aveugle la cible à distance."
+texture = ExtResource("4_pddcc")
+img_url = "https://api.dofusdb.fr/img/spells/sort_10051.png"
+level = 0
+pa_cost = 3
+per_crit = 0.15
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_ke51t")]([SubResource("Resource_cdyrc"), SubResource("Resource_crwcw")])

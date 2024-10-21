@@ -1,0 +1,82 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=11 format=3 uid="uid://l1fg67taxgxf"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_alpaf"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_jxxnd"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_5fwtc"]
+[ext_resource type="Texture2D" uid="uid://ckilfdq2n1obj" path="res://assets/spells/monster/sort_1525.png" id="4_v8i3s"]
+
+[sub_resource type="Resource" id="Resource_eggsj"]
+script = ExtResource("1_alpaf")
+_min = 20
+_max = 24
+_min_crit = 24
+_max_crit = 27
+
+[sub_resource type="Resource" id="Resource_cfkp3"]
+script = ExtResource("1_alpaf")
+_min = 20
+_max = 24
+_min_crit = 24
+_max_crit = 28
+
+[sub_resource type="Resource" id="Resource_8bxy1"]
+script = ExtResource("1_alpaf")
+_min = 21
+_max = 25
+_min_crit = 25
+_max_crit = 29
+
+[sub_resource type="Resource" id="Resource_2j51y"]
+script = ExtResource("1_alpaf")
+_min = 21
+_max = 26
+_min_crit = 26
+_max_crit = 30
+
+[sub_resource type="Resource" id="Resource_07jcu"]
+script = ExtResource("1_alpaf")
+_min = 22
+_max = 26
+_min_crit = 26
+_max_crit = 31
+
+[sub_resource type="Resource" id="Resource_qt5i6"]
+resource_name = "Poison Feu"
+script = ExtResource("2_5fwtc")
+type = 5
+time = 3.0
+target_type = 1
+show_time = false
+effective_zone = 0
+has_grades = true
+element = 2
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+amounts = Array[ExtResource("1_alpaf")]([SubResource("Resource_eggsj"), SubResource("Resource_cfkp3"), SubResource("Resource_8bxy1"), SubResource("Resource_2j51y"), SubResource("Resource_07jcu")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_jxxnd")
+id = 19452
+name = "Hypnose Brûlante"
+available = true
+description = "Applique un poison Feu."
+texture = ExtResource("4_v8i3s")
+img_url = "https://api.dofusdb.fr/img/spells/sort_1525.png"
+level = 0
+pa_cost = 3
+per_crit = 0.15
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_5fwtc")]([SubResource("Resource_qt5i6")])

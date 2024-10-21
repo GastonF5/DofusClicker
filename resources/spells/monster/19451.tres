@@ -1,0 +1,82 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=11 format=3 uid="uid://cgmlini0j171s"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_8lqig"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_kif6d"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_u1oso"]
+[ext_resource type="Texture2D" uid="uid://6yd8pd4ufj6q" path="res://assets/spells/monster/sort_10076.png" id="3_5t1r4"]
+
+[sub_resource type="Resource" id="Resource_yo7a6"]
+script = ExtResource("1_8lqig")
+_min = 29
+_max = 33
+_min_crit = 35
+_max_crit = 41
+
+[sub_resource type="Resource" id="Resource_tqiq4"]
+script = ExtResource("1_8lqig")
+_min = 30
+_max = 34
+_min_crit = 36
+_max_crit = 42
+
+[sub_resource type="Resource" id="Resource_ca7hn"]
+script = ExtResource("1_8lqig")
+_min = 31
+_max = 35
+_min_crit = 37
+_max_crit = 44
+
+[sub_resource type="Resource" id="Resource_7nnis"]
+script = ExtResource("1_8lqig")
+_min = 32
+_max = 36
+_min_crit = 39
+_max_crit = 45
+
+[sub_resource type="Resource" id="Resource_dmyc1"]
+script = ExtResource("1_8lqig")
+_min = 33
+_max = 37
+_min_crit = 40
+_max_crit = 46
+
+[sub_resource type="Resource" id="Resource_6bskl"]
+resource_name = "Dommages Terre"
+script = ExtResource("1_kif6d")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 1
+has_grades = true
+element = 1
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+amounts = Array[ExtResource("1_8lqig")]([SubResource("Resource_yo7a6"), SubResource("Resource_tqiq4"), SubResource("Resource_ca7hn"), SubResource("Resource_7nnis"), SubResource("Resource_dmyc1")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_u1oso")
+id = 19451
+name = "Morstrubien"
+available = true
+description = "Occasionne des dommages Terre."
+texture = ExtResource("3_5t1r4")
+img_url = "https://api.dofusdb.fr/img/spells/sort_10076.png"
+level = 0
+pa_cost = 3
+per_crit = 0.15
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("1_kif6d")]([SubResource("Resource_6bskl")])

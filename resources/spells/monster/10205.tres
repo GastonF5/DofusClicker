@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=11 format=3 uid="uid://dcfu4l58oavye"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_0ur5l"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_b3xcr"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_jcpmt"]
+[ext_resource type="Texture2D" uid="uid://f6m87dvaxs30" path="res://assets/spells/monster/sort_10011.png" id="3_qc34a"]
+
+[sub_resource type="Resource" id="Resource_0o3r4"]
+script = ExtResource("1_0ur5l")
+_min = 15
+_max = 20
+_min_crit = 21
+_max_crit = 30
+
+[sub_resource type="Resource" id="Resource_uppqd"]
+script = ExtResource("1_0ur5l")
+_min = 15
+_max = 20
+_min_crit = 22
+_max_crit = 30
+
+[sub_resource type="Resource" id="Resource_go6di"]
+script = ExtResource("1_0ur5l")
+_min = 15
+_max = 21
+_min_crit = 22
+_max_crit = 31
+
+[sub_resource type="Resource" id="Resource_8pm4n"]
+script = ExtResource("1_0ur5l")
+_min = 16
+_max = 21
+_min_crit = 23
+_max_crit = 32
+
+[sub_resource type="Resource" id="Resource_ua2wt"]
+script = ExtResource("1_0ur5l")
+_min = 16
+_max = 22
+_min_crit = 23
+_max_crit = 32
+
+[sub_resource type="Resource" id="Resource_dnwth"]
+resource_name = "Soin Feu"
+script = ExtResource("1_b3xcr")
+type = 7
+time = 0.0
+target_type = 6
+show_time = false
+effective_zone = 0
+has_grades = true
+element = 2
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+is_poison_carac = false
+amounts = Array[ExtResource("1_0ur5l")]([SubResource("Resource_0o3r4"), SubResource("Resource_uppqd"), SubResource("Resource_go6di"), SubResource("Resource_8pm4n"), SubResource("Resource_ua2wt")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_jcpmt")
+id = 10205
+name = "Postillon Cautérisant"
+available = true
+description = "Soigne un allié dans l'élément Feu."
+texture = ExtResource("3_qc34a")
+img_url = "https://api.dofusdb.fr/img/spells/sort_10011.png"
+level = 0
+pa_cost = 3
+per_crit = 0.0
+cooldown = 10.0
+priority = 1
+effects = Array[ExtResource("1_b3xcr")]([SubResource("Resource_dnwth")])

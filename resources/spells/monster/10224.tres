@@ -1,0 +1,117 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=13 format=3 uid="uid://dl36e410vin06"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_0jg8u"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_to2eb"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_2ijag"]
+[ext_resource type="Texture2D" uid="uid://hwinyakakvpv" path="res://assets/spells/monster/sort_10075.png" id="4_mb1ig"]
+
+[sub_resource type="Resource" id="Resource_1vvwq"]
+script = ExtResource("1_0jg8u")
+_min = 39
+_max = 47
+_min_crit = 47
+_max_crit = 55
+
+[sub_resource type="Resource" id="Resource_kd7dq"]
+script = ExtResource("1_0jg8u")
+_min = 40
+_max = 48
+_min_crit = 48
+_max_crit = 57
+
+[sub_resource type="Resource" id="Resource_670k8"]
+script = ExtResource("1_0jg8u")
+_min = 42
+_max = 50
+_min_crit = 50
+_max_crit = 58
+
+[sub_resource type="Resource" id="Resource_8gh6h"]
+script = ExtResource("1_0jg8u")
+_min = 43
+_max = 51
+_min_crit = 51
+_max_crit = 60
+
+[sub_resource type="Resource" id="Resource_0q4ep"]
+script = ExtResource("1_0jg8u")
+_min = 44
+_max = 53
+_min_crit = 53
+_max_crit = 62
+
+[sub_resource type="Resource" id="Resource_rql44"]
+resource_name = "Dommages Air"
+script = ExtResource("2_2ijag")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 1
+has_grades = true
+element = 4
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_0jg8u")]([SubResource("Resource_1vvwq"), SubResource("Resource_kd7dq"), SubResource("Resource_670k8"), SubResource("Resource_8gh6h"), SubResource("Resource_0q4ep")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_7c8pv"]
+script = ExtResource("1_0jg8u")
+_min = 1
+_max = 1
+_min_crit = 1
+_max_crit = 1
+
+[sub_resource type="Resource" id="Resource_w401h"]
+resource_name = "Attirance Haut"
+script = ExtResource("2_2ijag")
+type = 9
+time = 0.0
+target_type = 0
+show_time = false
+effective_zone = 1
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = true
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_0jg8u")]([SubResource("Resource_7c8pv")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_to2eb")
+id = 10224
+name = "Air Empoisonné"
+available = true
+description = "Occasionne des dommages Air en mêlée puis se déplace à distance."
+texture = ExtResource("4_mb1ig")
+img_url = "https://api.dofusdb.fr/img/spells/sort_10075.png"
+level = 0
+pa_cost = 5
+per_crit = 0.15
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_2ijag")]([SubResource("Resource_rql44"), SubResource("Resource_w401h")])

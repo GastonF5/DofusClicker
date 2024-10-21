@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://dlhgkq6bgw6gv"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_mn4qf"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_n70jr"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_2of8n"]
+[ext_resource type="Texture2D" uid="uid://dflymqskegx27" path="res://assets/spells/monster/sort_10078.png" id="2_b1r83"]
+
+[sub_resource type="Resource" id="Resource_jfdqb"]
+script = ExtResource("1_mn4qf")
+_min = 10
+_max = 10
+_min_crit = 15
+_max_crit = 15
+
+[sub_resource type="Resource" id="Resource_6p0u2"]
+resource_name = "Dommages retournés"
+script = ExtResource("2_2of8n")
+type = 1
+time = 10.0
+target_type = 0
+show_time = true
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 47
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+is_poison_carac = false
+amounts = Array[ExtResource("1_mn4qf")]([SubResource("Resource_jfdqb")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_n70jr")
+id = 10201
+name = "Dissuasion"
+available = true
+description = "Retourne une partie des dommages."
+texture = ExtResource("2_b1r83")
+img_url = "https://api.dofusdb.fr/img/spells/sort_10078.png"
+level = 0
+pa_cost = 3
+per_crit = 0.1
+cooldown = 10.0
+priority = 1
+effects = Array[ExtResource("2_2of8n")]([SubResource("Resource_6p0u2")])
