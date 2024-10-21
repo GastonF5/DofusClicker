@@ -180,4 +180,14 @@ func get_distance_plates():
 
 func get_melee_plates():
 	return plates.filter(func(p): return p.is_melee())
+
+
+func plate_matches_zone(plate: EntityContainer, zone: EffectResource.Zone) -> bool:
+	match zone:
+		EffectResource.Zone.MELEE:
+			return plate.is_melee()
+		EffectResource.Zone.DISTANCE:
+			return plate.is_distance()
+		_:
+			return true
 #endregion

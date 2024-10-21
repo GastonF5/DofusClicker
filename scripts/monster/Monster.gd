@@ -99,6 +99,7 @@ func delete_timer(timer: Timer):
 
 func get_spell_to_cast():
 	var sorted_spells = spells.duplicate()
+	sorted_spells = sorted_spells.filter(func(s): return MonsterManager.plate_matches_zone(get_parent(), s.get_zone()))
 	sorted_spells.sort_custom(func(a, b): return a.priority > b.priority)
 	for spell in sorted_spells:
 		if !timers.has(spell.name):

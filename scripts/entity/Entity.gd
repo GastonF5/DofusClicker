@@ -360,3 +360,18 @@ func set_invisible(is_invi := true):
 	is_invisible = is_invi
 	if !is_player:
 		texture_rect.modulate = TRANSPARENT if is_invi else Color.WHITE
+
+
+func can_cast_spell_in_zone(zone: EffectResource.Zone, plate: EntityContainer):
+	if is_player:
+		return !(is_aveugle and plate.is_distance())
+	else:
+		if is_aveugle and get_parent().is_distance():
+			return false
+		match zone:
+			EffectResource.Zone.MELEE:
+				return get_parent().is_melee()
+			EffectResource.Zone.DISTANCE:
+				return get_parent().is_distance()
+			_:
+				return true

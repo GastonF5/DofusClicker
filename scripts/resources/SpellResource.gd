@@ -30,3 +30,11 @@ func load_texture():
 	await API.await_for_request_completed(await API.request(img_url))
 	texture = API.get_texture(img_url)
 	return texture
+
+
+func get_zone() -> EffectResource.Zone:
+	if effects.all(func(e): return e.effective_zone == EffectResource.Zone.MELEE):
+		return EffectResource.Zone.MELEE
+	if effects.all(func(e): return e.effective_zone == EffectResource.Zone.DISTANCE):
+		return EffectResource.Zone.DISTANCE
+	return EffectResource.Zone.ALL
