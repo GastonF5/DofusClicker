@@ -2,6 +2,7 @@ class_name EffectResource
 extends Resource
 
 const StatType = Caracteristique.Type
+const _INF = 999999
 
 enum Type {
 	DAMAGE,
@@ -114,8 +115,8 @@ func get_caracteristic_label() -> String:
 	return StatResource.get_type_label(StatType.find_key(caracteristic))
 
 
-func get_amount_label(grade: int) -> String:
-	var is_pourcentage_charac = caracteristic in [StatType.DO_SORTS, StatType.RES_DOMMAGES]
+func get_amount_label(grade: int, amount: int = _INF) -> String:
+	var is_pourcentage_charac = caracteristic in [StatType.DO_SORTS, StatType.RES_DOMMAGES, StatType.CRITIQUE]
 	var formatter = func(d): return str(d)
 	var pattern = "%s"
 	if pourcentage or level_pourcentage or is_pourcentage_charac:
@@ -123,6 +124,8 @@ func get_amount_label(grade: int) -> String:
 	if caracteristic == StatType.RES_DOMMAGES:
 		formatter = func(d): return str(100 + d)
 		pattern = "x%s%%"
+	if amount != _INF:
+		return pattern % formatter.call(amount)
 	var result: String
 	if amounts.size() > grade:
 		var m = amounts[grade]
@@ -143,7 +146,7 @@ func get_amount_label(grade: int) -> String:
 	return result
 
 
-func get_effect_label(grade: int) -> String:
+func get_effect_label(grade: int, amount: int = _INF) -> String:
 	var result: String = ""
 	if effect_label:
 		return compute_special_label(grade)
@@ -153,32 +156,32 @@ func get_effect_label(grade: int) -> String:
 				result += "%s vol %s"
 			else:
 				result += "%s dommages %s"
-			result = result % [get_amount_label(grade), get_element_label()]
+			result = result % [get_amount_label(grade, amount), get_element_label()]
 		Type.SOIN:
-			result += "%s soins %s" % [get_amount_label(grade), get_element_label()]
+			result += "%s soins %s" % [get_amount_label(grade, amount), get_element_label()]
 		Type.BONUS:
 			match caracteristic:
 				StatType.RES_DOMMAGES:
-					result += get_caracteristic_label() + ' ' + get_amount_label(grade)
+					result += get_caracteristic_label() + ' ' + get_amount_label(grade, amount)
 				StatType.RES_DOMMAGES_FIXE:
-					result += get_caracteristic_label() + ' de ' + get_amount_label(grade)
+					result += get_caracteristic_label() + ' de ' + get_amount_label(grade, amount)
 				StatType.DOMMAGE_RETOURNE:
-					result += get_caracteristic_label() + ' : ' + get_amount_label(grade)
+					result += get_caracteristic_label() + ' : ' + get_amount_label(grade, amount)
 				_:
-					result += get_amount_label(grade) + ' ' + get_caracteristic_label()
+					result += get_amount_label(grade, amount) + ' ' + get_caracteristic_label()
 		Type.RETRAIT:
 			if retrait_vol:
 				result += "Vole "
 			else:
 				result += "-"
-			result += "%s %s" % [get_amount_label(grade), get_caracteristic_label()]
+			result += "%s %s" % [get_amount_label(grade, amount), get_caracteristic_label()]
 		Type.BOUCLIER:
 			if level_pourcentage:
-				result += "%s du niveau en bouclier" % get_amount_label(grade)
+				result += "%s du niveau en bouclier" % get_amount_label(grade, amount)
 			else:
-				result += "%s en bouclier" % get_amount_label(grade)
+				result += "%s en bouclier" % get_amount_label(grade, amount)
 		Type.POUSSEE:
-			var nb_cases = get_amount_label(grade)
+			var nb_cases = get_amount_label(grade, amount)
 			if is_attirance:
 				result += "Attire"
 			else:
@@ -192,16 +195,17 @@ func get_effect_label(grade: int) -> String:
 			result += "Rend aveugle"
 		_:
 			return "ERREUR"
-	if show_time:
+	if show_time or amount != _INF:
 		if time == 0:
 			result += " (infini)"
 		else:
 			result += " (%d secondes)" % time
-	match effective_zone:
-		Zone.MELEE:
-			result += " (Mêlée)"
-		Zone.DISTANCE:
-			result += " (Distance)"
+	if amount == _INF:
+		match effective_zone:
+			Zone.MELEE:
+				result += " (Mêlée)"
+			Zone.DISTANCE:
+				result += " (Distance)"
 	return result
 
 

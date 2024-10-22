@@ -245,9 +245,9 @@ func log_effects(effects_to_log: Array):
 						var poison = effects.reduce(func(accum, e): return accum or e[5], false)
 						log_damage(target, amounts, elements, dead, poison)
 					EffectType.BONUS:
-						# [type, target, amount, characteristic, time]
+						# [type, target, effect_label]
 						for bonus in effects:
-							log_bonus(target, bonus[2], bonus[3], bonus[4])
+							log_bonus(target, bonus[2])
 					EffectType.RETRAIT:
 						# [type, target, amount, characteristic]
 						for retrait in effects:
@@ -294,10 +294,16 @@ func log_damage(target: Entity, amounts: Array, elements: Array, dead: bool, poi
 		output.new_line()
 
 
-func log_bonus(target: Entity, amount: int, characteristic: String, time: float):
+func log_bonus(target: Entity, effect_label: String):
+	_log_line(get_entity_name(target), INFO, true)
+	_log_line(" : " + effect_label, INFO)
+	output.new_line()
+
+
+func log_other_bonus(target: Entity, amount: int, caracteristic: String, time: float):
 	if amount != 0:
 		_log_line(get_entity_name(target), INFO, true)
-		_log_line(" : %d %s" % [amount, characteristic], INFO)
+		_log_line(" : %d %s" % [amount, caracteristic], INFO)
 		if time != 0.0:
 			_log_line(" (%d secondes)" % time, INFO)
 		output.new_line()
@@ -308,11 +314,11 @@ func log_critique():
 
 
 func log_retrait(target: Entity, amount: int, characteristic: String):
-	log_bonus(target, -amount, characteristic, 0.0)
+	log_other_bonus(target, -amount, characteristic, 0.0)
 
 
 func log_shield(target: Entity, amount: int, time: float):
-	log_bonus(target, amount, "Bouclier", time)
+	log_other_bonus(target, amount, "Bouclier", time)
 
 
 func log_poison(target: Entity, amount: int, element: Element, time: float, characteristic: String, nb_hits: int):

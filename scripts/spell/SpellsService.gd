@@ -125,7 +125,7 @@ static func perform_bonus(caster: Entity, target: Entity, effect: EffectResource
 		_:
 			carac = target.get_caracteristique_for_type(effect.caracteristic)
 			carac.amount += amount
-	effects_log.append([EffectType.BONUS, target, amount, effect.get_caracteristic_label(), effect.time])
+	effects_log.append([EffectType.BONUS, target, effect.get_effect_label(grade, amount)])
 	if effect.time != 0:
 		add_buff_effect(target, effect, amount)
 
@@ -246,6 +246,7 @@ static func perform_poussee(caster: Entity, target: Entity, effect: EffectResour
 	if dist_between_plates > 0:
 		destination_plate = plate.call(direction_callable_name, dist_between_plates)
 		target.reparent(destination_plate, false)
+		target.selected
 	target.animate_poussee(get_direction(direction), dist_between_plates)
 
 
