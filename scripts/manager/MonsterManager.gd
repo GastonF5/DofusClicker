@@ -1,6 +1,6 @@
 extends AbstractManager
 
-const TX_PROTECTEUR_SPAWN := 0.05
+const TX_PROTECTEUR_SPAWN := 0.1
 
 var console: Console
 var start_fight_button: Button
@@ -81,6 +81,8 @@ func instantiate_monsters():
 	if protecteur and randf_range(0, 1) <= TX_PROTECTEUR_SPAWN:
 		instantiate_monster(protecteur)
 	else:
+		#for i in 1:
+			#instantiate_monster(Datas._monsters[4813])
 		for i in 2:
 			instantiate_monster()
 	monsters.assign(get_monsters_on_plates())
