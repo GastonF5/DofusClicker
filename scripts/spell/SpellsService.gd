@@ -168,14 +168,18 @@ static func perform_retrait(caster: Entity, target: Entity, effect: EffectResour
 	var res_amount = target.get_resistance_retrait(effect.caracteristic)
 	var ret_ratio = (ret_amount / float(res_amount)) if res_amount != 0 else 100.0
 	var retrait_amount := 0
-	for i in range(amount):
-		var proba = 50 * ret_ratio * (bar.cval / float(bar.mval))
-		proba = clamp(proba, 10, 90)
-		if randf_range(0, 1) <= proba / 100.0:
-			bar.cval -= 1
-			retrait_amount += 1
+	if amount > 0:
+		for i in range(amount):
+			var proba = 50 * ret_ratio * (bar.cval / float(bar.mval))
+			proba = clamp(proba, 10, 90)
+			if randf_range(0, 1) <= proba / 100.0:
+				bar.cval -= 1
+				retrait_amount += 1
+	else:
+		bar.cval -= amount
+		retrait_amount = amount
 	effects_log.append([EffectType.RETRAIT, target, retrait_amount, effect.get_caracteristic_label()])
-	if !target.is_player and retrait_amount > 0:
+	if !target.is_player:
 		target.create_taken_damage(retrait_amount, TakenDamage.Type.RET_PA if effect.caracteristic == StatType.PA else TakenDamage.Type.RET_PM)
 	if effect.retrait_vol and retrait_amount > 0:
 		var new_effect = effect.duplicate(true)
@@ -297,7 +301,17 @@ static func furie(caster: Entity, plate: EntityContainer, effect: EffectResource
 	var new_effect = effect.duplicate(true)
 	new_effect.amounts = effect.duplicate_amounts()
 	new_effect.amounts[grade].add(bonus_pm)
-	perform_bonus(caster, caster, new_effect, crit, grade)
+	new_effect.type = EffectType.BONUS
+	perform_effect(caster, plate, new_effect, crit, grade)
+
+
+static func douleur_cuisante(caster: Entity, plate: EntityContainer, effect: EffectResource, crit: bool, grade: int, _params: Array):
+	var bonus_puissance: int = get_targets(caster, plate, EffectResource.TargetType.TARGET_AROUND).size()
+	var new_effect = effect.duplicate(true)
+	new_effect.amounts = effect.duplicate_amounts()
+	new_effect.amounts[grade].mult(bonus_puissance)
+	new_effect.type = EffectType.BONUS
+	perform_effect(caster, plate, new_effect, crit, grade)
 
 
 static func mutilation(caster: Entity, plate: EntityContainer, _effect: EffectResource, crit: bool, grade: int, params: Array):
@@ -308,6 +322,7 @@ static func mutilation(caster: Entity, plate: EntityContainer, _effect: EffectRe
 	else:
 		mutilation_buff[0].annuler.emit()
 		perform_effect(caster, plate, params[2], crit, grade)
+		perform_effect(caster, plate, params[3], crit, grade)
 #endregion
 
 
