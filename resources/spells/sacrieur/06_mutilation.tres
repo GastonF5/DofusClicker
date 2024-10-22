@@ -1,0 +1,191 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=14 format=3 uid="uid://dnwd7u6jb40js"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_ksaok"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_7rqag"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="3_afe47"]
+[ext_resource type="Texture2D" uid="uid://23uakpn2tdc" path="res://assets/spells/sacrieur/sort_11934.png" id="4_pukly"]
+
+[sub_resource type="Resource" id="Resource_a0id0"]
+script = ExtResource("1_ksaok")
+_min = -10
+_max = -10
+_min_crit = -10
+_max_crit = -10
+
+[sub_resource type="Resource" id="Resource_a4xav"]
+resource_name = "Sacrifice PV"
+script = ExtResource("2_7rqag")
+type = 1
+time = 0.0
+target_type = 0
+show_time = true
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 37
+pourcentage = true
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_ksaok")]([SubResource("Resource_a0id0")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_hft5w"]
+script = ExtResource("1_ksaok")
+_min = 50
+_max = 50
+_min_crit = 50
+_max_crit = 50
+
+[sub_resource type="Resource" id="Resource_bc0ra"]
+resource_name = "Mutilation"
+script = ExtResource("2_7rqag")
+type = 1
+time = 20.0
+target_type = 0
+show_time = true
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 8
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_ksaok")]([SubResource("Resource_hft5w")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_idnr5"]
+script = ExtResource("1_ksaok")
+_min = 300
+_max = 300
+_min_crit = 400
+_max_crit = 400
+
+[sub_resource type="Resource" id="Resource_8q1bx"]
+resource_name = "Coagulation"
+script = ExtResource("2_7rqag")
+type = 8
+time = 0.0
+target_type = 0
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = true
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_ksaok")]([SubResource("Resource_idnr5")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_oyehk"]
+script = ExtResource("1_ksaok")
+_min = -2
+_max = -2
+_min_crit = -2
+_max_crit = -2
+
+[sub_resource type="Resource" id="Resource_50vb0"]
+resource_name = "Ajout PA"
+script = ExtResource("2_7rqag")
+type = 2
+time = 0.0
+target_type = 0
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_ksaok")]([SubResource("Resource_oyehk")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_s3fbu"]
+resource_name = "Special"
+script = ExtResource("2_7rqag")
+type = 3
+time = 0.0
+target_type = 0
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &"mutilation"
+effect_label = "{param0}
+{param1}
+Coagulation :
+{param2}
++2 PA"
+params = [SubResource("Resource_a4xav"), SubResource("Resource_bc0ra"), SubResource("Resource_8q1bx"), SubResource("Resource_50vb0")]
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_ksaok")]([])
+visible_in_description = true
+
+[resource]
+script = ExtResource("3_afe47")
+id = 12737
+name = "Mutilation"
+available = true
+description = "Sacrifie une partie de la vie du lanceur pour augmenter sa Puissance.
+Relancer le sort retire les effets et lance le sort Coagulation :
+• Applique un bouclier au lanceur.
+• Rend 2 PA au lanceur."
+texture = ExtResource("4_pukly")
+img_url = "https://api.dofusdb.fr/img/spells/sort_11934.png"
+level = 10
+pa_cost = 2
+per_crit = 0.0
+cooldown = 3.0
+priority = 0
+effects = Array[ExtResource("2_7rqag")]([SubResource("Resource_s3fbu")])

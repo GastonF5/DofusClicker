@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://bcpyajigujwui"]
 
-[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_joc8b"]
-[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_k1fnr"]
-[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_glhct"]
-[ext_resource type="Texture2D" uid="uid://b4olks2wsvhap" path="res://assets/spells/sacrieur/sort_11979.png" id="4_u5x8t"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_dperb"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_ag2cj"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="3_oaltn"]
+[ext_resource type="Texture2D" uid="uid://b4olks2wsvhap" path="res://assets/spells/sacrieur/sort_11979.png" id="4_25n42"]
 
 [sub_resource type="Resource" id="Resource_dpa33"]
-script = ExtResource("1_joc8b")
+script = ExtResource("1_dperb")
 _min = 12
 _max = 14
 _min_crit = 15
@@ -14,7 +14,7 @@ _max_crit = 17
 
 [sub_resource type="Resource" id="Resource_ju3my"]
 resource_name = "Vol Feu"
-script = ExtResource("2_glhct")
+script = ExtResource("2_ag2cj")
 type = 0
 time = 0.0
 target_type = 1
@@ -33,11 +33,14 @@ params = []
 nb_random_effects = 0
 direction = 0
 is_attirance = false
-amounts = Array[ExtResource("1_joc8b")]([SubResource("Resource_dpa33")])
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_dperb")]([SubResource("Resource_dpa33")])
 visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_ta3bd"]
-script = ExtResource("1_joc8b")
+script = ExtResource("1_dperb")
 _min = -50
 _max = -50
 _min_crit = -50
@@ -45,7 +48,7 @@ _max_crit = -50
 
 [sub_resource type="Resource" id="Resource_vsvd3"]
 resource_name = "Malus Puissance"
-script = ExtResource("2_glhct")
+script = ExtResource("2_ag2cj")
 type = 1
 time = 10.0
 target_type = 1
@@ -64,20 +67,23 @@ params = []
 nb_random_effects = 0
 direction = 0
 is_attirance = false
-amounts = Array[ExtResource("1_joc8b")]([SubResource("Resource_ta3bd")])
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_dperb")]([SubResource("Resource_ta3bd")])
 visible_in_description = true
 
 [resource]
-script = ExtResource("1_k1fnr")
+script = ExtResource("3_oaltn")
 id = 12734
 name = "Absorption"
 available = true
 description = "Vole de la vie dans l'élément Feu et retire de la Puissance aux ennemis."
-texture = ExtResource("4_u5x8t")
+texture = ExtResource("4_25n42")
 img_url = "https://api.dofusdb.fr/img/spells/sort_11946.png"
 level = 1
 pa_cost = 3
 per_crit = 0.15
 cooldown = 0.0
 priority = 0
-effects = Array[ExtResource("2_glhct")]([SubResource("Resource_ju3my"), SubResource("Resource_vsvd3")])
+effects = Array[ExtResource("2_ag2cj")]([SubResource("Resource_ju3my"), SubResource("Resource_vsvd3")])

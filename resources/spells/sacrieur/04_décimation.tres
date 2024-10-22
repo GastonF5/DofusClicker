@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://bwdtxpjadcp8d"]
 
-[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_1c5lx"]
-[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_m02i6"]
-[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_ohm3o"]
-[ext_resource type="Texture2D" uid="uid://baaqdmgdnmpjq" path="res://assets/spells/sacrieur/sort_11947.png" id="3_gqwct"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_1be7r"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_43pn7"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="3_17ma3"]
+[ext_resource type="Texture2D" uid="uid://baaqdmgdnmpjq" path="res://assets/spells/sacrieur/sort_11947.png" id="4_wkh8c"]
 
 [sub_resource type="Resource" id="Resource_rc8vd"]
-script = ExtResource("1_ohm3o")
+script = ExtResource("1_1be7r")
 _min = 9
 _max = 11
 _min_crit = 12
@@ -14,7 +14,7 @@ _max_crit = 14
 
 [sub_resource type="Resource" id="Resource_4qbmv"]
 resource_name = "Dommages Terre"
-script = ExtResource("1_1c5lx")
+script = ExtResource("2_43pn7")
 type = 0
 time = 0.0
 target_type = 2
@@ -33,11 +33,14 @@ params = []
 nb_random_effects = 0
 direction = 0
 is_attirance = false
-amounts = Array[ExtResource("1_ohm3o")]([SubResource("Resource_rc8vd")])
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_1be7r")]([SubResource("Resource_rc8vd")])
 visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_axxyn"]
-script = ExtResource("1_ohm3o")
+script = ExtResource("1_1be7r")
 _min = 20
 _max = 20
 _min_crit = 30
@@ -45,7 +48,7 @@ _max_crit = 30
 
 [sub_resource type="Resource" id="Resource_hcev7"]
 resource_name = "Dommages subis"
-script = ExtResource("1_1c5lx")
+script = ExtResource("2_43pn7")
 type = 1
 time = 10.0
 target_type = 2
@@ -64,20 +67,23 @@ params = []
 nb_random_effects = 0
 direction = 0
 is_attirance = false
-amounts = Array[ExtResource("1_ohm3o")]([SubResource("Resource_axxyn")])
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_1be7r")]([SubResource("Resource_axxyn")])
 visible_in_description = true
 
 [resource]
-script = ExtResource("1_m02i6")
+script = ExtResource("3_17ma3")
 id = 12731
 name = "Décimation"
 available = true
 description = "Occasionne des dommages Terre et augmente les dommages subis par les cibles en zone en mêlée."
-texture = ExtResource("3_gqwct")
+texture = ExtResource("4_wkh8c")
 img_url = "https://api.dofusdb.fr/img/spells/sort_11947.png"
 level = 3
 pa_cost = 2
 per_crit = 0.15
 cooldown = 5.0
 priority = 0
-effects = Array[ExtResource("1_1c5lx")]([SubResource("Resource_4qbmv"), SubResource("Resource_hcev7")])
+effects = Array[ExtResource("2_43pn7")]([SubResource("Resource_4qbmv"), SubResource("Resource_hcev7")])

@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://ciassf5hs2hj"]
 
-[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_p5a35"]
-[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_60npc"]
-[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="3_dtt7p"]
-[ext_resource type="Texture2D" uid="uid://c3pdl56d2gxm3" path="res://assets/spells/sacrieur/sort_11980.png" id="4_pa0un"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_2tv40"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_dflwe"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="3_ey61j"]
+[ext_resource type="Texture2D" uid="uid://c3pdl56d2gxm3" path="res://assets/spells/sacrieur/sort_11980.png" id="4_vtxlf"]
 
 [sub_resource type="Resource" id="Resource_dsn6q"]
-script = ExtResource("1_p5a35")
+script = ExtResource("1_2tv40")
 _min = 12
 _max = 14
 _min_crit = 15
@@ -14,7 +14,7 @@ _max_crit = 15
 
 [sub_resource type="Resource" id="Resource_uvppw"]
 resource_name = "Dommages"
-script = ExtResource("2_60npc")
+script = ExtResource("2_dflwe")
 type = 0
 time = 0.0
 target_type = 1
@@ -33,20 +33,23 @@ params = []
 nb_random_effects = 0
 direction = 0
 is_attirance = false
-amounts = Array[ExtResource("1_p5a35")]([SubResource("Resource_dsn6q")])
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_2tv40")]([SubResource("Resource_dsn6q")])
 visible_in_description = true
 
 [resource]
-script = ExtResource("3_dtt7p")
+script = ExtResource("3_ey61j")
 id = 12740
 name = "Folie Sanguinaire"
 available = true
 description = "Vole de la vie dans le meilleur élément d'attaque du lanceur en mêlée."
-texture = ExtResource("4_pa0un")
+texture = ExtResource("4_vtxlf")
 img_url = "https://api.dofusdb.fr/img/spells/sort_11979.png"
 level = 1
 pa_cost = 2
 per_crit = 0.15
-cooldown = 5.0
+cooldown = 4.0
 priority = 0
-effects = Array[ExtResource("2_60npc")]([SubResource("Resource_uvppw")])
+effects = Array[ExtResource("2_dflwe")]([SubResource("Resource_uvppw")])

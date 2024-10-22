@@ -1,0 +1,89 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://cv8pv7xq7bpvw"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_h7ird"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_tpcwy"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_j8fy1"]
+[ext_resource type="Texture2D" uid="uid://l5mvlwos1gmm" path="res://assets/spells/sacrieur/sort_11958.png" id="4_hiqfy"]
+
+[sub_resource type="Resource" id="Resource_c0v0b"]
+script = ExtResource("1_h7ird")
+_min = 19
+_max = 22
+_min_crit = 23
+_max_crit = 26
+
+[sub_resource type="Resource" id="Resource_3ixeh"]
+resource_name = "Vol Vie Air"
+script = ExtResource("2_j8fy1")
+type = 0
+time = 0.0
+target_type = 2
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 4
+lifesteal = true
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_h7ird")]([SubResource("Resource_c0v0b")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_m5ia2"]
+script = ExtResource("1_h7ird")
+_min = 3
+_max = 3
+_min_crit = 3
+_max_crit = 3
+
+[sub_resource type="Resource" id="Resource_qd4jk"]
+resource_name = "Retrait PM"
+script = ExtResource("2_j8fy1")
+type = 2
+time = 0.0
+target_type = 2
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 1
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_h7ird")]([SubResource("Resource_m5ia2")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_tpcwy")
+id = 12753
+name = "Désolation"
+available = true
+description = "Retire des PM et vole de la vie dans l'élément Air en zone."
+texture = ExtResource("4_hiqfy")
+img_url = "https://api.dofusdb.fr/img/spells/sort_11958.png"
+level = 35
+pa_cost = 4
+per_crit = 0.25
+cooldown = 2.0
+priority = 0
+effects = Array[ExtResource("2_j8fy1")]([SubResource("Resource_3ixeh"), SubResource("Resource_qd4jk")])

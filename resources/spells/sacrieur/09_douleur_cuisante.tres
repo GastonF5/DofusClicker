@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://xji15bxat5u3"]
 
-[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_d2ic2"]
-[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_ibihq"]
-[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="3_l1ie5"]
-[ext_resource type="Texture2D" uid="uid://b3383ucr5jysr" path="res://assets/spells/sacrieur/sort_11932.png" id="4_bop1m"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_jmwb0"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_pi5r2"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="3_4qv2v"]
+[ext_resource type="Texture2D" uid="uid://b3383ucr5jysr" path="res://assets/spells/sacrieur/sort_11932.png" id="4_dpksc"]
 
 [sub_resource type="Resource" id="Resource_poq48"]
-script = ExtResource("1_d2ic2")
+script = ExtResource("1_jmwb0")
 _min = 10
 _max = 12
 _min_crit = 13
@@ -14,7 +14,7 @@ _max_crit = 15
 
 [sub_resource type="Resource" id="Resource_ifrih"]
 resource_name = "Dommages Feu"
-script = ExtResource("2_ibihq")
+script = ExtResource("2_pi5r2")
 type = 0
 time = 0.0
 target_type = 10
@@ -33,21 +33,24 @@ params = []
 nb_random_effects = 0
 direction = 0
 is_attirance = false
-amounts = Array[ExtResource("1_d2ic2")]([SubResource("Resource_poq48")])
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_jmwb0")]([SubResource("Resource_poq48")])
 visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_vxf3k"]
-script = ExtResource("1_d2ic2")
+script = ExtResource("1_jmwb0")
 _min = 45
 _max = 45
 _min_crit = 45
 _max_crit = 45
 
 [sub_resource type="Resource" id="Resource_j1fms"]
-resource_name = "Bonus Puissance"
-script = ExtResource("2_ibihq")
-type = 1
-time = 10.0
+resource_name = "Spécial Puissance"
+script = ExtResource("2_pi5r2")
+type = 3
+time = 5.0
 target_type = 0
 show_time = true
 effective_zone = 0
@@ -58,26 +61,29 @@ level_pourcentage = false
 caracteristic = 8
 pourcentage = false
 retrait_vol = false
-method_name = &""
-effect_label = ""
+method_name = &"douleur_cuisante"
+effect_label = "45 Puissance par ennemi touché"
 params = []
 nb_random_effects = 0
 direction = 0
 is_attirance = false
-amounts = Array[ExtResource("1_d2ic2")]([SubResource("Resource_vxf3k")])
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_jmwb0")]([SubResource("Resource_vxf3k")])
 visible_in_description = true
 
 [resource]
-script = ExtResource("3_l1ie5")
+script = ExtResource("3_4qv2v")
 id = 12730
 name = "Douleur cuisante"
 available = true
-description = "Occasionne des dommages Feu en croix et augmente la Puissance du lanceur."
-texture = ExtResource("4_bop1m")
+description = "Occasionne des dommages Feu en croix. Augmente la Puissance du lanceur en fonction du nombre d'ennemis touchés."
+texture = ExtResource("4_dpksc")
 img_url = "https://api.dofusdb.fr/img/spells/sort_11932.png"
-level = 15
+level = 25
 pa_cost = 3
 per_crit = 0.15
-cooldown = 10.0
+cooldown = 5.0
 priority = 0
-effects = Array[ExtResource("2_ibihq")]([SubResource("Resource_ifrih"), SubResource("Resource_j1fms")])
+effects = Array[ExtResource("2_pi5r2")]([SubResource("Resource_ifrih"), SubResource("Resource_j1fms")])
