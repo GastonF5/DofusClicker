@@ -246,7 +246,7 @@ static func perform_poussee(caster: Entity, target: Entity, effect: EffectResour
 	if dist_between_plates > 0:
 		destination_plate = plate.call(direction_callable_name, dist_between_plates)
 		target.reparent(destination_plate, false)
-		target.selected
+		target.unselect()
 	target.animate_poussee(get_direction(direction), dist_between_plates)
 
 

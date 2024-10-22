@@ -133,18 +133,6 @@ func get_chance_drop(percent_drop: float):
 	return percent_drop * PlayerManager.player_entity.get_prospection() / 100.0
 
 
-func is_selected():
-	return PlayerManager.selected_plate == get_parent()
-
-
-func select():
-	texture_rect.custom_minimum_size = Vector2(230, 230)
-
-
-func unselect():
-	texture_rect.custom_minimum_size = Vector2(192, 192)
-
-
 func _on_texture_container_mouse_entered():
 	show_description()
 

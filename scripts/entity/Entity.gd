@@ -376,3 +376,15 @@ func can_cast_spell_in_zone(zone: EffectResource.Zone, plate: EntityContainer):
 				return get_parent().is_distance()
 			_:
 				return true
+
+
+func is_selected():
+	return PlayerManager.selected_plate == get_parent()
+
+
+func select():
+	texture_rect.custom_minimum_size = Vector2(230, 230)
+
+
+func unselect():
+	texture_rect.custom_minimum_size = Vector2(192, 192)
