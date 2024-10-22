@@ -47,6 +47,8 @@ func init():
 		var diff = diff_inventory_recipe_item(ingredient)
 		griser_ingredient(ingredient, diff)
 	_result_item.count = calculate_result_count()
+	button.mouse_entered.connect(_result_item._on_mouse_entered)
+	button.mouse_exited.connect(_result_item._on_mouse_exited)
 
 
 func instantiate_result():
