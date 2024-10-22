@@ -30,7 +30,7 @@ var _parent: Entity
 var _caster: Entity
 var _longer_timer: Timer:
 	set(val):
-		if _longer_timer:
+		if _longer_timer and is_instance_valid(_longer_timer):
 			_longer_timer.timeout.disconnect(delete_all)
 		_longer_timer = val
 		if _longer_timer:
