@@ -78,12 +78,12 @@ func _process(_delta):
 func do_poison_effect(effect_amount: Array, count: int):
 	var effect = effect_amount[0]
 	var amount = effect_amount[1]
-	if !effect.is_poison_carac and !_caster.dying:
+	if !effect.is_poison_carac and !_caster.dying and _timers[effect.resource_name][1] > 0:
 		var degats = SpellsService.get_degats(_caster, amount, effect.element)
 		_parent.take_damage(degats, effect.element)
 		Globals.console.log_effects([[EffectResource.Type.DAMAGE, _parent, degats, effect.element, _parent.dying, true]])
 		Globals.console.output.add_separator()
-	if count - 1 >= 1 and !_caster.dying:
+	if count >= 1 and !_caster.dying:
 		var timer = SpellsService.create_timer(effect.time, effect.resource_name, self)
 		timer.timeout.connect(annuler_bonus.bind(timer.name))
 		if _longer_timer == null:
@@ -111,11 +111,12 @@ func annuler_bonus(timer_name: String, check_empty := true):
 
 
 func delete_all(annule_bonus := true):
-	if annule_bonus:
-		for timer_name in _timers:
-			annuler_bonus(timer_name, false)
-	if _parent:
-		_parent.buffs.erase(self)
-	if get_parent():
-		get_parent().remove_child(self)
-	queue_free()
+	if !_longer_timer or _timers[_longer_timer.name][1] == 0:
+		if annule_bonus:
+			for timer_name in _timers:
+				annuler_bonus(timer_name, false)
+		if _parent:
+			_parent.buffs.erase(self)
+		if get_parent():
+			get_parent().remove_child(self)
+		queue_free()
