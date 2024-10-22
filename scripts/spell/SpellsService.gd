@@ -81,9 +81,11 @@ static func perform_damage(caster: Entity, target: Entity, effect: EffectResourc
 	if crit:
 		amount += caster.get_do_crit()
 	amount = target.take_damage(amount - target.returned_damage, element)
-	if effect.lifesteal:
-		caster.take_damage(-round(amount / 2.0), element)
 	effects_log.append([EffectType.DAMAGE, target, amount, element, target.dying, false])
+	if effect.lifesteal:
+		var soin = -round(amount / 2.0)
+		caster.take_damage(soin, element)
+		effects_log.append([EffectType.DAMAGE, caster, soin, element, caster.dying, false])
 	if target.returned_damage > 0:
 		amount = target.returned_damage
 		caster.take_damage(amount, element)
