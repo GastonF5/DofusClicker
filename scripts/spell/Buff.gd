@@ -99,7 +99,8 @@ func annuler_bonus(timer_name: String, check_empty := true):
 	var count = _timers[timer_name][1]
 	if _longer_timer == timer:
 		_longer_timer = null
-	remove_child(timer)
+	if timer.get_parent():
+		timer.get_parent().remove_child(timer)
 	timer.queue_free()
 	if effect.type in [EffectType.BONUS, EffectType.INVISIBILITE, EffectType.AVEUGLE]:
 		SpellsService.annuler_bonus(self, _parent, effect, amount)
