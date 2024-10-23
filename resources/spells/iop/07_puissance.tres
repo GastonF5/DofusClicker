@@ -1,0 +1,89 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://boh56pb5t7id4"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_0qwpm"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_qw1ic"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="3_5egx2"]
+[ext_resource type="Texture2D" uid="uid://brqoi6451pboj" path="res://assets/spells/iop/sort_11844.png" id="4_7mgpu"]
+
+[sub_resource type="Resource" id="Resource_nqd7j"]
+script = ExtResource("1_0qwpm")
+_min = 150
+_max = 150
+_min_crit = 180
+_max_crit = 180
+
+[sub_resource type="Resource" id="Resource_ctv0m"]
+resource_name = "Bonus Puissance"
+script = ExtResource("2_qw1ic")
+type = 1
+time = 20.0
+target_type = 0
+show_time = true
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 8
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_0qwpm")]([SubResource("Resource_nqd7j")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_477hh"]
+script = ExtResource("1_0qwpm")
+_min = 50
+_max = 50
+_min_crit = 60
+_max_crit = 60
+
+[sub_resource type="Resource" id="Resource_l3erq"]
+resource_name = "Bonus DoPou"
+script = ExtResource("2_qw1ic")
+type = 1
+time = 20.0
+target_type = 0
+show_time = true
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 33
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_0qwpm")]([SubResource("Resource_477hh")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("3_5egx2")
+id = 13118
+name = "Puissance"
+available = true
+description = "Augmente la puissance et les Dommages Poussée."
+texture = ExtResource("4_7mgpu")
+img_url = "https://api.dofusdb.fr/img/spells/sort_11844.png"
+level = 15
+pa_cost = 3
+per_crit = 0.25
+cooldown = 20.0
+priority = 0
+effects = Array[ExtResource("2_qw1ic")]([SubResource("Resource_ctv0m"), SubResource("Resource_l3erq")])

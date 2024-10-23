@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://brmviv34rwp5a"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_oi806"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_thgs5"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="3_rlaek"]
+[ext_resource type="Texture2D" uid="uid://cfyg1drobap8l" path="res://assets/spells/iop/sort_11870.png" id="4_367od"]
+
+[sub_resource type="Resource" id="Resource_m2cpi"]
+script = ExtResource("1_oi806")
+_min = 15
+_max = 15
+_min_crit = 0
+_max_crit = 0
+
+[sub_resource type="Resource" id="Resource_p3p5n"]
+resource_name = "Dommages subis"
+script = ExtResource("2_thgs5")
+type = 1
+time = 8.0
+target_type = 1
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 36
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_oi806")]([SubResource("Resource_m2cpi")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("3_rlaek")
+id = 13112
+name = "Massacre"
+available = false
+description = "Augmente les dommages subis par la cible."
+texture = ExtResource("4_367od")
+img_url = "https://api.dofusdb.fr/img/spells/sort_11870.png"
+level = 1
+pa_cost = 1
+per_crit = 0.0
+cooldown = 5.0
+priority = 0
+effects = Array[ExtResource("2_thgs5")]([SubResource("Resource_p3p5n")])

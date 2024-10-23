@@ -26,6 +26,7 @@ lifesteal = false
 level_pourcentage = false
 caracteristic = 0
 pourcentage = false
+retrait_vol = false
 method_name = &"tumulte"
 effect_label = "{min} à {max} ({min_crit} à {max_crit}) dommages {elem}
 Augmente les dégâts de base du sort Tumulte de {param0}"
@@ -33,6 +34,9 @@ params = [20]
 nb_random_effects = 0
 direction = 0
 is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
 amounts = Array[ExtResource("1_v3boc")]([SubResource("Resource_1eii1")])
 visible_in_description = true
 
@@ -40,7 +44,7 @@ visible_in_description = true
 script = ExtResource("1_ku4p0")
 id = 13144
 name = "Tumulte"
-available = true
+available = false
 description = "Occasionne des dommages Feu en zone.
 Augmente les dommages du sort pour chaque ennemi dans la zone d'effet."
 texture = ExtResource("2_01xru")

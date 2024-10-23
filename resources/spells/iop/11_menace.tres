@@ -1,0 +1,117 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=11 format=3 uid="uid://bq4xrfs01kab4"]
+
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_e6smh"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_g6t1t"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_gtrim"]
+[ext_resource type="Texture2D" uid="uid://fs1jbumj4x8y" path="res://assets/spells/iop/sort_11862.png" id="3_05y5u"]
+
+[sub_resource type="Resource" id="Resource_lpghq"]
+script = ExtResource("1_g6t1t")
+_min = 20
+_max = 23
+_min_crit = 24
+_max_crit = 27
+
+[sub_resource type="Resource" id="Resource_5qbcc"]
+resource_name = "Dommages Eau"
+script = ExtResource("1_e6smh")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 3
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+is_poison_carac = false
+amounts = Array[ExtResource("1_g6t1t")]([SubResource("Resource_lpghq")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_h0yry"]
+script = ExtResource("1_g6t1t")
+_min = 1
+_max = 1
+_min_crit = 1
+_max_crit = 1
+
+[sub_resource type="Resource" id="Resource_vsbin"]
+resource_name = "Attirance"
+script = ExtResource("1_e6smh")
+type = 9
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 2
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 1
+is_attirance = true
+is_poison_carac = false
+amounts = Array[ExtResource("1_g6t1t")]([SubResource("Resource_h0yry")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_0g3hr"]
+script = ExtResource("1_g6t1t")
+_min = 1
+_max = 1
+_min_crit = 1
+_max_crit = 1
+
+[sub_resource type="Resource" id="Resource_ulerx"]
+resource_name = "Poussée"
+script = ExtResource("1_e6smh")
+type = 9
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 1
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+is_poison_carac = false
+amounts = Array[ExtResource("1_g6t1t")]([SubResource("Resource_0g3hr")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_gtrim")
+id = 13130
+name = "Menace"
+available = true
+description = "Occasionne des dommages Eau aux ennemis. Attire la cible à distance, pousse la cible en mêlée."
+texture = ExtResource("3_05y5u")
+img_url = "https://api.dofusdb.fr/img/spells/sort_11862.png"
+level = 35
+pa_cost = 3
+per_crit = 0.1
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("1_e6smh")]([SubResource("Resource_5qbcc"), SubResource("Resource_vsbin"), SubResource("Resource_ulerx")])

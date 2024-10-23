@@ -1,20 +1,20 @@
 [gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://dkuy2uvb87hh7"]
 
-[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_4q6vi"]
-[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_t0lin"]
-[ext_resource type="Texture2D" uid="uid://c0mmo4eb8k4nm" path="res://assets/spells/iop/sort_11860.png" id="2_sbji4"]
-[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_t36qr"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_h6gwe"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_fukt7"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="3_hxj52"]
+[ext_resource type="Texture2D" uid="uid://c0mmo4eb8k4nm" path="res://assets/spells/iop/sort_11860.png" id="4_i7tkq"]
 
 [sub_resource type="Resource" id="Resource_5jw67"]
-script = ExtResource("1_4q6vi")
-_min = 500
-_max = 500
-_min_crit = 600
-_max_crit = 600
+script = ExtResource("1_h6gwe")
+_min = 300
+_max = 300
+_min_crit = 350
+_max_crit = 350
 
 [sub_resource type="Resource" id="Resource_esh0f"]
 resource_name = "Bouclier"
-script = ExtResource("2_t36qr")
+script = ExtResource("2_fukt7")
 type = 8
 time = 0.0
 target_type = 0
@@ -26,17 +26,21 @@ lifesteal = false
 level_pourcentage = true
 caracteristic = 0
 pourcentage = false
+retrait_vol = false
 method_name = &""
 effect_label = "{min}% ({min_crit}%) du niveau en bouclier"
 params = []
 nb_random_effects = 0
 direction = 0
 is_attirance = false
-amounts = Array[ExtResource("1_4q6vi")]([SubResource("Resource_5jw67")])
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_h6gwe")]([SubResource("Resource_5jw67")])
 visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_16npc"]
-script = ExtResource("1_4q6vi")
+script = ExtResource("1_h6gwe")
 _min = -25
 _max = -25
 _min_crit = -25
@@ -44,7 +48,7 @@ _max_crit = -25
 
 [sub_resource type="Resource" id="Resource_vdxvq"]
 resource_name = "Malus Puissance"
-script = ExtResource("2_t36qr")
+script = ExtResource("2_fukt7")
 type = 3
 time = 10.0
 target_type = 0
@@ -56,27 +60,31 @@ lifesteal = false
 level_pourcentage = false
 caracteristic = 8
 pourcentage = false
+retrait_vol = false
 method_name = &"vertu"
 effect_label = "{min} Puissance {time}"
 params = []
 nb_random_effects = 0
 direction = 0
 is_attirance = false
-amounts = Array[ExtResource("1_4q6vi")]([SubResource("Resource_16npc")])
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_h6gwe")]([SubResource("Resource_16npc")])
 visible_in_description = true
 
 [resource]
-script = ExtResource("1_t0lin")
+script = ExtResource("3_hxj52")
 id = 13142
 name = "Vertu"
 available = true
 description = "Applique un bouclier sur le lanceur.
 Retire de la Puissance au lanceur si la case ciblée contient un ennemi."
-texture = ExtResource("2_sbji4")
+texture = ExtResource("4_i7tkq")
 img_url = "https://api.dofusdb.fr/img/spells/sort_11860.png"
-level = 15
+level = 40
 pa_cost = 2
 per_crit = 0.25
 cooldown = 30.0
 priority = 0
-effects = Array[ExtResource("2_t36qr")]([SubResource("Resource_esh0f"), SubResource("Resource_vdxvq")])
+effects = Array[ExtResource("2_fukt7")]([SubResource("Resource_esh0f"), SubResource("Resource_vdxvq")])

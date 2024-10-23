@@ -1,0 +1,89 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://bse0ia2on0iaa"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_6c8b0"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_lng07"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="3_j7dne"]
+[ext_resource type="Texture2D" uid="uid://d01x7805i68sp" path="res://assets/spells/iop/sort_11839.png" id="4_pr0lq"]
+
+[sub_resource type="Resource" id="Resource_vaegt"]
+script = ExtResource("1_6c8b0")
+_min = 10
+_max = 12
+_min_crit = 13
+_max_crit = 15
+
+[sub_resource type="Resource" id="Resource_auu3h"]
+resource_name = "Dommages Eau"
+script = ExtResource("2_lng07")
+type = 0
+time = 0.0
+target_type = 2
+show_time = false
+effective_zone = 1
+has_grades = false
+element = 3
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_6c8b0")]([SubResource("Resource_vaegt")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_jbogl"]
+script = ExtResource("1_6c8b0")
+_min = 75
+_max = 75
+_min_crit = 100
+_max_crit = 100
+
+[sub_resource type="Resource" id="Resource_yts5o"]
+resource_name = "Bouclier"
+script = ExtResource("2_lng07")
+type = 8
+time = 0.0
+target_type = 0
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = true
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_6c8b0")]([SubResource("Resource_jbogl")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("3_j7dne")
+id = 0
+name = "Ferveur"
+available = true
+description = "Applique un bouclier au le lanceur et occasionne des dommages Eau aux ennemis en zone en mêlée."
+texture = ExtResource("4_pr0lq")
+img_url = "https://api.dofusdb.fr/img/spells/sort_11839.png"
+level = 1
+pa_cost = 2
+per_crit = 0.1
+cooldown = 4.0
+priority = 0
+effects = Array[ExtResource("2_lng07")]([SubResource("Resource_auu3h"), SubResource("Resource_yts5o")])

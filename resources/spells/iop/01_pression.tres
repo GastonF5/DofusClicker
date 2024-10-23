@@ -1,0 +1,123 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=11 format=3 uid="uid://bksdq160byh38"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_1kwyp"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_ywfm6"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="3_gt2en"]
+[ext_resource type="Texture2D" uid="uid://cnfn6wawploo7" path="res://assets/spells/iop/sort_11830.png" id="4_bcuhr"]
+
+[sub_resource type="Resource" id="Resource_3uguh"]
+script = ExtResource("1_1kwyp")
+_min = 16
+_max = 18
+_min_crit = 19
+_max_crit = 21
+
+[sub_resource type="Resource" id="Resource_3x0as"]
+resource_name = "Dommages Terre"
+script = ExtResource("2_ywfm6")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 1
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_1kwyp")]([SubResource("Resource_3uguh")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_hvif7"]
+script = ExtResource("1_1kwyp")
+_min = 10
+_max = 10
+_min_crit = 10
+_max_crit = 10
+
+[sub_resource type="Resource" id="Resource_6lmpg"]
+resource_name = "Erosion"
+script = ExtResource("2_ywfm6")
+type = 1
+time = 60.0
+target_type = 1
+show_time = true
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 30
+pourcentage = true
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_1kwyp")]([SubResource("Resource_hvif7")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_ikym1"]
+script = ExtResource("1_1kwyp")
+_min = 1
+_max = 1
+_min_crit = 1
+_max_crit = 1
+
+[sub_resource type="Resource" id="Resource_naf62"]
+resource_name = "Attirance"
+script = ExtResource("2_ywfm6")
+type = 9
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 1
+is_attirance = true
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_1kwyp")]([SubResource("Resource_ikym1")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("3_gt2en")
+id = 13106
+name = "Pression"
+available = true
+description = "Érode et attire la cible. Occasionne des dommages Terre."
+texture = ExtResource("4_bcuhr")
+img_url = "https://api.dofusdb.fr/img/spells/sort_11830.png"
+level = 1
+pa_cost = 3
+per_crit = 0.1
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_ywfm6")]([SubResource("Resource_3x0as"), SubResource("Resource_6lmpg"), SubResource("Resource_naf62")])

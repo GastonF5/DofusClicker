@@ -7,6 +7,7 @@
 script = ExtResource("1_qf2yn")
 id = 13109
 name = "Duel"
+available = false
 description = "Seuls la cible et le joueur peuvent subir et infliger des dégâts."
 texture = ExtResource("2_cphns")
 img_url = "https://api.dofusdb.fr/img/spells/sort_12208.png"

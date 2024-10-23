@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://cic1n0ancvu4q"]
 
-[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_c6v8s"]
-[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_twark"]
-[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="3_8kxvq"]
-[ext_resource type="Texture2D" uid="uid://cp73kfdjgxhll" path="res://assets/spells/iop/sort_11781.png" id="4_y8a2a"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_2h7j0"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_8rgx4"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="3_dc350"]
+[ext_resource type="Texture2D" uid="uid://cp73kfdjgxhll" path="res://assets/spells/iop/sort_11781.png" id="4_uc0mj"]
 
 [sub_resource type="Resource" id="Resource_11asr"]
-script = ExtResource("1_c6v8s")
+script = ExtResource("1_2h7j0")
 _min = 9
 _max = 11
 _min_crit = 12
@@ -14,7 +14,7 @@ _max_crit = 14
 
 [sub_resource type="Resource" id="Resource_ybl2p"]
 resource_name = "Dommages Terre"
-script = ExtResource("2_twark")
+script = ExtResource("2_8rgx4")
 type = 3
 time = 0.0
 target_type = 2
@@ -26,28 +26,30 @@ lifesteal = false
 level_pourcentage = false
 caracteristic = 0
 pourcentage = false
+retrait_vol = false
 method_name = &"pugilat"
-effect_label = "{min} à {max} ({min_crit} à {max_crit}) dommages {elem}
+effect_label = "{min} à {max} ({min_crit} à {max_crit}) dommages {elem} (Mêlée)
 Augmente les dégâts de base du sort Pugilat de {param0}"
 params = [8]
 nb_random_effects = 0
 direction = 0
 is_attirance = false
-amounts = Array[ExtResource("1_c6v8s")]([SubResource("Resource_11asr")])
+is_poison_carac = false
+amounts = Array[ExtResource("1_2h7j0")]([SubResource("Resource_11asr")])
 visible_in_description = true
 
 [resource]
-script = ExtResource("3_8kxvq")
+script = ExtResource("3_dc350")
 id = 13146
 name = "Pugilat"
 available = true
-description = "Occasionne des dommages Terre en zone.
+description = "Occasionne des dommages Terre en zone en Mêlée.
 Les dommages du sort sont augmentés après chaque lancer."
-texture = ExtResource("4_y8a2a")
+texture = ExtResource("4_uc0mj")
 img_url = "https://api.dofusdb.fr/img/spells/sort_11781.png"
-level = 10
+level = 20
 pa_cost = 2
 per_crit = 0.05
 cooldown = 4.0
 priority = 0
-effects = Array[ExtResource("2_twark")]([SubResource("Resource_ybl2p")])
+effects = Array[ExtResource("2_8rgx4")]([SubResource("Resource_ybl2p")])

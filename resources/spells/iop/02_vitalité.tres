@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://bvahvjpfpjxy"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_m7jo1"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_ykgnw"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="3_4tsk7"]
+[ext_resource type="Texture2D" uid="uid://wklc1ok0idoj" path="res://assets/spells/iop/sort_11848.png" id="4_sbwns"]
+
+[sub_resource type="Resource" id="Resource_k4ai8"]
+script = ExtResource("1_m7jo1")
+_min = 12
+_max = 12
+_min_crit = 14
+_max_crit = 14
+
+[sub_resource type="Resource" id="Resource_ibik3"]
+resource_name = "Bonus PV"
+script = ExtResource("2_ykgnw")
+type = 1
+time = 30.0
+target_type = 0
+show_time = true
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 37
+pourcentage = true
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_m7jo1")]([SubResource("Resource_k4ai8")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("3_4tsk7")
+id = 13120
+name = "Vitalité"
+available = true
+description = "Augmente les PV du lanceur."
+texture = ExtResource("4_sbwns")
+img_url = ""
+level = 1
+pa_cost = 2
+per_crit = 0.25
+cooldown = 30.0
+priority = 0
+effects = Array[ExtResource("2_ykgnw")]([SubResource("Resource_ibik3")])

@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="SpellResource" load_steps=11 format=3 uid="uid://fe26s3fpkl6x"]
 
-[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_xmek4"]
-[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_y1ikn"]
-[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_ubphw"]
-[ext_resource type="Texture2D" uid="uid://un3gqtye25qg" path="res://assets/spells/iop/sort_11835.png" id="4_2485n"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_kj08b"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_jthv3"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="3_6r4yx"]
+[ext_resource type="Texture2D" uid="uid://un3gqtye25qg" path="res://assets/spells/iop/sort_11835.png" id="4_eff6x"]
 
 [sub_resource type="Resource" id="Resource_entft"]
-script = ExtResource("1_xmek4")
+script = ExtResource("1_kj08b")
 _min = 6
 _max = 6
 _min_crit = 9
@@ -14,7 +14,7 @@ _max_crit = 9
 
 [sub_resource type="Resource" id="Resource_n3ndv"]
 resource_name = "Dommages Best"
-script = ExtResource("2_ubphw")
+script = ExtResource("2_jthv3")
 type = 0
 time = 0.0
 target_type = 1
@@ -33,19 +33,20 @@ params = []
 nb_random_effects = 0
 direction = 0
 is_attirance = false
-amounts = Array[ExtResource("1_xmek4")]([SubResource("Resource_entft")])
+is_poison_carac = false
+amounts = Array[ExtResource("1_kj08b")]([SubResource("Resource_entft")])
 visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_4y8is"]
-script = ExtResource("1_xmek4")
-_min = -5
-_max = -5
-_min_crit = -5
-_max_crit = -5
+script = ExtResource("1_kj08b")
+_min = -10
+_max = -10
+_min_crit = -20
+_max_crit = -20
 
 [sub_resource type="Resource" id="Resource_2jvwn"]
 resource_name = "Malus Dommages"
-script = ExtResource("2_ubphw")
+script = ExtResource("2_jthv3")
 type = 1
 time = 5.0
 target_type = 1
@@ -64,19 +65,20 @@ params = []
 nb_random_effects = 0
 direction = 0
 is_attirance = false
-amounts = Array[ExtResource("1_xmek4")]([SubResource("Resource_4y8is")])
+is_poison_carac = false
+amounts = Array[ExtResource("1_kj08b")]([SubResource("Resource_4y8is")])
 visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_o7vh8"]
-script = ExtResource("1_xmek4")
-_min = 1
-_max = 1
-_min_crit = 1
-_max_crit = 1
+script = ExtResource("1_kj08b")
+_min = 2
+_max = 2
+_min_crit = 2
+_max_crit = 2
 
 [sub_resource type="Resource" id="Resource_6kgdp"]
 resource_name = "Poussée"
-script = ExtResource("2_ubphw")
+script = ExtResource("2_jthv3")
 type = 9
 time = 0.0
 target_type = 1
@@ -95,21 +97,22 @@ params = []
 nb_random_effects = 0
 direction = 0
 is_attirance = false
-amounts = Array[ExtResource("1_xmek4")]([SubResource("Resource_o7vh8")])
+is_poison_carac = false
+amounts = Array[ExtResource("1_kj08b")]([SubResource("Resource_o7vh8")])
 visible_in_description = true
 
 [resource]
-script = ExtResource("1_y1ikn")
+script = ExtResource("3_6r4yx")
 id = 13108
 name = "Intimidation"
 available = true
 description = "Occasionne des dommages dans le meilleur élément d'attaque du lanceur en mélée.
 Repousse la cible et réduit ses dommages."
-texture = ExtResource("4_2485n")
+texture = ExtResource("4_eff6x")
 img_url = "https://api.dofusdb.fr/img/spells/sort_11835.png"
-level = 1
+level = 10
 pa_cost = 2
 per_crit = 0.05
 cooldown = 0.0
 priority = 0
-effects = Array[ExtResource("2_ubphw")]([SubResource("Resource_n3ndv"), SubResource("Resource_2jvwn"), SubResource("Resource_6kgdp")])
+effects = Array[ExtResource("2_jthv3")]([SubResource("Resource_n3ndv"), SubResource("Resource_2jvwn"), SubResource("Resource_6kgdp")])

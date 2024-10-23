@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://c8qgk3wipgcwy"]
 
-[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_f31yg"]
-[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_x7lxn"]
-[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_w004s"]
-[ext_resource type="Texture2D" uid="uid://b8i6q105jk7s6" path="res://assets/spells/iop/sort_13328.png" id="4_5dsyl"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_xgtpt"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_35k3q"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="3_4sdnr"]
+[ext_resource type="Texture2D" uid="uid://b8i6q105jk7s6" path="res://assets/spells/iop/sort_13328.png" id="4_l0dwk"]
 
 [sub_resource type="Resource" id="Resource_66yui"]
-script = ExtResource("1_f31yg")
+script = ExtResource("1_xgtpt")
 _min = 6
 _max = 8
 _min_crit = 9
@@ -14,7 +14,7 @@ _max_crit = 11
 
 [sub_resource type="Resource" id="Resource_isjgx"]
 resource_name = "Dommages Air"
-script = ExtResource("2_w004s")
+script = ExtResource("2_35k3q")
 type = 0
 time = 0.0
 target_type = 9
@@ -26,17 +26,19 @@ lifesteal = false
 level_pourcentage = false
 caracteristic = 0
 pourcentage = false
+retrait_vol = false
 method_name = &""
 effect_label = ""
 params = []
 nb_random_effects = 0
 direction = 0
 is_attirance = false
-amounts = Array[ExtResource("1_f31yg")]([SubResource("Resource_66yui")])
+is_poison_carac = false
+amounts = Array[ExtResource("1_xgtpt")]([SubResource("Resource_66yui")])
 visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_472ou"]
-script = ExtResource("1_f31yg")
+script = ExtResource("1_xgtpt")
 _min = 1
 _max = 1
 _min_crit = 1
@@ -44,7 +46,7 @@ _max_crit = 1
 
 [sub_resource type="Resource" id="Resource_0ts6y"]
 resource_name = "Poussée"
-script = ExtResource("2_w004s")
+script = ExtResource("2_35k3q")
 type = 9
 time = 0.0
 target_type = 9
@@ -56,26 +58,28 @@ lifesteal = false
 level_pourcentage = false
 caracteristic = 0
 pourcentage = false
+retrait_vol = false
 method_name = &""
 effect_label = ""
 params = []
 nb_random_effects = 0
 direction = 0
 is_attirance = false
-amounts = Array[ExtResource("1_f31yg")]([SubResource("Resource_472ou")])
+is_poison_carac = false
+amounts = Array[ExtResource("1_xgtpt")]([SubResource("Resource_472ou")])
 visible_in_description = true
 
 [resource]
-script = ExtResource("1_x7lxn")
+script = ExtResource("3_4sdnr")
 id = 13116
 name = "Souffle"
 available = true
 description = "Occasionne des dommages Air aux ennemis et les repousse autour de la case ciblée."
-texture = ExtResource("4_5dsyl")
+texture = ExtResource("4_l0dwk")
 img_url = "https://api.dofusdb.fr/img/spells/sort_13328.png"
-level = 20
+level = 25
 pa_cost = 2
 per_crit = 0.1
 cooldown = 0.0
 priority = 0
-effects = Array[ExtResource("2_w004s")]([SubResource("Resource_isjgx"), SubResource("Resource_0ts6y")])
+effects = Array[ExtResource("2_35k3q")]([SubResource("Resource_isjgx"), SubResource("Resource_0ts6y")])

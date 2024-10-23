@@ -34,6 +34,9 @@ params = []
 nb_random_effects = 0
 direction = 0
 is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
 amounts = Array[ExtResource("1_itil2")]([SubResource("Resource_ni8d2")])
 visible_in_description = true
 
@@ -41,7 +44,7 @@ visible_in_description = true
 script = ExtResource("1_x7twb")
 id = 13156
 name = "Fureur"
-available = true
+available = false
 description = "Occasionne des dommages Terre.
 Les dommages du sort sont augmentés après chaque lancer. "
 texture = ExtResource("3_2f7d2")
