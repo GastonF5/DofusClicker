@@ -130,7 +130,7 @@ func init_buff(spell_res: SpellResource, buff: Buff):
 	compute_name_label(spell_res.name, spell_res.id)
 	clear_effects()
 	for effect_name in buff._effects:
-		add_buff_label(buff._effects[effect_name][0], buff._effects[effect_name][1], buff._timers)
+		add_buff_label(buff, effect_name)
 	set_mouse_ignore()
 	visible = true
 
@@ -211,30 +211,32 @@ func add_spell_effect_label(effect_res: EffectResource):
 	effects_container.add_child(label)
 
 
-func add_buff_label(effect_res: EffectResource, amount: int, timers: Dictionary):
+func add_buff_label(buff: Buff, effect_name: String):
 	var label = Label.new()
-	var poison_count = timers[effect_res.resource_name][1]
-	if effect_res.type == EffectType.POISON:
-		if effect_res.is_poison_carac:
-			label.text = "1 %s utilisé fait perdre %d PV" % [effect_res.get_caracteristic_label(), amount]
+	var effect = buff.get_effect(effect_name)
+	var amount = buff.get_amount(effect_name)
+	var poison_count = buff.get_count(effect_name)
+	if effect.type == EffectType.POISON:
+		if effect.is_poison_carac:
+			label.text = "1 %s utilisé fait perdre %d PV" % [effect.get_caracteristic_label(), amount]
 		else:
-			label.text = "%d Poison %s (%d fois restante%s)" % [amount, effect_res.get_element_label(), poison_count, "s" if poison_count > 1 else ""]
-	elif effect_res.type == EffectType.INVISIBILITE:
+			label.text = "%d Poison %s (%d fois restante%s)" % [amount, effect.get_element_label(), poison_count, "s" if poison_count > 1 else ""]
+	elif effect.type == EffectType.INVISIBILITE:
 		label.text = "Invisible"
-	elif effect_res.type == EffectType.AVEUGLE:
+	elif effect.type == EffectType.AVEUGLE:
 		label.text = "Aveuglé"
-	elif effect_res.type == EffectType.BONUS:
-		label.text = effect_res.get_effect_label(0, amount)
+	elif effect.type == EffectType.BONUS:
+		label.text = effect.get_effect_label(0, amount)
 	else:
-		var is_pourcentage_charac = effect_res.caracteristic in [Caracteristique.Type.DO_SORTS, Caracteristique.Type.RES_DOMMAGES]
+		var is_pourcentage_charac = effect.caracteristic in [Caracteristique.Type.DO_SORTS, Caracteristique.Type.RES_DOMMAGES]
 		label.text = str(amount)
 		if is_pourcentage_charac:
 			label.text += "%"
-		label.text += " " + effect_res.get_caracteristic_label()
+		label.text += " " + effect.get_caracteristic_label()
 	label.text += " - ()"
-	label.add_theme_color_override("font_color", effect_res.get_label_color())
+	label.add_theme_color_override("font_color", effect.get_label_color())
 	effects_container.add_child(label)
-	_labels[effect_res.resource_name] = [timers[effect_res.resource_name][0], label]
+	_labels[effect_name] = [buff.get_timer(effect_name), label]
 
 
 func set_effect_visibility(is_effect_visible: bool):

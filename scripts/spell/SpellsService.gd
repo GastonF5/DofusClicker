@@ -69,7 +69,7 @@ static func perform_effect(caster: Entity, plate: EntityContainer, effect: Effec
 						callable.bindv([caster, tar, effect, crit, grade]).call()
 
 
-static func perform_damage(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
+static func perform_damage(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int, is_poison := false):
 	var element = effect.element
 	var amount: int
 	if element == Element.BEST:
@@ -81,7 +81,7 @@ static func perform_damage(caster: Entity, target: Entity, effect: EffectResourc
 	if crit:
 		amount += caster.get_do_crit()
 	amount = target.take_damage(amount - target.returned_damage, element)
-	effects_log.append([EffectType.DAMAGE, target, amount, element, target.dying, false])
+	effects_log.append([EffectType.DAMAGE, target, amount, element, target.dying, is_poison])
 	if effect.lifesteal:
 		var soin = -round(amount / 2.0)
 		caster.take_damage(soin, element)
@@ -557,4 +557,15 @@ static func add_buff_effect(target: Entity, effect: EffectResource, amount: int)
 	if effects_buff[target].has(effect.resource_name):
 		log.debug("Attention ! Le sort lancé contient deux effets avec le même nom : %s" % effect.resource_name)
 	effects_buff[target][effect.resource_name] = [effect, amount]
+
+
+static func do_poison_effect(caster: Entity, target: Entity, effect: EffectResource, amount: int):
+	var new_effect = effect.duplicate(true)
+	new_effect.amounts.assign([])
+	new_effect.amounts.append(AmountResource.new())
+	new_effect.amounts[0].add(amount)
+	perform_damage(caster, target, new_effect, false, 0, true)
+	console.log_effects(effects_log)
+	console.output.add_separator()
+	effects_log.clear()
 #endregion
