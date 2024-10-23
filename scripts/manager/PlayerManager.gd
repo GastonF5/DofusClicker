@@ -88,7 +88,11 @@ func init_spells():
 		spell.queue_free()
 	var selected_class = Globals.class_peeker.classes[Globals.selected_class]
 	var spells = FileLoader.get_spell_resources(selected_class)
-	spells.sort_custom(func(a, b): return a.level <= b.level)
+	spells.sort_custom(
+		func(a, b):
+			if a.level == b.level:
+				return a.priority > b.priority
+			return a.level <= b.level)
 	var spell_bar_spells = Globals.spell_bar.get_spells()
 	for spell_res in spells:
 		var spell_button: SpellButton = FileLoader.get_packed_scene("spell/spell_button").instantiate()

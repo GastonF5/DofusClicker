@@ -85,5 +85,5 @@ level = 1
 pa_cost = 3
 per_crit = 0.15
 cooldown = 0.0
-priority = 0
+priority = 2
 effects = Array[ExtResource("2_ag2cj")]([SubResource("Resource_ju3my"), SubResource("Resource_vsvd3")])

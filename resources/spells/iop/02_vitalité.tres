@@ -51,5 +51,5 @@ level = 1
 pa_cost = 2
 per_crit = 0.25
 cooldown = 30.0
-priority = 0
+priority = 1
 effects = Array[ExtResource("2_ykgnw")]([SubResource("Resource_ibik3")])

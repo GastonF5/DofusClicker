@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://bwqaxl5a4esrd"]
 
-[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_u5ncn"]
-[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_ufb07"]
-[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_s0kiu"]
-[ext_resource type="Texture2D" uid="uid://0g3flgvy0bar" path="res://assets/spells/sacrieur/sort_11950.png" id="4_rtbt6"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_maqgu"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_o8sl0"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="3_p3i1f"]
+[ext_resource type="Texture2D" uid="uid://0g3flgvy0bar" path="res://assets/spells/sacrieur/sort_11950.png" id="4_7d2ht"]
 
 [sub_resource type="Resource" id="Resource_1ob15"]
-script = ExtResource("1_u5ncn")
+script = ExtResource("1_maqgu")
 _min = 12
 _max = 14
 _min_crit = 15
@@ -14,7 +14,7 @@ _max_crit = 17
 
 [sub_resource type="Resource" id="Resource_36ths"]
 resource_name = "Dommages Eau"
-script = ExtResource("2_s0kiu")
+script = ExtResource("2_o8sl0")
 type = 0
 time = 0.0
 target_type = 1
@@ -36,11 +36,11 @@ is_attirance = false
 nb_hits = 1
 is_poison_carac = false
 invoc_id = 0
-amounts = Array[ExtResource("1_u5ncn")]([SubResource("Resource_1ob15")])
+amounts = Array[ExtResource("1_maqgu")]([SubResource("Resource_1ob15")])
 visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_ngv2v"]
-script = ExtResource("1_u5ncn")
+script = ExtResource("1_maqgu")
 _min = -10
 _max = -10
 _min_crit = -10
@@ -48,7 +48,7 @@ _max_crit = -10
 
 [sub_resource type="Resource" id="Resource_2vq8b"]
 resource_name = "Malus Critique"
-script = ExtResource("2_s0kiu")
+script = ExtResource("2_o8sl0")
 type = 1
 time = 10.0
 target_type = 1
@@ -70,20 +70,20 @@ is_attirance = false
 nb_hits = 1
 is_poison_carac = false
 invoc_id = 0
-amounts = Array[ExtResource("1_u5ncn")]([SubResource("Resource_ngv2v")])
+amounts = Array[ExtResource("1_maqgu")]([SubResource("Resource_ngv2v")])
 visible_in_description = true
 
 [resource]
-script = ExtResource("1_ufb07")
+script = ExtResource("3_p3i1f")
 id = 12728
 name = "Stase"
 available = true
 description = "Vole de la vie dans l'élément Eau et réduit les chances de Critique."
-texture = ExtResource("4_rtbt6")
+texture = ExtResource("4_7d2ht")
 img_url = "https://api.dofusdb.fr/img/spells/sort_11950.png"
-level = 6
+level = 3
 pa_cost = 3
 per_crit = 0.15
 cooldown = 0.0
 priority = 0
-effects = Array[ExtResource("2_s0kiu")]([SubResource("Resource_36ths"), SubResource("Resource_2vq8b")])
+effects = Array[ExtResource("2_o8sl0")]([SubResource("Resource_36ths"), SubResource("Resource_2vq8b")])

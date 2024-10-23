@@ -7,9 +7,9 @@
 
 [sub_resource type="Resource" id="Resource_dsn6q"]
 script = ExtResource("1_2tv40")
-_min = 12
-_max = 14
-_min_crit = 15
+_min = 10
+_max = 12
+_min_crit = 13
 _max_crit = 15
 
 [sub_resource type="Resource" id="Resource_uvppw"]
@@ -17,7 +17,7 @@ resource_name = "Dommages"
 script = ExtResource("2_dflwe")
 type = 0
 time = 0.0
-target_type = 1
+target_type = 2
 show_time = false
 effective_zone = 1
 has_grades = false
@@ -44,12 +44,12 @@ script = ExtResource("3_ey61j")
 id = 12740
 name = "Folie Sanguinaire"
 available = true
-description = "Vole de la vie dans le meilleur élément d'attaque du lanceur en mêlée."
+description = "Vole de la vie dans le meilleur élément d'attaque du lanceur en zone en mêlée."
 texture = ExtResource("4_vtxlf")
 img_url = "https://api.dofusdb.fr/img/spells/sort_11979.png"
-level = 1
+level = 10
 pa_cost = 2
 per_crit = 0.15
-cooldown = 4.0
+cooldown = 5.0
 priority = 0
 effects = Array[ExtResource("2_dflwe")]([SubResource("Resource_uvppw")])

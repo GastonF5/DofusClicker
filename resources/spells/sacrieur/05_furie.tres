@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://igpg78x60j14"]
 
-[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_xmsy3"]
-[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_b30f7"]
-[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="3_ut4sc"]
-[ext_resource type="Texture2D" uid="uid://cp2uffoinl2xn" path="res://assets/spells/sacrieur/sort_11949.png" id="4_3clgq"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_p2tj7"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_4er2u"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="3_itojt"]
+[ext_resource type="Texture2D" uid="uid://cp2uffoinl2xn" path="res://assets/spells/sacrieur/sort_11949.png" id="4_01c8p"]
 
 [sub_resource type="Resource" id="Resource_3sln7"]
-script = ExtResource("1_xmsy3")
+script = ExtResource("1_p2tj7")
 _min = 11
 _max = 13
 _min_crit = 14
@@ -14,7 +14,7 @@ _max_crit = 16
 
 [sub_resource type="Resource" id="Resource_ms5yn"]
 resource_name = "Dommages Air"
-script = ExtResource("2_b30f7")
+script = ExtResource("2_4er2u")
 type = 0
 time = 0.0
 target_type = 2
@@ -36,11 +36,11 @@ is_attirance = false
 nb_hits = 1
 is_poison_carac = false
 invoc_id = 0
-amounts = Array[ExtResource("1_xmsy3")]([SubResource("Resource_3sln7")])
+amounts = Array[ExtResource("1_p2tj7")]([SubResource("Resource_3sln7")])
 visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_ytxf7"]
-script = ExtResource("1_xmsy3")
+script = ExtResource("1_p2tj7")
 _min = 0
 _max = 0
 _min_crit = 0
@@ -48,7 +48,7 @@ _max_crit = 0
 
 [sub_resource type="Resource" id="Resource_g2ppo"]
 resource_name = "Spécial PM"
-script = ExtResource("2_b30f7")
+script = ExtResource("2_4er2u")
 type = 3
 time = 10.0
 target_type = 0
@@ -70,20 +70,20 @@ is_attirance = false
 nb_hits = 1
 is_poison_carac = false
 invoc_id = 0
-amounts = Array[ExtResource("1_xmsy3")]([SubResource("Resource_ytxf7")])
+amounts = Array[ExtResource("1_p2tj7")]([SubResource("Resource_ytxf7")])
 visible_in_description = true
 
 [resource]
-script = ExtResource("3_ut4sc")
+script = ExtResource("3_itojt")
 id = 12723
 name = "Furie"
 available = true
 description = "Occasionne des dommages Air en zone. Augmente les PM en fonction du nombre d'ennemis touchés."
-texture = ExtResource("4_3clgq")
+texture = ExtResource("4_01c8p")
 img_url = "https://api.dofusdb.fr/img/spells/sort_11949.png"
-level = 15
+level = 6
 pa_cost = 3
 per_crit = 0.15
 cooldown = 15.0
 priority = 0
-effects = Array[ExtResource("2_b30f7")]([SubResource("Resource_ms5yn"), SubResource("Resource_g2ppo")])
+effects = Array[ExtResource("2_4er2u")]([SubResource("Resource_ms5yn"), SubResource("Resource_g2ppo")])

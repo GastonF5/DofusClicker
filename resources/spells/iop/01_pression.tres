@@ -119,5 +119,5 @@ level = 1
 pa_cost = 3
 per_crit = 0.1
 cooldown = 0.0
-priority = 0
+priority = 2
 effects = Array[ExtResource("2_ywfm6")]([SubResource("Resource_3x0as"), SubResource("Resource_6lmpg"), SubResource("Resource_naf62")])

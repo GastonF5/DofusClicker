@@ -51,5 +51,5 @@ level = 1
 pa_cost = 1
 per_crit = 0.0
 cooldown = 0.0
-priority = 0
+priority = 2
 effects = Array[ExtResource("2_s01kr")]([SubResource("Resource_mvufy")])

@@ -36,7 +36,7 @@ var roles_par_classe = {
 	1: [], 2: [], 3: [],
 	4: [], 5: [], 6: [6, 5, 4],
 	7: [], 8: [5, 8, 3], 9: [5, 8, 1],
-	10: [], 11: [2, 5, 6], 12: [],
+	10: [], 11: [2, 6, 5], 12: [],
 	13: [], 14: [], 15: [],
 	16: [], 17: [], 18: [],
 	19: [],
@@ -127,7 +127,11 @@ func init_roles(class_id: int):
 
 func init_spells(class_id: int):
 	var spell_resources = FileLoader.get_spell_resources(classes[class_id].to_lower())
-	spell_resources.sort_custom(func(a, b): return a.level <= b.level)
+	spell_resources.sort_custom(
+		func(a, b):
+			if a.level == b.level:
+				return a.priority > b.priority
+			return a.level <= b.level)
 	for spell_res in spell_resources:
 		var nspell = TextureRect.new()
 		await spell_res.load_texture()
