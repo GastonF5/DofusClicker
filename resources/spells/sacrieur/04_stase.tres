@@ -7,10 +7,10 @@
 
 [sub_resource type="Resource" id="Resource_1ob15"]
 script = ExtResource("1_maqgu")
-_min = 12
-_max = 14
-_min_crit = 15
-_max_crit = 17
+_min = 13
+_max = 15
+_min_crit = 16
+_max_crit = 18
 
 [sub_resource type="Resource" id="Resource_36ths"]
 resource_name = "Dommages Eau"
