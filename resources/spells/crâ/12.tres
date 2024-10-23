@@ -33,6 +33,7 @@ params = []
 nb_random_effects = 0
 direction = 0
 is_attirance = false
+is_poison_carac = false
 amounts = Array[ExtResource("1_ccee7")]([SubResource("Resource_mfhia")])
 visible_in_description = true
 
@@ -64,6 +65,7 @@ params = []
 nb_random_effects = 0
 direction = 0
 is_attirance = false
+is_poison_carac = false
 amounts = Array[ExtResource("1_ccee7")]([SubResource("Resource_1tr73")])
 visible_in_description = true
 

@@ -7,10 +7,10 @@
 
 [sub_resource type="Resource" id="Resource_ileku"]
 script = ExtResource("1_8mohg")
-_min = 40
-_max = 40
-_min_crit = 70
-_max_crit = 70
+_min = 150
+_max = 150
+_min_crit = 180
+_max_crit = 180
 
 [sub_resource type="Resource" id="Resource_eeefx"]
 resource_name = "Bonus Puissance"
@@ -33,15 +33,16 @@ params = []
 nb_random_effects = 0
 direction = 0
 is_attirance = false
+is_poison_carac = false
 amounts = Array[ExtResource("1_8mohg")]([SubResource("Resource_ileku")])
 visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_q0kv6"]
 script = ExtResource("1_8mohg")
-_min = 20
-_max = 20
-_min_crit = 30
-_max_crit = 30
+_min = 40
+_max = 40
+_min_crit = 60
+_max_crit = 60
 
 [sub_resource type="Resource" id="Resource_u3jwc"]
 resource_name = "Bonus Do Pou"
@@ -64,6 +65,7 @@ params = []
 nb_random_effects = 0
 direction = 0
 is_attirance = false
+is_poison_carac = false
 amounts = Array[ExtResource("1_8mohg")]([SubResource("Resource_q0kv6")])
 visible_in_description = true
 
@@ -76,7 +78,7 @@ description = "Augmente la Puissance et les Dommages Poussée."
 texture = ExtResource("2_qhqqr")
 img_url = "https://api.beta.dofusdb.fr/img/spells/sort_11887.png"
 level = 15
-pa_cost = 2
+pa_cost = 3
 per_crit = 0.25
 cooldown = 15.0
 priority = 0
