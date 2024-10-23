@@ -7,8 +7,8 @@
 
 [sub_resource type="Resource" id="Resource_v6hsl"]
 script = ExtResource("2_rnu7i")
-_min = 6
-_max = 8
+_min = 3
+_max = 5
 _min_crit = 0
 _max_crit = 0
 
@@ -33,7 +33,9 @@ params = []
 nb_random_effects = 0
 direction = 0
 is_attirance = false
+nb_hits = 1
 is_poison_carac = false
+invoc_id = 0
 amounts = Array[ExtResource("2_rnu7i")]([SubResource("Resource_v6hsl")])
 visible_in_description = true
 
