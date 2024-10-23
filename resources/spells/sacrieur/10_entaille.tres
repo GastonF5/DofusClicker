@@ -41,10 +41,10 @@ visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_tjrg7"]
 script = ExtResource("1_kej0b")
-_min = 22
-_max = 24
-_min_crit = 25
-_max_crit = 27
+_min = 47
+_max = 51
+_min_crit = 56
+_max_crit = 61
 
 [sub_resource type="Resource" id="Resource_lvg48"]
 resource_name = "Dommages Terre"

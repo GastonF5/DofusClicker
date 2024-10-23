@@ -70,7 +70,6 @@ is_attirance = false
 nb_hits = 1
 is_poison_carac = false
 invoc_id = 0
-amounts = Array[ExtResource("1_1be7r")]([SubResource("Resource_axxyn")])
 visible_in_description = true
 
 [resource]
