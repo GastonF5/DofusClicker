@@ -58,7 +58,12 @@ func get_spell_resources(_class: String) -> Array[SpellResource]:
 	spell_asset_paths.sort_custom(func(a, b): return int(a.get_file()[0]) < int(b.get_file()[0]))
 	for path in spell_asset_paths:
 		spells_res.append(load(path))
-	return spells_res.filter(func(s): return s.available)
+	return spells_res.filter(
+		func(s):
+			if s:
+				return s.available
+			log.error("Le sort n'a pas pu être chargé")
+			return false)
 
 
 func get_packed_scene(scene_path: String) -> PackedScene:
