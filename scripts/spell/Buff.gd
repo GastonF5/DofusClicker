@@ -17,10 +17,6 @@ static func instantiate(spell_res: SpellResource, effects_amounts: Dictionary, p
 	return buff
 
 
-static func get_poison_carac_effects(buff: Buff) -> Array:
-	return buff._effects.values().filter(func(e): return e[0].is_poison_carac).map(func(e): return e + [buff._caster])
-
-
 @export var spell_texture: TextureRect
 @export var pb: ProgressBar
 
@@ -34,6 +30,7 @@ var _effects := {}
 signal annuler
 
 
+# region Utilitaires
 func get_effect(effect_name: String) -> EffectResource:
 	return _effects[effect_name][0]
 
@@ -69,6 +66,13 @@ func get_effects() -> Array[EffectResource]:
 	var effects: Array[EffectResource] = []
 	effects.assign(_effects.keys().map(get_effect))
 	return effects
+# endregion
+
+
+func get_poison_carac_effects() -> Array[EffectResource]:
+	var buffs: Array[EffectResource] = []
+	buffs.assign(get_effects().filter(func(e): return e.is_poison_carac))
+	return buffs
 
 
 func init(spell_res: SpellResource):
@@ -126,11 +130,11 @@ func end_of_effect(effect_name: String, can_renouveler := true):
 
 
 func cancel_effect(effect_name: String):
-	var effect = _effects[effect_name][0]
-	var amount = _effects[effect_name][1]
+	var effect = get_effect(effect_name)
+	var amount = get_amount(effect_name)
 	if effect.type in [EffectType.BONUS, EffectType.INVISIBILITE, EffectType.AVEUGLE]:
 		SpellsService.annuler_bonus(self, _parent, effect, amount)
-	if effect.type == EffectType.POISON:
+	elif effect.type == EffectType.POISON:
 		SpellsService.do_poison_effect(_caster, _parent, effect, amount)
 
 

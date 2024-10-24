@@ -49,18 +49,16 @@ func init(res: SpellResource, _draggable: bool):
 
 
 func do_action():
-	if resource.pa_cost <= PlayerManager.pa_bar.cval and PlayerManager.selected_plate and !timer:
+	var player_entity = PlayerManager.player_entity
+	var selected_plate = PlayerManager.selected_plate
+	if resource.pa_cost <= PlayerManager.pa_bar.cval and selected_plate and !timer:
 		if resource.pa_cost != 0:
 			PlayerManager.pa_bar.cval -= resource.pa_cost
-		var poison_logs = PlayerManager.player_entity.apply_poison(resource.pa_cost, Caracteristique.Type.PA)
-		cast(poison_logs, [])
+		player_entity.apply_carac_poison(resource.pa_cost, Caracteristique.Type.PA)
+		SpellsService.perform_spell(player_entity, selected_plate, resource, 0)
 		if resource.cooldown != 0:
-			timer = SpellsService.create_timer(resource.cooldown, "%sTimer" % resource.name.to_pascal_case())
+			timer = SpellsService.create_timer(resource.cooldown, "%sTimer" % resource.name.to_pascal_case(), self)
 			timer.timeout.connect(delete_timer)
-
-
-func cast(logs_before: Array, logs_after: Array):
-	SpellsService.perform_spell(PlayerManager.player_entity, PlayerManager.selected_plate, resource, 0, logs_before, logs_after)
 
 
 static func instantiate(spell_res: SpellResource, parent: Control, clickable = true) -> Spell:
