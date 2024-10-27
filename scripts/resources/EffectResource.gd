@@ -31,6 +31,7 @@ enum TargetType {
 	ALL,
 	AROUND,
 	TARGET_AROUND,
+	COLUMN,
 }
 
 enum Direction { UP, DOWN, LEFT, RIGHT, NONE }
