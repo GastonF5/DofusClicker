@@ -158,6 +158,8 @@ func get_effect_label(grade: int, amount: int = _INF) -> String:
 			else:
 				result += "%s dommages %s"
 			result = result % [get_amount_label(grade, amount), get_element_label()]
+		Type.POISON:
+			result += "%s Poison %s" % [get_amount_label(grade, amount), get_element_label()]
 		Type.SOIN:
 			result += "%s soins %s" % [get_amount_label(grade, amount), get_element_label()]
 		Type.BONUS:
@@ -194,6 +196,8 @@ func get_effect_label(grade: int, amount: int = _INF) -> String:
 			result += "Rend invisible"
 		Type.AVEUGLE:
 			result += "Rend aveugle"
+		Type.INVOCATION:
+			result += "Invoque : %s" % Datas._monsters[invoc_id].name
 		_:
 			return "ERREUR"
 	if show_time or amount != _INF:
@@ -201,6 +205,8 @@ func get_effect_label(grade: int, amount: int = _INF) -> String:
 			result += " (infini)"
 		else:
 			result += " (%d secondes)" % time
+	if type == Type.POISON:
+		result += " (%d fois)" % nb_hits
 	if amount == _INF:
 		match effective_zone:
 			Zone.MELEE:
@@ -219,7 +225,6 @@ func compute_special_label(grade: int) -> String:
 				label = label.replace("{param%d}" % i, eff_label)
 			if params[i] is int:
 				label = label.replace("{param%d}" % i, str(params[i]))
-		return label
 	if ["{min}", "{max}", "{min_crit}", "{max_crit}", "{time}"].any(func(e): return effect_label.contains(e)):
 		var m = amounts[grade]
 		label = label.replace("{min}", str(m._min))
@@ -228,7 +233,6 @@ func compute_special_label(grade: int) -> String:
 		label = label.replace("{max_crit}", str(m._max_crit))
 		label = label.replace("{elem}", get_element_label())
 		label = label.replace("{time}", "(%d secondes)" % time)
-		return label
 	if label != "":
 		return label
 	return "ERREUR"
