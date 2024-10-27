@@ -7,7 +7,7 @@
 script = ExtResource("1_bwj75")
 id = 13068
 name = "Flèche de Concentration"
-available = true
+available = false
 description = "Attire les cibles vers le centre et occasionne des dommages Air aux ennemis sur les cases centrales."
 texture = ExtResource("2_haban")
 img_url = "https://api.beta.dofusdb.fr/img/spells/sort_11900.png"

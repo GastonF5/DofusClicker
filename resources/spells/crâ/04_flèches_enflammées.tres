@@ -1,0 +1,89 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://bv5b6mgsbfg5p"]
+
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_6mx4e"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_ekxit"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_ytx1o"]
+[ext_resource type="Texture2D" uid="uid://c4g2y78gnlmtt" path="res://assets/spells/crâ/sort_11880.png" id="3_db41a"]
+
+[sub_resource type="Resource" id="Resource_eseie"]
+script = ExtResource("1_ekxit")
+_min = 17
+_max = 19
+_min_crit = 20
+_max_crit = 23
+
+[sub_resource type="Resource" id="Resource_yxlcc"]
+resource_name = "Dommages Feu"
+script = ExtResource("1_6mx4e")
+type = 0
+time = 0.0
+target_type = 11
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 2
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_ekxit")]([SubResource("Resource_eseie")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_ol70f"]
+script = ExtResource("1_ekxit")
+_min = 1
+_max = 1
+_min_crit = 1
+_max_crit = 1
+
+[sub_resource type="Resource" id="Resource_caqoe"]
+resource_name = "Poussée"
+script = ExtResource("1_6mx4e")
+type = 9
+time = 0.0
+target_type = 11
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_ekxit")]([SubResource("Resource_ol70f")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_ytx1o")
+id = 13051
+name = "Flèches Enflammées"
+available = true
+description = "Occasionne des dommages Feu aux ennemis et repousse les cibles en colonne."
+texture = ExtResource("3_db41a")
+img_url = "https://api.dofusdb.fr/img/spells/sort_11880.png"
+level = 3
+pa_cost = 3
+per_crit = 0.1
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("1_6mx4e")]([SubResource("Resource_yxlcc"), SubResource("Resource_caqoe")])

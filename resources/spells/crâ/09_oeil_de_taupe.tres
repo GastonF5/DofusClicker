@@ -1,0 +1,82 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=8 format=3 uid="uid://btrtw1740shqy"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_753t3"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_f2mgr"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_7q73j"]
+[ext_resource type="Texture2D" uid="uid://crhpjinx11h26" path="res://assets/spells/crâ/sort_13293.png" id="4_3wvou"]
+
+[sub_resource type="Resource" id="Resource_eos0m"]
+script = ExtResource("1_753t3")
+_min = 15
+_max = 17
+_min_crit = 18
+_max_crit = 21
+
+[sub_resource type="Resource" id="Resource_h42s6"]
+resource_name = "Dommages Eau"
+script = ExtResource("2_7q73j")
+type = 0
+time = 0.0
+target_type = 2
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 3
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_753t3")]([SubResource("Resource_eos0m")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_eibuu"]
+resource_name = "Aveuglement"
+script = ExtResource("2_7q73j")
+type = 11
+time = 8.0
+target_type = 2
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_753t3")]([])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_f2mgr")
+id = 13054
+name = "Œil de Taupe"
+available = true
+description = "Occasionne des dommages Eau, rend les cibles aveugles et dévoile les invisibles en zone."
+texture = ExtResource("4_3wvou")
+img_url = "https://api.dofusdb.fr/img/spells/sort_13293.png"
+level = 25
+pa_cost = 3
+per_crit = 0.1
+cooldown = 8.0
+priority = 0
+effects = Array[ExtResource("2_7q73j")]([SubResource("Resource_h42s6"), SubResource("Resource_eibuu")])

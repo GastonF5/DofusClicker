@@ -34,7 +34,9 @@ params = [8]
 nb_random_effects = 0
 direction = 0
 is_attirance = false
+nb_hits = 1
 is_poison_carac = false
+invoc_id = 0
 amounts = Array[ExtResource("1_2h7j0")]([SubResource("Resource_11asr")])
 visible_in_description = true
 

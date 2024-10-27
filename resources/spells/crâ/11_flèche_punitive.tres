@@ -1,0 +1,57 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://bhmgka78jsyo2"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_7k3t0"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_sokoj"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_52eph"]
+[ext_resource type="Texture2D" uid="uid://cm7jofxufakf7" path="res://assets/spells/crâ/sort_11886.png" id="2_v7m6f"]
+
+[sub_resource type="Resource" id="Resource_0lfke"]
+script = ExtResource("1_sokoj")
+_min = 21
+_max = 23
+_min_crit = 26
+_max_crit = 28
+
+[sub_resource type="Resource" id="Resource_w0qbh"]
+resource_name = "Dommages Terre"
+script = ExtResource("2_52eph")
+type = 3
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 1
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &"fleche_punitive"
+effect_label = "{min} à {max} ({min_crit} à {max_crit}) dommages {elem} (Mêlée)
+Augmente les dégâts de base du sort Flèche Punitive de {param0}"
+params = [23]
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_sokoj")]([SubResource("Resource_0lfke")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_7k3t0")
+id = 13057
+name = "Flèche Punitive"
+available = true
+description = "Occasionne des dommages Terre.
+Les dommages du sort sont augmentés après chaque lancer."
+texture = ExtResource("2_v7m6f")
+img_url = "https://api.dofusdb.fr/img/spells/sort_11886.png"
+level = 35
+pa_cost = 4
+per_crit = 0.25
+cooldown = 10.0
+priority = 0
+effects = Array[ExtResource("2_52eph")]([SubResource("Resource_w0qbh")])

@@ -410,6 +410,23 @@ static func fleche_assaillante(caster: Entity, plate: EntityContainer, effect: E
 	new_effect.amounts = effect.duplicate_amounts()
 	new_effect.amounts[grade].mult(bonus_puissance)
 	perform_bonus(caster, caster, new_effect, crit, grade)
+
+
+static func fleche_explosive(caster: Entity, plate: EntityContainer, effect: EffectResource, crit: bool, grade: int, _params: Array):
+	if plate.get_entity():
+		var new_effect = effect.duplicate(true)
+		new_effect.type = EffectType.DAMAGE
+		perform_effect(caster, plate, new_effect, crit, grade)
+
+
+static var fleche_punitive_adder := 0
+static func fleche_punitive(caster: Entity, plate: EntityContainer, effect: EffectResource, crit: bool, grade: int, params: Array):
+	var new_effect = effect.duplicate(true)
+	new_effect.amounts = effect.duplicate_amounts()
+	new_effect.amounts[grade].add(fleche_punitive_adder)
+	new_effect.type = EffectResource.Type.DAMAGE
+	perform_effect(caster, plate, new_effect, crit, grade)
+	fleche_punitive_adder += params[0]
 #endregion
 
 
@@ -556,6 +573,7 @@ static func is_effective_by_zone(zone: Zone):
 static func on_fight_end():
 	SpellsService.pugilat_adder = 0
 	SpellsService.fureur_adder = 0
+	SpellsService.fleche_punitive_adder = 0
 	SpellsService.tempete_de_puissance_last_target = null
 
 

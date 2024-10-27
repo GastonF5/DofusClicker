@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://wokhsib50oul"]
 
-[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_1r7si"]
-[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_cptt2"]
-[ext_resource type="Texture2D" uid="uid://bdbg0sgb2soi" path="res://assets/spells/crâ/sort_11888.png" id="2_ae2r1"]
-[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_qkykn"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_1goue"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_bmhxm"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="3_fdfch"]
+[ext_resource type="Texture2D" uid="uid://bdbg0sgb2soi" path="res://assets/spells/crâ/sort_11888.png" id="4_ih0ir"]
 
 [sub_resource type="Resource" id="Resource_yscvh"]
-script = ExtResource("1_cptt2")
+script = ExtResource("1_1goue")
 _min = 14
 _max = 16
 _min_crit = 18
@@ -14,7 +14,7 @@ _max_crit = 20
 
 [sub_resource type="Resource" id="Resource_tekeh"]
 resource_name = "Dommages Air"
-script = ExtResource("2_qkykn")
+script = ExtResource("2_bmhxm")
 type = 0
 time = 0.0
 target_type = 2
@@ -33,21 +33,23 @@ params = []
 nb_random_effects = 0
 direction = 0
 is_attirance = false
+nb_hits = 1
 is_poison_carac = false
-amounts = Array[ExtResource("1_cptt2")]([SubResource("Resource_yscvh")])
+invoc_id = 0
+amounts = Array[ExtResource("1_1goue")]([SubResource("Resource_yscvh")])
 visible_in_description = true
 
 [resource]
-script = ExtResource("1_1r7si")
+script = ExtResource("3_fdfch")
 id = 13059
 name = "Pluie de Flèches"
 available = true
 description = "Occasionne des dommages Air en zone à distance."
-texture = ExtResource("2_ae2r1")
+texture = ExtResource("4_ih0ir")
 img_url = "https://api.beta.dofusdb.fr/img/spells/sort_11888.png"
 level = 1
 pa_cost = 2
 per_crit = 0.15
 cooldown = 0.0
-priority = 0
-effects = Array[ExtResource("2_qkykn")]([SubResource("Resource_tekeh")])
+priority = 2
+effects = Array[ExtResource("2_bmhxm")]([SubResource("Resource_tekeh")])

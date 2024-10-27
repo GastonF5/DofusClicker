@@ -1,0 +1,89 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://bme264vwti6yw"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_0sjys"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_adf18"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_eb3gh"]
+[ext_resource type="Texture2D" uid="uid://boqwcx4xtdp60" path="res://assets/spells/crâ/sort_11889.png" id="3_78sqy"]
+
+[sub_resource type="Resource" id="Resource_fcv2b"]
+script = ExtResource("1_0sjys")
+_min = 2
+_max = 2
+_min_crit = 2
+_max_crit = 2
+
+[sub_resource type="Resource" id="Resource_3wrc7"]
+resource_name = "Retrait PM"
+script = ExtResource("1_eb3gh")
+type = 2
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 1
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_0sjys")]([SubResource("Resource_fcv2b")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_7631j"]
+script = ExtResource("1_0sjys")
+_min = 10
+_max = 12
+_min_crit = 12
+_max_crit = 14
+
+[sub_resource type="Resource" id="Resource_o4qle"]
+resource_name = "Poison Neutre"
+script = ExtResource("1_eb3gh")
+type = 5
+time = 3.0
+target_type = 1
+show_time = true
+effective_zone = 0
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 2
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_0sjys")]([SubResource("Resource_7631j")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_adf18")
+id = 13060
+name = "Flèche Empoisonnée"
+available = true
+description = "Retire des PM et applique un poison Neutre sur la cible."
+texture = ExtResource("3_78sqy")
+img_url = "https://api.dofusdb.fr/img/spells/sort_11889.png"
+level = 10
+pa_cost = 2
+per_crit = 0.05
+cooldown = 6.0
+priority = 0
+effects = Array[ExtResource("1_eb3gh")]([SubResource("Resource_3wrc7"), SubResource("Resource_o4qle")])

@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://bbt8jjokmx6k"]
 
-[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_hxcnp"]
-[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_xrc4u"]
-[ext_resource type="Texture2D" uid="uid://bb1yvmjx37230" path="res://assets/spells/crâ/sort_11877.png" id="2_0kbku"]
-[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_lka4x"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_qghsk"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_ya7x3"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="3_2ccne"]
+[ext_resource type="Texture2D" uid="uid://bb1yvmjx37230" path="res://assets/spells/crâ/sort_11877.png" id="4_i7joa"]
 
 [sub_resource type="Resource" id="Resource_hhmdd"]
-script = ExtResource("1_hxcnp")
+script = ExtResource("1_qghsk")
 _min = 3
 _max = 3
 _min_crit = 3
@@ -14,7 +14,7 @@ _max_crit = 3
 
 [sub_resource type="Resource" id="Resource_76it5"]
 resource_name = "Poussée"
-script = ExtResource("2_lka4x")
+script = ExtResource("2_ya7x3")
 type = 9
 time = 0.0
 target_type = 9
@@ -33,21 +33,23 @@ params = []
 nb_random_effects = 0
 direction = 0
 is_attirance = false
+nb_hits = 1
 is_poison_carac = false
-amounts = Array[ExtResource("1_hxcnp")]([SubResource("Resource_hhmdd")])
+invoc_id = 0
+amounts = Array[ExtResource("1_qghsk")]([SubResource("Resource_hhmdd")])
 visible_in_description = true
 
 [resource]
-script = ExtResource("1_xrc4u")
+script = ExtResource("3_2ccne")
 id = 13067
 name = "Flèche de Dispersion"
 available = true
 description = "Repousse les cibles autour de la case ciblée."
-texture = ExtResource("2_0kbku")
+texture = ExtResource("4_i7joa")
 img_url = "https://api.beta.dofusdb.fr/img/spells/sort_11877.png"
 level = 1
 pa_cost = 2
 per_crit = 0.0
 cooldown = 5.0
-priority = 0
-effects = Array[ExtResource("2_lka4x")]([SubResource("Resource_76it5")])
+priority = 1
+effects = Array[ExtResource("2_ya7x3")]([SubResource("Resource_76it5")])

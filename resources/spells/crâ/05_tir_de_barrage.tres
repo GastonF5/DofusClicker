@@ -1,0 +1,89 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://cshc3e2w6fxem"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_cpoai"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_fjbbv"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_5rjuc"]
+[ext_resource type="Texture2D" uid="uid://b75jmcjogpxa8" path="res://assets/spells/crâ/sort_11918.png" id="4_pv5mv"]
+
+[sub_resource type="Resource" id="Resource_ym10e"]
+script = ExtResource("1_cpoai")
+_min = 16
+_max = 18
+_min_crit = 19
+_max_crit = 22
+
+[sub_resource type="Resource" id="Resource_2nbnb"]
+resource_name = "Dommages Terre"
+script = ExtResource("2_5rjuc")
+type = 0
+time = 0.0
+target_type = 2
+show_time = false
+effective_zone = 1
+has_grades = false
+element = 1
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_cpoai")]([SubResource("Resource_ym10e")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_70605"]
+script = ExtResource("1_cpoai")
+_min = 1
+_max = 1
+_min_crit = 1
+_max_crit = 1
+
+[sub_resource type="Resource" id="Resource_rasf2"]
+resource_name = "Poussée"
+script = ExtResource("2_5rjuc")
+type = 9
+time = 0.0
+target_type = 2
+show_time = false
+effective_zone = 1
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_cpoai")]([SubResource("Resource_70605")])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_fjbbv")
+id = 13083
+name = "Tir de Barrage"
+available = true
+description = "Occasionne des dommages Terre aux ennemis et repousse les cibles en zone en mêlée."
+texture = ExtResource("4_pv5mv")
+img_url = "https://api.dofusdb.fr/img/spells/sort_11918.png"
+level = 6
+pa_cost = 3
+per_crit = 0.1
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_5rjuc")]([SubResource("Resource_2nbnb"), SubResource("Resource_rasf2")])

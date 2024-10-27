@@ -7,7 +7,7 @@
 script = ExtResource("1_vvo7y")
 id = 13066
 name = "Tirs Perçants"
-available = true
+available = false
 description = "Augmente les chances de Critique, les Dommages et les Dommages Critiques."
 texture = ExtResource("2_26ekr")
 img_url = "https://api.beta.dofusdb.fr/img/spells/sort_11884.png"

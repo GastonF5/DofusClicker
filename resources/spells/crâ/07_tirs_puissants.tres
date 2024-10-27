@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://cdeaiqg7x5bom"]
 
-[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_8mohg"]
-[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_bnwim"]
-[ext_resource type="Texture2D" uid="uid://dcbfre2yedja8" path="res://assets/spells/crâ/sort_11887.png" id="2_qhqqr"]
-[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_repke"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_e45jl"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_q4jq1"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="3_5ai7n"]
+[ext_resource type="Texture2D" uid="uid://dcbfre2yedja8" path="res://assets/spells/crâ/sort_11887.png" id="4_s6li6"]
 
 [sub_resource type="Resource" id="Resource_ileku"]
-script = ExtResource("1_8mohg")
+script = ExtResource("1_e45jl")
 _min = 150
 _max = 150
 _min_crit = 180
@@ -14,7 +14,7 @@ _max_crit = 180
 
 [sub_resource type="Resource" id="Resource_eeefx"]
 resource_name = "Bonus Puissance"
-script = ExtResource("2_repke")
+script = ExtResource("2_q4jq1")
 type = 1
 time = 15.0
 target_type = 0
@@ -33,12 +33,14 @@ params = []
 nb_random_effects = 0
 direction = 0
 is_attirance = false
+nb_hits = 1
 is_poison_carac = false
-amounts = Array[ExtResource("1_8mohg")]([SubResource("Resource_ileku")])
+invoc_id = 0
+amounts = Array[ExtResource("1_e45jl")]([SubResource("Resource_ileku")])
 visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_q0kv6"]
-script = ExtResource("1_8mohg")
+script = ExtResource("1_e45jl")
 _min = 40
 _max = 40
 _min_crit = 60
@@ -46,7 +48,7 @@ _max_crit = 60
 
 [sub_resource type="Resource" id="Resource_u3jwc"]
 resource_name = "Bonus Do Pou"
-script = ExtResource("2_repke")
+script = ExtResource("2_q4jq1")
 type = 1
 time = 15.0
 target_type = 0
@@ -65,21 +67,23 @@ params = []
 nb_random_effects = 0
 direction = 0
 is_attirance = false
+nb_hits = 1
 is_poison_carac = false
-amounts = Array[ExtResource("1_8mohg")]([SubResource("Resource_q0kv6")])
+invoc_id = 0
+amounts = Array[ExtResource("1_e45jl")]([SubResource("Resource_q0kv6")])
 visible_in_description = true
 
 [resource]
-script = ExtResource("1_bnwim")
+script = ExtResource("3_5ai7n")
 id = 13052
 name = "Tirs Puissants"
 available = true
 description = "Augmente la Puissance et les Dommages Poussée."
-texture = ExtResource("2_qhqqr")
+texture = ExtResource("4_s6li6")
 img_url = "https://api.beta.dofusdb.fr/img/spells/sort_11887.png"
 level = 15
 pa_cost = 3
 per_crit = 0.25
 cooldown = 15.0
 priority = 0
-effects = Array[ExtResource("2_repke")]([SubResource("Resource_eeefx"), SubResource("Resource_u3jwc")])
+effects = Array[ExtResource("2_q4jq1")]([SubResource("Resource_eeefx"), SubResource("Resource_u3jwc")])

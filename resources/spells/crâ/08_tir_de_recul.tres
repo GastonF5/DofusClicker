@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://dlny4yw1ilvwf"]
 
-[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_jsabs"]
-[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_w4gc6"]
-[ext_resource type="Texture2D" uid="uid://cmykq0p6xsdse" path="res://assets/spells/crâ/sort_11876.png" id="2_arcn3"]
-[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_iubdr"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_r07ir"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_60xtx"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="3_25bra"]
+[ext_resource type="Texture2D" uid="uid://cmykq0p6xsdse" path="res://assets/spells/crâ/sort_11876.png" id="4_2i18l"]
 
 [sub_resource type="Resource" id="Resource_btm55"]
-script = ExtResource("1_jsabs")
+script = ExtResource("1_r07ir")
 _min = 15
 _max = 17
 _min_crit = 18
@@ -14,12 +14,12 @@ _max_crit = 20
 
 [sub_resource type="Resource" id="Resource_a7a24"]
 resource_name = "Dommages Air"
-script = ExtResource("2_iubdr")
+script = ExtResource("2_60xtx")
 type = 0
 time = 0.0
 target_type = 1
 show_time = false
-effective_zone = 1
+effective_zone = 0
 has_grades = false
 element = 4
 lifesteal = false
@@ -33,12 +33,14 @@ params = []
 nb_random_effects = 0
 direction = 0
 is_attirance = false
+nb_hits = 1
 is_poison_carac = false
-amounts = Array[ExtResource("1_jsabs")]([SubResource("Resource_btm55")])
+invoc_id = 0
+amounts = Array[ExtResource("1_r07ir")]([SubResource("Resource_btm55")])
 visible_in_description = true
 
 [sub_resource type="Resource" id="Resource_aix7o"]
-script = ExtResource("1_jsabs")
+script = ExtResource("1_r07ir")
 _min = 2
 _max = 2
 _min_crit = 2
@@ -46,7 +48,7 @@ _max_crit = 2
 
 [sub_resource type="Resource" id="Resource_8jrfr"]
 resource_name = "Poussée"
-script = ExtResource("2_iubdr")
+script = ExtResource("2_60xtx")
 type = 9
 time = 0.0
 target_type = 1
@@ -65,21 +67,23 @@ params = []
 nb_random_effects = 0
 direction = 0
 is_attirance = false
+nb_hits = 1
 is_poison_carac = false
-amounts = Array[ExtResource("1_jsabs")]([SubResource("Resource_aix7o")])
+invoc_id = 0
+amounts = Array[ExtResource("1_r07ir")]([SubResource("Resource_aix7o")])
 visible_in_description = true
 
 [resource]
-script = ExtResource("1_w4gc6")
+script = ExtResource("3_25bra")
 id = 13055
 name = "Tir de Recul"
 available = true
-description = "Occasionne des dommages Air aux ennemis en mêlée et repousse la cible."
-texture = ExtResource("2_arcn3")
+description = "Occasionne des dommages Air aux ennemis et repousse la cible."
+texture = ExtResource("4_2i18l")
 img_url = "https://api.beta.dofusdb.fr/img/spells/sort_11876.png"
-level = 6
+level = 20
 pa_cost = 3
 per_crit = 0.1
 cooldown = 0.0
 priority = 0
-effects = Array[ExtResource("2_iubdr")]([SubResource("Resource_a7a24"), SubResource("Resource_8jrfr")])
+effects = Array[ExtResource("2_60xtx")]([SubResource("Resource_a7a24"), SubResource("Resource_8jrfr")])
