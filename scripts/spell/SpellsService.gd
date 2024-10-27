@@ -83,15 +83,15 @@ static func perform_damage(caster: Entity, target: Entity, effect: EffectResourc
 	if crit:
 		amount += caster.get_do_crit()
 	amount = target.take_damage(amount - target.returned_damage, element)
-	add_log_effect(EffectType.DAMAGE, caster, target, effect, amount, crit, grade, is_poison, do_log_before)
+	add_log_effect(EffectType.DAMAGE, target, effect, amount, grade, is_poison, do_log_before)
 	if effect.lifesteal:
 		var soin = -round(amount / 2.0)
 		caster.take_damage(soin, element)
-		add_log_effect(EffectType.DAMAGE, caster, target, effect, soin, crit, grade, false, do_log_before)
+		add_log_effect(EffectType.DAMAGE, caster, effect, soin, grade, false, do_log_before)
 	if target.returned_damage > 0:
 		amount = target.returned_damage
 		caster.take_damage(amount, element)
-		add_log_effect(EffectType.DAMAGE, caster, target, effect, amount, crit, grade, false, do_log_before)
+		add_log_effect(EffectType.DAMAGE, caster, effect, amount, grade, false, do_log_before)
 
 
 static func perform_soin(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
@@ -104,7 +104,7 @@ static func perform_soin(caster: Entity, target: Entity, effect: EffectResource,
 			element = caster.get_best_element()
 		amount = get_soin(caster, effect.get_amount(crit, grade), element)
 	target.take_damage(-amount, element)
-	add_log_effect(EffectType.DAMAGE, caster, target, effect, -amount, crit, grade)
+	add_log_effect(EffectType.DAMAGE, target, effect, -amount, grade)
 
 
 static func perform_bonus(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
@@ -129,7 +129,7 @@ static func perform_bonus(caster: Entity, target: Entity, effect: EffectResource
 			carac = target.get_caracteristique_for_type(effect.caracteristic)
 			carac.amount += amount
 	effects_log.append([EffectType.BONUS, target, effect.get_effect_label(grade, amount)])
-	add_log_effect(EffectType.BONUS, caster, target, effect, amount, crit, grade)
+	add_log_effect(EffectType.BONUS, target, effect, amount, grade)
 	if effect.time != 0:
 		add_buff_effect(target, effect, amount)
 
@@ -161,7 +161,7 @@ static func annuler_bonus(buff: Buff, target: Entity, effect: EffectResource, am
 static func perform_poison(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
 	var amount = effect.get_amount(crit, grade)
 	add_buff_effect(target, effect, amount)
-	add_log_effect(EffectType.POISON, caster, target, effect, amount, crit, grade)
+	add_log_effect(EffectType.POISON, target, effect, amount, grade)
 
 
 static func perform_retrait(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
@@ -182,7 +182,7 @@ static func perform_retrait(caster: Entity, target: Entity, effect: EffectResour
 	else:
 		bar.cval -= amount
 		retrait_amount = amount
-	add_log_effect(EffectType.RETRAIT, caster, target, effect, retrait_amount, crit, grade)
+	add_log_effect(EffectType.RETRAIT, target, effect, retrait_amount, grade)
 	if !target.is_player:
 		target.create_taken_damage(retrait_amount, TakenDamage.Type.RET_PA if effect.caracteristic == StatType.PA else TakenDamage.Type.RET_PM)
 	if effect.retrait_vol and retrait_amount > 0:
@@ -207,7 +207,7 @@ static func perform_special(caster: Entity, plate: EntityContainer, effect: Effe
 static func perform_bouclier(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
 	var amount = SpellsService.get_amount_or_pourcentage(caster, effect, crit, grade)
 	target.hp_bar.shield_val += amount
-	add_log_effect(EffectType.BOUCLIER, caster, target, effect, amount, crit, grade)
+	add_log_effect(EffectType.BOUCLIER, target, effect, amount, grade)
 	if effect.time != 0:
 		var timer = create_timer(effect.time, "BonusTimer")
 		await timer.timeout
@@ -243,10 +243,10 @@ static func perform_poussee(caster: Entity, target: Entity, effect: EffectResour
 		var amount = get_degats_poussee(caster, target, distance - dist_between_plates)
 		target.take_damage(amount, Element.POUSSEE)
 		effect.element = Element.POUSSEE
-		add_log_effect(EffectType.DAMAGE, caster, target, effect, amount, crit, grade)
+		add_log_effect(EffectType.DAMAGE, target, effect, amount, grade)
 		if second_target and second_target != target:
 			second_target.take_damage(amount / 2, Element.POUSSEE)
-			add_log_effect(EffectType.DAMAGE, caster, second_target, effect, second_target, amount / 2, crit, grade)
+			add_log_effect(EffectType.DAMAGE, second_target, effect, amount / 2, grade)
 	# animation
 	if dist_between_plates > 0:
 		destination_plate = plate.call(direction_callable_name, dist_between_plates)
@@ -259,13 +259,13 @@ static func perform_poussee(caster: Entity, target: Entity, effect: EffectResour
 static func perform_invisibilite(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
 	target.set_invisible()
 	add_buff_effect(target, effect, 0)
-	add_log_effect(EffectType.INVISIBILITE, caster, target, effect, 0, crit, grade)
+	add_log_effect(EffectType.INVISIBILITE, target, effect, 0, grade)
 
 
 static func perform_aveugle(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
 	target.is_aveugle = true
 	add_buff_effect(target, effect, 0)
-	add_log_effect(EffectType.AVEUGLE, caster, target, effect, 0, crit, grade)
+	add_log_effect(EffectType.AVEUGLE, target, effect, 0, grade)
 
 
 static func perform_invocation(_caster: Entity, _target: Entity, effect: EffectResource, _crit: bool, _grade: int):
@@ -564,7 +564,7 @@ static func add_buff_effect(target: Entity, effect: EffectResource, amount: int)
 	effects_buff[target][effect.resource_name] = [effect, amount]
 
 
-static func add_log_effect(type: EffectType, caster: Entity, target: Entity, effect: EffectResource, amount: int, crit: bool, grade: int, is_poison: bool = false, before := false, after := false):
+static func add_log_effect(type: EffectType, target: Entity, effect: EffectResource, amount: int, grade: int, is_poison: bool = false, before := false, after := false):
 	var effect_log: Array = []
 	match type:
 		EffectType.DAMAGE:
