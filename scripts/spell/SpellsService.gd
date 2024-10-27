@@ -591,19 +591,21 @@ static func add_log_effect(type: EffectType, target: Entity, effect: EffectResou
 
 
 static func do_poison_effect(caster: Entity, target: Entity, effect: EffectResource, amount: int, carac_amount: int = 0):
-	var new_effect = effect.duplicate(true)
-	new_effect.amounts.assign([])
-	new_effect.amounts.append(AmountResource.new())
-	# calcul des dégâts de poison
-	var poison_amount = get_degats(caster, amount, effect.element)
-	if effect.is_poison_carac:
-		poison_amount *= carac_amount
-	new_effect.amounts[0].add(poison_amount)
-	# perform poison damage
-	perform_damage(caster, target, new_effect, false, 0, true, effect.is_poison_carac)
-	# log effects in console
-	if !effect.is_poison_carac:
-		console.log_effects(effects_log)
-		console.output.add_separator()
-		effects_log.clear()
+	if is_instance_valid(target):
+		var new_effect = effect.duplicate(true)
+		new_effect.amounts.assign([])
+		new_effect.amounts.append(AmountResource.new())
+		# calcul des dégâts de poison
+		var poison_amount = get_degats(caster, amount, effect.element)
+		if effect.is_poison_carac:
+			poison_amount *= carac_amount
+		new_effect.amounts[0].add(poison_amount)
+		# perform poison damage
+		perform_damage(caster, target, new_effect, false, 0, true, effect.is_poison_carac)
+		SpellsService.check_dying_entities([target])
+		# log effects in console
+		if !effect.is_poison_carac:
+			console.log_effects(effects_log)
+			console.output.add_separator()
+			effects_log.clear()
 #endregion
