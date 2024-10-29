@@ -1,6 +1,59 @@
-[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3 uid="uid://dy41w2gtdxo4w"]
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=12 format=3 uid="uid://dy41w2gtdxo4w"]
 
 [ext_resource type="Script" path="res://scripts/resources/MonsterResource.gd" id="1_lh4ke"]
+[ext_resource type="Script" path="res://scripts/resources/StatResource.gd" id="1_rhwx7"]
+[ext_resource type="Script" path="res://scripts/resources/GradeResource.gd" id="2_whce7"]
+[ext_resource type="Texture2D" uid="uid://djud5hqm5nw0s" path="res://assets/monsters/images/5908.png" id="4_u2q4r"]
+
+[sub_resource type="Resource" id="Resource_hwh7t"]
+script = ExtResource("1_rhwx7")
+type = 2
+min_amount = 70
+max_amount = 70
+amount = 0
+
+[sub_resource type="Resource" id="Resource_hg7ab"]
+script = ExtResource("1_rhwx7")
+type = 13
+min_amount = 10
+max_amount = 10
+amount = 0
+
+[sub_resource type="Resource" id="Resource_1237m"]
+script = ExtResource("1_rhwx7")
+type = 14
+min_amount = 10
+max_amount = 10
+amount = 0
+
+[sub_resource type="Resource" id="Resource_yoniv"]
+script = ExtResource("1_rhwx7")
+type = 15
+min_amount = 10
+max_amount = 10
+amount = 0
+
+[sub_resource type="Resource" id="Resource_7idk1"]
+script = ExtResource("1_rhwx7")
+type = 16
+min_amount = 10
+max_amount = 10
+amount = 0
+
+[sub_resource type="Resource" id="Resource_ghgps"]
+script = ExtResource("1_rhwx7")
+type = 17
+min_amount = 10
+max_amount = 10
+amount = 0
+
+[sub_resource type="Resource" id="Resource_xh412"]
+script = ExtResource("2_whce7")
+grade = 0
+monster_id = 5908
+level = 0
+characteristics = Array[ExtResource("1_rhwx7")]([SubResource("Resource_hwh7t"), SubResource("Resource_hg7ab"), SubResource("Resource_1237m"), SubResource("Resource_yoniv"), SubResource("Resource_7idk1"), SubResource("Resource_ghgps")])
+xp = 0
 
 [resource]
 script = ExtResource("1_lh4ke")
@@ -13,7 +66,8 @@ boss = false
 archimonstre = false
 corresponding_archimonstre_id = 0
 corresponding_non_archimonstre_id = 0
-grades = Array[Resource("res://scripts/resources/GradeResource.gd")]([])
+grades = Array[ExtResource("2_whce7")]([SubResource("Resource_xh412")])
 spells = []
 drops = Array[Resource("res://scripts/resources/DropResource.gd")]([])
 areas = []
+texture = ExtResource("4_u2q4r")
