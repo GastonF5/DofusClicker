@@ -8,7 +8,8 @@ var auto_start_fight_checkbox: CheckBox
 
 var loading := false
 
-var monsters: Array[Entity] = []
+var monsters: Array[Monster] = []
+var invocs: Array[Monster] = []
 var end_fight_callable: Callable
 
 signal monster_dies
@@ -111,6 +112,7 @@ func end_fight(lose := false):
 			else:
 				DungeonManager.enter_dungeon()
 		clear_monsters()
+		clear_invocs()
 		check_dungeon_key()
 		if auto_start_fight_checkbox.button_pressed:
 			start_fight()
@@ -128,7 +130,9 @@ func check_dungeon_key():
 
 
 func get_monsters_on_plates():
-	return plates.map(func(p): return p.get_entity()).filter(Entity.is_monster)
+	return plates.map(func(p): return p.get_entity()).filter(
+		func(e):
+			return Entity.is_monster(e) and !e.is_invocation)
 
 
 func instantiate_monster(monster_res: MonsterResource = null) -> Monster:
@@ -138,11 +142,23 @@ func instantiate_monster(monster_res: MonsterResource = null) -> Monster:
 		return null
 	if !monster_res:
 		monster_res = monsters_res[randi_range(0, monsters_res.size() - 1)]
-	var monster = Monster.instantiate(monster_res, empty_plates[randi_range(0, empty_plates.size() - 1)])
+	var spawn_plate = empty_plates[randi_range(0, empty_plates.size() - 1)]
+	var monster = Monster.instantiate(monster_res, spawn_plate)
 	monster.dies.connect(_on_monster_dies)
-	monster.clicked.connect(_on_monster_selected)
+	monster.clicked.connect(_on_entity_selected)
 	monsters.append(monster)
 	return monster
+
+
+func instantiate_invoc(invoc_res: MonsterResource, plate: EntityContainer) -> Monster:
+	if !plate.is_empty():
+		log.error("Impossible d'invoquer %s, la case ciblée n'est pas vide" % invoc_res.name)
+		return null
+	var invoc = Monster.instantiate(invoc_res, plate)
+	invoc.is_invocation = true
+	invoc.clicked.connect(_on_entity_selected)
+	invocs.append(invoc)
+	return invoc
 
 
 func _on_monster_dies(xp: int):
@@ -161,8 +177,16 @@ func clear_monsters():
 	monsters.clear()
 
 
-func _on_monster_selected(monster: Monster):
-	PlayerManager.selected_plate = monster.get_parent()
+func clear_invocs():
+	for invoc in invocs:
+		if invoc.get_parent():
+			invoc.get_parent().remove_child(invoc)
+		invoc.queue_free()
+	invocs.clear()
+
+
+func _on_entity_selected(entity: Entity):
+	PlayerManager.selected_plate = entity.get_parent()
 
 
 func set_start_fight_button_loading(is_loading: bool):

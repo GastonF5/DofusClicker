@@ -63,7 +63,7 @@ static func perform_effect(caster: Entity, plate: EntityContainer, effect: Effec
 		var method_name = "perform_%s" % EffectType.find_key(effect.type).to_lower()
 		var callable = Callable(SpellsService, method_name)
 		if caster.can_cast_spell_in_zone(effect.effective_zone, plate):
-			if effect.type == EffectResource.Type.SPECIAL:
+			if effect.type in [EffectType.SPECIAL, EffectType.INVOCATION]:
 				callable.bindv([caster, plate, effect, crit, grade]).call()
 			else:
 				for tar in get_targets(caster, plate, effect.target_type):
@@ -158,7 +158,7 @@ static func annuler_bonus(buff: Buff, target: Entity, effect: EffectResource, am
 				carac.amount -= amount
 
 
-static func perform_poison(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
+static func perform_poison(_caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
 	var amount = effect.get_amount(crit, grade)
 	add_buff_effect(target, effect, amount)
 	add_log_effect(EffectType.POISON, target, effect, amount, grade)
@@ -256,20 +256,21 @@ static func perform_poussee(caster: Entity, target: Entity, effect: EffectResour
 	target.animate_poussee(get_direction(direction), dist_between_plates)
 
 
-static func perform_invisibilite(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
+static func perform_invisibilite(_caster: Entity, target: Entity, effect: EffectResource, _crit: bool, grade: int):
 	target.set_invisible()
 	add_buff_effect(target, effect, 0)
 	add_log_effect(EffectType.INVISIBILITE, target, effect, 0, grade)
 
 
-static func perform_aveugle(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int):
+static func perform_aveugle(_caster: Entity, target: Entity, effect: EffectResource, _crit: bool, grade: int):
 	target.is_aveugle = true
 	add_buff_effect(target, effect, 0)
 	add_log_effect(EffectType.AVEUGLE, target, effect, 0, grade)
 
 
-static func perform_invocation(_caster: Entity, _target: Entity, effect: EffectResource, _crit: bool, _grade: int):
-	print(effect.invoc_id)
+static func perform_invocation(_caster: Entity, plate: EntityContainer, effect: EffectResource, _crit: bool, _grade: int):
+	var invoc_res = Datas._monsters[effect.invoc_id]
+	MonsterManager.instantiate_invoc(invoc_res, plate)
 
 
 static func perform_random(_caster: Entity, _target: Entity, effect: EffectResource, _crit: bool, _grade: int):

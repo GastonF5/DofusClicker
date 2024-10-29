@@ -44,6 +44,7 @@ var is_aveugle: bool:
 
 var console: Console
 var is_player := false
+var is_invocation := false
 
 var damage_animated := false
 signal damage_animation_finished

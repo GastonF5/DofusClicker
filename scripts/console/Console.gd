@@ -91,8 +91,10 @@ func do_command(command: String, params: Array[String] = []):
 			SaveManager.save()
 			pass
 		"xp":
+			var amount = params[0].to_int()
+			if params.size() > 1 and params[1] == "lvl":
+				Globals.xp_bar.gain_levels(amount)
 			if params.size() > 0:
-				var amount = params[0].to_int()
 				Globals.xp_bar.gain_xp(amount)
 			pass
 		"clear":
@@ -212,9 +214,8 @@ func log_equip(item: Item):
 
 func log_spell_cast(caster: Entity, spell_res: SpellResource, crit: bool):
 	output.add_spell_image(spell_res.texture)
-	var is_player = !Entity.is_monster(caster)
 	_log_line(get_entity_name(caster), INFO, true)
-	var lance = " lance%s " % ("z" if is_player else "")
+	var lance = " lance%s " % ("z" if caster.is_player else "")
 	_log_line(lance, INFO)
 	_log_line(spell_res.name, INFO, true)
 	if crit:
@@ -349,6 +350,6 @@ func log_aveuglement(target: Entity, time: float):
 
 func get_entity_name(entity: Entity):
 	var entity_name = entity.name
-	if !Entity.is_monster(entity):
+	if entity.is_player:
 		entity_name = "Vous"
 	return entity_name

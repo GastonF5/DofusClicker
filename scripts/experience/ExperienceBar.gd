@@ -259,3 +259,8 @@ func get_total_xp():
 	if cur_lvl == 0:
 		return value
 	return paliers[cur_lvl - 1][1] + value
+
+
+func gain_levels(nb_lvl: int) -> void:
+	for i in nb_lvl:
+		gain_xp(paliers[cur_lvl][2] - int(value))
