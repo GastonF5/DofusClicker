@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="DungeonResource" load_steps=8 format=3 uid="uid://bib2ucvjovxhj"]
+
+[ext_resource type="Script" path="res://scripts/dungeon/DungeonResource.gd" id="1_25vwf"]
+[ext_resource type="Script" path="res://scripts/dungeon/RoomResource.gd" id="1_d1q3f"]
+
+[sub_resource type="Resource" id="Resource_jwggg"]
+script = ExtResource("1_d1q3f")
+_number = 1
+_id = 306
+_name = ""
+_super_area_id = 0
+_monster_ids = [4820, 79, 78, 48]
+_level = 0
+
+[sub_resource type="Resource" id="Resource_m1cr6"]
+script = ExtResource("1_d1q3f")
+_number = 2
+_id = 306
+_name = ""
+_super_area_id = 0
+_monster_ids = Array[int]([4820, 78, 48, 4821])
+_level = 0
+
+[sub_resource type="Resource" id="Resource_aodkx"]
+script = ExtResource("1_d1q3f")
+_number = 3
+_id = 306
+_name = ""
+_super_area_id = 0
+_monster_ids = Array[int]([4820, 4821, 48, 79])
+_level = 0
+
+[sub_resource type="Resource" id="Resource_28ccq"]
+script = ExtResource("1_d1q3f")
+_number = 4
+_id = 306
+_name = ""
+_super_area_id = 0
+_monster_ids = Array[int]([4820, 79, 78, 48])
+_level = 0
+
+[sub_resource type="Resource" id="Resource_ulptq"]
+script = ExtResource("1_d1q3f")
+_number = 5
+_id = 306
+_name = ""
+_super_area_id = 0
+_monster_ids = Array[int]([78, 79, 4821, 799])
+_level = 0
+
+[resource]
+script = ExtResource("1_25vwf")
+_id = 306
+_key_id = 8143
+_rooms = Array[ExtResource("1_d1q3f")]([SubResource("Resource_jwggg"), SubResource("Resource_m1cr6"), SubResource("Resource_aodkx"), SubResource("Resource_28ccq"), SubResource("Resource_ulptq")])
