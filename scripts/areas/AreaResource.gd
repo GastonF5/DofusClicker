@@ -5,7 +5,7 @@ extends Resource
 @export var _id: int
 @export var _name: String
 @export var _super_area_id: int
-@export var _monster_ids: Array
+@export var _monster_ids: Array[int]
 @export var _level: int
 
 
@@ -60,8 +60,10 @@ func get_subareas(level := 200) -> Array:
 
 func get_level() -> int:
 	if _level != -1:
-		return _level
-	return get_subareas().reduce(func(accum, subarea): return min(accum, subarea._level), 200)
+		if DungeonManager.is_dungeon(_id):
+			return _level
+		return max(_level - 3, 1)
+	return get_subareas().reduce(func(accum, subarea): return min(accum, subarea.get_level()), 200)
 
 
 static func sort_by_level(a: AreaResource, b: AreaResource):
