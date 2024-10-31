@@ -132,7 +132,7 @@ func check_dungeon_key():
 func get_monsters_on_plates():
 	return plates.map(func(p): return p.get_entity()).filter(
 		func(e):
-			return Entity.is_monster(e) and !e.is_invocation)
+			return e and !e.is_ally)
 
 
 func instantiate_monster(monster_res: MonsterResource = null) -> Monster:
@@ -150,14 +150,18 @@ func instantiate_monster(monster_res: MonsterResource = null) -> Monster:
 	return monster
 
 
-func instantiate_invoc(invoc_res: MonsterResource, plate: EntityContainer) -> Monster:
+func instantiate_invoc(invoc_res: MonsterResource, plate: EntityContainer, ally: bool) -> Monster:
 	if !plate.is_empty():
 		log.error("Impossible d'invoquer %s, la case ciblée n'est pas vide" % invoc_res.name)
 		return null
 	var invoc = Monster.instantiate(invoc_res, plate)
 	invoc.is_invocation = true
 	invoc.clicked.connect(_on_entity_selected)
-	invocs.append(invoc)
+	invoc.is_ally = ally
+	if ally:
+		invocs.append(invoc)
+	else:
+		monsters.append(invoc)
 	return invoc
 
 

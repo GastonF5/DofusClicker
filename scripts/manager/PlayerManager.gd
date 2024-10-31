@@ -122,6 +122,7 @@ func init_player_entity():
 	player_entity.buffs_container = Globals.buffs_container
 	player_entity.name = "Player"
 	player_entity.is_player = true
+	player_entity.is_ally = true
 	player_entity.init()
 	max_hp = 50
 	max_pa = 6

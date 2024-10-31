@@ -268,9 +268,19 @@ static func perform_aveugle(_caster: Entity, target: Entity, effect: EffectResou
 	add_log_effect(EffectType.AVEUGLE, target, effect, 0, grade)
 
 
-static func perform_invocation(_caster: Entity, plate: EntityContainer, effect: EffectResource, _crit: bool, _grade: int):
+static func perform_invocation(caster: Entity, plate: EntityContainer, effect: EffectResource, _crit: bool, _grade: int):
 	var invoc_res = Datas._monsters[effect.invoc_id]
-	MonsterManager.instantiate_invoc(invoc_res, plate)
+	if !caster.is_player and !plate:
+		var caster_plate: EntityContainer = caster.get_parent()
+		var empty_plates = []
+		for surrouding_plate in caster_plate.get_surrounding_plates():
+			if surrouding_plate.is_empty():
+				empty_plates.append(surrouding_plate)
+		plate = empty_plates[randi_range(0, empty_plates.size() - 1)]
+	if !plate:
+		log.error("No empty plate available")
+		return
+	MonsterManager.instantiate_invoc(invoc_res, plate, caster.is_player)
 
 
 static func perform_random(_caster: Entity, _target: Entity, effect: EffectResource, _crit: bool, _grade: int):
@@ -488,7 +498,7 @@ static func get_neighbor_entities(plate: EntityContainer) -> Array[Entity]:
 
 static func check_dying_entities(entities: Array):
 	for entity in entities:
-		if entity.dying:
+		if is_instance_valid(entity) and entity.dying:
 			entity.die()
 			entity.dying = false
 
@@ -613,7 +623,7 @@ static func add_log_effect(type: EffectType, target: Entity, effect: EffectResou
 
 
 static func do_poison_effect(caster: Entity, target: Entity, effect: EffectResource, amount: int, carac_amount: int = 0):
-	if is_instance_valid(target):
+	if is_instance_valid(target) and is_instance_valid(caster):
 		var new_effect = effect.duplicate(true)
 		new_effect.amounts.assign([])
 		new_effect.amounts.append(AmountResource.new())

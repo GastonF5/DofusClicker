@@ -173,6 +173,10 @@ func get_neighbor_plates():
 	return result
 
 
+func get_surrounding_plates():
+	return [get_line(true)[id - 1]] + get_neighbor_plates()
+
+
 func set_spell_previsualization(is_active: bool):
 	if is_active:
 		_set_color(Color.GREEN)
