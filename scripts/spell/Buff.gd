@@ -3,7 +3,7 @@ extends PanelContainer
 
 const EffectType = EffectResource.Type
 
-static func instantiate(spell_res: SpellResource, effects_amounts: Dictionary, parent: Entity, caster: Entity) -> Buff:
+static func instantiate(spell_res: SpellResource, effects_amounts: Dictionary, parent: Entity, caster: Entity, grade: int) -> Buff:
 	var buff = FileLoader.get_packed_scene("spell/buff").instantiate()
 	buff._parent = parent
 	buff._caster = caster
@@ -23,6 +23,7 @@ static func instantiate(spell_res: SpellResource, effects_amounts: Dictionary, p
 var _parent: Entity
 var _caster: Entity
 var _longer_timer: Timer
+var _grade: int
 
 # Dictionnaire dont les values sont : [effect, amount, timer, count]
 var _effects := {}
@@ -134,7 +135,7 @@ func cancel_effect(effect_name: String):
 	var amount = get_amount(effect_name)
 	if effect.type in [EffectType.BONUS, EffectType.INVISIBILITE, EffectType.AVEUGLE]:
 		SpellsService.annuler_bonus(self, _parent, effect, amount)
-	elif effect.type == EffectType.POISON:
+	elif effect.type == EffectType.POISON and is_instance_valid(_caster):
 		SpellsService.do_poison_effect(_caster, _parent, effect, amount)
 
 

@@ -226,7 +226,7 @@ func add_buff_label(buff: Buff, effect_name: String):
 	elif effect.type == EffectType.AVEUGLE:
 		label.text = "Aveuglé"
 	elif effect.type == EffectType.BONUS:
-		label.text = effect.get_effect_label(0, amount)
+		label.text = effect.get_effect_label(buff._grade, amount)
 	else:
 		var is_pourcentage_charac = effect.caracteristic in [Caracteristique.Type.DO_SORTS, Caracteristique.Type.RES_DOMMAGES]
 		label.text = str(amount)

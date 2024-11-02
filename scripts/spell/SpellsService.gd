@@ -33,7 +33,7 @@ static func perform_spell(caster: Entity, plate: EntityContainer, resource: Spel
 	# instantier buff
 	if !effects_buff.is_empty():
 		for target in effects_buff.keys():
-			Buff.instantiate(resource, effects_buff[target], target, caster)
+			Buff.instantiate(resource, effects_buff[target], target, caster, grade)
 	effects_buff.clear()
 	# console log
 	console.log_spell_cast(caster, resource, crit)
@@ -128,7 +128,6 @@ static func perform_bonus(caster: Entity, target: Entity, effect: EffectResource
 		_:
 			carac = target.get_caracteristique_for_type(effect.caracteristic)
 			carac.amount += amount
-	effects_log.append([EffectType.BONUS, target, effect.get_effect_label(grade, amount)])
 	add_log_effect(EffectType.BONUS, target, effect, amount, grade)
 	if effect.time != 0:
 		add_buff_effect(target, effect, amount)
@@ -221,7 +220,7 @@ static func perform_poussee(caster: Entity, target: Entity, effect: EffectResour
 	if target.is_player:
 		var amount = get_degats_poussee(caster, target, effect.get_amount(crit, grade))
 		target.take_damage(amount, Element.POUSSEE)
-		effects_log.append([EffectType.DAMAGE, target, amount, Element.POUSSEE, target.dying, false])
+		add_log_effect(EffectType.DAMAGE, target, effect, amount, grade)
 		return
 	var direction = effect.direction
 	var plate: EntityContainer = target.get_parent()
@@ -243,10 +242,10 @@ static func perform_poussee(caster: Entity, target: Entity, effect: EffectResour
 		var amount = get_degats_poussee(caster, target, distance - dist_between_plates)
 		target.take_damage(amount, Element.POUSSEE)
 		effect.element = Element.POUSSEE
-		add_log_effect(EffectType.DAMAGE, target, effect, amount, grade)
+		add_log_effect(EffectType.POUSSEE, target, effect, amount, grade)
 		if second_target and second_target != target:
 			second_target.take_damage(amount / 2, Element.POUSSEE)
-			add_log_effect(EffectType.DAMAGE, second_target, effect, amount / 2, grade)
+			add_log_effect(EffectType.POUSSEE, second_target, effect, amount / 2, grade)
 	# animation
 	if dist_between_plates > 0:
 		destination_plate = plate.call(direction_callable_name, dist_between_plates)
@@ -607,6 +606,8 @@ static func add_log_effect(type: EffectType, target: Entity, effect: EffectResou
 			effect_log.assign([type, target, amount, effect.get_caracteristic_label()])
 		EffectType.BOUCLIER:
 			effect_log.assign([type, target, amount, effect.time])
+		EffectType.POUSSEE:
+			effect_log.assign([EffectType.DAMAGE, target, amount, Element.POUSSEE, target.dying, false])
 		EffectType.INVISIBILITE, EffectType.AVEUGLE:
 			effect_log.assign([type, target, effect.time])
 		EffectType.POISON:
