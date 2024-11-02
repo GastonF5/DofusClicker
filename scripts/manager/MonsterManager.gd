@@ -221,3 +221,15 @@ func plate_matches_zone(plate: EntityContainer, zone: EffectResource.Zone) -> bo
 		_:
 			return true
 #endregion
+
+
+func get_grade_for_monster(monster_res: MonsterResource) -> GradeResource:
+	var subarea_lvl: int = Datas._subareas[Globals.area_peeker.selected_subarea_id]._level
+	var player_lvl: int = Globals.xp_bar.cur_lvl
+	var sorted_grades: Array[GradeResource] = []
+	sorted_grades.assign(monster_res.grades.filter(func(g): return abs(g.level - subarea_lvl) <= 15))
+	sorted_grades.sort_custom(
+		func(a, b):
+			return abs(a.level - player_lvl) < abs(b.level - player_lvl)
+	)
+	return sorted_grades[0]

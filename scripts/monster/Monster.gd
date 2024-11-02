@@ -41,13 +41,13 @@ func init(res: MonsterResource = null):
 	pa_bar = bars.pa_bar
 	pm_bar = bars.pm_bar
 	super()
-	grade = res.grades[randi_range(0, res.grades.size() - 1)]
+	grade = MonsterManager.get_grade_for_monster(res)
 	drops = res.drops.duplicate()
 	init_caracteristiques(grade.characteristics)
 	
 	name = res.name
 	if Globals.debug:
-		name_label.text = "%s (%d)" % [res.name, res.id]
+		name_label.text = "%s - %d (%d)" % [res.name, grade.level, res.id]
 	else:
 		name_label.text = "%s" % res.name
 	init_clickable(self)
