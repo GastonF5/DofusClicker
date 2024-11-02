@@ -78,3 +78,13 @@ static func build_stats(effects: Array) -> Array[StatResource]:
 func load_save(data: Dictionary):
 	for stat in stats:
 		stat.amount = data[stat.type]
+
+
+func _duplicate() -> EquipmentResource:
+	var new_resource = self.duplicate(true)
+	var new_stats = []
+	for stat in stats:
+		new_stats.append(stat.duplicate(true))
+	new_resource.stats.clear()
+	new_resource.stats.assign(new_stats)
+	return new_resource

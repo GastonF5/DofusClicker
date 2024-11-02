@@ -86,3 +86,10 @@ func load_texture() -> void:
 			await API.await_for_request_completed(await API.request(img_url))
 			texture = API.get_texture(img_url)
 			FileSaver.save_item_asset(texture, id)
+
+
+func _duplicate() -> ItemResource:
+	var new_resource = self.duplicate(true)
+	if is_equipment():
+		new_resource.equip_res = new_resource.equip_res._duplicate()
+	return new_resource

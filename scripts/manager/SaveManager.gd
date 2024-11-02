@@ -62,11 +62,11 @@ func load_inventory(save_res: SaveResource):
 
 func get_item_or_resource(id: int):
 	if Datas._resources.has(id):
-		return Datas._resources[id].duplicate(true)
+		return Datas._resources[id]._duplicate()
 	if Datas._items.has(id):
-		return Datas._items[id].duplicate(true)
+		return Datas._items[id]._duplicate()
 	if Datas._keys.has(id):
-		return Datas._keys[id].duplicate(true)
+		return Datas._keys[id]._duplicate()
 	return null
 
 
