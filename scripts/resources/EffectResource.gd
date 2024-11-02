@@ -149,7 +149,7 @@ func get_amount_label(grade: int, amount: int = _INF) -> String:
 
 func get_effect_label(grade: int, amount: int = _INF) -> String:
 	var result: String = ""
-	if effect_label:
+	if effect_label and amount == _INF:
 		return compute_special_label(grade)
 	match type:
 		Type.DAMAGE:
