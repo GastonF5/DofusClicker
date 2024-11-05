@@ -44,6 +44,9 @@ enum Zone { ALL, MELEE, DISTANCE }
 @export var show_time: bool
 @export var effective_zone: Zone
 @export var has_grades: bool
+@export var amounts: Array[AmountResource]
+@export var params: Array = []
+@export var visible_in_description: bool = true
 var caster: Entity
 
 @export_group("Damage & Soin")
@@ -61,10 +64,6 @@ var caster: Entity
 @export_group("Special")
 @export var method_name: StringName
 @export_multiline var effect_label: String
-@export var params: Array = []
-
-@export_group("Random")
-@export var nb_random_effects: int
 
 @export_group("Poussée")
 @export var direction: Direction
@@ -77,10 +76,6 @@ var caster: Entity
 @export_group("Invocation")
 @export var invoc_id: int
 
-@export_category("Amounts")
-@export var amounts: Array[AmountResource]
-
-@export var visible_in_description: bool = true
 
 
 func duplicate_amounts() -> Array[AmountResource]:

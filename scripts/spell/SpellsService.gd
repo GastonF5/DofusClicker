@@ -12,9 +12,6 @@ static var console: Console
 static var tnode: Node
 
 
-static var count := 1
-static var max_count := 0
-static var rand_count := 0
 static var logs_before = []
 static var effects_log = []
 static var logs_after = []
@@ -23,13 +20,7 @@ static func perform_spell(caster: Entity, plate: EntityContainer, resource: Spel
 	var crit_amount = resource.per_crit + caster.get_critique() / 100.0
 	var crit = randf_range(0, 1) <= crit_amount
 	for effect: EffectResource in resource.effects:
-		if count > max_count:
-			perform_effect(caster, plate, effect, crit, grade)
-		else:
-			# Un effet de type "random" a été appliqué
-			if count == rand_count:
-				perform_effect(caster, plate, effect, crit, grade)
-			count += 1
+		perform_effect(caster, plate, effect, crit, grade)
 	# instantier buff
 	if !effects_buff.is_empty():
 		for target in effects_buff.keys():
@@ -63,7 +54,7 @@ static func perform_effect(caster: Entity, plate: EntityContainer, effect: Effec
 		var method_name = "perform_%s" % EffectType.find_key(effect.type).to_lower()
 		var callable = Callable(SpellsService, method_name)
 		if caster.can_cast_spell_in_zone(effect.effective_zone, plate):
-			if effect.type in [EffectType.SPECIAL, EffectType.INVOCATION]:
+			if effect.type in [EffectType.SPECIAL, EffectType.INVOCATION, EffectType.RANDOM]:
 				callable.bindv([caster, plate, effect, crit, grade]).call()
 			else:
 				for tar in get_targets(caster, plate, effect.target_type):
@@ -282,10 +273,13 @@ static func perform_invocation(caster: Entity, plate: EntityContainer, effect: E
 	MonsterManager.instantiate_invoc(invoc_res, plate, caster.is_player)
 
 
-static func perform_random(_caster: Entity, _target: Entity, effect: EffectResource, _crit: bool, _grade: int):
-	count = 1
-	rand_count = randi_range(1, effect.nb_random_effects)
-	max_count = effect.nb_random_effects
+static func perform_random(caster: Entity, plate: EntityContainer, effect: EffectResource, crit: bool, grade: int):
+	var rand_index = randi_range(0, effect.params.size() - 1)
+	if effect.params.any(func(e): return !(e is EffectResource)):
+		log.error("Un des paramètres de l'effet %s n'est pas un EffectResource" % effect.name)
+	else:
+		perform_effect(caster, plate, effect.params[rand_index], crit, grade)
+
 
 #region Spécial
 static func dommages_pourcentage_pv_caster(caster: Entity, plate: EntityContainer, effect: EffectResource, _crit: bool, grade: int):
