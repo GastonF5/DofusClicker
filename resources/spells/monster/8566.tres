@@ -1,0 +1,144 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=14 format=3 uid="uid://cqyd18bvy0xpg"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_3pcph"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_glafq"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_a26by"]
+[ext_resource type="Texture2D" uid="uid://bbkpsnf0qn7u4" path="res://assets/spells/monster/sort_10012.png" id="4_q7b8k"]
+
+[sub_resource type="Resource" id="Resource_gwwoe"]
+script = ExtResource("1_glafq")
+_min = 50
+_max = 50
+_min_crit = 75
+_max_crit = 75
+
+[sub_resource type="Resource" id="Resource_ur30c"]
+resource_name = "Puissance"
+script = ExtResource("2_a26by")
+type = 1
+time = 6.0
+target_type = 4
+show_time = true
+effective_zone = 2
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 8
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_glafq")]([SubResource("Resource_gwwoe")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_f3pk6"]
+script = ExtResource("1_glafq")
+_min = 15
+_max = 20
+_min_crit = 21
+_max_crit = 30
+
+[sub_resource type="Resource" id="Resource_u2p1t"]
+script = ExtResource("1_glafq")
+_min = 15
+_max = 20
+_min_crit = 22
+_max_crit = 30
+
+[sub_resource type="Resource" id="Resource_173bj"]
+script = ExtResource("1_glafq")
+_min = 15
+_max = 21
+_min_crit = 22
+_max_crit = 31
+
+[sub_resource type="Resource" id="Resource_5545m"]
+script = ExtResource("1_glafq")
+_min = 16
+_max = 21
+_min_crit = 23
+_max_crit = 32
+
+[sub_resource type="Resource" id="Resource_1fjv7"]
+script = ExtResource("1_glafq")
+_min = 16
+_max = 22
+_min_crit = 23
+_max_crit = 32
+
+[sub_resource type="Resource" id="Resource_8ud8q"]
+resource_name = "Soin Feu"
+script = ExtResource("2_a26by")
+type = 7
+time = 0.0
+target_type = 4
+show_time = false
+effective_zone = 2
+has_grades = true
+element = 2
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_glafq")]([SubResource("Resource_f3pk6"), SubResource("Resource_u2p1t"), SubResource("Resource_173bj"), SubResource("Resource_5545m"), SubResource("Resource_1fjv7")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_vhxq8"]
+resource_name = "Avance"
+script = ExtResource("2_a26by")
+type = 9
+time = 0.0
+target_type = 0
+show_time = false
+effective_zone = 2
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 1
+is_attirance = true
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_glafq")]([])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_3pcph")
+id = 8566
+name = "Engrais"
+available = true
+description = "Augment la Puissance des alliés et les soigne dans l'élément Feu à distance. Avance d'une case."
+texture = ExtResource("4_q7b8k")
+img_url = "https://api.dofusdb.fr/img/spells/sort_10012.png"
+level = 0
+pa_cost = 4
+per_crit = 0.1
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_a26by")]([SubResource("Resource_ur30c"), SubResource("Resource_8ud8q"), SubResource("Resource_vhxq8")])
