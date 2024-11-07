@@ -1,0 +1,116 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=10 format=3 uid="uid://lvpp2lk5gwdd"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_37r6n"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_mgqg7"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_422nw"]
+[ext_resource type="Texture2D" uid="uid://1ixag1quw438" path="res://assets/spells/monster/sort_10003.png" id="2_avovw"]
+
+[sub_resource type="Resource" id="Resource_frqww"]
+script = ExtResource("1_mgqg7")
+_min = 31
+_max = 47
+_min_crit = 45
+_max_crit = 70
+
+[sub_resource type="Resource" id="Resource_r6yet"]
+resource_name = "Soin Feu"
+script = ExtResource("2_422nw")
+type = 7
+time = 0.0
+target_type = 6
+show_time = false
+effective_zone = 2
+has_grades = false
+element = 2
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_mgqg7")]([SubResource("Resource_frqww")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_xq3fg"]
+script = ExtResource("1_mgqg7")
+_min = 1
+_max = 1
+_min_crit = 1
+_max_crit = 1
+
+[sub_resource type="Resource" id="Resource_xcvon"]
+resource_name = "Bonus PM"
+script = ExtResource("2_422nw")
+type = 1
+time = 10.0
+target_type = 0
+show_time = true
+effective_zone = 2
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 1
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_mgqg7")]([SubResource("Resource_xq3fg")])
+visible_in_description = true
+
+[sub_resource type="Resource" id="Resource_m6nqh"]
+resource_name = "Avance"
+script = ExtResource("2_422nw")
+type = 9
+time = 0.0
+target_type = 0
+show_time = false
+effective_zone = 2
+has_grades = false
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+params = []
+nb_random_effects = 0
+direction = 1
+is_attirance = true
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+amounts = Array[ExtResource("1_mgqg7")]([])
+visible_in_description = true
+
+[resource]
+script = ExtResource("1_37r6n")
+id = 787
+name = "Soin Feuillu"
+available = true
+description = "Soigne un monstre aléatoire dans l'élément Feu à distance. Avance d'une case et gagne 1 PM."
+texture = ExtResource("2_avovw")
+img_url = "https://api.dofusdb.fr/img/spells/sort_10003.png"
+level = 0
+pa_cost = 2
+per_crit = 0.1
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_422nw")]([SubResource("Resource_r6yet"), SubResource("Resource_xcvon"), SubResource("Resource_m6nqh")])

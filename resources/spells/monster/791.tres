@@ -1,0 +1,153 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://sxu3fys5dedl"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_8y8vc"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_f33pe"]
+[ext_resource type="Texture2D" uid="uid://debaflaxu6rak" path="res://assets/spells/monster/sort_421.png" id="2_kd5p5"]
+
+[sub_resource type="Resource" id="Resource_qkphj"]
+resource_name = "Invocation Gardienne Champêtre"
+script = ExtResource("1_f33pe")
+type = 6
+time = 0.0
+target_type = 0
+show_time = false
+effective_zone = 0
+has_grades = false
+amounts = Array[Resource("res://scripts/resources/AmountResource.gd")]([])
+params = []
+visible_in_description = true
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 4821
+
+[sub_resource type="Resource" id="Resource_ghiak"]
+resource_name = "Invocation Pissenlit Diabolique"
+script = ExtResource("1_f33pe")
+type = 6
+time = 0.0
+target_type = 0
+show_time = false
+effective_zone = 0
+has_grades = false
+amounts = Array[Resource("res://scripts/resources/AmountResource.gd")]([])
+params = []
+visible_in_description = true
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 79
+
+[sub_resource type="Resource" id="Resource_ah4f5"]
+resource_name = "Invocation Rose Démoniaque"
+script = ExtResource("1_f33pe")
+type = 6
+time = 0.0
+target_type = 0
+show_time = false
+effective_zone = 0
+has_grades = false
+amounts = Array[Resource("res://scripts/resources/AmountResource.gd")]([])
+params = []
+visible_in_description = true
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 78
+
+[sub_resource type="Resource" id="Resource_6isit"]
+resource_name = "Invocation Épouvanteur"
+script = ExtResource("1_f33pe")
+type = 6
+time = 0.0
+target_type = 0
+show_time = false
+effective_zone = 0
+has_grades = false
+amounts = Array[Resource("res://scripts/resources/AmountResource.gd")]([])
+params = []
+visible_in_description = true
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 4820
+
+[sub_resource type="Resource" id="Resource_4io7v"]
+script = ExtResource("1_f33pe")
+type = 4
+time = 0.0
+target_type = 0
+show_time = false
+effective_zone = 0
+has_grades = false
+amounts = Array[Resource("res://scripts/resources/AmountResource.gd")]([])
+params = [SubResource("Resource_qkphj"), SubResource("Resource_ghiak"), SubResource("Resource_ah4f5"), SubResource("Resource_6isit")]
+visible_in_description = true
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+
+[resource]
+script = ExtResource("1_8y8vc")
+id = 791
+name = ""
+available = true
+description = "Invoque aléatoirement parmi les invocations suivantes :
+ - Gardienne Champêtre
+ - Pissenlit Diabolique
+ - Rose Démoniaque
+ - Épouvanteur"
+texture = ExtResource("2_kd5p5")
+img_url = "https://api.dofusdb.fr/img/spells/sort_421.png"
+level = 0
+pa_cost = 4
+per_crit = 0.0
+cooldown = 20.0
+priority = 1
+effects = Array[ExtResource("1_f33pe")]([SubResource("Resource_4io7v")])
