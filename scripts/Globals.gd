@@ -60,7 +60,8 @@ func _ready():
 		func(n):
 			focused_node = n
 	)
-	initialize()
+	if get_tree().current_scene.name != "MonsterSpellTool":
+		initialize()
 
 
 func initialize(root: Node = get_tree().current_scene):

@@ -1,0 +1,82 @@
+[gd_scene load_steps=3 format=3 uid="uid://c63sbdfi6bs7c"]
+
+[ext_resource type="Texture2D" uid="uid://0ujq6wd2dvfm" path="res://assets/common/window/window_green_background.jpg" id="1_555to"]
+[ext_resource type="Script" path="res://scripts/MonsterSpellTool.gd" id="1_ekaxt"]
+
+[node name="MonsterSpellTool" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ekaxt")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_555to")
+
+[node name="VSplitContainer" type="VSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Left" type="Control" parent="VSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MonsterSearch" type="HBoxContainer" parent="VSplitContainer/Left"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -20.0
+offset_right = 100.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MonsterIdLineEdit" type="LineEdit" parent="VSplitContainer/Left/MonsterSearch"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+placeholder_text = "monsterId"
+
+[node name="SearchButton" type="Button" parent="VSplitContainer/Left/MonsterSearch"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+disabled = true
+text = "Rechercher"
+
+[node name="Right" type="Control" parent="VSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SpellsContainer" type="HBoxContainer" parent="VSplitContainer/Right"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[connection signal="text_changed" from="VSplitContainer/Left/MonsterSearch/MonsterIdLineEdit" to="." method="_on_monster_id_line_edit_text_changed"]
+[connection signal="pressed" from="VSplitContainer/Left/MonsterSearch/SearchButton" to="." method="_on_search_button_pressed"]

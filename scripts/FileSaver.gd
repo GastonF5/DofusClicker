@@ -33,3 +33,8 @@ const MONSTER_ASSET_PATH := "res://assets/monsters/images/"
 
 func save_monster_asset(texture: Texture2D, id: int):
 	ResourceSaver.save(texture, MONSTER_ASSET_PATH + "%d.png" % id)
+
+const MONSTER_SPELL_ASSET_PATH := "res://assets/spells/monster/"
+
+func save_monster_spell_asset(texture: Texture2D, spell_name: String):
+	ResourceSaver.save(texture, MONSTER_SPELL_ASSET_PATH + "%s.png" % spell_name)
