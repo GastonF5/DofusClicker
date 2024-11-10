@@ -8,6 +8,7 @@ static func instantiate(spell_res: SpellResource, effects_amounts: Dictionary, p
 	buff._parent = parent
 	buff._caster = caster
 	buff._effects = effects_amounts
+	buff._grade = grade
 	buff.init(spell_res)
 	if parent.is_player:
 		Globals.buffs_container.add_child(buff)
@@ -29,6 +30,9 @@ var _grade: int
 var _effects := {}
 
 signal annuler
+
+func get_grade():
+	return _grade
 
 
 # region Utilitaires
