@@ -101,8 +101,8 @@ func get_url_params(data_type: DataType) -> String:
 	match data_type:
 		DataType.TYPE:
 			params += "&categoryId=0"
-			params += "&$" + API.get_select_request("name.fr")
-			params += "&$" + API.get_select_request("id")
+			#params += "&$" + API.get_select_request("name.fr")
+			#params += "&$" + API.get_select_request("id")
 		DataType.ITEM:
 			for type in _types.values():
 				if type is ItemTypeResource:

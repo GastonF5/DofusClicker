@@ -46,7 +46,7 @@ enum ResourceType {
 	MONSTERS,
 }
 
-const API_SUFFIX = "https://api.beta.dofusdb.fr/"
+const API_SUFFIX = "https://api.dofusdb.fr/"
 
 const IN_REQUEST = "%s[$in][]=%s"
 const SELECT_REQUEST = "select[]=%s"
