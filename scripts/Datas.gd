@@ -110,8 +110,6 @@ func get_url_params(data_type: DataType) -> String:
 	match data_type:
 		DataType.TYPE:
 			params += "&categoryId=0"
-			params += "&$" + API.get_select_request("name.fr")
-			params += "&$" + API.get_select_request("id")
 		DataType.ITEM:
 			for type in _types.values():
 				if type is ItemTypeResource:
@@ -295,7 +293,7 @@ func set_subarea(data: Dictionary):
 	if !data["monsters"].is_empty():
 		var id = data["id"] as int
 		var subarea = AreaResource.create(id, data["name"]["fr"], data["areaId"], data["level"])
-		subarea._monster_ids = data["monsters"].map(func(i): return i as int)
+		subarea._monster_ids.assign(data["monsters"].map(func(i): return i as int))
 		_subareas[id] = subarea
 
 

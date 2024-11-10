@@ -14,7 +14,7 @@ static func create(id: int, name: String, super_area_id := -1, level := -1) -> A
 	area._id = id
 	area._name = name
 	area._super_area_id = super_area_id
-	area._monster_ids = []
+	area._monster_ids.assign([])
 	area._level = level
 	return area
 
