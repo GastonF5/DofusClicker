@@ -39,7 +39,7 @@ func create_spell(data):
 	
 	var texture_rect := TextureRect.new()
 	texture_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	var error = await API.await_for_request_completed(await API.request(spell_url))
+	await API.await_for_request_completed(await API.request(spell_url))
 	var spell_texture = API.get_texture(spell_url)
 	texture_rect.texture = spell_texture
 	FileSaver.save_monster_spell_asset(spell_texture, spell_url.split("/")[-1].split(".")[0])
