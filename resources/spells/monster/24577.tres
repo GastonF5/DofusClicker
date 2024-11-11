@@ -1,0 +1,54 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://cplawcefehals"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_l0kqg"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_poygg"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_6g7yb"]
+[ext_resource type="Texture2D" uid="uid://dl0xnmscf0m3w" path="res://assets/spells/monster/sort_10048.png" id="2_7weie"]
+
+[sub_resource type="Resource" id="Resource_mkkvg"]
+script = ExtResource("1_poygg")
+_min = 1
+_max = 2
+_min_crit = 1
+_max_crit = 2
+
+[sub_resource type="Resource" id="Resource_o0jli"]
+resource_name = "Retrait PA"
+script = ExtResource("2_6g7yb")
+type = 2
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 2
+has_grades = false
+amounts = Array[ExtResource("1_poygg")]([SubResource("Resource_mkkvg")])
+params = []
+visible_in_description = true
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+
+[resource]
+script = ExtResource("1_l0kqg")
+id = 24577
+name = "Purification entravante"
+available = true
+description = "Retire des PA à distance."
+texture = ExtResource("2_7weie")
+img_url = "https://api.dofusdb.fr/img/spells/sort_10048.png"
+level = 0
+pa_cost = 3
+per_crit = 0.0
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_6g7yb")]([SubResource("Resource_o0jli")])

@@ -1,0 +1,94 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=10 format=3 uid="uid://2bls18utsvx6"]
+
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_5o5q0"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_6ma2a"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_gqpmn"]
+[ext_resource type="Texture2D" uid="uid://dvot1h6uvplot" path="res://assets/spells/monster/sort_10036.png" id="3_u0hfc"]
+
+[sub_resource type="Resource" id="Resource_ppvjb"]
+script = ExtResource("1_gqpmn")
+_min = 24
+_max = 28
+_min_crit = 29
+_max_crit = 33
+
+[sub_resource type="Resource" id="Resource_88yyc"]
+script = ExtResource("1_gqpmn")
+_min = 27
+_max = 31
+_min_crit = 33
+_max_crit = 37
+
+[sub_resource type="Resource" id="Resource_mvw2k"]
+resource_name = "Vole Vie Neutre"
+script = ExtResource("1_5o5q0")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 1
+has_grades = true
+amounts = Array[ExtResource("1_gqpmn")]([SubResource("Resource_ppvjb"), SubResource("Resource_88yyc")])
+params = []
+visible_in_description = true
+element = 0
+lifesteal = true
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+
+[sub_resource type="Resource" id="Resource_kcb6i"]
+script = ExtResource("1_gqpmn")
+_min = 1
+_max = 1
+_min_crit = 1
+_max_crit = 1
+
+[sub_resource type="Resource" id="Resource_q07an"]
+resource_name = "Recule"
+script = ExtResource("1_5o5q0")
+type = 9
+time = 0.0
+target_type = 0
+show_time = false
+effective_zone = 1
+has_grades = false
+amounts = Array[ExtResource("1_gqpmn")]([SubResource("Resource_kcb6i")])
+params = []
+visible_in_description = true
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+direction = 0
+is_attirance = true
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+
+[resource]
+script = ExtResource("1_6ma2a")
+id = 24578
+name = "Pikouze"
+available = true
+description = "Vole de la vie dans l'élément Neutre en mêlée. Recule d'une case."
+texture = ExtResource("3_u0hfc")
+img_url = "https://api.dofusdb.fr/img/spells/sort_10036.png"
+level = 0
+pa_cost = 3
+per_crit = 0.1
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("1_5o5q0")]([SubResource("Resource_mvw2k"), SubResource("Resource_q07an")])

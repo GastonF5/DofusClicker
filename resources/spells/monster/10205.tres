@@ -49,6 +49,9 @@ target_type = 6
 show_time = false
 effective_zone = 0
 has_grades = true
+amounts = Array[ExtResource("1_0ur5l")]([SubResource("Resource_0o3r4"), SubResource("Resource_uppqd"), SubResource("Resource_go6di"), SubResource("Resource_8pm4n"), SubResource("Resource_ua2wt")])
+params = []
+visible_in_description = true
 element = 2
 lifesteal = false
 level_pourcentage = false
@@ -57,13 +60,11 @@ pourcentage = false
 retrait_vol = false
 method_name = &""
 effect_label = ""
-params = []
-nb_random_effects = 0
 direction = 0
 is_attirance = false
+nb_hits = 1
 is_poison_carac = false
-amounts = Array[ExtResource("1_0ur5l")]([SubResource("Resource_0o3r4"), SubResource("Resource_uppqd"), SubResource("Resource_go6di"), SubResource("Resource_8pm4n"), SubResource("Resource_ua2wt")])
-visible_in_description = true
+invoc_id = 0
 
 [resource]
 script = ExtResource("1_jcpmt")

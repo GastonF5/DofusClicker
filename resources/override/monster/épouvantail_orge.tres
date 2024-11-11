@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="MonsterResource" load_steps=15 format=3 uid="uid://bcuvxe4rer3go"]
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=23 format=3 uid="uid://bcuvxe4rer3go"]
 
 [ext_resource type="Script" path="res://scripts/resources/DropResource.gd" id="1_r5sy8"]
 [ext_resource type="Script" path="res://scripts/resources/StatResource.gd" id="2_krnkr"]
@@ -71,6 +71,63 @@ level = 10
 characteristics = Array[ExtResource("2_krnkr")]([SubResource("Resource_6606g"), SubResource("Resource_70mub"), SubResource("Resource_qskfh"), SubResource("Resource_ngman"), SubResource("Resource_yv35u"), SubResource("Resource_hddcj"), SubResource("Resource_ef4cc")])
 xp = 208
 
+[sub_resource type="Resource" id="Resource_5frpa"]
+script = ExtResource("2_krnkr")
+type = 2
+min_amount = 200
+max_amount = 200
+amount = 0
+
+[sub_resource type="Resource" id="Resource_eeino"]
+script = ExtResource("2_krnkr")
+type = 0
+min_amount = 7
+max_amount = 7
+amount = 0
+
+[sub_resource type="Resource" id="Resource_uy47t"]
+script = ExtResource("2_krnkr")
+type = 1
+min_amount = 4
+max_amount = 4
+amount = 0
+
+[sub_resource type="Resource" id="Resource_fx5ur"]
+script = ExtResource("2_krnkr")
+type = 31
+min_amount = 7
+max_amount = 7
+amount = 0
+
+[sub_resource type="Resource" id="Resource_ljovj"]
+script = ExtResource("2_krnkr")
+type = 32
+min_amount = 7
+max_amount = 7
+amount = 0
+
+[sub_resource type="Resource" id="Resource_rf3oy"]
+script = ExtResource("2_krnkr")
+type = 18
+min_amount = 7
+max_amount = 7
+amount = 0
+
+[sub_resource type="Resource" id="Resource_crcne"]
+script = ExtResource("2_krnkr")
+type = 19
+min_amount = 7
+max_amount = 7
+amount = 0
+
+[sub_resource type="Resource" id="Resource_24gg0"]
+script = ExtResource("3_blg65")
+grade = 2
+monster_id = 685
+level = 30
+characteristics = Array[ExtResource("2_krnkr")]([SubResource("Resource_5frpa"), SubResource("Resource_eeino"), SubResource("Resource_uy47t"), SubResource("Resource_fx5ur"), SubResource("Resource_ljovj"), SubResource("Resource_rf3oy"), SubResource("Resource_crcne")])
+xp = 3530
+
 [resource]
 script = ExtResource("4_ne5yo")
 id = 685
@@ -82,8 +139,8 @@ boss = false
 archimonstre = false
 corresponding_archimonstre_id = 0
 corresponding_non_archimonstre_id = 0
-grades = Array[ExtResource("3_blg65")]([SubResource("Resource_bv3b3")])
-spells = [24576, 24577, 24578]
+grades = Array[ExtResource("3_blg65")]([SubResource("Resource_bv3b3"), SubResource("Resource_24gg0")])
+spells = Array[int]([24576, 24577, 24578])
 drops = Array[ExtResource("1_r5sy8")]([SubResource("Resource_bytis")])
-areas = [98]
+areas = Array[int]([98])
 texture = ExtResource("5_frix6")
