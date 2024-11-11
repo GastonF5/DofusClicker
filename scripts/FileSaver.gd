@@ -37,4 +37,5 @@ func save_monster_asset(texture: Texture2D, id: int):
 const MONSTER_SPELL_ASSET_PATH := "res://assets/spells/monster/"
 
 func save_monster_spell_asset(texture: Texture2D, spell_name: String):
-	ResourceSaver.save(texture, MONSTER_SPELL_ASSET_PATH + "%s.png" % spell_name)
+	if !FileLoader.file_exists(MONSTER_SPELL_ASSET_PATH, "%s.png" % spell_name):
+		ResourceSaver.save(texture, MONSTER_SPELL_ASSET_PATH + "%s.png" % spell_name)
