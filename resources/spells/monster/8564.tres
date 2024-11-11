@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=13 format=3 uid="uid://d4lfadpcfls4t"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=15 format=3 uid="uid://d4lfadpcfls4t"]
 
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_6d32d"]
 [ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_aiknn"]
@@ -47,8 +47,11 @@ type = 0
 time = 0.0
 target_type = 1
 show_time = false
-effective_zone = 0
+effective_zone = 1
 has_grades = true
+amounts = Array[ExtResource("1_aiknn")]([SubResource("Resource_3r8il"), SubResource("Resource_8w1an"), SubResource("Resource_4icwl"), SubResource("Resource_h12cj"), SubResource("Resource_dujc4")])
+params = []
+visible_in_description = true
 element = 3
 lifesteal = false
 level_pourcentage = false
@@ -57,13 +60,11 @@ pourcentage = false
 retrait_vol = false
 method_name = &""
 effect_label = ""
-params = []
-nb_random_effects = 0
 direction = 0
 is_attirance = false
+nb_hits = 1
 is_poison_carac = false
-amounts = Array[ExtResource("1_aiknn")]([SubResource("Resource_3r8il"), SubResource("Resource_8w1an"), SubResource("Resource_4icwl"), SubResource("Resource_h12cj"), SubResource("Resource_dujc4")])
-visible_in_description = true
+invoc_id = 0
 
 [sub_resource type="Resource" id="Resource_nbmvw"]
 script = ExtResource("1_aiknn")
@@ -79,8 +80,11 @@ type = 1
 time = 10.0
 target_type = 1
 show_time = false
-effective_zone = 0
+effective_zone = 1
 has_grades = false
+amounts = Array[ExtResource("1_aiknn")]([SubResource("Resource_nbmvw")])
+params = []
+visible_in_description = true
 element = 0
 lifesteal = false
 level_pourcentage = false
@@ -89,25 +93,56 @@ pourcentage = false
 retrait_vol = false
 method_name = &""
 effect_label = ""
-params = []
-nb_random_effects = 0
 direction = 0
 is_attirance = false
+nb_hits = 1
 is_poison_carac = false
-amounts = Array[ExtResource("1_aiknn")]([SubResource("Resource_nbmvw")])
+invoc_id = 0
+
+[sub_resource type="Resource" id="Resource_vy6a7"]
+script = ExtResource("1_aiknn")
+_min = 1
+_max = 1
+_min_crit = 1
+_max_crit = 1
+
+[sub_resource type="Resource" id="Resource_g12ie"]
+resource_name = "Recule"
+script = ExtResource("2_8qc1e")
+type = 9
+time = 0.0
+target_type = 0
+show_time = false
+effective_zone = 1
+has_grades = false
+amounts = Array[ExtResource("1_aiknn")]([SubResource("Resource_vy6a7")])
+params = []
 visible_in_description = true
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+direction = 0
+is_attirance = true
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
 
 [resource]
 script = ExtResource("1_6d32d")
 id = 8564
 name = "Fuyez ! Pauvres fous !"
 available = true
-description = "Occasionne des dommages Eau et retire de la Puissance."
+description = "Occasionne des dommages Eau et retire de la Puissance en mêlée. Recule d'une case."
 texture = ExtResource("4_kp8sr")
 img_url = "https://api.dofusdb.fr/img/spells/sort_12864.png"
 level = 0
-pa_cost = 6
+pa_cost = 4
 per_crit = 0.1
 cooldown = 0.0
 priority = 0
-effects = Array[ExtResource("2_8qc1e")]([SubResource("Resource_2g1wf"), SubResource("Resource_i52re")])
+effects = Array[ExtResource("2_8qc1e")]([SubResource("Resource_2g1wf"), SubResource("Resource_i52re"), SubResource("Resource_g12ie")])

@@ -1,19 +1,55 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=5 format=3 uid="uid://b3a4ehrj6wwyp"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=11 format=3 uid="uid://b3a4ehrj6wwyp"]
 
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_2r8by"]
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_eww43"]
 [ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_w1f2a"]
 [ext_resource type="Texture2D" uid="uid://b0q6rxnykeil7" path="res://assets/spells/monster/sort_12699.png" id="2_d7xwf"]
+
+[sub_resource type="Resource" id="Resource_v4a3r"]
+script = ExtResource("1_2r8by")
+_min = 21
+_max = 30
+_min_crit = 31
+_max_crit = 44
+
+[sub_resource type="Resource" id="Resource_mhjw6"]
+script = ExtResource("1_2r8by")
+_min = 22
+_max = 30
+_min_crit = 32
+_max_crit = 45
+
+[sub_resource type="Resource" id="Resource_kswb7"]
+script = ExtResource("1_2r8by")
+_min = 22
+_max = 31
+_min_crit = 33
+_max_crit = 46
+
+[sub_resource type="Resource" id="Resource_olb54"]
+script = ExtResource("1_2r8by")
+_min = 23
+_max = 32
+_min_crit = 33
+_max_crit = 48
+
+[sub_resource type="Resource" id="Resource_hyoh7"]
+script = ExtResource("1_2r8by")
+_min = 23
+_max = 32
+_min_crit = 34
+_max_crit = 49
 
 [sub_resource type="Resource" id="Resource_h0vkr"]
 resource_name = "Dommages Terre"
 script = ExtResource("1_w1f2a")
 type = 0
 time = 0.0
-target_type = 0
+target_type = 1
 show_time = false
 effective_zone = 0
-has_grades = false
-amounts = Array[Resource("res://scripts/resources/AmountResource.gd")]([])
+has_grades = true
+amounts = Array[ExtResource("1_2r8by")]([SubResource("Resource_v4a3r"), SubResource("Resource_mhjw6"), SubResource("Resource_kswb7"), SubResource("Resource_olb54"), SubResource("Resource_hyoh7")])
 params = []
 visible_in_description = true
 element = 1

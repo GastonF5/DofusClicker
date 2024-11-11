@@ -1,0 +1,115 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=13 format=3 uid="uid://cgqgaq1t5i8xu"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_av1l3"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_dh52b"]
+[ext_resource type="Texture2D" uid="uid://b4vcqogdoa0k" path="res://assets/spells/monster/sort_11928.png" id="2_4sqnc"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_thin8"]
+
+[sub_resource type="Resource" id="Resource_6m37f"]
+script = ExtResource("1_dh52b")
+_min = 21
+_max = 26
+_min_crit = 31
+_max_crit = 39
+
+[sub_resource type="Resource" id="Resource_6vy4g"]
+script = ExtResource("1_dh52b")
+_min = 22
+_max = 27
+_min_crit = 32
+_max_crit = 40
+
+[sub_resource type="Resource" id="Resource_t70ai"]
+script = ExtResource("1_dh52b")
+_min = 22
+_max = 28
+_min_crit = 33
+_max_crit = 41
+
+[sub_resource type="Resource" id="Resource_u3si1"]
+script = ExtResource("1_dh52b")
+_min = 23
+_max = 28
+_min_crit = 33
+_max_crit = 42
+
+[sub_resource type="Resource" id="Resource_m4vdx"]
+script = ExtResource("1_dh52b")
+_min = 23
+_max = 29
+_min_crit = 34
+_max_crit = 43
+
+[sub_resource type="Resource" id="Resource_yvm4i"]
+resource_name = "Dommages Air"
+script = ExtResource("2_thin8")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 2
+has_grades = true
+amounts = Array[ExtResource("1_dh52b")]([SubResource("Resource_6m37f"), SubResource("Resource_6vy4g"), SubResource("Resource_t70ai"), SubResource("Resource_u3si1"), SubResource("Resource_m4vdx")])
+params = []
+visible_in_description = true
+element = 4
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+
+[sub_resource type="Resource" id="Resource_vq0wa"]
+script = ExtResource("1_dh52b")
+_min = 1
+_max = 1
+_min_crit = 1
+_max_crit = 1
+
+[sub_resource type="Resource" id="Resource_xcvuv"]
+resource_name = "Avance"
+script = ExtResource("2_thin8")
+type = 9
+time = 0.0
+target_type = 0
+show_time = false
+effective_zone = 2
+has_grades = false
+amounts = Array[ExtResource("1_dh52b")]([SubResource("Resource_vq0wa")])
+params = []
+visible_in_description = true
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+direction = 1
+is_attirance = true
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+
+[resource]
+script = ExtResource("1_av1l3")
+id = 8563
+name = "Protection des Champs"
+available = true
+description = "Occasionne des dommages Air à distance. Avance d'une case."
+texture = ExtResource("2_4sqnc")
+img_url = "https://api.dofusdb.fr/img/spells/sort_11928.png"
+level = 0
+pa_cost = 4
+per_crit = 0.1
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_thin8")]([SubResource("Resource_yvm4i"), SubResource("Resource_xcvuv")])
