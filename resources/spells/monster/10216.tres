@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=5 format=3 uid="uid://b3a4ehrj6wwyp"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_eww43"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_w1f2a"]
+[ext_resource type="Texture2D" uid="uid://b0q6rxnykeil7" path="res://assets/spells/monster/sort_12699.png" id="2_d7xwf"]
+
+[sub_resource type="Resource" id="Resource_h0vkr"]
+resource_name = "Dommages Terre"
+script = ExtResource("1_w1f2a")
+type = 0
+time = 0.0
+target_type = 0
+show_time = false
+effective_zone = 0
+has_grades = false
+amounts = Array[Resource("res://scripts/resources/AmountResource.gd")]([])
+params = []
+visible_in_description = true
+element = 1
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+
+[resource]
+script = ExtResource("1_eww43")
+id = 10216
+name = "Racine Pivotante"
+available = true
+description = "Occasionne des dommages Terre."
+texture = ExtResource("2_d7xwf")
+img_url = "https://api.dofusdb.fr/img/spells/sort_12699.png"
+level = 0
+pa_cost = 4
+per_crit = 0.1
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("1_w1f2a")]([SubResource("Resource_h0vkr")])
