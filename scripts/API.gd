@@ -252,13 +252,13 @@ func get_monster_resource(data):
 		res.drops.append(drop_res)
 	res.drops.append_array(Datas.find_drop_exception_by_monster_id(res.id))
 	
-	res.spells = data["spells"]
+	res.spells.assign(data["spells"])
 	
 	res.race_id = data["race"]
 	var race = "Not found" if !races.keys().has(res.race_id) else races[res.race_id]
 	res.race = race
 	
-	res.areas = data["subareas"].map(func(id): return id as int)
+	res.areas.assign(data["subareas"].map(func(id): return id as int))
 	res.image_url = Renderer.get_url(data)
 	
 	res.grades = [] as Array[GradeResource]

@@ -17,10 +17,10 @@ const black_list = [494]
 
 @export var grades: Array[GradeResource]
 
-@export var spells: Array
+@export var spells: Array[int]
 @export var drops: Array[DropResource]
 
-@export var areas: Array
+@export var areas: Array[int]
 
 var node_texture: TextureRect
 
@@ -51,3 +51,49 @@ func get_areas():
 
 static func is_protecteur(monster: MonsterResource):
 	return monster.race.begins_with("Protecteur")
+
+
+func do_override():
+	if id == 0:
+		log.info("No id on MonsterResource \"%s\" : skipped override" % name)
+		return
+	if !Datas._monsters.has(id):
+		Datas._monsters[id] = self
+	else:
+		var res_to_override: MonsterResource = Datas._monsters[id]
+		if name != "":
+			res_to_override.name = name
+		if race_id != 0:
+			res_to_override.race_id = race_id
+		if race != "":
+			res_to_override.race = race
+		if image_url != "":
+			res_to_override.image_url = image_url
+		if boss:
+			res_to_override.boss = boss
+		if archimonstre:
+			res_to_override.archimonstre = archimonstre
+		if corresponding_archimonstre_id != 0:
+			res_to_override.corresponding_archimonstre_id = corresponding_archimonstre_id
+		if corresponding_non_archimonstre_id != 0:
+			res_to_override.corresponding_non_archimonstre_id = corresponding_non_archimonstre_id
+		if !grades.is_empty():
+			res_to_override.grades.assign(grades)
+		if !spells.is_empty():
+			res_to_override.spells.assign(spells)
+		if !drops.is_empty():
+			for drop: DropResource in res_to_override.drops:
+				if Datas._resources.has(drop.object_id):
+					Datas._resources[drop.object_id].drop_monster_ids.erase(id)
+			res_to_override.drops.assign(drops)
+			for drop: DropResource in drops:
+				Datas._resources[drop.object_id].drop_monster_ids.append(id)
+		if !areas.is_empty():
+			for area_id: int in res_to_override.areas:
+				if Datas._resources.has(area_id):
+					Datas._subareas[area_id]._monster_ids.erase(id)
+			res_to_override.areas.assign(areas)
+			for area_id: int in areas:
+				Datas._subareas[area_id]._monster_ids.append(id)
+		Datas._monsters[id] = res_to_override
+	log.info("Override done for \"%s\"" % name)
