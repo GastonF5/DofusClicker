@@ -1,0 +1,54 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=7 format=3 uid="uid://y6cn14n15x18"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_5lwbn"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_48jbc"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_oss5q"]
+[ext_resource type="Texture2D" uid="uid://bj6kitchmpqff" path="res://assets/spells/monster/sort_12705.png" id="2_1x05q"]
+
+[sub_resource type="Resource" id="Resource_47lf1"]
+script = ExtResource("1_5lwbn")
+_min = 1
+_max = 1
+_min_crit = 1
+_max_crit = 1
+
+[sub_resource type="Resource" id="Resource_fnygr"]
+resource_name = "Poison PA"
+script = ExtResource("1_48jbc")
+type = 5
+time = 10.0
+target_type = 1
+show_time = true
+effective_zone = 0
+has_grades = false
+amounts = Array[ExtResource("1_5lwbn")]([SubResource("Resource_47lf1")])
+params = []
+visible_in_description = true
+element = 2
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = true
+invoc_id = 0
+
+[resource]
+script = ExtResource("1_oss5q")
+id = 5322
+name = "Poison Sauvage"
+available = true
+description = "Applique un poison Feu effectif lorsque des PA sont utilisés."
+texture = ExtResource("2_1x05q")
+img_url = "https://api.dofusdb.fr/img/spells/sort_12705.png"
+level = 0
+pa_cost = 2
+per_crit = 0.1
+cooldown = 10.0
+priority = 1
+effects = Array[ExtResource("1_48jbc")]([SubResource("Resource_fnygr")])
