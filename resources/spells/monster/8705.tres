@@ -1,0 +1,115 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=13 format=3 uid="uid://b0mrelvm4ootj"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_7gs6p"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_fsccu"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_ixx6d"]
+[ext_resource type="Texture2D" uid="uid://6yd8pd4ufj6q" path="res://assets/spells/monster/sort_10076.png" id="2_lfxvj"]
+
+[sub_resource type="Resource" id="Resource_72owx"]
+script = ExtResource("1_7gs6p")
+_min = 18
+_max = 33
+_min_crit = 26
+_max_crit = 49
+
+[sub_resource type="Resource" id="Resource_7ygvr"]
+script = ExtResource("1_7gs6p")
+_min = 18
+_max = 34
+_min_crit = 27
+_max_crit = 50
+
+[sub_resource type="Resource" id="Resource_i8b13"]
+script = ExtResource("1_7gs6p")
+_min = 19
+_max = 34
+_min_crit = 28
+_max_crit = 52
+
+[sub_resource type="Resource" id="Resource_cyyx8"]
+script = ExtResource("1_7gs6p")
+_min = 19
+_max = 35
+_min_crit = 28
+_max_crit = 53
+
+[sub_resource type="Resource" id="Resource_twpol"]
+script = ExtResource("1_7gs6p")
+_min = 20
+_max = 36
+_min_crit = 29
+_max_crit = 54
+
+[sub_resource type="Resource" id="Resource_1ra3e"]
+resource_name = "Dommages Terre"
+script = ExtResource("1_fsccu")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 1
+has_grades = true
+amounts = Array[ExtResource("1_7gs6p")]([SubResource("Resource_72owx"), SubResource("Resource_7ygvr"), SubResource("Resource_i8b13"), SubResource("Resource_cyyx8"), SubResource("Resource_twpol")])
+params = []
+visible_in_description = true
+element = 1
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+
+[sub_resource type="Resource" id="Resource_mcwoj"]
+script = ExtResource("1_7gs6p")
+_min = 1
+_max = 1
+_min_crit = 1
+_max_crit = 1
+
+[sub_resource type="Resource" id="Resource_uxme7"]
+resource_name = "Recule"
+script = ExtResource("1_fsccu")
+type = 9
+time = 0.0
+target_type = 0
+show_time = false
+effective_zone = 1
+has_grades = false
+amounts = Array[ExtResource("1_7gs6p")]([SubResource("Resource_mcwoj")])
+params = []
+visible_in_description = true
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+direction = 0
+is_attirance = true
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+
+[resource]
+script = ExtResource("1_ixx6d")
+id = 8705
+name = "Zizou"
+available = true
+description = "Occasionne des dommages Terre en mêlée. Recule d'une case."
+texture = ExtResource("2_lfxvj")
+img_url = "https://api.dofusdb.fr/img/spells/sort_10076.png"
+level = 0
+pa_cost = 4
+per_crit = 0.1
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("1_fsccu")]([SubResource("Resource_1ra3e"), SubResource("Resource_uxme7")])

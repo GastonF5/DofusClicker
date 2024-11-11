@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3 uid="uid://c0itma0pl6a2a"]
+
+[ext_resource type="Script" path="res://scripts/resources/MonsterResource.gd" id="1_4inew"]
+
+[resource]
+script = ExtResource("1_4inew")
+id = 79
+name = ""
+race_id = 0
+race = ""
+image_url = ""
+boss = false
+archimonstre = false
+corresponding_archimonstre_id = 0
+corresponding_non_archimonstre_id = 0
+grades = Array[Resource("res://scripts/resources/GradeResource.gd")]([])
+spells = [42570, 8705]
+drops = Array[Resource("res://scripts/resources/DropResource.gd")]([])
+areas = Array[int]([])

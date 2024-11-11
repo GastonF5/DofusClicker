@@ -1,0 +1,181 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=17 format=3 uid="uid://dd7qltofaj8bh"]
+
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_4bldn"]
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_23d38"]
+[ext_resource type="Texture2D" uid="uid://cjq8iluk8nbf5" path="res://assets/spells/monster/sort_10040.png" id="2_fkh1s"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_rdldu"]
+
+[sub_resource type="Resource" id="Resource_ycs64"]
+script = ExtResource("1_4bldn")
+_min = 18
+_max = 23
+_min_crit = 26
+_max_crit = 34
+
+[sub_resource type="Resource" id="Resource_1fniv"]
+script = ExtResource("1_4bldn")
+_min = 18
+_max = 24
+_min_crit = 27
+_max_crit = 35
+
+[sub_resource type="Resource" id="Resource_tq2x6"]
+script = ExtResource("1_4bldn")
+_min = 19
+_max = 24
+_min_crit = 28
+_max_crit = 36
+
+[sub_resource type="Resource" id="Resource_hop7f"]
+script = ExtResource("1_4bldn")
+_min = 19
+_max = 25
+_min_crit = 28
+_max_crit = 37
+
+[sub_resource type="Resource" id="Resource_sesdj"]
+script = ExtResource("1_4bldn")
+_min = 20
+_max = 25
+_min_crit = 29
+_max_crit = 38
+
+[sub_resource type="Resource" id="Resource_tjquc"]
+resource_name = "Dommages Eau"
+script = ExtResource("2_rdldu")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 1
+has_grades = true
+amounts = Array[ExtResource("1_4bldn")]([SubResource("Resource_ycs64"), SubResource("Resource_1fniv"), SubResource("Resource_tq2x6"), SubResource("Resource_hop7f"), SubResource("Resource_sesdj")])
+params = []
+visible_in_description = true
+element = 3
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+
+[sub_resource type="Resource" id="Resource_m134m"]
+script = ExtResource("1_4bldn")
+_min = 1
+_max = 1
+_min_crit = 1
+_max_crit = 1
+
+[sub_resource type="Resource" id="Resource_yvrrb"]
+resource_name = "Retrait PA"
+script = ExtResource("2_rdldu")
+type = 2
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 1
+has_grades = false
+amounts = Array[ExtResource("1_4bldn")]([SubResource("Resource_m134m")])
+params = []
+visible_in_description = true
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+
+[sub_resource type="Resource" id="Resource_j5ngm"]
+script = ExtResource("1_4bldn")
+_min = 1
+_max = 1
+_min_crit = 1
+_max_crit = 1
+
+[sub_resource type="Resource" id="Resource_78nas"]
+resource_name = "Retrait PM"
+script = ExtResource("2_rdldu")
+type = 2
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 1
+has_grades = false
+amounts = Array[ExtResource("1_4bldn")]([SubResource("Resource_j5ngm")])
+params = []
+visible_in_description = true
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 1
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+
+[sub_resource type="Resource" id="Resource_01c2q"]
+script = ExtResource("1_4bldn")
+_min = 1
+_max = 1
+_min_crit = 1
+_max_crit = 1
+
+[sub_resource type="Resource" id="Resource_p3nbu"]
+resource_name = "Recule"
+script = ExtResource("2_rdldu")
+type = 9
+time = 0.0
+target_type = 0
+show_time = false
+effective_zone = 1
+has_grades = false
+amounts = Array[ExtResource("1_4bldn")]([SubResource("Resource_01c2q")])
+params = []
+visible_in_description = true
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+direction = 0
+is_attirance = true
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+
+[resource]
+script = ExtResource("1_23d38")
+id = 10215
+name = "Rose Épineuse"
+available = true
+description = "Occasionne des dommages Eau et retire des PA et des PM en mêlée. Recule d'une case."
+texture = ExtResource("2_fkh1s")
+img_url = "https://api.dofusdb.fr/img/spells/sort_10040.png"
+level = 0
+pa_cost = 6
+per_crit = 0.1
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_rdldu")]([SubResource("Resource_tjquc"), SubResource("Resource_yvrrb"), SubResource("Resource_78nas"), SubResource("Resource_p3nbu")])

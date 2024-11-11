@@ -1,0 +1,115 @@
+[gd_resource type="Resource" script_class="SpellResource" load_steps=13 format=3 uid="uid://d02dbeiaa5yj1"]
+
+[ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_danve"]
+[ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_vky43"]
+[ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_l5ix0"]
+[ext_resource type="Texture2D" uid="uid://6yd8pd4ufj6q" path="res://assets/spells/monster/sort_10076.png" id="2_l55oe"]
+
+[sub_resource type="Resource" id="Resource_uqio3"]
+script = ExtResource("1_vky43")
+_min = 16
+_max = 16
+_min_crit = 25
+_max_crit = 25
+
+[sub_resource type="Resource" id="Resource_bx2th"]
+script = ExtResource("1_vky43")
+_min = 17
+_max = 17
+_min_crit = 25
+_max_crit = 25
+
+[sub_resource type="Resource" id="Resource_vv77e"]
+script = ExtResource("1_vky43")
+_min = 17
+_max = 17
+_min_crit = 26
+_max_crit = 26
+
+[sub_resource type="Resource" id="Resource_i1qdw"]
+script = ExtResource("1_vky43")
+_min = 18
+_max = 18
+_min_crit = 26
+_max_crit = 26
+
+[sub_resource type="Resource" id="Resource_7684d"]
+script = ExtResource("1_vky43")
+_min = 18
+_max = 18
+_min_crit = 27
+_max_crit = 27
+
+[sub_resource type="Resource" id="Resource_xnubx"]
+resource_name = "Poison Terre"
+script = ExtResource("2_l5ix0")
+type = 0
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 2
+has_grades = true
+amounts = Array[ExtResource("1_vky43")]([SubResource("Resource_uqio3"), SubResource("Resource_bx2th"), SubResource("Resource_vv77e"), SubResource("Resource_i1qdw"), SubResource("Resource_7684d")])
+params = []
+visible_in_description = true
+element = 1
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+direction = 0
+is_attirance = false
+nb_hits = 3
+is_poison_carac = false
+invoc_id = 0
+
+[sub_resource type="Resource" id="Resource_fe3k4"]
+script = ExtResource("1_vky43")
+_min = 1
+_max = 1
+_min_crit = 1
+_max_crit = 1
+
+[sub_resource type="Resource" id="Resource_lnehv"]
+resource_name = "Avance"
+script = ExtResource("2_l5ix0")
+type = 9
+time = 0.0
+target_type = 0
+show_time = false
+effective_zone = 2
+has_grades = false
+amounts = Array[ExtResource("1_vky43")]([SubResource("Resource_fe3k4")])
+params = []
+visible_in_description = true
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+direction = 1
+is_attirance = true
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
+
+[resource]
+script = ExtResource("1_danve")
+id = 10214
+name = "Pétale Empoisonné"
+available = true
+description = "Applique un poison Terre à distance. Avance d'une case."
+texture = ExtResource("2_l55oe")
+img_url = "https://api.dofusdb.fr/img/spells/sort_10076.png"
+level = 0
+pa_cost = 4
+per_crit = 0.1
+cooldown = 0.0
+priority = 0
+effects = Array[ExtResource("2_l5ix0")]([SubResource("Resource_xnubx"), SubResource("Resource_lnehv")])
