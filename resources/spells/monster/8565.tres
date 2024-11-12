@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=12 format=3 uid="uid://djrmghpysnul6"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=13 format=3 uid="uid://djrmghpysnul6"]
 
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_bc27p"]
 [ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_wkv18"]
@@ -66,6 +66,13 @@ nb_hits = 1
 is_poison_carac = false
 invoc_id = 0
 
+[sub_resource type="Resource" id="Resource_4l8bi"]
+script = ExtResource("1_wkv18")
+_min = 1
+_max = 1
+_min_crit = 1
+_max_crit = 1
+
 [sub_resource type="Resource" id="Resource_u4mhp"]
 resource_name = "Recule"
 script = ExtResource("2_b16s0")
@@ -75,7 +82,7 @@ target_type = 0
 show_time = false
 effective_zone = 1
 has_grades = false
-amounts = Array[ExtResource("1_wkv18")]([])
+amounts = Array[ExtResource("1_wkv18")]([SubResource("Resource_4l8bi")])
 params = []
 visible_in_description = true
 element = 0
