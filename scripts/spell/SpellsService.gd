@@ -32,7 +32,9 @@ static func perform_spell(caster: Entity, plate: EntityContainer, resource: Spel
 	console.log_effects(effects_log)
 	console.log_effects(logs_after)
 	console.output.add_separator()
+	logs_before.clear()
 	effects_log.clear()
+	logs_after.clear()
 	check_dying_entities([PlayerManager.player_entity] + MonsterManager.monsters)
 
 
