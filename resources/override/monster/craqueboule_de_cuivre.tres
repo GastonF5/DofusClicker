@@ -12,7 +12,7 @@ id = 0
 monster_id = 694
 object_id = 441
 percent_drop = [100]
-count = 20
+count = 50
 
 [sub_resource type="Resource" id="Resource_6606g"]
 script = ExtResource("1_akmmn")
