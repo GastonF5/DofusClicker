@@ -43,12 +43,16 @@ var parent: JobPanel
 func init():
 	instantiate_result()
 	instantiate_ingredients()
+	button.mouse_entered.connect(_result_item._on_mouse_entered)
+	button.mouse_exited.connect(_result_item._on_mouse_exited)
+	update_recipe()
+
+
+func update_recipe():
 	for ingredient in get_ingredients_items():
 		var diff = diff_inventory_recipe_item(ingredient)
 		griser_ingredient(ingredient, diff)
 	_result_item.count = calculate_result_count()
-	button.mouse_entered.connect(_result_item._on_mouse_entered)
-	button.mouse_exited.connect(_result_item._on_mouse_exited)
 
 
 func instantiate_result():
@@ -115,3 +119,4 @@ func diff_inventory_recipe_item(ingredient: Item) -> int:
 
 func _on_button_button_up():
 	craft.emit()
+	update_recipe()
