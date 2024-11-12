@@ -523,7 +523,7 @@ static func get_targets(caster: Entity, plate: EntityContainer, type: EffectReso
 		TargetType.NEIGHBORS:
 			targets += get_neighbor_entities(plate)
 		TargetType.ALL_MONSTERS:
-			targets += monsters
+			targets.assign(monsters)
 		TargetType.COLUMN:
 			targets.append(target)
 			targets.append(plate.get_line(true)[plate.id - 1].get_entity())
