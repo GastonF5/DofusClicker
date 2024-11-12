@@ -52,10 +52,10 @@ func load_data():
 
 func load_override(data_type: DataType):
 	var data_label = DataType.find_key(data_type).to_lower()
-	for path in FileLoader.get_all_file_paths(OVERRIDE_PATH + data_label + "/"):
+	for path in FileLoader.get_all_file_paths(OVERRIDE_PATH + data_label):
 		var resource = load(path)
 		if resource is MonsterResource:
-			resource.do_override()
+			resource.do_override(path)
 		else:
 			self.get("_%ss" % data_label)[resource.get_id()] = resource
 

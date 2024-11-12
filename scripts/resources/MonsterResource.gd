@@ -53,9 +53,9 @@ static func is_protecteur(monster: MonsterResource):
 	return monster.race.begins_with("Protecteur")
 
 
-func do_override():
+func do_override(resource_file_name: String):
 	if id == 0:
-		log.info("No id on MonsterResource \"%s\" : skipped override" % name)
+		log.info("No id on MonsterResource \"%s\" : skipped override" % resource_file_name)
 		return
 	if !Datas._monsters.has(id):
 		Datas._monsters[id] = self
@@ -96,4 +96,4 @@ func do_override():
 			for area_id: int in areas:
 				Datas._subareas[area_id]._monster_ids.append(id)
 		Datas._monsters[id] = res_to_override
-	log.info("Override done for \"%s\"" % name)
+	log.info("Override done for \"%s\"" % resource_file_name)
