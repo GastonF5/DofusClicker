@@ -104,6 +104,7 @@ func init(spell_res: SpellResource):
 	mouse_exited.connect(PlayerManager.buff_description.hide_description)
 	
 	GameManager.end_fight.connect(delete_all)
+	_caster.dies.connect(delete_all.unbind(1))
 	annuler.connect(delete_all)
 
 
