@@ -10,7 +10,7 @@ const area_white_list = [
 
 const invoc_ids = [4813]
 
-const debug := true
+const debug := false
 const last_version_to_check := "0.5.0"
 
 var has_focus: bool:
