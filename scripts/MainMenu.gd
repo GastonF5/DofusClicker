@@ -19,11 +19,8 @@ func check_loaded_data():
 	for data_type in Datas.DataType.keys():
 		is_data_loaded = is_data_loaded and\
 			(dir.file_exists("%s.tres" % data_type) or dir.file_exists("%s.tres.remap" % data_type))
-	if !is_data_loaded:
-		Datas.load_data()
-	else:
-		if check_version():
-			_on_load_data_btn_button_up()
+	if !is_data_loaded or check_version():
+		_on_load_data_btn_button_up()
 
 
 func check_version() -> bool:
@@ -94,6 +91,7 @@ func _on_load_data_btn_button_up():
 	var dir = DirAccess.open(FileSaver.DATA_PATH)
 	for file in dir.get_files():
 		dir.remove(file)
+	DirAccess.remove_absolute(FileSaver.DATA_PATH)
 	Datas.load_data()
 
 
