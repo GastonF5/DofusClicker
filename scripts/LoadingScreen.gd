@@ -47,7 +47,3 @@ func set_value(v: float):
 	var x_pos = (loading_pb.value * loading_pb.size.x) / loading_pb.max_value
 	progress_text.visible = v != 0
 	progress_text.global_position = loading_pb.global_position + Vector2(x_pos, 0) - vec
-
-
-func print_loading_pb():
-	print("%d / %d" % [loading_pb.value as int, loading_pb.max_value as int])

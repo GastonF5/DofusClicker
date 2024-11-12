@@ -79,7 +79,7 @@ func init_caracteristiques(caracs: Array[StatResource]):
 
 
 func init_spells(spell_ids: Array):
-	print(spell_ids)
+	log.debug("", spell_ids)
 	var dir = DirAccess.open("res://resources/spells/monster/")
 	for id in spell_ids:
 		if dir.file_exists("%d.tres" % id) or dir.file_exists("%d.tres.remap" % id):
@@ -90,7 +90,7 @@ func init_spells(spell_ids: Array):
 
 func get_caracteristique_for_type(type: CaracType):
 	if type == CaracType.PV:
-		push_error("No characteristic available for type PV")
+		log.error("No characteristic available for type PV")
 		return null
 	var carac
 	if is_player:
@@ -324,11 +324,12 @@ func apply_erosion(amount: int):
 
 func apply_carac_poison(amount: int, carac: CaracType) -> void:
 	for buff in buffs:
-		var effects = buff.get_poison_carac_effects()
-		for effect in effects:
-			if effect.caracteristic == carac:
-				var buff_amount = buff.get_amount(effect.resource_name)
-				SpellsService.do_poison_effect(buff._caster, self, effect, buff_amount, amount)
+		if is_instance_valid(buff._caster):
+			var effects = buff.get_poison_carac_effects()
+			for effect in effects:
+				if effect.caracteristic == carac:
+					var buff_amount = buff.get_amount(effect.resource_name)
+					SpellsService.do_poison_effect(buff._caster, self, effect, buff_amount, amount)
 
 
 static func is_monster(value: Node):
@@ -336,7 +337,7 @@ static func is_monster(value: Node):
 
 
 func die():
-	print("%s died" % name)
+	log.info("%s died" % name)
 	if is_player:
 		hp_bar.value = hp_bar.min_value
 		GameManager.lose_fight()

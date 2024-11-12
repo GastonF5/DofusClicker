@@ -173,8 +173,7 @@ func load_monsters(subarea: AreaResource):
 	MonsterManager.monsters_res = monster_resources
 	MonsterManager.protecteur = null if subarea.get_protecteurs().is_empty() else subarea.get_protecteurs()[0]
 	for mres in monster_resources:
-		print("%s (%d) :" % [mres.name, mres.id])
-		print(mres.spells)
+		log.debug("%s (%d) :" % [mres.name, mres.id], mres.spells)
 	if composite_signal:
 		if !composite_signal.signals.is_empty():
 			await composite_signal.finished

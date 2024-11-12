@@ -5,9 +5,12 @@ func info(message: String):
 	print("INFO: %s" % message)
 
 
-func debug(message: String):
+func debug(message: String, params := []):
 	if Globals.debug:
-		print("DEBUG: %s" % message)
+		if params.is_empty():
+			print("DEBUG: %s" % message)
+		else:
+			prints("DEBUG: %s" % message, params)
 
 
 func error(message: String):

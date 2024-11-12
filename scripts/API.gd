@@ -181,7 +181,7 @@ func _on_request_completed(_result, response_code, headers: PackedStringArray, b
 		check_format(headers[type_index].split(" ")[1]).callv([body, _id])
 		#print("request %s completed" % _id)
 	else:
-		print("Error %d" % response_code)
+		log.error(response_code)
 
 
 func _on_json_received(body, _id):

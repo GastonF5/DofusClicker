@@ -54,7 +54,7 @@ func enter_dungeon(id: int = dungeon_id):
 
 func enter_next_room():
 	var area_name = Datas._subareas[dungeon_id]._name
-	print(cur_room)
+	log.info("Entered in room %d" % cur_room)
 	if cur_room == dungeon_res.get_nb_rooms():
 		exit_dungeon()
 	else:
