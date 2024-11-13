@@ -83,7 +83,7 @@ static func perform_damage(caster: Entity, target: Entity, effect: EffectResourc
 	if effect.lifesteal:
 		var soin = -round(amount / 2.0)
 		caster.take_damage(soin, element)
-		add_log_effect(EffectType.DAMAGE, caster, effect, soin, grade, false, do_log_before)
+		add_log_effect(EffectType.DAMAGE, caster, effect, soin, grade, false, false, true)
 	if target.returned_damage > 0:
 		amount = target.returned_damage
 		caster.take_damage(amount, element)
