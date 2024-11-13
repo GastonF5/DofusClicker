@@ -290,9 +290,10 @@ func take_damage(amount: int, element: Element):
 
 
 func create_taken_damage(amount: int, type: TakenDamage.Type):
-	var taken_damage: TakenDamage = FileLoader.get_packed_scene("taken_damage").instantiate()
-	get_parent().add_child(taken_damage)
-	taken_damage.init(amount, type)
+	if amount != 0:
+		var taken_damage: TakenDamage = FileLoader.get_packed_scene("taken_damage").instantiate()
+		get_parent().add_child(taken_damage)
+		taken_damage.init(amount, type)
 
 
 func get_attack_speed() -> float:
