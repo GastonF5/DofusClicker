@@ -1,6 +1,11 @@
 extends Node
 
 
+enum Classe {
+	FECA, OSAMODAS, ENUTROF, SRAM, XELOR, ECAFLIP, ENIRIPSA, IOP, CRA, SADIDA,
+	SACRIEUR, PANDA, ROUBLARD, ZOBAL, STEAMER, ELIOTROPE, HUPPERMAGE, OUGINAK, FORGELANCE
+}
+
 const area_white_list = [
 	# Incarnam
 	450, 778, 445, 444, 443, 442, 449, 447,
@@ -99,3 +104,7 @@ func take_focus():
 
 func leave_focus():
 	has_focus = false
+
+
+func selected_class_is(classe: Classe):
+	return selected_class - 1 == classe

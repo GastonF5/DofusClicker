@@ -114,6 +114,10 @@ func die():
 	super()
 	await drop()
 	hp_bar.value = hp_bar.min_value
+	if is_invocation:
+		MonsterManager.invocs.erase(self)
+	else:
+		MonsterManager.monsters.erase(self)
 	if get_parent():
 		get_parent().remove_child(self)
 	dies.emit(grade.xp)
