@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=10 format=3 uid="uid://lvpp2lk5gwdd"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=11 format=3 uid="uid://lvpp2lk5gwdd"]
 
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_37r6n"]
 [ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_mgqg7"]
@@ -71,6 +71,13 @@ nb_hits = 1
 is_poison_carac = false
 invoc_id = 0
 
+[sub_resource type="Resource" id="Resource_jp7ao"]
+script = ExtResource("1_mgqg7")
+_min = 1
+_max = 1
+_min_crit = 1
+_max_crit = 1
+
 [sub_resource type="Resource" id="Resource_m6nqh"]
 resource_name = "Avance"
 script = ExtResource("2_422nw")
@@ -80,7 +87,7 @@ target_type = 0
 show_time = false
 effective_zone = 2
 has_grades = false
-amounts = Array[ExtResource("1_mgqg7")]([])
+amounts = Array[ExtResource("1_mgqg7")]([SubResource("Resource_jp7ao")])
 params = []
 visible_in_description = true
 element = 0
