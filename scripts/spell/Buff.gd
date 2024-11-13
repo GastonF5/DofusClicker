@@ -145,7 +145,7 @@ func cancel_effect(effect_name: String):
 	var amount = get_amount(effect_name)
 	if effect.type in [EffectType.BONUS, EffectType.INVISIBILITE, EffectType.AVEUGLE]:
 		SpellsService.annuler_bonus(self, _parent, effect, amount)
-	elif effect.type == EffectType.POISON and is_instance_valid(_caster):
+	elif effect.type == EffectType.POISON:
 		SpellsService.do_poison_effect(_caster, _parent, effect, amount)
 
 
