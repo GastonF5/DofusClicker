@@ -452,6 +452,12 @@ static func fleche_glacee(caster: Entity, plate: EntityContainer, _effect: Effec
 	else:
 		perform_effect(caster, plate, params[2], crit, grade)
 		perform_effect(caster, plate, params[3], crit, grade)
+
+
+static func oeil_de_taupe(caster: Entity, plate: EntityContainer, effect: EffectResource, _crit: bool, _grade: int, _params: Array):
+	for target in get_targets(caster, plate, effect.target_type):
+		for buff: Buff in target.buffs:
+			buff.annuler_effects_of_type(EffectType.INVISIBILITE)
 #endregion
 
 

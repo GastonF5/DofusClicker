@@ -1,9 +1,35 @@
-[gd_resource type="Resource" script_class="SpellResource" load_steps=8 format=3 uid="uid://btrtw1740shqy"]
+[gd_resource type="Resource" script_class="SpellResource" load_steps=9 format=3 uid="uid://btrtw1740shqy"]
 
 [ext_resource type="Script" path="res://scripts/resources/AmountResource.gd" id="1_753t3"]
 [ext_resource type="Script" path="res://scripts/resources/SpellResource.gd" id="1_f2mgr"]
 [ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="2_7q73j"]
 [ext_resource type="Texture2D" uid="uid://crhpjinx11h26" path="res://assets/spells/crâ/sort_13293.png" id="4_3wvou"]
+
+[sub_resource type="Resource" id="Resource_61h53"]
+resource_name = "Dévoile les invisibles"
+script = ExtResource("2_7q73j")
+type = 3
+time = 0.0
+target_type = 2
+show_time = false
+effective_zone = 0
+has_grades = false
+amounts = Array[ExtResource("1_753t3")]([])
+params = []
+visible_in_description = true
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 0
+pourcentage = false
+retrait_vol = false
+method_name = &"oeil_de_taupe"
+effect_label = ""
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
 
 [sub_resource type="Resource" id="Resource_eos0m"]
 script = ExtResource("1_753t3")
@@ -77,4 +103,4 @@ pa_cost = 3
 per_crit = 0.1
 cooldown = 8.0
 priority = 0
-effects = Array[ExtResource("2_7q73j")]([SubResource("Resource_h42s6"), SubResource("Resource_eibuu")])
+effects = Array[ExtResource("2_7q73j")]([SubResource("Resource_61h53"), SubResource("Resource_h42s6"), SubResource("Resource_eibuu")])
