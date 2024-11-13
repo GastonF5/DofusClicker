@@ -35,7 +35,7 @@ script = ExtResource("1_ewg1s")
 id = 13079
 name = "Balise Tactique"
 available = true
-description = "Invoque une Balise Tactique qui peut servir d'obstacle et de cible. Elle est insensible aux dommages des sorts Crâ nécessitant une cible.
+description = "Invoque une Balise Tactique qui peut servir d'obstacle et de cible. Elle est insensible aux dommages des sorts Crâ.
 
 Il ne peut y avoir qu'une seule Balise Tactique. Si la Balise Tactique est encore présente et que celle-ci est réinvoquée, l'ancienne est détruite pour laisser place à la nouvelle."
 texture = ExtResource("3_fy66v")

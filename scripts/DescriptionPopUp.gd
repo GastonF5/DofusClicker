@@ -114,8 +114,17 @@ func init_spell(spell_res: SpellResource):
 		description += "\nTemps de récupération : %d secondes" % spell_res.cooldown
 	compute_description_label(description)
 	for effect in spell_res.effects:
-		if effect.visible_in_description and effect.get_effect_label(0) != "ERREUR":
-			add_spell_effect_label(effect)
+		if effect.visible_in_description:
+			if effect.get_effect_label(0) != "ERREUR":
+				add_spell_effect_label(effect.get_effect_label(0), effect.get_label_color())
+			elif effect.type == EffectType.SPECIAL:
+				for effect_param in effect.get_special_labels(0):
+					if effect_param is EffectResource:
+						add_spell_effect_label(effect_param.get_effect_label(0), effect_param.get_label_color())
+					elif effect_param is String:
+						add_spell_effect_label(effect_param, effect.get_label_color())
+					else:
+						log.error("Type not supported")
 	set_effect_visibility(effects_container.get_child_count() != 0)
 	set_mouse_ignore()
 	visible = true
@@ -204,10 +213,10 @@ func add_hit_effect_label(hit_effect: HitEffectResource):
 	add_effect_label(null, hit_effect)
 
 
-func add_spell_effect_label(effect_res: EffectResource):
+func add_spell_effect_label(text: String, color: Color):
 	var label = Label.new()
-	label.text = effect_res.get_effect_label(0)
-	label.add_theme_color_override("font_color", effect_res.get_label_color())
+	label.text = text
+	label.add_theme_color_override("font_color", color)
 	effects_container.add_child(label)
 
 

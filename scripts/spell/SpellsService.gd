@@ -434,12 +434,24 @@ static func fleche_explosive(caster: Entity, plate: EntityContainer, effect: Eff
 
 static var fleche_punitive_adder := 0
 static func fleche_punitive(caster: Entity, plate: EntityContainer, effect: EffectResource, crit: bool, grade: int, params: Array):
-	var new_effect = effect.duplicate(true)
+	var new_effect: EffectResource
+	if !ClassExceptions.is_balise_tactique(plate.get_entity()):
+		new_effect = params[1].duplicate(true)
+	else:
+		new_effect = params[2].duplicate(true)
 	new_effect.amounts = effect.duplicate_amounts()
 	new_effect.amounts[grade].add(fleche_punitive_adder)
-	new_effect.type = EffectResource.Type.DAMAGE
 	perform_effect(caster, plate, new_effect, crit, grade)
 	fleche_punitive_adder += params[0]
+
+
+static func fleche_glacee(caster: Entity, plate: EntityContainer, _effect: EffectResource, crit: bool, grade: int, params: Array):
+	if !ClassExceptions.is_balise_tactique(plate.get_entity()):
+		perform_effect(caster, plate, params[0], crit, grade)
+		perform_effect(caster, plate, params[1], crit, grade)
+	else:
+		perform_effect(caster, plate, params[2], crit, grade)
+		perform_effect(caster, plate, params[3], crit, grade)
 #endregion
 
 
@@ -535,7 +547,7 @@ static func get_targets(caster: Entity, plate: EntityContainer, type: EffectReso
 			targets.append(target)
 			targets.append(plate.get_line(true)[plate.id - 1].get_entity())
 		TargetType.ALL:
-			targets += monsters
+			targets.assign(monsters)
 			targets.append(PlayerManager.player_entity)
 		TargetType.RANDOM_MONSTER:
 			randomize()

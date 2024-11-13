@@ -5,40 +5,6 @@
 [ext_resource type="Script" path="res://scripts/resources/EffectResource.gd" id="1_eb3gh"]
 [ext_resource type="Texture2D" uid="uid://boqwcx4xtdp60" path="res://assets/spells/crâ/sort_11889.png" id="3_78sqy"]
 
-[sub_resource type="Resource" id="Resource_fcv2b"]
-script = ExtResource("1_0sjys")
-_min = 2
-_max = 2
-_min_crit = 2
-_max_crit = 2
-
-[sub_resource type="Resource" id="Resource_3wrc7"]
-resource_name = "Retrait PM"
-script = ExtResource("1_eb3gh")
-type = 2
-time = 0.0
-target_type = 1
-show_time = false
-effective_zone = 0
-has_grades = false
-element = 0
-lifesteal = false
-level_pourcentage = false
-caracteristic = 1
-pourcentage = false
-retrait_vol = false
-method_name = &""
-effect_label = ""
-params = []
-nb_random_effects = 0
-direction = 0
-is_attirance = false
-nb_hits = 1
-is_poison_carac = false
-invoc_id = 0
-amounts = Array[ExtResource("1_0sjys")]([SubResource("Resource_fcv2b")])
-visible_in_description = true
-
 [sub_resource type="Resource" id="Resource_7631j"]
 script = ExtResource("1_0sjys")
 _min = 10
@@ -55,6 +21,9 @@ target_type = 1
 show_time = true
 effective_zone = 0
 has_grades = false
+amounts = Array[ExtResource("1_0sjys")]([SubResource("Resource_7631j")])
+params = []
+visible_in_description = true
 element = 0
 lifesteal = false
 level_pourcentage = false
@@ -63,15 +32,44 @@ pourcentage = false
 retrait_vol = false
 method_name = &""
 effect_label = ""
-params = []
-nb_random_effects = 0
 direction = 0
 is_attirance = false
 nb_hits = 2
 is_poison_carac = false
 invoc_id = 0
-amounts = Array[ExtResource("1_0sjys")]([SubResource("Resource_7631j")])
+
+[sub_resource type="Resource" id="Resource_fcv2b"]
+script = ExtResource("1_0sjys")
+_min = 2
+_max = 2
+_min_crit = 2
+_max_crit = 2
+
+[sub_resource type="Resource" id="Resource_3wrc7"]
+resource_name = "Retrait PM"
+script = ExtResource("1_eb3gh")
+type = 2
+time = 0.0
+target_type = 1
+show_time = false
+effective_zone = 0
+has_grades = false
+amounts = Array[ExtResource("1_0sjys")]([SubResource("Resource_fcv2b")])
+params = []
 visible_in_description = true
+element = 0
+lifesteal = false
+level_pourcentage = false
+caracteristic = 1
+pourcentage = false
+retrait_vol = false
+method_name = &""
+effect_label = ""
+direction = 0
+is_attirance = false
+nb_hits = 1
+is_poison_carac = false
+invoc_id = 0
 
 [resource]
 script = ExtResource("1_adf18")
@@ -86,4 +84,4 @@ pa_cost = 2
 per_crit = 0.05
 cooldown = 6.0
 priority = 0
-effects = Array[ExtResource("1_eb3gh")]([SubResource("Resource_3wrc7"), SubResource("Resource_o4qle")])
+effects = Array[ExtResource("1_eb3gh")]([SubResource("Resource_o4qle"), SubResource("Resource_3wrc7")])

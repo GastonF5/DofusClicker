@@ -133,6 +133,12 @@ func get_monsters_on_plates():
 			return e and !e.is_ally)
 
 
+func get_invocs_on_plates():
+	return plates.map(func(p): return p.get_entity()).filter(
+		func(e):
+			return e and e.is_invocation and e.is_ally)
+
+
 func instantiate_monster(monster_res: MonsterResource = null) -> Monster:
 	var empty_plates = plates.filter(func(plate: EntityContainer): return plate.is_empty())
 	if empty_plates.size() == 0:
@@ -167,6 +173,7 @@ func _on_monster_dies(xp: int):
 	var multiplicateur := (PlayerManager.player_entity.get_sagesse() + 100) / 100.0
 	xp_to_gain += int(xp * multiplicateur)
 	monsters.assign(get_monsters_on_plates())
+	invocs.assign(get_invocs_on_plates())
 	if monsters.filter(func(m): return !m.dying).is_empty():
 		end_fight()
 
