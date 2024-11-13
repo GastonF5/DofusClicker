@@ -224,6 +224,8 @@ func plate_matches_zone(plate: EntityContainer, zone: EffectResource.Zone) -> bo
 
 
 func get_grade_for_monster(monster_res: MonsterResource) -> GradeResource:
+	if monster_res.race == "":
+		return monster_res.grades[0]
 	var subarea_lvl: int = Datas._subareas[Globals.area_peeker.selected_subarea_id]._level
 	var player_lvl: int = Globals.xp_bar.cur_lvl
 	var sorted_grades: Array[GradeResource] = []
