@@ -77,7 +77,6 @@ var caster: Entity
 @export var invoc_id: int
 
 
-
 func duplicate_amounts() -> Array[AmountResource]:
 	var new_amounts: Array[AmountResource] = []
 	for amount in amounts:
@@ -124,7 +123,9 @@ func get_amount_label(grade: int, amount: int = _INF) -> String:
 		return pattern % formatter.call(amount)
 	var result: String
 	if amounts.size() > grade:
-		var m = amounts[grade]
+		var m: AmountResource = amounts[grade].duplicate()
+		if type == Type.RETRAIT and !retrait_vol:
+			m.mult(-1)
 		var parameters: Array[String] = []
 		parameters.append(pattern % formatter.call(m._min))
 		if m._min != m._max:
@@ -170,8 +171,6 @@ func get_effect_label(grade: int, amount: int = _INF) -> String:
 		Type.RETRAIT:
 			if retrait_vol:
 				result += "Vole "
-			else:
-				result += "-"
 			result += "%s %s" % [get_amount_label(grade, amount), get_caracteristic_label()]
 		Type.BOUCLIER:
 			if level_pourcentage:
@@ -211,14 +210,14 @@ func get_effect_label(grade: int, amount: int = _INF) -> String:
 	return result
 
 
-func compute_special_label(grade: int) -> String:
-	var label = effect_label
+func compute_special_label(grade: int, label = effect_label) -> String:
 	if !params.is_empty():
 		for i in range(params.size()):
-			if params[i] is EffectResource:
-				return "ERREUR"
-			if params[i] is int:
-				label = label.replace("{param%d}" % i, str(params[i]))
+			if label.contains("{param%d}" % i):
+				if params[i] is EffectResource:
+					return "ERREUR"
+				if params[i] is int:
+					label = label.replace("{param%d}" % i, str(params[i]))
 	if ["{min}", "{max}", "{min_crit}", "{max_crit}", "{time}"].any(func(e): return effect_label.contains(e)):
 		var m = amounts[grade]
 		label = label.replace("{min}", str(m._min))
@@ -232,16 +231,19 @@ func compute_special_label(grade: int) -> String:
 	return "ERREUR"
 
 
-func get_special_labels() -> Array:
+func get_special_labels(grade: int) -> Array:
 	var result = []
 	var regex = RegEx.new()
 	regex.compile("{param(?<index>[0-9]+)}")
 	for line in effect_label.split("\n"):
 		if line.contains("{param"):
 			var index = regex.search(line).get_string("index").to_int()
-			result.append(params[index])
+			if params[index] is EffectResource:
+				result.append(params[index])
+			else:
+				result.append(compute_special_label(grade, line))
 		else:
-			result.append(line)
+			result.append(str(line))
 	return result
 
 

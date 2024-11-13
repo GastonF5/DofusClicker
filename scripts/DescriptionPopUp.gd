@@ -118,7 +118,7 @@ func init_spell(spell_res: SpellResource):
 			if effect.get_effect_label(0) != "ERREUR":
 				add_spell_effect_label(effect.get_effect_label(0), effect.get_label_color())
 			elif effect.type == EffectType.SPECIAL:
-				for effect_param in effect.get_special_labels():
+				for effect_param in effect.get_special_labels(0):
 					if effect_param is EffectResource:
 						add_spell_effect_label(effect_param.get_effect_label(0), effect_param.get_label_color())
 					elif effect_param is String:
