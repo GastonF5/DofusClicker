@@ -334,18 +334,21 @@ func log_poison(target: Entity, amount: int, element: Element, time: float, char
 			_log_line(" (%d secondes)" % time, INFO)
 		if characteristic == "":
 			_log_line(" (%d fois)" % nb_hits, INFO)
+		output.new_line()
 
 
 func log_invisibilite(target: Entity, time: float):
 	_log_line(get_entity_name(target), INFO, true)
 	_log_line(" : devient invisible", INFO)
 	_log_line(" (%d secondes)" % time, INFO)
+	output.new_line()
 
 
 func log_aveuglement(target: Entity, time: float):
 	_log_line(get_entity_name(target), INFO, true)
 	_log_line(" : devient aveugle", INFO)
 	_log_line(" (%d secondes)" % time, INFO)
+	output.new_line()
 
 
 func get_entity_name(entity: Entity):
