@@ -53,6 +53,7 @@ func update_recipe():
 		var diff = diff_inventory_recipe_item(ingredient)
 		griser_ingredient(ingredient, diff)
 	_result_item.count = calculate_result_count()
+	craftable = _result_item.count > 0 or Globals.debug
 
 
 func instantiate_result():
