@@ -82,7 +82,6 @@ func init_game(save_res: SaveResource = null):
 
 
 func lose_fight():
-	MonsterManager.clear_monsters()
 	Globals.console.log_info("Vous avez perdu le combat")
 	MonsterManager.end_fight(true)
 
