@@ -98,8 +98,6 @@ func end_fight(lose := false):
 		PlayerManager.static_max_hp = 0
 		for button in Globals.game.get_node("%HeaderButtons").get_children():
 			button.disabled = false
-		if monsters.filter(func(m): return !m.dying).is_empty():
-			console.log_info("Combat terminé")
 		Globals.xp_bar.gain_xp(xp_to_gain)
 		console.log_info("Vous avez gagné %d d'expérience" % xp_to_gain)
 		xp_to_gain = 0
