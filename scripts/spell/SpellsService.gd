@@ -35,7 +35,7 @@ static func perform_spell(caster: Entity, plate: EntityContainer, resource: Spel
 	logs_before.clear()
 	effects_log.clear()
 	logs_after.clear()
-	check_dying_entities([PlayerManager.player_entity] + MonsterManager.monsters)
+	check_dying_entities([PlayerManager.player_entity] + MonsterManager.monsters + MonsterManager.invocs)
 
 
 static func perform_weapon(caster: Entity, plate: EntityContainer, resource: WeaponResource, weapon_name: String):
@@ -65,6 +65,9 @@ static func perform_effect(caster: Entity, plate: EntityContainer, effect: Effec
 
 
 static func perform_damage(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int, is_poison := false, do_log_before := false):
+	# Exception pour la balise tactique
+	if ClassExceptions.is_balise_tactique(target) and Globals.selected_class_is(Globals.Classe.CRA):
+		return
 	var element = effect.element
 	var amount: int
 	if element == Element.BEST:
@@ -261,6 +264,10 @@ static func perform_aveugle(_caster: Entity, target: Entity, effect: EffectResou
 
 
 static func perform_invocation(caster: Entity, plate: EntityContainer, effect: EffectResource, _crit: bool, _grade: int):
+	# Balise tactique
+	if effect.invoc_id == 5908:
+		for balise_tactique in MonsterManager.invocs.filter(func(m): return ClassExceptions.is_balise_tactique(m)):
+			balise_tactique.die()
 	var invoc_res = Datas._monsters[effect.invoc_id]
 	if !caster.is_player and !plate:
 		var caster_plate: EntityContainer = caster.get_parent()
