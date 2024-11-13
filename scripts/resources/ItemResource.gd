@@ -38,6 +38,15 @@ func is_equipment() -> bool:
 	return equip_res != null
 
 
+func get_data_type() -> Datas.DataType:
+	if is_resource():
+		return Datas.DataType.RESOURCE
+	elif is_key():
+		return Datas.DataType.KEY
+	else:
+		return Datas.DataType.ITEM
+
+
 func get_monsters():
 	if drop_monster_ids.is_empty():
 		return []
