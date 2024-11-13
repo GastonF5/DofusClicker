@@ -327,3 +327,25 @@ func _on_reload_data_button_up():
 	for file in dir.get_files():
 		dir.remove(file.get_file())
 	load_data()
+
+
+func get_item_res(id: int) -> ItemResource:
+	if Datas._resources.has(id):
+		return Datas._resources[id]
+	elif Datas._items.has(id):
+		return Datas._items[id]
+	elif Datas._keys.has(id):
+		return Datas._keys[id]
+	return null
+
+
+func set_item_res(id: int, data, data_type: DataType):
+	match data_type:
+		DataType.RESOURCE:
+			_resources[id] = data
+		DataType.ITEM:
+			_items[id] = data
+		DataType.KEY:
+			_keys[id] = data
+		_:
+			log.error("Data type %s not supported in set_item_res method" % data_type)

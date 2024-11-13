@@ -59,6 +59,8 @@ func do_override(resource_file_name: String):
 		return
 	if !Datas._monsters.has(id):
 		Datas._monsters[id] = self
+		do_override_drops()
+		do_override_areas()
 	else:
 		var res_to_override: MonsterResource = Datas._monsters[id]
 		if name != "":
@@ -82,18 +84,42 @@ func do_override(resource_file_name: String):
 		if !spells.is_empty():
 			res_to_override.spells.assign(spells)
 		if !drops.is_empty():
-			for drop: DropResource in res_to_override.drops:
-				if Datas._resources.has(drop.object_id):
-					Datas._resources[drop.object_id].drop_monster_ids.erase(id)
+			do_override_drops(res_to_override)
 			res_to_override.drops.assign(drops)
-			for drop: DropResource in drops:
-				Datas._resources[drop.object_id].drop_monster_ids.append(id)
+			do_override_drops()
 		if !areas.is_empty():
-			for area_id: int in res_to_override.areas:
-				if Datas._resources.has(area_id):
-					Datas._subareas[area_id]._monster_ids.erase(id)
+			do_override_areas(res_to_override)
 			res_to_override.areas.assign(areas)
-			for area_id: int in areas:
-				Datas._subareas[area_id]._monster_ids.append(id)
+			do_override_areas()
 		Datas._monsters[id] = res_to_override
 	log.info("Override done for \"%s\"" % resource_file_name)
+
+
+func do_override_drops(res_to_override: MonsterResource = null):
+	if res_to_override:
+		for drop: DropResource in res_to_override.drops:
+			var data: ItemResource = Datas.get_item_res(drop.object_id)
+			if data:
+				data.drop_monster_ids.erase(id)
+				Datas.set_item_res(drop.object_id, data, data.get_data_type())
+	else:
+		for drop: DropResource in drops:
+			var data: ItemResource = Datas.get_item_res(drop.object_id)
+			if data:
+				data.drop_monster_ids.append(id)
+				Datas.set_item_res(drop.object_id, data, data.get_data_type())
+
+
+func do_override_areas(res_to_override: MonsterResource = null):
+	if res_to_override:
+		for area_id: int in res_to_override.areas:
+			if Datas._subareas.has(area_id):
+				var data = Datas._subareas[area_id]
+				data._monster_ids.erase(id)
+				Datas._subareas[area_id] = data
+	else:
+		for area_id: int in areas:
+			if Datas._subareas.has(area_id):
+				var data = Datas._subareas[area_id]
+				data._monster_ids.append(id)
+				Datas._subareas[area_id] = data
