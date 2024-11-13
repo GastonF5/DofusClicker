@@ -216,8 +216,7 @@ func compute_special_label(grade: int) -> String:
 	if !params.is_empty():
 		for i in range(params.size()):
 			if params[i] is EffectResource:
-				var eff_label = params[i].get_effect_label(grade)
-				label = label.replace("{param%d}" % i, eff_label)
+				return "ERREUR"
 			if params[i] is int:
 				label = label.replace("{param%d}" % i, str(params[i]))
 	if ["{min}", "{max}", "{min_crit}", "{max_crit}", "{time}"].any(func(e): return effect_label.contains(e)):
@@ -231,6 +230,19 @@ func compute_special_label(grade: int) -> String:
 	if label != "":
 		return label
 	return "ERREUR"
+
+
+func get_special_labels() -> Array:
+	var result = []
+	var regex = RegEx.new()
+	regex.compile("{param(?<index>[0-9]+)}")
+	for line in effect_label.split("\n"):
+		if line.contains("{param"):
+			var index = regex.search(line).get_string("index").to_int()
+			result.append(params[index])
+		else:
+			result.append(line)
+	return result
 
 
 func get_label_color() -> Color:
