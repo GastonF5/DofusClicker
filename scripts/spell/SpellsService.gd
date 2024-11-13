@@ -645,7 +645,7 @@ static func add_log_effect(type: EffectType, target: Entity, effect: EffectResou
 
 
 static func do_poison_effect(caster: Entity, target: Entity, effect: EffectResource, amount: int, carac_amount: int = 0):
-	if is_instance_valid(target) and is_instance_valid(caster):
+	if is_instance_valid(target) and is_instance_valid(caster) and !caster.dying and !target.dying:
 		var new_effect = effect.duplicate(true)
 		new_effect.amounts.assign([])
 		new_effect.amounts.append(AmountResource.new())
