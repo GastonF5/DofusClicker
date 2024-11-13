@@ -66,7 +66,7 @@ static func perform_effect(caster: Entity, plate: EntityContainer, effect: Effec
 
 static func perform_damage(caster: Entity, target: Entity, effect: EffectResource, crit: bool, grade: int, is_poison := false, do_log_before := false):
 	# Exception pour la balise tactique
-	if ClassExceptions.is_balise_tactique(target) and Globals.selected_class_is(Globals.Classe.CRA):
+	if caster.is_player and ClassExceptions.is_balise_tactique(target) and Globals.selected_class_is(Globals.Classe.CRA):
 		return
 	var element = effect.element
 	var amount: int
