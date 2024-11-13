@@ -136,7 +136,7 @@ invoc_id = 0
 [resource]
 script = ExtResource("1_8y8vc")
 id = 791
-name = ""
+name = "Appel des Champs"
 available = true
 description = "Invoque aléatoirement parmi les invocations suivantes :
  - Gardienne Champêtre
