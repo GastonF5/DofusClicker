@@ -71,6 +71,11 @@ func get_effects() -> Array[EffectResource]:
 	var effects: Array[EffectResource] = []
 	effects.assign(_effects.keys().map(get_effect))
 	return effects
+
+func annuler_effects_of_type(type: EffectResource.Type):
+	for effect in get_effects():
+		if effect.type == type:
+			end_of_effect(effect.resource_name)
 # endregion
 
 

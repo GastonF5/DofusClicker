@@ -21,6 +21,9 @@ target_type = 10
 show_time = false
 effective_zone = 0
 has_grades = false
+amounts = Array[ExtResource("1_mvkae")]([SubResource("Resource_q0yn4")])
+params = []
+visible_in_description = true
 element = 2
 lifesteal = false
 level_pourcentage = false
@@ -29,15 +32,11 @@ pourcentage = false
 retrait_vol = false
 method_name = &"fleche_explosive"
 effect_label = "{min} à {max} ({min_crit} à {max_crit}) dommages Feu"
-params = []
-nb_random_effects = 0
 direction = 0
 is_attirance = false
 nb_hits = 1
 is_poison_carac = false
 invoc_id = 0
-amounts = Array[ExtResource("1_mvkae")]([SubResource("Resource_q0yn4")])
-visible_in_description = true
 
 [resource]
 script = ExtResource("1_or247")
