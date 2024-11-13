@@ -535,7 +535,7 @@ static func get_targets(caster: Entity, plate: EntityContainer, type: EffectReso
 			targets.append(target)
 			targets.append(plate.get_line(true)[plate.id - 1].get_entity())
 		TargetType.ALL:
-			targets += monsters
+			targets.assign(monsters)
 			targets.append(PlayerManager.player_entity)
 		TargetType.RANDOM_MONSTER:
 			randomize()
