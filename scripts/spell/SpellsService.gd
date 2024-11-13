@@ -510,7 +510,7 @@ static func create_timer(time: float, name: String = "Timer", parent: Node = tno
 
 static func get_targets(caster: Entity, plate: EntityContainer, type: EffectResource.TargetType) -> Array[Entity]:
 	var targets: Array[Entity] = []
-	var monsters = MonsterManager.monsters
+	var monsters = MonsterManager.get_valid_monsters()
 	var target = plate.get_entity() if plate else PlayerManager.player_entity
 	match type:
 		TargetType.CASTER:

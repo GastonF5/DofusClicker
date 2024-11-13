@@ -233,3 +233,7 @@ func get_grade_for_monster(monster_res: MonsterResource) -> GradeResource:
 			return abs(a.level - player_lvl) < abs(b.level - player_lvl)
 	)
 	return sorted_grades[0]
+
+
+func get_valid_monsters():
+	return monsters.filter(func(m): return is_instance_valid(m))
