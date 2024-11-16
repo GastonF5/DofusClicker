@@ -71,12 +71,12 @@ func set_pa_visibility(_visible: bool):
 		pa_cost_label.get_parent().visible = _visible
 
 
-func init_item(item_res: ItemResource, stats: Array[StatResource] = []):
+func init_item(item_res: ItemResource, item_texture: Texture2D, stats: Array[StatResource] = []):
 	reset()
 	# Nom et texture
 	set_crit_container()
 	name = item_res.name.to_pascal_case() + "Description"
-	texture.texture = item_res.texture
+	texture.texture = item_texture
 	compute_name_label(item_res.name, item_res.id, item_res.level, item_res.type_id)
 	# Statistiques de l'item
 	if !stats.is_empty():

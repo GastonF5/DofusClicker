@@ -26,6 +26,8 @@ func _process(_delta):
 		if attack(spell_to_cast):
 			pa_bar.cval -= spell_to_cast.pa_cost
 			spell_to_cast = null
+	if visible and !texture_rect.texture:
+		texture_rect.texture = resource.texture
 
 
 static func instantiate(monster_res: MonsterResource, parent: Control) -> Monster:

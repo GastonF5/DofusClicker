@@ -108,7 +108,7 @@ func load_asset(path: String, id: int) -> Texture2D:
 	path = "res://assets/" + path
 	if DirAccess.dir_exists_absolute(path):
 		var dir = DirAccess.open(path)
-		if dir.file_exists("%d.png" % id) or dir.file_exists("%d.jpg.import" % id):
+		if dir.file_exists("%d.png" % id) or dir.file_exists("%d.png.import" % id):
 			return load(path + "%d.png" % id)
 	return null
 

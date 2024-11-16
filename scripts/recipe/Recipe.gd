@@ -3,7 +3,7 @@ extends PanelContainer
 
 const plus_texture = preload("res://assets/btn_icon/btnIcon_plus.png")
 
-static var scene = preload("res://scenes/jobs/recipe.tscn")
+const scene = preload("res://scenes/jobs/recipe.tscn")
 
 static func create(recipe: RecipeResource, new_parent) -> Recipe:
 	var nrecipe: Recipe = Recipe.scene.instantiate()

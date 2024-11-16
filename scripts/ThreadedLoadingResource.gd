@@ -9,7 +9,10 @@ var thread: Thread
 func _load(path: String, id: int) -> bool:
 	if is_instance_valid(thread) and thread.is_started():
 		thread.wait_to_finish()
-	if !FileSaver.check_file_existence("res://assets/" + path, "%d.png" % id):
+	var file_path = "res://assets/" + path
+	var file_name = "%d.png" % id
+	if !FileSaver.check_file_existence(file_path, file_name) and !FileSaver.check_file_existence(file_path, file_name + ".import"):
+		log.error("File at %s does not exist" % file_path + file_name)
 		return false
 	thread = Thread.new()
 	log.debug("Start loading texture : %d" % id)
