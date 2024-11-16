@@ -30,7 +30,7 @@ func _process(delta):
 
 func _on_mouse_entered():
 	if !PlayerManager.dragged_item:
-		PlayerManager.item_description.init_item(resource, stats)
+		PlayerManager.item_description.init_item(resource, self.texture, stats)
 
 
 func _on_mouse_exited():
