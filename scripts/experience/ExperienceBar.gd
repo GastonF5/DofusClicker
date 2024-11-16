@@ -228,10 +228,12 @@ func reset():
 
 func gain_xp(amount: int):
 	value += amount
+	log.info("Gained %d experience" % amount)
 	while value >= max_value:
 		value -= max_value
 		cur_lvl += 1
 		update_max_value()
+		log.info("Level up !")
 		lvl_up.emit()
 	update_lvl_label()
 	tooltip.update_text(xp_label)

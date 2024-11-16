@@ -31,9 +31,12 @@ func load_texture():
 	if !texture:
 		var success = _load("monsters/images/", id)
 		if !success:
-			await API.await_for_request_completed(await API.request(image_url))
-			texture = API.get_texture(image_url)
-			FileSaver.save_monster_asset(texture, id)
+			if Globals.debug:
+				log.info("Request for %s" % image_url)
+				await API.await_for_request_completed(await API.request(image_url))
+				texture = API.get_texture(image_url)
+			else:
+				log.error("Failed to load monster texture (id: %d)" % id)
 
 
 func black_listed():

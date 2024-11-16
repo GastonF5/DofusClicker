@@ -27,6 +27,7 @@ func save_data(data: Dictionary, file_name: String, path: String = DATA_PATH):
 const ITEM_ASSET_PATH := "res://assets/items/images/"
 
 func save_item_asset(texture: Texture2D, id: int):
+	print_debug("Saving texture %d" % id)
 	ResourceSaver.save(texture, ITEM_ASSET_PATH + "%d.png" % id)
 
 const MONSTER_ASSET_PATH := "res://assets/monsters/images/"
