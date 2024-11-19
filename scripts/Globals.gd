@@ -39,7 +39,7 @@ var timers: Node
 var over_ui: CanvasLayer
 
 var stats_container: Panel
-var jobs_container: PanelContainer
+var recipe_script_container: RecipeScriptContainer
 var main_panel: PanelContainer
 
 var spells_container: Panel
@@ -82,7 +82,7 @@ func initialize(root: Node = get_tree().current_scene):
 	timers = root.get_node("%Timers")
 	over_ui = root.get_node("%OverUI")
 	stats_container = game.get_node("%Stats")
-	jobs_container = game.get_node("%JobsSuperContainer").get_child(0).get_child(0)
+	recipe_script_container = game.get_node("%RecipeScriptContainer")
 	main_panel = game.get_node("%MainPanel")
 	spells_container = game.get_node("%Sorts")
 	spell_bar = game.get_node("%SpellBar")

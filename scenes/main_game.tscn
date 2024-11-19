@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://dyp84yxkk1f3d"]
+[gd_scene load_steps=52 format=3 uid="uid://dyp84yxkk1f3d"]
 
 [ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="1_fefji"]
 [ext_resource type="Texture2D" uid="uid://dtp2ktsnvjk8w" path="res://assets/common/window/bg_product.jpg" id="2_3a1je"]
@@ -34,7 +34,7 @@
 [ext_resource type="Script" path="res://scripts/Loading.gd" id="29_p4f5p"]
 [ext_resource type="Texture2D" uid="uid://ceibijqbh0b7f" path="res://assets/help_icon_normal.png" id="30_5xw66"]
 [ext_resource type="Script" path="res://scripts/experience/ExperienceBar.gd" id="30_x1mlq"]
-[ext_resource type="PackedScene" uid="uid://dacg0tcpohas3" path="res://scenes/jobs/jobs_container.tscn" id="31_jnct6"]
+[ext_resource type="PackedScene" uid="uid://dacg0tcpohas3" path="res://scenes/jobs/recipe_script_container.tscn" id="31_jnct6"]
 [ext_resource type="PackedScene" uid="uid://cuvrxfxt4hxgo" path="res://scenes/inventory/inventory_container.tscn" id="32_r1u5r"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4qy8r"]
@@ -63,8 +63,6 @@ expand_margin_top = 9.0
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_efp50"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ylyxk"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_457r3"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3iahd"]
 
@@ -406,7 +404,6 @@ size_flags_vertical = 0
 text = "De nouvelles zones ont été débloquées"
 
 [node name="JobsSuperContainer" type="MarginContainer" parent="HBC/MiddleContainer/VBC"]
-unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_top = 10
@@ -414,9 +411,9 @@ theme_override_constants/margin_top = 10
 [node name="VBC" type="VBoxContainer" parent="HBC/MiddleContainer/VBC/JobsSuperContainer"]
 layout_mode = 2
 
-[node name="JobsContainer" parent="HBC/MiddleContainer/VBC/JobsSuperContainer/VBC" instance=ExtResource("31_jnct6")]
+[node name="RecipeScriptContainer" parent="HBC/MiddleContainer/VBC/JobsSuperContainer/VBC" instance=ExtResource("31_jnct6")]
+unique_name_in_owner = true
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_457r3")
 
 [node name="Space" type="Control" parent="HBC/MiddleContainer/VBC/JobsSuperContainer/VBC"]
 custom_minimum_size = Vector2(0, 200)

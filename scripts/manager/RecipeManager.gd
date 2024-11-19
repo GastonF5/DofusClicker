@@ -2,18 +2,18 @@ extends AbstractManager
 
 
 var tab_container: TabContainer
-var current_tab: JobPanel
-
 var recipe_containers: Array[RecipeContainer] = []
 
 var recipe_filters: RecipeFilters
+var search_prompt: LineEdit
 
 signal recipes_initialized
 
 
 func reset():
+	disconnect_inputs()
+	search_prompt = null
 	tab_container = null
-	current_tab = null
 	recipe_containers.clear()
 	recipe_filters = null
 	super()
@@ -23,58 +23,34 @@ func initialize():
 	if !Datas.init_done.is_connected(init_recipes):
 		Datas.init_done.connect(init_recipes.bind(Globals.xp_bar.cur_lvl))
 	Globals.xp_bar.lvl_up.connect(init_recipes)
-	tab_container = Globals.jobs_container.get_node("VBC/TabContainer")
+	tab_container = Globals.recipe_script_container.get_node("VBC/TabContainer")
 	
-	recipe_filters = RecipeFilters.scene.instantiate()
+	search_prompt = Globals.recipe_script_container.search_prompt
+	connect_inputs()
+	
+	# Connexion aux filtres de recettes
+	recipe_filters = Globals.recipe_script_container.recipe_filters
 	recipe_filters.filter_toggle.connect(filter_recipes)
-	on_job_tab_changed(tab_container.current_tab)
-	tab_container.tab_changed.connect(on_job_tab_changed)
+	
 	super()
 
 
 func _input(event):
-	if !Globals.quitting:
-		if current_tab:
-			var search_prompt = current_tab.search_prompt
-			if search_prompt.has_focus() and (event.is_action_pressed("esc") or event.is_action_pressed("LMB")):
-				search_prompt.release_focus()
-
-
-func on_job_tab_changed(tab):
-	disconnect_inputs()
-	
-	var last_tab := current_tab
-	current_tab = tab_container.get_child(tab) as JobPanel
-	
-	# Search prompt
-	var text = "" if !last_tab else last_tab.search_prompt.text
-	current_tab.search_prompt.text = text
-	if last_tab: last_tab.search_prompt.clear()
-	
-	# Filters
-	if recipe_filters.get_parent() != null:
-		recipe_filters.get_parent().remove_child(recipe_filters)
-	current_tab.filter_container.add_child(recipe_filters)
-	var toggled = last_tab and last_tab.fitlers_toggled()
-	current_tab.toggle_filters(toggled)
-	if last_tab: last_tab.toggle_filters(false)
-	
-	connect_inputs()
+	if !Globals.quitting and search_prompt:
+		if search_prompt.has_focus() and (event.is_action_pressed("esc") or event.is_action_pressed("LMB")):
+			search_prompt.release_focus()
 
 
 func disconnect_inputs():
-	if current_tab:
-		var search_prompt = current_tab.search_prompt
-		if search_prompt and search_prompt.text_changed.is_connected(filter_recipes):
-			search_prompt.text_changed.disconnect(filter_recipes)
-		if search_prompt and search_prompt.focus_entered.is_connected(Globals.take_focus):
-			search_prompt.focus_entered.disconnect(Globals.take_focus)
-		if search_prompt and search_prompt.focus_exited.is_connected(Globals.leave_focus):
-			search_prompt.focus_exited.disconnect(Globals.leave_focus)
+	if search_prompt.text_changed.is_connected(filter_recipes):
+		search_prompt.text_changed.disconnect(filter_recipes)
+	if search_prompt.focus_entered.is_connected(Globals.take_focus):
+		search_prompt.focus_entered.disconnect(Globals.take_focus)
+	if search_prompt.focus_exited.is_connected(Globals.leave_focus):
+		search_prompt.focus_exited.disconnect(Globals.leave_focus)
 
 
 func connect_inputs():
-	var search_prompt = current_tab.search_prompt
 	search_prompt.text_changed.connect(filter_recipes.unbind(1))
 	search_prompt.focus_entered.connect(Globals.take_focus)
 	search_prompt.focus_exited.connect(Globals.leave_focus)
@@ -157,7 +133,7 @@ func filter_recipe(recipe_container: RecipeContainer):
 
 
 func is_filtered_by_research(recipe_container: RecipeContainer) -> bool:
-	var text_filter = current_tab.search_prompt.text
+	var text_filter = search_prompt.text
 	if text_filter and text_filter != "":
 		return recipe_container._resource.get_result().name.to_lower().contains(text_filter.to_lower())
 	return true

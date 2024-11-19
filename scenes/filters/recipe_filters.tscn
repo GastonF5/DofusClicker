@@ -21,6 +21,7 @@ layout_mode = 2
 [node name="HBC" type="HBoxContainer" parent="."]
 layout_mode = 2
 theme_override_constants/separation = 50
+alignment = 1
 
 [node name="LevelFilter" type="HBoxContainer" parent="HBC"]
 layout_mode = 2
