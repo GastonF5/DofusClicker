@@ -10,6 +10,7 @@ enum DataType {
 	KEY,
 	RECIPE,
 	RESOURCE,
+	CONSOMMABLE,
 	MONSTER,
 	AREA,
 	SUBAREA,
@@ -21,6 +22,7 @@ const KEY_TYPE := 84
 @export var _types = {}
 @export var _items = {}
 @export var _resources = {}
+@export var _consommables = {}
 @export var _recipes = {}
 @export var _monsters = {}
 @export var _areas = {}
@@ -100,6 +102,8 @@ func get_url(data_type: DataType) -> String:
 			return url % "item-types"
 		DataType.HIT_EFFECT:
 			return url % "effects"
+		DataType.CONSOMMABLE:
+			return "ERROR"
 		_:
 			return url % (get_data_name(data_type) + "s")
 
@@ -180,6 +184,8 @@ func get_loading_text(data_type: DataType) -> String:
 			text += "recettes"
 		DataType.RESOURCE:
 			text += "ressources"
+		DataType.CONSOMMABLE:
+			text += "consommables"
 		DataType.MONSTER:
 			text += "monstres"
 		DataType.AREA:
@@ -197,6 +203,8 @@ func request_data(data_type: DataType):
 	Globals.loading_screen.reset()
 	Globals.loading_screen.set_loading_label(get_loading_text(data_type))
 	var base_url: String = get_url(data_type)
+	if base_url == "ERROR":
+		return
 	var urls
 	var in_values = get_in_values(data_type)
 	if !in_values.is_empty():

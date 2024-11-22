@@ -16,6 +16,15 @@ static func create(stat_res: StatResource, hit_effect: HitEffectResource = null)
 	return stat_description
 
 
+static func create_with_conso_effect(effect: ConsommableEffect):
+	var stat_description = StatDescription.scene.instantiate()
+	var charac_label = Caracteristique.Type.find_key(effect.characteristic)
+	var texture = FileLoader.get_stat_asset(charac_label)
+	var label = "%d %s" % [effect.amount, StatResource.get_type_label(charac_label)]
+	stat_description.update(texture, label)
+	return stat_description
+
+
 @export var txt: TextureRect
 @export var lbl: Label
 

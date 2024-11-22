@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=6 format=3 uid="uid://dan4jm8nykis3"]
+
+[ext_resource type="Script" path="res://scripts/resources/ItemResource.gd" id="1_0rwrr"]
+[ext_resource type="Script" path="res://scripts/consommable/ConsommableResource.gd" id="1_gwx2w"]
+[ext_resource type="Script" path="res://scripts/consommable/ConsommableEffect.gd" id="1_mmg0n"]
+
+[sub_resource type="Resource" id="Resource_dbhfv"]
+script = ExtResource("1_mmg0n")
+characteristic = 37
+amount = 11
+nb_fight = 0
+
+[sub_resource type="Resource" id="Resource_q0c1g"]
+script = ExtResource("1_gwx2w")
+item_id = 1182
+effects = Array[ExtResource("1_mmg0n")]([SubResource("Resource_dbhfv")])
+
+[resource]
+script = ExtResource("1_0rwrr")
+id = 1182
+name = "Potion de mini soin"
+type_id = 0
+img_url = ""
+count = 1
+level = 0
+item_set_id = 0
+drop_monster_ids = []
+drop_rate = 0.0
+consommable = SubResource("Resource_q0c1g")

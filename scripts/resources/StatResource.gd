@@ -51,6 +51,8 @@ func get_type() -> String:
 
 static func get_type_label(type_label: String) -> String:
 	if !["PA", "PM"].has(type_label):
+		if type_label == "PV":
+			return "Points de vie"
 		if type_label == "RES_POU":
 			return "Résistance Poussée"
 		if type_label == "PUI_PIEGES":

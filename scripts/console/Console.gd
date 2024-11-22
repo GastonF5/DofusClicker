@@ -130,7 +130,7 @@ func do_command(command: String, params: Array[String] = []):
 						var monster: Monster = MonsterManager.monsters[index]
 						monster.die()
 		"add":
-			if ["item", "resource", "key"].has(params[0]):
+			if ["item", "resource", "key", "consommable"].has(params[0]):
 				var id = params[1].to_int()
 				var count = 1
 				if params.size() >= 3:
@@ -141,6 +141,7 @@ func do_command(command: String, params: Array[String] = []):
 					"item": dict = Datas._items
 					"resource": dict = Datas._resources
 					"key": dict = Datas._keys
+					"consommable": dict = Datas._consommables
 				if dict.has(id):
 					item_res = dict[id]
 					item_res.count = count

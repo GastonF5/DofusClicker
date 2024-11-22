@@ -16,26 +16,23 @@ extends ThreadedLoadingTexture
 @export var drop_monster_ids: Array
 @export var drop_rate: float
 
+@export var consommable: ConsommableResource
+
 func get_id():
 	return id
 
-static func create(_id: int, _name: String) -> ItemResource:
-	var item_res = ItemResource.new()
-	item_res.id = _id
-	item_res.name = _name
-	return item_res
-
 
 func is_resource() -> bool:
-	return !equip_res and type_id != 84
-
+	return !equip_res and !consommable and type_id != 84
 
 func is_key() -> bool:
 	return type_id == 84
 
-
 func is_equipment() -> bool:
 	return equip_res != null
+
+func is_consommable() -> bool:
+	return consommable != null
 
 
 func get_data_type() -> Datas.DataType:

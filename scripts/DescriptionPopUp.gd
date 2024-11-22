@@ -85,6 +85,9 @@ func init_item(item_res: ItemResource, item_texture: Texture2D, stats: Array[Sta
 	elif item_res.equip_res:
 		for effect in item_res.equip_res.stats:
 			add_effect_label(effect)
+	elif item_res.consommable:
+		for effect in item_res.consommable.effects:
+			add_consommable_effect_label(effect)
 	if item_res.equip_res and item_res.equip_res.is_weapon() and !item_res.equip_res.weapon_resource._hit_effects.is_empty():
 		set_crit_container(item_res.equip_res.weapon_resource)
 		separator.visible = true
@@ -207,6 +210,12 @@ func add_effect_label(stat_res: StatResource, hit_effect: HitEffectResource = nu
 		hit_effects_container.add_child(caracteristique)
 	else:
 		effects_container.add_child(caracteristique)
+
+
+func add_consommable_effect_label(conso_effect: ConsommableEffect):
+	var caracteristique = StatDescription.create_with_conso_effect(conso_effect)
+	caracteristique.lbl.add_theme_color_override("font_color", Color.LIME_GREEN)
+	effects_container.add_child(caracteristique)
 
 
 func add_hit_effect_label(hit_effect: HitEffectResource):
