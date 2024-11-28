@@ -289,6 +289,10 @@ func take_damage(amount: int, element: Element):
 	return amount
 
 
+func is_hurt():
+	return hp_bar.cval < hp_bar.mval
+
+
 func create_taken_damage(amount: int, type: TakenDamage.Type):
 	if amount != 0:
 		var taken_damage: TakenDamage = FileLoader.get_packed_scene("taken_damage").instantiate()

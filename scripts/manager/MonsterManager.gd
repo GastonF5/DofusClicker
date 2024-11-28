@@ -99,6 +99,8 @@ func end_fight(lose := false):
 		for button in Globals.game.get_node("%HeaderButtons").get_children():
 			button.disabled = false
 		Globals.xp_bar.gain_xp(xp_to_gain)
+		if PlayerManager.player_entity.is_hurt():
+			Globals.inventory.consume_consommables()
 		console.log_info("Vous avez gagné %d d'expérience" % xp_to_gain)
 		xp_to_gain = 0
 		Globals.area_peeker.back_button.disabled = false

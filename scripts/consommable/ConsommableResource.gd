@@ -28,5 +28,12 @@ func get_item_res() -> ItemResource:
 func consume():
 	for effect: ConsommableEffect in effects:
 		if effect.nb_fight == 0:
-			var carac: Caracteristique = PlayerManager.player_entity.get_caracteristique_for_type(effect.characteristic)
-			carac.amount += effect.amount
+			if effect.characteristic == Caracteristique.Type.PV:
+				PlayerManager.hp_bar.cval += effect.amount
+			else:
+				var carac: Caracteristique = PlayerManager.player_entity.get_caracteristique_for_type(effect.characteristic)
+				carac.amount += effect.amount
+
+
+func is_end_fight_consommable():
+	return effects.all(func(e): return e.characteristic == Caracteristique.Type.PV)

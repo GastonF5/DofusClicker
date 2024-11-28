@@ -119,3 +119,23 @@ func find_item(item_id: int):
 	if item.is_empty():
 		return null
 	return item[0]
+
+
+func consume_consommables() -> void:
+	log.info("Utilisation des consommables")
+	var consommables = get_items().filter(
+		func(i):
+			return i.resource.is_consommable() and i.resource.consommable.is_end_fight_consommable())
+	consommables.sort_custom(
+		func(a, b):
+			return a.resource.level < b.resource.level)
+	var consommable: Item = consommables.pop_back()
+	while (PlayerManager.player_entity.is_hurt() or !consommables.is_empty()) and consommable != null:
+		consommable.resource.consommable.consume()
+		consommable.count -= 1
+		if consommable.count == 0:
+			remove_items([consommable])
+			consommable = consommables.pop_back()
+		if !is_instance_valid(consommable):
+			consommable = null
+	log.info("Consommables utilisés avec succès")

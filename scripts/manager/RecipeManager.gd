@@ -87,11 +87,13 @@ func init_recipes(lvl := -1):
 		var parent
 		if recipe.get_result().is_key():
 			parent = tab_container.get_node("BricoleurPanel")
+		elif recipe.get_result().is_consommable():
+			parent = tab_container.get_node("ConsommablesPanel")
 		else:
 			parent = get_parent_by_type(recipe.get_result().type_id)
 		if parent:
 			create_recipe(recipe, parent)
-		if !recipe.get_result().is_key():
+		if recipe.get_result().is_equipment():
 			create_recipe(recipe, tab_container.get_node("ToutPanel"))
 
 
@@ -104,6 +106,8 @@ func create_recipe(recipe_res: RecipeResource, parent: JobPanel):
 
 func is_recipe_to_init(recipe: RecipeResource, lvl: int):
 	var can_be_crafted = true
+	if recipe.get_result().get_id() == 1182:
+		pass
 	if !Globals.debug:
 		for ingredient: ItemResource in recipe.get_ingredients():
 			can_be_crafted = can_be_crafted and ingredient.get_drop_areas() != ""
@@ -116,7 +120,7 @@ func _on_recipe_craft(recipe: RecipeResource):
 	Globals.inventory.remove_items(recipe.get_ingredients())
 	var item = Item.create(recipe.get_result())
 	Globals.inventory.add_item(item)
-	if Globals.debug and !item.resource.is_key():
+	if Globals.debug and item.resource.is_equipment():
 		Globals.console.log_equip(item)
 
 
@@ -171,7 +175,7 @@ func is_filtered_by_characteristics(recipe_container: RecipeContainer) -> bool:
 	if recipe_filters.applied_filters.is_empty():
 		return true
 	var count := 0
-	if recipe_container._resource.get_result().is_key():
+	if !recipe_container._resource.get_result().is_equipment():
 		return true
 	var result_stat_types = recipe_container._resource.get_result().equip_res.stats.map(func(s): return s.get_type())
 	var is_filtered = false

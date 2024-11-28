@@ -3,8 +3,8 @@ extends Resource
 
 
 @export var _result_id: int
-@export var _ingredients: Array
-@export var _quantities: Array
+@export var _ingredients: Array[int]
+@export var _quantities: Array[int]
 
 func get_id():
 	return _result_id
@@ -22,6 +22,8 @@ func get_result() -> ItemResource:
 		return Datas._items[_result_id]
 	elif Datas._keys.has(_result_id):
 		return Datas._keys[_result_id]
+	elif Datas._consommables.has(_result_id):
+		return Datas._consommables[_result_id]
 	return null
 
 
