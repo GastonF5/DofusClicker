@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=6 format=3 uid="uid://c1miecwo4ddce"]
+
+[ext_resource type="Script" path="res://scripts/consommable/ConsommableEffect.gd" id="1_lrj3j"]
+[ext_resource type="Script" path="res://scripts/resources/ItemResource.gd" id="1_yg32l"]
+[ext_resource type="Script" path="res://scripts/consommable/ConsommableResource.gd" id="2_wh17c"]
+
+[sub_resource type="Resource" id="Resource_namij"]
+script = ExtResource("1_lrj3j")
+characteristic = 37
+amount = 30
+nb_fight = 0
+
+[sub_resource type="Resource" id="Resource_4m3ef"]
+script = ExtResource("2_wh17c")
+item_id = 1183
+effects = Array[ExtResource("1_lrj3j")]([SubResource("Resource_namij")])
+
+[resource]
+script = ExtResource("1_yg32l")
+id = 1183
+name = "Potion de Mini Soin Supérieure"
+type_id = 0
+img_url = "https://api.dofusdb.fr/img/items/250/12038.png"
+count = 1
+level = 20
+item_set_id = 0
+drop_monster_ids = []
+drop_rate = 0.0
+consommable = SubResource("Resource_4m3ef")

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="RecipeResource" load_steps=2 format=3 uid="uid://bia27vt63y6xy"]
+
+[ext_resource type="Script" path="res://scripts/resources/RecipeResource.gd" id="1_ci11x"]
+
+[resource]
+script = ExtResource("1_ci11x")
+_result_id = 468
+_ingredients = Array[int]([289])
+_quantities = Array[int]([4])

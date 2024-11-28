@@ -7,7 +7,7 @@
 [sub_resource type="Resource" id="Resource_dbhfv"]
 script = ExtResource("1_mmg0n")
 characteristic = 37
-amount = 11
+amount = 12
 nb_fight = 0
 
 [sub_resource type="Resource" id="Resource_q0c1g"]
@@ -20,9 +20,9 @@ script = ExtResource("1_0rwrr")
 id = 1182
 name = "Potion de mini soin"
 type_id = 0
-img_url = ""
+img_url = "https://api.dofusdb.fr/img/items/250/12016.png"
 count = 1
-level = 0
+level = 1
 item_set_id = 0
 drop_monster_ids = []
 drop_rate = 0.0

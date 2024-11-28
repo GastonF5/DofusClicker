@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=6 format=3 uid="uid://cptphpwot1v5u"]
+
+[ext_resource type="Script" path="res://scripts/resources/ItemResource.gd" id="1_5ow8s"]
+[ext_resource type="Script" path="res://scripts/consommable/ConsommableEffect.gd" id="1_kfajt"]
+[ext_resource type="Script" path="res://scripts/consommable/ConsommableResource.gd" id="2_bcvdn"]
+
+[sub_resource type="Resource" id="Resource_qbmf7"]
+script = ExtResource("1_kfajt")
+characteristic = 37
+amount = 30
+nb_fight = 0
+
+[sub_resource type="Resource" id="Resource_msq4j"]
+script = ExtResource("2_bcvdn")
+item_id = 528
+effects = Array[ExtResource("1_kfajt")]([SubResource("Resource_qbmf7")])
+
+[resource]
+script = ExtResource("1_5ow8s")
+id = 528
+name = "Carasau"
+type_id = 0
+img_url = "https://api.dofusdb.fr/img/items/250/33007.png"
+count = 1
+level = 20
+item_set_id = 0
+drop_monster_ids = []
+drop_rate = 0.0
+consommable = SubResource("Resource_msq4j")

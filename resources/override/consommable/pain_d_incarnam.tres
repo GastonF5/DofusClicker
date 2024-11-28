@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=6 format=3 uid="uid://clffaybm3i2k7"]
+
+[ext_resource type="Script" path="res://scripts/resources/ItemResource.gd" id="1_k4weu"]
+[ext_resource type="Script" path="res://scripts/consommable/ConsommableEffect.gd" id="1_np3gd"]
+[ext_resource type="Script" path="res://scripts/consommable/ConsommableResource.gd" id="2_jbv8b"]
+
+[sub_resource type="Resource" id="Resource_2exmt"]
+script = ExtResource("1_np3gd")
+characteristic = 37
+amount = 12
+nb_fight = 0
+
+[sub_resource type="Resource" id="Resource_1p7vy"]
+script = ExtResource("2_jbv8b")
+item_id = 468
+effects = Array[ExtResource("1_np3gd")]([SubResource("Resource_2exmt")])
+
+[resource]
+script = ExtResource("1_k4weu")
+id = 468
+name = "Pain d'Incarnam"
+type_id = 0
+img_url = "https://api.dofusdb.fr/img/items/250/33013.png"
+count = 1
+level = 1
+item_set_id = 0
+drop_monster_ids = []
+drop_rate = 0.0
+consommable = SubResource("Resource_1p7vy")
