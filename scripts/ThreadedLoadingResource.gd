@@ -12,7 +12,7 @@ func _load(path: String, id: int) -> bool:
 	var file_path = "res://assets/" + path
 	var file_name = "%d.png" % id
 	if !FileSaver.check_file_existence(file_path, file_name) and !FileSaver.check_file_existence(file_path, file_name + ".import"):
-		log.error("File at %s does not exist" % file_path + file_name)
+		log.error("File at %s does not exist" % (file_path + file_name))
 		return false
 	thread = Thread.new()
 	log.debug("Start loading texture : %d" % id)
