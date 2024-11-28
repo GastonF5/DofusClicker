@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dacg0tcpohas3"]
+[gd_scene load_steps=13 format=3 uid="uid://dacg0tcpohas3"]
 
 [ext_resource type="Texture2D" uid="uid://c5pnk06ayib0j" path="res://assets/window_icon/tailleur.png" id="1_e44ds"]
 [ext_resource type="Script" path="res://scripts/CustomTabContainer.gd" id="1_hrp01"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://c6y1nwfwwwhwa" path="res://assets/window_icon/sculpteur.png" id="6_b0vas"]
 [ext_resource type="Texture2D" uid="uid://b3aqa0jqlriwp" path="res://assets/window_icon/bricoleur.png" id="7_p3wxu"]
 [ext_resource type="PackedScene" uid="uid://brot8qkranooc" path="res://scenes/jobs/job_panel.tscn" id="9_ttorv"]
+[ext_resource type="Texture2D" uid="uid://c5wlajpf1ng5j" path="res://assets/window_icon/consommables.png" id="10_xprps"]
 
 [node name="JobsContainer" type="PanelContainer"]
 anchors_preset = 15
@@ -38,9 +39,10 @@ z_index = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
+size_flags_stretch_ratio = 2.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
-tab_count = 8
+tab_count = 9
 tab_alignment = 1
 drag_to_rearrange_enabled = true
 tab_0/title = ""
@@ -59,6 +61,8 @@ tab_6/title = ""
 tab_6/icon = ExtResource("4_4l0uf")
 tab_7/title = ""
 tab_7/icon = ExtResource("7_p3wxu")
+tab_8/title = ""
+tab_8/icon = ExtResource("10_xprps")
 
 [node name="TabContainer" type="TabContainer" parent="VBC" node_paths=PackedStringArray("tab_bar")]
 layout_mode = 2
@@ -95,6 +99,10 @@ visible = false
 layout_mode = 2
 
 [node name="BricoleurPanel" parent="VBC/TabContainer" instance=ExtResource("9_ttorv")]
+visible = false
+layout_mode = 2
+
+[node name="ConsommablesPanel" parent="VBC/TabContainer" instance=ExtResource("9_ttorv")]
 visible = false
 layout_mode = 2
 
