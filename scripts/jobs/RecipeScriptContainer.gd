@@ -12,6 +12,8 @@ extends PanelContainer
 
 @export var recipe_filters: RecipeFilters
 
+@export var script_container: Control
+
 
 func _on_filter_button_toggled(toggled_on):
 	filter_container.visible = toggled_on

@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3npkhqvl77qr"]
+
+[ext_resource type="Script" path="res://scripts/scripting/Scripter.gd" id="1_q6ffs"]
+
+[node name="Scripter" type="PanelContainer"]
+script = ExtResource("1_q6ffs")
+
+[node name="Options" type="GridContainer" parent="."]
+layout_mode = 2
+columns = 3
+
+[node name="SpellLabel" type="Label" parent="Options"]
+layout_mode = 2
+text = "Sort"
+
+[node name="TargetLabel" type="Label" parent="Options"]
+layout_mode = 2
+text = "Target option"
+
+[node name="TriggerLabel" type="Label" parent="Options"]
+layout_mode = 2
+text = "Trigger option"
+
+[node name="SpellSlot" type="Button" parent="Options" groups=["script_spell_slot", "slot"]]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+mouse_default_cursor_shape = 2
+shortcut_in_tooltip = false
+expand_icon = true
+
+[node name="TargetOptions" type="OptionButton" parent="Options"]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+
+[node name="TriggerOptions" type="OptionButton" parent="Options"]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2

@@ -19,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://2dcp1dm0fl1x" path="res://assets/btn_icon/btnIcon_gear.png" id="16_60i36"]
 [ext_resource type="PackedScene" uid="uid://brot8qkranooc" path="res://scenes/jobs/job_panel.tscn" id="16_pogut"]
 [ext_resource type="PackedScene" uid="uid://cdkopp0w34ycf" path="res://scenes/filters/recipe_filters.tscn" id="18_4riuv"]
-[ext_resource type="PackedScene" uid="uid://dt5k7w3lnrk7v" path="res://scenes/script/scripting_panel.tscn" id="18_kp7gs"]
+[ext_resource type="PackedScene" uid="uid://dt5k7w3lnrk7v" path="res://scenes/scripting/scripting_panel.tscn" id="18_kp7gs"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lf5oy"]
 texture = ExtResource("10_vq4xv")
@@ -36,7 +36,7 @@ texture = ExtResource("13_na5qv")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j634f"]
 
-[node name="RecipeScriptContainer" type="PanelContainer" node_paths=PackedStringArray("search_prompt", "filter_button", "scripting_button", "tab_container", "filter_container", "scripting_panel", "recipe_filters")]
+[node name="RecipeScriptContainer" type="PanelContainer" node_paths=PackedStringArray("search_prompt", "filter_button", "scripting_button", "tab_container", "filter_container", "scripting_panel", "recipe_filters", "script_container")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -54,6 +54,7 @@ tab_container = NodePath("VBC/TabContainer")
 filter_container = NodePath("VBC/FilterContainer")
 scripting_panel = NodePath("VBC/ScriptingPanel")
 recipe_filters = NodePath("VBC/FilterContainer/RecipeFilters")
+script_container = NodePath("VBC/ScriptingPanel")
 
 [node name="VBC" type="VBoxContainer" parent="."]
 layout_mode = 2
