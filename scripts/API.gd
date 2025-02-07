@@ -237,10 +237,10 @@ func get_monster_resource(data):
 	res.id = data["id"]
 	res.boss = data["isBoss"]
 	res.archimonstre = data["isMiniBoss"]
-	var archimonstre = data["correspondingMiniBoss"]
-	res.corresponding_archimonstre_id = 0 if !archimonstre else archimonstre["id"]
-	var non_archimonstre = data["correspondingNonMiniBoss"]
-	res.corresponding_non_archimonstre_id = 0 if !non_archimonstre else non_archimonstre["id"]
+	#var archimonstre = data["correspondingMiniBoss"]
+	#res.corresponding_archimonstre_id = 0 if !archimonstre else archimonstre["id"]
+	#var non_archimonstre = data["correspondingNonMiniBoss"]
+	#res.corresponding_non_archimonstre_id = 0 if !non_archimonstre else non_archimonstre["id"]
 	
 	res.drops = [] as Array[DropResource]
 	for drop in data["drops"]:

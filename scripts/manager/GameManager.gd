@@ -13,7 +13,7 @@ var _current_class: int
 var managers = [StatsManager, PlayerManager, MonsterManager, EquipmentManager, RecipeManager]
 
 func _ready():
-	if get_tree().current_scene.name != "MonsterSpellTool":
+	if get_tree().current_scene.name == "Main":
 		initialize()
 
 

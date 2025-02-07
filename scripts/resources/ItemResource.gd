@@ -79,7 +79,7 @@ static func map(data: Dictionary) -> ItemResource:
 	resource.name = data["name"]["fr"]
 	resource.id = data["id"] as int
 	resource.type_id = data["typeId"] as int
-	resource.img_url = data["imgset"][1]["url"]
+	resource.img_url = data["img"]
 	resource.level = data["level"]
 	if Datas._types.has(resource.type_id):
 		resource.equip_res = EquipmentResource.map(data)
