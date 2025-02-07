@@ -74,6 +74,11 @@ func drop():
 	#if drop_parent != old_parent and is_equipment() and self.resource.level > Globals.xp_bar.cur_lvl:
 		#Globals.console.log_error("Vous n'avez pas le niveau pour équiper cet objet.")
 		#drop_parent = old_parent
+	# Si c'est un sort et qu'il est drop sur un script_spell_slot, il retourne sur son slot
+	if drop_parent.is_in_group("script_spell_slot"):
+		var scripter: Scripter = drop_parent.get_parent().get_parent()
+		scripter.spell = self
+		drop_parent = old_parent
 	change_parent()
 	position = Vector2.ZERO
 

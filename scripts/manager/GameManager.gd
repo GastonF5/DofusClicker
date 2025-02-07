@@ -68,6 +68,7 @@ func init_game(save_res: SaveResource = null):
 	Globals.class_texture_rect.texture = class_peeker.get_logo_transparent(selected_class)
 	for manager: AbstractManager in managers:
 		manager.initialize()
+	ScriptManager.initialize()
 	SaveManager.initialize()
 	Datas.load_data()
 	Globals.area_peeker.initialize()

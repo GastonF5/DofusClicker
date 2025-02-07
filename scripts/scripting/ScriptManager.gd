@@ -1,9 +1,10 @@
 extends AbstractManager
 
-var scripts: Array[Script]
+var scripters: Array[Scripter]
 
 
 func initialize():
+	add_script()
 	super()
 
 
@@ -12,4 +13,11 @@ func reset():
 
 
 func add_script():
-	pass
+	var new_script = Scripter.create()
+	scripters.append(new_script)
+
+
+func _process(_delta):
+	if GameManager.in_fight:
+		for scripter: Scripter in scripters:
+			scripter.do_action()

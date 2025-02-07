@@ -50,15 +50,18 @@ func init(res: SpellResource, _draggable: bool):
 
 func do_action():
 	var player_entity = PlayerManager.player_entity
-	var selected_plate = PlayerManager.selected_plate
-	if resource.pa_cost <= PlayerManager.pa_bar.cval and selected_plate and !timer:
+	if can_be_cast():
 		if resource.pa_cost != 0:
 			PlayerManager.pa_bar.cval -= resource.pa_cost
 		player_entity.apply_carac_poison(resource.pa_cost, Caracteristique.Type.PA)
-		SpellsService.perform_spell(player_entity, selected_plate, resource, 0)
+		SpellsService.perform_spell(player_entity, PlayerManager.selected_plate, resource, 0)
 		if resource.cooldown != 0:
 			timer = SpellsService.create_timer(resource.cooldown, "%sTimer" % resource.name.to_pascal_case(), self)
 			timer.timeout.connect(delete_timer)
+
+
+func can_be_cast() -> bool:
+	return resource.pa_cost <= PlayerManager.pa_bar.cval and PlayerManager.selected_plate and !timer
 
 
 static func instantiate(spell_res: SpellResource, parent: Control, clickable = true) -> Spell:

@@ -404,6 +404,7 @@ size_flags_vertical = 0
 text = "De nouvelles zones ont été débloquées"
 
 [node name="JobsSuperContainer" type="MarginContainer" parent="HBC/MiddleContainer/VBC"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_top = 10

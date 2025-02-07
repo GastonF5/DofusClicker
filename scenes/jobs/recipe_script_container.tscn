@@ -36,7 +36,7 @@ texture = ExtResource("13_na5qv")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j634f"]
 
-[node name="RecipeScriptContainer" type="PanelContainer" node_paths=PackedStringArray("search_prompt", "filter_button", "scripting_button", "tab_container", "filter_container", "scripting_panel", "recipe_filters", "script_container")]
+[node name="RecipeScriptContainer" type="PanelContainer" node_paths=PackedStringArray("search_prompt", "filter_button", "scripting_button", "tab_container", "filter_container", "scripting_panel", "recipe_filters")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -54,7 +54,6 @@ tab_container = NodePath("VBC/TabContainer")
 filter_container = NodePath("VBC/FilterContainer")
 scripting_panel = NodePath("VBC/ScriptingPanel")
 recipe_filters = NodePath("VBC/FilterContainer/RecipeFilters")
-script_container = NodePath("VBC/ScriptingPanel")
 
 [node name="VBC" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -188,6 +187,7 @@ layout_mode = 2
 [node name="ScriptingPanel" parent="VBC" instance=ExtResource("18_kp7gs")]
 visible = false
 layout_mode = 2
+size_flags_vertical = 3
 
 [connection signal="active_tab_rearranged" from="VBC/TabBarContainer/JobTabBar" to="VBC/TabContainer" method="_on_tab_bar_active_tab_rearranged"]
 [connection signal="toggled" from="VBC/PanelContainer/HeaderContainer/FilterButton" to="." method="_on_filter_button_toggled"]

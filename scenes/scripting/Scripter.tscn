@@ -7,7 +7,7 @@ script = ExtResource("1_q6ffs")
 
 [node name="Options" type="GridContainer" parent="."]
 layout_mode = 2
-columns = 3
+columns = 6
 
 [node name="SpellLabel" type="Label" parent="Options"]
 layout_mode = 2
@@ -20,6 +20,18 @@ text = "Target option"
 [node name="TriggerLabel" type="Label" parent="Options"]
 layout_mode = 2
 text = "Trigger option"
+
+[node name="ZoneLabel" type="Label" parent="Options"]
+layout_mode = 2
+text = "Zone option"
+
+[node name="MinTargetLabel" type="Label" parent="Options"]
+layout_mode = 2
+text = "Nombre de cibles minimum"
+
+[node name="PriorityLabel" type="Label" parent="Options"]
+layout_mode = 2
+text = "Ordre de priorité"
 
 [node name="SpellSlot" type="Button" parent="Options" groups=["script_spell_slot", "slot"]]
 custom_minimum_size = Vector2(64, 64)
@@ -40,3 +52,20 @@ mouse_default_cursor_shape = 2
 layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
+
+[node name="ZoneOptions" type="OptionButton" parent="Options"]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+
+[node name="NbMinTarget" type="LineEdit" parent="Options"]
+layout_mode = 2
+text = "1"
+
+[node name="PriorityInput" type="LineEdit" parent="Options"]
+layout_mode = 2
+placeholder_text = "Chiffre"
+
+[connection signal="button_up" from="Options/SpellSlot" to="." method="_on_spell_slot_button_up"]
+[connection signal="mouse_entered" from="Options/SpellSlot" to="." method="_on_spell_slot_mouse_entered"]
+[connection signal="mouse_exited" from="Options/SpellSlot" to="." method="_on_spell_slot_mouse_exited"]
