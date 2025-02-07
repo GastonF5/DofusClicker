@@ -77,7 +77,8 @@ static func build_stats(effects: Array) -> Array[StatResource]:
 
 func load_save(data: Dictionary):
 	for stat in stats:
-		stat.amount = data[stat.type]
+		if data.has(stat.type):
+			stat.amount = data[stat.type]
 
 
 func _duplicate() -> EquipmentResource:
