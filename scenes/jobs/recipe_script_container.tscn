@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dacg0tcpohas3"]
+[gd_scene load_steps=26 format=3 uid="uid://dacg0tcpohas3"]
 
 [ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="1_jwffw"]
 [ext_resource type="Script" path="res://scripts/jobs/RecipeScriptContainer.gd" id="2_7wbos"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://2dcp1dm0fl1x" path="res://assets/btn_icon/btnIcon_gear.png" id="16_60i36"]
 [ext_resource type="PackedScene" uid="uid://brot8qkranooc" path="res://scenes/jobs/job_panel.tscn" id="16_pogut"]
 [ext_resource type="PackedScene" uid="uid://cdkopp0w34ycf" path="res://scenes/filters/recipe_filters.tscn" id="18_4riuv"]
+[ext_resource type="Script" path="res://scripts/orderable_list/OrderableList.gd" id="20_bmbl0"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lf5oy"]
 texture = ExtResource("10_vq4xv")
@@ -200,8 +201,13 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBC/ScriptingPanel/MarginContainer"]
+[node name="OrderableList" type="VBoxContainer" parent="VBC/ScriptingPanel/MarginContainer" node_paths=PackedStringArray("layer_up")]
 layout_mode = 2
+script = ExtResource("20_bmbl0")
+layer_up = NodePath("../LayerUpForListElement")
+
+[node name="LayerUpForListElement" type="CanvasLayer" parent="VBC/ScriptingPanel/MarginContainer"]
+layer = 10
 
 [connection signal="active_tab_rearranged" from="VBC/TabBarContainer/JobTabBar" to="VBC/TabContainer" method="_on_tab_bar_active_tab_rearranged"]
 [connection signal="toggled" from="VBC/ActionsContainer/HeaderContainer/FilterButton" to="." method="_on_filter_button_toggled"]

@@ -1,13 +1,39 @@
-[gd_scene load_steps=2 format=3 uid="uid://b3npkhqvl77qr"]
+[gd_scene load_steps=6 format=3 uid="uid://b3npkhqvl77qr"]
 
 [ext_resource type="Script" path="res://scripts/scripting/Scripter.gd" id="1_q6ffs"]
+[ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="1_qi7uy"]
+[ext_resource type="Texture2D" uid="uid://dc4kur4fk7phx" path="res://assets/common/block/block_border_scratch.png" id="3_0b26i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kgokx"]
+bg_color = Color(0.196078, 0.196078, 0.196078, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yf72f"]
+texture = ExtResource("3_0b26i")
+texture_margin_left = 15.0
+texture_margin_top = 10.0
+texture_margin_right = 15.0
+texture_margin_bottom = 10.0
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
 
 [node name="Scripter" type="PanelContainer"]
+theme = ExtResource("1_qi7uy")
 script = ExtResource("1_q6ffs")
+
+[node name="Background" type="PanelContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kgokx")
+
+[node name="Scratch" type="Panel" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_yf72f")
 
 [node name="Options" type="GridContainer" parent="."]
 layout_mode = 2
-columns = 6
+columns = 5
 
 [node name="SpellLabel" type="Label" parent="Options"]
 layout_mode = 2
@@ -17,26 +43,21 @@ text = "Sort"
 [node name="TargetLabel" type="Label" parent="Options"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-text = "Target option"
+text = "Condition"
 
 [node name="TriggerLabel" type="Label" parent="Options"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-text = "Trigger option"
+text = "Quand"
 
 [node name="ZoneLabel" type="Label" parent="Options"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-text = "Zone option"
+text = "Zone"
 
 [node name="MinTargetLabel" type="Label" parent="Options"]
 layout_mode = 2
-text = "Ciblesend"
-
-[node name="PriorityLabel" type="Label" parent="Options"]
-layout_mode = 2
-size_flags_horizontal = 10
-text = "Priorité"
+text = "Cibles"
 
 [node name="SpellSlot" type="Button" parent="Options" groups=["script_spell_slot", "slot"]]
 custom_minimum_size = Vector2(64, 64)
@@ -75,11 +96,6 @@ min_value = 1.0
 max_value = 4.0
 value = 1.0
 
-[node name="PriorityInput" type="SpinBox" parent="Options"]
-layout_mode = 2
-size_flags_horizontal = 10
-
 [connection signal="button_up" from="Options/SpellSlot" to="." method="_on_spell_slot_button_up"]
 [connection signal="mouse_entered" from="Options/SpellSlot" to="." method="_on_spell_slot_mouse_entered"]
 [connection signal="mouse_exited" from="Options/SpellSlot" to="." method="_on_spell_slot_mouse_exited"]
-[connection signal="value_changed" from="Options/PriorityInput" to="." method="_on_priority_input_value_changed"]

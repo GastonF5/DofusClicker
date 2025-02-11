@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://cu3yq2rlhs131"]
+
+[ext_resource type="Script" path="res://scripts/orderable_list/OrderableElement.gd" id="1_6r17v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_te7l4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ym6pv"]
+
+[node name="OrderableElement" type="PanelContainer"]
+theme_override_styles/panel = SubResource("StyleBoxEmpty_te7l4")
+script = ExtResource("1_6r17v")
+
+[node name="HBC" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Content" type="PanelContainer" parent="HBC"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ym6pv")
+
+[node name="DragElement" type="TextureRect" parent="HBC"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_default_cursor_shape = 9
+expand_mode = 5
+stretch_mode = 5
+
+[connection signal="mouse_entered" from="HBC/DragElement" to="." method="_on_drag_element_mouse_entered"]
+[connection signal="mouse_exited" from="HBC/DragElement" to="." method="_on_drag_element_mouse_exited"]

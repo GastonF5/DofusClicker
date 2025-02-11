@@ -61,6 +61,8 @@ var description_container: PanelContainer:
 
 
 func _ready():
+	for n in range(10):
+		number_assets.append(load("res://assets/number/%d.png" % n))
 	get_viewport().gui_focus_changed.connect(
 		func(n):
 			focused_node = n
@@ -108,3 +110,13 @@ func leave_focus():
 
 func selected_class_is(classe: Classe):
 	return selected_class - 1 == classe
+
+
+func get_scripter_container():
+	return recipe_script_container.scripting_panel.get_child(0).get_child(0)
+
+
+var number_assets = []
+
+func get_number_asset(number: int) -> CompressedTexture2D:
+	return number_assets[number]

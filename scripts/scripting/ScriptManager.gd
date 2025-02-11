@@ -1,7 +1,13 @@
 extends AbstractManager
 
-var scripters: Array[Scripter]
-
+var scripters:
+	get:
+		return Globals.get_scripter_container().get_children().map(
+			func(e):
+				if e is OrderableElement:
+					return e.get_content()
+				return null
+		)
 
 func initialize():
 	add_script(5)
@@ -15,8 +21,8 @@ func reset():
 func add_script(nb_scripters := 1):
 	for i in range(nb_scripters):
 		var new_script = Scripter.create()
+		var orderable = OrderableElement.create(Globals.get_scripter_container(), new_script)
 		scripters.append(new_script)
-		new_script.priority_changed.connect(sort_scripters)
 
 
 func _process(_delta):
@@ -31,10 +37,3 @@ func find_scripter() -> Scripter:
 		if scripter.can_do_action():
 			return scripter
 	return null
-
-
-func sort_scripters() -> void:
-	scripters.sort_custom(
-		func(s1, s2):
-			return s1.get_priority() >= s2.get_priority()
-	)

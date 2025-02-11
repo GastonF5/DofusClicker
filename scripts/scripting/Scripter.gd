@@ -38,11 +38,8 @@ var spell: Spell:
 		spell = val
 		update_spell_icon()
 
-signal priority_changed
-
 static func create() -> Scripter:
 	var scripter = preload("res://scenes/scripting/scripter.tscn").instantiate()
-	Globals.recipe_script_container.scripting_panel.get_child(0).get_child(0).add_child(scripter)
 	return scripter
 
 
@@ -132,7 +129,8 @@ func get_min_targets() -> int:
 
 
 func get_priority() -> int:
-	return $Options/PriorityInput.value as int
+	# on va chercher l'orderable element
+	return get_parent().get_parent().get_parent().get_index()
 
 
 func update_spell_icon():
@@ -154,7 +152,3 @@ func _on_spell_slot_mouse_exited():
 
 func _on_spell_slot_button_up():
 	spell = null
-
-
-func _on_priority_input_value_changed(_value):
-	priority_changed.emit()
