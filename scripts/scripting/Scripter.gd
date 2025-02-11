@@ -13,14 +13,12 @@ func get_target_option_label(code: TargetOption) -> String:
 		_: return "ERROR_%s" % TargetOption.find_key(code)
 
 enum TriggerOption {
-	ALWAYS, FIRST, LAST
+	ALWAYS
 }
 
 func get_trigger_option_label(code: TriggerOption) -> String:
 	match code:
 		TriggerOption.ALWAYS: return "Toujours"
-		TriggerOption.FIRST: return "En premier"
-		TriggerOption.LAST: return "En dernier"
 		_: return "ERROR_%" % TriggerOption.find_key(code)
 
 enum ZoneOption {
@@ -40,10 +38,11 @@ var spell: Spell:
 		spell = val
 		update_spell_icon()
 
+signal priority_changed
 
 static func create() -> Scripter:
 	var scripter = preload("res://scenes/scripting/scripter.tscn").instantiate()
-	Globals.recipe_script_container.scripting_panel.add_child(scripter)
+	Globals.recipe_script_container.scripting_panel.get_child(0).get_child(0).add_child(scripter)
 	return scripter
 
 
@@ -57,37 +56,55 @@ func _ready():
 	$Options/SpellSlot.icon = PlayerManager.punch_res.texture
 
 
-func do_action():
-	var target = get_target()
-	if spell and spell.can_be_cast() and get_trigger() and target:
-		PlayerManager.selected_plate = target.get_parent()
-		spell.do_action()
+func do_action() -> void:
+	PlayerManager.selected_plate = get_target_plate()
+	spell.do_action()
 
 
-func get_target() -> Entity:
-	var monsters = MonsterManager.monsters.duplicate()
+func can_do_action() -> bool:
+	return spell and spell.can_be_cast() and get_trigger() and get_target_plate()
+
+
+func get_target_plate() -> EntityContainer:
+	var available_plates = get_available_plates()
 	match get_zone_option():
 		ZoneOption.DISTANCE:
-			monsters = monsters.filter(func(m): return m.get_parent().is_distance())
+			available_plates = available_plates.filter(func(p): return p.is_distance())
 		ZoneOption.MELEE:
-			monsters = monsters.filter(func(m): return m.get_parent().is_melee())
+			available_plates = available_plates.filter(func(p): return p.is_melee())
 		_:
 			pass
 	match get_target_option():
 		TargetOption.MAX_HP:
-			monsters.sort_custom(
-				func(m1, m2):
-					return m1.hp_bar.cval >= m2.hp_bar.cval
+			available_plates.sort_custom(
+				func(p1, p2):
+					return p1._entity.hp_bar.cval >= p2._entity.hp_bar.cval
 			)
-			return null if monsters.is_empty() else monsters[0]
+			return null if available_plates.is_empty() else available_plates[0]
 		TargetOption.MIN_HP:
-			monsters.sort_custom(
-				func(m1, m2):
-					return m1.hp_bar.cval <= m2.hp_bar.cval
+			available_plates.sort_custom(
+				func(p1, p2):
+					return p1._entity.hp_bar.cval <= p2._entity.hp_bar.cval
 			)
-			return null if monsters.is_empty() else monsters[0]
+			return null if available_plates.is_empty() else available_plates[0]
 		_:
 			return null
+
+
+func get_available_plates() -> Array[EntityContainer]:
+	var min = get_min_targets()
+	if min == 1:
+		return MonsterManager.plates.filter(func(p): return is_instance_valid(p._entity))
+	var available_plates: Array[EntityContainer] = []
+	var effects: Array[EffectResource] = spell.resource.effects
+	for plate: EntityContainer in MonsterManager.plates:
+		var nb_targets = 0
+		for effect in effects:
+			var spell_targets = SpellsService.get_targets(PlayerManager.player_entity, plate, effect.target_type)
+			nb_targets = max(nb_targets, spell_targets.size())
+		if nb_targets >= min:
+			available_plates.append(plate)
+	return available_plates
 
 
 func get_trigger() -> bool:
@@ -110,6 +127,14 @@ func get_zone_option() -> ZoneOption:
 	return $Options/ZoneOptions.selected
 
 
+func get_min_targets() -> int:
+	return $Options/NbMinTarget.value as int
+
+
+func get_priority() -> int:
+	return $Options/PriorityInput.value as int
+
+
 func update_spell_icon():
 	if spell:
 		$Options/SpellSlot.icon = spell.resource.texture
@@ -129,3 +154,7 @@ func _on_spell_slot_mouse_exited():
 
 func _on_spell_slot_button_up():
 	spell = null
+
+
+func _on_priority_input_value_changed(_value):
+	priority_changed.emit()
