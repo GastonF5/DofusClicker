@@ -6,6 +6,7 @@ var empty_control: Control
 
 var dragged := false
 var mouse_on := false
+var moving := false
 
 var last_y: float
 
@@ -16,7 +17,7 @@ static func create(parent: OrderableList, content: Control) -> OrderableElement:
 	orderable.parent_list = parent
 	parent.add_child(orderable)
 	orderable.get_node("HBC/Content").add_child(content)
-	orderable.update_drag_element_texture()
+	orderable.update_priority()
 	return orderable
 
 
@@ -44,16 +45,20 @@ func _process(_delta):
 
 
 func check_position():
-	if !dragged and parent_list.dragged_element:
+	if !moving and !dragged and parent_list.dragged_element:
 		var local_mouse_y = get_local_mouse_position().y
 		var middle = size.y / 2
 		var mouse_in = local_mouse_y >= 0 and local_mouse_y <= size.y
-		var mouse_up = mouse_in and local_mouse_y <= middle
-		var up = get_index() < parent_list.dragged_element.get_index()
-		if (up and !mouse_up) or (!up and mouse_up):
-			parent_list.dragged_element.update_drag_element_texture(get_index())
+		var mouse_up = mouse_in and local_mouse_y >= middle
+		var mouse_down = mouse_in and local_mouse_y <= middle
+		var up = get_index() <= parent_list.dragged_element.empty_control.get_index()
+		var down = get_index() >= parent_list.dragged_element.empty_control.get_index()
+		if (up and mouse_up) or (down and mouse_down):
+			parent_list.dragged_element.update_priority(get_index())
 			parent_list.move_child(parent_list.dragged_element.empty_control, get_index())
-			update_drag_element_texture()
+			update_priority()
+			await animate_repositionement()
+			update_priority()
 
 
 func _on_drag_button_button_down():
@@ -70,9 +75,7 @@ func toggle_dragged():
 	else:
 		parent_list.dragged_element = null
 		var empty_index = empty_control.get_index()
-		parent_list.remove_child(empty_control)
-		empty_control.queue_free()
-		empty_control = null
+		delete_empty()
 		
 		reparent(parent_list)
 		parent_list.move_child(self, empty_index)
@@ -88,6 +91,12 @@ func create_empty(index: int) -> void:
 	parent_list.move_child(empty_control, index)
 
 
+func delete_empty() -> void:
+	parent_list.remove_child(empty_control)
+	empty_control.queue_free()
+	empty_control = null
+
+
 func set_y_position(y: int) -> void:
 	global_position = Vector2(global_position.x, y)
 
@@ -100,7 +109,26 @@ func _on_drag_element_mouse_exited():
 	mouse_on = false
 
 
-func update_drag_element_texture(index: int = get_index()):
+func update_priority(index: int = get_index()):
 	var content = get_content()
 	if is_instance_of(content, Scripter):
-		content.update_priority_texture(index)
+		content.update_priority_texture(index + 1)
+
+
+func animate_repositionement():
+	moving = true
+	z_index = -1
+	var index = get_index()
+	var last_position = global_position
+	reparent(parent_list.layer_up)
+	create_empty(index)
+	global_position = last_position
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "global_position", parent_list.dragged_element.empty_control.global_position, 0.25).set_trans(Tween.TRANS_CIRC)
+	await tween.finished
+	var empty_index = empty_control.get_index()
+	delete_empty()
+	reparent(parent_list)
+	parent_list.move_child(self, empty_index)
+	z_index = 0
+	moving = false

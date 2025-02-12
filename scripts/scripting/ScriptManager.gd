@@ -24,7 +24,7 @@ func reset():
 func add_script(nb_scripters := 1):
 	for i in range(nb_scripters):
 		var new_script = Scripter.create()
-		var orderable = OrderableElement.create(Globals.get_scripter_container(), new_script)
+		OrderableElement.create(Globals.get_scripter_container(), new_script)
 		scripters.append(new_script)
 
 

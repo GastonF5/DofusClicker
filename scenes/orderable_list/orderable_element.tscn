@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cu3yq2rlhs131"]
 
 [ext_resource type="Script" path="res://scripts/orderable_list/OrderableElement.gd" id="1_ucwbr"]
-[ext_resource type="Texture2D" uid="uid://ch7e2wem3no2k" path="res://assets/btn_icon/drag-handle.svg" id="2_8x8pq"]
+[ext_resource type="Texture2D" uid="uid://dypt3wdryf5a5" path="res://assets/btn_icon/drag-vertical-svgrepo-com.svg" id="2_gibb8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_te7l4"]
 
@@ -24,7 +24,7 @@ custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 mouse_default_cursor_shape = 6
-texture = ExtResource("2_8x8pq")
+texture = ExtResource("2_gibb8")
 expand_mode = 5
 stretch_mode = 5
 

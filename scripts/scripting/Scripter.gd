@@ -93,8 +93,8 @@ func get_target_plate() -> EntityContainer:
 
 
 func get_available_plates() -> Array[EntityContainer]:
-	var min = get_min_targets()
-	if min == 1:
+	var _min = get_min_targets()
+	if _min == 1:
 		return MonsterManager.plates.filter(func(p): return is_instance_valid(p._entity))
 	var available_plates: Array[EntityContainer] = []
 	var effects: Array[EffectResource] = spell.resource.effects
@@ -103,7 +103,7 @@ func get_available_plates() -> Array[EntityContainer]:
 		for effect in effects:
 			var spell_targets = SpellsService.get_targets(PlayerManager.player_entity, plate, effect.target_type)
 			nb_targets = max(nb_targets, spell_targets.size())
-		if nb_targets >= min:
+		if nb_targets >= _min:
 			available_plates.append(plate)
 	return available_plates
 
