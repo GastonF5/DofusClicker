@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cu3yq2rlhs131"]
+[gd_scene load_steps=5 format=3 uid="uid://cu3yq2rlhs131"]
 
-[ext_resource type="Script" path="res://scripts/orderable_list/OrderableElement.gd" id="1_6r17v"]
+[ext_resource type="Script" path="res://scripts/orderable_list/OrderableElement.gd" id="1_ucwbr"]
+[ext_resource type="Texture2D" uid="uid://ch7e2wem3no2k" path="res://assets/btn_icon/drag-handle.svg" id="2_8x8pq"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_te7l4"]
 
@@ -8,7 +9,7 @@
 
 [node name="OrderableElement" type="PanelContainer"]
 theme_override_styles/panel = SubResource("StyleBoxEmpty_te7l4")
-script = ExtResource("1_6r17v")
+script = ExtResource("1_ucwbr")
 
 [node name="HBC" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -22,7 +23,8 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_ym6pv")
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 size_flags_horizontal = 8
-mouse_default_cursor_shape = 9
+mouse_default_cursor_shape = 6
+texture = ExtResource("2_8x8pq")
 expand_mode = 5
 stretch_mode = 5
 

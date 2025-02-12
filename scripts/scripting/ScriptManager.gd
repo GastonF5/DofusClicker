@@ -2,12 +2,15 @@ extends AbstractManager
 
 var scripters:
 	get:
-		return Globals.get_scripter_container().get_children().map(
-			func(e):
-				if e is OrderableElement:
-					return e.get_content()
-				return null
-		)
+		var scripter_container = Globals.get_scripter_container()
+		if scripter_container:
+			return scripter_container.get_children().map(
+				func(e):
+					if e is OrderableElement:
+						return e.get_content()
+					return null
+			)
+		return []
 
 func initialize():
 	add_script(5)

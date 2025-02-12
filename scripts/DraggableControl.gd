@@ -76,7 +76,7 @@ func drop():
 		#drop_parent = old_parent
 	# Si c'est un sort et qu'il est drop sur un script_spell_slot, il retourne sur son slot
 	if drop_parent.is_in_group("script_spell_slot"):
-		var scripter: Scripter = drop_parent.get_parent().get_parent()
+		var scripter: Scripter = drop_parent.get_parent().get_parent().get_parent()
 		scripter.spell = self
 		drop_parent = old_parent
 	change_parent()

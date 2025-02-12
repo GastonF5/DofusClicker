@@ -101,4 +101,6 @@ func _on_drag_element_mouse_exited():
 
 
 func update_drag_element_texture(index: int = get_index()):
-	$HBC/DragElement.texture = Globals.get_number_asset(index)
+	var content = get_content()
+	if is_instance_of(content, Scripter):
+		content.update_priority_texture(index)

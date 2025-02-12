@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b3npkhqvl77qr"]
+[gd_scene load_steps=7 format=3 uid="uid://b3npkhqvl77qr"]
 
 [ext_resource type="Script" path="res://scripts/scripting/Scripter.gd" id="1_q6ffs"]
 [ext_resource type="Theme" uid="uid://c7aqcuf0u3rkj" path="res://resources/themes/main_theme.tres" id="1_qi7uy"]
 [ext_resource type="Texture2D" uid="uid://dc4kur4fk7phx" path="res://assets/common/block/block_border_scratch.png" id="3_0b26i"]
+[ext_resource type="Texture2D" uid="uid://bkbsrj2gbones" path="res://assets/number/0.png" id="4_0h3of"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kgokx"]
 bg_color = Color(0.196078, 0.196078, 0.196078, 1)
@@ -31,35 +32,39 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_kgokx")
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_yf72f")
 
-[node name="Options" type="GridContainer" parent="."]
+[node name="HBC" type="HBoxContainer" parent="."]
 layout_mode = 2
+
+[node name="Options" type="GridContainer" parent="HBC"]
+layout_mode = 2
+size_flags_horizontal = 3
 columns = 5
 
-[node name="SpellLabel" type="Label" parent="Options"]
+[node name="SpellLabel" type="Label" parent="HBC/Options"]
 layout_mode = 2
 size_flags_horizontal = 2
 text = "Sort"
 
-[node name="TargetLabel" type="Label" parent="Options"]
+[node name="TargetLabel" type="Label" parent="HBC/Options"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 text = "Condition"
 
-[node name="TriggerLabel" type="Label" parent="Options"]
+[node name="TriggerLabel" type="Label" parent="HBC/Options"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 text = "Quand"
 
-[node name="ZoneLabel" type="Label" parent="Options"]
+[node name="ZoneLabel" type="Label" parent="HBC/Options"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 text = "Zone"
 
-[node name="MinTargetLabel" type="Label" parent="Options"]
+[node name="MinTargetLabel" type="Label" parent="HBC/Options"]
 layout_mode = 2
 text = "Cibles"
 
-[node name="SpellSlot" type="Button" parent="Options" groups=["script_spell_slot", "slot"]]
+[node name="SpellSlot" type="Button" parent="HBC/Options" groups=["script_spell_slot", "slot"]]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 2
@@ -69,33 +74,41 @@ mouse_default_cursor_shape = 2
 shortcut_in_tooltip = false
 expand_icon = true
 
-[node name="TargetOptions" type="OptionButton" parent="Options"]
+[node name="TargetOptions" type="OptionButton" parent="HBC/Options"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 
-[node name="TriggerOptions" type="OptionButton" parent="Options"]
+[node name="TriggerOptions" type="OptionButton" parent="HBC/Options"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 
-[node name="ZoneOptions" type="OptionButton" parent="Options"]
+[node name="ZoneOptions" type="OptionButton" parent="HBC/Options"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 
-[node name="NbMinTarget" type="SpinBox" parent="Options"]
+[node name="NbMinTarget" type="SpinBox" parent="HBC/Options"]
 layout_mode = 2
 min_value = 1.0
 max_value = 4.0
 value = 1.0
 
-[connection signal="button_up" from="Options/SpellSlot" to="." method="_on_spell_slot_button_up"]
-[connection signal="mouse_entered" from="Options/SpellSlot" to="." method="_on_spell_slot_mouse_entered"]
-[connection signal="mouse_exited" from="Options/SpellSlot" to="." method="_on_spell_slot_mouse_exited"]
+[node name="Priority" type="TextureRect" parent="HBC"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+texture = ExtResource("4_0h3of")
+expand_mode = 5
+stretch_mode = 5
+
+[connection signal="button_up" from="HBC/Options/SpellSlot" to="." method="_on_spell_slot_button_up"]
+[connection signal="mouse_entered" from="HBC/Options/SpellSlot" to="." method="_on_spell_slot_mouse_entered"]
+[connection signal="mouse_exited" from="HBC/Options/SpellSlot" to="." method="_on_spell_slot_mouse_exited"]

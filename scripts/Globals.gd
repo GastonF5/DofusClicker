@@ -113,7 +113,9 @@ func selected_class_is(classe: Classe):
 
 
 func get_scripter_container():
-	return recipe_script_container.scripting_panel.get_child(0).get_child(0)
+	if recipe_script_container:
+		return recipe_script_container.scripting_panel.get_child(0).get_child(0)
+	return null
 
 
 var number_assets = []

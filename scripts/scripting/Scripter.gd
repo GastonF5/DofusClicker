@@ -37,6 +37,10 @@ var spell: Spell:
 	set(val):
 		spell = val
 		update_spell_icon()
+		if mouse_on_spell_slot and spell:
+			PlayerManager.spell_description.init_spell(spell.resource)
+
+var mouse_on_spell_slot := false
 
 static func create() -> Scripter:
 	var scripter = preload("res://scenes/scripting/scripter.tscn").instantiate()
@@ -45,12 +49,12 @@ static func create() -> Scripter:
 
 func _ready():
 	for option in TargetOption.values():
-		$Options/TargetOptions.add_item(get_target_option_label(option))
+		$HBC/Options/TargetOptions.add_item(get_target_option_label(option))
 	for option in TriggerOption.values():
-		$Options/TriggerOptions.add_item(get_trigger_option_label(option))
+		$HBC/Options/TriggerOptions.add_item(get_trigger_option_label(option))
 	for option in ZoneOption.values():
-		$Options/ZoneOptions.add_item(get_zone_option_label(option))
-	$Options/SpellSlot.icon = PlayerManager.punch_res.texture
+		$HBC/Options/ZoneOptions.add_item(get_zone_option_label(option))
+	$HBC/Options/SpellSlot.icon = PlayerManager.punch_res.texture
 
 
 func do_action() -> void:
@@ -113,19 +117,19 @@ func get_trigger() -> bool:
 
 
 func get_target_option() -> TargetOption:
-	return $Options/TargetOptions.selected
+	return $HBC/Options/TargetOptions.selected
 
 
 func get_trigget_option() -> TriggerOption:
-	return $Options/TriggerOptions.selected
+	return $HBC/Options/TriggerOptions.selected
 
 
 func get_zone_option() -> ZoneOption:
-	return $Options/ZoneOptions.selected
+	return $HBC/Options/ZoneOptions.selected
 
 
 func get_min_targets() -> int:
-	return $Options/NbMinTarget.value as int
+	return $HBC/Options/NbMinTarget.value as int
 
 
 func get_priority() -> int:
@@ -133,22 +137,32 @@ func get_priority() -> int:
 	return get_parent().get_parent().get_parent().get_index()
 
 
-func update_spell_icon():
+func update_spell_icon() -> void:
 	if spell:
-		$Options/SpellSlot.icon = spell.resource.texture
+		$HBC/Options/SpellSlot.icon = spell.resource.texture
 	else:
-		$Options/SpellSlot.icon = PlayerManager.punch_res.texture
+		$HBC/Options/SpellSlot.icon = PlayerManager.punch_res.texture
+
+
+func update_priority_texture(index: int) -> void:
+	$HBC/Priority.texture = Globals.get_number_asset(index)
 
 
 func _on_spell_slot_mouse_entered():
 	if PlayerManager.dragged_spell:
-		PlayerManager.dragged_spell.drop_parent = $Options/SpellSlot
+		PlayerManager.dragged_spell.drop_parent = $HBC/Options/SpellSlot
+	mouse_on_spell_slot = true
+	if spell:
+		PlayerManager.spell_description.init_spell(spell.resource)
 
 
 func _on_spell_slot_mouse_exited():
 	if PlayerManager.dragged_spell:
 		PlayerManager.dragged_spell.drop_parent = PlayerManager.dragged_spell.old_parent
+	mouse_on_spell_slot = false
+	PlayerManager.spell_description.visible = false
 
 
 func _on_spell_slot_button_up():
 	spell = null
+	PlayerManager.spell_description.visible = false
