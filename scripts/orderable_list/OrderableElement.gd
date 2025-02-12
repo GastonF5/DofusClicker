@@ -37,7 +37,7 @@ func _process(_delta):
 	if parent_list:
 		if dragged:
 			var min_y = parent_list.global_position.y
-			var max_y = min_y + parent_list.size.y
+			var max_y = min_y + (parent_list.get_child_count() * empty_control.size.y)
 			var mouse_y = get_global_mouse_position().y - size.y / 2
 			set_y_position(clamp(mouse_y, min_y, max_y))
 		else:
@@ -57,31 +57,35 @@ func check_position():
 			parent_list.dragged_element.update_priority(get_index())
 			parent_list.move_child(parent_list.dragged_element.empty_control, get_index())
 			update_priority()
-			await animate_repositionement()
+			await animate_repositionement(parent_list.dragged_element.empty_control.global_position)
 			update_priority()
 
 
 func _on_drag_button_button_down():
 	toggle_dragged()
 
+var processing := false
 
 func toggle_dragged():
-	dragged = !dragged
-	if dragged:
-		parent_list.dragged_element = self
-		var my_index = get_index()
-		reparent(parent_list.layer_up)
-		create_empty(my_index)
-	else:
-		parent_list.dragged_element = null
-		var empty_index = empty_control.get_index()
-		delete_empty()
-		
-		reparent(parent_list)
-		parent_list.move_child(self, empty_index)
-		position = Vector2.ZERO
-		dragged = false
-		reordered.emit()
+	if !processing:
+		processing = true
+		dragged = !dragged
+		if dragged:
+			parent_list.dragged_element = self
+			var my_index = get_index()
+			reparent(parent_list.layer_up)
+			create_empty(my_index)
+		else:
+			parent_list.dragged_element = null
+			var empty_index = empty_control.get_index()
+			var empty_position = empty_control.global_position
+			delete_empty()
+			reparent(parent_list)
+			parent_list.move_child(self, empty_index)
+			await animate_repositionement(empty_position)
+			dragged = false
+			reordered.emit()
+		processing = false
 
 
 func create_empty(index: int) -> void:
@@ -115,18 +119,18 @@ func update_priority(index: int = get_index()):
 		content.update_priority_texture(index + 1)
 
 
-func animate_repositionement():
+func animate_repositionement(new_position: Vector2):
 	moving = true
 	z_index = -1
 	var index = get_index()
 	var last_position = global_position
 	reparent(parent_list.layer_up)
 	create_empty(index)
+	var empty_index = empty_control.get_index()
 	global_position = last_position
 	var tween = get_tree().create_tween()
-	tween.tween_property(self, "global_position", parent_list.dragged_element.empty_control.global_position, 0.25).set_trans(Tween.TRANS_CIRC)
+	tween.tween_property(self, "global_position", new_position, 0.25).set_trans(Tween.TRANS_CIRC)
 	await tween.finished
-	var empty_index = empty_control.get_index()
 	delete_empty()
 	reparent(parent_list)
 	parent_list.move_child(self, empty_index)

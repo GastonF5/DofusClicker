@@ -8,7 +8,7 @@ extends PanelContainer
 
 @export var tab_container: CustomTabContainer
 @export var filter_container: ScrollContainer
-@export var scripting_panel: Panel
+@export var scripting_container: ScrollContainer
 
 @export var recipe_filters: RecipeFilters
 
@@ -16,12 +16,12 @@ extends PanelContainer
 func _on_filter_button_toggled(toggled_on):
 	filter_container.visible = toggled_on
 	tab_container.visible = !toggled_on
-	scripting_panel.visible = false
+	scripting_container.visible = false
 	scripting_button.set_pressed_no_signal(false)
 
 
 func _on_scripting_button_toggled(toggled_on):
-	scripting_panel.visible = toggled_on
+	scripting_container.visible = toggled_on
 	tab_container.visible = !toggled_on
 	filter_container.visible = false
 	filter_button.set_pressed_no_signal(false)

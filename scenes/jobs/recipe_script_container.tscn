@@ -36,7 +36,7 @@ texture = ExtResource("13_na5qv")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j634f"]
 
-[node name="RecipeScriptContainer" type="PanelContainer" node_paths=PackedStringArray("search_prompt", "filter_button", "scripting_button", "tab_container", "filter_container", "scripting_panel", "recipe_filters")]
+[node name="RecipeScriptContainer" type="PanelContainer" node_paths=PackedStringArray("search_prompt", "filter_button", "scripting_button", "tab_container", "filter_container", "scripting_container", "recipe_filters")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -52,7 +52,7 @@ filter_button = NodePath("VBC/ActionsContainer/HeaderContainer/FilterButton")
 scripting_button = NodePath("VBC/ActionsContainer/HeaderContainer/ScriptingButton")
 tab_container = NodePath("VBC/TabContainer")
 filter_container = NodePath("VBC/FilterContainer")
-scripting_panel = NodePath("VBC/ScriptingPanel")
+scripting_container = NodePath("VBC/ScriptingPanel")
 recipe_filters = NodePath("VBC/FilterContainer/RecipeFilters")
 
 [node name="VBC" type="VBoxContainer" parent="."]
@@ -138,6 +138,7 @@ icon = ExtResource("16_60i36")
 icon_alignment = 1
 
 [node name="TabContainer" type="TabContainer" parent="VBC" node_paths=PackedStringArray("tab_bar")]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_j634f")
@@ -184,18 +185,14 @@ size_flags_vertical = 3
 [node name="RecipeFilters" parent="VBC/FilterContainer" instance=ExtResource("18_4riuv")]
 layout_mode = 2
 
-[node name="ScriptingPanel" type="Panel" parent="VBC"]
-visible = false
+[node name="ScriptingPanel" type="ScrollContainer" parent="VBC"]
 layout_mode = 2
 size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="VBC/ScriptingPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
@@ -207,7 +204,6 @@ script = ExtResource("20_bmbl0")
 layer_up = NodePath("../LayerUpForListElement")
 
 [node name="LayerUpForListElement" type="CanvasLayer" parent="VBC/ScriptingPanel/MarginContainer"]
-layer = 10
 
 [connection signal="active_tab_rearranged" from="VBC/TabBarContainer/JobTabBar" to="VBC/TabContainer" method="_on_tab_bar_active_tab_rearranged"]
 [connection signal="toggled" from="VBC/ActionsContainer/HeaderContainer/FilterButton" to="." method="_on_filter_button_toggled"]
