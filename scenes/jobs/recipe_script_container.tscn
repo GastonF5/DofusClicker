@@ -138,7 +138,6 @@ icon = ExtResource("16_60i36")
 icon_alignment = 1
 
 [node name="TabContainer" type="TabContainer" parent="VBC" node_paths=PackedStringArray("tab_bar")]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_j634f")
@@ -186,6 +185,7 @@ size_flags_vertical = 3
 layout_mode = 2
 
 [node name="ScriptingPanel" type="ScrollContainer" parent="VBC"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
